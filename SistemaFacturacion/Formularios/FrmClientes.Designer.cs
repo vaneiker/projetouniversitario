@@ -76,7 +76,6 @@
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
-            this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
             this.TabEmpleado.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).BeginInit();
@@ -194,7 +193,7 @@
             this.txtSearchFullName.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchFullName.Multiline = true;
             this.txtSearchFullName.Name = "txtSearchFullName";
-            this.txtSearchFullName.Size = new System.Drawing.Size(754, 36);
+            this.txtSearchFullName.Size = new System.Drawing.Size(754, 31);
             this.txtSearchFullName.TabIndex = 112;
             this.txtSearchFullName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -220,10 +219,11 @@
             // 
             // GridViewEmpleado
             // 
+            this.GridViewEmpleado.AllowUserToAddRows = false;
+            this.GridViewEmpleado.AllowUserToDeleteRows = false;
+            this.GridViewEmpleado.AllowUserToOrderColumns = true;
             this.GridViewEmpleado.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.GridViewEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewEmpleado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.BtnSelect});
             this.GridViewEmpleado.Location = new System.Drawing.Point(6, 203);
             this.GridViewEmpleado.Name = "GridViewEmpleado";
             this.GridViewEmpleado.ReadOnly = true;
@@ -580,12 +580,6 @@
             this.Salir.ToolTipText = "Salir";
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
-            // BtnSelect
-            // 
-            this.BtnSelect.HeaderText = "Seleccionar";
-            this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.ReadOnly = true;
-            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -660,6 +654,5 @@
         private System.Windows.Forms.TextBox txtcodigo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         internal System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.DataGridViewButtonColumn BtnSelect;
         }
     }
