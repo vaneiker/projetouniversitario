@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DF69A1D-1ADE-4EBF-B0D5-4D9D687A19FE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CapaDatos</RootNamespace>
+    <AssemblyName>CapaDatos</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="articulo.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="categoria.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cliente.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalle_ingreso.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalle_venta.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ingreso.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ma_ana.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_dbventas.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_dbventas.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_dbventas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_dbventas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_dbventas.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="presentacion.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="proveedor.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RepocitoryDbVentas\ClienteRepocitory.cs" />
+    <Compile Include="spbuscar_articulo_nombre_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spbuscar_categoria_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spbuscar_presentacion_Nombre_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spbuscar_proveedor_num_documento_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spbuscar_proveedor_razon_social_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spmostrar_articulo_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spmostrar_categoria_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spmostrar_presentacion_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spmostrar_proveedor_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GET_CLIENTES_BUSCAR_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GET_CLIENTES_LOAD_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="trabajador.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="venta.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_CLIENTES_LOAD.cs">
+      <DependentUpon>Model_dbventas.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model_dbventas.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_dbventas.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Model_dbventas.edmx.diagram">
+      <DependentUpon>Model_dbventas.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model_dbventas.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_dbventas.edmx</DependentUpon>
+      <LastGenOutput>Model_dbventas.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model_dbventas.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_dbventas.edmx</DependentUpon>
+      <LastGenOutput>Model_dbventas.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
+      <Project>{bb38bd56-d340-4a02-af4d-902d1a54971b}</Project>
+      <Name>CapaEntidad</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
