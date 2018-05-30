@@ -596,6 +596,23 @@ INSERT INTO dbo.cliente values(
 
 
 END
+/****** Object:  StoredProcedure [dbo].[SP_LOGIN]    Script Date: 29/05/2018 22:55:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC SP_LOGIN
+@usuario varchar(50),
+@contrasena varchar(50),
+@rolid int output
+AS
+BEGIN
+ SELECT @rolid = RolID from [dbo].[USERS] WHERE Usuario = @usuario and Clave = @contrasena;
+ IF NOT (@rolid > 0)
+ BEGIN
+   SET @rolid = 0
+ END
+END
 GO
 /****** Object:  StoredProcedure [dbo].[spbuscar_articulo_nombre]    Script Date: 28/05/2018 22:24:13 ******/
 SET ANSI_NULLS ON
