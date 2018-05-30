@@ -1,3 +1,18 @@
+if exists(select * from sys.databases where name = 'dbventas')
+begin
+ use [master]
+ drop database [dbventas]
+end
+if not exists(select * from sys.databases where name = 'dbventas')
+begin
+  create database dbventas
+end
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 USE [dbventas]
 GO
 /****** Object:  Table [dbo].[articulo]    Script Date: 28/05/2018 22:24:13 ******/
@@ -173,13 +188,13 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ("Administrador","Admin");
-INSERT  INTO [dbo].[ROLES](Nombre, Grupo) VALUES ("Almacenista", "Inventario");
-INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ("Vendedor", "Operario");
-INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ("Almacenista Sup", "Inventario");
-INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ("Vendedor Sup", "Operario");
-INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ("Gerente", "Administrativo");
-INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ("HHRR", "Administrativo");
+INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ('Administrador','Admin');
+INSERT  INTO [dbo].[ROLES](Nombre, Grupo) VALUES ('Almacenista', 'Inventario');
+INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ('Vendedor', 'Operario');
+INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ('Almacenista Sup', 'Inventario');
+INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ('Vendedor Sup', 'Operario');
+INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ('Gerente', 'Administrativo');
+INSERT INTO [dbo].[ROLES](Nombre, Grupo) VALUES ('HHRR', 'Administrativo');
 
 /****** Object:  Table [dbo].[trabajador]    Script Date: 28/05/2018 22:24:13 ******/
 SET ANSI_NULLS ON
@@ -227,6 +242,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+INSERT INTO USERS (Usuario, Clave, RolId, Statud) VALUES('Edsource', 'Admin', 1, 1)
+INSERT INTO USERS (Usuario, Clave, RolId, Statud) VALUES('Vaneiker', 'Admin', 1, 1)
+INSERT INTO USERS (Usuario, Clave, RolId, Statud) VALUES('Gregory', 'Admin', 1, 1)
+
 CREATE TABLE [dbo].[venta](
 	[idventa] [int] IDENTITY(1,1) NOT NULL,
 	[idcliente] [int] NOT NULL,
@@ -752,7 +772,7 @@ GO
 create proc [dbo].[spmostrar_articulo]
 as
 SELECT   top 100 dbo.articulo.idarticulo, dbo.articulo.codigo, dbo.articulo.nombre,
-dbo.articulo.descripcion, dbo.articulo.imagen, dbo.articulo.idcategoria, 
+dbo.articulo.descripcion, dbo.articulo.Imag_Url, dbo.articulo.idcategoria, 
 dbo.categoria.nombre AS Categoria
 FROM dbo.articulo INNER JOIN dbo.categoria 
 ON dbo.articulo.idcategoria = dbo.categoria.idcategoria 
@@ -872,16 +892,6 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "presentacion"
-            Begin Extent = 
-               Top = 6
-               Left = 454
-               Bottom = 118
-               Right = 624
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
       End
    End
    Begin SQLPane = 
@@ -908,7 +918,7 @@ Begin DesignProperties =
       End
    End
 End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'ma;ana'
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'dbventas'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'ma;ana'
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'dbventas'
 GO
