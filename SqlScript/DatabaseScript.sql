@@ -262,14 +262,40 @@ CREATE TABLE [dbo].[venta](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+CREATE TABLE [dbo].[cuentas_x_pagar](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[id_proveedor] [int] NOT NULL,
+	[fecha] [datetime] NOT NULL default getdate(),
+	[valor] [decimal](18,2) NOT NULL,
+	[pagado] [bit] NOT NULL default 0,
+	[usuario] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE TABLE [dbo].[cuentas_x_cobrar](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[id_cliente] [int] NOT NULL,
+	[fecha] [datetime] NOT NULL default getdate(),
+	[valor] [decimal](18,2) NOT NULL,
+	[pagado] [bit] NOT NULL default 0,
+	[usuario] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 /****** Object:  View [dbo].[ma;ana]    Script Date: 28/05/2018 22:24:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE VIEW [dbo].[ma;ana]
+CREATE VIEW [dbo].[bus_articulo]
 AS
-SELECT        dbo.articulo.idarticulo, dbo.articulo.codigo, dbo.articulo.nombre, dbo.articulo.descripcion, dbo.articulo.imagen, dbo.articulo.idcategoria, 
+SELECT        dbo.articulo.idarticulo, dbo.articulo.codigo, dbo.articulo.nombre, dbo.articulo.descripcion, dbo.articulo.Imag_Url, dbo.articulo.idcategoria, 
                          dbo.categoria.nombre AS Expr1
 FROM            dbo.articulo INNER JOIN
                          dbo.categoria ON dbo.articulo.idcategoria = dbo.categoria.idcategoria
@@ -321,10 +347,10 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[detalle_ingreso] CHECK CONSTRAINT [FK_detalle_ingreso_ingreso]
 GO
-ALTER TABLE [dbo].[detalle_venta]  WITH CHECK ADD  CONSTRAINT [FK_detalle_venta_detalle_ingreso] FOREIGN KEY([iddetalle_ingreso])
-REFERENCES [dbo].[detalle_ingreso] ([iddetalle_ingreso])
+ALTER TABLE [dbo].[detalle_venta]  WITH CHECK ADD  CONSTRAINT [FK_detalle_venta_articulo] FOREIGN KEY([idarticulo])
+REFERENCES [dbo].[articulo] ([idarticulo])
 GO
-ALTER TABLE [dbo].[detalle_venta] CHECK CONSTRAINT [FK_detalle_venta_detalle_ingreso]
+ALTER TABLE [dbo].[detalle_venta] CHECK CONSTRAINT [FK_detalle_venta_articulo]
 GO
 ALTER TABLE [dbo].[detalle_venta]  WITH CHECK ADD  CONSTRAINT [FK_detalle_venta_venta] FOREIGN KEY([idventa])
 REFERENCES [dbo].[venta] ([idventa])
@@ -580,7 +606,7 @@ create proc [dbo].[spbuscar_articulo_nombre]
 @textobuscar varchar (50)
 as
 SELECT dbo.articulo.idarticulo, dbo.articulo.codigo, dbo.articulo.nombre,
-dbo.articulo.descripcion, dbo.articulo.imagen, dbo.articulo.idcategoria, 
+dbo.articulo.descripcion, dbo.articulo.Imag_Url, dbo.articulo.idcategoria, 
 dbo.categoria.nombre AS Expr1
 FROM dbo.articulo INNER JOIN dbo.categoria ON dbo.articulo.idcategoria = dbo.categoria.idcategoria
 where dbo.articulo.nombre like @textobuscar + '%'
@@ -634,11 +660,11 @@ create proc [dbo].[speditar_articulo]
 @codigo varchar(50),
 @nombre varchar(50),
 @descripcion varchar(1024),
-@imagen image,
+@imagen varchar(255),
 @idcategoria int
 as
 update articulo set codigo=@codigo,nombre=@nombre,descripcion=@descripcion,
-imagen=@imagen,idcategoria=@idcategoria
+Imag_Url=@imagen,idcategoria=@idcategoria
 where idarticulo=@idarticulo
 
 GO
@@ -717,13 +743,13 @@ create proc [dbo].[spinsertar_articulo]
 @codigo varchar(50),
 @nombre varchar(50),
 @descripcion varchar(1024),
-@imagen image,
+@imagen varchar(255),
 @idcategoria int
 as
 
 
-insert into articulo (codigo,nombre, descripcion,imagen,idcategoria)
-values (@codigo,@nombre,@descripcion,@imagen)
+insert into articulo (codigo,nombre, descripcion,Imag_Url,idcategoria)
+values (@codigo,@nombre,@descripcion,@imagen, @idcategoria)
 
 GO
 /****** Object:  StoredProcedure [dbo].[spinsertar_categoria]    Script Date: 28/05/2018 22:24:13 ******/
@@ -918,7 +944,7 @@ Begin DesignProperties =
       End
    End
 End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'dbventas'
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'propventas'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'dbventas'
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'propventas'
 GO
