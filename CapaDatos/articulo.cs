@@ -57,7 +57,7 @@ public partial class articulo
 
     public virtual categoria categoria { get; set; }
 
-    public virtual presentacion presentacion { get; set; }
+  
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

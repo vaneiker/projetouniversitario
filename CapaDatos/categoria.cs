@@ -18,8 +18,7 @@ using System;
 public partial class categoria
 {
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public categoria()
+     public categoria()
     {
 
         this.articulo = new HashSet<articulo>();
@@ -35,8 +34,7 @@ public partial class categoria
 
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
+   
     public virtual ICollection<articulo> articulo { get; set; }
 
 }

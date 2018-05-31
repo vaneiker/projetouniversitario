@@ -47,7 +47,7 @@ public partial class dbventasEntities : DbContext
 
     public virtual DbSet<ingreso> ingreso { get; set; }
 
-    public virtual DbSet<presentacion> presentacion { get; set; }
+  
 
     public virtual DbSet<proveedor> proveedor { get; set; }
 
@@ -57,7 +57,7 @@ public partial class dbventasEntities : DbContext
 
     public virtual DbSet<venta> venta { get; set; }
 
-    public virtual DbSet<ma_ana> ma_ana { get; set; }
+   
 
     public virtual DbSet<VW_CLIENTES_LOAD> VW_CLIENTES_LOAD { get; set; }
 

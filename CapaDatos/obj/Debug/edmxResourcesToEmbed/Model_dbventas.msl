@@ -116,6 +116,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="dbventasModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="trabajador">
       <EntityTypeMapping TypeName="dbventasModel.trabajador">
         <MappingFragment StoreEntitySet="trabajador">
@@ -164,6 +175,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="dbventasModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="dbventasModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="dbventasModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="SP_GET_CLIENTES_BUSCAR" FunctionName="dbventasModel.Store.SP_GET_CLIENTES_BUSCAR">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbventasModel.SP_GET_CLIENTES_BUSCAR_Result">
@@ -198,7 +212,28 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="dbventasModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="dbventasModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="dbventasModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="SP_SET_CLIENTE_INSERT_UPDATE" FunctionName="dbventasModel.Store.SP_SET_CLIENTE_INSERT_UPDATE" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="dbventasModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="spbuscar_articulo_nombre" FunctionName="dbventasModel.Store.spbuscar_articulo_nombre">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbventasModel.spbuscar_articulo_nombre_Result">
@@ -274,12 +309,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="speditar_articulo" FunctionName="dbventasModel.Store.speditar_articulo" />
     <FunctionImportMapping FunctionImportName="speditar_categoria" FunctionName="dbventasModel.Store.speditar_categoria" />
     <FunctionImportMapping FunctionImportName="speditar_presentacion" FunctionName="dbventasModel.Store.speditar_presentacion" />
     <FunctionImportMapping FunctionImportName="speditar_proveedor" FunctionName="dbventasModel.Store.speditar_proveedor" />
     <FunctionImportMapping FunctionImportName="speliminar_categoria" FunctionName="dbventasModel.Store.speliminar_categoria" />
     <FunctionImportMapping FunctionImportName="speliminar_presentacion" FunctionName="dbventasModel.Store.speliminar_presentacion" />
     <FunctionImportMapping FunctionImportName="speliminar_proveedor" FunctionName="dbventasModel.Store.speliminar_proveedor" />
+    <FunctionImportMapping FunctionImportName="spinsertar_articulo" FunctionName="dbventasModel.Store.spinsertar_articulo" />
     <FunctionImportMapping FunctionImportName="spinsertar_categoria" FunctionName="dbventasModel.Store.spinsertar_categoria" />
     <FunctionImportMapping FunctionImportName="spinsertar_presentacion" FunctionName="dbventasModel.Store.spinsertar_presentacion" />
     <FunctionImportMapping FunctionImportName="spinsertar_proveedor" FunctionName="dbventasModel.Store.spinsertar_proveedor" />
