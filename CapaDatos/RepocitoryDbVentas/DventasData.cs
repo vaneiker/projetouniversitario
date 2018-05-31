@@ -383,7 +383,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 using (connection)
                     {
                     connection.Open();
-                    string Qry = "[dbo].[SP_GET_articulos_LOAD]";
+                    string Qry = "sp_get_clientes_deudores";
                     SqlCommand cmd = new SqlCommand(Qry, connection);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
