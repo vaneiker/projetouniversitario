@@ -676,11 +676,8 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
           <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idcategoria" Type="Int32" Nullable="false" />
-          <Property Name="idpresentacion" Type="Int32" Nullable="false" />
           <NavigationProperty Name="categoria" Relationship="Self.FK_articulo_categoria" FromRole="articulo" ToRole="categoria" />
-          <NavigationProperty Name="presentacion" Relationship="Self.FK_articulo_presentacion" FromRole="articulo" ToRole="presentacion" />
           <NavigationProperty Name="detalle_ingreso" Relationship="Self.FK_detalle_ingreso_articulo" FromRole="articulo" ToRole="detalle_ingreso" />
           <Property Name="Imag_Url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="precioVenta" Type="Decimal" Precision="9" Scale="2" />
@@ -772,15 +769,6 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
           <Property Name="UsuarioAdiciona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioModifica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="presentacion">
-          <Key>
-            <PropertyRef Name="idpresentacion" />
-          </Key>
-          <Property Name="idpresentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="articulo" Relationship="Self.FK_articulo_presentacion" FromRole="presentacion" ToRole="articulo" />
-        </EntityType>
         <EntityType Name="proveedor">
           <Key>
             <PropertyRef Name="idproveedor" />
@@ -848,26 +836,6 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
           <NavigationProperty Name="detalle_venta" Relationship="Self.FK_detalle_venta_venta" FromRole="venta" ToRole="detalle_venta" />
           <NavigationProperty Name="trabajador" Relationship="Self.FK_venta_trabajador" FromRole="venta" ToRole="trabajador" />
         </EntityType>
-        <EntityType Name="ma_ana">
-          <Key>
-            <PropertyRef Name="idarticulo" />
-            <PropertyRef Name="codigo" />
-            <PropertyRef Name="nombre" />
-            <PropertyRef Name="idcategoria" />
-            <PropertyRef Name="Expr1" />
-            <PropertyRef Name="idpresentacion" />
-            <PropertyRef Name="Expr2" />
-          </Key>
-          <Property Name="idarticulo" Type="Int32" Nullable="false" />
-          <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="idcategoria" Type="Int32" Nullable="false" />
-          <Property Name="Expr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idpresentacion" Type="Int32" Nullable="false" />
-          <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="VW_CLIENTES_LOAD">
           <Key>
             <PropertyRef Name="idcliente" />
@@ -898,18 +866,6 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
             </Principal>
             <Dependent Role="articulo">
               <PropertyRef Name="idcategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_articulo_presentacion">
-          <End Role="presentacion" Type="Self.presentacion" Multiplicity="1" />
-          <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="presentacion">
-              <PropertyRef Name="idpresentacion" />
-            </Principal>
-            <Dependent Role="articulo">
-              <PropertyRef Name="idpresentacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1020,19 +976,13 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
           <EntitySet Name="detalle_ingreso" EntityType="Self.detalle_ingreso" />
           <EntitySet Name="detalle_venta" EntityType="Self.detalle_venta" />
           <EntitySet Name="ingreso" EntityType="Self.ingreso" />
-          <EntitySet Name="presentacion" EntityType="Self.presentacion" />
           <EntitySet Name="proveedor" EntityType="Self.proveedor" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="trabajador" EntityType="Self.trabajador" />
           <EntitySet Name="venta" EntityType="Self.venta" />
-          <EntitySet Name="ma_ana" EntityType="Self.ma_ana" />
           <EntitySet Name="VW_CLIENTES_LOAD" EntityType="Self.VW_CLIENTES_LOAD" />
           <AssociationSet Name="FK_articulo_categoria" Association="Self.FK_articulo_categoria">
             <End Role="categoria" EntitySet="categoria" />
-            <End Role="articulo" EntitySet="articulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_articulo_presentacion" Association="Self.FK_articulo_presentacion">
-            <End Role="presentacion" EntitySet="presentacion" />
             <End Role="articulo" EntitySet="articulo" />
           </AssociationSet>
           <AssociationSet Name="FK_detalle_ingreso_articulo" Association="Self.FK_detalle_ingreso_articulo">

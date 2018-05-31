@@ -20,6 +20,11 @@ namespace CapaEntidad.DbVentas
 
         public string usuario { get; set; }
 
+        public string num_documento { get; set; }
+
+        public string codigoCliente { get; set; }
+
+        public string NombComp { get; set; }
 
 
         public virtual ClienteEntitis cliente { get; set; }
