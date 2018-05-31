@@ -374,7 +374,6 @@ namespace CapaDatos.RepocitoryDbVentas
         #region cuenta_x_cobrar Datos
         public DataTable ListCuentasXcobrar()
             {
-
             using (dbventasEntities context = new dbventasEntities())
                 {
 
@@ -394,6 +393,39 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
+
+        public DataTable BuscarClientesDeuda(cuentas_x_cobrar cxc)
+            {
+
+            using (dbventasEntities context = new dbventasEntities())
+                {
+
+                var connection = context.Database.Connection as SqlConnection;
+
+                using (connection)
+                    {
+                    connection.Open();
+                    string Qry = "[dbo].[sp_get_searche_client_pagos]";
+                    SqlCommand cmd = new SqlCommand(Qry, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@num_documento", cxc.num_documento);
+                    cmd.Parameters.AddWithValue("@codigoCliente", cxc.codigoCliente);
+                    cmd.Parameters.AddWithValue("@NombComp", cxc.NombComp);  
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+
+                    }
+                }
+
+            }
+
+
+
+
         #endregion
 
         #region cuenta_x_pagar Datos
