@@ -7,10 +7,14 @@
     <Property Name="idarticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="codigo" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="descripcion" Type="varchar" MaxLength="1024" />
-    <Property Name="imagen" Type="image" />
     <Property Name="idcategoria" Type="int" Nullable="false" />
-    <Property Name="idpresentacion" Type="int" Nullable="false" />
+    <Property Name="Imag_Url" Type="varchar" MaxLength="250" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="precioVenta" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="precioCompra" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="cantidad" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="estado" Type="bit" />
+    <Property Name="idProveedor" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="categoria">
     <Key>
@@ -41,6 +45,42 @@
     <Property Name="UsuarioAdiciona" Type="varchar" MaxLength="50" />
     <Property Name="UsuarioModifica" Type="varchar" MaxLength="50" />
     <Property Name="HostName" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbventas.dbo.cuentas_x_cobrar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="cuentas_x_cobrar">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_cliente" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="valor" />
+      <PropertyRef Name="pagado" />
+      <PropertyRef Name="usuario" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="pagado" Type="bit" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbventas.dbo.cuentas_x_pagar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="cuentas_x_pagar">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_proveedor" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="valor" />
+      <PropertyRef Name="pagado" />
+      <PropertyRef Name="usuario" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_proveedor" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="pagado" Type="bit" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="detalle_ingreso">
     <Key>
@@ -79,14 +119,10 @@
     <Property Name="serie" Type="varchar" MaxLength="4" Nullable="false" />
     <Property Name="correlativo" Type="varchar" MaxLength="7" Nullable="false" />
     <Property Name="igv" Type="decimal" Precision="4" Scale="2" Nullable="false" />
-  </EntityType>
-  <EntityType Name="presentacion">
-    <Key>
-      <PropertyRef Name="idpresentacion" />
-    </Key>
-    <Property Name="idpresentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="descripcion" Type="varchar" MaxLength="256" />
+    <Property Name="FechaAdiciona" Type="datetime" />
+    <Property Name="FechaModifica" Type="datetime" />
+    <Property Name="UsuarioAdiciona" Type="varchar" MaxLength="50" />
+    <Property Name="UsuarioModifica" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="proveedor">
     <Key>
@@ -107,6 +143,14 @@
     <Property Name="UsuarioAdiciona" Type="varchar" MaxLength="50" />
     <Property Name="UsuarioModifica" Type="varchar" MaxLength="50" />
     <Property Name="HostName" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="ROLES">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Grupo" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -135,6 +179,16 @@
     <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Clave" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RolID" Type="int" Nullable="false" />
+    <Property Name="Statud" Type="bit" />
+  </EntityType>
   <EntityType Name="venta">
     <Key>
       <PropertyRef Name="idventa" />
@@ -150,26 +204,6 @@
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'dbventas.dbo.ma;ana' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="ma;ana">
-    <Key>
-      <PropertyRef Name="idarticulo" />
-      <PropertyRef Name="codigo" />
-      <PropertyRef Name="nombre" />
-      <PropertyRef Name="idcategoria" />
-      <PropertyRef Name="Expr1" />
-      <PropertyRef Name="idpresentacion" />
-      <PropertyRef Name="Expr2" />
-    </Key>
-    <Property Name="idarticulo" Type="int" Nullable="false" />
-    <Property Name="codigo" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="descripcion" Type="varchar" MaxLength="1024" />
-    <Property Name="imagen" Type="image" />
-    <Property Name="idcategoria" Type="int" Nullable="false" />
-    <Property Name="Expr1" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="idpresentacion" Type="int" Nullable="false" />
-    <Property Name="Expr2" Type="varchar" MaxLength="50" Nullable="false" />
-  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_CLIENTES_LOAD">
@@ -189,7 +223,6 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
     <Property Name="Direccion" Type="varchar" MaxLength="100" />
     <Property Name="Telefono" Type="varchar" MaxLength="15" />
     <Property Name="Correo_electronico" Type="varchar" MaxLength="50" />
-    <Property Name="statu" Type="bit" />
   </EntityType>
   <Association Name="FK_articulo_categoria">
     <End Role="categoria" Type="Self.categoria" Multiplicity="1" />
@@ -203,15 +236,27 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_articulo_presentacion">
-    <End Role="presentacion" Type="Self.presentacion" Multiplicity="1" />
-    <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+  <Association Name="FK_cuentas_x_cobrar_cliente">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="cuentas_x_cobrar" Type="Self.cuentas_x_cobrar" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="presentacion">
-        <PropertyRef Name="idpresentacion" />
+      <Principal Role="cliente">
+        <PropertyRef Name="idcliente" />
       </Principal>
-      <Dependent Role="articulo">
-        <PropertyRef Name="idpresentacion" />
+      <Dependent Role="cuentas_x_cobrar">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_x_pagar_proveedor">
+    <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+    <End Role="cuentas_x_pagar" Type="Self.cuentas_x_pagar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedor">
+        <PropertyRef Name="idproveedor" />
+      </Principal>
+      <Dependent Role="cuentas_x_pagar">
+        <PropertyRef Name="id_proveedor" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -291,6 +336,18 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_USERS_ROLES">
+    <End Role="ROLES" Type="Self.ROLES" Multiplicity="1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_venta_cliente">
     <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
     <End Role="venta" Type="Self.venta" Multiplicity="*" />
@@ -332,6 +389,8 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="SP_GET_ARTICULO_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GET_Categoria_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GET_CLIENTES_BUSCAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CodigoCliente" Type="varchar" Mode="In" />
     <Parameter Name="Identificacion" Type="varchar" Mode="In" />
@@ -347,10 +406,42 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="SP_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="contrasena" Type="varchar" Mode="In" />
+    <Parameter Name="rolid" Type="int" Mode="InOut" />
+  </Function>
   <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_ARTICULO_INSERT_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idarticulo" Type="int" Mode="In" />
+    <Parameter Name="codigo" Type="varchar" Mode="In" />
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="idcategoria" Type="int" Mode="In" />
+    <Parameter Name="Imag_Url" Type="varchar" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="precioVenta" Type="decimal" Mode="In" />
+    <Parameter Name="precioCompra" Type="decimal" Mode="In" />
+    <Parameter Name="cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="estado" Type="bit" Mode="In" />
+    <Parameter Name="idProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_CATEGORIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idCat" Type="int" Mode="In" />
+    <Parameter Name="nom" Type="varchar" Mode="In" />
+    <Parameter Name="Desc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_Categoria_UPDATE_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCategoria" Type="int" Mode="In" />
+    <Parameter Name="NomCategiria" Type="varchar" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_CLIENTE_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idcliente" Type="int" Mode="In" />
+    <Parameter Name="UsuarioModifica" Type="varchar" Mode="In" />
   </Function>
   <Function Name="SP_SET_CLIENTE_INSERT_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idcliente" Type="int" Mode="In" />
@@ -367,7 +458,21 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
     <Parameter Name="FechaAdiciona" Type="datetime" Mode="In" />
     <Parameter Name="FechaModifica" Type="datetime" Mode="In" />
     <Parameter Name="UsuarioAdiciona" Type="varchar" Mode="In" />
-    <Parameter Name="UsuarioModifica" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_CLIENTE_INSERT_UPDATE_20180528" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idcliente" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="sexo" Type="char" Mode="In" />
+    <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
+    <Parameter Name="tipo_documento" Type="varchar" Mode="In" />
+    <Parameter Name="num_documento" Type="varchar" Mode="In" />
+    <Parameter Name="direccion" Type="varchar" Mode="In" />
+    <Parameter Name="telefono" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="status" Type="bit" Mode="In" />
+    <Parameter Name="FechaAdiciona" Type="datetime" Mode="In" />
+    <Parameter Name="UsuarioAdiciona" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="spbuscar_articulo_nombre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -465,23 +570,31 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
     <EntitySet Name="detalle_ingreso" EntityType="Self.detalle_ingreso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="detalle_venta" EntityType="Self.detalle_venta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ingreso" EntityType="Self.ingreso" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="presentacion" EntityType="Self.presentacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="trabajador" EntityType="Self.trabajador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="venta" EntityType="Self.venta" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ma;ana" EntityType="Self.ma;ana" store:Type="Views" store:Schema="dbo">
+    <EntitySet Name="cuentas_x_cobrar" EntityType="Self.cuentas_x_cobrar" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [ma;ana].[idarticulo] AS [idarticulo], 
-    [ma;ana].[codigo] AS [codigo], 
-    [ma;ana].[nombre] AS [nombre], 
-    [ma;ana].[descripcion] AS [descripcion], 
-    [ma;ana].[imagen] AS [imagen], 
-    [ma;ana].[idcategoria] AS [idcategoria], 
-    [ma;ana].[Expr1] AS [Expr1], 
-    [ma;ana].[idpresentacion] AS [idpresentacion], 
-    [ma;ana].[Expr2] AS [Expr2]
-    FROM [dbo].[ma;ana] AS [ma;ana]</DefiningQuery>
+    [cuentas_x_cobrar].[id] AS [id], 
+    [cuentas_x_cobrar].[id_cliente] AS [id_cliente], 
+    [cuentas_x_cobrar].[fecha] AS [fecha], 
+    [cuentas_x_cobrar].[valor] AS [valor], 
+    [cuentas_x_cobrar].[pagado] AS [pagado], 
+    [cuentas_x_cobrar].[usuario] AS [usuario]
+    FROM [dbo].[cuentas_x_cobrar] AS [cuentas_x_cobrar]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="cuentas_x_pagar" EntityType="Self.cuentas_x_pagar" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [cuentas_x_pagar].[id] AS [id], 
+    [cuentas_x_pagar].[id_proveedor] AS [id_proveedor], 
+    [cuentas_x_pagar].[fecha] AS [fecha], 
+    [cuentas_x_pagar].[valor] AS [valor], 
+    [cuentas_x_pagar].[pagado] AS [pagado], 
+    [cuentas_x_pagar].[usuario] AS [usuario]
+    FROM [dbo].[cuentas_x_pagar] AS [cuentas_x_pagar]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="VW_CLIENTES_LOAD" EntityType="Self.VW_CLIENTES_LOAD" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -494,17 +607,20 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
     [VW_CLIENTES_LOAD].[Numero_Identificación] AS [Numero_Identificación], 
     [VW_CLIENTES_LOAD].[Direccion] AS [Direccion], 
     [VW_CLIENTES_LOAD].[Telefono] AS [Telefono], 
-    [VW_CLIENTES_LOAD].[Correo_electronico] AS [Correo_electronico], 
-    [VW_CLIENTES_LOAD].[statu] AS [statu]
+    [VW_CLIENTES_LOAD].[Correo_electronico] AS [Correo_electronico]
     FROM [dbo].[VW_CLIENTES_LOAD] AS [VW_CLIENTES_LOAD]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_articulo_categoria" Association="Self.FK_articulo_categoria">
       <End Role="categoria" EntitySet="categoria" />
       <End Role="articulo" EntitySet="articulo" />
     </AssociationSet>
-    <AssociationSet Name="FK_articulo_presentacion" Association="Self.FK_articulo_presentacion">
-      <End Role="presentacion" EntitySet="presentacion" />
-      <End Role="articulo" EntitySet="articulo" />
+    <AssociationSet Name="FK_cuentas_x_cobrar_cliente" Association="Self.FK_cuentas_x_cobrar_cliente">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="cuentas_x_cobrar" EntitySet="cuentas_x_cobrar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_x_pagar_proveedor" Association="Self.FK_cuentas_x_pagar_proveedor">
+      <End Role="proveedor" EntitySet="proveedor" />
+      <End Role="cuentas_x_pagar" EntitySet="cuentas_x_pagar" />
     </AssociationSet>
     <AssociationSet Name="FK_detalle_ingreso_articulo" Association="Self.FK_detalle_ingreso_articulo">
       <End Role="articulo" EntitySet="articulo" />
@@ -529,6 +645,10 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
     <AssociationSet Name="FK_ingreso_trabajador" Association="Self.FK_ingreso_trabajador">
       <End Role="trabajador" EntitySet="trabajador" />
       <End Role="ingreso" EntitySet="ingreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USERS_ROLES" Association="Self.FK_USERS_ROLES">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="USERS" EntitySet="USERS" />
     </AssociationSet>
     <AssociationSet Name="FK_venta_cliente" Association="Self.FK_venta_cliente">
       <End Role="cliente" EntitySet="cliente" />
