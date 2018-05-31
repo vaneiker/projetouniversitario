@@ -18,6 +18,12 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return _metodos.ListCategoria();
 
             }
+
+        public void Registrar_Categoria(categoriaEntitis categoria)
+            {
+            _metodos.Registrar_Categoria(categoria);
+            
+            }
         public DataTable ListaClientes()
             {
             return _metodos.ListaCliente();

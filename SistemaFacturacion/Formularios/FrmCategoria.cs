@@ -55,7 +55,7 @@ namespace SistemaFacturacion.Formularios
             categoria.idcategoria =int.Parse("0");
             categoria.nombre = txtNom.Text.Trim();
             categoria.descripcion = txtDes.Text.Trim();
-           // _metodos.Registrar_Categoria(categoria);
+            _metodos.Registrar_Categoria(categoria);
             MessageBox.Show("Categoria Insertada Correctamente");
             }
         #endregion
