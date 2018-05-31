@@ -15,7 +15,9 @@ namespace SistemaFacturacion.Formularios
     public partial class FrmCategoria : Form
         {
         LogicaDbVentas _metodos = new LogicaDbVentas();
-        CategoriaEntitis categoria = new CategoriaEntitis();
+
+        categoriaEntitis categoria = new categoriaEntitis();
+      
         public FrmCategoria()
             {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace SistemaFacturacion.Formularios
 
         private void ListarCategoria()
             {
-            var dato = _metodos.ListarCategoria();
+            var dato = _metodos.ListCategoria();
             GridViewCategoria.DataSource = dato;
             }
 
@@ -53,7 +55,7 @@ namespace SistemaFacturacion.Formularios
             categoria.idcategoria =int.Parse("0");
             categoria.nombre = txtNom.Text.Trim();
             categoria.descripcion = txtDes.Text.Trim();
-            _metodos.Registrar_Categoria(categoria);
+           // _metodos.Registrar_Categoria(categoria);
             MessageBox.Show("Categoria Insertada Correctamente");
             }
         #endregion

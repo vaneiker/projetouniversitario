@@ -16,5 +16,11 @@ namespace SistemaFacturacion
             {
             InitializeComponent();
             }
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+            {
+            Formularios.FrmCategoria f = new Formularios.FrmCategoria();
+            f.Show();
+            }
         }
     }

@@ -13,7 +13,11 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         {
         DventasData _metodos = new DventasData();
         ComboxVentasUtility cbx = new ComboxVentasUtility();
+         public DataTable ListCategoria()
+            {
+            return _metodos.ListCategoria();
 
+            }
         public DataTable ListaClientes()
             {
             return _metodos.ListaCliente();
@@ -50,7 +54,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
             }
 
-
+     
 
         }
     }
