@@ -100,6 +100,10 @@ namespace SistemaFacturacion.Formularios
             {
             if (GridViewEmpleado.CurrentRow != null)
                 {
+
+                FrmClientes f = new FrmClientes();
+                f.BackColor = Color.NavajoWhite;
+                f.Text = "Modo Actualizar";
                 txtcodigo.Text = GridViewEmpleado.CurrentRow.Cells[0].Value.ToString();
                 //txtNombre.Text = GridViewEmpleado.CurrentRow.Cells[2].Value.ToString();
                 //txtApellido.Text = GridViewEmpleado.CurrentRow.Cells[3].Value.ToString();

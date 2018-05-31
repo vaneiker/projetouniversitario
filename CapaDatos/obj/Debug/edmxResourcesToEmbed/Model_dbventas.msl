@@ -4,13 +4,17 @@
     <EntitySetMapping Name="articulo">
       <EntityTypeMapping TypeName="dbventasModel.articulo">
         <MappingFragment StoreEntitySet="articulo">
+          <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
+          <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+          <ScalarProperty Name="Imag_Url" ColumnName="Imag_Url" />
           <ScalarProperty Name="idarticulo" ColumnName="idarticulo" />
           <ScalarProperty Name="codigo" ColumnName="codigo" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="imagen" ColumnName="imagen" />
           <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
-          <ScalarProperty Name="idpresentacion" ColumnName="idpresentacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -76,6 +80,10 @@
     <EntitySetMapping Name="ingreso">
       <EntityTypeMapping TypeName="dbventasModel.ingreso">
         <MappingFragment StoreEntitySet="ingreso">
+          <ScalarProperty Name="UsuarioModifica" ColumnName="UsuarioModifica" />
+          <ScalarProperty Name="UsuarioAdiciona" ColumnName="UsuarioAdiciona" />
+          <ScalarProperty Name="FechaModifica" ColumnName="FechaModifica" />
+          <ScalarProperty Name="FechaAdiciona" ColumnName="FechaAdiciona" />
           <ScalarProperty Name="idingreso" ColumnName="idingreso" />
           <ScalarProperty Name="idtrabajador" ColumnName="idtrabajador" />
           <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
@@ -84,15 +92,6 @@
           <ScalarProperty Name="serie" ColumnName="serie" />
           <ScalarProperty Name="correlativo" ColumnName="correlativo" />
           <ScalarProperty Name="igv" ColumnName="igv" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="presentacion">
-      <EntityTypeMapping TypeName="dbventasModel.presentacion">
-        <MappingFragment StoreEntitySet="presentacion">
-          <ScalarProperty Name="idpresentacion" ColumnName="idpresentacion" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -114,17 +113,6 @@
           <ScalarProperty Name="UsuarioAdiciona" ColumnName="UsuarioAdiciona" />
           <ScalarProperty Name="UsuarioModifica" ColumnName="UsuarioModifica" />
           <ScalarProperty Name="HostName" ColumnName="HostName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="dbventasModel.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -160,25 +148,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ma_ana">
-      <EntityTypeMapping TypeName="dbventasModel.ma_ana">
-        <MappingFragment StoreEntitySet="ma;ana">
-          <ScalarProperty Name="idarticulo" ColumnName="idarticulo" />
-          <ScalarProperty Name="codigo" ColumnName="codigo" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="imagen" ColumnName="imagen" />
-          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
-          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
-          <ScalarProperty Name="idpresentacion" ColumnName="idpresentacion" />
-          <ScalarProperty Name="Expr2" ColumnName="Expr2" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="VW_CLIENTES_LOAD">
       <EntityTypeMapping TypeName="dbventasModel.VW_CLIENTES_LOAD">
         <MappingFragment StoreEntitySet="VW_CLIENTES_LOAD">
-          <ScalarProperty Name="statu" ColumnName="statu" />
           <ScalarProperty Name="idcliente" ColumnName="idcliente" />
           <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
           <ScalarProperty Name="Nombre_Completo_Empleado" ColumnName="Nombre_Completo_Empleado" />
@@ -192,9 +164,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="dbventasModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="dbventasModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="dbventasModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="SP_GET_CLIENTES_BUSCAR" FunctionName="dbventasModel.Store.SP_GET_CLIENTES_BUSCAR">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbventasModel.SP_GET_CLIENTES_BUSCAR_Result">
@@ -229,28 +198,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="dbventasModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="dbventasModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="dbventasModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="SP_SET_CLIENTE_INSERT_UPDATE" FunctionName="dbventasModel.Store.SP_SET_CLIENTE_INSERT_UPDATE" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="dbventasModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="spbuscar_articulo_nombre" FunctionName="dbventasModel.Store.spbuscar_articulo_nombre">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbventasModel.spbuscar_articulo_nombre_Result">
@@ -326,14 +274,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="speditar_articulo" FunctionName="dbventasModel.Store.speditar_articulo" />
     <FunctionImportMapping FunctionImportName="speditar_categoria" FunctionName="dbventasModel.Store.speditar_categoria" />
     <FunctionImportMapping FunctionImportName="speditar_presentacion" FunctionName="dbventasModel.Store.speditar_presentacion" />
     <FunctionImportMapping FunctionImportName="speditar_proveedor" FunctionName="dbventasModel.Store.speditar_proveedor" />
     <FunctionImportMapping FunctionImportName="speliminar_categoria" FunctionName="dbventasModel.Store.speliminar_categoria" />
     <FunctionImportMapping FunctionImportName="speliminar_presentacion" FunctionName="dbventasModel.Store.speliminar_presentacion" />
     <FunctionImportMapping FunctionImportName="speliminar_proveedor" FunctionName="dbventasModel.Store.speliminar_proveedor" />
-    <FunctionImportMapping FunctionImportName="spinsertar_articulo" FunctionName="dbventasModel.Store.spinsertar_articulo" />
     <FunctionImportMapping FunctionImportName="spinsertar_categoria" FunctionName="dbventasModel.Store.spinsertar_categoria" />
     <FunctionImportMapping FunctionImportName="spinsertar_presentacion" FunctionName="dbventasModel.Store.spinsertar_presentacion" />
     <FunctionImportMapping FunctionImportName="spinsertar_proveedor" FunctionName="dbventasModel.Store.spinsertar_proveedor" />
@@ -391,5 +337,81 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="ROLES">
+      <EntityTypeMapping TypeName="dbventasModel.ROLES">
+        <MappingFragment StoreEntitySet="ROLES">
+          <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="dbventasModel.USERS">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="Statud" ColumnName="Statud" />
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cuentas_x_cobrar">
+      <EntityTypeMapping TypeName="dbventasModel.cuentas_x_cobrar">
+        <MappingFragment StoreEntitySet="cuentas_x_cobrar">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="pagado" ColumnName="pagado" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cuentas_x_pagar">
+      <EntityTypeMapping TypeName="dbventasModel.cuentas_x_pagar">
+        <MappingFragment StoreEntitySet="cuentas_x_pagar">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="pagado" ColumnName="pagado" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_ARTICULO_LOAD" FunctionName="dbventasModel.Store.SP_GET_ARTICULO_LOAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.SP_GET_ARTICULO_LOAD_Result">
+          <ScalarProperty Name="idarticulo" ColumnName="idarticulo" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+          <ScalarProperty Name="Imag_Url" ColumnName="Imag_Url" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+          <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_Categoria_LOAD" FunctionName="dbventasModel.Store.SP_GET_Categoria_LOAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.SP_GET_Categoria_LOAD_Result">
+          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LOGIN" FunctionName="dbventasModel.Store.SP_LOGIN" />
+    <FunctionImportMapping FunctionImportName="SP_SET_ARTICULO_INSERT_UPDATE" FunctionName="dbventasModel.Store.SP_SET_ARTICULO_INSERT_UPDATE" />
+    <FunctionImportMapping FunctionImportName="SP_SET_CATEGORIA" FunctionName="dbventasModel.Store.SP_SET_CATEGORIA" />
+    <FunctionImportMapping FunctionImportName="SP_SET_Categoria_UPDATE_INSERT" FunctionName="dbventasModel.Store.SP_SET_Categoria_UPDATE_INSERT" />
+    <FunctionImportMapping FunctionImportName="SP_SET_CLIENTE_DELETE" FunctionName="dbventasModel.Store.SP_SET_CLIENTE_DELETE" />
+    <FunctionImportMapping FunctionImportName="SP_SET_CLIENTE_INSERT_UPDATE_20180528" FunctionName="dbventasModel.Store.SP_SET_CLIENTE_INSERT_UPDATE_20180528" />
   </EntityContainerMapping>
 </Mapping>

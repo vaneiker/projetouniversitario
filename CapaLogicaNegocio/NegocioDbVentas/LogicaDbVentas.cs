@@ -11,7 +11,8 @@ namespace CapaLogicaNegocio.NegocioDbVentas
     {
     public class LogicaDbVentas
         {
-        ClienteRepocitory _metodos = new ClienteRepocitory();
+        DventasData _metodos = new DventasData();
+        ComboxVentasUtility cbx = new ComboxVentasUtility();
 
         public DataTable ListaClientes()
             {
@@ -34,9 +35,22 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
         public void Borrar_Clientes(ClienteEntitis cliente)
             {
-            _metodos.EliminarCliente(cliente);
+            _metodos.EliminarClientes(cliente);
 
 
             }
+
+
+        public List<ClienteEntitis>GetClienteCombo()
+            {
+            ClienteEntitis c = new ClienteEntitis();
+            
+            
+            return cbx.GetAllCliente();
+
+            }
+
+
+
         }
     }

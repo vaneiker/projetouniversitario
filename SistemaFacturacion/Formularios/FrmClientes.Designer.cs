@@ -222,7 +222,7 @@
             this.GridViewEmpleado.AllowUserToAddRows = false;
             this.GridViewEmpleado.AllowUserToDeleteRows = false;
             this.GridViewEmpleado.AllowUserToOrderColumns = true;
-            this.GridViewEmpleado.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.GridViewEmpleado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.GridViewEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridViewEmpleado.Location = new System.Drawing.Point(6, 203);
             this.GridViewEmpleado.Name = "GridViewEmpleado";
