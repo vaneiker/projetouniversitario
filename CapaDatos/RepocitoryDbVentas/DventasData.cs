@@ -394,7 +394,7 @@ namespace CapaDatos.RepocitoryDbVentas
 
             }
 
-        public DataTable BuscarClientesDeuda(cuentas_x_cobrar cxc)
+        public DataTable BuscarClientesDeuda(cuentas_x_cobrarEntitis cxc)
             {
 
             using (dbventasEntities context = new dbventasEntities())

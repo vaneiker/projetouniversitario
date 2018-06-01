@@ -842,7 +842,6 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
             <PropertyRef Name="Sexo" />
             <PropertyRef Name="Tipo_de_Documento" />
             <PropertyRef Name="Numero_Identificación" />
-            <PropertyRef Name="Status" />
           </Key>
           <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CodigoCliente" Type="String" MaxLength="62" FixedLength="false" Unicode="false" />
@@ -854,8 +853,6 @@ warning 6002: The table/view 'dbventas.dbo.VW_CLIENTES_LOAD' does not have a pri
           <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Correo_electronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="statu" Type="Boolean" />
         </EntityType>
         <Association Name="FK_articulo_categoria">
           <End Role="categoria" Type="Self.categoria" Multiplicity="1" />
