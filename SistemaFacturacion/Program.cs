@@ -8,6 +8,8 @@ namespace SistemaFacturacion
     {
     static class Program
         {
+        public static string UsuarioLogeado = "";
+        public static int UsuarioRole = 0;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
