@@ -450,6 +450,55 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region users Datos
+        public int LoginUser(string user, string pass)
+        {
+            int rolId = 0;
+            try
+            {
+                using (dbventasEntities db = new dbventasEntities())
+                {
+                    using (var connection = db.Database.Connection as SqlConnection)
+                    {
+                        connection.Open();
+                        string query = "[dbo].[SP_LOGIN]";
+                        SqlCommand cmd = new SqlCommand(query, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        //parameters. @usuario
+                        SqlParameter usuario = new SqlParameter("@usuario", user);
+                        usuario.SqlDbType = SqlDbType.VarChar;
+                        usuario.Size = 50;
+
+                        //parameter. @contrasena
+                        SqlParameter contrasena = new SqlParameter("@contrasena", pass);
+                        contrasena.SqlDbType = SqlDbType.VarChar;
+                        contrasena.Size = 50;
+
+                        //parameter. @rolid
+                        SqlParameter rolid = new SqlParameter("@rolid", rolId);
+                        rolid.SqlDbType = SqlDbType.Int;
+                        rolid.Direction = ParameterDirection.Output;
+
+                        //add parameters to cmd
+                        cmd.Parameters.Add(usuario);
+                        cmd.Parameters.Add(contrasena);
+                        cmd.Parameters.Add(rolid);
+
+                        //exec procedure
+                        cmd.ExecuteNonQuery();
+
+
+                    }
+                }
+            }catch(SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+                return rolId;
+        }
         #endregion
 
         #region ventas Datos

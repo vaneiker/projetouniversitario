@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaLogicaNegocio.NegocioDbVentas;
 
 namespace SistemaFacturacion
     {
@@ -19,8 +20,13 @@ namespace SistemaFacturacion
 
         private void btnIngresar_Click(object sender, EventArgs e)
             {
-            Formularios.FrmCategoria f = new Formularios.FrmCategoria();
-            f.Show();
+               if(LogicaLogin.ValidateLogin(txtUsuario.Text, txtContrasena.Text, out Program.UsuarioRole))
+            {
+                //implementar validacion de role para visualizar el menu pendiente
+                Formularios.FrmCategoria f = new Formularios.FrmCategoria();
+                f.Show();
+            }
+               
             }
         }
     }
