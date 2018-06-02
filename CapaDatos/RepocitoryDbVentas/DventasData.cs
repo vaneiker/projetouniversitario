@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CapaDatos;
+using CapaDatos.RepocitoryDbVentas;
 using CapaEntidad.DbVentas;
 
 namespace CapaDatos.RepocitoryDbVentas
@@ -17,7 +18,7 @@ namespace CapaDatos.RepocitoryDbVentas
         public DataTable ListArticulos()
             {
 
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
 
                 var connection = context.Database.Connection as SqlConnection;
@@ -39,7 +40,7 @@ namespace CapaDatos.RepocitoryDbVentas
         public DataTable BuscarArticulo(string codigo, string nombre)
             {
 
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
 
                 var connection = context.Database.Connection as SqlConnection;
@@ -65,7 +66,7 @@ namespace CapaDatos.RepocitoryDbVentas
             {
             try
                 {
-                using (dbventasEntities context = new dbventasEntities())
+                using (dbventasEntity context = new dbventasEntity())
                     {
 
                     var connection = context.Database.Connection as SqlConnection;
@@ -106,7 +107,7 @@ namespace CapaDatos.RepocitoryDbVentas
             {
             try
                 {
-                using (dbventasEntities context = new dbventasEntities())
+                using (dbventasEntity context = new dbventasEntity())
                     {
 
                     var connection = context.Database.Connection as SqlConnection;
@@ -138,7 +139,7 @@ namespace CapaDatos.RepocitoryDbVentas
         public DataTable ListCategoria()
             {
 
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
 
                 var connection = context.Database.Connection as SqlConnection;
@@ -160,7 +161,7 @@ namespace CapaDatos.RepocitoryDbVentas
         public DataTable BuscarCategoria(categoriaEntitis categoria)
             {
 
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
 
                 var connection = context.Database.Connection as SqlConnection;
@@ -185,7 +186,7 @@ namespace CapaDatos.RepocitoryDbVentas
             {
             try
                 {
-                using (dbventasEntities context = new dbventasEntities())
+                using (dbventasEntity context = new dbventasEntity())
                     {
 
                     var connection = context.Database.Connection as SqlConnection;
@@ -217,7 +218,7 @@ namespace CapaDatos.RepocitoryDbVentas
         //    {
         //    try
         //        {
-        //        using (dbventasEntities context = new dbventasEntities())
+        //        using (dbventasEntity context = new dbventasEntity())
         //            {
 
         //            var connection = context.Database.Connection as SqlConnection;
@@ -246,7 +247,7 @@ namespace CapaDatos.RepocitoryDbVentas
         public DataTable ListaCliente()
             {
 
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
 
                 var connection = context.Database.Connection as SqlConnection;
@@ -268,7 +269,7 @@ namespace CapaDatos.RepocitoryDbVentas
         public DataTable BuscarCliente(string NombreCompleto, string cedula, string codigo, string telefono)
             {
 
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
 
                 var connection = context.Database.Connection as SqlConnection;
@@ -297,7 +298,7 @@ namespace CapaDatos.RepocitoryDbVentas
 
             try
                 {
-                using (dbventasEntities context = new dbventasEntities())
+                using (dbventasEntity context = new dbventasEntity())
                     {
 
                     var connection = context.Database.Connection as SqlConnection;
@@ -342,7 +343,7 @@ namespace CapaDatos.RepocitoryDbVentas
             {
             try
                 {
-                using (dbventasEntities context = new dbventasEntities())
+                using (dbventasEntity context = new dbventasEntity())
                     {
 
                     var connection = context.Database.Connection as SqlConnection;
@@ -374,7 +375,7 @@ namespace CapaDatos.RepocitoryDbVentas
         #region cuenta_x_cobrar Datos
         public DataTable ListCuentasXcobrar()
             {
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
 
                 var connection = context.Database.Connection as SqlConnection;
@@ -397,7 +398,7 @@ namespace CapaDatos.RepocitoryDbVentas
         public DataTable BuscarClientesDeuda(cuentas_x_cobrarEntitis cxc)
             {
 
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
 
                 var connection = context.Database.Connection as SqlConnection;
@@ -438,6 +439,55 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region ingreso Datos
+        public void IngresdoDeDatos(IngresoMasterEntity ingreso)
+            {
+            try
+                {
+                using (dbventasEntity context = new dbventasEntity())
+                    {
+
+                    var connection = context.Database.Connection as SqlConnection;
+
+                    using (connection)
+                        {
+                        connection.Open();
+                        string Qry = "SP_SET_INSERT_UPDATE_INGRESO";
+                        SqlCommand cmd = new SqlCommand(Qry, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@idingreso", ingreso.idingreso));
+                        cmd.Parameters.Add(new SqlParameter("@idproveedor", ingreso.idproveedor));
+                        cmd.Parameters.Add(new SqlParameter("@fecha", ingreso.fecha));
+                        cmd.Parameters.Add(new SqlParameter("@tipo_comprobante", ingreso.tipo_comprobante));
+                        cmd.Parameters.Add(new SqlParameter("@serie", ingreso.serie));
+                        cmd.Parameters.Add(new SqlParameter("@correlativo", ingreso.correlativo));
+                        cmd.Parameters.Add(new SqlParameter("@Itbis", ingreso.Itbis));
+                        cmd.Parameters.Add(new SqlParameter("@FechaAdiciona", ingreso.FechaAdiciona));
+                        cmd.Parameters.Add(new SqlParameter("@FechaModifica", ingreso.FechaModifica));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioAdiciona", ingreso.UsuarioAdiciona));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", ingreso.UsuarioModifica));
+                        cmd.Parameters.Add(new SqlParameter("@idarticulo", ingreso.idarticulo));
+                        cmd.Parameters.Add(new SqlParameter("@precio_compra", ingreso.precio_compra));
+                        cmd.Parameters.Add(new SqlParameter("@precio_venta", ingreso.precio_venta));
+                        cmd.Parameters.Add(new SqlParameter("@stock_inicial", ingreso.stock_inicial));
+                        cmd.Parameters.Add(new SqlParameter("@stock_actual", ingreso.stock_actual));
+                        cmd.Parameters.Add(new SqlParameter("@fecha_produccion", ingreso.fecha_produccion));
+                        cmd.Parameters.Add(new SqlParameter("@fecha_vencimiento", ingreso.fecha_vencimiento));
+
+
+                        cmd.ExecuteNonQuery();
+
+                        }
+                    }
+
+                }
+            catch (Exception ex)
+                {
+
+                throw ex;
+                }
+
+            }
+
         #endregion
 
         #region proveedor Datos
@@ -455,7 +505,7 @@ namespace CapaDatos.RepocitoryDbVentas
             int rolId = 0;
             try
             {
-                using (dbventasEntities db = new dbventasEntities())
+                using (dbventasEntity db = new dbventasEntity())
                 {
                     using (var connection = db.Database.Connection as SqlConnection)
                     {
@@ -486,9 +536,7 @@ namespace CapaDatos.RepocitoryDbVentas
 
                         //exec procedure
                         cmd.ExecuteNonQuery();
-
-                        //Get value from output parameter
-                        rolId = Convert.ToInt32(cmd.Parameters["@rolid"].Value);
+                        rolId = System.Convert.ToInt32(cmd.Parameters[" @rolid "].Value);
 
                     }
                 }

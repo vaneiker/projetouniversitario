@@ -14,15 +14,15 @@ namespace CapaDatos
     public partial class SP_GET_CLIENTES_LOAD_Result
     {
         public int idcliente { get; set; }
+        public string nombre { get; set; }
+        public string apellidos { get; set; }
+        public string sexo { get; set; }
+        public Nullable<System.DateTime> fecha_nacimiento { get; set; }
+        public string tipo_documento { get; set; }
+        public string num_documento { get; set; }
+        public string direccion { get; set; }
+        public string telefono { get; set; }
+        public string email { get; set; }
         public string CodigoCliente { get; set; }
-        public string Nombre_Completo_Empleado { get; set; }
-        public string Sexo { get; set; }
-        public Nullable<System.DateTime> Fecha_Nacimiento { get; set; }
-        public string Tipo_de_Documento { get; set; }
-        public string Numero_Identificación { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
-        public string Correo_electronico { get; set; }
-        public string Status { get; set; }
     }
 }

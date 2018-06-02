@@ -23,9 +23,9 @@ namespace CapaDatos
         public int idarticulo { get; set; }
         public string codigo { get; set; }
         public string nombre { get; set; }
-        public string descripcion { get; set; }
         public int idcategoria { get; set; }
         public string Imag_Url { get; set; }
+        public string descripcion { get; set; }
         public Nullable<decimal> precioVenta { get; set; }
         public Nullable<decimal> precioCompra { get; set; }
         public Nullable<decimal> cantidad { get; set; }

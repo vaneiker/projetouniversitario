@@ -21,7 +21,6 @@ namespace CapaDatos
         }
     
         public int idingreso { get; set; }
-        public int idtrabajador { get; set; }
         public int idproveedor { get; set; }
         public System.DateTime fecha { get; set; }
         public string tipo_comprobante { get; set; }
@@ -36,6 +35,5 @@ namespace CapaDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_ingreso> detalle_ingreso { get; set; }
         public virtual proveedor proveedor { get; set; }
-        public virtual trabajador trabajador { get; set; }
     }
 }

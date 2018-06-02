@@ -10,17 +10,17 @@
 namespace CapaDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class spbuscar_articulo_nombre_Result
+    public partial class get_client_parameter
     {
-        public int idarticulo { get; set; }
-        public string codigo { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public byte[] imagen { get; set; }
-        public int idcategoria { get; set; }
-        public string Expr1 { get; set; }
-        public int idpresentacion { get; set; }
-        public string Expr2 { get; set; }
+        public int id { get; set; }
+        public int id_cliente { get; set; }
+        public string CodigoCliente { get; set; }
+        public string num_documento { get; set; }
+        public string NombreCompleto { get; set; }
+        public System.DateTime fecha { get; set; }
+        public decimal valor { get; set; }
+        public bool pagado { get; set; }
     }
 }

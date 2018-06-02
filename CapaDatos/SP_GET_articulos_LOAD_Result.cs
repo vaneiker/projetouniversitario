@@ -11,10 +11,18 @@ namespace CapaDatos
 {
     using System;
     
-    public partial class spmostrar_presentacion_Result
+    public partial class SP_GET_articulos_LOAD_Result
     {
-        public int idpresentacion { get; set; }
+        public int idarticulo { get; set; }
+        public string codigo { get; set; }
         public string nombre { get; set; }
+        public int idcategoria { get; set; }
+        public string Imag_Url { get; set; }
         public string descripcion { get; set; }
+        public Nullable<decimal> precioVenta { get; set; }
+        public Nullable<decimal> precioCompra { get; set; }
+        public Nullable<decimal> cantidad { get; set; }
+        public Nullable<bool> estado { get; set; }
+        public int idProveedor { get; set; }
     }
 }

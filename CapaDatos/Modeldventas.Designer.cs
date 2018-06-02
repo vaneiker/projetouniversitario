@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\probook\Desktop\projetouniversitario\master\projetouniversitario\CapaDatos\Model_dbventas.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Eiker\Desktop\sistema de ventas trabajo de la universidad\master\projetouniversitario\CapaDatos\Modeldventas.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

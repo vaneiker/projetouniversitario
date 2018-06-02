@@ -11,9 +11,9 @@ namespace CapaDatos
 {
     using System;
     
-    public partial class spbuscar_presentacion_Nombre_Result
+    public partial class SP_GET_CATEGORIA_BUSCAR_Result
     {
-        public int idpresentacion { get; set; }
+        public int idcategoria { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
     }

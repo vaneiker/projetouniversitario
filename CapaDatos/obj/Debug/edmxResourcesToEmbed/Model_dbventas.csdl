@@ -37,7 +37,7 @@
     <Property Name="sexo" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
     <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
     <Property Name="tipo_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="num_documento" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="num_documento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -62,8 +62,8 @@
     <Property Name="precio_venta" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="stock_inicial" Type="Int32" Nullable="false" />
     <Property Name="stock_actual" Type="Int32" Nullable="false" />
-    <Property Name="fecha_produccion" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="fecha_vencimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_produccion" Type="DateTime" Precision="0" />
+    <Property Name="fecha_vencimiento" Type="DateTime" Precision="0" />
     <NavigationProperty Name="articulo" Relationship="Self.FK_detalle_ingreso_articulo" FromRole="detalle_ingreso" ToRole="articulo" />
     <NavigationProperty Name="ingreso" Relationship="Self.FK_detalle_ingreso_ingreso" FromRole="detalle_ingreso" ToRole="ingreso" />
     <NavigationProperty Name="detalle_venta" Relationship="Self.FK_detalle_venta_detalle_ingreso" FromRole="detalle_ingreso" ToRole="detalle_venta" />
@@ -92,10 +92,9 @@
     <Property Name="tipo_comprobante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="serie" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="correlativo" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="igv" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="igv" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
     <NavigationProperty Name="detalle_ingreso" Relationship="Self.FK_detalle_ingreso_ingreso" FromRole="ingreso" ToRole="detalle_ingreso" />
     <NavigationProperty Name="proveedor" Relationship="Self.FK_ingreso_proveedor" FromRole="ingreso" ToRole="proveedor" />
-    <NavigationProperty Name="trabajador" Relationship="Self.FK_ingreso_trabajador" FromRole="ingreso" ToRole="trabajador" />
     <Property Name="FechaAdiciona" Type="DateTime" Precision="3" />
     <Property Name="FechaModifica" Type="DateTime" Precision="3" />
     <Property Name="UsuarioAdiciona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -142,14 +141,13 @@
     <Property Name="apellidos" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Fecha_nac" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="num_documento" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="num_documento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="acceso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="ingreso" Relationship="Self.FK_ingreso_trabajador" FromRole="trabajador" ToRole="ingreso" />
+    <Property Name="acceso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="venta" Relationship="Self.FK_venta_trabajador" FromRole="trabajador" ToRole="venta" />
   </EntityType>
   <EntityType Name="venta">
@@ -167,6 +165,7 @@
     <NavigationProperty Name="cliente" Relationship="Self.FK_venta_cliente" FromRole="venta" ToRole="cliente" />
     <NavigationProperty Name="detalle_venta" Relationship="Self.FK_detalle_venta_venta" FromRole="venta" ToRole="detalle_venta" />
     <NavigationProperty Name="trabajador" Relationship="Self.FK_venta_trabajador" FromRole="venta" ToRole="trabajador" />
+    <Property Name="itbis" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
   </EntityType>
   <EntityType Name="VW_CLIENTES_LOAD">
     <Key>
@@ -274,21 +273,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ingreso_trabajador">
-    <End Role="trabajador" Type="Self.trabajador" Multiplicity="1" />
-    <End Role="ingreso" Type="Self.ingreso" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="trabajador">
-        <PropertyRef Name="idtrabajador" />
-      </Principal>
-      <Dependent Role="ingreso">
-        <PropertyRef Name="idtrabajador" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_venta_trabajador">
-    <End Role="trabajador" Type="Self.trabajador" Multiplicity="1" />
-    <End Role="venta" Type="Self.venta" Multiplicity="*" />
+    <End Type="Self.trabajador" Multiplicity="1" Role="trabajador" />
+    <End Type="Self.venta" Multiplicity="*" Role="venta" />
     <ReferentialConstraint>
       <Principal Role="trabajador">
         <PropertyRef Name="idtrabajador" />
@@ -338,13 +325,9 @@
       <End Role="proveedor" EntitySet="proveedor" />
       <End Role="ingreso" EntitySet="ingreso" />
     </AssociationSet>
-    <AssociationSet Name="FK_ingreso_trabajador" Association="Self.FK_ingreso_trabajador">
-      <End Role="trabajador" EntitySet="trabajador" />
-      <End Role="ingreso" EntitySet="ingreso" />
-    </AssociationSet>
     <AssociationSet Name="FK_venta_trabajador" Association="Self.FK_venta_trabajador">
-      <End Role="trabajador" EntitySet="trabajador" />
-      <End Role="venta" EntitySet="venta" />
+      <End EntitySet="trabajador" Role="trabajador" />
+      <End EntitySet="venta" Role="venta" />
     </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -369,11 +352,11 @@
       <Parameter Name="Telefono" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SP_GET_CLIENTES_LOAD" ReturnType="Collection(dbventasModel.SP_GET_CLIENTES_LOAD_Result)" />
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(dbventasModel.sp_helpdiagramdefinition_Result)">
+    <FunctionImport Name="sp_helpdiagramdefinition">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(dbventasModel.sp_helpdiagrams_Result)">
+    <FunctionImport Name="sp_helpdiagrams">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -399,19 +382,19 @@
       <Parameter Name="UsuarioAdiciona" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <FunctionImport Name="spbuscar_articulo_nombre" ReturnType="Collection(dbventasModel.spbuscar_articulo_nombre_Result)">
+    <FunctionImport Name="spbuscar_articulo_nombre">
       <Parameter Name="textobuscar" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="spbuscar_categoria" ReturnType="Collection(dbventasModel.spbuscar_categoria_Result)">
+    <FunctionImport Name="spbuscar_categoria">
       <Parameter Name="textobuscar" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="spbuscar_presentacion_Nombre" ReturnType="Collection(dbventasModel.spbuscar_presentacion_Nombre_Result)">
+    <FunctionImport Name="spbuscar_presentacion_Nombre">
       <Parameter Name="textobuscar" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="spbuscar_proveedor_num_documento" ReturnType="Collection(dbventasModel.spbuscar_proveedor_num_documento_Result)">
+    <FunctionImport Name="spbuscar_proveedor_num_documento">
       <Parameter Name="textobuscar" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="spbuscar_proveedor_razon_social" ReturnType="Collection(dbventasModel.spbuscar_proveedor_razon_social_Result)">
+    <FunctionImport Name="spbuscar_proveedor_razon_social">
       <Parameter Name="textobuscar" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="speditar_articulo">
@@ -483,10 +466,10 @@
       <Parameter Name="email" Mode="In" Type="String" />
       <Parameter Name="url" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="spmostrar_articulo" ReturnType="Collection(dbventasModel.spmostrar_articulo_Result)" />
-    <FunctionImport Name="spmostrar_categoria" ReturnType="Collection(dbventasModel.spmostrar_categoria_Result)" />
-    <FunctionImport Name="spmostrar_presentacion" ReturnType="Collection(dbventasModel.spmostrar_presentacion_Result)" />
-    <FunctionImport Name="spmostrar_proveedor" ReturnType="Collection(dbventasModel.spmostrar_proveedor_Result)" />
+    <FunctionImport Name="spmostrar_articulo" />
+    <FunctionImport Name="spmostrar_categoria" />
+    <FunctionImport Name="spmostrar_presentacion" />
+    <FunctionImport Name="spmostrar_proveedor" />
     <EntitySet Name="ROLES" EntityType="dbventasModel.ROLES" />
     <EntitySet Name="USERS" EntityType="dbventasModel.USERS" />
     <EntitySet Name="cuentas_x_cobrar" EntityType="dbventasModel.cuentas_x_cobrar" />
@@ -552,6 +535,77 @@
       <Parameter Name="FechaAdiciona" Mode="In" Type="DateTime" />
       <Parameter Name="UsuarioAdiciona" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="MovimientosPagosYcobranzas" EntityType="dbventasModel.MovimientosPagosYcobranzas" />
+    <EntitySet Name="get_client_parameter" EntityType="dbventasModel.get_client_parameter" />
+    <EntitySet Name="wv_get_cliente_deuda" EntityType="dbventasModel.wv_get_cliente_deuda" />
+    <AssociationSet Name="FK_MovimientosPagosYcobranzas_cuentas_x_cobrar" Association="dbventasModel.FK_MovimientosPagosYcobranzas_cuentas_x_cobrar">
+      <End Role="cuentas_x_cobrar" EntitySet="cuentas_x_cobrar" />
+      <End Role="MovimientosPagosYcobranzas" EntitySet="MovimientosPagosYcobranzas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MovimientosPagosYcobranzas_cuentas_x_pagar" Association="dbventasModel.FK_MovimientosPagosYcobranzas_cuentas_x_pagar">
+      <End Role="cuentas_x_pagar" EntitySet="cuentas_x_pagar" />
+      <End Role="MovimientosPagosYcobranzas" EntitySet="MovimientosPagosYcobranzas" />
+    </AssociationSet>
+    <FunctionImport Name="SP_CUENTA_POR_COBRAR">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+      <Parameter Name="valor" Mode="In" Type="Decimal" />
+      <Parameter Name="pagado" Mode="In" Type="Decimal" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="idFactura" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_ARTICULOS_BUSCAR" ReturnType="Collection(dbventasModel.SP_GET_ARTICULOS_BUSCAR_Result)">
+      <Parameter Name="codigo" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_articulos_LOAD" ReturnType="Collection(dbventasModel.SP_GET_articulos_LOAD_Result)" />
+    <FunctionImport Name="SP_GET_CATEGORIA_BUSCAR" ReturnType="Collection(dbventasModel.SP_GET_CATEGORIA_BUSCAR_Result)">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_get_clientes_deudores" ReturnType="Collection(dbventasModel.sp_get_clientes_deudores_Result)" />
+    <FunctionImport Name="SP_GET_COMBOBOX_CLIENTE" ReturnType="Collection(dbventasModel.SP_GET_COMBOBOX_CLIENTE_Result)" />
+    <FunctionImport Name="sp_get_searche_client_pagos" ReturnType="Collection(dbventasModel.sp_get_searche_client_pagos_Result)">
+      <Parameter Name="num_documento" Mode="In" Type="String" />
+      <Parameter Name="codigoCliente" Mode="In" Type="String" />
+      <Parameter Name="NombComp" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_DELETE_ARTICULO">
+      <Parameter Name="codigo" Mode="In" Type="Int32" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_INSERT_UPDATE_ARTICULO">
+      <Parameter Name="idarticulo" Mode="In" Type="Int32" />
+      <Parameter Name="codigo" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="idcategoria" Mode="In" Type="Int32" />
+      <Parameter Name="Imag_Url" Mode="In" Type="String" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="precioVenta" Mode="In" Type="Decimal" />
+      <Parameter Name="precioCompra" Mode="In" Type="Decimal" />
+      <Parameter Name="cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+      <Parameter Name="idProveedor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_INSERT_UPDATE_INGRESO">
+      <Parameter Name="idingreso" Mode="In" Type="Int32" />
+      <Parameter Name="idproveedor" Mode="In" Type="Int32" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="tipo_comprobante" Mode="In" Type="String" />
+      <Parameter Name="serie" Mode="In" Type="String" />
+      <Parameter Name="correlativo" Mode="In" Type="String" />
+      <Parameter Name="Itbis" Mode="In" Type="Decimal" />
+      <Parameter Name="FechaAdiciona" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaModifica" Mode="In" Type="DateTime" />
+      <Parameter Name="UsuarioAdiciona" Mode="In" Type="String" />
+      <Parameter Name="UsuarioModifica" Mode="In" Type="String" />
+      <Parameter Name="idarticulo" Mode="In" Type="Int32" />
+      <Parameter Name="precio_compra" Mode="In" Type="Decimal" />
+      <Parameter Name="precio_venta" Mode="In" Type="Decimal" />
+      <Parameter Name="stock_inicial" Mode="In" Type="Int32" />
+      <Parameter Name="stock_actual" Mode="In" Type="Int32" />
+      <Parameter Name="fecha_produccion" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_vencimiento" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_GET_CLIENTES_BUSCAR_Result">
     <Property Type="Int32" Name="idcliente" Nullable="false" />
@@ -578,110 +632,6 @@
     <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
     <Property Type="String" Name="Correo_electronico" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Status" Nullable="false" MaxLength="8" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="spbuscar_articulo_nombre_Result">
-    <Property Type="Int32" Name="idarticulo" Nullable="false" />
-    <Property Type="String" Name="codigo" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="1024" />
-    <Property Type="Binary" Name="imagen" Nullable="true" MaxLength="Max" />
-    <Property Type="Int32" Name="idcategoria" Nullable="false" />
-    <Property Type="String" Name="Expr1" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="idpresentacion" Nullable="false" />
-    <Property Type="String" Name="Expr2" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="spbuscar_categoria_Result">
-    <Property Type="Int32" Name="idcategoria" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="256" />
-  </ComplexType>
-  <ComplexType Name="spbuscar_presentacion_Nombre_Result">
-    <Property Type="Int32" Name="idpresentacion" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="256" />
-  </ComplexType>
-  <ComplexType Name="spbuscar_proveedor_num_documento_Result">
-    <Property Type="Int32" Name="idproveedor" Nullable="false" />
-    <Property Type="String" Name="razon_social" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="sector_comercial" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="tipo_documento" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="num_documento" Nullable="false" MaxLength="11" />
-    <Property Type="String" Name="direccion" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="telefono" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="url" Nullable="true" MaxLength="100" />
-    <Property Type="Boolean" Name="statu" Nullable="true" />
-    <Property Type="DateTime" Name="FechaAdiciona" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="String" Name="UsuarioAdiciona" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="UsuarioModifica" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="HostName" Nullable="true" MaxLength="200" />
-  </ComplexType>
-  <ComplexType Name="spbuscar_proveedor_razon_social_Result">
-    <Property Type="Int32" Name="idproveedor" Nullable="false" />
-    <Property Type="String" Name="razon_social" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="sector_comercial" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="tipo_documento" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="num_documento" Nullable="false" MaxLength="11" />
-    <Property Type="String" Name="direccion" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="telefono" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="url" Nullable="true" MaxLength="100" />
-    <Property Type="Boolean" Name="statu" Nullable="true" />
-    <Property Type="DateTime" Name="FechaAdiciona" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="String" Name="UsuarioAdiciona" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="UsuarioModifica" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="HostName" Nullable="true" MaxLength="200" />
-  </ComplexType>
-  <ComplexType Name="spmostrar_articulo_Result">
-    <Property Type="Int32" Name="idarticulo" Nullable="false" />
-    <Property Type="String" Name="codigo" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="1024" />
-    <Property Type="Binary" Name="imagen" Nullable="true" MaxLength="Max" />
-    <Property Type="Int32" Name="idcategoria" Nullable="false" />
-    <Property Type="String" Name="Categoria" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="idpresentacion" Nullable="false" />
-    <Property Type="String" Name="Presentacion" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="spmostrar_categoria_Result">
-    <Property Type="Int32" Name="idcategoria" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="256" />
-  </ComplexType>
-  <ComplexType Name="spmostrar_presentacion_Result">
-    <Property Type="Int32" Name="idpresentacion" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="256" />
-  </ComplexType>
-  <ComplexType Name="spmostrar_proveedor_Result">
-    <Property Type="Int32" Name="idproveedor" Nullable="false" />
-    <Property Type="String" Name="razon_social" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="sector_comercial" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="tipo_documento" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="num_documento" Nullable="false" MaxLength="11" />
-    <Property Type="String" Name="direccion" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="telefono" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="url" Nullable="true" MaxLength="100" />
-    <Property Type="Boolean" Name="statu" Nullable="true" />
-    <Property Type="DateTime" Name="FechaAdiciona" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="String" Name="UsuarioAdiciona" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="UsuarioModifica" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="HostName" Nullable="true" MaxLength="200" />
   </ComplexType>
   <EntityType Name="ROLES">
     <Key>
@@ -719,6 +669,7 @@
     <Property Name="pagado" Type="Boolean" Nullable="false" />
     <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="cliente" Relationship="dbventasModel.FK_cuentas_x_cobrar_cliente" FromRole="cuentas_x_cobrar" ToRole="cliente" />
+    <NavigationProperty Name="MovimientosPagosYcobranzas" Relationship="dbventasModel.FK_MovimientosPagosYcobranzas_cuentas_x_cobrar" FromRole="cuentas_x_cobrar" ToRole="MovimientosPagosYcobranzas" />
   </EntityType>
   <EntityType Name="cuentas_x_pagar">
     <Key>
@@ -736,6 +687,7 @@
     <Property Name="pagado" Type="Boolean" Nullable="false" />
     <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="proveedor" Relationship="dbventasModel.FK_cuentas_x_pagar_proveedor" FromRole="cuentas_x_pagar" ToRole="proveedor" />
+    <NavigationProperty Name="MovimientosPagosYcobranzas" Relationship="dbventasModel.FK_MovimientosPagosYcobranzas_cuentas_x_pagar" FromRole="cuentas_x_pagar" ToRole="MovimientosPagosYcobranzas" />
   </EntityType>
   <Association Name="FK_cuentas_x_cobrar_cliente">
     <End Type="dbventasModel.cliente" Role="cliente" Multiplicity="1" />
@@ -790,5 +742,131 @@
     <Property Type="Int32" Name="idcategoria" Nullable="false" />
     <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <EntityType Name="MovimientosPagosYcobranzas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DetalleMov" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaPago" Type="DateTime" Precision="3" />
+    <Property Name="idFactura" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="cantidadPagada" Type="Decimal" Precision="9" Scale="2" />
+    <Property Name="statud" Type="Boolean" />
+    <Property Name="usuarioPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_cxc" Type="Int32" />
+    <Property Name="id_cxp" Type="Int32" />
+    <NavigationProperty Name="cuentas_x_cobrar" Relationship="dbventasModel.FK_MovimientosPagosYcobranzas_cuentas_x_cobrar" FromRole="MovimientosPagosYcobranzas" ToRole="cuentas_x_cobrar" />
+    <NavigationProperty Name="cuentas_x_pagar" Relationship="dbventasModel.FK_MovimientosPagosYcobranzas_cuentas_x_pagar" FromRole="MovimientosPagosYcobranzas" ToRole="cuentas_x_pagar" />
+  </EntityType>
+  <EntityType Name="get_client_parameter">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_cliente" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="valor" />
+      <PropertyRef Name="pagado" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="CodigoCliente" Type="String" MaxLength="62" FixedLength="false" Unicode="false" />
+    <Property Name="num_documento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="NombreCompleto" Type="String" MaxLength="91" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="valor" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="pagado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="wv_get_cliente_deuda">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_cliente" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="valor" />
+      <PropertyRef Name="pagado" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="num_documento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="CodigoCliente" Type="String" MaxLength="62" FixedLength="false" Unicode="false" />
+    <Property Name="NombreCompleto" Type="String" MaxLength="91" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="valor" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="pagado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MovimientosPagosYcobranzas_cuentas_x_cobrar">
+    <End Type="dbventasModel.cuentas_x_cobrar" Role="cuentas_x_cobrar" Multiplicity="0..1" />
+    <End Type="dbventasModel.MovimientosPagosYcobranzas" Role="MovimientosPagosYcobranzas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cuentas_x_cobrar">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MovimientosPagosYcobranzas">
+        <PropertyRef Name="id_cxc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MovimientosPagosYcobranzas_cuentas_x_pagar">
+    <End Type="dbventasModel.cuentas_x_pagar" Role="cuentas_x_pagar" Multiplicity="0..1" />
+    <End Type="dbventasModel.MovimientosPagosYcobranzas" Role="MovimientosPagosYcobranzas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cuentas_x_pagar">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MovimientosPagosYcobranzas">
+        <PropertyRef Name="id_cxp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SP_GET_ARTICULOS_BUSCAR_Result">
+    <Property Type="Int32" Name="idarticulo" Nullable="false" />
+    <Property Type="String" Name="codigo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="idcategoria" Nullable="false" />
+    <Property Type="String" Name="Imag_Url" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="precioVenta" Nullable="true" Precision="9" Scale="2" />
+    <Property Type="Decimal" Name="precioCompra" Nullable="true" Precision="9" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_articulos_LOAD_Result">
+    <Property Type="Int32" Name="idarticulo" Nullable="false" />
+    <Property Type="String" Name="codigo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="idcategoria" Nullable="false" />
+    <Property Type="String" Name="Imag_Url" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="precioVenta" Nullable="true" Precision="9" Scale="2" />
+    <Property Type="Decimal" Name="precioCompra" Nullable="true" Precision="9" Scale="2" />
+    <Property Type="Decimal" Name="cantidad" Nullable="true" Precision="9" Scale="2" />
+    <Property Type="Boolean" Name="estado" Nullable="true" />
+    <Property Type="Int32" Name="idProveedor" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_CATEGORIA_BUSCAR_Result">
+    <Property Type="Int32" Name="idcategoria" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="sp_get_clientes_deudores_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_cliente" Nullable="false" />
+    <Property Type="String" Name="num_documento" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="CodigoCliente" Nullable="true" MaxLength="62" />
+    <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="91" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="valor" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Boolean" Name="pagado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_COMBOBOX_CLIENTE_Result">
+    <Property Type="Int32" Name="idcliente" Nullable="false" />
+    <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="91" />
+  </ComplexType>
+  <ComplexType Name="sp_get_searche_client_pagos_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_cliente" Nullable="false" />
+    <Property Type="String" Name="CodigoCliente" Nullable="true" MaxLength="62" />
+    <Property Type="String" Name="num_documento" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="91" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="valor" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Boolean" Name="pagado" Nullable="false" />
   </ComplexType>
 </Schema>

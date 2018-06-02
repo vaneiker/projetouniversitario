@@ -42,6 +42,9 @@ namespace SistemaFacturacion.Formularios
 
         private void Salir_Click(object sender, EventArgs e)
             {
+            MenuPrincipal mp = new MenuPrincipal();
+            mp.BtnCategoria.Enabled = true;
+            mp.Show();
             this.Close();
             }
 
