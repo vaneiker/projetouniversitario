@@ -54,7 +54,7 @@ namespace SistemaFacturacion.Formularios
         private void BtnIngreso_Click(object sender, EventArgs e)
             {
             Formularios.FrmIngresos f = new FrmIngresos();
-            f.Show();
+            f.ShowDialog();
             }
         }
     }
