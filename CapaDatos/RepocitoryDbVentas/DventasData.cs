@@ -536,10 +536,10 @@ namespace CapaDatos.RepocitoryDbVentas
 
                         //exec procedure
                         cmd.ExecuteNonQuery();
+                        rolId = System.Convert.ToInt32(cmd.Parameters[" @rolid "].Value);
 
-
+                        }
                     }
-                }
             }catch(SqlException ex)
             {
                 throw new Exception(ex.Message);
