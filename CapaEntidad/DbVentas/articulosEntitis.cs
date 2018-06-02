@@ -49,7 +49,7 @@ namespace CapaEntidad.DbVentas
 
       
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
 
         public virtual ICollection<detalle_ingresoEntitis> detalle_ingreso { get; set; }
 
