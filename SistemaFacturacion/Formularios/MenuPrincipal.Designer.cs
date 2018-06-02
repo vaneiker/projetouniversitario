@@ -369,6 +369,7 @@
             this.BtnIngreso.TabIndex = 5;
             this.BtnIngreso.Text = "Ingreso Mercancia";
             this.BtnIngreso.UseVisualStyleBackColor = false;
+            this.BtnIngreso.Click += new System.EventHandler(this.BtnIngreso_Click);
             // 
             // btnCuentaPxp
             // 

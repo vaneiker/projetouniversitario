@@ -50,5 +50,11 @@ namespace SistemaFacturacion.Formularios
             BtnCliente.Enabled = false;
             cliente.Show();
             }
+
+        private void BtnIngreso_Click(object sender, EventArgs e)
+            {
+            Formularios.FrmIngresos f = new FrmIngresos();
+            f.Show();
+            }
         }
     }

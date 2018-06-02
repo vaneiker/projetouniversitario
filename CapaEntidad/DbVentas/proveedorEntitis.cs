@@ -23,7 +23,7 @@ namespace CapaEntidad.DbVentas
 
         public string razon_social { get; set; }
 
-        public string sector_comercial { get; set; }
+        public string NombreProveedor { get; set; }
 
         public string tipo_documento { get; set; }
 
