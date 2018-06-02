@@ -14,6 +14,12 @@ namespace CapaDatos
     
     public partial class cuentas_x_cobrar
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public cuentas_x_cobrar()
+        {
+            this.MovimientosPagosYcobranzas = new HashSet<MovimientosPagosYcobranzas>();
+        }
+    
         public int id { get; set; }
         public int id_cliente { get; set; }
         public System.DateTime fecha { get; set; }
@@ -22,5 +28,7 @@ namespace CapaDatos
         public string usuario { get; set; }
     
         public virtual cliente cliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MovimientosPagosYcobranzas> MovimientosPagosYcobranzas { get; set; }
     }
 }

@@ -35,5 +35,20 @@ namespace SistemaFacturacion.Formularios
             {
             toolStripStatusLabel1.Text = DateTime.Now.ToString("F");
             }
+
+        private void BtnCategoria_Click(object sender, EventArgs e)
+            {
+            FrmCategoria f = new Formularios.FrmCategoria();
+            BtnCategoria.Enabled = false;
+            f.Show();
+            }
+
+        private void BtnCliente_Click(object sender, EventArgs e)
+            {
+            FrmClientes cliente = new Formularios.FrmClientes();
+
+            BtnCliente.Enabled = false;
+            cliente.Show();
+            }
         }
     }

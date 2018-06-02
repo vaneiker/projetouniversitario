@@ -17,7 +17,6 @@ namespace CapaDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public trabajador()
         {
-            this.ingreso = new HashSet<ingreso>();
             this.venta = new HashSet<venta>();
         }
     
@@ -34,8 +33,6 @@ namespace CapaDatos
         public string usuario { get; set; }
         public string password { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ingreso> ingreso { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<venta> venta { get; set; }
     }

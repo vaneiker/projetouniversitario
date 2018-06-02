@@ -85,7 +85,6 @@
           <ScalarProperty Name="FechaModifica" ColumnName="FechaModifica" />
           <ScalarProperty Name="FechaAdiciona" ColumnName="FechaAdiciona" />
           <ScalarProperty Name="idingreso" ColumnName="idingreso" />
-          <ScalarProperty Name="idtrabajador" ColumnName="idtrabajador" />
           <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
           <ScalarProperty Name="fecha" ColumnName="fecha" />
           <ScalarProperty Name="tipo_comprobante" ColumnName="tipo_comprobante" />
@@ -148,6 +147,7 @@
     <EntitySetMapping Name="venta">
       <EntityTypeMapping TypeName="dbventasModel.venta">
         <MappingFragment StoreEntitySet="venta">
+          <ScalarProperty Name="itbis" ColumnName="itbis" />
           <ScalarProperty Name="idventa" ColumnName="idventa" />
           <ScalarProperty Name="idcliente" ColumnName="idcliente" />
           <ScalarProperty Name="idtrabajador" ColumnName="idtrabajador" />
@@ -155,7 +155,6 @@
           <ScalarProperty Name="tipo_comprobante" ColumnName="tipo_comprobante" />
           <ScalarProperty Name="serie" ColumnName="serie" />
           <ScalarProperty Name="correlativo" ColumnName="correlativo" />
-          <ScalarProperty Name="igv" ColumnName="igv" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -212,168 +211,11 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="dbventasModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="dbventasModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="dbventasModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="dbventasModel.Store.sp_helpdiagrams" />
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="dbventasModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="SP_SET_CLIENTE_INSERT_UPDATE" FunctionName="dbventasModel.Store.SP_SET_CLIENTE_INSERT_UPDATE" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="dbventasModel.Store.sp_upgraddiagrams" />
-    <FunctionImportMapping FunctionImportName="spbuscar_articulo_nombre" FunctionName="dbventasModel.Store.spbuscar_articulo_nombre">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spbuscar_articulo_nombre_Result">
-          <ScalarProperty Name="idarticulo" ColumnName="idarticulo" />
-          <ScalarProperty Name="codigo" ColumnName="codigo" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="imagen" ColumnName="imagen" />
-          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
-          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
-          <ScalarProperty Name="idpresentacion" ColumnName="idpresentacion" />
-          <ScalarProperty Name="Expr2" ColumnName="Expr2" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spbuscar_categoria" FunctionName="dbventasModel.Store.spbuscar_categoria">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spbuscar_categoria_Result">
-          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spbuscar_presentacion_Nombre" FunctionName="dbventasModel.Store.spbuscar_presentacion_Nombre">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spbuscar_presentacion_Nombre_Result">
-          <ScalarProperty Name="idpresentacion" ColumnName="idpresentacion" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spbuscar_proveedor_num_documento" FunctionName="dbventasModel.Store.spbuscar_proveedor_num_documento">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spbuscar_proveedor_num_documento_Result">
-          <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
-          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
-          <ScalarProperty Name="sector_comercial" ColumnName="sector_comercial" />
-          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
-          <ScalarProperty Name="num_documento" ColumnName="num_documento" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="url" ColumnName="url" />
-          <ScalarProperty Name="statu" ColumnName="statu" />
-          <ScalarProperty Name="FechaAdiciona" ColumnName="FechaAdiciona" />
-          <ScalarProperty Name="FechaModifica" ColumnName="FechaModifica" />
-          <ScalarProperty Name="UsuarioAdiciona" ColumnName="UsuarioAdiciona" />
-          <ScalarProperty Name="UsuarioModifica" ColumnName="UsuarioModifica" />
-          <ScalarProperty Name="HostName" ColumnName="HostName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spbuscar_proveedor_razon_social" FunctionName="dbventasModel.Store.spbuscar_proveedor_razon_social">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spbuscar_proveedor_razon_social_Result">
-          <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
-          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
-          <ScalarProperty Name="sector_comercial" ColumnName="sector_comercial" />
-          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
-          <ScalarProperty Name="num_documento" ColumnName="num_documento" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="url" ColumnName="url" />
-          <ScalarProperty Name="statu" ColumnName="statu" />
-          <ScalarProperty Name="FechaAdiciona" ColumnName="FechaAdiciona" />
-          <ScalarProperty Name="FechaModifica" ColumnName="FechaModifica" />
-          <ScalarProperty Name="UsuarioAdiciona" ColumnName="UsuarioAdiciona" />
-          <ScalarProperty Name="UsuarioModifica" ColumnName="UsuarioModifica" />
-          <ScalarProperty Name="HostName" ColumnName="HostName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="speditar_articulo" FunctionName="dbventasModel.Store.speditar_articulo" />
-    <FunctionImportMapping FunctionImportName="speditar_categoria" FunctionName="dbventasModel.Store.speditar_categoria" />
-    <FunctionImportMapping FunctionImportName="speditar_presentacion" FunctionName="dbventasModel.Store.speditar_presentacion" />
-    <FunctionImportMapping FunctionImportName="speditar_proveedor" FunctionName="dbventasModel.Store.speditar_proveedor" />
-    <FunctionImportMapping FunctionImportName="speliminar_categoria" FunctionName="dbventasModel.Store.speliminar_categoria" />
-    <FunctionImportMapping FunctionImportName="speliminar_presentacion" FunctionName="dbventasModel.Store.speliminar_presentacion" />
-    <FunctionImportMapping FunctionImportName="speliminar_proveedor" FunctionName="dbventasModel.Store.speliminar_proveedor" />
-    <FunctionImportMapping FunctionImportName="spinsertar_articulo" FunctionName="dbventasModel.Store.spinsertar_articulo" />
-    <FunctionImportMapping FunctionImportName="spinsertar_categoria" FunctionName="dbventasModel.Store.spinsertar_categoria" />
-    <FunctionImportMapping FunctionImportName="spinsertar_presentacion" FunctionName="dbventasModel.Store.spinsertar_presentacion" />
-    <FunctionImportMapping FunctionImportName="spinsertar_proveedor" FunctionName="dbventasModel.Store.spinsertar_proveedor" />
-    <FunctionImportMapping FunctionImportName="spmostrar_articulo" FunctionName="dbventasModel.Store.spmostrar_articulo">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spmostrar_articulo_Result">
-          <ScalarProperty Name="idarticulo" ColumnName="idarticulo" />
-          <ScalarProperty Name="codigo" ColumnName="codigo" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="imagen" ColumnName="imagen" />
-          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
-          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-          <ScalarProperty Name="idpresentacion" ColumnName="idpresentacion" />
-          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spmostrar_categoria" FunctionName="dbventasModel.Store.spmostrar_categoria">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spmostrar_categoria_Result">
-          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spmostrar_presentacion" FunctionName="dbventasModel.Store.spmostrar_presentacion">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spmostrar_presentacion_Result">
-          <ScalarProperty Name="idpresentacion" ColumnName="idpresentacion" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spmostrar_proveedor" FunctionName="dbventasModel.Store.spmostrar_proveedor">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbventasModel.spmostrar_proveedor_Result">
-          <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
-          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
-          <ScalarProperty Name="sector_comercial" ColumnName="sector_comercial" />
-          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
-          <ScalarProperty Name="num_documento" ColumnName="num_documento" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="url" ColumnName="url" />
-          <ScalarProperty Name="statu" ColumnName="statu" />
-          <ScalarProperty Name="FechaAdiciona" ColumnName="FechaAdiciona" />
-          <ScalarProperty Name="FechaModifica" ColumnName="FechaModifica" />
-          <ScalarProperty Name="UsuarioAdiciona" ColumnName="UsuarioAdiciona" />
-          <ScalarProperty Name="UsuarioModifica" ColumnName="UsuarioModifica" />
-          <ScalarProperty Name="HostName" ColumnName="HostName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <EntitySetMapping Name="ROLES">
       <EntityTypeMapping TypeName="dbventasModel.ROLES">
         <MappingFragment StoreEntitySet="ROLES">
@@ -450,5 +292,128 @@
     <FunctionImportMapping FunctionImportName="SP_SET_Categoria_UPDATE_INSERT" FunctionName="dbventasModel.Store.SP_SET_Categoria_UPDATE_INSERT" />
     <FunctionImportMapping FunctionImportName="SP_SET_CLIENTE_DELETE" FunctionName="dbventasModel.Store.SP_SET_CLIENTE_DELETE" />
     <FunctionImportMapping FunctionImportName="SP_SET_CLIENTE_INSERT_UPDATE_20180528" FunctionName="dbventasModel.Store.SP_SET_CLIENTE_INSERT_UPDATE_20180528" />
+    <EntitySetMapping Name="MovimientosPagosYcobranzas">
+      <EntityTypeMapping TypeName="dbventasModel.MovimientosPagosYcobranzas">
+        <MappingFragment StoreEntitySet="MovimientosPagosYcobranzas">
+          <ScalarProperty Name="id_cxp" ColumnName="id_cxp" />
+          <ScalarProperty Name="id_cxc" ColumnName="id_cxc" />
+          <ScalarProperty Name="usuarioPago" ColumnName="usuarioPago" />
+          <ScalarProperty Name="statud" ColumnName="statud" />
+          <ScalarProperty Name="cantidadPagada" ColumnName="cantidadPagada" />
+          <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+          <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
+          <ScalarProperty Name="DetalleMov" ColumnName="DetalleMov" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="get_client_parameter">
+      <EntityTypeMapping TypeName="dbventasModel.get_client_parameter">
+        <MappingFragment StoreEntitySet="get_client_parameter">
+          <ScalarProperty Name="pagado" ColumnName="pagado" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+          <ScalarProperty Name="num_documento" ColumnName="num_documento" />
+          <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="wv_get_cliente_deuda">
+      <EntityTypeMapping TypeName="dbventasModel.wv_get_cliente_deuda">
+        <MappingFragment StoreEntitySet="wv_get_cliente_deuda">
+          <ScalarProperty Name="pagado" ColumnName="pagado" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+          <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+          <ScalarProperty Name="num_documento" ColumnName="num_documento" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_CUENTA_POR_COBRAR" FunctionName="dbventasModel.Store.SP_CUENTA_POR_COBRAR" />
+    <FunctionImportMapping FunctionImportName="SP_GET_ARTICULOS_BUSCAR" FunctionName="dbventasModel.Store.SP_GET_ARTICULOS_BUSCAR">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.SP_GET_ARTICULOS_BUSCAR_Result">
+          <ScalarProperty Name="idarticulo" ColumnName="idarticulo" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+          <ScalarProperty Name="Imag_Url" ColumnName="Imag_Url" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+          <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_articulos_LOAD" FunctionName="dbventasModel.Store.SP_GET_articulos_LOAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.SP_GET_articulos_LOAD_Result">
+          <ScalarProperty Name="idarticulo" ColumnName="idarticulo" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+          <ScalarProperty Name="Imag_Url" ColumnName="Imag_Url" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+          <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_CATEGORIA_BUSCAR" FunctionName="dbventasModel.Store.SP_GET_CATEGORIA_BUSCAR">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.SP_GET_CATEGORIA_BUSCAR_Result">
+          <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_get_clientes_deudores" FunctionName="dbventasModel.Store.sp_get_clientes_deudores">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.sp_get_clientes_deudores_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="num_documento" ColumnName="num_documento" />
+          <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="pagado" ColumnName="pagado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_COMBOBOX_CLIENTE" FunctionName="dbventasModel.Store.SP_GET_COMBOBOX_CLIENTE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.SP_GET_COMBOBOX_CLIENTE_Result">
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_get_searche_client_pagos" FunctionName="dbventasModel.Store.sp_get_searche_client_pagos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbventasModel.sp_get_searche_client_pagos_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+          <ScalarProperty Name="num_documento" ColumnName="num_documento" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="pagado" ColumnName="pagado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_DELETE_ARTICULO" FunctionName="dbventasModel.Store.SP_SET_DELETE_ARTICULO" />
+    <FunctionImportMapping FunctionImportName="SP_SET_INSERT_UPDATE_ARTICULO" FunctionName="dbventasModel.Store.SP_SET_INSERT_UPDATE_ARTICULO" />
+    <FunctionImportMapping FunctionImportName="SP_SET_INSERT_UPDATE_INGRESO" FunctionName="dbventasModel.Store.SP_SET_INSERT_UPDATE_INGRESO" />
   </EntityContainerMapping>
 </Mapping>

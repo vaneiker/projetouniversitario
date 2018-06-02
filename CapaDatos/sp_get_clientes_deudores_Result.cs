@@ -11,10 +11,15 @@ namespace CapaDatos
 {
     using System;
     
-    public partial class spmostrar_presentacion_Result
+    public partial class sp_get_clientes_deudores_Result
     {
-        public int idpresentacion { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
+        public int id { get; set; }
+        public int id_cliente { get; set; }
+        public string num_documento { get; set; }
+        public string CodigoCliente { get; set; }
+        public string NombreCompleto { get; set; }
+        public System.DateTime fecha { get; set; }
+        public decimal valor { get; set; }
+        public bool pagado { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace CapaDatos
         public string tipo_comprobante { get; set; }
         public string serie { get; set; }
         public string correlativo { get; set; }
-        public decimal igv { get; set; }
+        public decimal itbis { get; set; }
     
         public virtual cliente cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -10,14 +10,16 @@
 namespace CapaDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class SP_GET_ARTICULOS_BUSCAR_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int idarticulo { get; set; }
+        public string codigo { get; set; }
+        public string nombre { get; set; }
+        public int idcategoria { get; set; }
+        public string Imag_Url { get; set; }
+        public string descripcion { get; set; }
+        public Nullable<decimal> precioVenta { get; set; }
+        public Nullable<decimal> precioCompra { get; set; }
     }
 }

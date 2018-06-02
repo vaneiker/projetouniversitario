@@ -11,16 +11,9 @@ namespace CapaDatos
 {
     using System;
     
-    public partial class spmostrar_articulo_Result
+    public partial class SP_GET_COMBOBOX_CLIENTE_Result
     {
-        public int idarticulo { get; set; }
-        public string codigo { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public byte[] imagen { get; set; }
-        public int idcategoria { get; set; }
-        public string Categoria { get; set; }
-        public int idpresentacion { get; set; }
-        public string Presentacion { get; set; }
+        public int idcliente { get; set; }
+        public string NombreCompleto { get; set; }
     }
 }
