@@ -487,6 +487,8 @@ namespace CapaDatos.RepocitoryDbVentas
                         //exec procedure
                         cmd.ExecuteNonQuery();
 
+                        //Get value from output parameter
+                        rolId = Convert.ToInt32(cmd.Parameters["@rolid"].Value);
 
                     }
                 }
