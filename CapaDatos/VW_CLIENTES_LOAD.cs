@@ -24,10 +24,5 @@ namespace CapaDatos
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Correo_electronico { get; set; }
-<<<<<<< HEAD
-        public string Status { get; set; }
-        public Nullable<bool> statu { get; set; }
-=======
->>>>>>> 094a35932a0158280bcb1cc90f0de5ef5025cf2a
     }
 }
