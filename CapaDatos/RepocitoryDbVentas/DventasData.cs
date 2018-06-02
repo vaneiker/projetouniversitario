@@ -536,7 +536,14 @@ namespace CapaDatos.RepocitoryDbVentas
 
                         //exec procedure
                         cmd.ExecuteNonQuery();
-                        rolId = System.Convert.ToInt32(cmd.Parameters[" @rolid "].Value);
+                        if (cmd.Parameters["@rolid"].Value == DBNull.Value)
+                        {
+                            rolId = 0;
+                        }else
+                        {
+                            rolId = System.Convert.ToInt32(cmd.Parameters["@rolid"].Value);
+                        }
+                        
 
                     }
                 }

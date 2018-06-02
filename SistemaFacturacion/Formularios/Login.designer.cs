@@ -152,7 +152,7 @@
             this.BtnIngerso.TabIndex = 43;
             this.BtnIngerso.Text = "Ingresar";
             this.BtnIngerso.UseVisualStyleBackColor = false;
-            this.BtnIngerso.Click += new System.EventHandler(this.button1_Click_1);
+            this.BtnIngerso.Click += new System.EventHandler(this.BtnIngerso_Click);
             // 
             // panel3
             // 
