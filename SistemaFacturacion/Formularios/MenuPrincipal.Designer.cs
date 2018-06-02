@@ -41,7 +41,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Buscar = new System.Windows.Forms.Button();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -56,7 +56,7 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCotizacion = new System.Windows.Forms.Button();
             this.btnEmpleado = new System.Windows.Forms.Button();
             this.BtnProveedor = new System.Windows.Forms.Button();
             this.BtnIngreso = new System.Windows.Forms.Button();
@@ -66,6 +66,7 @@
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.BtnArticulos = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             panel2 = new System.Windows.Forms.Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -123,13 +124,13 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(191, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(192, 17);
             this.toolStripStatusLabel1.Text = "Administrado: Pedro Jose Ven eiker";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(690, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(689, 17);
             this.toolStripStatusLabel2.Spring = true;
             this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
@@ -165,7 +166,7 @@
             // panel18
             // 
             this.panel18.Controls.Add(this.textBox1);
-            this.panel18.Controls.Add(this.button2);
+            this.panel18.Controls.Add(this.Buscar);
             this.panel18.Location = new System.Drawing.Point(395, 9);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(480, 52);
@@ -179,17 +180,17 @@
             this.textBox1.Size = new System.Drawing.Size(310, 46);
             this.textBox1.TabIndex = 2;
             // 
-            // button2
+            // Buscar
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(319, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(158, 46);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Buscar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.Buscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.Buscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Buscar.ForeColor = System.Drawing.Color.White;
+            this.Buscar.Location = new System.Drawing.Point(319, 3);
+            this.Buscar.Name = "Buscar";
+            this.Buscar.Size = new System.Drawing.Size(158, 46);
+            this.Buscar.TabIndex = 1;
+            this.Buscar.Text = "Buscar";
+            this.Buscar.UseVisualStyleBackColor = false;
             // 
             // ToolStrip1
             // 
@@ -205,7 +206,8 @@
             this.toolStripSeparator6,
             this.toolStripButton1,
             this.toolStripSeparator5,
-            this.Salir});
+            this.Salir,
+            this.toolStripButton5});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip1.Name = "ToolStrip1";
             this.ToolStrip1.Size = new System.Drawing.Size(888, 71);
@@ -307,7 +309,7 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnCotizacion);
             this.panel1.Controls.Add(this.btnEmpleado);
             this.panel1.Controls.Add(this.BtnProveedor);
             this.panel1.Controls.Add(this.BtnIngreso);
@@ -322,17 +324,17 @@
             this.panel1.Size = new System.Drawing.Size(182, 657);
             this.panel1.TabIndex = 1;
             // 
-            // button1
+            // btnCotizacion
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(12, 368);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(158, 37);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Cotización";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnCotizacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.btnCotizacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCotizacion.ForeColor = System.Drawing.Color.White;
+            this.btnCotizacion.Location = new System.Drawing.Point(12, 368);
+            this.btnCotizacion.Name = "btnCotizacion";
+            this.btnCotizacion.Size = new System.Drawing.Size(158, 37);
+            this.btnCotizacion.TabIndex = 8;
+            this.btnCotizacion.Text = "Cotización";
+            this.btnCotizacion.UseVisualStyleBackColor = false;
             // 
             // btnEmpleado
             // 
@@ -438,6 +440,15 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 68);
+            this.toolStripButton5.Text = "toolStripButton5";
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -496,12 +507,13 @@
         internal System.Windows.Forms.ToolStripButton toolStripButton3;
         internal System.Windows.Forms.ToolStripButton toolStripButton4;
         internal System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCotizacion;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Buscar;
         private System.Windows.Forms.PictureBox pictureBox5;
         public System.Windows.Forms.Button BtnCliente;
         public System.Windows.Forms.Button BtnCategoria;
-        }
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
+    }
     }

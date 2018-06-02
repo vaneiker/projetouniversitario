@@ -39,6 +39,8 @@ namespace SistemaFacturacion
             {
                 //implementar validacion de role para visualizar el menu pendiente
                 Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
+                //Dar Visualizacion segun Role
+                AppTools.Visibilidad.MenuPrincipal(Program.UsuarioRole, f);
                 f.Show();
             }
         }
