@@ -66,6 +66,7 @@
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.BtnArticulos = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.BtnFacturacion = new System.Windows.Forms.Button();
             panel2 = new System.Windows.Forms.Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -307,6 +308,7 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel1.Controls.Add(this.BtnFacturacion);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnEmpleado);
             this.panel1.Controls.Add(this.BtnProveedor);
@@ -439,6 +441,18 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // BtnFacturacion
+            // 
+            this.BtnFacturacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.BtnFacturacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnFacturacion.ForeColor = System.Drawing.Color.White;
+            this.BtnFacturacion.Location = new System.Drawing.Point(12, 411);
+            this.BtnFacturacion.Name = "BtnFacturacion";
+            this.BtnFacturacion.Size = new System.Drawing.Size(158, 37);
+            this.BtnFacturacion.TabIndex = 10;
+            this.BtnFacturacion.Text = "Facturación";
+            this.BtnFacturacion.UseVisualStyleBackColor = false;
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -504,5 +518,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         public System.Windows.Forms.Button BtnCliente;
         public System.Windows.Forms.Button BtnCategoria;
+        private System.Windows.Forms.Button BtnFacturacion;
         }
     }
