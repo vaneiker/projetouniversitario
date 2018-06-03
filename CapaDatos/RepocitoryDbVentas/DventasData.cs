@@ -491,6 +491,129 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region proveedor Datos
+        public DataTable Listproveedor()
+            {
+
+            using (dbventasEntity context = new dbventasEntity())
+                {
+
+                var connection = context.Database.Connection as SqlConnection;
+
+                using (connection)
+                    {
+                    connection.Open();
+                    string Qry = "[dbo].[SP_GET_articulos_LOAD]";
+                    SqlCommand cmd = new SqlCommand(Qry, connection);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+
+                    }
+                }
+
+            }
+        public DataTable Buscarproveedor(string doc, string tel, string nom)
+            {
+
+            using (dbventasEntity context = new dbventasEntity())
+                {
+
+                var connection = context.Database.Connection as SqlConnection;
+
+                using (connection)
+                    {
+                    connection.Open();
+                    string Qry = "SP_GET_BUSCAR_PROVEEDOR";
+                    SqlCommand cmd = new SqlCommand(Qry, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@num_documento", doc);
+                    cmd.Parameters.AddWithValue("@telefono", tel);
+                    cmd.Parameters.AddWithValue("@NombreProveedor", nom);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+
+                    }
+                }
+
+            }
+        public void Registrar_Proveedor(proveedorEntitis proveedor)
+            {
+            try
+                {
+                using (dbventasEntity context = new dbventasEntity())
+                    {
+
+                    var connection = context.Database.Connection as SqlConnection;
+
+                    using (connection)
+                        {
+                        connection.Open();
+                        string Qry = "SP_SET_UDATE_INSERT_PROVEEDOR";
+                        SqlCommand cmd = new SqlCommand(Qry, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add(new SqlParameter("@idproveedor", proveedor.idproveedor));
+                        cmd.Parameters.Add(new SqlParameter("@razon_social", proveedor.razon_social));
+                        cmd.Parameters.Add(new SqlParameter("@NombreProveedor", proveedor.NombreProveedor));
+                        cmd.Parameters.Add(new SqlParameter("@tipo_documento", proveedor.tipo_documento));
+                        cmd.Parameters.Add(new SqlParameter("@num_documento", proveedor.num_documento));
+                        cmd.Parameters.Add(new SqlParameter("@direccion", proveedor.direccion));
+                        cmd.Parameters.Add(new SqlParameter("@telefono", proveedor.telefono));
+                        cmd.Parameters.Add(new SqlParameter("@email", proveedor.email));
+                        cmd.Parameters.Add(new SqlParameter("@url", proveedor.url));
+                        cmd.Parameters.Add(new SqlParameter("@statu", proveedor.statu));
+                        cmd.Parameters.Add(new SqlParameter("@FechaAdiciona", proveedor.FechaAdiciona));
+                        cmd.Parameters.Add(new SqlParameter("@FechaModifica", proveedor.FechaModifica));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioAdiciona", proveedor.UsuarioAdiciona));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", proveedor.UsuarioModifica));
+                        //cmd.Parameters.Add(new SqlParameter("@HostNa", proveedor.HostNa));
+                        
+                        cmd.ExecuteNonQuery();
+
+                        }
+                    }
+
+                }
+            catch (Exception ex)
+                {
+
+                throw ex;
+                }
+
+            }
+        public void EliminarProveedor(proveedorEntitis proveedor)
+            {
+            try
+                {
+                using (dbventasEntity context = new dbventasEntity())
+                    {
+
+                    var connection = context.Database.Connection as SqlConnection;
+
+                    using (connection)
+                        {
+                        connection.Open();
+                        string Qry = "SP_SET_DELETE_PROVEEDOR";
+                        SqlCommand cmd = new SqlCommand(Qry, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@codigo", proveedor.idproveedor));
+                        cmd.Parameters.Add(new SqlParameter("@estado", proveedor.statu));
+                        cmd.ExecuteNonQuery();
+
+                        }
+                    }
+                }
+            catch (Exception ex)
+                {
+
+                throw ex;
+                }
+            }
+
+
         #endregion
 
         #region Roles Datos
@@ -536,12 +659,21 @@ namespace CapaDatos.RepocitoryDbVentas
 
                         //exec procedure
                         cmd.ExecuteNonQuery();
+<<<<<<< HEAD
                         if (cmd.Parameters["@rolid"].Value == DBNull.Value)
+=======
+                          if (cmd.Parameters["@rolid"].Value == DBNull.Value)
+>>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
                         {
                             rolId = 0;
                         }else
                         {
                             rolId = System.Convert.ToInt32(cmd.Parameters["@rolid"].Value);
+<<<<<<< HEAD
+=======
+                        }
+
+>>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
                         }
                         
 
