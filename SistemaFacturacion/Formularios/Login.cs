@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogicaNegocio.NegocioDbVentas;
+using SistemaFacturacion.AppTools;
 
 namespace SistemaFacturacion
     {
@@ -31,14 +32,13 @@ namespace SistemaFacturacion
 
         private void button1_Click_1(object sender, EventArgs e)
             {
-            Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-            f.Show();
-            //if (LogicaLogin.ValidateLogin(txtUsuario.Text, txtContrasena.Text, out Program.UsuarioRole))
-            //    {
-            //    //implementar validacion de role para visualizar el menu pendiente
-            //    Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-            //    f.Show();
-            //    }
+
+            if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out Program.UsuarioRole))
+                {
+                //implementar validacion de role para visualizar el menu pendiente
+                Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
+                f.Show();
+                }
             }
 
         private void button2_Click(object sender, EventArgs e)

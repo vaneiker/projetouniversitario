@@ -39,8 +39,8 @@ namespace SistemaFacturacion.Formularios
         private void BtnCategoria_Click(object sender, EventArgs e)
             {
             FrmCategoria f = new Formularios.FrmCategoria();
-            BtnCategoria.Enabled = false;
-            f.Show();
+            //BtnCategoria.Enabled = false;
+            f.ShowDialog();
             }
 
         private void BtnCliente_Click(object sender, EventArgs e)
