@@ -29,3 +29,4 @@ namespace CapaEntidad.DbVentas
 
         }
     }
+ 
