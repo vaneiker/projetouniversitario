@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,16 @@ namespace CapaLogicaNegocio.NegocioDbVentas
     {
    public class ComboxBosxTools
         {
-        ComboxVentasUtility _cbo = new ComboxVentasUtility();
-        //public List<ProveedorEntity> getProv()
-        //    {
-        //    return _cbo.ListaProveedor();
-        //    }
+        ComboBoxTools _cbo = new ComboBoxTools();
+        
+        public DataTable ListaProve()
+            {
+            return _cbo.GetProveedor();
+            }
+
+        public DataTable GetCategotia()
+            {
+            return _cbo.GetCategotia();
+            }
         }
     }

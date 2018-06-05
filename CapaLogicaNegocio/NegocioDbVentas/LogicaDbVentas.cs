@@ -12,7 +12,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
     public class LogicaDbVentas
         {
         DventasData _metodos = new DventasData();
-        ComboxVentasUtility cbx = new ComboxVentasUtility();
+      
          public DataTable ListCategoria()
             {
             return _metodos.ListCategoria();
@@ -51,16 +51,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
 
 
-        public List<ClienteEntitis>GetClienteCombo()
-            {
-            ClienteEntitis c = new ClienteEntitis();
-            
-            
-            return cbx.GetAllCliente();
-
-            }
-
-        public void IngresdoDeDatos(IngresoMasterEntity ingreso)
+          public void IngresdoDeDatos(IngresoMasterEntity ingreso)
             {
             _metodos.IngresdoDeDatos(ingreso);
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad.DbVentas
     {
-   public class ProveedorEntity
+   public class ListaProve
         {
 
         public int idproveedor { get; set; }

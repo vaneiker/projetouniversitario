@@ -539,7 +539,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
-        public void Registrar_Proveedor(proveedorEntitis proveedor)
+        public void Registrar_Proveedor(ListaProve proveedor)
             {
             try
                 {
@@ -584,7 +584,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
-        public void EliminarProveedor(proveedorEntitis proveedor)
+        public void EliminarProveedor(ListaProve proveedor)
             {
             try
                 {

@@ -22,13 +22,24 @@ namespace SistemaFacturacion.Formularios
         private void FrmArticulos_Load(object sender, EventArgs e)
             {
             GetProveedorCbox();
+            GetCategotia();
+
             }
         private void GetProveedorCbox()
             {
-            //var c = cbo.getProv();
-            //cboProv.DataSource=c;
-            //cboProv.DisplayMember = "NombreCompleto";
-            //cboProv.ValueMember = "idproveedor";
+            var c = cbo.ListaProve();
+            cboProv.DataSource = c;
+            cboProv.DisplayMember = "NombreProveedor";
+            cboProv.ValueMember = "idproveedor";
+
+            }
+        private void GetCategotia()
+            {
+            var c = cbo.GetCategotia();
+            cboCat.DataSource = c;
+            cboCat.DisplayMember = "nombre";
+            cboCat.ValueMember = "idcategoria";
+
             }
 
         }

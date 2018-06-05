@@ -45,14 +45,19 @@
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.TabArticulo = new System.Windows.Forms.TabControl();
             this.TabBuscar = new System.Windows.Forms.TabPage();
+            this.BuscMasckCodigoBarra = new System.Windows.Forms.MaskedTextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtcodigo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.GridViewArticulos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.BuscMasckCodigoBarra = new System.Windows.Forms.MaskedTextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnCategoria = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cboProv = new System.Windows.Forms.ComboBox();
@@ -70,20 +75,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDes = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.BtnCategoria = new System.Windows.Forms.Button();
             this.ToolStrip1.SuspendLayout();
             this.TabArticulo.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -240,6 +240,36 @@
             this.TabBuscar.Text = "Busqueda Articulos";
             this.TabBuscar.UseVisualStyleBackColor = true;
             // 
+            // BuscMasckCodigoBarra
+            // 
+            this.BuscMasckCodigoBarra.Location = new System.Drawing.Point(165, 27);
+            this.BuscMasckCodigoBarra.Mask = "0-000000-000000";
+            this.BuscMasckCodigoBarra.Name = "BuscMasckCodigoBarra";
+            this.BuscMasckCodigoBarra.Size = new System.Drawing.Size(273, 20);
+            this.BuscMasckCodigoBarra.TabIndex = 121;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(579, 27);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(273, 20);
+            this.textBox1.TabIndex = 120;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(28, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 19);
+            this.label1.TabIndex = 119;
+            this.label1.Text = "Buscar Codigo Barra";
+            // 
             // txtcodigo
             // 
             this.txtcodigo.BackColor = System.Drawing.Color.White;
@@ -289,6 +319,29 @@
             this.tabPage2.Text = "Mantenimineto Articulos";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.ForeColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(12, 29);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(130, 63);
+            this.panel2.TabIndex = 91;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("MS Reference Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label11.Location = new System.Drawing.Point(15, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(112, 26);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Articulos";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.panel3);
@@ -300,35 +353,38 @@
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             // 
-            // textBox1
+            // panel3
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(579, 27);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(273, 20);
-            this.textBox1.TabIndex = 120;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.panel3.AutoSize = true;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(241)))), ((int)(((byte)(238)))));
+            this.panel3.ForeColor = System.Drawing.Color.White;
+            this.panel3.Location = new System.Drawing.Point(132, 10);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(720, 63);
+            this.panel3.TabIndex = 91;
             // 
-            // label1
+            // panel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(28, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 19);
-            this.label1.TabIndex = 119;
-            this.label1.Text = "Buscar Codigo Barra";
+            this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel1.Controls.Add(this.BtnCategoria);
+            this.panel1.ForeColor = System.Drawing.Color.Black;
+            this.panel1.Location = new System.Drawing.Point(6, 70);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(130, 276);
+            this.panel1.TabIndex = 90;
             // 
-            // BuscMasckCodigoBarra
+            // BtnCategoria
             // 
-            this.BuscMasckCodigoBarra.Location = new System.Drawing.Point(165, 27);
-            this.BuscMasckCodigoBarra.Mask = "0-000000-000000";
-            this.BuscMasckCodigoBarra.Name = "BuscMasckCodigoBarra";
-            this.BuscMasckCodigoBarra.Size = new System.Drawing.Size(273, 20);
-            this.BuscMasckCodigoBarra.TabIndex = 121;
+            this.BtnCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.BtnCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnCategoria.ForeColor = System.Drawing.Color.White;
+            this.BtnCategoria.Location = new System.Drawing.Point(5, 9);
+            this.BtnCategoria.Name = "BtnCategoria";
+            this.BtnCategoria.Size = new System.Drawing.Size(120, 37);
+            this.BtnCategoria.TabIndex = 2;
+            this.BtnCategoria.Text = "&Categoia";
+            this.BtnCategoria.UseVisualStyleBackColor = false;
             // 
             // groupBox2
             // 
@@ -366,10 +422,12 @@
             // 
             // cboProv
             // 
+            this.cboProv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboProv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboProv.FormattingEnabled = true;
-            this.cboProv.Location = new System.Drawing.Point(498, 34);
+            this.cboProv.Location = new System.Drawing.Point(492, 34);
             this.cboProv.Name = "cboProv";
-            this.cboProv.Size = new System.Drawing.Size(136, 21);
+            this.cboProv.Size = new System.Drawing.Size(197, 21);
             this.cboProv.TabIndex = 154;
             // 
             // label6
@@ -412,7 +470,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(234, 183);
+            this.label9.Location = new System.Drawing.Point(250, 183);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 19);
             this.label9.TabIndex = 148;
@@ -422,7 +480,7 @@
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.textBox4.Location = new System.Drawing.Point(358, 184);
+            this.textBox4.Location = new System.Drawing.Point(374, 184);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(73, 34);
@@ -433,7 +491,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(451, 183);
+            this.label8.Location = new System.Drawing.Point(506, 183);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 19);
             this.label8.TabIndex = 146;
@@ -443,7 +501,7 @@
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.textBox3.Location = new System.Drawing.Point(558, 184);
+            this.textBox3.Location = new System.Drawing.Point(613, 184);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(76, 34);
@@ -497,7 +555,7 @@
             this.txtDes.Location = new System.Drawing.Point(127, 132);
             this.txtDes.Multiline = true;
             this.txtDes.Name = "txtDes";
-            this.txtDes.Size = new System.Drawing.Size(507, 37);
+            this.txtDes.Size = new System.Drawing.Size(562, 37);
             this.txtDes.TabIndex = 143;
             this.txtDes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -508,65 +566,9 @@
             this.txtNom.Location = new System.Drawing.Point(127, 79);
             this.txtNom.Multiline = true;
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(507, 36);
+            this.txtNom.Size = new System.Drawing.Size(562, 36);
             this.txtNom.TabIndex = 142;
             this.txtNom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel1.Controls.Add(this.BtnCategoria);
-            this.panel1.ForeColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(6, 70);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(130, 276);
-            this.panel1.TabIndex = 90;
-            // 
-            // panel2
-            // 
-            this.panel2.AutoSize = true;
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.ForeColor = System.Drawing.Color.Black;
-            this.panel2.Location = new System.Drawing.Point(12, 29);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 63);
-            this.panel2.TabIndex = 91;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("MS Reference Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label11.Location = new System.Drawing.Point(15, 18);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(112, 26);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Articulos";
-            // 
-            // panel3
-            // 
-            this.panel3.AutoSize = true;
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(241)))), ((int)(((byte)(238)))));
-            this.panel3.ForeColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(132, 10);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(720, 63);
-            this.panel3.TabIndex = 91;
-            // 
-            // BtnCategoria
-            // 
-            this.BtnCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.BtnCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnCategoria.ForeColor = System.Drawing.Color.White;
-            this.BtnCategoria.Location = new System.Drawing.Point(5, 9);
-            this.BtnCategoria.Name = "BtnCategoria";
-            this.BtnCategoria.Size = new System.Drawing.Size(120, 37);
-            this.BtnCategoria.TabIndex = 2;
-            this.BtnCategoria.Text = "&Categoia";
-            this.BtnCategoria.UseVisualStyleBackColor = false;
             // 
             // FrmArticulos
             // 
@@ -586,13 +588,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

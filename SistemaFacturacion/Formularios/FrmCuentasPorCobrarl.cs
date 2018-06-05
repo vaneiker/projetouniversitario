@@ -23,12 +23,12 @@ namespace SistemaFacturacion.Formularios
 
         private void ClienteCbox()
             {
-            ClienteEntitis p = new ClienteEntitis();
-           var cbo= _metodos.GetClienteCombo();
+           // ClienteEntitis p = new ClienteEntitis();
+           //var cbo= _metodos.GetClienteCombo();
 
-            this.CboClientes.DataSource = cbo;
-            this.CboClientes.ValueMember ="NombreCompleto";
-            //this.CboClientes.SelectedIndex = //int.Parse("idcliente");
+           // this.CboClientes.DataSource = cbo;
+           // this.CboClientes.ValueMember ="NombreCompleto";
+           // //this.CboClientes.SelectedIndex = //int.Parse("idcliente");
             }
 
         private void FrmCuentasPorCobrarl_Load(object sender, EventArgs e)

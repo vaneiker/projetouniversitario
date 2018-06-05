@@ -45,7 +45,7 @@ namespace CapaEntidad.DbVentas
        
         public virtual ICollection<detalle_ingresoEntitis> detalle_ingreso { get; set; }
 
-        public virtual proveedorEntitis proveedor { get; set; }
+        public virtual ListaProve proveedor { get; set; }
 
         public virtual trabajadorEntitis trabajador { get; set; }
         }
