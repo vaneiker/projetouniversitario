@@ -39,12 +39,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.BtnIngerso = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnCerrarSeccion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.panelErrorClave = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panelErrorClave.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -91,6 +94,7 @@
             this.txtContrasena.Size = new System.Drawing.Size(269, 45);
             this.txtContrasena.TabIndex = 5;
             this.txtContrasena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtContrasena.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContrasena_KeyDown);
             // 
             // label3
             // 
@@ -152,19 +156,37 @@
             this.BtnIngerso.TabIndex = 43;
             this.BtnIngerso.Text = "Ingresar";
             this.BtnIngerso.UseVisualStyleBackColor = false;
-            this.BtnIngerso.Click += new System.EventHandler(this.button1_Click_1);
+            this.BtnIngerso.Click += new System.EventHandler(this.BtnIngerso_Click);
             // 
             // panel3
             // 
             this.panel3.AutoSize = true;
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(241)))), ((int)(((byte)(238)))));
-            this.panel3.Controls.Add(this.button3);
+            this.panel3.Controls.Add(this.btnCerrarSeccion);
             this.panel3.Controls.Add(this.label1);
             this.panel3.ForeColor = System.Drawing.Color.White;
             this.panel3.Location = new System.Drawing.Point(171, -1);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(767, 93);
             this.panel3.TabIndex = 44;
+            // 
+            // btnCerrarSeccion
+            // 
+            this.btnCerrarSeccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.btnCerrarSeccion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarSeccion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnCerrarSeccion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnCerrarSeccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSeccion.Font = new System.Drawing.Font("Lucida Sans", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSeccion.ForeColor = System.Drawing.Color.White;
+            this.btnCerrarSeccion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCerrarSeccion.Location = new System.Drawing.Point(664, 25);
+            this.btnCerrarSeccion.Name = "btnCerrarSeccion";
+            this.btnCerrarSeccion.Size = new System.Drawing.Size(90, 52);
+            this.btnCerrarSeccion.TabIndex = 46;
+            this.btnCerrarSeccion.Text = "x";
+            this.btnCerrarSeccion.UseVisualStyleBackColor = false;
+            this.btnCerrarSeccion.Click += new System.EventHandler(this.btnCerrarSeccion_Click);
             // 
             // label1
             // 
@@ -178,48 +200,54 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Systema de Facturación los amigos de Dios";
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Lucida Sans", 15F);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(635, 342);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(135, 47);
-            this.button2.TabIndex = 45;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Lucida Sans", 15F);
+            this.btnCancelar.ForeColor = System.Drawing.Color.White;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(635, 342);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(135, 47);
+            this.btnCancelar.TabIndex = 45;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // button3
+            // panelErrorClave
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Lucida Sans", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(664, 25);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(90, 52);
-            this.button3.TabIndex = 46;
-            this.button3.Text = "x";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.panelErrorClave.AutoSize = true;
+            this.panelErrorClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.panelErrorClave.Controls.Add(this.label5);
+            this.panelErrorClave.ForeColor = System.Drawing.Color.White;
+            this.panelErrorClave.Location = new System.Drawing.Point(505, 97);
+            this.panelErrorClave.Name = "panelErrorClave";
+            this.panelErrorClave.Size = new System.Drawing.Size(433, 54);
+            this.panelErrorClave.TabIndex = 46;
+            this.panelErrorClave.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("MS Reference Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(68)))), ((int)(((byte)(66)))));
+            this.label5.Location = new System.Drawing.Point(6, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 26);
+            this.label5.TabIndex = 4;
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 509);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.panelErrorClave);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.BtnIngerso);
             this.Controls.Add(this.panel2);
@@ -242,6 +270,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panelErrorClave.ResumeLayout(false);
+            this.panelErrorClave.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,10 +287,12 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button BtnIngerso;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCerrarSeccion;
+        private System.Windows.Forms.Panel panelErrorClave;
+        private System.Windows.Forms.Label label5;
         }
     }
 
