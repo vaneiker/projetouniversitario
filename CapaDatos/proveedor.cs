@@ -17,8 +17,8 @@ namespace CapaDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public proveedor()
         {
-            this.ingreso = new HashSet<ingreso>();
             this.cuentas_x_pagar = new HashSet<cuentas_x_pagar>();
+            this.ingreso = new HashSet<ingreso>();
         }
     
         public int idproveedor { get; set; }
@@ -38,8 +38,8 @@ namespace CapaDatos
         public string HostName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ingreso> ingreso { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cuentas_x_pagar> cuentas_x_pagar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ingreso> ingreso { get; set; }
     }
 }

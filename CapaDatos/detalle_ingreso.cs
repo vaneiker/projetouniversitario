@@ -27,8 +27,8 @@ namespace CapaDatos
         public decimal precio_venta { get; set; }
         public int stock_inicial { get; set; }
         public int stock_actual { get; set; }
-        public System.DateTime fecha_produccion { get; set; }
-        public System.DateTime fecha_vencimiento { get; set; }
+        public Nullable<System.DateTime> fecha_produccion { get; set; }
+        public Nullable<System.DateTime> fecha_vencimiento { get; set; }
     
         public virtual articulo articulo { get; set; }
         public virtual ingreso ingreso { get; set; }

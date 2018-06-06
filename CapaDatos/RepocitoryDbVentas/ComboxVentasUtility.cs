@@ -16,7 +16,7 @@ namespace CapaDatos.RepocitoryDbVentas
             {
 
             List<ClienteEntitis> Cliente = new List<ClienteEntitis>();
-            using (dbventasEntities context = new dbventasEntities())
+            using (dbventasEntity context = new dbventasEntity())
                 {
                 var connection = context.Database.Connection as SqlConnection;
 

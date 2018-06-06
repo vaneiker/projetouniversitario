@@ -37,6 +37,10 @@
             this.GridViewCategoria = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnProducto = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDes = new System.Windows.Forms.TextBox();
@@ -55,18 +59,15 @@
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnProducto = new System.Windows.Forms.Button();
+            this.btnGuardarCategoria = new System.Windows.Forms.Button();
             this.TabEmpleado.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCategoria)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.ToolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.ToolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabEmpleado
@@ -90,7 +91,7 @@
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
             this.TabBuscar.Size = new System.Drawing.Size(956, 377);
             this.TabBuscar.TabIndex = 0;
-            this.TabBuscar.Text = "Busqueda Empleado:";
+            this.TabBuscar.Text = "Busqueda Categoria:";
             this.TabBuscar.UseVisualStyleBackColor = true;
             // 
             // txtcodigo
@@ -150,11 +151,12 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(956, 377);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Mantenimineto Empleado:";
+            this.tabPage2.Text = "Ingreso de Categoria:";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnGuardarCategoria);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.pictureBox1);
@@ -168,6 +170,39 @@
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.BtnProducto);
+            this.panel1.Location = new System.Drawing.Point(6, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(143, 336);
+            this.panel1.TabIndex = 87;
+            // 
+            // BtnProducto
+            // 
+            this.BtnProducto.Location = new System.Drawing.Point(3, 10);
+            this.BtnProducto.Name = "BtnProducto";
+            this.BtnProducto.Size = new System.Drawing.Size(137, 23);
+            this.BtnProducto.TabIndex = 0;
+            this.BtnProducto.Text = "Productos";
+            this.BtnProducto.UseVisualStyleBackColor = true;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(152, 323);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(786, 23);
+            this.progressBar1.TabIndex = 86;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(608, 29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(330, 170);
+            this.pictureBox1.TabIndex = 85;
+            this.pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -337,39 +372,17 @@
             this.Salir.Size = new System.Drawing.Size(52, 68);
             this.Salir.Text = "Salir";
             this.Salir.ToolTipText = "Salir";
+            this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
-            // pictureBox1
+            // btnGuardarCategoria
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(608, 29);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(330, 170);
-            this.pictureBox1.TabIndex = 85;
-            this.pictureBox1.TabStop = false;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(152, 323);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(786, 23);
-            this.progressBar1.TabIndex = 86;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.BtnProducto);
-            this.panel1.Location = new System.Drawing.Point(6, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(143, 336);
-            this.panel1.TabIndex = 87;
-            // 
-            // BtnProducto
-            // 
-            this.BtnProducto.Location = new System.Drawing.Point(3, 10);
-            this.BtnProducto.Name = "BtnProducto";
-            this.BtnProducto.Size = new System.Drawing.Size(137, 23);
-            this.BtnProducto.TabIndex = 0;
-            this.BtnProducto.Text = "Productos";
-            this.BtnProducto.UseVisualStyleBackColor = true;
+            this.btnGuardarCategoria.Location = new System.Drawing.Point(465, 205);
+            this.btnGuardarCategoria.Name = "btnGuardarCategoria";
+            this.btnGuardarCategoria.Size = new System.Drawing.Size(137, 23);
+            this.btnGuardarCategoria.TabIndex = 1;
+            this.btnGuardarCategoria.Text = "Ingresar";
+            this.btnGuardarCategoria.UseVisualStyleBackColor = true;
+            this.btnGuardarCategoria.Click += new System.EventHandler(this.btnGuardarCategoria_Click);
             // 
             // FrmCategoria
             // 
@@ -388,10 +401,10 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,5 +441,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button BtnProducto;
-        }
+        private System.Windows.Forms.Button btnGuardarCategoria;
+    }
     }
