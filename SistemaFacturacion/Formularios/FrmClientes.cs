@@ -76,7 +76,7 @@ namespace SistemaFacturacion.Formularios
             cliente.num_documento = MaskCedula.Text;
             cliente.direccion = txtDire.Text;
             cliente.telefono = MascTel.Text;
-            cliente.email = txtemail.Text;
+            cliente.email= txtemail.Text;
             //cliente.FechaModifica =;
             _metodos.Registrar_Clientes(cliente);
             ListaCliente();
