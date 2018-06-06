@@ -32,8 +32,8 @@ namespace SistemaFacturacion
                     {
                     //implementar validacion de role para visualizar el menu pendiente
                     Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-                    this.Hide()
-                    f.Show();
+                    this.Hide();
+                     f.Show();
                     }
                 else
                     {
@@ -65,26 +65,14 @@ namespace SistemaFacturacion
                 this.Close();
                 }
             }
-
-
-        private void BtnIngerso_Click(object sender, EventArgs e)
-        {
-            if (LogicaLogin.ValidateLogin(txtUsuario.Text, txtContrasena.Text, out Program.UsuarioRole))
-            {
-                //implementar validacion de role para visualizar el menu pendiente
-                Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-                //Dar Visualizacion segun Role
-                AppTools.Visibilidad.MenuPrincipal(Program.UsuarioRole, f);
-                f.Show();
-            }
-        }
-    }
-    }
-
         private void txtContrasena_KeyDown(object sender, KeyEventArgs e)
-            {
+        {
             panelErrorClave.Visible = false;
-            }
         }
+
     }
+    }
+
+
+
 
