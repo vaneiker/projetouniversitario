@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-﻿using System;
-=======
+
 using System;
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,8 +92,5 @@ namespace SistemaFacturacion.AppTools
                 }
             }
         }
-<<<<<<< HEAD
     }
-=======
-    }
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
+

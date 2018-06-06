@@ -55,8 +55,10 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCotizacion = new System.Windows.Forms.Button();
+            this.BtnFacturacion = new System.Windows.Forms.Button();
             this.btnEmpleado = new System.Windows.Forms.Button();
             this.BtnProveedor = new System.Windows.Forms.Button();
             this.BtnIngreso = new System.Windows.Forms.Button();
@@ -66,11 +68,6 @@
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.BtnArticulos = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-<<<<<<< HEAD
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-=======
-            this.BtnFacturacion = new System.Windows.Forms.Button();
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
             panel2 = new System.Windows.Forms.Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -309,16 +306,21 @@
             this.Salir.ToolTipText = "Salir";
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 68);
+            this.toolStripButton5.Text = "toolStripButton5";
+            // 
             // panel1
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-<<<<<<< HEAD
             this.panel1.Controls.Add(this.btnCotizacion);
-=======
             this.panel1.Controls.Add(this.BtnFacturacion);
-            this.panel1.Controls.Add(this.button1);
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
             this.panel1.Controls.Add(this.btnEmpleado);
             this.panel1.Controls.Add(this.BtnProveedor);
             this.panel1.Controls.Add(this.BtnIngreso);
@@ -344,6 +346,18 @@
             this.btnCotizacion.TabIndex = 8;
             this.btnCotizacion.Text = "Cotización";
             this.btnCotizacion.UseVisualStyleBackColor = false;
+            // 
+            // BtnFacturacion
+            // 
+            this.BtnFacturacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.BtnFacturacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnFacturacion.ForeColor = System.Drawing.Color.White;
+            this.BtnFacturacion.Location = new System.Drawing.Point(12, 411);
+            this.BtnFacturacion.Name = "BtnFacturacion";
+            this.BtnFacturacion.Size = new System.Drawing.Size(158, 37);
+            this.BtnFacturacion.TabIndex = 10;
+            this.BtnFacturacion.Text = "Facturación";
+            this.BtnFacturacion.UseVisualStyleBackColor = false;
             // 
             // btnEmpleado
             // 
@@ -450,29 +464,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-<<<<<<< HEAD
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 68);
-            this.toolStripButton5.Text = "toolStripButton5";
-=======
-            // BtnFacturacion
-            // 
-            this.BtnFacturacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.BtnFacturacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnFacturacion.ForeColor = System.Drawing.Color.White;
-            this.BtnFacturacion.Location = new System.Drawing.Point(12, 411);
-            this.BtnFacturacion.Name = "BtnFacturacion";
-            this.BtnFacturacion.Size = new System.Drawing.Size(158, 37);
-            this.BtnFacturacion.TabIndex = 10;
-            this.BtnFacturacion.Text = "Facturación";
-            this.BtnFacturacion.UseVisualStyleBackColor = false;
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
-            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,11 +529,9 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         public System.Windows.Forms.Button BtnCliente;
         public System.Windows.Forms.Button BtnCategoria;
-<<<<<<< HEAD
+
         private System.Windows.Forms.ToolStripButton toolStripButton5;
-    }
-=======
         private System.Windows.Forms.Button BtnFacturacion;
         }
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
+
     }

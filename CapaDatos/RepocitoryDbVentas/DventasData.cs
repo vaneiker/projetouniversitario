@@ -182,7 +182,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
-        public void Registrar_Categoria(categoriaEntitis categoria)
+        public int Registrar_Categoria(categoriaEntitis categoria)
             {
             try
                 {
@@ -201,7 +201,7 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.Add(new SqlParameter("@idCat", categoria.idcategoria));
                         cmd.Parameters.Add(new SqlParameter("@nom", categoria.nombre));
                         cmd.Parameters.Add(new SqlParameter("@Desc", categoria.descripcion));  
-                        cmd.ExecuteNonQuery();
+                        return cmd.ExecuteNonQuery();
 
                         }
                     }
@@ -659,21 +659,14 @@ namespace CapaDatos.RepocitoryDbVentas
 
                         //exec procedure
                         cmd.ExecuteNonQuery();
-<<<<<<< HEAD
-                        if (cmd.Parameters["@rolid"].Value == DBNull.Value)
-=======
+
                           if (cmd.Parameters["@rolid"].Value == DBNull.Value)
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
                         {
                             rolId = 0;
                         }else
                         {
                             rolId = System.Convert.ToInt32(cmd.Parameters["@rolid"].Value);
-<<<<<<< HEAD
-=======
-                        }
 
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
                         }
                         
 

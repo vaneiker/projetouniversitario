@@ -587,8 +587,10 @@
             this.ClientSize = new System.Drawing.Size(976, 494);
             this.Controls.Add(this.TabEmpleado);
             this.Controls.Add(this.ToolStrip1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmClientes";
-            this.Text = "FrmClientes";
+            this.Text = "Formulario de Clientes";
             this.Load += new System.EventHandler(this.FrmClientes_Load);
             this.TabEmpleado.ResumeLayout(false);
             this.TabBuscar.ResumeLayout(false);

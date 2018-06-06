@@ -19,8 +19,6 @@ namespace SistemaFacturacion
             InitializeComponent();
             }
 
-<<<<<<< HEAD
-=======
         private void btnIngresar_Click(object sender, EventArgs e)
             {
          
@@ -39,11 +37,14 @@ namespace SistemaFacturacion
                 {
                 //implementar validacion de role para visualizar el menu pendiente
                 Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-                f.Show();
-                }
+                this.Hide();
+                 f.Show();
+            }else
+            {
+                MessageBox.Show("Usuario o Contraseña Estan Incorrectos", "Error Al Logearse", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             }
 
->>>>>>> 9cc78b48729cf9c3fccb5c6e4dff1b344f58b45e
         private void button2_Click(object sender, EventArgs e)
             {
               txtContrasena.Text = string.Empty;

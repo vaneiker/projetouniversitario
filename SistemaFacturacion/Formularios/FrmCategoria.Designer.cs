@@ -59,6 +59,7 @@
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
+            this.btnGuardarCategoria = new System.Windows.Forms.Button();
             this.TabEmpleado.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCategoria)).BeginInit();
@@ -90,7 +91,7 @@
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
             this.TabBuscar.Size = new System.Drawing.Size(956, 377);
             this.TabBuscar.TabIndex = 0;
-            this.TabBuscar.Text = "Busqueda Empleado:";
+            this.TabBuscar.Text = "Busqueda Categoria:";
             this.TabBuscar.UseVisualStyleBackColor = true;
             // 
             // txtcodigo
@@ -150,11 +151,12 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(956, 377);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Mantenimineto Empleado:";
+            this.tabPage2.Text = "Ingreso de Categoria:";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnGuardarCategoria);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.pictureBox1);
@@ -372,6 +374,16 @@
             this.Salir.ToolTipText = "Salir";
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
+            // btnGuardarCategoria
+            // 
+            this.btnGuardarCategoria.Location = new System.Drawing.Point(465, 205);
+            this.btnGuardarCategoria.Name = "btnGuardarCategoria";
+            this.btnGuardarCategoria.Size = new System.Drawing.Size(137, 23);
+            this.btnGuardarCategoria.TabIndex = 1;
+            this.btnGuardarCategoria.Text = "Ingresar";
+            this.btnGuardarCategoria.UseVisualStyleBackColor = true;
+            this.btnGuardarCategoria.Click += new System.EventHandler(this.btnGuardarCategoria_Click);
+            // 
             // FrmCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,5 +441,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button BtnProducto;
-        }
+        private System.Windows.Forms.Button btnGuardarCategoria;
+    }
     }
