@@ -23,16 +23,6 @@ namespace SistemaFacturacion
             {
             if (txtContrasena.Text == "" || txtContrasena.Text == null || txtUsuario.Text == "" || txtUsuario.Text == null)
                 {
-<<<<<<< HEAD
-                //implementar validacion de role para visualizar el menu pendiente
-                Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-                this.Hide();
-                 f.Show();
-            }else
-            {
-                MessageBox.Show("Usuario o Contraseña Estan Incorrectos", "Error Al Logearse", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-=======
                 panelErrorClave.Visible = true;
                 label5.Text = "Digite usuario y contraseña";
                 }
@@ -42,6 +32,7 @@ namespace SistemaFacturacion
                     {
                     //implementar validacion de role para visualizar el menu pendiente
                     Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
+                    this.Hide()
                     f.Show();
                     }
                 else
@@ -50,16 +41,12 @@ namespace SistemaFacturacion
                     label5.Text = "Usuario y/o contraseña incorrectos";
                     }
                 }
->>>>>>> fb20852c4b73f648feebc8a4c3017adc87f90259
             }
-        private void btnCancelar_Click(object sender, EventArgs e)
+                private void btnCancelar_Click(object sender, EventArgs e)
             {
-<<<<<<< HEAD
-              txtContrasena.Text = string.Empty;
-              txtUsuario.Text = string.Empty;
-=======
-            CleanPantalla();
->>>>>>> fb20852c4b73f648feebc8a4c3017adc87f90259
+
+                CleanPantalla();
+
             }
 
         private void CleanPantalla()
@@ -79,7 +66,7 @@ namespace SistemaFacturacion
                 }
             }
 
-<<<<<<< HEAD
+
         private void BtnIngerso_Click(object sender, EventArgs e)
         {
             if (LogicaLogin.ValidateLogin(txtUsuario.Text, txtContrasena.Text, out Program.UsuarioRole))
@@ -93,11 +80,11 @@ namespace SistemaFacturacion
         }
     }
     }
-=======
+
         private void txtContrasena_KeyDown(object sender, KeyEventArgs e)
             {
             panelErrorClave.Visible = false;
             }
         }
     }
->>>>>>> fb20852c4b73f648feebc8a4c3017adc87f90259
+
