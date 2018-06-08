@@ -17,7 +17,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             this._categoria = new categoriaEntitis();
         }
 
-        public bool Insertar(string nombre, string descripcion, int id = 0)
+        public bool Insertar(string nombre, string descripcion, int id)
         {
             // si no entras valores no atentara a insertar
             if (String.IsNullOrWhiteSpace(nombre) || String.IsNullOrWhiteSpace(descripcion))

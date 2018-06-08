@@ -17,7 +17,7 @@ namespace SistemaFacturacion.Formularios
         LogicaDbVentas _metodos = new LogicaDbVentas();
 
         categoriaEntitis categoria = new categoriaEntitis();
-      
+
         public FrmCategoria()
             {
             InitializeComponent();
@@ -46,32 +46,92 @@ namespace SistemaFacturacion.Formularios
 
         private void Aceptar_Click(object sender, EventArgs e)
             {
-            GuardarCategoria();
+            if (String.IsNullOrWhiteSpace(txtDes.Text) || String.IsNullOrWhiteSpace(txtDes.Text))
+                {
+                MessageBox.Show("Favor de Digitar la categoria y su descripción");
+                return;
+                }
+            else
+                {
+               
+                GuardarCategoria(txtNom.Text,txtDes.Text,int.Parse(txtcodigo.Text));
+                }
             }
 
         #region metodos
-        private void GuardarCategoria()
+        private void GuardarCategoria(string nombre, string descripcion, int id )
             {
-            categoria.idcategoria =int.Parse("0");
+            LogicaCategoria l = new LogicaCategoria();
+            bool m;
+            categoria.idcategoria = id;
             categoria.nombre = txtNom.Text.Trim();
             categoria.descripcion = txtDes.Text.Trim();
-            _metodos.Registrar_Categoria(categoria);
-            MessageBox.Show("Categoria Insertada Correctamente");
+
+
+            m = l.Insertar(nombre,descripcion,id);
+            if (m == true)
+                {
+                ErrorPersonalizado(1);
+
+              }
+            else
+                {
+                ErrorPersonalizado(0);
+                }
             }
         #endregion
         private void Salir_Click(object sender, EventArgs e)
             {
             MenuPrincipal fp = new MenuPrincipal();
-
-
             DialogResult resul = MessageBox.Show("Esta seguro que desea salir de este Formulario?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (resul == System.Windows.Forms.DialogResult.OK)
                 {
-                  this.Close();
+                this.Close();
                 }
-           
             }
 
-      
+        private void ErrorPersonalizado(int valor)
+            {
+
+
+            if(valor==0)
+                {
+                panelErrorCategoria.Visible = true;
+                panelErrorCategoria.BackColor = Color.FromArgb(242, 222, 222);
+                label6.BackColor = Color.FromArgb(162,18,16);
+                label6.Text = "Error al Insertar Los Datos";
+
+                }
+            else if(valor==1)
+                {
+                panelErrorCategoria.Visible = true;         
+                panelErrorCategoria.BackColor = Color.FromArgb(223, 240, 216);
+                label6.BackColor = Color.FromArgb(223, 240, 216);
+                label6.Text = "Datos Insertar Correctamente";
+                ListarCategoria();
+                txtDes.Text = string.Empty;
+                txtNom.Text = string.Empty;
+                txtNom.Focus();
+                }
+
+            
+            }
+
+        private void GridViewCategoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            {
+            if (GridViewCategoria.CurrentRow != null)
+                {
+
+          
+              
+                label3.Text = "Actualizar";
+                txtcodigo.Text = GridViewCategoria.CurrentRow.Cells[0].Value.ToString();
+                txtNom.Text = GridViewCategoria.CurrentRow.Cells[1].Value.ToString();
+                txtDes.Text = GridViewCategoria.CurrentRow.Cells[2].Value.ToString();
+                //txtTelefono.Text = GridViewEmpleado.CurrentRow.Cells[4].Value.ToString();
+                //txtDni.Text = GridViewEmpleado.CurrentRow.Cells[5].Value.ToString();
+                //txtDireccion.Text = GridViewEmpleado.CurrentRow.Cells[6].Value.ToString();
+                }
+            }
         }
     }
