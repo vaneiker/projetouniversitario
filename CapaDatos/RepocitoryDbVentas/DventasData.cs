@@ -26,7 +26,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 using (connection)
                     {
                     connection.Open();
-                    string Qry = "[dbo].[SP_GET_articulos_LOAD]";
+                    string Qry = "SP_GET_ARTICULO_LOAD";
                     SqlCommand cmd = new SqlCommand(Qry, connection);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -77,7 +77,7 @@ namespace CapaDatos.RepocitoryDbVentas
                         string Qry = "SP_SET_INSERT_UPDATE_ARTICULO";
                         SqlCommand cmd = new SqlCommand(Qry, connection);
                         cmd.CommandType = CommandType.StoredProcedure;
-
+                        cmd.Parameters.Add(new SqlParameter("@idarticulo", articulo.@idarticulo));
                         cmd.Parameters.Add(new SqlParameter("@codigo", articulo.codigo));
                         cmd.Parameters.Add(new SqlParameter("@nombre", articulo.nombre));
                         cmd.Parameters.Add(new SqlParameter("@idcategoria", articulo.idcategoria));
@@ -182,7 +182,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
-        public int Registrar_Categoria(categoriaEntitis categoria)
+        public bool Registrar_Categoria(categoriaEntitis categoria)
             {
             try
                 {
@@ -201,7 +201,9 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.Add(new SqlParameter("@idCat", categoria.idcategoria));
                         cmd.Parameters.Add(new SqlParameter("@nom", categoria.nombre));
                         cmd.Parameters.Add(new SqlParameter("@Desc", categoria.descripcion));  
-                        return cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    
+                        return true; 
 
                         }
                     }
@@ -502,7 +504,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 using (connection)
                     {
                     connection.Open();
-                    string Qry = "[dbo].[SP_GET_articulos_LOAD]";
+                    string Qry = "[dbo].[SP_GET_PROVEEDOR_LOAD]";
                     SqlCommand cmd = new SqlCommand(Qry, connection);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -539,7 +541,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
-        public void Registrar_Proveedor(ListaProve proveedor)
+        public void Registrar_Proveedor(ProveedorEntity proveedor)
             {
             try
                 {
@@ -584,7 +586,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
-        public void EliminarProveedor(ListaProve proveedor)
+        public void EliminarProveedor(ProveedorEntity proveedor)
             {
             try
                 {
@@ -659,19 +661,16 @@ namespace CapaDatos.RepocitoryDbVentas
 
                         //exec procedure
                         cmd.ExecuteNonQuery();
-
                           if (cmd.Parameters["@rolid"].Value == DBNull.Value)
                         {
                             rolId = 0;
                         }else
                         {
                             rolId = System.Convert.ToInt32(cmd.Parameters["@rolid"].Value);
+                        }
 
                         }
-                        
-
                     }
-                }
             }catch(SqlException ex)
             {
                 throw new Exception(ex.Message);

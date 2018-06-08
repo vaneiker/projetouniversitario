@@ -22,6 +22,6 @@ namespace CapaEntidad.DbVentas
 
 
 
-        public virtual ListaProve proveedor { get; set; }
+        public virtual ProveedorEntity proveedor { get; set; }
         }
     }

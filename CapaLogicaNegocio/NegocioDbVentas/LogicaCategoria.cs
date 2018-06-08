@@ -28,11 +28,9 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             _categoria.descripcion = descripcion;
             //Instanciamos el context
             DventasData db = new DventasData();
-            // si se inserto devolvera la fila afectada
-            int filasAfectadas = db.Registrar_Categoria(_categoria);
 
             //si hay fila afectada entonces devolvemos true de lo contrario false
-            return filasAfectadas > 0 ? true : false;
+            return db.Registrar_Categoria(_categoria);
         }
     }
 }

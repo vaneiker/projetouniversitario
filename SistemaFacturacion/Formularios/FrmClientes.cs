@@ -25,7 +25,7 @@ namespace SistemaFacturacion.Formularios
             {
             ListaCliente();
             }
-
+        DocumentValidator d = new DocumentValidator();
         private void ListaCliente()
             {
             var lista = _metodos.ListaClientes();
@@ -72,7 +72,7 @@ namespace SistemaFacturacion.Formularios
             cliente.nombre=txtNombres.Text.Trim();
             cliente.sexo = CboSex.Text;
             cliente.fecha_nacimiento =Convert.ToDateTime(DateNacimiento.Text);
-            cliente.tipo_documento = cboTipo.Text;
+           // cliente.tipo_documento = cboTipo.Text;
             cliente.num_documento = MaskCedula.Text;
             cliente.direccion = txtDire.Text;
             cliente.telefono = MascTel.Text;
@@ -137,6 +137,76 @@ namespace SistemaFacturacion.Formularios
         private void toolStripButton1_Click(object sender, EventArgs e)
             {
 ListaCliente();
-            } 
+            }
+
+        private void label14_Click(object sender, EventArgs e)
+            {
+
+            }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+            {
+
+            }
+
+        private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
+            {
+
+           
+            }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+            {
+            var Rnc = d.IsValidModulo11(maskedTexRnc.Text);
+           
+            maskedTexRnc.Visible = true;
+            lblced.Text = "RNC";
+            lblced.Visible = true;
+            MaskCedula.Visible = false;
+            }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+            {
+            var Rnc = d.IsValidModulo10(MaskCedula.Text);
+            maskedTexRnc.Visible = false;
+            lblced.Text = "Cedula";
+            lblced.Visible = true;
+            MaskCedula.Visible = true;
+            
+            }
         }
     }
+//string tipo;
+//tipo = cboTipo.Text;
+
+//            switch (tipo)
+//                {
+//                case "RNC":
+
+//                    var Rnc = d.IsValidModulo11(maskedTexRnc.Text);
+//maskedTexRnc.Visible = true;
+//                    if (Rnc == true)
+//                        {
+//                        MessageBox.Show("El RNC Es Correcta");
+//                        }
+//                    else
+//                        {
+//                        MessageBox.Show("El RNC Es InCorrecta");
+//                        }
+
+//                    break;
+
+//                case "Cedula":
+//                    MaskCedula.Visible = true;
+//                    var Cedula = d.IsValidModulo10(MaskCedula.Text);
+//                    if (Cedula == true)
+//                        {
+//                        MessageBox.Show("La Cedula Es Correcta");
+//                        }
+//                    else
+//                        {
+//                        MessageBox.Show("La Cedula Es InCorrecta");
+//                        }
+//                    break;
+
+//                }

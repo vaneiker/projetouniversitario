@@ -72,26 +72,6 @@ namespace SistemaFacturacion.Formularios
            
             }
 
-        private void btnGuardarCategoria_Click(object sender, EventArgs e)
-        {
-            if(String.IsNullOrWhiteSpace(txtNom.Text) || String.IsNullOrWhiteSpace(txtDes.Text))
-            {
-                MessageBox.Show("Por favor Asegurese de llenar el nombre y la descripcion de la descripcion", "Campos Vacios", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtNom.Focus();
-            }else
-            {
-                LogicaCategoria nuevaCategoria = new LogicaCategoria();
-                if(nuevaCategoria.Insertar(txtNom.Text, txtDes.Text))
-                {
-                    MessageBox.Show("Categoria Ingresada Correctamente!...");
-                    txtDes.Text = string.Empty;
-                    txtNom.Text = string.Empty;
-                    ListarCategoria();
-                }else
-                {
-                    MessageBox.Show("Error al Intentar Guardar La Categoria..");
-                }
-            }
+      
         }
-    }
     }

@@ -32,8 +32,7 @@ namespace SistemaFacturacion
                     {
                     //implementar validacion de role para visualizar el menu pendiente
                     Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-                    this.Hide();
-                     f.Show();
+                    f.Show();
                     }
                 else
                     {
@@ -42,11 +41,9 @@ namespace SistemaFacturacion
                     }
                 }
             }
-                private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
             {
-
-                CleanPantalla();
-
+            CleanPantalla();
             }
 
         private void CleanPantalla()
@@ -65,14 +62,10 @@ namespace SistemaFacturacion
                 this.Close();
                 }
             }
+
         private void txtContrasena_KeyDown(object sender, KeyEventArgs e)
-        {
+            {
             panelErrorClave.Visible = false;
+            }
         }
-
     }
-    }
-
-
-
-
