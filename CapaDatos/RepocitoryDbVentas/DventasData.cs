@@ -182,7 +182,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
-        public bool Registrar_Categoria(categoriaEntitis categoria)
+        public int Registrar_Categoria(categoriaEntitis categoria)
             {
             try
                 {
@@ -203,7 +203,7 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.Add(new SqlParameter("@Desc", categoria.descripcion));  
                         cmd.ExecuteNonQuery();
                     
-                        return true; 
+                        return 1; 
 
                         }
                     }
@@ -211,10 +211,11 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             catch (Exception ex)
                 {
-
-                throw ex;
+                
+                 return 0;
+               
                 }
-
+            
             }
         //public void EliminarCategoria(categoriaEntitis categoria)
         //    {

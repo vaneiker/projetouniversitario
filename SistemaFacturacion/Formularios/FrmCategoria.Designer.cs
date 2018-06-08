@@ -37,9 +37,14 @@
             this.GridViewCategoria = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panelErrorCategoria = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnProducto = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.BtnArticulos = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,6 +69,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCategoria)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panelErrorCategoria.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ToolStrip1.SuspendLayout();
@@ -104,6 +111,7 @@
             this.txtcodigo.Name = "txtcodigo";
             this.txtcodigo.Size = new System.Drawing.Size(10, 10);
             this.txtcodigo.TabIndex = 118;
+            this.txtcodigo.Text = "0";
             this.txtcodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtcodigo.Visible = false;
             // 
@@ -141,6 +149,7 @@
             this.GridViewCategoria.ReadOnly = true;
             this.GridViewCategoria.Size = new System.Drawing.Size(942, 290);
             this.GridViewCategoria.TabIndex = 0;
+            this.GridViewCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCategoria_CellContentClick);
             // 
             // tabPage2
             // 
@@ -155,8 +164,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panelErrorCategoria);
+            this.groupBox1.Controls.Add(this.panel3);
+            this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label5);
@@ -167,38 +178,103 @@
             this.groupBox1.Size = new System.Drawing.Size(944, 352);
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            // 
+            // panelErrorCategoria
+            // 
+            this.panelErrorCategoria.AutoSize = true;
+            this.panelErrorCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(240)))), ((int)(((byte)(216)))));
+            this.panelErrorCategoria.Controls.Add(this.label6);
+            this.panelErrorCategoria.Controls.Add(this.label1);
+            this.panelErrorCategoria.ForeColor = System.Drawing.Color.White;
+            this.panelErrorCategoria.Location = new System.Drawing.Point(150, 75);
+            this.panelErrorCategoria.Name = "panelErrorCategoria";
+            this.panelErrorCategoria.Size = new System.Drawing.Size(788, 54);
+            this.panelErrorCategoria.TabIndex = 91;
+            this.panelErrorCategoria.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(118)))), ((int)(((byte)(61)))));
+            this.label6.Location = new System.Drawing.Point(277, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(70, 25);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "label6";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(68)))), ((int)(((byte)(66)))));
+            this.label1.Location = new System.Drawing.Point(6, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 26);
+            this.label1.TabIndex = 4;
+            // 
+            // panel3
+            // 
+            this.panel3.AutoSize = true;
+            this.panel3.BackColor = System.Drawing.Color.DarkGray;
+            this.panel3.ForeColor = System.Drawing.Color.White;
+            this.panel3.Location = new System.Drawing.Point(150, 11);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(788, 62);
+            this.panel3.TabIndex = 90;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.ForeColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(6, 11);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(143, 62);
+            this.panel2.TabIndex = 89;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label3.Location = new System.Drawing.Point(17, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 24);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "M";
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.BtnProducto);
-            this.panel1.Location = new System.Drawing.Point(6, 19);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel1.Controls.Add(this.BtnArticulos);
+            this.panel1.Location = new System.Drawing.Point(7, 73);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(143, 336);
+            this.panel1.Size = new System.Drawing.Size(143, 273);
             this.panel1.TabIndex = 87;
             // 
-            // BtnProducto
+            // BtnArticulos
             // 
-            this.BtnProducto.Location = new System.Drawing.Point(3, 10);
-            this.BtnProducto.Name = "BtnProducto";
-            this.BtnProducto.Size = new System.Drawing.Size(137, 23);
-            this.BtnProducto.TabIndex = 0;
-            this.BtnProducto.Text = "Productos";
-            this.BtnProducto.UseVisualStyleBackColor = true;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(152, 323);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(786, 23);
-            this.progressBar1.TabIndex = 86;
+            this.BtnArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.BtnArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnArticulos.ForeColor = System.Drawing.Color.White;
+            this.BtnArticulos.Location = new System.Drawing.Point(21, 37);
+            this.BtnArticulos.Name = "BtnArticulos";
+            this.BtnArticulos.Size = new System.Drawing.Size(102, 37);
+            this.BtnArticulos.TabIndex = 1;
+            this.BtnArticulos.Text = "&Articulos";
+            this.BtnArticulos.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(608, 29);
+            this.pictureBox1.Location = new System.Drawing.Point(634, 147);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(330, 170);
+            this.pictureBox1.Size = new System.Drawing.Size(304, 170);
             this.pictureBox1.TabIndex = 85;
             this.pictureBox1.TabStop = false;
             // 
@@ -206,7 +282,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(155, 29);
+            this.label2.Location = new System.Drawing.Point(155, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(121, 19);
             this.label2.TabIndex = 74;
@@ -216,7 +292,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(197, 77);
+            this.label5.Location = new System.Drawing.Point(197, 195);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 19);
             this.label5.TabIndex = 75;
@@ -225,19 +301,20 @@
             // txtDes
             // 
             this.txtDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDes.Location = new System.Drawing.Point(279, 77);
+            this.txtDes.Location = new System.Drawing.Point(279, 195);
             this.txtDes.Multiline = true;
             this.txtDes.Name = "txtDes";
-            this.txtDes.Size = new System.Drawing.Size(323, 122);
+            this.txtDes.Size = new System.Drawing.Size(349, 122);
             this.txtDes.TabIndex = 84;
             // 
             // txtNom
             // 
+            this.txtNom.BackColor = System.Drawing.Color.White;
             this.txtNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNom.Location = new System.Drawing.Point(279, 29);
+            this.txtNom.Location = new System.Drawing.Point(279, 147);
             this.txtNom.Multiline = true;
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(323, 42);
+            this.txtNom.Size = new System.Drawing.Size(349, 42);
             this.txtNom.TabIndex = 83;
             // 
             // ToolStrip1
@@ -338,6 +415,7 @@
             this.Eliminar.Size = new System.Drawing.Size(52, 68);
             this.Eliminar.Text = "Limpiar";
             this.Eliminar.ToolTipText = "Eliminar";
+            this.Eliminar.Visible = false;
             // 
             // toolStripSeparator3
             // 
@@ -389,6 +467,10 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panelErrorCategoria.ResumeLayout(false);
+            this.panelErrorCategoria.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ToolStrip1.ResumeLayout(false);
@@ -426,8 +508,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         internal System.Windows.Forms.ToolStripButton Salir;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button BtnProducto;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panelErrorCategoria;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button BtnArticulos;
         }
     }

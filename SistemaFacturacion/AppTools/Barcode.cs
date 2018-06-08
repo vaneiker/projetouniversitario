@@ -29,10 +29,10 @@ namespace SistemaFacturacion.AppTools
 			}
 			using(MemoryStream ms = new MemoryStream())
 			{
-				bitmap.Save(ms.ImageFormat.Png);
-				picBox.Image = bitmap;
-				picBox.Height = bitmap.Height;
-				picBox.Width = bitmap.Width;
+				//bitmap.Save(ms.ImageFormat.Png);
+				//picBox.Image = bitmap;
+				//picBox.Height = bitmap.Height;
+				//picBox.Width = bitmap.Width;
 			}
     }
   }
