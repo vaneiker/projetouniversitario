@@ -63,18 +63,22 @@
             this.cboProv = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cboCat = new System.Windows.Forms.ComboBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.MascKcodigoBarra = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtComp = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtVent = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCan = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDes = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
+            this.txtruta = new System.Windows.Forms.TextBox();
+            this.btnRuta = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ToolStrip1.SuspendLayout();
             this.TabArticulo.SuspendLayout();
             this.TabBuscar.SuspendLayout();
@@ -84,6 +88,7 @@
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -133,6 +138,7 @@
             this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
             this.toolStripButton1.Text = "Limpiar";
             this.toolStripButton1.ToolTipText = "Eliminar";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator5
             // 
@@ -165,6 +171,7 @@
             this.Aceptar.Size = new System.Drawing.Size(52, 68);
             this.Aceptar.Text = "Aceptar";
             this.Aceptar.ToolTipText = "Guardar, Modificar";
+            this.Aceptar.Click += new System.EventHandler(this.Aceptar_Click);
             // 
             // toolStripSeparator4
             // 
@@ -221,7 +228,7 @@
             this.TabArticulo.Location = new System.Drawing.Point(12, 74);
             this.TabArticulo.Name = "TabArticulo";
             this.TabArticulo.SelectedIndex = 0;
-            this.TabArticulo.Size = new System.Drawing.Size(874, 403);
+            this.TabArticulo.Size = new System.Drawing.Size(874, 515);
             this.TabArticulo.TabIndex = 12;
             // 
             // TabBuscar
@@ -306,6 +313,7 @@
             this.GridViewArticulos.ReadOnly = true;
             this.GridViewArticulos.Size = new System.Drawing.Size(846, 287);
             this.GridViewArticulos.TabIndex = 0;
+            this.GridViewArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewArticulos_CellContentClick);
             // 
             // tabPage2
             // 
@@ -314,7 +322,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(866, 377);
+            this.tabPage2.Size = new System.Drawing.Size(866, 489);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mantenimineto Articulos";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -349,7 +357,7 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Location = new System.Drawing.Point(6, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(852, 352);
+            this.groupBox1.Size = new System.Drawing.Size(852, 464);
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             // 
@@ -371,7 +379,7 @@
             this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(6, 70);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(130, 276);
+            this.panel1.Size = new System.Drawing.Size(130, 388);
             this.panel1.TabIndex = 90;
             // 
             // BtnCategoria
@@ -385,28 +393,32 @@
             this.BtnCategoria.TabIndex = 2;
             this.BtnCategoria.Text = "&Categoia";
             this.BtnCategoria.UseVisualStyleBackColor = false;
+            this.BtnCategoria.Click += new System.EventHandler(this.BtnCategoria_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Controls.Add(this.btnRuta);
+            this.groupBox2.Controls.Add(this.txtruta);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.cboProv);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.cboCat);
-            this.groupBox2.Controls.Add(this.maskedTextBox1);
+            this.groupBox2.Controls.Add(this.MascKcodigoBarra);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.txtComp);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.txtVent);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.txtCan);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtDes);
             this.groupBox2.Controls.Add(this.txtNom);
-            this.groupBox2.Location = new System.Drawing.Point(132, 79);
+            this.groupBox2.Location = new System.Drawing.Point(137, 79);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(714, 267);
+            this.groupBox2.Size = new System.Drawing.Size(699, 379);
             this.groupBox2.TabIndex = 88;
             this.groupBox2.TabStop = false;
             // 
@@ -448,13 +460,13 @@
             this.cboCat.Size = new System.Drawing.Size(113, 21);
             this.cboCat.TabIndex = 152;
             // 
-            // maskedTextBox1
+            // MascKcodigoBarra
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(127, 35);
-            this.maskedTextBox1.Mask = "0-000000-000000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(101, 20);
-            this.maskedTextBox1.TabIndex = 151;
+            this.MascKcodigoBarra.Location = new System.Drawing.Point(127, 35);
+            this.MascKcodigoBarra.Mask = "0-000000-000000";
+            this.MascKcodigoBarra.Name = "MascKcodigoBarra";
+            this.MascKcodigoBarra.Size = new System.Drawing.Size(101, 20);
+            this.MascKcodigoBarra.TabIndex = 151;
             // 
             // label3
             // 
@@ -470,43 +482,43 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(250, 183);
+            this.label9.Location = new System.Drawing.Point(234, 187);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 19);
             this.label9.TabIndex = 148;
             this.label9.Text = "Precio de Compra";
             // 
-            // textBox4
+            // txtComp
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.textBox4.Location = new System.Drawing.Point(374, 184);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(73, 34);
-            this.textBox4.TabIndex = 149;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtComp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtComp.Location = new System.Drawing.Point(355, 184);
+            this.txtComp.Multiline = true;
+            this.txtComp.Name = "txtComp";
+            this.txtComp.Size = new System.Drawing.Size(107, 34);
+            this.txtComp.TabIndex = 149;
+            this.txtComp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(506, 183);
+            this.label8.Location = new System.Drawing.Point(464, 186);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 19);
             this.label8.TabIndex = 146;
             this.label8.Text = "Precio de Venta";
             // 
-            // textBox3
+            // txtVent
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.textBox3.Location = new System.Drawing.Point(613, 184);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(76, 34);
-            this.textBox3.TabIndex = 147;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtVent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtVent.Location = new System.Drawing.Point(568, 184);
+            this.txtVent.Multiline = true;
+            this.txtVent.Name = "txtVent";
+            this.txtVent.Size = new System.Drawing.Size(121, 34);
+            this.txtVent.TabIndex = 147;
+            this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
@@ -518,16 +530,16 @@
             this.label7.TabIndex = 144;
             this.label7.Text = "Catidad";
             // 
-            // textBox2
+            // txtCan
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.textBox2.Location = new System.Drawing.Point(127, 184);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(101, 34);
-            this.textBox2.TabIndex = 145;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCan.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtCan.Location = new System.Drawing.Point(127, 184);
+            this.txtCan.Multiline = true;
+            this.txtCan.Name = "txtCan";
+            this.txtCan.Size = new System.Drawing.Size(101, 34);
+            this.txtCan.TabIndex = 145;
+            this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
@@ -570,11 +582,42 @@
             this.txtNom.TabIndex = 142;
             this.txtNom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // txtruta
+            // 
+            this.txtruta.Enabled = false;
+            this.txtruta.Location = new System.Drawing.Point(129, 346);
+            this.txtruta.Multiline = true;
+            this.txtruta.Name = "txtruta";
+            this.txtruta.Size = new System.Drawing.Size(562, 29);
+            this.txtruta.TabIndex = 156;
+            // 
+            // btnRuta
+            // 
+            this.btnRuta.Location = new System.Drawing.Point(5, 346);
+            this.btnRuta.Name = "btnRuta";
+            this.btnRuta.Size = new System.Drawing.Size(121, 29);
+            this.btnRuta.TabIndex = 157;
+            this.btnRuta.Text = "Cargar Imagen";
+            this.btnRuta.UseVisualStyleBackColor = true;
+            this.btnRuta.Click += new System.EventHandler(this.btnRuta_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(127, 224);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(562, 101);
+            this.pictureBox1.TabIndex = 158;
+            this.pictureBox1.TabStop = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // FrmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 490);
+            this.ClientSize = new System.Drawing.Size(886, 601);
             this.Controls.Add(this.TabArticulo);
             this.Controls.Add(this.ToolStrip1);
             this.Name = "FrmArticulos";
@@ -595,6 +638,7 @@
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -630,14 +674,14 @@
         private System.Windows.Forms.ComboBox cboProv;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboCat;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox MascKcodigoBarra;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtComp;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtVent;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCan;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDes;
@@ -647,5 +691,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel3;
         public System.Windows.Forms.Button BtnCategoria;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnRuta;
+        private System.Windows.Forms.TextBox txtruta;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         }
     }

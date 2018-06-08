@@ -51,11 +51,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DateNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.cboTipo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.MaskCedula = new System.Windows.Forms.MaskedTextBox();
             this.CboSex = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblced = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -76,6 +75,10 @@
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
+            this.maskedTexRnc = new System.Windows.Forms.MaskedTextBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.TabEmpleado.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).BeginInit();
@@ -83,6 +86,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabEmpleado
@@ -313,12 +317,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.maskedTexRnc);
             this.groupBox1.Controls.Add(this.DateNacimiento);
-            this.groupBox1.Controls.Add(this.cboTipo);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.MaskCedula);
             this.groupBox1.Controls.Add(this.CboSex);
-            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.lblced);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label9);
@@ -334,30 +339,16 @@
             // 
             // DateNacimiento
             // 
-            this.DateNacimiento.Location = new System.Drawing.Point(555, 16);
+            this.DateNacimiento.Location = new System.Drawing.Point(559, 16);
             this.DateNacimiento.Name = "DateNacimiento";
             this.DateNacimiento.Size = new System.Drawing.Size(209, 20);
             this.DateNacimiento.TabIndex = 88;
-            // 
-            // cboTipo
-            // 
-            this.cboTipo.FormattingEnabled = true;
-            this.cboTipo.Items.AddRange(new object[] {
-            "Cedula de Identidad",
-            "Rnc",
-            "Licencia de Conducir",
-            "Pasaporte",
-            "No. Seguro Social "});
-            this.cboTipo.Location = new System.Drawing.Point(145, 73);
-            this.cboTipo.Name = "cboTipo";
-            this.cboTipo.Size = new System.Drawing.Size(233, 21);
-            this.cboTipo.TabIndex = 87;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(435, 16);
+            this.label6.Location = new System.Drawing.Point(439, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 19);
             this.label6.TabIndex = 77;
@@ -365,11 +356,12 @@
             // 
             // MaskCedula
             // 
-            this.MaskCedula.Location = new System.Drawing.Point(454, 74);
+            this.MaskCedula.Location = new System.Drawing.Point(454, 105);
             this.MaskCedula.Mask = "000-0000000-0";
             this.MaskCedula.Name = "MaskCedula";
             this.MaskCedula.Size = new System.Drawing.Size(310, 20);
             this.MaskCedula.TabIndex = 83;
+            this.MaskCedula.Visible = false;
             // 
             // CboSex
             // 
@@ -378,26 +370,27 @@
             "Masculino",
             "Femeninos",
             "Otros"});
-            this.CboSex.Location = new System.Drawing.Point(145, 100);
+            this.CboSex.Location = new System.Drawing.Point(145, 105);
             this.CboSex.Name = "CboSex";
             this.CboSex.Size = new System.Drawing.Size(233, 21);
             this.CboSex.TabIndex = 86;
             // 
-            // label13
+            // lblced
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(398, 74);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 19);
-            this.label13.TabIndex = 82;
-            this.label13.Text = "Cedula";
+            this.lblced.AutoSize = true;
+            this.lblced.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblced.Location = new System.Drawing.Point(398, 105);
+            this.lblced.Name = "lblced";
+            this.lblced.Size = new System.Drawing.Size(50, 19);
+            this.lblced.TabIndex = 82;
+            this.lblced.Text = "Cedula";
+            this.lblced.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(14, 47);
+            this.label2.Location = new System.Drawing.Point(14, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 19);
             this.label2.TabIndex = 74;
@@ -407,7 +400,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(384, 48);
+            this.label5.Location = new System.Drawing.Point(384, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 19);
             this.label5.TabIndex = 75;
@@ -417,7 +410,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(14, 73);
+            this.label9.Location = new System.Drawing.Point(10, 50);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(131, 19);
             this.label9.TabIndex = 78;
@@ -425,7 +418,7 @@
             // 
             // txtNombres
             // 
-            this.txtNombres.Location = new System.Drawing.Point(454, 48);
+            this.txtNombres.Location = new System.Drawing.Point(454, 79);
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(310, 20);
             this.txtNombres.TabIndex = 84;
@@ -434,7 +427,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(14, 100);
+            this.label7.Location = new System.Drawing.Point(14, 105);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 19);
             this.label7.TabIndex = 76;
@@ -442,7 +435,7 @@
             // 
             // txtApellidos
             // 
-            this.txtApellidos.Location = new System.Drawing.Point(145, 47);
+            this.txtApellidos.Location = new System.Drawing.Point(145, 78);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(233, 20);
             this.txtApellidos.TabIndex = 83;
@@ -580,6 +573,50 @@
             this.Salir.ToolTipText = "Salir";
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
+            // maskedTexRnc
+            // 
+            this.maskedTexRnc.Location = new System.Drawing.Point(454, 106);
+            this.maskedTexRnc.Mask = "000-00000000";
+            this.maskedTexRnc.Name = "maskedTexRnc";
+            this.maskedTexRnc.Size = new System.Drawing.Size(310, 20);
+            this.maskedTexRnc.TabIndex = 90;
+            this.maskedTexRnc.Visible = false;
+            this.maskedTexRnc.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(22, 15);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(48, 17);
+            this.radioButton1.TabIndex = 91;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "RNC";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(113, 15);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(58, 17);
+            this.radioButton2.TabIndex = 93;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Cedula";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Controls.Add(this.radioButton2);
+            this.groupBox3.Location = new System.Drawing.Point(145, 38);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(233, 38);
+            this.groupBox3.TabIndex = 94;
+            this.groupBox3.TabStop = false;
+            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,10 +624,8 @@
             this.ClientSize = new System.Drawing.Size(976, 494);
             this.Controls.Add(this.TabEmpleado);
             this.Controls.Add(this.ToolStrip1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "FrmClientes";
-            this.Text = "Formulario de Clientes";
+            this.Text = "FrmClientes";
             this.Load += new System.EventHandler(this.FrmClientes_Load);
             this.TabEmpleado.ResumeLayout(false);
             this.TabBuscar.ResumeLayout(false);
@@ -603,6 +638,8 @@
             this.groupBox1.PerformLayout();
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -628,11 +665,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker DateNacimiento;
-        private System.Windows.Forms.ComboBox cboTipo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox MaskCedula;
         private System.Windows.Forms.ComboBox CboSex;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblced;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label9;
@@ -656,5 +692,9 @@
         private System.Windows.Forms.TextBox txtcodigo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         internal System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.MaskedTextBox maskedTexRnc;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
         }
     }

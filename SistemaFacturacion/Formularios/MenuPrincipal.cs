@@ -27,7 +27,7 @@ namespace SistemaFacturacion.Formularios
             DialogResult resul = MessageBox.Show("Esta seguro que desea apagar el Sistema?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (resul == System.Windows.Forms.DialogResult.OK)
                 {
-                Application.Exit();
+                this.Close();
                 }
             }
 
@@ -54,6 +54,12 @@ namespace SistemaFacturacion.Formularios
         private void BtnIngreso_Click(object sender, EventArgs e)
             {
             Formularios.FrmIngresos f = new FrmIngresos();
+            f.ShowDialog();
+            }
+
+        private void BtnArticulos_Click(object sender, EventArgs e)
+            {
+            FrmArticulos f = new FrmArticulos();
             f.ShowDialog();
             }
         }

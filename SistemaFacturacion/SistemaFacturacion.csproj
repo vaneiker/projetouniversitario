@@ -26,7 +26,7 @@
     <InstallUrl>http://localhost:8080/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -61,7 +61,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -86,8 +86,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppTools\Barcode.cs" />
+    <Compile Include="AppTools\DocumentValidator.cs" />
     <Compile Include="AppTools\Encripatar.cs" />
     <Compile Include="AppTools\Visibilidad.cs" />
+    <Compile Include="Formularios\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +140,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmArticulos.resx">
       <DependentUpon>FrmArticulos.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,7 +163,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -174,6 +184,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Recursos\SistemaFacturacion.application" />
+    <None Include="Recursos\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
@@ -196,6 +208,30 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Documentos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Recursos\4098757.gif" />
+    <Content Include="Recursos\administrative_tools_15497.png" />
+    <Content Include="Recursos\CategoriaImg.jpg" />
+    <Content Include="Recursos\chocolate-munecos-receta.jpg" />
+    <Content Include="Recursos\configure_user_16726.png" />
+    <Content Include="Recursos\databaseprocess_basededatos_12922.png" />
+    <Content Include="Recursos\faq_question_help_15622.png" />
+    <Content Include="Recursos\foto_candado.jpg" />
+    <Content Include="Recursos\images %281%29.jpg" />
+    <Content Include="Recursos\images %282%29.jpg" />
+    <Content Include="Recursos\images %283%29.jpg" />
+    <Content Include="Recursos\images %284%29.jpg" />
+    <Content Include="Recursos\images %285%29.jpg" />
+    <Content Include="Recursos\images %286%29.jpg" />
+    <Content Include="Recursos\images.jpg" />
+    <Content Include="Recursos\producto8-u945.png" />
+    <Content Include="Recursos\settings_icon-icons.com_72415 %281%29.png" />
+    <Content Include="Recursos\settings_icon-icons.com_72415.png" />
+    <Content Include="Recursos\souffl1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

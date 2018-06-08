@@ -51,7 +51,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
 
 
-          public void IngresdoDeDatos(IngresoMasterEntity ingreso)
+       public void IngresdoDeDatos(IngresoMasterEntity ingreso)
             {
             _metodos.IngresdoDeDatos(ingreso);
             }
@@ -71,5 +71,19 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             nom.Trim();
             return (_metodos.Buscarproveedor(doc,tel,nom));
             }
+        public void Registrar_Proveedor(ProveedorEntity proveedor)
+            {
+            _metodos.Registrar_Proveedor(proveedor);
+
+            }
+
+        public void Registrar_Articulos(articulosEntitis art)
+            {
+            _metodos.Registrar_Articulos(art);
+
+            }
+
+
+
         }
     }
