@@ -62,5 +62,15 @@ namespace SistemaFacturacion.Formularios
             FrmArticulos f = new FrmArticulos();
             f.ShowDialog();
             }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+            {
+
+            }
+
+        private void MenuPrincipal_Load(object sender, EventArgs e)
+            {
+            toolStripStatusLabel2.Text = Program.UsuarioRole.ToString();
+            }
         }
     }

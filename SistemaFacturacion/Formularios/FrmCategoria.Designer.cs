@@ -31,10 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategoria));
             this.TabEmpleado = new System.Windows.Forms.TabControl();
             this.TabBuscar = new System.Windows.Forms.TabPage();
-            this.txtcodigo = new System.Windows.Forms.TextBox();
             this.txtSearchCategoria = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.GridViewCategoria = new System.Windows.Forms.DataGridView();
+            this.selecc = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelErrorCategoria = new System.Windows.Forms.Panel();
@@ -88,7 +91,6 @@
             // 
             // TabBuscar
             // 
-            this.TabBuscar.Controls.Add(this.txtcodigo);
             this.TabBuscar.Controls.Add(this.txtSearchCategoria);
             this.TabBuscar.Controls.Add(this.label4);
             this.TabBuscar.Controls.Add(this.GridViewCategoria);
@@ -99,21 +101,6 @@
             this.TabBuscar.TabIndex = 0;
             this.TabBuscar.Text = "Busqueda Empleado:";
             this.TabBuscar.UseVisualStyleBackColor = true;
-            // 
-            // txtcodigo
-            // 
-            this.txtcodigo.BackColor = System.Drawing.Color.White;
-            this.txtcodigo.Enabled = false;
-            this.txtcodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcodigo.Location = new System.Drawing.Point(0, 365);
-            this.txtcodigo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtcodigo.Multiline = true;
-            this.txtcodigo.Name = "txtcodigo";
-            this.txtcodigo.Size = new System.Drawing.Size(10, 10);
-            this.txtcodigo.TabIndex = 118;
-            this.txtcodigo.Text = "0";
-            this.txtcodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtcodigo.Visible = false;
             // 
             // txtSearchCategoria
             // 
@@ -144,12 +131,44 @@
             this.GridViewCategoria.AllowUserToOrderColumns = true;
             this.GridViewCategoria.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.GridViewCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.selecc,
+            this.Codigo,
+            this.nombreG,
+            this.Desc});
             this.GridViewCategoria.Location = new System.Drawing.Point(6, 64);
             this.GridViewCategoria.Name = "GridViewCategoria";
             this.GridViewCategoria.ReadOnly = true;
             this.GridViewCategoria.Size = new System.Drawing.Size(942, 290);
             this.GridViewCategoria.TabIndex = 0;
             this.GridViewCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCategoria_CellContentClick);
+            // 
+            // selecc
+            // 
+            this.selecc.HeaderText = "Seleccionar";
+            this.selecc.Name = "selecc";
+            this.selecc.ReadOnly = true;
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Visible = false;
+            // 
+            // nombreG
+            // 
+            this.nombreG.HeaderText = "Nombre";
+            this.nombreG.Name = "nombreG";
+            this.nombreG.ReadOnly = true;
+            this.nombreG.Visible = false;
+            // 
+            // Desc
+            // 
+            this.Desc.HeaderText = "Descripción";
+            this.Desc.Name = "Desc";
+            this.Desc.ReadOnly = true;
+            this.Desc.Visible = false;
             // 
             // tabPage2
             // 
@@ -483,7 +502,6 @@
         #endregion
         private System.Windows.Forms.TabControl TabEmpleado;
         private System.Windows.Forms.TabPage TabBuscar;
-        private System.Windows.Forms.TextBox txtcodigo;
         private System.Windows.Forms.TextBox txtSearchCategoria;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView GridViewCategoria;
@@ -516,5 +534,9 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnArticulos;
+        private System.Windows.Forms.DataGridViewButtonColumn selecc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Desc;
         }
     }

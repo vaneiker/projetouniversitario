@@ -59,6 +59,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnRuta = new System.Windows.Forms.Button();
+            this.txtruta = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cboProv = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -75,10 +78,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDes = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
-            this.txtruta = new System.Windows.Forms.TextBox();
-            this.btnRuta = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.ToolStrip1.SuspendLayout();
             this.TabArticulo.SuspendLayout();
             this.TabBuscar.SuspendLayout();
@@ -242,7 +244,7 @@
             this.TabBuscar.Location = new System.Drawing.Point(4, 22);
             this.TabBuscar.Name = "TabBuscar";
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
-            this.TabBuscar.Size = new System.Drawing.Size(866, 377);
+            this.TabBuscar.Size = new System.Drawing.Size(866, 489);
             this.TabBuscar.TabIndex = 0;
             this.TabBuscar.Text = "Busqueda Articulos";
             this.TabBuscar.UseVisualStyleBackColor = true;
@@ -397,6 +399,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.pictureBox1);
             this.groupBox2.Controls.Add(this.btnRuta);
             this.groupBox2.Controls.Add(this.txtruta);
@@ -422,6 +426,33 @@
             this.groupBox2.TabIndex = 88;
             this.groupBox2.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(127, 224);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(562, 101);
+            this.pictureBox1.TabIndex = 158;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnRuta
+            // 
+            this.btnRuta.Location = new System.Drawing.Point(5, 346);
+            this.btnRuta.Name = "btnRuta";
+            this.btnRuta.Size = new System.Drawing.Size(121, 29);
+            this.btnRuta.TabIndex = 157;
+            this.btnRuta.Text = "Cargar Imagen";
+            this.btnRuta.UseVisualStyleBackColor = true;
+            this.btnRuta.Click += new System.EventHandler(this.btnRuta_Click);
+            // 
+            // txtruta
+            // 
+            this.txtruta.Enabled = false;
+            this.txtruta.Location = new System.Drawing.Point(129, 346);
+            this.txtruta.Multiline = true;
+            this.txtruta.Name = "txtruta";
+            this.txtruta.Size = new System.Drawing.Size(562, 29);
+            this.txtruta.TabIndex = 156;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -446,7 +477,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(231, 36);
+            this.label6.Location = new System.Drawing.Point(352, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 19);
             this.label6.TabIndex = 153;
@@ -455,24 +486,25 @@
             // cboCat
             // 
             this.cboCat.FormattingEnabled = true;
-            this.cboCat.Location = new System.Drawing.Point(304, 35);
+            this.cboCat.Location = new System.Drawing.Point(425, 9);
             this.cboCat.Name = "cboCat";
             this.cboCat.Size = new System.Drawing.Size(113, 21);
             this.cboCat.TabIndex = 152;
             // 
             // MascKcodigoBarra
             // 
-            this.MascKcodigoBarra.Location = new System.Drawing.Point(127, 35);
+            this.MascKcodigoBarra.Location = new System.Drawing.Point(127, 19);
             this.MascKcodigoBarra.Mask = "0-000000-000000";
             this.MascKcodigoBarra.Name = "MascKcodigoBarra";
             this.MascKcodigoBarra.Size = new System.Drawing.Size(101, 20);
             this.MascKcodigoBarra.TabIndex = 151;
+            this.MascKcodigoBarra.Leave += new System.EventHandler(this.MascKcodigoBarra_Leave);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 37);
+            this.label3.Location = new System.Drawing.Point(32, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 19);
             this.label3.TabIndex = 150;
@@ -582,36 +614,32 @@
             this.txtNom.TabIndex = 142;
             this.txtNom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtruta
-            // 
-            this.txtruta.Enabled = false;
-            this.txtruta.Location = new System.Drawing.Point(129, 346);
-            this.txtruta.Multiline = true;
-            this.txtruta.Name = "txtruta";
-            this.txtruta.Size = new System.Drawing.Size(562, 29);
-            this.txtruta.TabIndex = 156;
-            // 
-            // btnRuta
-            // 
-            this.btnRuta.Location = new System.Drawing.Point(5, 346);
-            this.btnRuta.Name = "btnRuta";
-            this.btnRuta.Size = new System.Drawing.Size(121, 29);
-            this.btnRuta.TabIndex = 157;
-            this.btnRuta.Text = "Cargar Imagen";
-            this.btnRuta.UseVisualStyleBackColor = true;
-            this.btnRuta.Click += new System.EventHandler(this.btnRuta_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(127, 224);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(562, 101);
-            this.pictureBox1.TabIndex = 158;
-            this.pictureBox1.TabStop = false;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.textBox2.Location = new System.Drawing.Point(127, 41);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(195, 32);
+            this.textBox2.TabIndex = 159;
+            this.textBox2.Text = "1254525658555";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(32, 50);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 19);
+            this.label12.TabIndex = 160;
+            this.label12.Text = "Codigo Barra";
             // 
             // FrmArticulos
             // 
@@ -695,5 +723,7 @@
         private System.Windows.Forms.Button btnRuta;
         private System.Windows.Forms.TextBox txtruta;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox2;
         }
     }

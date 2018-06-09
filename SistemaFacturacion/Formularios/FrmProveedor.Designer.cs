@@ -1,6 +1,6 @@
 ﻿namespace SistemaFacturacion.Formularios
     {
-    partial class FrmClientes
+    partial class FrmProveedor
         {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,22 @@
         /// </summary>
         private void InitializeComponent()
             {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
-            this.TabEmpleado = new System.Windows.Forms.TabControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProveedor));
+            this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.Nuevo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.BuscarD = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.Aceptar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.Eliminar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.Limpia = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.Salir = new System.Windows.Forms.ToolStripButton();
+            this.TabProovedor = new System.Windows.Forms.TabControl();
             this.TabBuscar = new System.Windows.Forms.TabPage();
             this.txtcodigo = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -65,39 +79,160 @@
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtApellidos = new System.Windows.Forms.TextBox();
-            this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.Nuevo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.BuscarD = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.Aceptar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.Eliminar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.Limpia = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.Salir = new System.Windows.Forms.ToolStripButton();
-            this.TabEmpleado.SuspendLayout();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnArticulos = new System.Windows.Forms.Button();
+            this.ToolStrip1.SuspendLayout();
+            this.TabProovedor.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.ToolStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // TabEmpleado
+            // ToolStrip1
             // 
-            this.TabEmpleado.Controls.Add(this.TabBuscar);
-            this.TabEmpleado.Controls.Add(this.tabPage2);
-            this.TabEmpleado.Location = new System.Drawing.Point(12, 79);
-            this.TabEmpleado.Name = "TabEmpleado";
-            this.TabEmpleado.SelectedIndex = 0;
-            this.TabEmpleado.Size = new System.Drawing.Size(964, 403);
-            this.TabEmpleado.TabIndex = 9;
+            this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Nuevo,
+            this.toolStripSeparator6,
+            this.toolStripButton1,
+            this.toolStripSeparator5,
+            this.BuscarD,
+            this.toolStripSeparator1,
+            this.Aceptar,
+            this.toolStripSeparator4,
+            this.Eliminar,
+            this.toolStripSeparator3,
+            this.Limpia,
+            this.toolStripSeparator2,
+            this.Salir});
+            this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.ToolStrip1.Name = "ToolStrip1";
+            this.ToolStrip1.Size = new System.Drawing.Size(976, 71);
+            this.ToolStrip1.TabIndex = 9;
+            this.ToolStrip1.Text = "ToolStrip1";
+            // 
+            // Nuevo
+            // 
+            this.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Nuevo.Image = ((System.Drawing.Image)(resources.GetObject("Nuevo.Image")));
+            this.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Nuevo.Name = "Nuevo";
+            this.Nuevo.Size = new System.Drawing.Size(68, 68);
+            this.Nuevo.Text = "Nuevo";
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 71);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
+            this.toolStripButton1.Text = "Limpiar";
+            this.toolStripButton1.ToolTipText = "Eliminar";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 71);
+            // 
+            // BuscarD
+            // 
+            this.BuscarD.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BuscarD.Image = ((System.Drawing.Image)(resources.GetObject("BuscarD.Image")));
+            this.BuscarD.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.BuscarD.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BuscarD.Name = "BuscarD";
+            this.BuscarD.Size = new System.Drawing.Size(52, 68);
+            this.BuscarD.Text = "Buscar";
+            this.BuscarD.ToolTipText = "Buscar";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 71);
+            // 
+            // Aceptar
+            // 
+            this.Aceptar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Aceptar.Image")));
+            this.Aceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Aceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Aceptar.Name = "Aceptar";
+            this.Aceptar.Size = new System.Drawing.Size(52, 68);
+            this.Aceptar.Text = "Aceptar";
+            this.Aceptar.ToolTipText = "Guardar, Modificar";
+            this.Aceptar.Click += new System.EventHandler(this.Aceptar_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 71);
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
+            this.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Size = new System.Drawing.Size(52, 68);
+            this.Eliminar.Text = "Limpiar";
+            this.Eliminar.ToolTipText = "Eliminar";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 71);
+            // 
+            // Limpia
+            // 
+            this.Limpia.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Limpia.Enabled = false;
+            this.Limpia.Image = ((System.Drawing.Image)(resources.GetObject("Limpia.Image")));
+            this.Limpia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Limpia.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Limpia.Name = "Limpia";
+            this.Limpia.Size = new System.Drawing.Size(68, 68);
+            this.Limpia.Text = "Limpia";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 71);
+            // 
+            // Salir
+            // 
+            this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
+            this.Salir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Salir.Name = "Salir";
+            this.Salir.Size = new System.Drawing.Size(52, 68);
+            this.Salir.Text = "Salir";
+            this.Salir.ToolTipText = "Salir";
+            // 
+            // TabProovedor
+            // 
+            this.TabProovedor.Controls.Add(this.TabBuscar);
+            this.TabProovedor.Controls.Add(this.tabPage2);
+            this.TabProovedor.Location = new System.Drawing.Point(12, 74);
+            this.TabProovedor.Name = "TabProovedor";
+            this.TabProovedor.SelectedIndex = 0;
+            this.TabProovedor.Size = new System.Drawing.Size(964, 403);
+            this.TabProovedor.TabIndex = 10;
             // 
             // TabBuscar
             // 
@@ -116,7 +251,7 @@
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
             this.TabBuscar.Size = new System.Drawing.Size(956, 377);
             this.TabBuscar.TabIndex = 0;
-            this.TabBuscar.Text = "Busqueda Empleado:";
+            this.TabBuscar.Text = "Busqueda Proveedor:";
             this.TabBuscar.UseVisualStyleBackColor = true;
             // 
             // txtcodigo
@@ -233,10 +368,11 @@
             this.GridViewEmpleado.ReadOnly = true;
             this.GridViewEmpleado.Size = new System.Drawing.Size(942, 151);
             this.GridViewEmpleado.TabIndex = 0;
-            this.GridViewEmpleado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewEmpleado_CellContentClick);
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.panel1);
+            this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -244,7 +380,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(956, 377);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Mantenimineto Empleado:";
+            this.tabPage2.Text = "Mantenimientos Proveedor:";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -255,12 +391,11 @@
             this.groupBox2.Controls.Add(this.txtemail);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(7, 206);
+            this.groupBox2.Location = new System.Drawing.Point(166, 208);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(769, 148);
             this.groupBox2.TabIndex = 88;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
             // 
             // txtDire
             // 
@@ -330,12 +465,11 @@
             this.groupBox1.Controls.Add(this.txtNombres);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtApellidos);
-            this.groupBox1.Location = new System.Drawing.Point(6, 19);
+            this.groupBox1.Location = new System.Drawing.Point(165, 21);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(770, 165);
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // groupBox3
             // 
@@ -357,7 +491,6 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "RNC";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -369,7 +502,6 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Cedula";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // maskedTexRnc
             // 
@@ -379,11 +511,10 @@
             this.maskedTexRnc.Size = new System.Drawing.Size(310, 20);
             this.maskedTexRnc.TabIndex = 90;
             this.maskedTexRnc.Visible = false;
-            this.maskedTexRnc.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
             // DateNacimiento
             // 
-            this.DateNacimiento.Location = new System.Drawing.Point(559, 16);
+            this.DateNacimiento.Location = new System.Drawing.Point(557, 16);
             this.DateNacimiento.Name = "DateNacimiento";
             this.DateNacimiento.Size = new System.Drawing.Size(209, 20);
             this.DateNacimiento.TabIndex = 88;
@@ -392,7 +523,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(439, 16);
+            this.label6.Location = new System.Drawing.Point(437, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 19);
             this.label6.TabIndex = 77;
@@ -436,9 +567,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(14, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 19);
+            this.label2.Size = new System.Drawing.Size(71, 19);
             this.label2.TabIndex = 74;
-            this.label2.Text = "Apellidos";
+            this.label2.Text = "Proveedor";
             // 
             // label5
             // 
@@ -473,9 +604,9 @@
             this.label7.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(14, 105);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 19);
+            this.label7.Size = new System.Drawing.Size(83, 19);
             this.label7.TabIndex = 76;
-            this.label7.Text = "Sexo";
+            this.label7.Text = "Razon Social";
             // 
             // txtApellidos
             // 
@@ -484,170 +615,101 @@
             this.txtApellidos.Size = new System.Drawing.Size(233, 20);
             this.txtApellidos.TabIndex = 83;
             // 
-            // ToolStrip1
+            // panel2
             // 
-            this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Nuevo,
-            this.toolStripSeparator6,
-            this.toolStripButton1,
-            this.toolStripSeparator5,
-            this.BuscarD,
-            this.toolStripSeparator1,
-            this.Aceptar,
-            this.toolStripSeparator4,
-            this.Eliminar,
-            this.toolStripSeparator3,
-            this.Limpia,
-            this.toolStripSeparator2,
-            this.Salir});
-            this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(976, 71);
-            this.ToolStrip1.TabIndex = 8;
-            this.ToolStrip1.Text = "ToolStrip1";
+            this.panel2.AutoSize = true;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.ForeColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(2, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(142, 62);
+            this.panel2.TabIndex = 90;
             // 
-            // Nuevo
+            // label13
             // 
-            this.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Nuevo.Image = ((System.Drawing.Image)(resources.GetObject("Nuevo.Image")));
-            this.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Nuevo.Name = "Nuevo";
-            this.Nuevo.Size = new System.Drawing.Size(68, 68);
-            this.Nuevo.Text = "Nuevo";
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label13.Location = new System.Drawing.Point(17, 19);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(27, 24);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "M";
             // 
-            // toolStripSeparator6
+            // panel1
             // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 71);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel1.Controls.Add(this.BtnArticulos);
+            this.panel1.Location = new System.Drawing.Point(1, 66);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(143, 308);
+            this.panel1.TabIndex = 91;
             // 
-            // toolStripButton1
+            // BtnArticulos
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Limpiar";
-            this.toolStripButton1.ToolTipText = "Eliminar";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.BtnArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.BtnArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnArticulos.ForeColor = System.Drawing.Color.White;
+            this.BtnArticulos.Location = new System.Drawing.Point(21, 37);
+            this.BtnArticulos.Name = "BtnArticulos";
+            this.BtnArticulos.Size = new System.Drawing.Size(102, 37);
+            this.BtnArticulos.TabIndex = 1;
+            this.BtnArticulos.Text = "&Articulos";
+            this.BtnArticulos.UseVisualStyleBackColor = false;
             // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 71);
-            // 
-            // BuscarD
-            // 
-            this.BuscarD.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BuscarD.Image = ((System.Drawing.Image)(resources.GetObject("BuscarD.Image")));
-            this.BuscarD.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BuscarD.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BuscarD.Name = "BuscarD";
-            this.BuscarD.Size = new System.Drawing.Size(52, 68);
-            this.BuscarD.Text = "Buscar";
-            this.BuscarD.ToolTipText = "Buscar";
-            this.BuscarD.Click += new System.EventHandler(this.BuscarD_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Aceptar
-            // 
-            this.Aceptar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Aceptar.Image")));
-            this.Aceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Aceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Aceptar.Name = "Aceptar";
-            this.Aceptar.Size = new System.Drawing.Size(52, 68);
-            this.Aceptar.Text = "Aceptar";
-            this.Aceptar.ToolTipText = "Guardar, Modificar";
-            this.Aceptar.Click += new System.EventHandler(this.Aceptar_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
-            this.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Size = new System.Drawing.Size(52, 68);
-            this.Eliminar.Text = "Limpiar";
-            this.Eliminar.ToolTipText = "Eliminar";
-            this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Limpia
-            // 
-            this.Limpia.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Limpia.Enabled = false;
-            this.Limpia.Image = ((System.Drawing.Image)(resources.GetObject("Limpia.Image")));
-            this.Limpia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Limpia.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Limpia.Name = "Limpia";
-            this.Limpia.Size = new System.Drawing.Size(68, 68);
-            this.Limpia.Text = "Limpia";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Salir
-            // 
-            this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Salir.Name = "Salir";
-            this.Salir.Size = new System.Drawing.Size(52, 68);
-            this.Salir.Text = "Salir";
-            this.Salir.ToolTipText = "Salir";
-            this.Salir.Click += new System.EventHandler(this.Salir_Click);
-            // 
-            // FrmClientes
+            // FrmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 494);
-            this.Controls.Add(this.TabEmpleado);
+            this.ClientSize = new System.Drawing.Size(976, 483);
+            this.Controls.Add(this.TabProovedor);
             this.Controls.Add(this.ToolStrip1);
-            this.Name = "FrmClientes";
-            this.Text = "FrmClientes";
-            this.Load += new System.EventHandler(this.FrmClientes_Load);
-            this.TabEmpleado.ResumeLayout(false);
+            this.Name = "FrmProveedor";
+            this.Text = "FrmProveedor";
+            this.ToolStrip1.ResumeLayout(false);
+            this.ToolStrip1.PerformLayout();
+            this.TabProovedor.ResumeLayout(false);
             this.TabBuscar.ResumeLayout(false);
             this.TabBuscar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.ToolStrip1.ResumeLayout(false);
-            this.ToolStrip1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
             }
 
         #endregion
-        private System.Windows.Forms.TabControl TabEmpleado;
+        internal System.Windows.Forms.ToolStrip ToolStrip1;
+        internal System.Windows.Forms.ToolStripButton Nuevo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        internal System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        internal System.Windows.Forms.ToolStripButton BuscarD;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        internal System.Windows.Forms.ToolStripButton Aceptar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        internal System.Windows.Forms.ToolStripButton Eliminar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        internal System.Windows.Forms.ToolStripButton Limpia;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        internal System.Windows.Forms.ToolStripButton Salir;
+        private System.Windows.Forms.TabControl TabProovedor;
         private System.Windows.Forms.TabPage TabBuscar;
+        private System.Windows.Forms.TextBox txtcodigo;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBuscarCodigo;
         private System.Windows.Forms.TextBox txtBuscarCedula;
@@ -664,6 +726,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.MaskedTextBox maskedTexRnc;
         private System.Windows.Forms.DateTimePicker DateNacimiento;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox MaskCedula;
@@ -675,26 +741,9 @@
         private System.Windows.Forms.TextBox txtNombres;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtApellidos;
-        internal System.Windows.Forms.ToolStrip ToolStrip1;
-        internal System.Windows.Forms.ToolStripButton Nuevo;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        internal System.Windows.Forms.ToolStripButton BuscarD;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        internal System.Windows.Forms.ToolStripButton Aceptar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        internal System.Windows.Forms.ToolStripButton Eliminar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        internal System.Windows.Forms.ToolStripButton Limpia;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        internal System.Windows.Forms.ToolStripButton Salir;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtTelefono;
-        private System.Windows.Forms.TextBox txtcodigo;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        internal System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.MaskedTextBox maskedTexRnc;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button BtnArticulos;
         }
     }

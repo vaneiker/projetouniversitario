@@ -15,7 +15,7 @@ namespace SistemaFacturacion.AppTools
     public Barcode(){}
     
     //method to Generate a barcode based on input string and picture box.
-    private void GenerateBarcode(string barcode, System.Windows.Forms.PictureBox picBox)
+    public void GenerateBarcode(string barcode, System.Windows.Forms.PictureBox picBox = null)
     {
       	Bitmap bitmap = new Bitmap(barcode.Length * 40, 150);
 			using(Graphics graphics = Graphics.FromImage(bitmap))

@@ -14,6 +14,8 @@ namespace SistemaFacturacion.Formularios
     {
     public partial class FrmCategoria : Form
         {
+
+        private string codigo { get; set; }
         LogicaDbVentas _metodos = new LogicaDbVentas();
 
         categoriaEntitis categoria = new categoriaEntitis();
@@ -54,7 +56,7 @@ namespace SistemaFacturacion.Formularios
             else
                 {
                
-                GuardarCategoria(txtNom.Text,txtDes.Text,int.Parse(txtcodigo.Text));
+                GuardarCategoria(txtNom.Text,txtDes.Text,int.Parse(this.codigo));
                 }
             }
 
@@ -120,12 +122,9 @@ namespace SistemaFacturacion.Formularios
         private void GridViewCategoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
             if (GridViewCategoria.CurrentRow != null)
-                {
-
-          
-              
+                {              
                 label3.Text = "Actualizar";
-                txtcodigo.Text = GridViewCategoria.CurrentRow.Cells[0].Value.ToString();
+                this.codigo = GridViewCategoria.CurrentRow.Cells[0].Value.ToString();
                 txtNom.Text = GridViewCategoria.CurrentRow.Cells[1].Value.ToString();
                 txtDes.Text = GridViewCategoria.CurrentRow.Cells[2].Value.ToString();
                 //txtTelefono.Text = GridViewEmpleado.CurrentRow.Cells[4].Value.ToString();
