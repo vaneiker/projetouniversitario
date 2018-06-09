@@ -63,7 +63,6 @@ namespace SistemaFacturacion.Formularios
             f.ShowDialog();
             }
 
-<<<<<<< HEAD
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
             Program.UsuarioActual = ApplicationUser.Instance;
@@ -71,16 +70,3 @@ namespace SistemaFacturacion.Formularios
         }
     }
     }
-=======
-        private void panel2_Paint(object sender, PaintEventArgs e)
-            {
-
-            }
-
-        private void MenuPrincipal_Load(object sender, EventArgs e)
-            {
-            toolStripStatusLabel2.Text = Program.UsuarioRole.ToString();
-            }
-        }
-    }
->>>>>>> 80cb32a11fe6af827e542af49dc732833b1e3b8f
