@@ -21,6 +21,8 @@ namespace SistemaFacturacion
             InitializeComponent();
             }
 
+        
+
         private void BtnIngerso_Click(object sender, EventArgs e)
             {
             if (txtContrasena.Text == "" || txtContrasena.Text == null || txtUsuario.Text == "" || txtUsuario.Text == null)

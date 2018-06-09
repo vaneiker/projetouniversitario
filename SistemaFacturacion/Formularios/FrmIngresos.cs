@@ -23,6 +23,7 @@ namespace SistemaFacturacion.Formularios
         private void FrmIngresos_Load(object sender, EventArgs e)
             {
 
+            //this.reportViewer1.RefreshReport();
             }
 
         private void BuscarArticulos(string codigo,string nom)

@@ -92,6 +92,7 @@
             panel2.Name = "panel2";
             panel2.Size = new System.Drawing.Size(1079, 598);
             panel2.TabIndex = 1;
+            panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // pictureBox5
             // 

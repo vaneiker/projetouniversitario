@@ -79,6 +79,8 @@
             this.txtDes = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.ToolStrip1.SuspendLayout();
             this.TabArticulo.SuspendLayout();
             this.TabBuscar.SuspendLayout();
@@ -397,6 +399,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.pictureBox1);
             this.groupBox2.Controls.Add(this.btnRuta);
             this.groupBox2.Controls.Add(this.txtruta);
@@ -473,7 +477,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(231, 36);
+            this.label6.Location = new System.Drawing.Point(352, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 19);
             this.label6.TabIndex = 153;
@@ -482,14 +486,14 @@
             // cboCat
             // 
             this.cboCat.FormattingEnabled = true;
-            this.cboCat.Location = new System.Drawing.Point(304, 35);
+            this.cboCat.Location = new System.Drawing.Point(425, 9);
             this.cboCat.Name = "cboCat";
             this.cboCat.Size = new System.Drawing.Size(113, 21);
             this.cboCat.TabIndex = 152;
             // 
             // MascKcodigoBarra
             // 
-            this.MascKcodigoBarra.Location = new System.Drawing.Point(127, 35);
+            this.MascKcodigoBarra.Location = new System.Drawing.Point(127, 19);
             this.MascKcodigoBarra.Mask = "0-000000-000000";
             this.MascKcodigoBarra.Name = "MascKcodigoBarra";
             this.MascKcodigoBarra.Size = new System.Drawing.Size(101, 20);
@@ -500,7 +504,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 37);
+            this.label3.Location = new System.Drawing.Point(32, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 19);
             this.label3.TabIndex = 150;
@@ -614,6 +618,29 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.textBox2.Location = new System.Drawing.Point(127, 41);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(195, 32);
+            this.textBox2.TabIndex = 159;
+            this.textBox2.Text = "1254525658555";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(32, 50);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 19);
+            this.label12.TabIndex = 160;
+            this.label12.Text = "Codigo Barra";
+            // 
             // FrmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -696,5 +723,7 @@
         private System.Windows.Forms.Button btnRuta;
         private System.Windows.Forms.TextBox txtruta;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox2;
         }
     }

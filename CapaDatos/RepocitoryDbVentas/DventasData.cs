@@ -542,7 +542,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
-        public void Registrar_Proveedor(ProveedorEntity proveedor)
+        public int Registrar_Proveedor(ProveedorEntity proveedor)
             {
             try
                 {
@@ -575,14 +575,14 @@ namespace CapaDatos.RepocitoryDbVentas
                         //cmd.Parameters.Add(new SqlParameter("@HostNa", proveedor.HostNa));
                         
                         cmd.ExecuteNonQuery();
-
+                        return 1;
                         }
                     }
 
                 }
             catch (Exception ex)
                 {
-
+                return 0;
                 throw ex;
                 }
 

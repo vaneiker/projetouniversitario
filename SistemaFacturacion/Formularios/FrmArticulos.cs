@@ -123,9 +123,21 @@ namespace SistemaFacturacion.Formularios
             }
 
         private void MascKcodigoBarra_Leave(object sender, EventArgs e)
+<<<<<<< HEAD
+            {
+           
+            }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+            {
+             AppTools.Barcode borcod = new AppTools.Barcode();
+             borcod.GenerateBarcode(textBox2.Text,pictureBox1);
+            }
+=======
         {
             AppTools.Barcode barcode = new AppTools.Barcode();
             barcode.GenerateBarcode(MascKcodigoBarra.Text, pictureBox1);
+>>>>>>> 57768d1bcb44978f6a6ac42a72ae291d1fcfdc79
         }
     }
     }
