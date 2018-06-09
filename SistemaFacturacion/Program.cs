@@ -8,14 +8,14 @@ namespace SistemaFacturacion
     {
     static class Program
         {
-        public static string UsuarioLogeado = "";
-        public static int UsuarioRole = 0;
+        public static ApplicationUser UsuarioActual;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
             {
+            UsuarioActual = ApplicationUser.Instance;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Formularios.FrmArticulos());

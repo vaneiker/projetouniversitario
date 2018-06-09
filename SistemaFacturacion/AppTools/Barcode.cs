@@ -30,7 +30,6 @@ namespace SistemaFacturacion.AppTools
 			}
 			using(MemoryStream ms = new MemoryStream())
 			{
-<<<<<<< HEAD
                 if(picBox == null)
 				bitmap.Save("D:\\Todo_Comprimido\\RECURSOS\\" + barcode + ".png", System.Drawing.Imaging.ImageFormat.Png);
                 else
@@ -42,13 +41,7 @@ namespace SistemaFacturacion.AppTools
                 }
                 
             }
-=======
-				//bitmap.Save(ms.ImageFormat.Png);
-				//picBox.Image = bitmap;
-				//picBox.Height = bitmap.Height;
-				//picBox.Width = bitmap.Width;
 			}
->>>>>>> 8a7a57dc5032e5c63d0e8815e0857b64d05af272
     }
   }
-}
+

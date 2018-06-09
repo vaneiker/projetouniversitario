@@ -14,6 +14,8 @@ namespace SistemaFacturacion
     {
     public partial class Login : Form
         {
+          
+        int rolid;
         public Login()
             {
             InitializeComponent();
@@ -28,10 +30,13 @@ namespace SistemaFacturacion
                 }
             else
                 {
-                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out Program.UsuarioRole))
+                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rolid))
                     {
                     //implementar validacion de role para visualizar el menu pendiente
                     Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
+                    Program.UsuarioActual = ApplicationUser.Instance;
+                    Program.UsuarioActual.RolId = rolid;
+                    Program.UsuarioActual.UserLoggedIn = txtUsuario.Text;
                     f.Show();
                     }
                 else
