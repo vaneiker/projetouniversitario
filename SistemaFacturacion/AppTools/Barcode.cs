@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace SistemaFacturacion.AppTools
 {
@@ -20,7 +21,7 @@ namespace SistemaFacturacion.AppTools
       	Bitmap bitmap = new Bitmap(barcode.Length * 40, 150);
 			using(Graphics graphics = Graphics.FromImage(bitmap))
 			{
-				Font font = new System.Drawing.Font("IDAutomationHC39M", 20);
+				Font font = new System.Drawing.Font("IDAHC39M Code 39 Barcode", 20);
 				PointF point = new PointF(2f, 2f);
 				SolidBrush black = new SolidBrush(Color.Black);
 				SolidBrush white = new SolidBrush(Color.White);
@@ -29,11 +30,25 @@ namespace SistemaFacturacion.AppTools
 			}
 			using(MemoryStream ms = new MemoryStream())
 			{
+<<<<<<< HEAD
+                if(picBox == null)
+				bitmap.Save("D:\\Todo_Comprimido\\RECURSOS\\" + barcode + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                else
+                {
+                    bitmap.Save(ms, ImageFormat.Png);
+                    picBox.Image = bitmap;
+                    picBox.Height = bitmap.Height;
+                    picBox.Width = bitmap.Width;
+                }
+                
+            }
+=======
 				//bitmap.Save(ms.ImageFormat.Png);
 				//picBox.Image = bitmap;
 				//picBox.Height = bitmap.Height;
 				//picBox.Width = bitmap.Width;
 			}
+>>>>>>> 8a7a57dc5032e5c63d0e8815e0857b64d05af272
     }
   }
 }
