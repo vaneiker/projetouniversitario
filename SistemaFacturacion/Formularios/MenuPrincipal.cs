@@ -68,5 +68,10 @@ namespace SistemaFacturacion.Formularios
             Program.UsuarioActual = ApplicationUser.Instance;
             toolStripStatusLabel2.Text = Program.UsuarioActual.RolId.ToString();
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
     }
