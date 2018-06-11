@@ -14,11 +14,12 @@ namespace SistemaFacturacion
     {
     public partial class Login : Form
         {
+        int rollid;
         public Login()
             {
             InitializeComponent();
             }
-
+       
         private void BtnIngerso_Click(object sender, EventArgs e)
             {
             if (txtContrasena.Text == "" || txtContrasena.Text == null || txtUsuario.Text == "" || txtUsuario.Text == null)
@@ -28,11 +29,29 @@ namespace SistemaFacturacion
                 }
             else
                 {
-                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out Program.UsuarioRole))
+                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid))
                     {
-                    //implementar validacion de role para visualizar el menu pendiente
-                    Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-                    f.Show();
+
+                    Seccion session = Seccion.Instance;
+                    session.Usuario = txtUsuario.Text;
+                    session.Rolid = (LogicRoll.LevelRol)rollid;
+
+                    if(rollid <= 0)
+                        {
+                          panelErrorClave.Visible = true;
+                          label5.Text = "Usuario y/o contraseña incorrectos";
+                        }
+                    else
+                        {
+                        //implementar validacion de role para visualizar el menu pendiente
+                        Seccion seccion = Seccion.Instance;
+                        seccion.Usuario = txtUsuario.Text;
+                        seccion.Rolid = (LogicRoll.LevelRol)rollid;
+                        Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
+                        this.Hide();
+                        f.Show();
+                        }
+                    
                     }
                 else
                     {
@@ -45,7 +64,6 @@ namespace SistemaFacturacion
             {
             CleanPantalla();
             }
-
         private void CleanPantalla()
             {
             txtContrasena.Text = string.Empty;
@@ -53,7 +71,6 @@ namespace SistemaFacturacion
             panelErrorClave.Visible = false;
             
             }
-
         private void btnCerrarSeccion_Click(object sender, EventArgs e)
             {
             DialogResult resul = MessageBox.Show("Esta seguro que desea apagar el Sistema?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -62,10 +79,13 @@ namespace SistemaFacturacion
                 this.Close();
                 }
             }
-
         private void txtContrasena_KeyDown(object sender, KeyEventArgs e)
             {
-            panelErrorClave.Visible = false;
+            if(panelErrorClave.Visible==true) { panelErrorClave.Visible = false;}
+            }
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+            {
+            if (panelErrorClave.Visible == true) { panelErrorClave.Visible = false; }
             }
         }
     }

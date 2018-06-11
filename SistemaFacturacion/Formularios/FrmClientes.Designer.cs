@@ -40,7 +40,7 @@
             this.txtSearchFullName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.GridViewEmpleado = new System.Windows.Forms.DataGridView();
+            this.GridViewCliente = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtDire = new System.Windows.Forms.TextBox();
@@ -50,6 +50,10 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.maskedTexRnc = new System.Windows.Forms.MaskedTextBox();
             this.DateNacimiento = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.MaskCedula = new System.Windows.Forms.MaskedTextBox();
@@ -75,18 +79,14 @@
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
-            this.maskedTexRnc = new System.Windows.Forms.MaskedTextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.TabEmpleado.SuspendLayout();
             this.TabBuscar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewCliente)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.ToolStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.ToolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabEmpleado
@@ -110,7 +110,7 @@
             this.TabBuscar.Controls.Add(this.txtSearchFullName);
             this.TabBuscar.Controls.Add(this.label4);
             this.TabBuscar.Controls.Add(this.label3);
-            this.TabBuscar.Controls.Add(this.GridViewEmpleado);
+            this.TabBuscar.Controls.Add(this.GridViewCliente);
             this.TabBuscar.Location = new System.Drawing.Point(4, 22);
             this.TabBuscar.Name = "TabBuscar";
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
@@ -221,19 +221,19 @@
             this.label3.TabIndex = 71;
             this.label3.Text = "Buscar Por Codigo Cliente";
             // 
-            // GridViewEmpleado
+            // GridViewCliente
             // 
-            this.GridViewEmpleado.AllowUserToAddRows = false;
-            this.GridViewEmpleado.AllowUserToDeleteRows = false;
-            this.GridViewEmpleado.AllowUserToOrderColumns = true;
-            this.GridViewEmpleado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.GridViewEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewEmpleado.Location = new System.Drawing.Point(6, 203);
-            this.GridViewEmpleado.Name = "GridViewEmpleado";
-            this.GridViewEmpleado.ReadOnly = true;
-            this.GridViewEmpleado.Size = new System.Drawing.Size(942, 151);
-            this.GridViewEmpleado.TabIndex = 0;
-            this.GridViewEmpleado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewEmpleado_CellContentClick);
+            this.GridViewCliente.AllowUserToAddRows = false;
+            this.GridViewCliente.AllowUserToDeleteRows = false;
+            this.GridViewCliente.AllowUserToOrderColumns = true;
+            this.GridViewCliente.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.GridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewCliente.Location = new System.Drawing.Point(6, 203);
+            this.GridViewCliente.Name = "GridViewCliente";
+            this.GridViewCliente.ReadOnly = true;
+            this.GridViewCliente.Size = new System.Drawing.Size(942, 151);
+            this.GridViewCliente.TabIndex = 0;
+            this.GridViewCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCliente_CellContentClick);
             // 
             // tabPage2
             // 
@@ -336,6 +336,50 @@
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Controls.Add(this.radioButton2);
+            this.groupBox3.Location = new System.Drawing.Point(145, 38);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(233, 38);
+            this.groupBox3.TabIndex = 94;
+            this.groupBox3.TabStop = false;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(22, 15);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(48, 17);
+            this.radioButton1.TabIndex = 91;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "RNC";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(113, 15);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(58, 17);
+            this.radioButton2.TabIndex = 93;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Cedula";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // maskedTexRnc
+            // 
+            this.maskedTexRnc.Location = new System.Drawing.Point(454, 106);
+            this.maskedTexRnc.Mask = "000-00000000";
+            this.maskedTexRnc.Name = "maskedTexRnc";
+            this.maskedTexRnc.Size = new System.Drawing.Size(310, 20);
+            this.maskedTexRnc.TabIndex = 90;
+            this.maskedTexRnc.Visible = false;
+            this.maskedTexRnc.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
             // DateNacimiento
             // 
@@ -573,50 +617,6 @@
             this.Salir.ToolTipText = "Salir";
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
-            // maskedTexRnc
-            // 
-            this.maskedTexRnc.Location = new System.Drawing.Point(454, 106);
-            this.maskedTexRnc.Mask = "000-00000000";
-            this.maskedTexRnc.Name = "maskedTexRnc";
-            this.maskedTexRnc.Size = new System.Drawing.Size(310, 20);
-            this.maskedTexRnc.TabIndex = 90;
-            this.maskedTexRnc.Visible = false;
-            this.maskedTexRnc.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(22, 15);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(48, 17);
-            this.radioButton1.TabIndex = 91;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "RNC";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(113, 15);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(58, 17);
-            this.radioButton2.TabIndex = 93;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Cedula";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Location = new System.Drawing.Point(145, 38);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(233, 38);
-            this.groupBox3.TabIndex = 94;
-            this.groupBox3.TabStop = false;
-            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,16 +630,16 @@
             this.TabEmpleado.ResumeLayout(false);
             this.TabBuscar.ResumeLayout(false);
             this.TabBuscar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewCliente)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.ToolStrip1.ResumeLayout(false);
-            this.ToolStrip1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.ToolStrip1.ResumeLayout(false);
+            this.ToolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -654,7 +654,7 @@
         private System.Windows.Forms.TextBox txtSearchFullName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView GridViewEmpleado;
+        private System.Windows.Forms.DataGridView GridViewCliente;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtDire;

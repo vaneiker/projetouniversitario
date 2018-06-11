@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategoria));
             this.TabEmpleado = new System.Windows.Forms.TabControl();
             this.TabBuscar = new System.Windows.Forms.TabPage();
-            this.txtcodigo = new System.Windows.Forms.TextBox();
             this.txtSearchCategoria = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.GridViewCategoria = new System.Windows.Forms.DataGridView();
@@ -64,6 +63,9 @@
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.TabEmpleado.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCategoria)).BeginInit();
@@ -88,7 +90,9 @@
             // 
             // TabBuscar
             // 
-            this.TabBuscar.Controls.Add(this.txtcodigo);
+            this.TabBuscar.Controls.Add(this.panel6);
+            this.TabBuscar.Controls.Add(this.panel5);
+            this.TabBuscar.Controls.Add(this.panel4);
             this.TabBuscar.Controls.Add(this.txtSearchCategoria);
             this.TabBuscar.Controls.Add(this.label4);
             this.TabBuscar.Controls.Add(this.GridViewCategoria);
@@ -100,30 +104,15 @@
             this.TabBuscar.Text = "Busqueda Empleado:";
             this.TabBuscar.UseVisualStyleBackColor = true;
             // 
-            // txtcodigo
-            // 
-            this.txtcodigo.BackColor = System.Drawing.Color.White;
-            this.txtcodigo.Enabled = false;
-            this.txtcodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcodigo.Location = new System.Drawing.Point(0, 365);
-            this.txtcodigo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtcodigo.Multiline = true;
-            this.txtcodigo.Name = "txtcodigo";
-            this.txtcodigo.Size = new System.Drawing.Size(10, 10);
-            this.txtcodigo.TabIndex = 118;
-            this.txtcodigo.Text = "0";
-            this.txtcodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtcodigo.Visible = false;
-            // 
             // txtSearchCategoria
             // 
             this.txtSearchCategoria.BackColor = System.Drawing.Color.White;
             this.txtSearchCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchCategoria.Location = new System.Drawing.Point(120, 12);
+            this.txtSearchCategoria.Location = new System.Drawing.Point(339, 84);
             this.txtSearchCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCategoria.Multiline = true;
             this.txtSearchCategoria.Name = "txtSearchCategoria";
-            this.txtSearchCategoria.Size = new System.Drawing.Size(828, 31);
+            this.txtSearchCategoria.Size = new System.Drawing.Size(418, 31);
             this.txtSearchCategoria.TabIndex = 112;
             this.txtSearchCategoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -131,7 +120,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 12);
+            this.label4.Location = new System.Drawing.Point(225, 84);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(109, 19);
             this.label4.TabIndex = 73;
@@ -144,10 +133,10 @@
             this.GridViewCategoria.AllowUserToOrderColumns = true;
             this.GridViewCategoria.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.GridViewCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewCategoria.Location = new System.Drawing.Point(6, 64);
+            this.GridViewCategoria.Location = new System.Drawing.Point(225, 129);
             this.GridViewCategoria.Name = "GridViewCategoria";
             this.GridViewCategoria.ReadOnly = true;
-            this.GridViewCategoria.Size = new System.Drawing.Size(942, 290);
+            this.GridViewCategoria.Size = new System.Drawing.Size(532, 242);
             this.GridViewCategoria.TabIndex = 0;
             this.GridViewCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCategoria_CellContentClick);
             // 
@@ -450,6 +439,30 @@
             this.Salir.ToolTipText = "Salir";
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel4.Location = new System.Drawing.Point(3, 61);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(216, 316);
+            this.panel4.TabIndex = 119;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel5.Location = new System.Drawing.Point(762, 61);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(194, 314);
+            this.panel5.TabIndex = 120;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel6.Location = new System.Drawing.Point(3, 4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(950, 62);
+            this.panel6.TabIndex = 121;
+            // 
             // FrmCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,7 +496,6 @@
         #endregion
         private System.Windows.Forms.TabControl TabEmpleado;
         private System.Windows.Forms.TabPage TabBuscar;
-        private System.Windows.Forms.TextBox txtcodigo;
         private System.Windows.Forms.TextBox txtSearchCategoria;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView GridViewCategoria;
@@ -516,5 +528,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnArticulos;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
         }
     }
