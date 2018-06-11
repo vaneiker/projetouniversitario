@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategoria));
             this.TabEmpleado = new System.Windows.Forms.TabControl();
             this.TabBuscar = new System.Windows.Forms.TabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.txtSearchCategoria = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.GridViewCategoria = new System.Windows.Forms.DataGridView();
@@ -63,9 +66,6 @@
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.TabEmpleado.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCategoria)).BeginInit();
@@ -87,6 +87,8 @@
             this.TabEmpleado.SelectedIndex = 0;
             this.TabEmpleado.Size = new System.Drawing.Size(964, 403);
             this.TabEmpleado.TabIndex = 11;
+            this.TabEmpleado.SelectedIndexChanged += new System.EventHandler(this.TabEmpleado_SelectedIndexChanged);
+            this.TabEmpleado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TabEmpleado_KeyPress);
             // 
             // TabBuscar
             // 
@@ -104,6 +106,30 @@
             this.TabBuscar.Text = "Busqueda Empleado:";
             this.TabBuscar.UseVisualStyleBackColor = true;
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel6.Location = new System.Drawing.Point(3, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(953, 63);
+            this.panel6.TabIndex = 121;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel5.Location = new System.Drawing.Point(707, 33);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(249, 342);
+            this.panel5.TabIndex = 120;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel4.Location = new System.Drawing.Point(3, 33);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(204, 344);
+            this.panel4.TabIndex = 119;
+            // 
             // txtSearchCategoria
             // 
             this.txtSearchCategoria.BackColor = System.Drawing.Color.White;
@@ -112,7 +138,7 @@
             this.txtSearchCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCategoria.Multiline = true;
             this.txtSearchCategoria.Name = "txtSearchCategoria";
-            this.txtSearchCategoria.Size = new System.Drawing.Size(418, 31);
+            this.txtSearchCategoria.Size = new System.Drawing.Size(343, 31);
             this.txtSearchCategoria.TabIndex = 112;
             this.txtSearchCategoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -136,7 +162,7 @@
             this.GridViewCategoria.Location = new System.Drawing.Point(225, 129);
             this.GridViewCategoria.Name = "GridViewCategoria";
             this.GridViewCategoria.ReadOnly = true;
-            this.GridViewCategoria.Size = new System.Drawing.Size(532, 242);
+            this.GridViewCategoria.Size = new System.Drawing.Size(457, 224);
             this.GridViewCategoria.TabIndex = 0;
             this.GridViewCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCategoria_CellContentClick);
             // 
@@ -438,30 +464,6 @@
             this.Salir.Text = "Salir";
             this.Salir.ToolTipText = "Salir";
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel4.Location = new System.Drawing.Point(3, 61);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(216, 316);
-            this.panel4.TabIndex = 119;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel5.Location = new System.Drawing.Point(762, 61);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(194, 314);
-            this.panel5.TabIndex = 120;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
-            this.panel6.Location = new System.Drawing.Point(3, 4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(950, 62);
-            this.panel6.TabIndex = 121;
             // 
             // FrmCategoria
             // 

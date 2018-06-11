@@ -133,5 +133,15 @@ namespace SistemaFacturacion.Formularios
                 //txtDireccion.Text = GridViewEmpleado.CurrentRow.Cells[6].Value.ToString();
                 }
             }
+
+        private void TabEmpleado_KeyPress(object sender, KeyPressEventArgs e)
+            {
+           
+            }
+
+        private void TabEmpleado_SelectedIndexChanged(object sender, EventArgs e)
+            {
+            if (panelErrorCategoria.Visible == true) { panelErrorCategoria.Visible = false; }
+            }
         }
     }
