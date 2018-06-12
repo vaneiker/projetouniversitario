@@ -12,11 +12,17 @@ namespace SistemaFacturacion.Formularios
     {
     public partial class MenuPrincipal : Form
         {
+        Seccion seccion = Seccion.Instance;
+        string cargo = "";
         public MenuPrincipal()
             {
             InitializeComponent();
             }
-
+        Seccion s = Seccion.Instance;
+        private void MenuPrincipal_Load(object sender, EventArgs e)
+            {
+                 cargo = AppTools.LogicRoll.Cargos(seccion.Rolid);
+            }
         private void panel3_Paint(object sender, PaintEventArgs e)
             {
 
@@ -24,7 +30,8 @@ namespace SistemaFacturacion.Formularios
 
         private void Salir_Click(object sender, EventArgs e)
             {
-            DialogResult resul = MessageBox.Show("Esta seguro que desea apagar el Sistema?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            
+            DialogResult resul = MessageBox.Show("Esta seguro que desea apagar el Sistema?, " + s.Usuario + " " + cargo, "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (resul == System.Windows.Forms.DialogResult.OK)
                 {
                 this.Close();
@@ -33,13 +40,14 @@ namespace SistemaFacturacion.Formularios
 
         private void timer1_Tick(object sender, EventArgs e)
             {
+
             toolStripStatusLabel1.Text = DateTime.Now.ToString("F");
+            toolStripStatusLabel2.Text="***Usuario: "+s.Usuario.ToString()+" Cargo : " + cargo;
             }
 
         private void BtnCategoria_Click(object sender, EventArgs e)
             {
             FrmCategoria f = new Formularios.FrmCategoria();
-            //BtnCategoria.Enabled = false;
             f.ShowDialog();
             }
 
@@ -47,8 +55,7 @@ namespace SistemaFacturacion.Formularios
             {
             FrmClientes cliente = new Formularios.FrmClientes();
 
-            BtnCliente.Enabled = false;
-            cliente.Show();
+            cliente.ShowDialog();
             }
 
         private void BtnIngreso_Click(object sender, EventArgs e)

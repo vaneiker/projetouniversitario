@@ -14,7 +14,8 @@ namespace SistemaFacturacion.Formularios
     {
     public partial class FrmClientes : Form
         {
-
+        private int codigo { get; set; }
+        Seccion seccion = Seccion.Instance;
         LogicaDbVentas _metodos = new LogicaDbVentas();
         public FrmClientes()
             {
@@ -30,14 +31,14 @@ namespace SistemaFacturacion.Formularios
             {
             var lista = _metodos.ListaClientes();
            
-            GridViewEmpleado.DataSource = lista;
+            GridViewCliente.DataSource = lista;
             }
 
         public void BuscarCliente(string NombreCompleto, string cedula, string codigo, string telefono)
             {
             var lista = _metodos.BuscarCliente(NombreCompleto,cedula,codigo,telefono);
 
-            GridViewEmpleado.DataSource = lista;
+            GridViewCliente.DataSource = lista;
             }
 
         private void Salir_Click(object sender, EventArgs e)
@@ -67,17 +68,18 @@ namespace SistemaFacturacion.Formularios
         public void Registrar_Clientes()
             {
             ClienteEntitis cliente = new ClienteEntitis();
-            cliente.idcliente = 0;
+            cliente.idcliente = this.codigo;
             cliente.apellidos = txtApellidos.Text.Trim();
             cliente.nombre=txtNombres.Text.Trim();
             cliente.sexo = CboSex.Text;
             cliente.fecha_nacimiento =Convert.ToDateTime(DateNacimiento.Text);
-           // cliente.tipo_documento = cboTipo.Text;
+            cliente.tipo_documento ="Cedula";
             cliente.num_documento = MaskCedula.Text;
             cliente.direccion = txtDire.Text;
             cliente.telefono = MascTel.Text;
             cliente.email= txtemail.Text;
-            //cliente.FechaModifica =;
+            cliente.UsuarioAdiciona=seccion.Usuario;
+            cliente.UsuarioModifica = seccion.Usuario;
             _metodos.Registrar_Clientes(cliente);
             ListaCliente();
             }
@@ -99,20 +101,17 @@ namespace SistemaFacturacion.Formularios
 
             }
 
-        private void GridViewEmpleado_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GridViewCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
-            if (GridViewEmpleado.CurrentRow != null)
+            if (GridViewCliente.CurrentRow != null)
                 {
 
-                FrmClientes f = new FrmClientes();
-                f.BackColor = Color.NavajoWhite;
-                f.Text = "Modo Actualizar";
-                txtcodigo.Text = GridViewEmpleado.CurrentRow.Cells[0].Value.ToString();
-                //txtNombre.Text = GridViewEmpleado.CurrentRow.Cells[2].Value.ToString();
-                //txtApellido.Text = GridViewEmpleado.CurrentRow.Cells[3].Value.ToString();
-                //txtTelefono.Text = GridViewEmpleado.CurrentRow.Cells[4].Value.ToString();
-                //txtDni.Text = GridViewEmpleado.CurrentRow.Cells[5].Value.ToString();
-                //txtDireccion.Text = GridViewEmpleado.CurrentRow.Cells[6].Value.ToString();
+               this.codigo=int.Parse(GridViewCliente.CurrentRow.Cells[0].Value.ToString());
+                txtApellidos.Text = GridViewCliente.CurrentRow.Cells[2].Value.ToString();
+                txtNombres.Text = GridViewCliente.CurrentRow.Cells[3].Value.ToString();
+                CboSex.Text = GridViewCliente.CurrentRow.Cells[4].Value.ToString();
+                MascTel.Text = GridViewCliente.CurrentRow.Cells[5].Value.ToString();
+                txtDire.Text = GridViewCliente.CurrentRow.Cells[6].Value.ToString();
                 }
             }
 

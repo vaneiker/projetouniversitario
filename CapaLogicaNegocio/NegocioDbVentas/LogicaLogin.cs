@@ -17,6 +17,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             bool isValid = true;
                if(String.IsNullOrWhiteSpace(usuario) || String.IsNullOrWhiteSpace(contrasena))
             {
+
                 isValid = false;
                 rolId = 0;
             }

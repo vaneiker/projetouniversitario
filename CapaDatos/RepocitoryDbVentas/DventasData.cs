@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CapaDatos;
 using CapaDatos.RepocitoryDbVentas;
+
 using CapaEntidad.DbVentas;
 
 namespace CapaDatos.RepocitoryDbVentas
@@ -209,9 +210,9 @@ namespace CapaDatos.RepocitoryDbVentas
                     }
 
                 }
-            catch (Exception ex)
+            catch (Exception)
                 {
-                
+                string msg = ex.Message;
                  return 0;
                
                 }
@@ -269,6 +270,15 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
+        //public IEnumerable<ClienteEntitis> ListaCliente()
+        //    {
+        //    using (dbventasEntity context = new dbventasEntity())
+        //        {
+        //        //CREAR METODO EN POS_SITE DE PRODUCCION
+        //        IEnumerable<ClienteEntitis> RetornarValue = context.Database.SqlQuery<ClienteEntitis>("[dbo].[SP_GET_CLIENTES_LOAD]").ToList();
+        //        return RetornarValue.ToList();
+        //        }
+        //    }
         public DataTable BuscarCliente(string NombreCompleto, string cedula, string codigo, string telefono)
             {
 
@@ -324,10 +334,8 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.Add(new SqlParameter("@telefono", cliente.telefono));
                         cmd.Parameters.Add(new SqlParameter("@email", cliente.email));
                         cmd.Parameters.Add(new SqlParameter("@status", 1));
-                        cmd.Parameters.Add(new SqlParameter("@FechaAdiciona", DateTime.Now));
-                        cmd.Parameters.Add(new SqlParameter("@FechaModifica", DateTime.Now));
-                        cmd.Parameters.Add(new SqlParameter("@UsuarioAdiciona", 3348));
-                        //cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", null));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioAdiciona", cliente.UsuarioAdiciona));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", cliente.UsuarioModifica));
                         cmd.ExecuteNonQuery();
 
                         }
@@ -360,7 +368,7 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.Add(new SqlParameter("@idcliente", cliente.idcliente));
                         //cmd.Parameters.Add(new SqlParameter("@status", 0));
                         //cmd.Parameters.Add(new SqlParameter("@FechaModifica", DateTime.Now));
-                        cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", 3348));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", cliente.UsuarioModifica));
                         cmd.ExecuteNonQuery();
 
                         }
@@ -576,6 +584,7 @@ namespace CapaDatos.RepocitoryDbVentas
                         
                         cmd.ExecuteNonQuery();
                         return 1;
+
                         }
                     }
 

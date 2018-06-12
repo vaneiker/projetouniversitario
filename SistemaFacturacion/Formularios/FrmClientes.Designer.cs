@@ -40,7 +40,7 @@
             this.txtSearchFullName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.GridViewEmpleado = new System.Windows.Forms.DataGridView();
+            this.GridViewCliente = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtDire = new System.Windows.Forms.TextBox();
@@ -81,7 +81,7 @@
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.TabEmpleado.SuspendLayout();
             this.TabBuscar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewCliente)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -110,7 +110,7 @@
             this.TabBuscar.Controls.Add(this.txtSearchFullName);
             this.TabBuscar.Controls.Add(this.label4);
             this.TabBuscar.Controls.Add(this.label3);
-            this.TabBuscar.Controls.Add(this.GridViewEmpleado);
+            this.TabBuscar.Controls.Add(this.GridViewCliente);
             this.TabBuscar.Location = new System.Drawing.Point(4, 22);
             this.TabBuscar.Name = "TabBuscar";
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
@@ -221,19 +221,19 @@
             this.label3.TabIndex = 71;
             this.label3.Text = "Buscar Por Codigo Cliente";
             // 
-            // GridViewEmpleado
+            // GridViewCliente
             // 
-            this.GridViewEmpleado.AllowUserToAddRows = false;
-            this.GridViewEmpleado.AllowUserToDeleteRows = false;
-            this.GridViewEmpleado.AllowUserToOrderColumns = true;
-            this.GridViewEmpleado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.GridViewEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewEmpleado.Location = new System.Drawing.Point(6, 203);
-            this.GridViewEmpleado.Name = "GridViewEmpleado";
-            this.GridViewEmpleado.ReadOnly = true;
-            this.GridViewEmpleado.Size = new System.Drawing.Size(942, 151);
-            this.GridViewEmpleado.TabIndex = 0;
-            this.GridViewEmpleado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewEmpleado_CellContentClick);
+            this.GridViewCliente.AllowUserToAddRows = false;
+            this.GridViewCliente.AllowUserToDeleteRows = false;
+            this.GridViewCliente.AllowUserToOrderColumns = true;
+            this.GridViewCliente.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.GridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewCliente.Location = new System.Drawing.Point(6, 203);
+            this.GridViewCliente.Name = "GridViewCliente";
+            this.GridViewCliente.ReadOnly = true;
+            this.GridViewCliente.Size = new System.Drawing.Size(942, 151);
+            this.GridViewCliente.TabIndex = 0;
+            this.GridViewCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCliente_CellContentClick);
             // 
             // tabPage2
             // 
@@ -630,7 +630,7 @@
             this.TabEmpleado.ResumeLayout(false);
             this.TabBuscar.ResumeLayout(false);
             this.TabBuscar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewCliente)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -654,7 +654,7 @@
         private System.Windows.Forms.TextBox txtSearchFullName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView GridViewEmpleado;
+        private System.Windows.Forms.DataGridView GridViewCliente;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtDire;

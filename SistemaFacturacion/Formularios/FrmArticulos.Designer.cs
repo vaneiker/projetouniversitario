@@ -629,7 +629,7 @@
             this.textBox2.TabIndex = 159;
             this.textBox2.Text = "1254525658555";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            //this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // label12
             // 

@@ -83,6 +83,7 @@
             this.txtUsuario.TabIndex = 3;
             this.txtUsuario.Text = "Pveneiker";
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // txtContrasena
             // 
@@ -243,6 +244,7 @@
             // 
             // Login
             // 
+            this.AcceptButton = this.BtnIngerso;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 509);

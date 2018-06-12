@@ -30,7 +30,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             DventasData db = new DventasData();
 
             //si hay fila afectada entonces devolvemos true de lo contrario false
-            return db.Registrar_Categoria(_categoria);
+            return Convert.ToBoolean(db.Registrar_Categoria(_categoria));
         }
     }
 }

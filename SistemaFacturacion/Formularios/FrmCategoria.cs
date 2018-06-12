@@ -17,7 +17,7 @@ namespace SistemaFacturacion.Formularios
 
         private string codigo { get; set; }
         LogicaDbVentas _metodos = new LogicaDbVentas();
-
+        private int codigo { get; set; }
         categoriaEntitis categoria = new categoriaEntitis();
 
         public FrmCategoria()
@@ -56,7 +56,7 @@ namespace SistemaFacturacion.Formularios
             else
                 {
                
-                GuardarCategoria(txtNom.Text,txtDes.Text,int.Parse(this.codigo));
+                GuardarCategoria(txtNom.Text,txtDes.Text,this.codigo);
                 }
             }
 
@@ -124,13 +124,23 @@ namespace SistemaFacturacion.Formularios
             if (GridViewCategoria.CurrentRow != null)
                 {              
                 label3.Text = "Actualizar";
-                this.codigo = GridViewCategoria.CurrentRow.Cells[0].Value.ToString();
+               this.codigo= int.Parse(GridViewCategoria.CurrentRow.Cells[0].Value.ToString());
                 txtNom.Text = GridViewCategoria.CurrentRow.Cells[1].Value.ToString();
                 txtDes.Text = GridViewCategoria.CurrentRow.Cells[2].Value.ToString();
                 //txtTelefono.Text = GridViewEmpleado.CurrentRow.Cells[4].Value.ToString();
                 //txtDni.Text = GridViewEmpleado.CurrentRow.Cells[5].Value.ToString();
                 //txtDireccion.Text = GridViewEmpleado.CurrentRow.Cells[6].Value.ToString();
                 }
+            }
+
+        private void TabEmpleado_KeyPress(object sender, KeyPressEventArgs e)
+            {
+           
+            }
+
+        private void TabEmpleado_SelectedIndexChanged(object sender, EventArgs e)
+            {
+            if (panelErrorCategoria.Visible == true) { panelErrorCategoria.Visible = false; }
             }
         }
     }
