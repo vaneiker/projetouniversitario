@@ -41,6 +41,7 @@ namespace SistemaFacturacion
                         {
                           panelErrorClave.Visible = true;
                           label5.Text = "Usuario y/o contraseña incorrectos";
+                        MessageBox.Show(System.IO.Directory.GetCurrentDirectory());
                         }
                     else
                         {
@@ -90,5 +91,4 @@ namespace SistemaFacturacion
             if (panelErrorClave.Visible == true) { panelErrorClave.Visible = false; }
             }
         }
-    }
     }

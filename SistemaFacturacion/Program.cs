@@ -8,18 +8,18 @@ namespace SistemaFacturacion
     {
     static class Program
         {
-        public static ApplicationUser UsuarioActual;
+        public static Seccion UsuarioActual;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
             {
-            UsuarioActual = ApplicationUser.Instance;
+            UsuarioActual = Seccion.Instance;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Formularios.FrmArticulos());
-             Application.Run(new Login());
+             Application.Run(new Formularios.CodigoBarraGenerador());
             }
         }
     }

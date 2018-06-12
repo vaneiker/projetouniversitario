@@ -77,12 +77,6 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             nom.Trim();
             return (_metodos.Buscarproveedor(doc,tel,nom));
             }
-<<<<<<< HEAD
-        public void Registrar_Articulos(articulosEntitis entity)
-        {
-            _metodos.Registrar_Articulos(entity);
-        }
-||||||| merged common ancestors
         public void Registrar_Proveedor(ProveedorEntity proveedor)
             {
             _metodos.Registrar_Proveedor(proveedor);
@@ -95,19 +89,6 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
             }
 
-
-=======
-        public void Registrar_Proveedor(ProveedorEntity proveedor)
-            {
-            _metodos.Registrar_Proveedor(proveedor);
-
-            }
-
-        public void Registrar_Articulos(articulosEntitis art)
-            {
-            _metodos.Registrar_Articulos(art);
-
-            }
 
         #region Metodos Proveedores
         //Apartir de esta Linea Empieso con las Buenas Practivas
@@ -165,7 +146,6 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return filasAfectadas > 0 ? true : false;
             }
         #endregion
->>>>>>> b6ad3546b2fcf23abc67c6d8d6723c2461ea22f1
 
         #region Metodos Proveedores
         //Apartir de esta Linea Empieso con las Buenas Practivas
@@ -187,41 +167,6 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         /// <param name="UsuarioAdiciona"></param>
         /// <param name="UsuarioModifica"></param>
         /// <returns></returns>
-        public bool Registrar_Proveedor(int idproveedor
-                                       ,string razonsocial
-                                       ,string NombreProveedor
-                                       ,string tipodocumento
-                                       ,string numdocumento
-                                       ,string direccion
-                                       ,string telefono
-                                       ,string email
-                                       ,string url
-                                       ,bool statu
-                                       ,DateTime FechaAdiciona
-                                       ,DateTime FechaModifica
-                                       ,string UsuarioAdiciona
-                                       ,string UsuarioModifica)
-            {                 
-            ProveedorEntity p = new ProveedorEntity();
-            if (String.IsNullOrWhiteSpace(tipodocumento)   || String.IsNullOrWhiteSpace(numdocumento)) return false;
-            if (String.IsNullOrWhiteSpace(NombreProveedor) || String.IsNullOrWhiteSpace(telefono))     return false;
-                                        p.idproveedor = idproveedor;
-                                        p.razon_social = razonsocial;
-                                        p.NombreProveedor = NombreProveedor;
-                                        p.tipo_documento = tipodocumento;
-                                        p.num_documento = numdocumento;
-                                        p.direccion = direccion;
-                                        p.telefono = telefono;
-                                        p.email = email;
-                                        p.url = url;
-                                        p.statu = statu;
-                                        p.FechaAdiciona = FechaAdiciona;
-                                        p.FechaModifica = FechaModifica;
-                                        p.UsuarioAdiciona = UsuarioAdiciona;
-                                        p.UsuarioModifica = UsuarioModifica;
-            int filasAfectadas = _metodos.Registrar_Proveedor(p);
-            return filasAfectadas > 0 ? true : false;
-           }
         #endregion
         }
     }

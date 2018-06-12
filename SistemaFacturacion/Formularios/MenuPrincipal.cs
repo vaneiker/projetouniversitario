@@ -12,26 +12,32 @@ namespace SistemaFacturacion.Formularios
     {
     public partial class MenuPrincipal : Form
         {
-        Seccion seccion = Seccion.Instance;
+        private static Seccion seccion;
         string cargo = "";
         public MenuPrincipal()
             {
+            seccion = Seccion.Instance;
             InitializeComponent();
             }
-        Seccion s = Seccion.Instance;
         private void MenuPrincipal_Load(object sender, EventArgs e)
             {
-                 cargo = AppTools.LogicRoll.Cargos(seccion.Rolid);
+                
+              cargo = AppTools.LogicRoll.Cargos(seccion.Rolid);
             }
         private void panel3_Paint(object sender, PaintEventArgs e)
             {
 
             }
 
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Salir_Click(object sender, EventArgs e)
             {
             
-            DialogResult resul = MessageBox.Show("Esta seguro que desea apagar el Sistema?, " + s.Usuario + " " + cargo, "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult resul = MessageBox.Show("Esta seguro que desea apagar el Sistema?, " + seccion.Usuario + " " + cargo, "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (resul == System.Windows.Forms.DialogResult.OK)
                 {
                 this.Close();
@@ -42,7 +48,7 @@ namespace SistemaFacturacion.Formularios
             {
 
             toolStripStatusLabel1.Text = DateTime.Now.ToString("F");
-            toolStripStatusLabel2.Text="***Usuario: "+s.Usuario.ToString()+" Cargo : " + cargo;
+            toolStripStatusLabel2.Text="***Usuario: "+ seccion.Usuario.ToString()+" Cargo : " + cargo;
             }
 
         private void BtnCategoria_Click(object sender, EventArgs e)
@@ -70,11 +76,6 @@ namespace SistemaFacturacion.Formularios
             f.ShowDialog();
             }
 
-        private void MenuPrincipal_Load(object sender, EventArgs e)
-        {
-            Program.UsuarioActual = ApplicationUser.Instance;
-            toolStripStatusLabel2.Text = Program.UsuarioActual.RolId.ToString();
-        }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {

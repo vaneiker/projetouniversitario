@@ -59,6 +59,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRuta = new System.Windows.Forms.Button();
             this.txtruta = new System.Windows.Forms.TextBox();
@@ -79,8 +81,6 @@
             this.txtDes = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.ToolStrip1.SuspendLayout();
             this.TabArticulo.SuspendLayout();
             this.TabBuscar.SuspendLayout();
@@ -313,6 +313,7 @@
             this.GridViewArticulos.Location = new System.Drawing.Point(6, 67);
             this.GridViewArticulos.Name = "GridViewArticulos";
             this.GridViewArticulos.ReadOnly = true;
+            this.GridViewArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridViewArticulos.Size = new System.Drawing.Size(846, 287);
             this.GridViewArticulos.TabIndex = 0;
             this.GridViewArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewArticulos_CellContentClick);
@@ -425,6 +426,28 @@
             this.groupBox2.Size = new System.Drawing.Size(699, 379);
             this.groupBox2.TabIndex = 88;
             this.groupBox2.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(32, 50);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 19);
+            this.label12.TabIndex = 160;
+            this.label12.Text = "Codigo Barra";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("IDAHC39M Code 39 Barcode", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.textBox2.Location = new System.Drawing.Point(127, 41);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(195, 32);
+            this.textBox2.TabIndex = 159;
+            this.textBox2.Text = "1254525658555";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pictureBox1
             // 
@@ -617,29 +640,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.textBox2.Location = new System.Drawing.Point(127, 41);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(195, 32);
-            this.textBox2.TabIndex = 159;
-            this.textBox2.Text = "1254525658555";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            //this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(32, 50);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(89, 19);
-            this.label12.TabIndex = 160;
-            this.label12.Text = "Codigo Barra";
             // 
             // FrmArticulos
             // 

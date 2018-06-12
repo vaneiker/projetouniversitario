@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaEntidad.DbVentas;
 using CapaLogicaNegocio.NegocioDbVentas;
+using Microsoft.VisualBasic;
 
 namespace SistemaFacturacion.Formularios
     {
     public partial class FrmCategoria : Form
         {
 
-        private string codigo { get; set; }
         LogicaDbVentas _metodos = new LogicaDbVentas();
         private int codigo { get; set; }
         categoriaEntitis categoria = new categoriaEntitis();
@@ -27,7 +27,8 @@ namespace SistemaFacturacion.Formularios
 
         private void BuscarD_Click(object sender, EventArgs e)
             {
-
+             string nombreCategoria = Interaction.InputBox("Digite El Nombre de La Categoria", "Buscar Categoria Por Nombre", "Nombre Categoria");
+              //buscar la categoria en la base de datos y asignar el nuevo dataset al grid
             }
 
         private void FrmCategoria_Load(object sender, EventArgs e)

@@ -212,7 +212,6 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             catch (Exception)
                 {
-                string msg = ex.Message;
                  return 0;
                
                 }

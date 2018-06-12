@@ -37,10 +37,6 @@
             this.txtSearchCategoria = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.GridViewCategoria = new System.Windows.Forms.DataGridView();
-            this.selecc = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelErrorCategoria = new System.Windows.Forms.Panel();
@@ -107,7 +103,7 @@
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
             this.TabBuscar.Size = new System.Drawing.Size(956, 377);
             this.TabBuscar.TabIndex = 0;
-            this.TabBuscar.Text = "Busqueda Empleado:";
+            this.TabBuscar.Text = "Busqueda Categoria:";
             this.TabBuscar.UseVisualStyleBackColor = true;
             // 
             // panel6
@@ -166,36 +162,10 @@
             this.GridViewCategoria.Location = new System.Drawing.Point(225, 129);
             this.GridViewCategoria.Name = "GridViewCategoria";
             this.GridViewCategoria.ReadOnly = true;
+            this.GridViewCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridViewCategoria.Size = new System.Drawing.Size(457, 224);
             this.GridViewCategoria.TabIndex = 0;
             this.GridViewCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCategoria_CellContentClick);
-            // 
-            // selecc
-            // 
-            this.selecc.HeaderText = "Seleccionar";
-            this.selecc.Name = "selecc";
-            this.selecc.ReadOnly = true;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Visible = false;
-            // 
-            // nombreG
-            // 
-            this.nombreG.HeaderText = "Nombre";
-            this.nombreG.Name = "nombreG";
-            this.nombreG.ReadOnly = true;
-            this.nombreG.Visible = false;
-            // 
-            // Desc
-            // 
-            this.Desc.HeaderText = "Descripción";
-            this.Desc.Name = "Desc";
-            this.Desc.ReadOnly = true;
-            this.Desc.Visible = false;
             // 
             // tabPage2
             // 
@@ -205,7 +175,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(956, 377);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Mantenimineto Empleado:";
+            this.tabPage2.Text = "Mantenimineto Categoria:";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -504,7 +474,8 @@
             this.Controls.Add(this.TabEmpleado);
             this.Controls.Add(this.ToolStrip1);
             this.Name = "FrmCategoria";
-            this.Text = "FrmCategoria";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Categorias";
             this.Load += new System.EventHandler(this.FrmCategoria_Load);
             this.TabEmpleado.ResumeLayout(false);
             this.TabBuscar.ResumeLayout(false);
@@ -561,16 +532,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnArticulos;
-<<<<<<< HEAD
-        private System.Windows.Forms.DataGridViewButtonColumn selecc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreG;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Desc;
-||||||| merged common ancestors
-=======
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
->>>>>>> b6ad3546b2fcf23abc67c6d8d6723c2461ea22f1
         }
     }
