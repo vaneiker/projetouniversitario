@@ -121,5 +121,10 @@ namespace SistemaFacturacion.Formularios
             {
 
             }
+
+        private void BuscarD_Click(object sender, EventArgs e)
+            {
+
+            }
         }
     }

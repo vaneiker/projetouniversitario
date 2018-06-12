@@ -122,10 +122,7 @@ namespace SistemaFacturacion.Formularios
             if (GridViewCategoria.CurrentRow != null)
                 {
 
-          
-              
-                label3.Text = "Actualizar";
-               this.codigo= int.Parse(GridViewCategoria.CurrentRow.Cells[0].Value.ToString());
+                this.codigo= int.Parse(GridViewCategoria.CurrentRow.Cells[0].Value.ToString());
                 txtNom.Text = GridViewCategoria.CurrentRow.Cells[1].Value.ToString();
                 txtDes.Text = GridViewCategoria.CurrentRow.Cells[2].Value.ToString();
                 //txtTelefono.Text = GridViewEmpleado.CurrentRow.Cells[4].Value.ToString();
