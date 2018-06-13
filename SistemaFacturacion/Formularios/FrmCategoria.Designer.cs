@@ -106,18 +106,7 @@
  
             // txtcodigo
             // 
-            this.txtcodigo.BackColor = System.Drawing.Color.White;
-            this.txtcodigo.Enabled = false;
-            this.txtcodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcodigo.Location = new System.Drawing.Point(0, 365);
-            this.txtcodigo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtcodigo.Multiline = true;
-            this.txtcodigo.Name = "txtcodigo";
-            this.txtcodigo.Size = new System.Drawing.Size(10, 10);
-            this.txtcodigo.TabIndex = 118;
-            this.txtcodigo.Text = "0";
-            this.txtcodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtcodigo.Visible = false;
+        
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
@@ -537,6 +526,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDes;
         private System.Windows.Forms.TextBox txtNom;
-        private System.Windows.Forms.TextBox txtCodigo;
-        }
+        
+    }
     }

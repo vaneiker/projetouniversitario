@@ -34,7 +34,6 @@
             this.txtCodigoBarra = new System.Windows.Forms.TextBox();
             this.txtCopias = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.SuspendLayout();
             // 
             // label1
@@ -91,24 +90,11 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "No. Copias: ";
             // 
-            // crystalReportViewer1
-            // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.CachedPageNumberPerDoc = 10;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(12, 50);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1003, 472);
-            this.crystalReportViewer1.TabIndex = 6;
-            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            // 
             // CodigoBarraGenerador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 534);
-            this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.txtCopias);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtCodigoBarra);
@@ -137,6 +123,5 @@
         private System.Windows.Forms.TextBox txtCodigoBarra;
         private System.Windows.Forms.TextBox txtCopias;
         private System.Windows.Forms.Label label2;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
     }
 }

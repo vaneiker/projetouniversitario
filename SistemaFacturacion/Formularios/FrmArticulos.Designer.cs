@@ -73,19 +73,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-<<<<<<< HEAD
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnRuta = new System.Windows.Forms.Button();
-            this.txtruta = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cboProv = new System.Windows.Forms.ComboBox();
-||||||| merged common ancestors
-            this.label10 = new System.Windows.Forms.Label();
-            this.cboProv = new System.Windows.Forms.ComboBox();
-=======
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.label6 = new System.Windows.Forms.Label();
             this.cboCat = new System.Windows.Forms.ComboBox();
             this.cboProv = new System.Windows.Forms.ComboBox();
@@ -96,13 +85,6 @@
             this.txtCan = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-<<<<<<< HEAD
-            this.txtCan = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtDes = new System.Windows.Forms.TextBox();
-            this.txtNom = new System.Windows.Forms.TextBox();
-||||||| merged common ancestors
             this.txtCan = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -111,9 +93,6 @@
             this.txtruta = new System.Windows.Forms.TextBox();
             this.btnRuta = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-=======
-            this.txtVent = new System.Windows.Forms.TextBox();
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ToolStrip1.SuspendLayout();
             this.TabArticulo.SuspendLayout();
@@ -281,13 +260,8 @@
             this.TabBuscar.Location = new System.Drawing.Point(4, 22);
             this.TabBuscar.Name = "TabBuscar";
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
-<<<<<<< HEAD
             this.TabBuscar.Size = new System.Drawing.Size(866, 489);
-||||||| merged common ancestors
             this.TabBuscar.Size = new System.Drawing.Size(866, 377);
-=======
-            this.TabBuscar.Size = new System.Drawing.Size(1150, 488);
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.TabBuscar.TabIndex = 0;
             this.TabBuscar.Text = "Busqueda Articulos";
             this.TabBuscar.UseVisualStyleBackColor = true;
@@ -390,19 +364,10 @@
             this.GridViewArticulos.Location = new System.Drawing.Point(42, 108);
             this.GridViewArticulos.Name = "GridViewArticulos";
             this.GridViewArticulos.ReadOnly = true;
-<<<<<<< HEAD
             this.GridViewArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridViewArticulos.Size = new System.Drawing.Size(846, 287);
             this.GridViewArticulos.TabIndex = 0;
             this.GridViewArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewArticulos_CellContentClick);
-||||||| merged common ancestors
-            this.GridViewArticulos.Size = new System.Drawing.Size(846, 287);
-            this.GridViewArticulos.TabIndex = 0;
-            this.GridViewArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewArticulos_CellContentClick);
-=======
-            this.GridViewArticulos.Size = new System.Drawing.Size(766, 191);
-            this.GridViewArticulos.TabIndex = 117;
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             // 
             // tabPage2
             // 
@@ -596,7 +561,6 @@
             // 
             // groupBox2
             // 
-<<<<<<< HEAD
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.pictureBox1);
@@ -604,14 +568,6 @@
             this.groupBox2.Controls.Add(this.txtruta);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.cboProv);
-||||||| merged common ancestors
-            this.groupBox2.Controls.Add(this.pictureBox1);
-            this.groupBox2.Controls.Add(this.btnRuta);
-            this.groupBox2.Controls.Add(this.txtruta);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.cboProv);
-=======
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.cboCat);
             this.groupBox2.Controls.Add(this.cboProv);
@@ -622,7 +578,6 @@
             this.groupBox2.TabIndex = 181;
             this.groupBox2.TabStop = false;
             // 
-<<<<<<< HEAD
             // label12
             // 
             this.label12.AutoSize = true;
@@ -692,43 +647,11 @@
             this.cboProv.Size = new System.Drawing.Size(197, 21);
             this.cboProv.TabIndex = 154;
             // 
-||||||| merged common ancestors
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(421, 36);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 19);
-            this.label10.TabIndex = 155;
-            this.label10.Text = "Proveedor";
-            // 
-            // cboProv
-            // 
-            this.cboProv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboProv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboProv.FormattingEnabled = true;
-            this.cboProv.Location = new System.Drawing.Point(492, 34);
-            this.cboProv.Name = "cboProv";
-            this.cboProv.Size = new System.Drawing.Size(197, 21);
-            this.cboProv.TabIndex = 154;
-            // 
-=======
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             // label6
             // 
             this.label6.AutoSize = true;
-<<<<<<< HEAD
             this.label6.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(352, 10);
-||||||| merged common ancestors
-            this.label6.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(231, 36);
-=======
-            this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.label6.Location = new System.Drawing.Point(23, 36);
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 25);
             this.label6.TabIndex = 172;
@@ -739,47 +662,22 @@
             this.cboCat.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.cboCat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
             this.cboCat.FormattingEnabled = true;
-<<<<<<< HEAD
+
             this.cboCat.Location = new System.Drawing.Point(425, 9);
-||||||| merged common ancestors
-            this.cboCat.Location = new System.Drawing.Point(304, 35);
-=======
-            this.cboCat.Location = new System.Drawing.Point(141, 33);
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.cboCat.Name = "cboCat";
             this.cboCat.Size = new System.Drawing.Size(298, 33);
             this.cboCat.TabIndex = 171;
             // 
             // cboProv
             // 
-<<<<<<< HEAD
             this.MascKcodigoBarra.Location = new System.Drawing.Point(127, 19);
             this.MascKcodigoBarra.Mask = "0-000000-000000";
             this.MascKcodigoBarra.Name = "MascKcodigoBarra";
             this.MascKcodigoBarra.Size = new System.Drawing.Size(101, 20);
             this.MascKcodigoBarra.TabIndex = 151;
             this.MascKcodigoBarra.Leave += new System.EventHandler(this.MascKcodigoBarra_Leave);
-||||||| merged common ancestors
-            this.MascKcodigoBarra.Location = new System.Drawing.Point(127, 35);
-            this.MascKcodigoBarra.Mask = "0-000000-000000";
-            this.MascKcodigoBarra.Name = "MascKcodigoBarra";
-            this.MascKcodigoBarra.Size = new System.Drawing.Size(101, 20);
-            this.MascKcodigoBarra.TabIndex = 151;
-=======
-            this.cboProv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboProv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboProv.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.cboProv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.cboProv.FormattingEnabled = true;
-            this.cboProv.Location = new System.Drawing.Point(570, 28);
-            this.cboProv.Name = "cboProv";
-            this.cboProv.Size = new System.Drawing.Size(406, 33);
-            this.cboProv.TabIndex = 173;
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             // 
             // label10
-            // 
-<<<<<<< HEAD
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(32, 21);
@@ -787,24 +685,6 @@
             this.label3.Size = new System.Drawing.Size(89, 19);
             this.label3.TabIndex = 150;
             this.label3.Text = "Codigo Barra";
-||||||| merged common ancestors
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 19);
-            this.label3.TabIndex = 150;
-            this.label3.Text = "Codigo Barra";
-=======
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.label10.Location = new System.Drawing.Point(445, 36);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(119, 25);
-            this.label10.TabIndex = 174;
-            this.label10.Text = "Proveedor";
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             // 
             // groupBox1
             // 
@@ -853,7 +733,6 @@
             this.txtCan.TabIndex = 164;
             this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-<<<<<<< HEAD
             // label2
             // 
             this.label2.AutoSize = true;
@@ -895,110 +774,6 @@
             this.txtNom.TabIndex = 142;
             this.txtNom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-||||||| merged common ancestors
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 19);
-            this.label2.TabIndex = 140;
-            this.label2.Text = "Nombre Articulos:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(48, 132);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 19);
-            this.label5.TabIndex = 141;
-            this.label5.Text = "Descripción";
-            // 
-            // txtDes
-            // 
-            this.txtDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDes.Location = new System.Drawing.Point(127, 132);
-            this.txtDes.Multiline = true;
-            this.txtDes.Name = "txtDes";
-            this.txtDes.Size = new System.Drawing.Size(562, 37);
-            this.txtDes.TabIndex = 143;
-            this.txtDes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtNom
-            // 
-            this.txtNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.txtNom.Location = new System.Drawing.Point(127, 79);
-            this.txtNom.Multiline = true;
-            this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(562, 36);
-            this.txtNom.TabIndex = 142;
-            this.txtNom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtruta
-            // 
-            this.txtruta.Enabled = false;
-            this.txtruta.Location = new System.Drawing.Point(129, 346);
-            this.txtruta.Multiline = true;
-            this.txtruta.Name = "txtruta";
-            this.txtruta.Size = new System.Drawing.Size(562, 29);
-            this.txtruta.TabIndex = 156;
-            // 
-            // btnRuta
-            // 
-            this.btnRuta.Location = new System.Drawing.Point(5, 346);
-            this.btnRuta.Name = "btnRuta";
-            this.btnRuta.Size = new System.Drawing.Size(121, 29);
-            this.btnRuta.TabIndex = 157;
-            this.btnRuta.Text = "Cargar Imagen";
-            this.btnRuta.UseVisualStyleBackColor = true;
-            this.btnRuta.Click += new System.EventHandler(this.btnRuta_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(127, 224);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(562, 101);
-            this.pictureBox1.TabIndex = 158;
-            this.pictureBox1.TabStop = false;
-            // 
-=======
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.label8.Location = new System.Drawing.Point(49, 117);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(215, 25);
-            this.label8.TabIndex = 178;
-            this.label8.Text = "$ Precio de Compra";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.label7.Location = new System.Drawing.Point(176, 32);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(93, 25);
-            this.label7.TabIndex = 163;
-            this.label7.Text = "Catidad";
-            // 
-            // txtVent
-            // 
-            this.txtVent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.txtVent.Location = new System.Drawing.Point(270, 71);
-            this.txtVent.Multiline = true;
-            this.txtVent.Name = "txtVent";
-            this.txtVent.Size = new System.Drawing.Size(121, 34);
-            this.txtVent.TabIndex = 166;
-            this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -1096,22 +871,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel3;
-<<<<<<< HEAD
         public System.Windows.Forms.Button BtnCategoria;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnRuta;
-        private System.Windows.Forms.TextBox txtruta;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox2;
-||||||| merged common ancestors
-        public System.Windows.Forms.Button BtnCategoria;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnRuta;
-        private System.Windows.Forms.TextBox txtruta;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-=======
-        private System.Windows.Forms.Button BtnCategoria;
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
         }
     }

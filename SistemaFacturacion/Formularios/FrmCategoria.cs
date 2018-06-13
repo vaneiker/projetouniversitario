@@ -15,17 +15,9 @@ namespace SistemaFacturacion.Formularios
     {
     public partial class FrmCategoria : Form
         {
-<<<<<<< HEAD
 
         LogicaDbVentas _metodos = new LogicaDbVentas();
         private int codigo { get; set; }
-||||||| merged common ancestors
-        LogicaDbVentas _metodos = new LogicaDbVentas();
-
-=======
-        LogicaDbVentas _metodos = new LogicaDbVentas();
-        private int codigo { get; set; }
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
         categoriaEntitis categoria = new categoriaEntitis();
 
         public FrmCategoria()
@@ -131,22 +123,9 @@ namespace SistemaFacturacion.Formularios
         private void GridViewCategoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
             if (GridViewCategoria.CurrentRow != null)
-<<<<<<< HEAD
-                {              
-                label3.Text = "Actualizar";
-               this.codigo= int.Parse(GridViewCategoria.CurrentRow.Cells[0].Value.ToString());
-||||||| merged common ancestors
-                {
-
-          
-              
-                label3.Text = "Actualizar";
-                txtcodigo.Text = GridViewCategoria.CurrentRow.Cells[0].Value.ToString();
-=======
                 {
 
                 this.codigo= int.Parse(GridViewCategoria.CurrentRow.Cells[0].Value.ToString());
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
                 txtNom.Text = GridViewCategoria.CurrentRow.Cells[1].Value.ToString();
                 txtDes.Text = GridViewCategoria.CurrentRow.Cells[2].Value.ToString();
                 //txtTelefono.Text = GridViewEmpleado.CurrentRow.Cells[4].Value.ToString();
