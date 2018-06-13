@@ -16,14 +16,14 @@ namespace SistemaFacturacion.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class BarcodeArticulo : ReportClass {
+    public class BarcodeReport : ReportClass {
         
-        public BarcodeArticulo() {
+        public BarcodeReport() {
         }
         
         public override string ResourceName {
             get {
-                return "BarcodeArticulo.rpt";
+                return "BarcodeReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace SistemaFacturacion.Reports {
         
         public override string FullResourceName {
             get {
-                return "SistemaFacturacion.Reports.BarcodeArticulo.rpt";
+                return "SistemaFacturacion.Reports.BarcodeReport.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace SistemaFacturacion.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedBarcodeArticulo : Component, ICachedReport {
+    public class CachedBarcodeReport : Component, ICachedReport {
         
-        public CachedBarcodeArticulo() {
+        public CachedBarcodeReport() {
         }
         
         [Browsable(false)]
@@ -128,11 +128,11 @@ namespace SistemaFacturacion.Reports {
             }
         }
         
-        //public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-        //    BarcodeArticulo rpt = new BarcodeArticulo();
-        //    rpt.Site = this.Site;
-        //    return rpt;
-        //}
+        public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
+            BarcodeReport rpt = new BarcodeReport();
+            rpt.Site = this.Site;
+            return rpt;
+        }
         
         public virtual string GetCustomizedCacheKey(RequestContext request) {
             String key = null;
