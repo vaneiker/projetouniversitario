@@ -32,38 +32,6 @@ namespace SistemaFacturacion
                 {
                 if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid))
                     {
-<<<<<<< HEAD
-
-                    Seccion session = Seccion.Instance;
-                    session.Usuario = txtUsuario.Text;
-                    session.Rolid = (LogicRoll.LevelRol)rollid;
-
-                    if(rollid <= 0)
-                        {
-                          panelErrorClave.Visible = true;
-                          label5.Text = "Usuario y/o contraseña incorrectos";
-                        MessageBox.Show(System.IO.Directory.GetCurrentDirectory());
-                        }
-                    else
-                        {
-                        //implementar validacion de role para visualizar el menu pendiente
-                        Seccion seccion = Seccion.Instance;
-                        seccion.Usuario = txtUsuario.Text;
-                        seccion.Rolid = (LogicRoll.LevelRol)rollid;
-                        Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-                        this.Hide();
-                        f.Show();
-                        }
-                    
-||||||| merged common ancestors
-                    //implementar validacion de role para visualizar el menu pendiente
-                    Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
-                    f.Show();
-=======
-
-                    Seccion session = Seccion.Instance;
-                    session.Usuario = txtUsuario.Text;
-                    session.Rolid = (LogicRoll.LevelRol)rollid;
 
                     if(rollid <= 0)
                         {
@@ -80,8 +48,7 @@ namespace SistemaFacturacion
                         this.Hide();
                         f.Show();
                         }
-                    
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
+
                     }
                 else
                     {

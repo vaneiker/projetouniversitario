@@ -103,32 +103,7 @@
             this.TabBuscar.TabIndex = 0;
             this.TabBuscar.Text = "Busqueda Categoria:";
             this.TabBuscar.UseVisualStyleBackColor = true;
-            // 
-<<<<<<< HEAD
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
-            this.panel6.Location = new System.Drawing.Point(3, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(953, 63);
-            this.panel6.TabIndex = 121;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel5.Location = new System.Drawing.Point(707, 33);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(249, 342);
-            this.panel5.TabIndex = 120;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel4.Location = new System.Drawing.Point(3, 33);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(204, 344);
-            this.panel4.TabIndex = 119;
-||||||| merged common ancestors
+ 
             // txtcodigo
             // 
             this.txtcodigo.BackColor = System.Drawing.Color.White;
@@ -143,7 +118,6 @@
             this.txtcodigo.Text = "0";
             this.txtcodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtcodigo.Visible = false;
-=======
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
@@ -167,46 +141,29 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(158, 315);
             this.panel4.TabIndex = 119;
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             // 
             // txtSearchCategoria
             // 
             this.txtSearchCategoria.BackColor = System.Drawing.Color.White;
             this.txtSearchCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
-            this.txtSearchCategoria.Location = new System.Drawing.Point(339, 84);
-||||||| merged common ancestors
             this.txtSearchCategoria.Location = new System.Drawing.Point(120, 12);
-=======
             this.txtSearchCategoria.Location = new System.Drawing.Point(389, 90);
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.txtSearchCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCategoria.Multiline = true;
             this.txtSearchCategoria.Name = "txtSearchCategoria";
-<<<<<<< HEAD
-            this.txtSearchCategoria.Size = new System.Drawing.Size(343, 31);
-||||||| merged common ancestors
             this.txtSearchCategoria.Size = new System.Drawing.Size(828, 31);
-=======
             this.txtSearchCategoria.Size = new System.Drawing.Size(260, 27);
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.txtSearchCategoria.TabIndex = 112;
             this.txtSearchCategoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-<<<<<<< HEAD
-            this.label4.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(225, 84);
-||||||| merged common ancestors
             this.label4.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 12);
-=======
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.label4.Location = new System.Drawing.Point(192, 88);
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(191, 25);
             this.label4.TabIndex = 73;
@@ -219,23 +176,11 @@
             this.GridViewCategoria.AllowUserToOrderColumns = true;
             this.GridViewCategoria.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.GridViewCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-<<<<<<< HEAD
             this.GridViewCategoria.Location = new System.Drawing.Point(225, 129);
-||||||| merged common ancestors
-            this.GridViewCategoria.Location = new System.Drawing.Point(6, 64);
-=======
-            this.GridViewCategoria.Location = new System.Drawing.Point(192, 129);
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.GridViewCategoria.Name = "GridViewCategoria";
             this.GridViewCategoria.ReadOnly = true;
-<<<<<<< HEAD
             this.GridViewCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridViewCategoria.Size = new System.Drawing.Size(457, 224);
-||||||| merged common ancestors
-            this.GridViewCategoria.Size = new System.Drawing.Size(942, 290);
-=======
-            this.GridViewCategoria.Size = new System.Drawing.Size(457, 224);
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.GridViewCategoria.TabIndex = 0;
             this.GridViewCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewCategoria_CellContentClick);
             // 
@@ -533,15 +478,8 @@
             this.Controls.Add(this.ToolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCategoria";
-<<<<<<< HEAD
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Categorias";
-||||||| merged common ancestors
-            this.Text = "FrmCategoria";
-=======
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCategoria";
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
             this.Load += new System.EventHandler(this.FrmCategoria_Load);
             this.TabEmpleado.ResumeLayout(false);
             this.TabBuscar.ResumeLayout(false);
@@ -590,12 +528,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnArticulos;
-<<<<<<< HEAD
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-||||||| merged common ancestors
-=======
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
@@ -605,6 +537,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDes;
         private System.Windows.Forms.TextBox txtNom;
->>>>>>> 44bde7d306b36df2c5891f132919aa71a9555ce9
+        private System.Windows.Forms.TextBox txtCodigo;
         }
     }
