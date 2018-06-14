@@ -146,7 +146,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
 
 
-        public DataTable ListArticuloXcodigo(string codigo,int copia)
+        public DataTable ListArticuloXcodigo(string codigo,int copia=1)
         {
             return _metodos.ListarticulosX_Codigo(codigo,copia);
         }
