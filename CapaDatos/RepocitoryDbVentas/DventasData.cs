@@ -38,6 +38,31 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
 
             }
+
+        public DataTable ListarticulosX_Codigo(string codigo, int copia)
+        {
+            using (dbventasEntity context = new dbventasEntity())
+            {
+
+                var connection = context.Database.Connection as SqlConnection;
+
+                using (connection)
+                {
+                    connection.Open();
+                    string Qry = "[dbo].[LIST_ARTICULOS_X_CODIGO]";
+                    SqlCommand cmd = new SqlCommand(Qry, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CODIGO", codigo);
+                    cmd.Parameters.AddWithValue("@COPIAS", copia);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+
+                }
+            }
+
+        }
         public DataTable BuscarArticulo(string codigo, string nombre)
             {
 
@@ -695,5 +720,8 @@ namespace CapaDatos.RepocitoryDbVentas
         #region ventas Datos
         #endregion
 
-        }
+        
+
+        
     }
+}
