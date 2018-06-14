@@ -143,6 +143,12 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             int filasAfectadas = _metodos.Registrar_Proveedor(p);
             return filasAfectadas > 0 ? true : false;
             }
+
+
+        public DataTable ListArticuloXcodigo(string codigo,int copia)
+        {
+            return _metodos.ListarticulosX_Codigo(codigo,copia);
+        }
         #endregion
         }
     }
