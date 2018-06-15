@@ -625,7 +625,7 @@
             this.Controls.Add(this.TabEmpleado);
             this.Controls.Add(this.ToolStrip1);
             this.Name = "FrmClientes";
-            this.Text = "FrmClientes";
+            this.Text = "Clientes";
             this.Load += new System.EventHandler(this.FrmClientes_Load);
             this.TabEmpleado.ResumeLayout(false);
             this.TabBuscar.ResumeLayout(false);

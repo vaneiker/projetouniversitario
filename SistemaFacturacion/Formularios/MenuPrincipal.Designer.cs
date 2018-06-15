@@ -35,6 +35,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.msmusu = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -66,7 +67,6 @@
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.BtnArticulos = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             panel2 = new System.Windows.Forms.Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -89,7 +89,7 @@
             panel2.Controls.Add(this.panel1);
             panel2.Location = new System.Drawing.Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(1079, 598);
+            panel2.Size = new System.Drawing.Size(1063, 552);
             panel2.TabIndex = 1;
             // 
             // pictureBox5
@@ -104,7 +104,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.msmusu);
-            this.panel5.Location = new System.Drawing.Point(183, 554);
+            this.panel5.Location = new System.Drawing.Point(183, 519);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(896, 24);
             this.panel5.TabIndex = 4;
@@ -126,6 +126,13 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(33, 17);
             this.toolStripStatusLabel1.Text = "Hora";
             this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(848, 17);
+            this.toolStripStatusLabel2.Spring = true;
+            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
             // panel4
             // 
@@ -447,18 +454,11 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(817, 17);
-            this.toolStripStatusLabel2.Spring = true;
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
-            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 598);
+            this.ClientSize = new System.Drawing.Size(1075, 585);
             this.Controls.Add(panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuPrincipal";

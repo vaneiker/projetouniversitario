@@ -56,6 +56,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.GridViewEmpleado = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnArticulos = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtDire = new System.Windows.Forms.TextBox();
             this.MascTel = new System.Windows.Forms.MaskedTextBox();
@@ -79,20 +83,16 @@
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtApellidos = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnArticulos = new System.Windows.Forms.Button();
             this.ToolStrip1.SuspendLayout();
             this.TabProovedor.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -383,6 +383,50 @@
             this.tabPage2.Text = "Mantenimientos Proveedor:";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel1.Controls.Add(this.BtnArticulos);
+            this.panel1.Location = new System.Drawing.Point(1, 66);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(143, 308);
+            this.panel1.TabIndex = 91;
+            // 
+            // BtnArticulos
+            // 
+            this.BtnArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.BtnArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnArticulos.ForeColor = System.Drawing.Color.White;
+            this.BtnArticulos.Location = new System.Drawing.Point(21, 37);
+            this.BtnArticulos.Name = "BtnArticulos";
+            this.BtnArticulos.Size = new System.Drawing.Size(102, 37);
+            this.BtnArticulos.TabIndex = 1;
+            this.BtnArticulos.Text = "&Articulos";
+            this.BtnArticulos.UseVisualStyleBackColor = false;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.ForeColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(2, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(142, 62);
+            this.panel2.TabIndex = 90;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label13.Location = new System.Drawing.Point(17, 19);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(27, 24);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "M";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtDire);
@@ -615,50 +659,6 @@
             this.txtApellidos.Size = new System.Drawing.Size(233, 20);
             this.txtApellidos.TabIndex = 83;
             // 
-            // panel2
-            // 
-            this.panel2.AutoSize = true;
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.ForeColor = System.Drawing.Color.Black;
-            this.panel2.Location = new System.Drawing.Point(2, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(142, 62);
-            this.panel2.TabIndex = 90;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label13.Location = new System.Drawing.Point(17, 19);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(27, 24);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "M";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel1.Controls.Add(this.BtnArticulos);
-            this.panel1.Location = new System.Drawing.Point(1, 66);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(143, 308);
-            this.panel1.TabIndex = 91;
-            // 
-            // BtnArticulos
-            // 
-            this.BtnArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.BtnArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnArticulos.ForeColor = System.Drawing.Color.White;
-            this.BtnArticulos.Location = new System.Drawing.Point(21, 37);
-            this.BtnArticulos.Name = "BtnArticulos";
-            this.BtnArticulos.Size = new System.Drawing.Size(102, 37);
-            this.BtnArticulos.TabIndex = 1;
-            this.BtnArticulos.Text = "&Articulos";
-            this.BtnArticulos.UseVisualStyleBackColor = false;
-            // 
             // FrmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -667,7 +667,7 @@
             this.Controls.Add(this.TabProovedor);
             this.Controls.Add(this.ToolStrip1);
             this.Name = "FrmProveedor";
-            this.Text = "FrmProveedor";
+            this.Text = "Proveedores";
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
             this.TabProovedor.ResumeLayout(false);
@@ -676,15 +676,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewEmpleado)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -81,7 +81,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(269, 41);
             this.txtUsuario.TabIndex = 3;
-            this.txtUsuario.Text = "Pveneiker";
+            this.txtUsuario.Text = "Administrador";
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
@@ -94,6 +94,7 @@
             this.txtContrasena.PasswordChar = '*';
             this.txtContrasena.Size = new System.Drawing.Size(269, 45);
             this.txtContrasena.TabIndex = 5;
+            this.txtContrasena.Text = "12245";
             this.txtContrasena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtContrasena.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContrasena_KeyDown);
             // 
