@@ -24,6 +24,22 @@ namespace SistemaFacturacion.Formularios
         private void btnBuscarCodigo_Click(object sender, EventArgs args)
         {
             //Seleccionar Los articulos y traerlos en un datase por el codigo de barra.
+            if (string.IsNullOrWhiteSpace(txtCodigoBarra.Text) || string.IsNullOrWhiteSpace(txtCopias.Text))
+                MessageBox.Show("Asegurese de Digitar el Codigo del Articulo", "No Codigo o Copias Digitas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                LogicaDbVentas db = new LogicaDbVentas();
+                DataTable datos = db.ListArticuloXcodigo(txtCodigoBarra.Text, Int32.Parse(txtCopias.Text));
+                if(datos.Rows.Count <= 0 || datos == null)
+                {
+                    MessageBox.Show($"No Articulo Con el Codigo ${txtCodigoBarra.Text} encontrado");
+                }
+                else
+                {
+                    rpt.SetDataSource(datos);
+                    crystalReportViewer1.ReportSource = rpt;
+                }
+            }
         }
 
         private void btnBuscarTodos_Click(object sender, EventArgs args)
