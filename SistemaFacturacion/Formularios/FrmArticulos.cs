@@ -101,19 +101,7 @@ namespace SistemaFacturacion.Formularios
 
         private void btnRuta_Click(object sender, EventArgs e)
             {
-            OpenFileDialog Abrir = new OpenFileDialog();
-
-            Abrir.Filter = "Archivos JPEG(*.jpg)|*.jpg";
-            Abrir.InitialDirectory = "D:/Todo_Comprimido/RECURSOS";
-
-            if (Abrir.ShowDialog() == DialogResult.OK)
-                {
-                String dir = Abrir.FileName;
-                Bitmap pin = new Bitmap(dir);
-                pictureBox1.Image = (Image)pin;
-                txtruta.Text = dir;
-                }
-
+          
 
             }
 
@@ -131,6 +119,23 @@ namespace SistemaFacturacion.Formularios
         {
             CodigoBarraGenerador c = new CodigoBarraGenerador();
             c.ShowDialog();
+        }
+
+        private void btnRuta_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog Abrir = new OpenFileDialog();
+
+            Abrir.Filter = "Archivos JPEG(*.jpg)|*.jpg";
+            Abrir.InitialDirectory = "D:/Todo_Comprimido/RECURSOS";
+
+            if (Abrir.ShowDialog() == DialogResult.OK)
+            {
+                String dir = Abrir.FileName;
+                Bitmap pin = new Bitmap(dir);
+                pictureBox1.Image = (Image)pin;
+                txtruta.Text = dir;
+            }
+
         }
     }
     }

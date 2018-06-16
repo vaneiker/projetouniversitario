@@ -85,7 +85,7 @@ namespace SistemaFacturacion.Formularios
         #endregion
         private void Salir_Click(object sender, EventArgs e)
             {
-            MenuPrincipal fp = new MenuPrincipal();
+          
             DialogResult resul = MessageBox.Show("Esta seguro que desea salir de este Formulario?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (resul == System.Windows.Forms.DialogResult.OK)
                 {

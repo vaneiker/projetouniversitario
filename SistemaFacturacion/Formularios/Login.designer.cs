@@ -94,7 +94,7 @@
             this.txtContrasena.PasswordChar = '*';
             this.txtContrasena.Size = new System.Drawing.Size(269, 45);
             this.txtContrasena.TabIndex = 5;
-            this.txtContrasena.Text = "12245";
+            this.txtContrasena.Text = "123";
             this.txtContrasena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtContrasena.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContrasena_KeyDown);
             // 

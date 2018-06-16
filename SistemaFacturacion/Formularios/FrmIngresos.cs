@@ -19,55 +19,32 @@ namespace SistemaFacturacion.Formularios
             {
             InitializeComponent();
             }
-
+        DocumentValidator d = new DocumentValidator();
         private void FrmIngresos_Load(object sender, EventArgs e)
             {
 
             //this.reportViewer1.RefreshReport();
             }
 
-        private void BuscarArticulos(string codigo,string nom)
-            {
-            var art = _metodos.CriterioBusquedaArticulo(codigo,nom);
-            dataGridArticulos.DataSource = art;
-            }
-         private void BuscarProveedors(string doc,string tel,string nom)
-            {
-            var art = _metodos.CriterioBusquedaProveedor(doc,tel, nom);
-            dataGridProveedor.DataSource = art;
-            }
-        private void btnArticulos_Click(object sender, EventArgs e)
-            {
-          
-            }
-
-        private void dataGridArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-            {
-            if (dataGridArticulos.CurrentRow != null)
-                {
-               
-                var codigo = dataGridArticulos.CurrentRow.Cells[0].Value.ToString();
-                txtarticulo.Text = dataGridArticulos.CurrentRow.Cells[2].Value.ToString();
-                //txtNombre.Text = GridViewEmpleado.CurrentRow.Cells[2].Value.ToString();
-       
-                }
-            }
-
-        private void btnArticulos_Click_1(object sender, EventArgs e)
-            {
-            BuscarArticulos(txtCbuscAr.Text,txtCbuscAr.Text);
-            }
-
-        private void btnProveedor_Click(object sender, EventArgs e)
-            {
-            BuscarProveedors(txtBucarProveedor.Text, txtBucarProveedor.Text, txtBucarProveedor.Text);
-            }
-
-        private void dataGridProveedor_CellContentClick(object sender, DataGridViewCellEventArgs e)
-            {
-            var codigo = dataGridProveedor.CurrentRow.Cells[0].Value.ToString();
-            txtproceedor.Text = dataGridProveedor.CurrentRow.Cells[2].Value.ToString();
-            //txtNombre.Text = GridViewEmpleado.CurrentRow.Cells[2].Value.ToString();
-            }
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            var Cedula = d.IsValidModulo10(MackCedula.Text);
+            MackCedula.Visible = true;
+            lblTpD.Text = "Cedula";
+            lblTpD.Visible = true;
+            MaskRnc.Text = string.Empty;
+            MaskRnc.Visible = false;
+           
         }
+
+        private void RadioButtRnc_CheckedChanged(object sender, EventArgs e)
+        {
+            var Rnc = d.IsValidModulo10(MaskRnc.Text);
+            MaskRnc.Visible = true;
+            lblTpD.Text ="RNC";
+            lblTpD.Visible = true;
+            MackCedula.Text = string.Empty;
+            MackCedula.Visible = false;
+        }
+    }
     }
