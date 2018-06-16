@@ -122,16 +122,15 @@ namespace SistemaFacturacion.Formularios
 
             }
 
-
         private void BuscarD_Click(object sender, EventArgs e)
             {
 
             }
 
-        private void MascKcodigoBarra_Leave(object sender, EventArgs e)
+        private void toolStripButton2_Click(object sender, EventArgs e)
         {
-
-        }
+            CodigoBarraGenerador c = new CodigoBarraGenerador();
+            c.ShowDialog();
         }
     }
-    
+    }

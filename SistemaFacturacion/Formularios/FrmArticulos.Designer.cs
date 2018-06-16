@@ -73,8 +73,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cboProv = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cboCat = new System.Windows.Forms.ComboBox();
             this.cboProv = new System.Windows.Forms.ComboBox();
@@ -85,15 +83,11 @@
             this.txtCan = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtCan = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtDes = new System.Windows.Forms.TextBox();
-            this.txtNom = new System.Windows.Forms.TextBox();
-            this.txtruta = new System.Windows.Forms.TextBox();
-            this.btnRuta = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtVent = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStrip1.SuspendLayout();
             this.TabArticulo.SuspendLayout();
             this.TabBuscar.SuspendLayout();
@@ -125,7 +119,10 @@
             this.toolStripSeparator3,
             this.Limpia,
             this.toolStripSeparator2,
-            this.Salir});
+            this.toolStripButton2,
+            this.toolStripSeparator7,
+            this.Salir,
+            this.toolStripSeparator8});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip1.Name = "ToolStrip1";
             this.ToolStrip1.Size = new System.Drawing.Size(1182, 71);
@@ -260,8 +257,7 @@
             this.TabBuscar.Location = new System.Drawing.Point(4, 22);
             this.TabBuscar.Name = "TabBuscar";
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
-            this.TabBuscar.Size = new System.Drawing.Size(866, 489);
-            this.TabBuscar.Size = new System.Drawing.Size(866, 377);
+            this.TabBuscar.Size = new System.Drawing.Size(1150, 488);
             this.TabBuscar.TabIndex = 0;
             this.TabBuscar.Text = "Busqueda Articulos";
             this.TabBuscar.UseVisualStyleBackColor = true;
@@ -364,10 +360,8 @@
             this.GridViewArticulos.Location = new System.Drawing.Point(42, 108);
             this.GridViewArticulos.Name = "GridViewArticulos";
             this.GridViewArticulos.ReadOnly = true;
-            this.GridViewArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridViewArticulos.Size = new System.Drawing.Size(846, 287);
-            this.GridViewArticulos.TabIndex = 0;
-            this.GridViewArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewArticulos_CellContentClick);
+            this.GridViewArticulos.Size = new System.Drawing.Size(766, 191);
+            this.GridViewArticulos.TabIndex = 117;
             // 
             // tabPage2
             // 
@@ -458,7 +452,7 @@
             // MascKcodigoBarra
             // 
             this.MascKcodigoBarra.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.MascKcodigoBarra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.MascKcodigoBarra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.MascKcodigoBarra.Location = new System.Drawing.Point(156, 23);
             this.MascKcodigoBarra.Mask = "0-000000-000000";
             this.MascKcodigoBarra.Name = "MascKcodigoBarra";
@@ -518,7 +512,7 @@
             // txtDes
             // 
             this.txtDes.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtDes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.txtDes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.txtDes.Location = new System.Drawing.Point(218, 75);
             this.txtDes.Multiline = true;
             this.txtDes.Name = "txtDes";
@@ -529,7 +523,7 @@
             // txtNom
             // 
             this.txtNom.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtNom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.txtNom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.txtNom.Location = new System.Drawing.Point(218, 22);
             this.txtNom.Multiline = true;
             this.txtNom.Name = "txtNom";
@@ -541,7 +535,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
             this.label5.Location = new System.Drawing.Point(79, 77);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 25);
@@ -552,7 +546,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
             this.label2.Location = new System.Drawing.Point(11, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(201, 25);
@@ -561,13 +555,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.pictureBox1);
-            this.groupBox2.Controls.Add(this.btnRuta);
-            this.groupBox2.Controls.Add(this.txtruta);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.cboProv);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.cboCat);
             this.groupBox2.Controls.Add(this.cboProv);
@@ -578,80 +565,12 @@
             this.groupBox2.TabIndex = 181;
             this.groupBox2.TabStop = false;
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(32, 50);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(89, 19);
-            this.label12.TabIndex = 160;
-            this.label12.Text = "Codigo Barra";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("IDAHC39M Code 39 Barcode", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.textBox2.Location = new System.Drawing.Point(127, 41);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(195, 32);
-            this.textBox2.TabIndex = 159;
-            this.textBox2.Text = "1254525658555";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(127, 224);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(562, 101);
-            this.pictureBox1.TabIndex = 158;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnRuta
-            // 
-            this.btnRuta.Location = new System.Drawing.Point(5, 346);
-            this.btnRuta.Name = "btnRuta";
-            this.btnRuta.Size = new System.Drawing.Size(121, 29);
-            this.btnRuta.TabIndex = 157;
-            this.btnRuta.Text = "Cargar Imagen";
-            this.btnRuta.UseVisualStyleBackColor = true;
-            this.btnRuta.Click += new System.EventHandler(this.btnRuta_Click);
-            // 
-            // txtruta
-            // 
-            this.txtruta.Enabled = false;
-            this.txtruta.Location = new System.Drawing.Point(129, 346);
-            this.txtruta.Multiline = true;
-            this.txtruta.Name = "txtruta";
-            this.txtruta.Size = new System.Drawing.Size(562, 29);
-            this.txtruta.TabIndex = 156;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(421, 36);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 19);
-            this.label10.TabIndex = 155;
-            this.label10.Text = "Proveedor";
-            // 
-            // cboProv
-            // 
-            this.cboProv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboProv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboProv.FormattingEnabled = true;
-            this.cboProv.Location = new System.Drawing.Point(492, 34);
-            this.cboProv.Name = "cboProv";
-            this.cboProv.Size = new System.Drawing.Size(197, 21);
-            this.cboProv.TabIndex = 154;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(352, 10);
+            this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label6.Location = new System.Drawing.Point(23, 36);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 25);
             this.label6.TabIndex = 172;
@@ -660,31 +579,35 @@
             // cboCat
             // 
             this.cboCat.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.cboCat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.cboCat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.cboCat.FormattingEnabled = true;
-
-            this.cboCat.Location = new System.Drawing.Point(425, 9);
+            this.cboCat.Location = new System.Drawing.Point(141, 33);
             this.cboCat.Name = "cboCat";
             this.cboCat.Size = new System.Drawing.Size(298, 33);
             this.cboCat.TabIndex = 171;
             // 
             // cboProv
             // 
-            this.MascKcodigoBarra.Location = new System.Drawing.Point(127, 19);
-            this.MascKcodigoBarra.Mask = "0-000000-000000";
-            this.MascKcodigoBarra.Name = "MascKcodigoBarra";
-            this.MascKcodigoBarra.Size = new System.Drawing.Size(101, 20);
-            this.MascKcodigoBarra.TabIndex = 151;
-            this.MascKcodigoBarra.Leave += new System.EventHandler(this.MascKcodigoBarra_Leave);
+            this.cboProv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboProv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboProv.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.cboProv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.cboProv.FormattingEnabled = true;
+            this.cboProv.Location = new System.Drawing.Point(570, 28);
+            this.cboProv.Name = "cboProv";
+            this.cboProv.Size = new System.Drawing.Size(406, 33);
+            this.cboProv.TabIndex = 173;
             // 
             // label10
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 19);
-            this.label3.TabIndex = 150;
-            this.label3.Text = "Codigo Barra";
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label10.Location = new System.Drawing.Point(445, 36);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(119, 25);
+            this.label10.TabIndex = 174;
+            this.label10.Text = "Proveedor";
             // 
             // groupBox1
             // 
@@ -703,7 +626,7 @@
             // txtComp
             // 
             this.txtComp.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.txtComp.Location = new System.Drawing.Point(270, 117);
             this.txtComp.Multiline = true;
             this.txtComp.Name = "txtComp";
@@ -715,7 +638,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
             this.label9.Location = new System.Drawing.Point(68, 71);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(194, 25);
@@ -725,7 +648,7 @@
             // txtCan
             // 
             this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.txtCan.Location = new System.Drawing.Point(270, 29);
             this.txtCan.Multiline = true;
             this.txtCan.Name = "txtCan";
@@ -733,50 +656,64 @@
             this.txtCan.TabIndex = 164;
             this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label2
+            // label8
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 19);
-            this.label2.TabIndex = 140;
-            this.label2.Text = "Nombre Articulos:";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label8.Location = new System.Drawing.Point(49, 117);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(215, 25);
+            this.label8.TabIndex = 178;
+            this.label8.Text = "$ Precio de Compra";
             // 
-            // label5
+            // label7
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(48, 132);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 19);
-            this.label5.TabIndex = 141;
-            this.label5.Text = "Descripción";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label7.Location = new System.Drawing.Point(176, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(93, 25);
+            this.label7.TabIndex = 163;
+            this.label7.Text = "Catidad";
             // 
-            // txtDes
+            // txtVent
             // 
-            this.txtDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDes.Location = new System.Drawing.Point(127, 132);
-            this.txtDes.Multiline = true;
-            this.txtDes.Name = "txtDes";
-            this.txtDes.Size = new System.Drawing.Size(562, 37);
-            this.txtDes.TabIndex = 143;
-            this.txtDes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtNom
-            // 
-            this.txtNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.txtNom.Location = new System.Drawing.Point(127, 79);
-            this.txtNom.Multiline = true;
-            this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(562, 36);
-            this.txtNom.TabIndex = 142;
-            this.txtNom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtVent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtVent.Location = new System.Drawing.Point(270, 71);
+            this.txtVent.Multiline = true;
+            this.txtVent.Name = "txtVent";
+            this.txtVent.Size = new System.Drawing.Size(121, 34);
+            this.txtVent.TabIndex = 166;
+            this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
+            this.toolStripButton2.Text = "Limpiar";
+            this.toolStripButton2.ToolTipText = "Eliminar";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 71);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 71);
             // 
             // FrmArticulos
             // 
@@ -871,8 +808,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel3;
-        public System.Windows.Forms.Button BtnCategoria;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox2;
-        }
+        private System.Windows.Forms.Button BtnCategoria;
+        internal System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+    }
     }
