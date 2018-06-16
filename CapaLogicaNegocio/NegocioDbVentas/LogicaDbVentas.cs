@@ -88,6 +88,17 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             _metodos.Registrar_Articulos(art);
 
             }
+        public bool Eliminar_Articulo(articulosEntitis art)
+        {
+            try
+            {
+                _metodos.EliminarArticulo(art);
+            }catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
         #region Metodos Proveedores
         //Apartir de esta Linea Empieso con las Buenas Practivas
         /// <summary>

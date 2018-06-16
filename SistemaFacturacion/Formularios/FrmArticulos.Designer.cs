@@ -32,7 +32,7 @@
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.Nuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLimpiar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEliminar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.BuscarD = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -109,7 +109,7 @@
             this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Nuevo,
             this.toolStripSeparator6,
-            this.toolStripLimpiar,
+            this.toolStripEliminar,
             this.toolStripSeparator5,
             this.BuscarD,
             this.toolStripSeparator1,
@@ -145,17 +145,17 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 71);
             // 
-            // toolStripLimpiar
+            // toolStripEliminar
             // 
-            this.toolStripLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLimpiar.Image")));
-            this.toolStripLimpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLimpiar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripLimpiar.Name = "toolStripLimpiar";
-            this.toolStripLimpiar.Size = new System.Drawing.Size(68, 68);
-            this.toolStripLimpiar.Text = "Limpiar";
-            this.toolStripLimpiar.ToolTipText = "Eliminar";
-            this.toolStripLimpiar.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolStripEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripEliminar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripEliminar.Image")));
+            this.toolStripEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripEliminar.Name = "toolStripEliminar";
+            this.toolStripEliminar.Size = new System.Drawing.Size(68, 68);
+            this.toolStripEliminar.Text = "Limpiar";
+            this.toolStripEliminar.ToolTipText = "Eliminar";
+            this.toolStripEliminar.Click += new System.EventHandler(this.toolStripEliminar_Click);
             // 
             // toolStripSeparator5
             // 
@@ -762,7 +762,7 @@
         internal System.Windows.Forms.ToolStrip ToolStrip1;
         internal System.Windows.Forms.ToolStripButton Nuevo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        internal System.Windows.Forms.ToolStripButton toolStripLimpiar;
+        internal System.Windows.Forms.ToolStripButton toolStripEliminar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         internal System.Windows.Forms.ToolStripButton BuscarD;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

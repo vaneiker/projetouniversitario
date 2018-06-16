@@ -55,9 +55,26 @@ namespace SistemaFacturacion.Formularios
             //BtnCategoria.Enabled = false;
             f.ShowDialog();
             }
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void toolStripEliminar_Click(object sender, EventArgs e)
             {
-            carga();
+            if (TabArticulo.SelectedIndex == 1)
+            {
+                MessageBox.Show("Por Favor de ir a la pestaña de busqueda.");
+                return;
+            }
+            string codigo = GridViewArticulos.CurrentRow.Cells[1].Value.ToString();
+            string nombre = GridViewArticulos.CurrentRow.Cells[2].Value.ToString();
+            DialogResult result = MessageBox.Show($"Desea Eliminar El Producto {codigo}?", "Eliminar Articulo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if(result == DialogResult.OK)
+            {
+                LogicaDbVentas db = new LogicaDbVentas();
+                articulosEntitis entity = new articulosEntitis();
+                if(db.Eliminar_Articulo(entity))
+                {
+
+                }
+            }
+                carga();
             }      
         private void GridViewArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
