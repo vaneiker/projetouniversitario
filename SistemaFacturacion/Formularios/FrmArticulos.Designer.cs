@@ -57,7 +57,7 @@
             this.txtSearchCategoria = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.GridViewArticulos = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabMantenimiento = new System.Windows.Forms.TabPage();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.BtnCategoria = new System.Windows.Forms.Button();
@@ -93,7 +93,7 @@
             this.TabBuscar.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.tabMantenimiento.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -138,6 +138,7 @@
             this.Nuevo.Name = "Nuevo";
             this.Nuevo.Size = new System.Drawing.Size(68, 68);
             this.Nuevo.Text = "Nuevo";
+            this.Nuevo.Click += new System.EventHandler(this.Nuevo_Click);
             // 
             // toolStripSeparator6
             // 
@@ -263,7 +264,7 @@
             // TabArticulo
             // 
             this.TabArticulo.Controls.Add(this.TabBuscar);
-            this.TabArticulo.Controls.Add(this.tabPage2);
+            this.TabArticulo.Controls.Add(this.tabMantenimiento);
             this.TabArticulo.Location = new System.Drawing.Point(12, 74);
             this.TabArticulo.Name = "TabArticulo";
             this.TabArticulo.SelectedIndex = 0;
@@ -330,11 +331,11 @@
             // 
             this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(231, 53);
+            this.textBox1.Location = new System.Drawing.Point(235, 37);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 27);
+            this.textBox1.Size = new System.Drawing.Size(168, 38);
             this.textBox1.TabIndex = 121;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -343,7 +344,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.label1.Location = new System.Drawing.Point(408, 53);
+            this.label1.Location = new System.Drawing.Point(408, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(213, 25);
             this.label1.TabIndex = 120;
@@ -353,11 +354,11 @@
             // 
             this.txtSearchCategoria.BackColor = System.Drawing.Color.White;
             this.txtSearchCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchCategoria.Location = new System.Drawing.Point(626, 53);
+            this.txtSearchCategoria.Location = new System.Drawing.Point(626, 37);
             this.txtSearchCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCategoria.Multiline = true;
             this.txtSearchCategoria.Name = "txtSearchCategoria";
-            this.txtSearchCategoria.Size = new System.Drawing.Size(182, 27);
+            this.txtSearchCategoria.Size = new System.Drawing.Size(182, 38);
             this.txtSearchCategoria.TabIndex = 119;
             this.txtSearchCategoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -366,7 +367,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.label4.Location = new System.Drawing.Point(33, 50);
+            this.label4.Location = new System.Drawing.Point(28, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(202, 25);
             this.label4.TabIndex = 118;
@@ -382,22 +383,23 @@
             this.GridViewArticulos.Location = new System.Drawing.Point(42, 108);
             this.GridViewArticulos.Name = "GridViewArticulos";
             this.GridViewArticulos.ReadOnly = true;
+            this.GridViewArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridViewArticulos.Size = new System.Drawing.Size(766, 191);
             this.GridViewArticulos.TabIndex = 117;
             // 
-            // tabPage2
+            // tabMantenimiento
             // 
-            this.tabPage2.Controls.Add(this.panel8);
-            this.tabPage2.Controls.Add(this.panel3);
-            this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1150, 488);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Mantenimineto Articulos";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabMantenimiento.Controls.Add(this.panel8);
+            this.tabMantenimiento.Controls.Add(this.panel3);
+            this.tabMantenimiento.Controls.Add(this.panel2);
+            this.tabMantenimiento.Controls.Add(this.panel1);
+            this.tabMantenimiento.Location = new System.Drawing.Point(4, 22);
+            this.tabMantenimiento.Name = "tabMantenimiento";
+            this.tabMantenimiento.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMantenimiento.Size = new System.Drawing.Size(1150, 488);
+            this.tabMantenimiento.TabIndex = 1;
+            this.tabMantenimiento.Text = "Mantenimineto Articulos";
+            this.tabMantenimiento.UseVisualStyleBackColor = true;
             // 
             // panel8
             // 
@@ -737,8 +739,8 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabMantenimiento.ResumeLayout(false);
+            this.tabMantenimiento.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -773,7 +775,7 @@
         internal System.Windows.Forms.ToolStripButton Salir;
         private System.Windows.Forms.TabControl TabArticulo;
         private System.Windows.Forms.TabPage TabBuscar;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabMantenimiento;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;

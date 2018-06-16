@@ -45,7 +45,8 @@ namespace SistemaFacturacion.Formularios
 
             if (resul == System.Windows.Forms.DialogResult.OK)
                 {
-                this.Close();
+                   this.Close();
+                Application.Exit();
                 }
             }
 

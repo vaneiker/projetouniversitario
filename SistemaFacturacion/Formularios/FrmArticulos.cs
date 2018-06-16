@@ -124,13 +124,18 @@ namespace SistemaFacturacion.Formularios
 
         private void BuscarD_Click(object sender, EventArgs e)
             {
-
+            TabArticulo.SelectedTab = TabArticulo.TabPages[0];
             }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             CodigoBarraGenerador c = new CodigoBarraGenerador();
             c.ShowDialog();
+        }
+
+        private void Nuevo_Click(object sender, EventArgs e)
+        {
+            TabArticulo.SelectedTab = TabArticulo.TabPages["tabMantenimiento"];
         }
     }
     }
