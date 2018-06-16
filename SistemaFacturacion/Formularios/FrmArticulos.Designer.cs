@@ -32,7 +32,7 @@
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.Nuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLimpiar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.BuscarD = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -42,7 +42,10 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.TabArticulo = new System.Windows.Forms.TabControl();
             this.TabBuscar = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -85,9 +88,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtVent = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStrip1.SuspendLayout();
             this.TabArticulo.SuspendLayout();
             this.TabBuscar.SuspendLayout();
@@ -109,7 +109,7 @@
             this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Nuevo,
             this.toolStripSeparator6,
-            this.toolStripButton1,
+            this.toolStripLimpiar,
             this.toolStripSeparator5,
             this.BuscarD,
             this.toolStripSeparator1,
@@ -144,17 +144,17 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 71);
             // 
-            // toolStripButton1
+            // toolStripLimpiar
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Limpiar";
-            this.toolStripButton1.ToolTipText = "Eliminar";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolStripLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLimpiar.Image")));
+            this.toolStripLimpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripLimpiar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLimpiar.Name = "toolStripLimpiar";
+            this.toolStripLimpiar.Size = new System.Drawing.Size(68, 68);
+            this.toolStripLimpiar.Text = "Limpiar";
+            this.toolStripLimpiar.ToolTipText = "Eliminar";
+            this.toolStripLimpiar.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator5
             // 
@@ -227,6 +227,23 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 71);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
+            this.toolStripButton2.Text = "Limpiar";
+            this.toolStripButton2.ToolTipText = "Eliminar";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 71);
+            // 
             // Salir
             // 
             this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -237,6 +254,11 @@
             this.Salir.Size = new System.Drawing.Size(52, 68);
             this.Salir.Text = "Salir";
             this.Salir.ToolTipText = "Salir";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 71);
             // 
             // TabArticulo
             // 
@@ -693,28 +715,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton2.Text = "Limpiar";
-            this.toolStripButton2.ToolTipText = "Eliminar";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 71);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 71);
-            // 
             // FrmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,8 +722,12 @@
             this.ClientSize = new System.Drawing.Size(1182, 590);
             this.Controls.Add(this.TabArticulo);
             this.Controls.Add(this.ToolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmArticulos";
-            this.Text = "FrmArticulos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Articulos";
             this.Load += new System.EventHandler(this.FrmArticulos_Load);
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
@@ -756,7 +760,7 @@
         internal System.Windows.Forms.ToolStrip ToolStrip1;
         internal System.Windows.Forms.ToolStripButton Nuevo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        internal System.Windows.Forms.ToolStripButton toolStripButton1;
+        internal System.Windows.Forms.ToolStripButton toolStripLimpiar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         internal System.Windows.Forms.ToolStripButton BuscarD;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
