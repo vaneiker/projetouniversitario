@@ -10,7 +10,7 @@ namespace CapaEntidad.DbVentas
     {
         public string nombre               {get; set;}    
         public int idcategoria             {get;set;}      
-        public int Codigo                  {get;set;}      
+        public string Codigo                  {get;set;}      
         public string Imag_Url             {get;set;}   
         public string descripcion          {get;set;}   
         public decimal? precioVenta        {get;set;} 
@@ -23,7 +23,7 @@ namespace CapaEntidad.DbVentas
         public string tipo_comprobante     {get;set;}   
         public decimal? igv                 {get;set;}  
         public string UsuarioAdiciona      {get;set;}   
-        public int stock_inicial           {get;set;}      
+        public decimal? stock_inicial           {get;set;}      
         public int stock_actual            {get;set;}       
         public DateTime? fecha_produccion  {get;set;} 
         public DateTime? fecha_vencimiento {get;set;} 

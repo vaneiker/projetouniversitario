@@ -22,5 +22,10 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             {
             return _cbo.GetCategotia();
             }
+  public DataTable TipoDeFactura()
+            {
+            return _cbo.TipoDeFactura();
+            }
+
         }
     }

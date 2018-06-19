@@ -57,10 +57,10 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
 
 
-       public void IngresdoDeDatos(IngresoMasterEntity ingreso)
-            {
-            _metodos.IngresdoDeDatos(ingreso);
-            }
+       //public void IngresdoDeDatos(IngresoMasterEntity ingreso)
+       //     {
+       //     _metodos.IngresdoDeDatos(ingreso);
+       //     }
 
         public DataTable ListaArticulos()
             {

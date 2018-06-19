@@ -158,7 +158,7 @@
             this.GridViewCategoria.AllowUserToOrderColumns = true;
             this.GridViewCategoria.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.GridViewCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewCategoria.Location = new System.Drawing.Point(225, 129);
+            this.GridViewCategoria.Location = new System.Drawing.Point(188, 129);
             this.GridViewCategoria.Name = "GridViewCategoria";
             this.GridViewCategoria.ReadOnly = true;
             this.GridViewCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

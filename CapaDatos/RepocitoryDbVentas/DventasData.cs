@@ -474,8 +474,10 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region ingreso Datos
-        public void IngresdoDeDatos(IngresoMasterEntity ingreso)
+        public int IngresdoDeDatos(ArticulosCompuestoEntity ingreso)
             {
+
+            int Estado;
             try
                 {
                 using (dbventasEntity context = new dbventasEntity())
@@ -486,38 +488,39 @@ namespace CapaDatos.RepocitoryDbVentas
                     using (connection)
                         {
                         connection.Open();
-                        string Qry = "SP_SET_INSERT_UPDATE_INGRESO";
+                        string Qry = "SP_SET_INSERTAR_ARTICULOS_INGRESO";
                         SqlCommand cmd = new SqlCommand(Qry, connection);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@idingreso", ingreso.idingreso));
-                        cmd.Parameters.Add(new SqlParameter("@idproveedor", ingreso.idproveedor));
-                        cmd.Parameters.Add(new SqlParameter("@fecha", ingreso.fecha));
-                        cmd.Parameters.Add(new SqlParameter("@tipo_comprobante", ingreso.tipo_comprobante));
-                        cmd.Parameters.Add(new SqlParameter("@serie", ingreso.serie));
-                        cmd.Parameters.Add(new SqlParameter("@correlativo", ingreso.correlativo));
-                        cmd.Parameters.Add(new SqlParameter("@Itbis", ingreso.Itbis));
-                        cmd.Parameters.Add(new SqlParameter("@FechaAdiciona", ingreso.FechaAdiciona));
-                        cmd.Parameters.Add(new SqlParameter("@FechaModifica", ingreso.FechaModifica));
-                        cmd.Parameters.Add(new SqlParameter("@UsuarioAdiciona", ingreso.UsuarioAdiciona));
-                        cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", ingreso.UsuarioModifica));
-                        cmd.Parameters.Add(new SqlParameter("@idarticulo", ingreso.idarticulo));
-                        cmd.Parameters.Add(new SqlParameter("@precio_compra", ingreso.precio_compra));
-                        cmd.Parameters.Add(new SqlParameter("@precio_venta", ingreso.precio_venta));
-                        cmd.Parameters.Add(new SqlParameter("@stock_inicial", ingreso.stock_inicial));
-                        cmd.Parameters.Add(new SqlParameter("@stock_actual", ingreso.stock_actual));
-                        cmd.Parameters.Add(new SqlParameter("@fecha_produccion", ingreso.fecha_produccion));
-                        cmd.Parameters.Add(new SqlParameter("@fecha_vencimiento", ingreso.fecha_vencimiento));
+                        cmd.Parameters.Add(new SqlParameter("@nombre"           ,ingreso.nombre));
+                        cmd.Parameters.Add(new SqlParameter("@idcategoria"      ,ingreso.idcategoria));
+                        cmd.Parameters.Add(new SqlParameter("@Codigo"           ,ingreso.Codigo));
+                        cmd.Parameters.Add(new SqlParameter("@Imag_Url"         ,ingreso.Imag_Url));
+                        cmd.Parameters.Add(new SqlParameter("@descripcion"      ,ingreso.descripcion));
+                        cmd.Parameters.Add(new SqlParameter("@precioVenta"      ,ingreso.precioVenta));
+                        cmd.Parameters.Add(new SqlParameter("@precioCompra"     ,ingreso.precioCompra));
+                        cmd.Parameters.Add(new SqlParameter("@cantidad"         ,ingreso.cantidad));
+                        cmd.Parameters.Add(new SqlParameter("@estado"           ,ingreso.estado));
+                        cmd.Parameters.Add(new SqlParameter("@idProveedor"      ,ingreso.idProveedor));
+                        cmd.Parameters.Add(new SqlParameter("@idingreso"        ,ingreso.idingreso));
+                        cmd.Parameters.Add(new SqlParameter("@fecha"            ,ingreso.fecha));
+                        cmd.Parameters.Add(new SqlParameter("@tipo_comprobante" ,ingreso.tipo_comprobante));
+                        cmd.Parameters.Add(new SqlParameter("@igv"              ,ingreso.igv));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioAdiciona"  ,ingreso.UsuarioAdiciona));
+                        cmd.Parameters.Add(new SqlParameter("@stock_inicial"    ,ingreso.stock_inicial));
+                        cmd.Parameters.Add(new SqlParameter("@fecha_produccion" ,ingreso.fecha_produccion));
+                        cmd.Parameters.Add(new SqlParameter("@fecha_vencimiento",ingreso.fecha_vencimiento));
 
-
-                        cmd.ExecuteNonQuery();
-
+                       cmd.ExecuteNonQuery();
+                      
+                        return   Estado = 1;
                         }
                     }
 
                 }
-            catch (Exception ex)
+               catch (Exception ex)
                 {
-
+               
+                return  Estado = 0;
                 throw ex;
                 }
 

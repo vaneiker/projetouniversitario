@@ -29,7 +29,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     //Insert the Default Item to DataTable.
                     DataRow row = dt.NewRow();
                     row[0] = 0;
-                    row[1] = "Please select";
+                    row[1] = "---Seleccione---";
                     dt.Rows.InsertAt(row, 0);
 
                     return dt;
@@ -55,10 +55,37 @@ namespace CapaDatos.RepocitoryDbVentas
                 //Insert the Default Item to DataTable.
                 DataRow row = dt.NewRow();
                 row[0] = 0;
-                row[1] = "Please select";
+                row[1] = "---Seleccione---";
                 dt.Rows.InsertAt(row, 0);
 
                 return dt;
+
+
+                }
+            }
+        }
+
+
+        public DataTable TipoDeFactura()
+        {
+            using (dbventasEntity context = new dbventasEntity())
+            {
+                var connection = context.Database.Connection as SqlConnection;
+                string Qry = "SP_TIPO_FACTURA";
+                using (SqlDataAdapter sda = new SqlDataAdapter(Qry, connection))
+
+                {
+                    //Fill the DataTable with records from Table.
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+
+                    //Insert the Default Item to DataTable.
+                    DataRow row = dt.NewRow();
+                    row[0] = 0;
+                    row[1] = "---Seleccione---";
+                    dt.Rows.InsertAt(row, 0);
+
+                    return dt;
 
 
                 }
