@@ -94,6 +94,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alertas\AlertError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alertas\AlertError.Designer.cs">
+      <DependentUpon>AlertError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alertas\AlertSuccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alertas\AlertSuccess.Designer.cs">
+      <DependentUpon>AlertSuccess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alertas\Alerwarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alertas\Alerwarning.Designer.cs">
+      <DependentUpon>Alerwarning.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="AppTools\Barcode.cs" />
     <Compile Include="AppTools\DocumentValidator.cs" />
@@ -148,6 +166,12 @@
     <Compile Include="Formularios\FrmProveedor.Designer.cs">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FrmPrueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmPrueba.Designer.cs">
+      <DependentUpon>FrmPrueba.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmTrabajador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +205,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Seccion.cs" />
+    <EmbeddedResource Include="Alertas\AlertError.resx">
+      <DependentUpon>AlertError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alertas\AlertSuccess.resx">
+      <DependentUpon>AlertSuccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alertas\Alerwarning.resx">
+      <DependentUpon>Alerwarning.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\CodigoBarraGenerador.resx">
       <DependentUpon>CodigoBarraGenerador.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +236,12 @@
     <EmbeddedResource Include="Formularios\FrmProveedor.resx">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmPrueba.resx">
+      <DependentUpon>FrmPrueba.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmVentas.resx">
+      <DependentUpon>FrmVentas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -223,7 +262,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BarcodeReport.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

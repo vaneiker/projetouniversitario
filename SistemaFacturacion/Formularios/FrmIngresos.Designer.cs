@@ -43,45 +43,64 @@
             this.Limpia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtCbuscAr = new System.Windows.Forms.TextBox();
-            this.btnArticulos = new System.Windows.Forms.Button();
-            this.dataGridArticulos = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridProveedor = new System.Windows.Forms.DataGridView();
-            this.txtBucarProveedor = new System.Windows.Forms.TextBox();
-            this.btnProveedor = new System.Windows.Forms.Button();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtDes = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboProv = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.codBarra = new System.Windows.Forms.MaskedTextBox();
+            this.dateFechaVencimiento = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
+            this.dateFechaElavoracion = new System.Windows.Forms.DateTimePicker();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.RadioButtRnc = new System.Windows.Forms.RadioButton();
+            this.radioButCedula = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboCat = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtprcioventa = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtStok = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtPrcioVenta = new System.Windows.Forms.TextBox();
+            this.txtItbis = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtComp = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtCan = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.MascKcodigoBarra = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtStokInicial = new System.Windows.Forms.TextBox();
-            this.txtStokActual = new System.Windows.Forms.TextBox();
-            this.txtcantidad = new System.Windows.Forms.TextBox();
-            this.cboTipDoc = new System.Windows.Forms.ComboBox();
-            this.dateExpirac = new System.Windows.Forms.DateTimePicker();
-            this.dateProducion = new System.Windows.Forms.DateTimePicker();
-            this.txtpreciocomp = new System.Windows.Forms.TextBox();
-            this.txtitbis = new System.Windows.Forms.TextBox();
-            this.txtarticulo = new System.Windows.Forms.TextBox();
-            this.txtproceedor = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnRuta = new System.Windows.Forms.Button();
+            this.txtruta = new System.Windows.Forms.TextBox();
+            this.pinture = new System.Windows.Forms.PictureBox();
             this.ToolStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridArticulos)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedor)).BeginInit();
+            this.panel6.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pinture)).BeginInit();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -99,10 +118,11 @@
             this.toolStripSeparator3,
             this.Limpia,
             this.toolStripSeparator2,
-            this.Salir});
+            this.Salir,
+            this.toolStripButton2});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(1113, 71);
+            this.ToolStrip1.Size = new System.Drawing.Size(1226, 71);
             this.ToolStrip1.TabIndex = 9;
             this.ToolStrip1.Text = "ToolStrip1";
             // 
@@ -163,6 +183,7 @@
             this.Aceptar.Size = new System.Drawing.Size(52, 68);
             this.Aceptar.Text = "Aceptar";
             this.Aceptar.ToolTipText = "Guardar, Modificar";
+            this.Aceptar.Click += new System.EventHandler(this.Aceptar_Click_1);
             // 
             // toolStripSeparator4
             // 
@@ -212,361 +233,539 @@
             this.Salir.Text = "Salir";
             this.Salir.ToolTipText = "Salir";
             // 
-            // groupBox1
+            // toolStripButton2
             // 
-            this.groupBox1.Controls.Add(this.txtCbuscAr);
-            this.groupBox1.Controls.Add(this.btnArticulos);
-            this.groupBox1.Controls.Add(this.dataGridArticulos);
-            this.groupBox1.Location = new System.Drawing.Point(13, 74);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1070, 132);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Articulos";
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
+            this.toolStripButton2.Text = "Limpiar";
+            this.toolStripButton2.ToolTipText = "Eliminar";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
-            // txtCbuscAr
+            // panel6
             // 
-            this.txtCbuscAr.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCbuscAr.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtCbuscAr.Location = new System.Drawing.Point(6, 16);
-            this.txtCbuscAr.Multiline = true;
-            this.txtCbuscAr.Name = "txtCbuscAr";
-            this.txtCbuscAr.Size = new System.Drawing.Size(894, 46);
-            this.txtCbuscAr.TabIndex = 7;
-            this.txtCbuscAr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel6.Controls.Add(this.panel1);
+            this.panel6.Location = new System.Drawing.Point(0, 74);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1226, 63);
+            this.panel6.TabIndex = 122;
             // 
-            // btnArticulos
+            // panel1
             // 
-            this.btnArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.btnArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnArticulos.ForeColor = System.Drawing.Color.White;
-            this.btnArticulos.Location = new System.Drawing.Point(906, 16);
-            this.btnArticulos.Name = "btnArticulos";
-            this.btnArticulos.Size = new System.Drawing.Size(151, 46);
-            this.btnArticulos.TabIndex = 6;
-            this.btnArticulos.Text = "Buscar";
-            this.btnArticulos.UseVisualStyleBackColor = false;
-            this.btnArticulos.Click += new System.EventHandler(this.btnArticulos_Click_1);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel1.Location = new System.Drawing.Point(1110, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(116, 417);
+            this.panel1.TabIndex = 124;
             // 
-            // dataGridArticulos
+            // panel4
             // 
-            this.dataGridArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridArticulos.Location = new System.Drawing.Point(6, 68);
-            this.dataGridArticulos.Name = "dataGridArticulos";
-            this.dataGridArticulos.Size = new System.Drawing.Size(1051, 64);
-            this.dataGridArticulos.TabIndex = 5;
-            this.dataGridArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridArticulos_CellContentClick);
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.panel3);
+            this.panel4.Location = new System.Drawing.Point(0, 137);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(116, 615);
+            this.panel4.TabIndex = 123;
             // 
-            // groupBox2
+            // panel3
             // 
-            this.groupBox2.Controls.Add(this.dataGridProveedor);
-            this.groupBox2.Controls.Add(this.txtBucarProveedor);
-            this.groupBox2.Controls.Add(this.btnProveedor);
-            this.groupBox2.Location = new System.Drawing.Point(13, 212);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1070, 171);
-            this.groupBox2.TabIndex = 11;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Articulos";
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Location = new System.Drawing.Point(119, 429);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1226, 63);
+            this.panel3.TabIndex = 188;
             // 
-            // dataGridProveedor
+            // panel5
             // 
-            this.dataGridProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridProveedor.Location = new System.Drawing.Point(6, 72);
-            this.dataGridProveedor.Name = "dataGridProveedor";
-            this.dataGridProveedor.Size = new System.Drawing.Size(1058, 93);
-            this.dataGridProveedor.TabIndex = 5;
-            this.dataGridProveedor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProveedor_CellContentClick);
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel5.Location = new System.Drawing.Point(1110, 63);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(116, 417);
+            this.panel5.TabIndex = 124;
             // 
-            // txtBucarProveedor
+            // panel2
             // 
-            this.txtBucarProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBucarProveedor.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtBucarProveedor.Location = new System.Drawing.Point(6, 19);
-            this.txtBucarProveedor.Multiline = true;
-            this.txtBucarProveedor.Name = "txtBucarProveedor";
-            this.txtBucarProveedor.Size = new System.Drawing.Size(894, 46);
-            this.txtBucarProveedor.TabIndex = 4;
-            this.txtBucarProveedor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnProveedor
-            // 
-            this.btnProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.btnProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnProveedor.ForeColor = System.Drawing.Color.White;
-            this.btnProveedor.Location = new System.Drawing.Point(906, 19);
-            this.btnProveedor.Name = "btnProveedor";
-            this.btnProveedor.Size = new System.Drawing.Size(158, 46);
-            this.btnProveedor.TabIndex = 3;
-            this.btnProveedor.Text = "Buscar";
-            this.btnProveedor.UseVisualStyleBackColor = false;
-            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel2.Location = new System.Drawing.Point(1109, 138);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(116, 614);
+            this.panel2.TabIndex = 124;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.codBarra);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.txtprcioventa);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.txtDes);
+            this.groupBox3.Controls.Add(this.txtNom);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.txtStokInicial);
-            this.groupBox3.Controls.Add(this.txtStokActual);
-            this.groupBox3.Controls.Add(this.txtcantidad);
-            this.groupBox3.Controls.Add(this.cboTipDoc);
-            this.groupBox3.Controls.Add(this.dateExpirac);
-            this.groupBox3.Controls.Add(this.dateProducion);
-            this.groupBox3.Controls.Add(this.txtpreciocomp);
-            this.groupBox3.Controls.Add(this.txtitbis);
-            this.groupBox3.Controls.Add(this.txtarticulo);
-            this.groupBox3.Controls.Add(this.txtproceedor);
-            this.groupBox3.Location = new System.Drawing.Point(13, 389);
+            this.groupBox3.Location = new System.Drawing.Point(120, 322);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1070, 176);
-            this.groupBox3.TabIndex = 12;
+            this.groupBox3.Size = new System.Drawing.Size(567, 238);
+            this.groupBox3.TabIndex = 186;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Articulos";
             // 
-            // label11
+            // txtDes
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(71, 139);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(68, 13);
-            this.label11.TabIndex = 31;
-            this.label11.Text = "Stock Actual";
+            this.txtDes.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtDes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtDes.Location = new System.Drawing.Point(218, 75);
+            this.txtDes.Multiline = true;
+            this.txtDes.Name = "txtDes";
+            this.txtDes.Size = new System.Drawing.Size(331, 80);
+            this.txtDes.TabIndex = 162;
+            this.txtDes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // codBarra
+            // txtNom
             // 
-            this.codBarra.Location = new System.Drawing.Point(829, 100);
-            this.codBarra.Mask = "0-000000-000000";
-            this.codBarra.Name = "codBarra";
-            this.codBarra.Size = new System.Drawing.Size(200, 20);
-            this.codBarra.TabIndex = 30;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(370, 139);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 13);
-            this.label12.TabIndex = 29;
-            this.label12.Text = "Stock Inicial";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(370, 97);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 13);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Precio Ventas";
-            // 
-            // txtprcioventa
-            // 
-            this.txtprcioventa.Enabled = false;
-            this.txtprcioventa.Location = new System.Drawing.Point(452, 97);
-            this.txtprcioventa.Multiline = true;
-            this.txtprcioventa.Name = "txtprcioventa";
-            this.txtprcioventa.Size = new System.Drawing.Size(195, 21);
-            this.txtprcioventa.TabIndex = 26;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(66, 97);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 13);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Precio Compra";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(394, 62);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 13);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "Itbis";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(82, 62);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 13);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "Cantidad";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(394, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Articulo";
+            this.txtNom.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtNom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtNom.Location = new System.Drawing.Point(218, 22);
+            this.txtNom.Multiline = true;
+            this.txtNom.Name = "txtNom";
+            this.txtNom.Size = new System.Drawing.Size(331, 36);
+            this.txtNom.TabIndex = 161;
+            this.txtNom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(673, 50);
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label5.Location = new System.Drawing.Point(79, 77);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Fecha de Expiración Producto";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(673, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Fecha Produción  Producto";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(722, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Tipo de Documento";
+            this.label5.Size = new System.Drawing.Size(133, 25);
+            this.label5.TabIndex = 160;
+            this.label5.Text = "Descripción";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(741, 100);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label2.Location = new System.Drawing.Point(11, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Codigo Barra";
+            this.label2.Size = new System.Drawing.Size(201, 25);
+            this.label2.TabIndex = 159;
+            this.label2.Text = "Nombre Articulos:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cboProv);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.dateFechaVencimiento);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.dateFechaElavoracion);
+            this.groupBox2.Controls.Add(this.groupBox5);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.cboCat);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Location = new System.Drawing.Point(120, 153);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(982, 142);
+            this.groupBox2.TabIndex = 185;
+            this.groupBox2.TabStop = false;
+            // 
+            // cboProv
+            // 
+            this.cboProv.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.cboProv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.cboProv.FormattingEnabled = true;
+            this.cboProv.Location = new System.Drawing.Point(564, 53);
+            this.cboProv.Name = "cboProv";
+            this.cboProv.Size = new System.Drawing.Size(412, 33);
+            this.cboProv.TabIndex = 188;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label11.Location = new System.Drawing.Point(564, 13);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(208, 25);
+            this.label11.TabIndex = 187;
+            this.label11.Text = "Fecha Vencimiento";
+            // 
+            // dateFechaVencimiento
+            // 
+            this.dateFechaVencimiento.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.dateFechaVencimiento.Location = new System.Drawing.Point(776, 16);
+            this.dateFechaVencimiento.Name = "dateFechaVencimiento";
+            this.dateFechaVencimiento.Size = new System.Drawing.Size(200, 20);
+            this.dateFechaVencimiento.TabIndex = 186;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label12.Location = new System.Drawing.Point(5, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(195, 25);
+            this.label12.TabIndex = 185;
+            this.label12.Text = "Fecha Elavoracón";
+            // 
+            // dateFechaElavoracion
+            // 
+            this.dateFechaElavoracion.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.dateFechaElavoracion.Location = new System.Drawing.Point(235, 19);
+            this.dateFechaElavoracion.Name = "dateFechaElavoracion";
+            this.dateFechaElavoracion.Size = new System.Drawing.Size(200, 20);
+            this.dateFechaElavoracion.TabIndex = 184;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.RadioButtRnc);
+            this.groupBox5.Controls.Add(this.radioButCedula);
+            this.groupBox5.Location = new System.Drawing.Point(239, 51);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(192, 43);
+            this.groupBox5.TabIndex = 176;
+            this.groupBox5.TabStop = false;
+            // 
+            // RadioButtRnc
+            // 
+            this.RadioButtRnc.AutoSize = true;
+            this.RadioButtRnc.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.RadioButtRnc.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.RadioButtRnc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.RadioButtRnc.Location = new System.Drawing.Point(7, 10);
+            this.RadioButtRnc.Name = "RadioButtRnc";
+            this.RadioButtRnc.Size = new System.Drawing.Size(75, 29);
+            this.RadioButtRnc.TabIndex = 91;
+            this.RadioButtRnc.TabStop = true;
+            this.RadioButtRnc.Text = "RNC";
+            this.RadioButtRnc.UseVisualStyleBackColor = false;
+            this.RadioButtRnc.CheckedChanged += new System.EventHandler(this.RadioButtRnc_CheckedChanged);
+            this.RadioButtRnc.Click += new System.EventHandler(this.RadioButtRnc_Click);
+            // 
+            // radioButCedula
+            // 
+            this.radioButCedula.AutoSize = true;
+            this.radioButCedula.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.radioButCedula.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.radioButCedula.Location = new System.Drawing.Point(88, 10);
+            this.radioButCedula.Name = "radioButCedula";
+            this.radioButCedula.Size = new System.Drawing.Size(101, 29);
+            this.radioButCedula.TabIndex = 93;
+            this.radioButCedula.TabStop = true;
+            this.radioButCedula.Text = "Cedula";
+            this.radioButCedula.UseVisualStyleBackColor = true;
+            this.radioButCedula.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 22);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label1.Location = new System.Drawing.Point(8, 61);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Proveedor";
+            this.label1.Size = new System.Drawing.Size(225, 25);
+            this.label1.TabIndex = 175;
+            this.label1.Text = "Tipo de Documentos";
             // 
-            // txtStokInicial
+            // label6
             // 
-            this.txtStokInicial.Enabled = false;
-            this.txtStokInicial.Location = new System.Drawing.Point(452, 131);
-            this.txtStokInicial.Multiline = true;
-            this.txtStokInicial.Name = "txtStokInicial";
-            this.txtStokInicial.Size = new System.Drawing.Size(195, 21);
-            this.txtStokInicial.TabIndex = 16;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label6.Location = new System.Drawing.Point(444, 100);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(114, 25);
+            this.label6.TabIndex = 172;
+            this.label6.Text = "Categoria";
             // 
-            // txtStokActual
+            // cboCat
             // 
-            this.txtStokActual.Location = new System.Drawing.Point(158, 136);
-            this.txtStokActual.Multiline = true;
-            this.txtStokActual.Name = "txtStokActual";
-            this.txtStokActual.Size = new System.Drawing.Size(195, 21);
-            this.txtStokActual.TabIndex = 15;
+            this.cboCat.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.cboCat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.cboCat.FormattingEnabled = true;
+            this.cboCat.Location = new System.Drawing.Point(564, 99);
+            this.cboCat.Name = "cboCat";
+            this.cboCat.Size = new System.Drawing.Size(412, 33);
+            this.cboCat.TabIndex = 171;
             // 
-            // txtcantidad
+            // label10
             // 
-            this.txtcantidad.Location = new System.Drawing.Point(158, 59);
-            this.txtcantidad.Multiline = true;
-            this.txtcantidad.Name = "txtcantidad";
-            this.txtcantidad.Size = new System.Drawing.Size(195, 21);
-            this.txtcantidad.TabIndex = 14;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label10.Location = new System.Drawing.Point(439, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(119, 25);
+            this.label10.TabIndex = 174;
+            this.label10.Text = "Proveedor";
             // 
-            // cboTipDoc
+            // groupBox1
             // 
-            this.cboTipDoc.FormattingEnabled = true;
-            this.cboTipDoc.Items.AddRange(new object[] {
-            "Cedula",
-            "Rnc"});
-            this.cboTipDoc.Location = new System.Drawing.Point(829, 70);
-            this.cboTipDoc.Name = "cboTipDoc";
-            this.cboTipDoc.Size = new System.Drawing.Size(200, 21);
-            this.cboTipDoc.TabIndex = 12;
+            this.groupBox1.Controls.Add(this.txtStok);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.txtPrcioVenta);
+            this.groupBox1.Controls.Add(this.txtItbis);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.txtComp);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtCan);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Location = new System.Drawing.Point(692, 322);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(412, 238);
+            this.groupBox1.TabIndex = 184;
+            this.groupBox1.TabStop = false;
             // 
-            // dateExpirac
+            // txtStok
             // 
-            this.dateExpirac.Location = new System.Drawing.Point(829, 44);
-            this.dateExpirac.Name = "dateExpirac";
-            this.dateExpirac.Size = new System.Drawing.Size(200, 20);
-            this.dateExpirac.TabIndex = 11;
+            this.txtStok.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtStok.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtStok.Location = new System.Drawing.Point(227, 131);
+            this.txtStok.Multiline = true;
+            this.txtStok.Name = "txtStok";
+            this.txtStok.Size = new System.Drawing.Size(127, 39);
+            this.txtStok.TabIndex = 184;
+            this.txtStok.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dateProducion
+            // label13
             // 
-            this.dateProducion.Location = new System.Drawing.Point(829, 18);
-            this.dateProducion.Name = "dateProducion";
-            this.dateProducion.Size = new System.Drawing.Size(200, 20);
-            this.dateProducion.TabIndex = 10;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label13.Location = new System.Drawing.Point(14, 130);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(83, 25);
+            this.label13.TabIndex = 183;
+            this.label13.Text = "Stock  ";
             // 
-            // txtpreciocomp
+            // txtPrcioVenta
             // 
-            this.txtpreciocomp.Enabled = false;
-            this.txtpreciocomp.Location = new System.Drawing.Point(158, 94);
-            this.txtpreciocomp.Multiline = true;
-            this.txtpreciocomp.Name = "txtpreciocomp";
-            this.txtpreciocomp.Size = new System.Drawing.Size(195, 21);
-            this.txtpreciocomp.TabIndex = 9;
+            this.txtPrcioVenta.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtPrcioVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtPrcioVenta.Location = new System.Drawing.Point(227, 179);
+            this.txtPrcioVenta.Multiline = true;
+            this.txtPrcioVenta.Name = "txtPrcioVenta";
+            this.txtPrcioVenta.Size = new System.Drawing.Size(127, 39);
+            this.txtPrcioVenta.TabIndex = 182;
+            this.txtPrcioVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtitbis
+            // txtItbis
             // 
-            this.txtitbis.Location = new System.Drawing.Point(452, 62);
-            this.txtitbis.Multiline = true;
-            this.txtitbis.Name = "txtitbis";
-            this.txtitbis.Size = new System.Drawing.Size(195, 21);
-            this.txtitbis.TabIndex = 8;
+            this.txtItbis.Enabled = false;
+            this.txtItbis.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtItbis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtItbis.Location = new System.Drawing.Point(227, 88);
+            this.txtItbis.Multiline = true;
+            this.txtItbis.Name = "txtItbis";
+            this.txtItbis.Size = new System.Drawing.Size(127, 33);
+            this.txtItbis.TabIndex = 181;
+            this.txtItbis.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtarticulo
+            // label4
             // 
-            this.txtarticulo.Enabled = false;
-            this.txtarticulo.Location = new System.Drawing.Point(452, 22);
-            this.txtarticulo.Multiline = true;
-            this.txtarticulo.Name = "txtarticulo";
-            this.txtarticulo.Size = new System.Drawing.Size(195, 21);
-            this.txtarticulo.TabIndex = 7;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label4.Location = new System.Drawing.Point(18, 86);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 25);
+            this.label4.TabIndex = 180;
+            this.label4.Text = "ITBIS";
             // 
-            // txtproceedor
+            // txtComp
             // 
-            this.txtproceedor.Enabled = false;
-            this.txtproceedor.Location = new System.Drawing.Point(158, 19);
-            this.txtproceedor.Multiline = true;
-            this.txtproceedor.Name = "txtproceedor";
-            this.txtproceedor.Size = new System.Drawing.Size(195, 21);
-            this.txtproceedor.TabIndex = 6;
+            this.txtComp.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtComp.Location = new System.Drawing.Point(227, 15);
+            this.txtComp.Multiline = true;
+            this.txtComp.Name = "txtComp";
+            this.txtComp.Size = new System.Drawing.Size(127, 34);
+            this.txtComp.TabIndex = 168;
+            this.txtComp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label9.Location = new System.Drawing.Point(18, 182);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(194, 25);
+            this.label9.TabIndex = 179;
+            this.label9.Text = "$ Precio de Venta";
+            // 
+            // txtCan
+            // 
+            this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCan.Location = new System.Drawing.Point(227, 52);
+            this.txtCan.Multiline = true;
+            this.txtCan.Name = "txtCan";
+            this.txtCan.Size = new System.Drawing.Size(127, 31);
+            this.txtCan.TabIndex = 164;
+            this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label8.Location = new System.Drawing.Point(6, 15);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(215, 25);
+            this.label8.TabIndex = 178;
+            this.label8.Text = "$ Precio de Compra";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label7.Location = new System.Drawing.Point(14, 50);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(207, 25);
+            this.label7.TabIndex = 163;
+            this.label7.Text = "Catidad Comprada";
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel7.Controls.Add(this.panel8);
+            this.panel7.Location = new System.Drawing.Point(119, 724);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(985, 23);
+            this.panel7.TabIndex = 188;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel8.Location = new System.Drawing.Point(1110, 63);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(116, 417);
+            this.panel8.TabIndex = 124;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.pictureBox2);
+            this.groupBox4.Controls.Add(this.MascKcodigoBarra);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.btnRuta);
+            this.groupBox4.Controls.Add(this.txtruta);
+            this.groupBox4.Controls.Add(this.pinture);
+            this.groupBox4.Location = new System.Drawing.Point(120, 566);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(985, 160);
+            this.groupBox4.TabIndex = 189;
+            this.groupBox4.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(696, 26);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(283, 118);
+            this.pictureBox2.TabIndex = 178;
+            this.pictureBox2.TabStop = false;
+            // 
+            // MascKcodigoBarra
+            // 
+            this.MascKcodigoBarra.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.MascKcodigoBarra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.MascKcodigoBarra.Location = new System.Drawing.Point(156, 28);
+            this.MascKcodigoBarra.Mask = "0-000000-000000";
+            this.MascKcodigoBarra.Name = "MascKcodigoBarra";
+            this.MascKcodigoBarra.Size = new System.Drawing.Size(278, 33);
+            this.MascKcodigoBarra.TabIndex = 170;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label3.Location = new System.Drawing.Point(6, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(148, 25);
+            this.label3.TabIndex = 169;
+            this.label3.Text = "Codigo Barra";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label14.Location = new System.Drawing.Point(178, 26);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(201, 25);
+            this.label14.TabIndex = 159;
+            this.label14.Text = "Nombre Articulos:";
+            // 
+            // btnRuta
+            // 
+            this.btnRuta.Location = new System.Drawing.Point(29, 67);
+            this.btnRuta.Name = "btnRuta";
+            this.btnRuta.Size = new System.Drawing.Size(121, 29);
+            this.btnRuta.TabIndex = 176;
+            this.btnRuta.Text = "Cargar Imagen";
+            this.btnRuta.UseVisualStyleBackColor = true;
+            this.btnRuta.Click += new System.EventHandler(this.btnRuta_Click_1);
+            // 
+            // txtruta
+            // 
+            this.txtruta.Enabled = false;
+            this.txtruta.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtruta.Location = new System.Drawing.Point(156, 67);
+            this.txtruta.Multiline = true;
+            this.txtruta.Name = "txtruta";
+            this.txtruta.Size = new System.Drawing.Size(278, 29);
+            this.txtruta.TabIndex = 175;
+            // 
+            // pinture
+            // 
+            this.pinture.Location = new System.Drawing.Point(440, 26);
+            this.pinture.Name = "pinture";
+            this.pinture.Size = new System.Drawing.Size(250, 118);
+            this.pinture.TabIndex = 177;
+            this.pinture.TabStop = false;
             // 
             // FrmIngresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1113, 549);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1226, 749);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.panel7);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.ToolStrip1);
             this.Name = "FrmIngresos";
             this.Text = "Ingresos";
             this.Load += new System.EventHandler(this.FrmIngresos_Load);
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridArticulos)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridProveedor)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pinture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -587,38 +786,51 @@
         internal System.Windows.Forms.ToolStripButton Limpia;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         internal System.Windows.Forms.ToolStripButton Salir;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridArticulos;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridProveedor;
-        private System.Windows.Forms.TextBox txtBucarProveedor;
-        private System.Windows.Forms.Button btnProveedor;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtDes;
+        private System.Windows.Forms.TextBox txtNom;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboCat;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtprcioventa;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtComp;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtCan;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton RadioButtRnc;
+        private System.Windows.Forms.RadioButton radioButCedula;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtStokInicial;
-        private System.Windows.Forms.TextBox txtStokActual;
-        private System.Windows.Forms.TextBox txtcantidad;
-        private System.Windows.Forms.ComboBox cboTipDoc;
-        private System.Windows.Forms.DateTimePicker dateExpirac;
-        private System.Windows.Forms.DateTimePicker dateProducion;
-        private System.Windows.Forms.TextBox txtpreciocomp;
-        private System.Windows.Forms.TextBox txtitbis;
-        private System.Windows.Forms.TextBox txtarticulo;
-        private System.Windows.Forms.TextBox txtproceedor;
-        private System.Windows.Forms.MaskedTextBox codBarra;
+        private System.Windows.Forms.TextBox txtPrcioVenta;
+        private System.Windows.Forms.TextBox txtItbis;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtCbuscAr;
-        private System.Windows.Forms.Button btnArticulos;
-        }
+        private System.Windows.Forms.DateTimePicker dateFechaVencimiento;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DateTimePicker dateFechaElavoracion;
+        internal System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ComboBox cboProv;
+        private System.Windows.Forms.TextBox txtStok;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.MaskedTextBox MascKcodigoBarra;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnRuta;
+        private System.Windows.Forms.TextBox txtruta;
+        private System.Windows.Forms.PictureBox pinture;
+        private System.Windows.Forms.Label label14;
+    }
     }

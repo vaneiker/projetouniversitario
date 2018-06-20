@@ -118,19 +118,7 @@ namespace SistemaFacturacion.Formularios
 
         private void btnRuta_Click(object sender, EventArgs e)
             {
-            OpenFileDialog Abrir = new OpenFileDialog();
-
-            Abrir.Filter = "Archivos JPEG(*.jpg)|*.jpg";
-            Abrir.InitialDirectory = "D:/Todo_Comprimido/RECURSOS";
-
-            if (Abrir.ShowDialog() == DialogResult.OK)
-                {
-                String dir = Abrir.FileName;
-                Bitmap pin = new Bitmap(dir);
-                pictureBox1.Image = (Image)pin;
-                txtruta.Text = dir;
-                }
-
+          
 
             }
 
@@ -149,10 +137,40 @@ namespace SistemaFacturacion.Formularios
             CodigoBarraGenerador c = new CodigoBarraGenerador();
             c.ShowDialog();
         }
+<<<<<<< HEAD
 
         private void Nuevo_Click(object sender, EventArgs e)
         {
             TabArticulo.SelectedTab = TabArticulo.TabPages["tabMantenimiento"];
         }
+||||||| merged common ancestors
+=======
+
+        private void btnRuta_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog Abrir = new OpenFileDialog();
+
+            Abrir.Filter = "Archivos JPEG(*.jpg)|*.jpg";
+            Abrir.InitialDirectory = "D:/Todo_Comprimido/RECURSOS";
+
+            if (Abrir.ShowDialog() == DialogResult.OK)
+            {
+                String dir = Abrir.FileName;
+                Bitmap pin = new Bitmap(dir);
+                pictureBox1.Image = (Image)pin;
+                txtruta.Text = dir;
+            }
+
+        }
+
+        private void Salir_Click(object sender, EventArgs e)
+        {
+            DialogResult resul = MessageBox.Show("Esta seguro que desea salir de este Formulario?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (resul == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
+>>>>>>> 0fa56f9848ad4030e1e7cd0163334f9ad99971ee
     }
     }
