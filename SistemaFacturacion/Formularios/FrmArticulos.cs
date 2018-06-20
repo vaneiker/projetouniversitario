@@ -137,14 +137,11 @@ namespace SistemaFacturacion.Formularios
             CodigoBarraGenerador c = new CodigoBarraGenerador();
             c.ShowDialog();
         }
-<<<<<<< HEAD
 
         private void Nuevo_Click(object sender, EventArgs e)
         {
             TabArticulo.SelectedTab = TabArticulo.TabPages["tabMantenimiento"];
         }
-||||||| merged common ancestors
-=======
 
         private void btnRuta_Click_1(object sender, EventArgs e)
         {
@@ -171,6 +168,33 @@ namespace SistemaFacturacion.Formularios
                 this.Close();
             }
         }
->>>>>>> 0fa56f9848ad4030e1e7cd0163334f9ad99971ee
+         private void Eliminar_Click(object sender, EventArgs e)
+        {
+            if (TabArticulo.SelectedIndex == 1)
+            {
+                MessageBox.Show("Por Favor de ir a la pestaña de busqueda.");
+                return;
+            }
+            string codigo = GridViewArticulos.CurrentRow.Cells[1].Value.ToString();
+            string nombre = GridViewArticulos.CurrentRow.Cells[2].Value.ToString();
+            DialogResult result = MessageBox.Show($"Desea Eliminar El Producto {codigo}?", "Eliminar Articulo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.OK)
+            {
+                LogicaDbVentas db = new LogicaDbVentas();
+                articulosEntitis entity = db.BuscarArticulosPorCodigo(codigo);
+                if(entity != null)
+                {
+                    if(db.Eliminar_Articulo(entity))
+                    {
+                        MessageBox.Show("Articulo Eliminado..");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al Eliminar el Articulo.", "Error en Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            carga();
+        }
     }
     }

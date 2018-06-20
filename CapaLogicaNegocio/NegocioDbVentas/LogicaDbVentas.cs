@@ -72,6 +72,11 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             nombre.Trim();
             return (_metodos.BuscarArticulo(codigo,nombre));
             }
+        public articulosEntitis BuscarArticulosPorCodigo(string codigo)
+        {
+            codigo = codigo.ToUpper();
+            return _metodos.BuscarArticuloXCodigo(codigo);
+        }
         public DataTable CriterioBusquedaProveedor(string doc, string tel, string nom)
             {
             nom.Trim();

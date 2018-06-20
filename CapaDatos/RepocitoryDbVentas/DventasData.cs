@@ -141,7 +141,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     using (connection)
                         {
                         connection.Open();
-                        string Qry = "SP_SET_DELETE_ARTICULO";
+                        string Qry = "[DBO].[SP_SET_DELETE_ARTICULO]";
                         SqlCommand cmd = new SqlCommand(Qry, connection);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add(new SqlParameter("@codigo", articulo.codigo));
@@ -157,6 +157,49 @@ namespace CapaDatos.RepocitoryDbVentas
                 throw ex;
                 }
             }
+        public articulosEntitis BuscarArticuloXCodigo(string codigo)
+        {
+            articulosEntitis entity = null;
+            try
+            {
+                using (dbventasEntity db = new dbventasEntity())
+                {
+                    var connection = db.Database.Connection as SqlConnection;
+                    using (connection)
+                    {
+                        connection.Open();
+                        string command = "[DBO].[SP_GET_ARTICULOS_BUSCAR_X_CODIGO]";
+                        SqlCommand sqlCommand = new SqlCommand(command);
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.AddWithValue("@codigo", codigo.ToUpper());
+                        SqlDataAdapter da = new SqlDataAdapter(sqlCommand);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        if(dt.Rows.Count > 0)
+                        {
+                            entity = new articulosEntitis();
+                            foreach(DataRow row in dt.Rows)
+                            {
+                                entity.idarticulo = Convert.ToInt32(row["idarticulo"].ToString());
+                                entity.codigo = row["codigo"].ToString();
+                                entity.nombre = row["nombre"].ToString();
+                                entity.idcategoria = Convert.ToInt32(row["idcategoria"].ToString());
+                                entity.Imag_Url = row["Imag_Url"].ToString();
+                                entity.descripcion = row["descripcion"].ToString();
+                                entity.precioVenta = Convert.ToDecimal(row["precioVenta"].ToString());
+                                entity.precioCompra = Convert.ToDecimal(row["precioCompra"].ToString());
+                            }
+                            return entity;
+                        }
+
+                    }
+                }
+            }catch(Exception ex)
+            {
+                return entity;
+            }
+            return entity;
+        }
 
       
         #endregion

@@ -206,6 +206,7 @@
             this.Eliminar.Size = new System.Drawing.Size(52, 68);
             this.Eliminar.Text = "Limpiar";
             this.Eliminar.ToolTipText = "Eliminar";
+            this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click);
             // 
             // toolStripSeparator3
             // 
@@ -256,11 +257,6 @@
             this.Salir.Text = "Salir";
             this.Salir.ToolTipText = "Salir";
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 71);
             // 
             // toolStripSeparator8
             // 
