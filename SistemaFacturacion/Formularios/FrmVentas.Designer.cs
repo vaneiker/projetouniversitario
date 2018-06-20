@@ -66,12 +66,14 @@
             this.dateFechaVencimiento = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioBuscApellido = new System.Windows.Forms.RadioButton();
-            this.radioBusNombre = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.radioBuscCodigo = new System.Windows.Forms.RadioButton();
             this.radioBuscTelefono = new System.Windows.Forms.RadioButton();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.radioBuscApellido = new System.Windows.Forms.RadioButton();
+            this.radioBusNombre = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.DataGrivCliente = new System.Windows.Forms.DataGridView();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -80,6 +82,8 @@
             this.panel7.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrivCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -300,6 +304,7 @@
             this.btnBusc.Text = "Buscar";
             this.btnBusc.UseVisualStyleBackColor = false;
             this.btnBusc.Visible = false;
+            this.btnBusc.Click += new System.EventHandler(this.btnBusc_Click);
             // 
             // panel6
             // 
@@ -476,33 +481,32 @@
             this.groupBox1.Text = "Cliente";
             this.groupBox1.EnabledChanged += new System.EventHandler(this.groupBox1_EnabledChanged);
             // 
-            // radioBuscApellido
+            // label3
             // 
-            this.radioBuscApellido.AutoSize = true;
-            this.radioBuscApellido.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBuscApellido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioBuscApellido.Location = new System.Drawing.Point(78, 58);
-            this.radioBuscApellido.Name = "radioBuscApellido";
-            this.radioBuscApellido.Size = new System.Drawing.Size(84, 20);
-            this.radioBuscApellido.TabIndex = 193;
-            this.radioBuscApellido.TabStop = true;
-            this.radioBuscApellido.Text = "Apellidos";
-            this.radioBuscApellido.UseVisualStyleBackColor = true;
-            this.radioBuscApellido.Visible = false;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label3.Location = new System.Drawing.Point(6, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 19);
+            this.label3.TabIndex = 198;
+            this.label3.Text = "Cliente";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // radioBusNombre
+            // comboBox2
             // 
-            this.radioBusNombre.AutoSize = true;
-            this.radioBusNombre.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBusNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioBusNombre.Location = new System.Drawing.Point(169, 57);
-            this.radioBusNombre.Name = "radioBusNombre";
-            this.radioBusNombre.Size = new System.Drawing.Size(69, 20);
-            this.radioBusNombre.TabIndex = 192;
-            this.radioBusNombre.TabStop = true;
-            this.radioBusNombre.Text = "Cedula";
-            this.radioBusNombre.UseVisualStyleBackColor = true;
-            this.radioBusNombre.Visible = false;
+            this.comboBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Ventas Directa",
+            "Cliente Exisentes"});
+            this.comboBox2.Location = new System.Drawing.Point(75, 25);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(329, 27);
+            this.comboBox2.TabIndex = 197;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBox2.EnabledChanged += new System.EventHandler(this.comboBox2_EnabledChanged);
             // 
             // radioBuscCodigo
             // 
@@ -532,38 +536,59 @@
             this.radioBuscTelefono.UseVisualStyleBackColor = true;
             this.radioBuscTelefono.Visible = false;
             // 
-            // comboBox2
+            // radioBuscApellido
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Ventas Directa",
-            "Cliente Exisentes"});
-            this.comboBox2.Location = new System.Drawing.Point(75, 25);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(329, 27);
-            this.comboBox2.TabIndex = 197;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            this.comboBox2.EnabledChanged += new System.EventHandler(this.comboBox2_EnabledChanged);
+            this.radioBuscApellido.AutoSize = true;
+            this.radioBuscApellido.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBuscApellido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.radioBuscApellido.Location = new System.Drawing.Point(78, 58);
+            this.radioBuscApellido.Name = "radioBuscApellido";
+            this.radioBuscApellido.Size = new System.Drawing.Size(84, 20);
+            this.radioBuscApellido.TabIndex = 193;
+            this.radioBuscApellido.TabStop = true;
+            this.radioBuscApellido.Text = "Apellidos";
+            this.radioBuscApellido.UseVisualStyleBackColor = true;
+            this.radioBuscApellido.Visible = false;
             // 
-            // label3
+            // radioBusNombre
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label3.Location = new System.Drawing.Point(6, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 19);
-            this.label3.TabIndex = 198;
-            this.label3.Text = "Cliente";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.radioBusNombre.AutoSize = true;
+            this.radioBusNombre.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBusNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.radioBusNombre.Location = new System.Drawing.Point(169, 57);
+            this.radioBusNombre.Name = "radioBusNombre";
+            this.radioBusNombre.Size = new System.Drawing.Size(69, 20);
+            this.radioBusNombre.TabIndex = 192;
+            this.radioBusNombre.TabStop = true;
+            this.radioBusNombre.Text = "Cedula";
+            this.radioBusNombre.UseVisualStyleBackColor = true;
+            this.radioBusNombre.Visible = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.DataGrivCliente);
+            this.groupBox2.Location = new System.Drawing.Point(118, 284);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(495, 135);
+            this.groupBox2.TabIndex = 193;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Cliente";
+            this.groupBox2.Visible = false;
+            // 
+            // DataGrivCliente
+            // 
+            this.DataGrivCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGrivCliente.Location = new System.Drawing.Point(10, 19);
+            this.DataGrivCliente.Name = "DataGrivCliente";
+            this.DataGrivCliente.Size = new System.Drawing.Size(479, 110);
+            this.DataGrivCliente.TabIndex = 0;
             // 
             // FrmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1356, 749);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.panel2);
@@ -584,6 +609,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrivCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -633,5 +660,7 @@
         private System.Windows.Forms.RadioButton radioBusNombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView DataGrivCliente;
     }
     }

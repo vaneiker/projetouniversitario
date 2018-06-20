@@ -19,6 +19,8 @@ namespace SistemaFacturacion.Formularios
             InitializeComponent();
             }
         ComboxBosxTools cbo = new ComboxBosxTools();
+        LogicaDbVentas clien = new LogicaDbVentas();
+    
 
 
          private void FrmVentas_Load(object sender, EventArgs e)
@@ -44,6 +46,7 @@ namespace SistemaFacturacion.Formularios
                 lblBus.Visible = true;
                 btnBusc.Visible = true;
                 txtB.Visible = true;
+                groupBox2.Visible = false;
             }
             else
             {
@@ -72,6 +75,33 @@ namespace SistemaFacturacion.Formularios
             lblBus.Visible = true;
             btnBusc.Visible = true;
             txtB.Visible = true;
+            groupBox2.Visible = true;
+        }
+
+        private void btnBusc_Click(object sender, EventArgs e)
+        {
+            string a, b, c, d;
+            a = txtB.Text.Trim();
+            b = txtB.Text.Trim();
+            c = txtB.Text.Trim();
+            d = txtB.Text.Trim();
+
+            var cliente = clien.BuscarCliente(a,b,c,d);
+            if (cliente.Rows.Count>0)
+            {
+              DataGrivCliente.DataSource = cliente;
+              groupBox2.Visible = true;
+
+            }
+            else
+            {
+                MessageBox.Show("No existe Data");
+                groupBox2.Visible = false;
+            }
+
+           
         }
     }
-    }
+ }   
+
+
