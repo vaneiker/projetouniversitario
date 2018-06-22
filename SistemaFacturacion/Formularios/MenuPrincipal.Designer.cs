@@ -265,6 +265,7 @@
             this.toolStripButton4.Size = new System.Drawing.Size(68, 68);
             this.toolStripButton4.Text = "Usuarios y Permisos";
             this.toolStripButton4.ToolTipText = "Eliminar";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator3
             // 
@@ -335,6 +336,7 @@
             this.BtnFacturacion.TabIndex = 10;
             this.BtnFacturacion.Text = "Facturación";
             this.BtnFacturacion.UseVisualStyleBackColor = false;
+            this.BtnFacturacion.Click += new System.EventHandler(this.BtnFacturacion_Click);
             // 
             // button1
             // 
@@ -359,6 +361,7 @@
             this.btnEmpleado.TabIndex = 7;
             this.btnEmpleado.Text = "Empleados";
             this.btnEmpleado.UseVisualStyleBackColor = false;
+            this.btnEmpleado.Click += new System.EventHandler(this.btnEmpleado_Click);
             // 
             // BtnProveedor
             // 

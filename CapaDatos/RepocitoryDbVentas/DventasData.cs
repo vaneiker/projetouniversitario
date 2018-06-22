@@ -360,9 +360,9 @@ namespace CapaDatos.RepocitoryDbVentas
                     string Qry = "SP_GET_CLIENTES_BUSCAR";
                     SqlCommand cmd = new SqlCommand(Qry, connection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@CodigoCliente", NombreCompleto);
+                    cmd.Parameters.AddWithValue("@CodigoCliente", codigo);
                     cmd.Parameters.AddWithValue("@Identificacion", cedula);
-                    cmd.Parameters.AddWithValue("@Nombre_Completo", codigo);
+                    cmd.Parameters.AddWithValue("@Nombre_Completo", NombreCompleto);
                     cmd.Parameters.AddWithValue("@Telefono", telefono);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();

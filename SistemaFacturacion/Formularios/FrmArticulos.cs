@@ -168,6 +168,7 @@ namespace SistemaFacturacion.Formularios
                 this.Close();
             }
         }
+
          private void Eliminar_Click(object sender, EventArgs e)
         {
             if (TabArticulo.SelectedIndex == 1)
@@ -196,5 +197,6 @@ namespace SistemaFacturacion.Formularios
             }
             carga();
         }
+
     }
     }

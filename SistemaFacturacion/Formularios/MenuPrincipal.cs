@@ -84,6 +84,24 @@ namespace SistemaFacturacion.Formularios
             f.ShowDialog();
             }
 
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            FrmMantenimientoUsuarios m = new Formularios.FrmMantenimientoUsuarios();
+            m.ShowDialog();
         }
+
+        private void BtnFacturacion_Click(object sender, EventArgs e)
+        {
+            Formularios.FrmVentas v = new FrmVentas();
+            v.ShowDialog();
+        }
+
+        private void btnEmpleado_Click(object sender, EventArgs e)
+        {
+            FrmTrabajador t = new FrmTrabajador();
+            t.ShowDialog();
+
+        }
+    }
     }
   
