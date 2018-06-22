@@ -205,6 +205,7 @@
             this.Eliminar.Size = new System.Drawing.Size(52, 68);
             this.Eliminar.Text = "Limpiar";
             this.Eliminar.ToolTipText = "Eliminar";
+            this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click);
             // 
             // toolStripSeparator3
             // 

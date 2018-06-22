@@ -80,24 +80,34 @@ namespace SistemaFacturacion.Formularios
 
         private void btnBusc_Click(object sender, EventArgs e)
         {
-            string a, b, c, d;
-            a = txtB.Text.Trim();
-            b = txtB.Text.Trim();
-            c = txtB.Text.Trim();
-            d = txtB.Text.Trim();
-
-            var cliente = clien.BuscarCliente(a,b,c,d);
-            if (cliente.Rows.Count>0)
+            if(txtB.Text=="" || txtB.Text==null)
             {
-              DataGrivCliente.DataSource = cliente;
-              groupBox2.Visible = true;
-
+                Alertas.AlertError err = new Alertas.AlertError();
+                err.ShowDialog();
+                return;
             }
             else
             {
-                MessageBox.Show("No existe Data");
-                groupBox2.Visible = false;
+                string a, b, c, d;
+                a = txtB.Text.Trim();
+                b = txtB.Text.Trim();
+                c = txtB.Text.Trim();
+                d = txtB.Text.Trim();
+
+                var cliente = clien.BuscarCliente(a, b, c, d);
+                if (cliente.Rows.Count > 0)
+                {
+                    DataGrivCliente.DataSource = cliente;
+                    groupBox2.Visible = true;
+
+                }
+                else
+                {
+                    MessageBox.Show("No existe Data");
+                    groupBox2.Visible = false;
+                }
             }
+          
 
            
         }

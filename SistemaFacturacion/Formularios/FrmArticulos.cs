@@ -146,5 +146,10 @@ namespace SistemaFacturacion.Formularios
                 this.Close();
             }
         }
+
+        private void Eliminar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     }
