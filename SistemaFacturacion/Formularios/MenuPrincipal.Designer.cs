@@ -265,6 +265,7 @@
             this.toolStripButton4.Size = new System.Drawing.Size(68, 68);
             this.toolStripButton4.Text = "Usuarios y Permisos";
             this.toolStripButton4.ToolTipText = "Eliminar";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator3
             // 

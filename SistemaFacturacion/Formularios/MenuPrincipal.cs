@@ -83,6 +83,11 @@ namespace SistemaFacturacion.Formularios
             f.ShowDialog();
             }
 
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            FrmMantenimientoUsuarios m = new Formularios.FrmMantenimientoUsuarios();
+            m.ShowDialog();
         }
+    }
     }
   

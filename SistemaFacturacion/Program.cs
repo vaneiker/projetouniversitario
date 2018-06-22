@@ -19,7 +19,7 @@ namespace SistemaFacturacion
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Formularios.FrmArticulos());
-             Application.Run(new Formularios.FrmVentas());
+             Application.Run(new Login());
             }
         }
     }
