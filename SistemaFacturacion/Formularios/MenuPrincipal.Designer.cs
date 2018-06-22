@@ -336,6 +336,7 @@
             this.BtnFacturacion.TabIndex = 10;
             this.BtnFacturacion.Text = "Facturación";
             this.BtnFacturacion.UseVisualStyleBackColor = false;
+            this.BtnFacturacion.Click += new System.EventHandler(this.BtnFacturacion_Click);
             // 
             // button1
             // 
@@ -360,6 +361,7 @@
             this.btnEmpleado.TabIndex = 7;
             this.btnEmpleado.Text = "Empleados";
             this.btnEmpleado.UseVisualStyleBackColor = false;
+            this.btnEmpleado.Click += new System.EventHandler(this.btnEmpleado_Click);
             // 
             // BtnProveedor
             // 
