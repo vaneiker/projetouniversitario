@@ -40,17 +40,17 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(451, 38);
+            this.panel1.Size = new System.Drawing.Size(461, 38);
             this.panel1.TabIndex = 2;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Location = new System.Drawing.Point(0, 40);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(446, 141);
+            this.panel2.Size = new System.Drawing.Size(461, 157);
             this.panel2.TabIndex = 3;
             // 
             // btnCancelar
@@ -63,7 +63,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Lucida Sans", 15F);
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(319, 93);
+            this.btnCancelar.Location = new System.Drawing.Point(330, 107);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 38);
             this.btnCancelar.TabIndex = 177;
@@ -73,19 +73,19 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label1.Location = new System.Drawing.Point(106, 30);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(54, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 63);
-            this.label1.TabIndex = 176;
-            this.label1.Text = "Acción Exitosa!";
+            this.label1.Size = new System.Drawing.Size(334, 55);
+            this.label1.TabIndex = 178;
+            this.label1.Text = "la operación fue exitosar esta accion ";
             // 
             // AlertSuccess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 178);
+            this.ClientSize = new System.Drawing.Size(459, 197);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -67,13 +67,27 @@
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.radioBuscCodigo = new System.Windows.Forms.RadioButton();
-            this.radioBuscTelefono = new System.Windows.Forms.RadioButton();
-            this.radioBuscApellido = new System.Windows.Forms.RadioButton();
-            this.radioBusNombre = new System.Windows.Forms.RadioButton();
+            this.cboCliente = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.DataGrivCliente = new System.Windows.Forms.DataGridView();
+            this.lblCri = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtComp = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtCan = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtVent = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -84,6 +98,11 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrivCliente)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -268,7 +287,7 @@
             this.lblBus.AutoSize = true;
             this.lblBus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.lblBus.Location = new System.Drawing.Point(6, 87);
+            this.lblBus.Location = new System.Drawing.Point(6, 91);
             this.lblBus.Name = "lblBus";
             this.lblBus.Size = new System.Drawing.Size(63, 19);
             this.lblBus.TabIndex = 189;
@@ -279,7 +298,7 @@
             // 
             this.txtB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtB.Location = new System.Drawing.Point(75, 81);
+            this.txtB.Location = new System.Drawing.Point(75, 85);
             this.txtB.Multiline = true;
             this.txtB.Name = "txtB";
             this.txtB.Size = new System.Drawing.Size(329, 34);
@@ -297,7 +316,7 @@
             this.btnBusc.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBusc.ForeColor = System.Drawing.Color.White;
             this.btnBusc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBusc.Location = new System.Drawing.Point(410, 81);
+            this.btnBusc.Location = new System.Drawing.Point(410, 85);
             this.btnBusc.Name = "btnBusc";
             this.btnBusc.Size = new System.Drawing.Size(79, 35);
             this.btnBusc.TabIndex = 191;
@@ -466,18 +485,15 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox1.Controls.Add(this.lblCri);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.radioBuscCodigo);
-            this.groupBox1.Controls.Add(this.radioBuscTelefono);
-            this.groupBox1.Controls.Add(this.radioBuscApellido);
-            this.groupBox1.Controls.Add(this.radioBusNombre);
+            this.groupBox1.Controls.Add(this.cboCliente);
             this.groupBox1.Controls.Add(this.btnBusc);
             this.groupBox1.Controls.Add(this.lblBus);
             this.groupBox1.Controls.Add(this.txtB);
-            this.groupBox1.Location = new System.Drawing.Point(118, 143);
+            this.groupBox1.Location = new System.Drawing.Point(100, 143);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(495, 135);
+            this.groupBox1.Size = new System.Drawing.Size(513, 135);
             this.groupBox1.TabIndex = 192;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
@@ -495,83 +511,28 @@
             this.label3.Text = "Cliente";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // comboBox2
+            // cboCliente
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cboCliente.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.cboCliente.FormattingEnabled = true;
+            this.cboCliente.Items.AddRange(new object[] {
             "Ventas Directa",
             "Cliente Exisentes"});
-            this.comboBox2.Location = new System.Drawing.Point(75, 25);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(329, 27);
-            this.comboBox2.TabIndex = 197;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            this.comboBox2.EnabledChanged += new System.EventHandler(this.comboBox2_EnabledChanged);
-            // 
-            // radioBuscCodigo
-            // 
-            this.radioBuscCodigo.AutoSize = true;
-            this.radioBuscCodigo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBuscCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioBuscCodigo.Location = new System.Drawing.Point(248, 57);
-            this.radioBuscCodigo.Name = "radioBuscCodigo";
-            this.radioBuscCodigo.Size = new System.Drawing.Size(69, 20);
-            this.radioBuscCodigo.TabIndex = 195;
-            this.radioBuscCodigo.TabStop = true;
-            this.radioBuscCodigo.Text = "Codigo";
-            this.radioBuscCodigo.UseVisualStyleBackColor = true;
-            this.radioBuscCodigo.Visible = false;
-            // 
-            // radioBuscTelefono
-            // 
-            this.radioBuscTelefono.AutoSize = true;
-            this.radioBuscTelefono.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBuscTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioBuscTelefono.Location = new System.Drawing.Point(323, 57);
-            this.radioBuscTelefono.Name = "radioBuscTelefono";
-            this.radioBuscTelefono.Size = new System.Drawing.Size(81, 20);
-            this.radioBuscTelefono.TabIndex = 194;
-            this.radioBuscTelefono.TabStop = true;
-            this.radioBuscTelefono.Text = "Telefono";
-            this.radioBuscTelefono.UseVisualStyleBackColor = true;
-            this.radioBuscTelefono.Visible = false;
-            // 
-            // radioBuscApellido
-            // 
-            this.radioBuscApellido.AutoSize = true;
-            this.radioBuscApellido.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBuscApellido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioBuscApellido.Location = new System.Drawing.Point(78, 58);
-            this.radioBuscApellido.Name = "radioBuscApellido";
-            this.radioBuscApellido.Size = new System.Drawing.Size(84, 20);
-            this.radioBuscApellido.TabIndex = 193;
-            this.radioBuscApellido.TabStop = true;
-            this.radioBuscApellido.Text = "Apellidos";
-            this.radioBuscApellido.UseVisualStyleBackColor = true;
-            this.radioBuscApellido.Visible = false;
-            // 
-            // radioBusNombre
-            // 
-            this.radioBusNombre.AutoSize = true;
-            this.radioBusNombre.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBusNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioBusNombre.Location = new System.Drawing.Point(169, 57);
-            this.radioBusNombre.Name = "radioBusNombre";
-            this.radioBusNombre.Size = new System.Drawing.Size(69, 20);
-            this.radioBusNombre.TabIndex = 192;
-            this.radioBusNombre.TabStop = true;
-            this.radioBusNombre.Text = "Cedula";
-            this.radioBusNombre.UseVisualStyleBackColor = true;
-            this.radioBusNombre.Visible = false;
+            this.cboCliente.Location = new System.Drawing.Point(75, 25);
+            this.cboCliente.Name = "cboCliente";
+            this.cboCliente.Size = new System.Drawing.Size(414, 27);
+            this.cboCliente.TabIndex = 197;
+            this.cboCliente.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.cboCliente.EnabledChanged += new System.EventHandler(this.comboBox2_EnabledChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox2.Controls.Add(this.DataGrivCliente);
-            this.groupBox2.Location = new System.Drawing.Point(118, 284);
+            this.groupBox2.Location = new System.Drawing.Point(100, 284);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(495, 135);
+            this.groupBox2.Size = new System.Drawing.Size(513, 135);
             this.groupBox2.TabIndex = 193;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cliente";
@@ -582,8 +543,224 @@
             this.DataGrivCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGrivCliente.Location = new System.Drawing.Point(10, 19);
             this.DataGrivCliente.Name = "DataGrivCliente";
-            this.DataGrivCliente.Size = new System.Drawing.Size(479, 110);
+            this.DataGrivCliente.Size = new System.Drawing.Size(497, 110);
             this.DataGrivCliente.TabIndex = 0;
+            // 
+            // lblCri
+            // 
+            this.lblCri.AutoSize = true;
+            this.lblCri.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCri.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.lblCri.Location = new System.Drawing.Point(25, 59);
+            this.lblCri.Name = "lblCri";
+            this.lblCri.Size = new System.Drawing.Size(464, 19);
+            this.lblCri.TabIndex = 199;
+            this.lblCri.Text = "Criterio de Busqueda/Nombre/Telefono/Codigo/Cedula";
+            this.lblCri.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblCri.Visible = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Location = new System.Drawing.Point(619, 284);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(647, 135);
+            this.groupBox3.TabIndex = 194;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Articulo";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 57);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(631, 72);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Controls.Add(this.dataGridView2);
+            this.groupBox5.Location = new System.Drawing.Point(100, 446);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1166, 306);
+            this.groupBox5.TabIndex = 195;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Codigo";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(514, 19);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(42, 35);
+            this.button2.TabIndex = 194;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(21, 102);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(721, 163);
+            this.dataGridView2.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label2.Location = new System.Drawing.Point(174, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 19);
+            this.label2.TabIndex = 200;
+            this.label2.Text = "Articulo";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.textBox1.Location = new System.Drawing.Point(253, 20);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(255, 31);
+            this.textBox1.TabIndex = 199;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label7.Location = new System.Drawing.Point(4, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 19);
+            this.label7.TabIndex = 197;
+            this.label7.Text = "Codigo";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.textBox4.Location = new System.Drawing.Point(75, 20);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(93, 31);
+            this.textBox4.TabIndex = 198;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtComp);
+            this.groupBox6.Controls.Add(this.label9);
+            this.groupBox6.Controls.Add(this.txtCan);
+            this.groupBox6.Controls.Add(this.label8);
+            this.groupBox6.Controls.Add(this.label5);
+            this.groupBox6.Controls.Add(this.txtVent);
+            this.groupBox6.Location = new System.Drawing.Point(748, 93);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(412, 172);
+            this.groupBox6.TabIndex = 181;
+            this.groupBox6.TabStop = false;
+            // 
+            // txtComp
+            // 
+            this.txtComp.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtComp.Location = new System.Drawing.Point(270, 117);
+            this.txtComp.Multiline = true;
+            this.txtComp.Name = "txtComp";
+            this.txtComp.Size = new System.Drawing.Size(123, 34);
+            this.txtComp.TabIndex = 168;
+            this.txtComp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label9.Location = new System.Drawing.Point(68, 71);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(194, 25);
+            this.label9.TabIndex = 179;
+            this.label9.Text = "$ Precio de Venta";
+            // 
+            // txtCan
+            // 
+            this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCan.Location = new System.Drawing.Point(270, 29);
+            this.txtCan.Multiline = true;
+            this.txtCan.Name = "txtCan";
+            this.txtCan.Size = new System.Drawing.Size(123, 34);
+            this.txtCan.TabIndex = 164;
+            this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label8.Location = new System.Drawing.Point(49, 117);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(215, 25);
+            this.label8.TabIndex = 178;
+            this.label8.Text = "$ Precio de Compra";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label5.Location = new System.Drawing.Point(176, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 25);
+            this.label5.TabIndex = 163;
+            this.label5.Text = "Catidad";
+            // 
+            // txtVent
+            // 
+            this.txtVent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtVent.Location = new System.Drawing.Point(270, 71);
+            this.txtVent.Multiline = true;
+            this.txtVent.Name = "txtVent";
+            this.txtVent.Size = new System.Drawing.Size(121, 34);
+            this.txtVent.TabIndex = 166;
+            this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(562, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 35);
+            this.button1.TabIndex = 201;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // FrmVentas
             // 
@@ -591,6 +768,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1356, 749);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
@@ -614,6 +793,13 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGrivCliente)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -657,13 +843,27 @@
         private System.Windows.Forms.DateTimePicker dateFechaVencimiento;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioBuscCodigo;
-        private System.Windows.Forms.RadioButton radioBuscTelefono;
-        private System.Windows.Forms.RadioButton radioBuscApellido;
-        private System.Windows.Forms.RadioButton radioBusNombre;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboCliente;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView DataGrivCliente;
+        private System.Windows.Forms.Label lblCri;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtComp;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtCan;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtVent;
+        private System.Windows.Forms.Button button1;
     }
     }

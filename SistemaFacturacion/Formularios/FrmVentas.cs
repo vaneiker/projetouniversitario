@@ -37,27 +37,21 @@ namespace SistemaFacturacion.Formularios
         }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox2.SelectedItem.ToString() == "Cliente Exisentes")
+            if (cboCliente.SelectedItem.ToString() == "Cliente Exisentes")
             {
-                radioBuscApellido.Visible = true;
-                radioBusNombre.Visible = true;
-                radioBuscCodigo.Visible = true;
-                radioBuscTelefono.Visible = true;
-                lblBus.Visible = true;
-                btnBusc.Visible = true;
+                lblCri.Visible = true;
                 txtB.Visible = true;
-                groupBox2.Visible = false;
+                btnBusc.Visible = true;
+                lblBus.Visible = true;
             }
             else
             {
                 MessageBox.Show("Desea cambiar A venta Directa?");
-                radioBuscApellido.Visible = false;
-                radioBusNombre.Visible = false;
-                radioBuscCodigo.Visible = false;
-                radioBuscTelefono.Visible = false;
-                lblBus.Visible = false;
-                btnBusc.Visible = false;
+                lblCri.Visible = false;
                 txtB.Visible = false;
+                btnBusc.Visible = false;
+                lblBus.Visible = false;
+                groupBox2.Visible = false;
             }
         }
 
@@ -68,10 +62,6 @@ namespace SistemaFacturacion.Formularios
 
         private void comboBox2_EnabledChanged(object sender, EventArgs e)
         {
-            radioBuscApellido.Visible = true;
-            radioBusNombre.Visible = true;
-            radioBuscCodigo.Visible = true;
-            radioBuscTelefono.Visible = true;
             lblBus.Visible = true;
             btnBusc.Visible = true;
             txtB.Visible = true;
