@@ -919,6 +919,35 @@ namespace CapaDatos.RepocitoryDbVentas
 
                 return user;
         }
+
+        public void RegistrarUsuario(UsersEntitis entity)
+        {
+            using (dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    try
+                    {
+                        connection.Open();
+                        string procedure = "[dbo].[REGISTRAR_USUARIO]";
+                        SqlCommand cmd = new SqlCommand(procedure, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@id", entity.id);
+                        cmd.Parameters.AddWithValue("@Usuario", entity.Usuario);
+                        cmd.Parameters.AddWithValue("@Clave", entity.Clave);
+                        cmd.Parameters.AddWithValue("@RolID", entity.RolID);
+                        cmd.Parameters.AddWithValue("@Statud", entity.Statud);
+
+                        cmd.ExecuteNonQuery();
+
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
         #endregion
 
         #region ventas Datos

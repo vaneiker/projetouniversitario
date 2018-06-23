@@ -12,6 +12,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 {
     public static class  LogicaLogin
     {
+        
         public static bool ValidateLogin(string usuario, string contrasena, out int rolId)
         {
             bool isValid = true;
@@ -39,6 +40,20 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             user = db.GetUserByName(usuario);
 
             return user;
+        }
+
+        public static UsersEntitis RegistrarUsuario(this UsersEntitis user, string usuario, string clave, int role, bool status, int id = 0)
+        {
+            CapaDatos.RepocitoryDbVentas.DventasData db = new CapaDatos.RepocitoryDbVentas.DventasData();
+            user.id = id;
+            user.Usuario = usuario;
+            user.Clave = clave;
+            user.RolID = role;
+            user.Statud = status;
+            db.RegistrarUsuario(user);
+
+            return user.GetUserByName(user.Usuario);
+
         }
     }
 }
