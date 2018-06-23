@@ -434,7 +434,7 @@
             this.BtnCategoria.Name = "BtnCategoria";
             this.BtnCategoria.Size = new System.Drawing.Size(158, 37);
             this.BtnCategoria.TabIndex = 1;
-            this.BtnCategoria.Text = "&Categoia";
+            this.BtnCategoria.Text = "&Categoria";
             this.BtnCategoria.UseVisualStyleBackColor = false;
             this.BtnCategoria.Click += new System.EventHandler(this.BtnCategoria_Click);
             // 
