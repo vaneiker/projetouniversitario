@@ -45,20 +45,20 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.BtnIngerso = new System.Windows.Forms.Button();
             this.TabArticulo = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.GridViewArticulos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnBusc = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnBusc = new System.Windows.Forms.Button();
+            this.GridViewArticulos = new System.Windows.Forms.DataGridView();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.TabArticulo.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).BeginInit();
-            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -267,51 +267,6 @@
             this.TabArticulo.Size = new System.Drawing.Size(548, 394);
             this.TabArticulo.TabIndex = 204;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.cboRoll);
-            this.tabPage1.Controls.Add(this.btnCancelar);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.BtnIngerso);
-            this.tabPage1.Controls.Add(this.txtUsuario);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.txtContrasena);
-            this.tabPage1.Controls.Add(this.txtRepClave);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(540, 368);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(170, 96);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(342, 388);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 205;
-            this.pictureBox1.TabStop = false;
-            // 
-            // GridViewArticulos
-            // 
-            this.GridViewArticulos.AllowUserToAddRows = false;
-            this.GridViewArticulos.AllowUserToDeleteRows = false;
-            this.GridViewArticulos.AllowUserToOrderColumns = true;
-            this.GridViewArticulos.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.GridViewArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewArticulos.Location = new System.Drawing.Point(44, 133);
-            this.GridViewArticulos.Name = "GridViewArticulos";
-            this.GridViewArticulos.ReadOnly = true;
-            this.GridViewArticulos.Size = new System.Drawing.Size(440, 191);
-            this.GridViewArticulos.TabIndex = 122;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btnBusc);
@@ -325,6 +280,23 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Usuario";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnBusc
+            // 
+            this.btnBusc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
+            this.btnBusc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBusc.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnBusc.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnBusc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBusc.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBusc.ForeColor = System.Drawing.Color.White;
+            this.btnBusc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBusc.Location = new System.Drawing.Point(405, 82);
+            this.btnBusc.Name = "btnBusc";
+            this.btnBusc.Size = new System.Drawing.Size(79, 35);
+            this.btnBusc.TabIndex = 203;
+            this.btnBusc.Text = "Buscar";
+            this.btnBusc.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -348,22 +320,50 @@
             this.textBox1.TabIndex = 201;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnBusc
+            // GridViewArticulos
             // 
-            this.btnBusc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
-            this.btnBusc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBusc.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
-            this.btnBusc.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnBusc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBusc.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBusc.ForeColor = System.Drawing.Color.White;
-            this.btnBusc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBusc.Location = new System.Drawing.Point(405, 82);
-            this.btnBusc.Name = "btnBusc";
-            this.btnBusc.Size = new System.Drawing.Size(79, 35);
-            this.btnBusc.TabIndex = 203;
-            this.btnBusc.Text = "Buscar";
-            this.btnBusc.UseVisualStyleBackColor = false;
+            this.GridViewArticulos.AllowUserToAddRows = false;
+            this.GridViewArticulos.AllowUserToDeleteRows = false;
+            this.GridViewArticulos.AllowUserToOrderColumns = true;
+            this.GridViewArticulos.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.GridViewArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewArticulos.Location = new System.Drawing.Point(44, 133);
+            this.GridViewArticulos.Name = "GridViewArticulos";
+            this.GridViewArticulos.ReadOnly = true;
+            this.GridViewArticulos.Size = new System.Drawing.Size(440, 191);
+            this.GridViewArticulos.TabIndex = 122;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.cboRoll);
+            this.tabPage1.Controls.Add(this.btnCancelar);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.BtnIngerso);
+            this.tabPage1.Controls.Add(this.txtUsuario);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.txtContrasena);
+            this.tabPage1.Controls.Add(this.txtRepClave);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(540, 368);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Ingreso";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(170, 96);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(342, 388);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 205;
+            this.pictureBox1.TabStop = false;
             // 
             // FrmMantenimientoUsuarios
             // 
@@ -383,12 +383,12 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.TabArticulo.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
