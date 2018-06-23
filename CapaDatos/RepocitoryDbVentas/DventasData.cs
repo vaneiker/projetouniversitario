@@ -760,6 +760,49 @@ namespace CapaDatos.RepocitoryDbVentas
             }
                 return rolId;
         }
+
+        public UsersEntitis GetUserByName(string usuario)
+        {
+            UsersEntitis user;
+
+            if (string.IsNullOrWhiteSpace(usuario))
+                return null;
+
+            using (dbventasEntity db = new dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string procedure = "[dbo].[SP_GET_USER_BY_NAME]";
+                    SqlCommand cmd = new SqlCommand(procedure, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@USERNAME", usuario);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    if(dt.Rows.Count <= 0)
+                    {
+                        connection.Close();
+                        return null;
+                    }
+                    user = new UsersEntitis();
+                    foreach(DataRow row in dt.Rows)
+                    {
+                        user.id = Convert.ToInt32(row["id"].ToString());
+                        user.Usuario = row["Usuario"].ToString();
+                        user.Clave = row["Clave"].ToString();
+                        user.RolID = Convert.ToInt32(row["RolID"].ToString());
+                        user.Statud = Convert.ToBoolean(row["Statud"].ToString());
+                    }
+
+                }
+            }
+
+                return user;
+        }
         #endregion
 
         #region ventas Datos

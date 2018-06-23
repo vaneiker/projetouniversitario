@@ -29,5 +29,16 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
             return isValid;
         }
+
+        public static UsersEntitis GetUserByName(this UsersEntitis user, string usuario)
+        {
+            if (string.IsNullOrWhiteSpace(usuario))
+                return null;
+
+            CapaDatos.RepocitoryDbVentas.DventasData db = new CapaDatos.RepocitoryDbVentas.DventasData();
+            user = db.GetUserByName(usuario);
+
+            return user;
+        }
     }
 }
