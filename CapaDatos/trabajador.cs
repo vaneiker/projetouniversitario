@@ -32,7 +32,11 @@ namespace CapaDatos
         public string acceso { get; set; }
         public string usuario { get; set; }
         public string password { get; set; }
-    
+
+        public bool? StatusE { get; set; }
+        public string UsuarioAdiciona{ get; set; }
+        public string UsuarioModifica { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<venta> venta { get; set; }
     }

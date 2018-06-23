@@ -213,7 +213,18 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             
         }
 
+        public List<trabajadorEntitis>ListaTrabajador(string apellido, string nombre, string telefono, string num_documento)
+        {
+            trabajadorEntitis tt = new trabajadorEntitis();
+            tt.apellidos = apellido;
+            tt.nombre = nombre;
+            tt.telefono = telefono;
+            tt.num_documento = num_documento;
 
+           return (_metodos.ListaTrabajador(tt));
+
+
+        }
         #endregion
     }
 

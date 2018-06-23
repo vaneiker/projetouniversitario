@@ -156,6 +156,7 @@
             this.BuscarD.Size = new System.Drawing.Size(52, 68);
             this.BuscarD.Text = "Buscar";
             this.BuscarD.ToolTipText = "Buscar";
+            this.BuscarD.Click += new System.EventHandler(this.BuscarD_Click);
             // 
             // toolStripSeparator1
             // 

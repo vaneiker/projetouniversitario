@@ -109,8 +109,36 @@ namespace SistemaFacturacion.Formularios
                 error.ShowDialog();
             }
         }
+
+        private void BuscarD_Click(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "" || txtBuscar.Text == null)
+            {
+                error.ShowDialog();
+            }
+            else
+            {
+                string a, b, c, d;
+                a = txtBuscar.Text.Trim();
+                b = txtBuscar.Text.Trim();
+                c = txtBuscar.Text.Trim();
+                d = txtBuscar.Text.Trim();
+
+                var trabajador = _metodos.ListaTrabajador(a, b, c, d);
+                if (trabajador.Count > 0)
+                {
+                    GridViewTra.DataSource = trabajador;
+
+                }
+            }
+
+            }
+
+        }
+
+       
     }
-}
+
 
        
 
