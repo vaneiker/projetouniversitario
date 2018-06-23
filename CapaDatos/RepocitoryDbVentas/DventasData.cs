@@ -687,10 +687,7 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.Add(new SqlParameter("@email",          trabajador.email));
                         cmd.Parameters.Add(new SqlParameter("@StatusE",        trabajador.StatusE));
                         cmd.Parameters.Add(new SqlParameter("UsuarioAdiciona", trabajador.UsuarioAdiciona));
-                        cmd.Parameters.Add(new SqlParameter("UsuarioModifica", trabajador.UsuarioModifica));
-
-
-                        //cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", null));
+                        cmd.Parameters.Add(new SqlParameter("UsuarioModifica", trabajador.UsuarioModifica));                  
                         cmd.ExecuteNonQuery();
                         return 1;
                     }
@@ -704,6 +701,80 @@ namespace CapaDatos.RepocitoryDbVentas
             }
 
         }
+
+        //public List<trabajadorEntitis> alumnosTodos()
+        //{
+        //    try
+        //    {
+        //        using (dbventasEntity context = new dbventasEntity())
+        //        {
+
+        //            var connection = context.Database.Connection as SqlConnection;
+
+        //            using (connection)
+        //            {
+        //                //connection.Open();
+        //                //string Qry = "[SP_SET_EMPLEADO]";
+        //                //DataTable dt = new DataTable();
+        //                //dt = (Qry, connection);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        // }
+
+       public List<trabajadorEntitis>ListaTrabajador(trabajadorEntitis ent)
+        {
+           
+         try
+            {
+                using (dbventasEntity context = new dbventasEntity())
+                {
+                    List<trabajadorEntitis> result = (from item in context.trabajador
+                                                      where(item.apellidos.Contains(ent.apellidos)||
+                                                            item.nombre.Contains(ent.nombre)      ||
+                                                            item.telefono.Contains(ent.telefono)  ||
+                                                            item.num_documento.Contains(ent.num_documento) 
+                                                           )
+                                                      select new trabajadorEntitis()
+                                                      {
+                                                          idtrabajador = item.idtrabajador
+                                                          ,
+                                                          nombre = item.nombre
+                                                          ,
+                                                          apellidos = item.apellidos
+                                                          ,
+                                                          sexo = item.sexo
+                                                          ,
+                                                          Fecha_nac = item.Fecha_nac
+                                                          ,
+                                                          num_documento = item.num_documento
+                                                          ,
+                                                          direccion = item.direccion
+                                                          ,
+                                                          telefono = item.telefono
+                                                          ,
+                                                          email = item.email
+                                                          ,
+                                                          StatusE = item.StatusE
+                                                          ,
+                                                          UsuarioAdiciona = item.UsuarioAdiciona
+                                                          ,
+                                                          UsuarioModifica = item.UsuarioModifica
+                                                      }).ToList();
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+             
+        }
+        
         #endregion
 
         #region users Datos

@@ -38,7 +38,6 @@ namespace CapaDatos.RepocitoryDbVentas
                     }
                 }
             }
-
         public DataTable GetCategotia()
         {
         using (dbventasEntity context = new dbventasEntity())
@@ -64,8 +63,6 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             }
         }
-
-
         public DataTable TipoDeFactura()
         {
             using (dbventasEntity context = new dbventasEntity())
@@ -91,8 +88,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             }
         }
-
-  public DataTable GetRollD()
+        public DataTable GetRollD()
         {
             using (dbventasEntity context = new dbventasEntity())
             {
