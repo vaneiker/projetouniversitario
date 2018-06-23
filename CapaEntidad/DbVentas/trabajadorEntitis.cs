@@ -31,20 +31,17 @@ namespace CapaEntidad.DbVentas
         public System.DateTime Fecha_nac { get; set; }
 
         public string num_documento { get; set; }
-
+        public bool? StatusE { get; set; }
         public string direccion { get; set; }
 
         public string telefono { get; set; }
 
         public string email { get; set; }
 
-        public string acceso { get; set; }
-
-        public string usuario { get; set; }
-
-        public string password { get; set; }
-
-
+        public DateTime? FechaAdiciona  {get;set;}
+        public DateTime? FechaModifica  {get;set;}
+        public string UsuarioAdiciona{get;set;}
+        public string UsuarioModifica{get;set;}
 
      
         public virtual ICollection<ingresosEntitis> ingreso { get; set; }

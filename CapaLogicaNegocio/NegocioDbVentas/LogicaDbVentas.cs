@@ -31,13 +31,11 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return _metodos.ListaCliente();
 
             }
-
         public DataTable BuscarCliente(string NombreCompleto, string cedula, string codigo, string telefono)
             {
             cedula.Replace("-","");
             return (_metodos.BuscarCliente(NombreCompleto,cedula,codigo,telefono));
             }
-
         public void Registrar_Clientes(ClienteEntitis cliente)
             {
             if (cliente.idcliente > 0) {
@@ -47,21 +45,12 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             _metodos.Registrar_Clientes(cliente);
             
             }
-
-
         public void Borrar_Clientes(ClienteEntitis cliente)
             {
             _metodos.EliminarClientes(cliente);
 
 
             }
-
-
-       //public void IngresdoDeDatos(IngresoMasterEntity ingreso)
-       //     {
-       //     _metodos.IngresdoDeDatos(ingreso);
-       //     }
-
         public DataTable ListaArticulos()
             {
             return _metodos.ListArticulos();
@@ -82,13 +71,13 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             _metodos.Registrar_Proveedor(proveedor);
 
             }
-
         public void Registrar_Articulos(articulosEntitis art)
             {
             _metodos.Registrar_Articulos(art);
 
             }
         #region Metodos Proveedores
+      
         //Apartir de esta Linea Empieso con las Buenas Practivas
         /// <summary>
         /// Metodo que Guarda o Actualiza el Proveedor
@@ -157,5 +146,59 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         }
 
         #endregion
+
+        #region Metodos Trabajador
+
+        public bool Add_employee(
+                                  int       idtrabajador
+                                 ,string    nombre
+                                 ,string    apellidos
+                                 ,string    sexo
+                                 ,DateTime  Fecha_nac
+                                 ,string    num_documento
+                                 ,string    direccion
+                                 ,string    telefono
+                                 ,string    email
+                                 ,bool      StatusE
+                                ,string    UsuarioAdiciona
+                                 ,string    UsuarioModifica
+                                 )
+        {
+            int respuesta;
+            trabajadorEntitis tt = new trabajadorEntitis();
+            if (idtrabajador == 0)
+            {
+                UsuarioModifica = "0";
+            }
+          
+            tt.idtrabajador     = idtrabajador;
+            tt.nombre           =nombre;
+            tt.apellidos        =apellidos;
+            tt.sexo             = sexo;           
+            tt.Fecha_nac        =Fecha_nac;
+            tt.num_documento    =num_documento;
+            tt.direccion        = direccion;
+            tt.telefono         = telefono;  
+            tt.email            =email;
+            tt.StatusE          =StatusE;
+            tt.UsuarioAdiciona  = UsuarioAdiciona;
+            tt.UsuarioModifica  = UsuarioModifica;
+           
+
+            respuesta = _metodos.Registrar_Empleado(tt);
+            if (respuesta == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
+
+
+        #endregion
+    }
+
 }

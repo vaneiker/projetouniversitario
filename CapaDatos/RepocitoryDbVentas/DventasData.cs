@@ -659,6 +659,51 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region trabajador Datos
+        
+
+        public int Registrar_Empleado(trabajadorEntitis trabajador)
+        {
+            try
+            {
+                using (dbventasEntity context = new dbventasEntity())
+                {
+                    
+                    var connection = context.Database.Connection as SqlConnection;
+
+                    using (connection)
+                    {
+                        connection.Open();
+                        string Qry = "[SP_SET_EMPLEADO]";
+                        SqlCommand cmd = new SqlCommand(Qry, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@idtrabajador",   trabajador.idtrabajador));
+                        cmd.Parameters.Add(new SqlParameter("@nombre",         trabajador.nombre));
+                        cmd.Parameters.Add(new SqlParameter("@apellidos",      trabajador.apellidos));
+                        cmd.Parameters.Add(new SqlParameter("@sexo",           trabajador.sexo));
+                        cmd.Parameters.Add(new SqlParameter("@Fecha_nac",      trabajador.Fecha_nac));
+                        cmd.Parameters.Add(new SqlParameter("@num_documento",  trabajador.num_documento));
+                        cmd.Parameters.Add(new SqlParameter("@direccion",      trabajador.direccion));
+                        cmd.Parameters.Add(new SqlParameter("@telefono",       trabajador.telefono));
+                        cmd.Parameters.Add(new SqlParameter("@email",          trabajador.email));
+                        cmd.Parameters.Add(new SqlParameter("@StatusE",        trabajador.StatusE));
+                        cmd.Parameters.Add(new SqlParameter("UsuarioAdiciona", trabajador.UsuarioAdiciona));
+                        cmd.Parameters.Add(new SqlParameter("UsuarioModifica", trabajador.UsuarioModifica));
+
+
+                        //cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", null));
+                        cmd.ExecuteNonQuery();
+                        return 1;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return 0;
+                throw ex;
+            }
+
+        }
         #endregion
 
         #region users Datos
