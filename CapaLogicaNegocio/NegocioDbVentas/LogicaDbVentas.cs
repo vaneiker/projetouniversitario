@@ -149,6 +149,13 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         {
             return _metodos.ListarticulosX_Codigo(codigo,copia);
         }
+
+
+        public DataTable BuscarArticuloFacturar(string codigo, string nom)
+        {
+            return _metodos.BuscarArticuloFacturar(codigo,nom);
+        }
+
         #endregion
         }
-    }
+}

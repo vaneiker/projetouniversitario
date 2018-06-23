@@ -720,10 +720,36 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region ventas Datos
+        public DataTable BuscarArticuloFacturar(string codigo,string nom)
+        {
+
+            using (dbventasEntity context = new dbventasEntity())
+            {
+
+                var connection = context.Database.Connection as SqlConnection;
+
+                using (connection)
+                {
+                    connection.Open();
+                    string Qry = "SP_GET_ARTICULO";
+                    SqlCommand cmd = new SqlCommand(Qry, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codigo", codigo);
+                    cmd.Parameters.AddWithValue("@nom", nom);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+
+                }
+            }
+
+        }
+       
         #endregion
 
-        
 
-        
+
+
     }
 }
