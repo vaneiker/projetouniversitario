@@ -52,6 +52,7 @@
             this.GridViewUsuarios = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnNuevo = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.TabArticulo.SuspendLayout();
@@ -133,7 +134,6 @@
             this.txtContrasena.PasswordChar = '*';
             this.txtContrasena.Size = new System.Drawing.Size(269, 45);
             this.txtContrasena.TabIndex = 50;
-            this.txtContrasena.Text = "123";
             this.txtContrasena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -157,7 +157,6 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(269, 41);
             this.txtUsuario.TabIndex = 48;
-            this.txtUsuario.Text = "Administrador";
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -182,7 +181,6 @@
             this.txtRepClave.PasswordChar = '*';
             this.txtRepClave.Size = new System.Drawing.Size(269, 45);
             this.txtRepClave.TabIndex = 51;
-            this.txtRepClave.Text = "123";
             this.txtRepClave.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cboRoll
@@ -240,6 +238,7 @@
             this.btnCancelar.TabIndex = 202;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // BtnIngerso
             // 
@@ -257,6 +256,7 @@
             this.BtnIngerso.TabIndex = 201;
             this.BtnIngerso.Text = "Registrar";
             this.BtnIngerso.UseVisualStyleBackColor = false;
+            this.BtnIngerso.Click += new System.EventHandler(this.BtnIngerso_Click);
             // 
             // TabArticulo
             // 
@@ -270,6 +270,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnNuevo);
             this.tabPage2.Controls.Add(this.btnBusc);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.txtBuscarUsuario);
@@ -333,8 +334,10 @@
             this.GridViewUsuarios.Location = new System.Drawing.Point(44, 133);
             this.GridViewUsuarios.Name = "GridViewUsuarios";
             this.GridViewUsuarios.ReadOnly = true;
+            this.GridViewUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridViewUsuarios.Size = new System.Drawing.Size(440, 191);
             this.GridViewUsuarios.TabIndex = 122;
+            this.GridViewUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewUsuarios_CellContentClick);
             // 
             // tabPage1
             // 
@@ -367,6 +370,24 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 205;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
+            this.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNuevo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnNuevo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevo.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.ForeColor = System.Drawing.Color.White;
+            this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNuevo.Location = new System.Drawing.Point(405, 327);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(79, 35);
+            this.btnNuevo.TabIndex = 204;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // FrmMantenimientoUsuarios
             // 
@@ -423,5 +444,6 @@
         private System.Windows.Forms.TextBox txtBuscarUsuario;
         private System.Windows.Forms.DataGridView GridViewUsuarios;
         private System.Windows.Forms.Button btnBusc;
+        private System.Windows.Forms.Button btnNuevo;
     }
 }

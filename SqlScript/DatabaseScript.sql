@@ -2669,6 +2669,39 @@ GO
 		   
 
 GO
+
+CREATE PROC REGISTRAR_USUARIO
+@id INT,
+@Usuario VARCHAR(50),
+@Clave VARCHAR(50),
+@RolID int,
+@Statud bit
+AS
+BEGIN
+  IF(@id <= 0)
+    BEGIN
+      INSERT INTO [dbo].[USERS]
+             ([Usuario]
+             ,[Clave]
+             ,[RolID]
+             ,[Statud])
+       VALUES
+           (@Usuario
+           ,@Clave
+           ,@RolID
+           ,@Statud)
+    END
+  ELSE
+    BEGIN
+	  UPDATE [dbo].[USERS]
+	  SET Usuario = @Usuario,
+	      Clave = @Clave,
+		  RolID = @RolID,
+		  Statud = @Statud
+	  WHERE id = @id
+	END
+END
+GO
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')

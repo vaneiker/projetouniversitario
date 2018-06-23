@@ -15,6 +15,8 @@ namespace SistemaFacturacion.Formularios
 {
     public partial class FrmMantenimientoUsuarios : Form
     {
+        UsersEntitis selectedUser;
+        Alertas.AlertSuccess sucess = new Alertas.AlertSuccess();
         public FrmMantenimientoUsuarios()
         {
             InitializeComponent();
@@ -41,7 +43,14 @@ namespace SistemaFacturacion.Formularios
         private void btnBusc_Click(object sender, EventArgs e)
         {
             UsersEntitis usuario = new UsersEntitis();
-            usuario =  usuario.GetUserByName(txtBuscarUsuario.Text);
+            usuario =  usuario.GetUserByName(txtBuscarUsuario.Text.Trim());
+            if(usuario == null)
+            {
+                MessageBox.Show("Usuario no Fue Encontrado Intente de nuevo..");
+                txtBuscarUsuario.Text = string.Empty;
+                txtBuscarUsuario.Focus();
+                return;
+            }
             DataTable dt = new DataTable();
             dt.Clear();
             dt.Columns.Add("id");
@@ -60,6 +69,76 @@ namespace SistemaFacturacion.Formularios
         private void btnCerrarSeccion_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void GridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            UsersEntitis user = new UsersEntitis();
+            string usuario = GridViewUsuarios.Rows[e.RowIndex].Cells["Usuario"].Value.ToString();
+            selectedUser = user.GetUserByName(usuario);
+            txtUsuario.Text = selectedUser.Usuario;
+            cboRoll.SelectedIndex = selectedUser.RolID;
+            TabArticulo.SelectedTab = TabArticulo.TabPages[1];
+            
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnIngerso_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtContrasena.Text))
+            {
+                MessageBox.Show("Asegurese de Entrar el usuario y la contraseña");
+                return;
+            }
+
+            if(!txtContrasena.Text.Equals(txtRepClave.Text))
+            {
+                MessageBox.Show("Las Contraseñas No Coinciden");
+                txtRepClave.Focus();
+                return;
+            }
+
+            if(cboRoll.SelectedIndex == 0)
+            {
+                MessageBox.Show("Seleccione el Role del Usuario");
+                cboRoll.Focus();
+                return;
+            }
+
+            UsersEntitis nuevoUsuario = new UsersEntitis();
+            if(selectedUser != null)
+            {
+                txtContrasena.Text = AppTools.Encripatar.Encrypt(txtContrasena.Text);
+                nuevoUsuario = selectedUser.RegistrarUsuario(txtUsuario.Text.Trim(), txtContrasena.Text, Convert.ToInt32(cboRoll.SelectedValue), selectedUser.Statud.Value, selectedUser.id);
+                sucess.ShowDialog();
+                txtUsuario.Text = string.Empty;
+                txtContrasena.Text = string.Empty;
+                txtRepClave.Text = string.Empty;
+                cboRoll.SelectedIndex = 0;
+                txtUsuario.Focus();
+            }
+            else
+            {
+                txtContrasena.Text = AppTools.Encripatar.Encrypt(txtContrasena.Text);
+                nuevoUsuario = nuevoUsuario.RegistrarUsuario(txtUsuario.Text.Trim(), txtContrasena.Text, Convert.ToInt32(cboRoll.SelectedValue), true);
+                sucess.ShowDialog();
+                txtUsuario.Text = string.Empty;
+                txtContrasena.Text = string.Empty;
+                txtRepClave.Text = string.Empty;
+                cboRoll.SelectedIndex = 0;
+                txtUsuario.Focus();
+            }
+            
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            TabArticulo.SelectedTab = TabArticulo.TabPages[1];
         }
     }
 }

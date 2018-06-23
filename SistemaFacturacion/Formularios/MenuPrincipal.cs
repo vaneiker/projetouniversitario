@@ -51,7 +51,7 @@ namespace SistemaFacturacion.Formularios
             }
 
         private void timer1_Tick(object sender, EventArgs e)
-            {
+        {
 
             toolStripStatusLabel1.Text = DateTime.Now.ToString("F");
 
