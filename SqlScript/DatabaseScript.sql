@@ -2632,6 +2632,29 @@ END
 EXEC(@QUERY)
 END
 GO
+CREATE PROC SP_GET_USER_BY_NAME
+@USERNAME VARCHAR(50)
+AS 
+SELECT [id]
+      ,[Usuario]
+      ,[Clave]
+      ,[RolID]
+      ,[Statud]
+  FROM [dbo].[USERS]
+  WHERE Usuario = @USERNAME
+GO
+
+CREATE PROC [dbo].[SP_GET_ROLL_DROP]
+AS
+BEGIN 
+SELECT[id]
+      ,[Nombre]
+      
+      
+  FROM [dbventas].[dbo].[ROLES]
+
+  END
+GO
  INSERT INTO  [dbventas].[dbo].[ROLES] VALUES('Administrador','Administrador') 
  INSERT INTO  [dbventas].[dbo].[ROLES] VALUES('Almacenista','Inventario') 
  INSERT INTO  [dbventas].[dbo].[ROLES] VALUES('Vendedor','Operario') 

@@ -49,14 +49,14 @@
             this.btnBusc = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.GridViewArticulos = new System.Windows.Forms.DataGridView();
+            this.GridViewUsuarios = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.TabArticulo.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewUsuarios)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -121,6 +121,7 @@
             this.btnCerrarSeccion.TabIndex = 46;
             this.btnCerrarSeccion.Text = "x";
             this.btnCerrarSeccion.UseVisualStyleBackColor = false;
+            this.btnCerrarSeccion.Click += new System.EventHandler(this.btnCerrarSeccion_Click);
             // 
             // txtContrasena
             // 
@@ -272,7 +273,7 @@
             this.tabPage2.Controls.Add(this.btnBusc);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Controls.Add(this.GridViewArticulos);
+            this.tabPage2.Controls.Add(this.GridViewUsuarios);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -280,6 +281,7 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Usuario";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // btnBusc
             // 
@@ -297,6 +299,7 @@
             this.btnBusc.TabIndex = 203;
             this.btnBusc.Text = "Buscar";
             this.btnBusc.UseVisualStyleBackColor = false;
+            this.btnBusc.Click += new System.EventHandler(this.btnBusc_Click);
             // 
             // label6
             // 
@@ -320,18 +323,18 @@
             this.textBox1.TabIndex = 201;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // GridViewArticulos
+            // GridViewUsuarios
             // 
-            this.GridViewArticulos.AllowUserToAddRows = false;
-            this.GridViewArticulos.AllowUserToDeleteRows = false;
-            this.GridViewArticulos.AllowUserToOrderColumns = true;
-            this.GridViewArticulos.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.GridViewArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewArticulos.Location = new System.Drawing.Point(44, 133);
-            this.GridViewArticulos.Name = "GridViewArticulos";
-            this.GridViewArticulos.ReadOnly = true;
-            this.GridViewArticulos.Size = new System.Drawing.Size(440, 191);
-            this.GridViewArticulos.TabIndex = 122;
+            this.GridViewUsuarios.AllowUserToAddRows = false;
+            this.GridViewUsuarios.AllowUserToDeleteRows = false;
+            this.GridViewUsuarios.AllowUserToOrderColumns = true;
+            this.GridViewUsuarios.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.GridViewUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewUsuarios.Location = new System.Drawing.Point(44, 133);
+            this.GridViewUsuarios.Name = "GridViewUsuarios";
+            this.GridViewUsuarios.ReadOnly = true;
+            this.GridViewUsuarios.Size = new System.Drawing.Size(440, 191);
+            this.GridViewUsuarios.TabIndex = 122;
             // 
             // tabPage1
             // 
@@ -377,7 +380,8 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmMantenimientoUsuarios";
-            this.Text = "FrmMantenimientoUsuarios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Usuarios";
             this.Load += new System.EventHandler(this.FrmMantenimientoUsuarios_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -385,7 +389,7 @@
             this.TabArticulo.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewUsuarios)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -417,7 +421,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView GridViewArticulos;
+        private System.Windows.Forms.DataGridView GridViewUsuarios;
         private System.Windows.Forms.Button btnBusc;
     }
 }

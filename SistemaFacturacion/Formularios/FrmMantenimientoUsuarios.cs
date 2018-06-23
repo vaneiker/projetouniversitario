@@ -32,5 +32,20 @@ namespace SistemaFacturacion.Formularios
             cboRoll.DisplayMember = "Nombre";
             cboRoll.ValueMember = "id";
         }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBusc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrarSeccion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
