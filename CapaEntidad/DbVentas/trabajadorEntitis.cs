@@ -25,9 +25,9 @@ namespace CapaEntidad.DbVentas
         public string nombre { get; set; }
 
         public string apellidos { get; set; }
-
+        public string estatus { get; set; }
         public string sexo { get; set; }
-
+        public string NombreCompleto { get; set; }
         public System.DateTime Fecha_nac { get; set; }
 
         public string num_documento { get; set; }

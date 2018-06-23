@@ -766,58 +766,56 @@ namespace CapaDatos.RepocitoryDbVentas
         //    catch (Exception)
         //    {
         //        throw;
-        //    }
+        //    }ListaTrabajador
         // }
-
-       public List<trabajadorEntitis> ListaTrabajador(trabajadorEntitis ent)
+        public trabajadorEntitis ListaTrabajador(string NombCompleto, string cedula, string telefono)
         {
-           
-         try
+            trabajadorEntitis trab;
+
+            using (dbventasEntity db = new dbventasEntity())
             {
-                using (dbventasEntity context = new dbventasEntity())
+                using (var connection = db.Database.Connection as SqlConnection)
                 {
-                    List<trabajadorEntitis> result = (from item in context.trabajador
-                                                      where(item.apellidos.Contains(ent.apellidos)||
-                                                            item.nombre.Contains(ent.nombre)      ||
-                                                            item.telefono.Contains(ent.telefono)  ||
-                                                            item.num_documento.Contains(ent.num_documento) 
-                                                           )
-                                                      select new trabajadorEntitis()
-                                                      {
-                                                          idtrabajador = item.idtrabajador
-                                                          ,
-                                                          nombre = item.nombre
-                                                          ,
-                                                          apellidos = item.apellidos
-                                                          ,
-                                                          sexo = item.sexo
-                                                          ,
-                                                          Fecha_nac = item.Fecha_nac
-                                                          ,
-                                                          num_documento = item.num_documento
-                                                          ,
-                                                          direccion = item.direccion
-                                                          ,
-                                                          telefono = item.telefono
-                                                          ,
-                                                          email = item.email
-                                                          ,
-                                                          StatusE = item.StatusE
-                                                          ,
-                                                          UsuarioAdiciona = item.UsuarioAdiciona
-                                                          ,
-                                                          UsuarioModifica = item.UsuarioModifica
-                                                      }).ToList();
-                    return result;
+                    connection.Open();
+                    string procedure = "[dbo].[SP_GET_EMPLOYEES]";
+                    SqlCommand cmd = new SqlCommand(procedure, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@NombreC",   NombCompleto);
+                    cmd.Parameters.AddWithValue("@num_cedula", cedula);
+                    cmd.Parameters.AddWithValue("@telefono",   telefono);
+                   
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    if (dt.Rows.Count <= 0)
+                    {
+                        connection.Close();
+                        return null;
+                    }
+                    trab = new trabajadorEntitis();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        trab.idtrabajador=Convert.ToInt32(row["idtrabajador"].ToString());
+                        trab.NombreCompleto = row["NombreCompleto"].ToString();
+                        trab.sexo= row["sexo"].ToString();
+                        trab.num_documento= row["num_documento"].ToString();
+                        trab.direccion= row["direccion"].ToString();
+                        trab.telefono= row["telefono"].ToString();
+                        trab.email= row["email"].ToString();
+                        trab.estatus = row["Estado"].ToString();
+                                               
+                    }
+
                 }
             }
-            catch (Exception)
-            {
-                throw;
-            }
-             
+
+            return trab;
         }
-        
+
+
         #endregion
 
         #region users Datos

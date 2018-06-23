@@ -53,22 +53,22 @@ namespace SistemaFacturacion.Formularios
             {
                 Add_Employee(
                                 this.codigo
-                               ,txtNombre.Text
-                               ,txtApellido.Text
-                               ,cboSexo.Text
-                               ,DateTime.Parse(dateFechaNacimiento.Text)
-                               ,MascCedula.Text
-                               ,txtDireccion.Text.Trim()
-                               ,txtTel.Text
-                               ,txtCorreo.Text
-                               ,true
-                               ,seccion.Usuario
-                               ,seccion.Usuario
-                            
+                               , txtNombre.Text
+                               , txtApellido.Text
+                               , cboSexo.Text
+                               , DateTime.Parse(dateFechaNacimiento.Text)
+                               , MascCedula.Text
+                               , txtDireccion.Text.Trim()
+                               , txtTel.Text
+                               , txtCorreo.Text
+                               , true
+                               , seccion.Usuario
+                               , seccion.Usuario
+
                              );
             }
-        }            
-    
+        }
+
 
         private void Add_Employee(
                                    int idtrabajador
@@ -100,7 +100,7 @@ namespace SistemaFacturacion.Formularios
                  , StatusE
                  , UsuarioAdiciona
                  , UsuarioModifica);
-            if(repuest==true)
+            if (repuest == true)
             {
                 success.ShowDialog();
             }
@@ -112,33 +112,42 @@ namespace SistemaFacturacion.Formularios
 
         private void BuscarD_Click(object sender, EventArgs e)
         {
-            if (txtBuscar.Text == "" || txtBuscar.Text == null)
-            {
-                error.ShowDialog();
-            }
-            else
-            {
-                string a, b, c, d;
-                a = txtBuscar.Text.Trim();
-                b = txtBuscar.Text.Trim();
-                c = txtBuscar.Text.Trim();
-                d = txtBuscar.Text.Trim();
+            trabajadorEntitis trabajador = new trabajadorEntitis();
+            var a = txtBuscar.Text.Trim();
+            var b = txtBuscar.Text.Trim();
+            var c = txtBuscar.Text.Trim();
 
-                var trabajador = _metodos.ListaTrabajador(a, b, c, d);
-                if (trabajador.Count > 0)
-                {
-                    GridViewTra.DataSource = trabajador;
+            trabajador = trabajador.ListaTrabajador(a,b,c);
+            DataTable dt = new DataTable();
+            dt.Clear();                          
+            dt.Columns.Add("ID");
+            dt.Columns.Add("Nombre Completo");
+            dt.Columns.Add("sexo");
+            dt.Columns.Add("Cedula");
+            dt.Columns.Add("direccion");
+            dt.Columns.Add("telefono");
+            dt.Columns.Add("email");
+            dt.Columns.Add("Estado");            
 
-                }
-            }
-
-            }
-
+            DataRow fila = dt.NewRow();
+            fila["ID"] = trabajador.idtrabajador.ToString();
+            fila["Nombre Completo"] = trabajador.NombreCompleto;
+            fila["sexo"] = trabajador.sexo.ToString();
+            fila["Cedula"] = trabajador.num_documento.ToString();
+            fila["direccion"] = trabajador.direccion.ToString();
+            fila["telefono"] = trabajador.telefono.ToString();
+            fila["email"] = trabajador.email.ToString();
+            fila["Estado"] = trabajador.estatus.ToString();
+            dt.Rows.Add(fila);
+            GridViewTra.DataSource = dt;
+            GridViewTra.Columns["ID"].Visible = false;
+           
         }
+    }
+}
 
        
-    }
-
+    
 
        
 
