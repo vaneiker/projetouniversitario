@@ -157,7 +157,7 @@
             this.panel3.ForeColor = System.Drawing.Color.White;
             this.panel3.Location = new System.Drawing.Point(171, -1);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(767, 93);
+            this.panel3.Size = new System.Drawing.Size(767, 111);
             this.panel3.TabIndex = 44;
             // 
             // btnCerrarSeccion
@@ -214,9 +214,9 @@
             this.panelErrorClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
             this.panelErrorClave.Controls.Add(this.label5);
             this.panelErrorClave.ForeColor = System.Drawing.Color.White;
-            this.panelErrorClave.Location = new System.Drawing.Point(505, 97);
+            this.panelErrorClave.Location = new System.Drawing.Point(505, 110);
             this.panelErrorClave.Name = "panelErrorClave";
-            this.panelErrorClave.Size = new System.Drawing.Size(433, 54);
+            this.panelErrorClave.Size = new System.Drawing.Size(433, 68);
             this.panelErrorClave.TabIndex = 46;
             this.panelErrorClave.Visible = false;
             // 
@@ -262,6 +262,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

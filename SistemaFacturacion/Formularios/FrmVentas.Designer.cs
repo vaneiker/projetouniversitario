@@ -66,20 +66,20 @@
             this.dateFechaVencimiento = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblCri = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cboCliente = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.DataGrivCliente = new System.Windows.Forms.DataGridView();
-            this.lblCri = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNombreArticulo = new System.Windows.Forms.TextBox();
+            this.BtnBuscarArticulo = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtCodigoArticulo = new System.Windows.Forms.TextBox();
+            this.GrivArticulo = new System.Windows.Forms.DataGridView();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtComp = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -87,7 +87,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtVent = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -99,10 +99,10 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrivCliente)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrivArticulo)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -499,6 +499,19 @@
             this.groupBox1.Text = "Cliente";
             this.groupBox1.EnabledChanged += new System.EventHandler(this.groupBox1_EnabledChanged);
             // 
+            // lblCri
+            // 
+            this.lblCri.AutoSize = true;
+            this.lblCri.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCri.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.lblCri.Location = new System.Drawing.Point(25, 59);
+            this.lblCri.Name = "lblCri";
+            this.lblCri.Size = new System.Drawing.Size(464, 19);
+            this.lblCri.TabIndex = 199;
+            this.lblCri.Text = "Criterio de Busqueda/Nombre/Telefono/Codigo/Cedula";
+            this.lblCri.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblCri.Visible = false;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -546,80 +559,39 @@
             this.DataGrivCliente.Size = new System.Drawing.Size(497, 110);
             this.DataGrivCliente.TabIndex = 0;
             // 
-            // lblCri
-            // 
-            this.lblCri.AutoSize = true;
-            this.lblCri.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCri.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.lblCri.Location = new System.Drawing.Point(25, 59);
-            this.lblCri.Name = "lblCri";
-            this.lblCri.Size = new System.Drawing.Size(464, 19);
-            this.lblCri.TabIndex = 199;
-            this.lblCri.Text = "Criterio de Busqueda/Nombre/Telefono/Codigo/Cedula";
-            this.lblCri.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblCri.Visible = false;
-            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.txtNombreArticulo);
+            this.groupBox3.Controls.Add(this.BtnBuscarArticulo);
             this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBox4);
-            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.txtCodigoArticulo);
+            this.groupBox3.Controls.Add(this.GrivArticulo);
             this.groupBox3.Location = new System.Drawing.Point(619, 284);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(647, 135);
+            this.groupBox3.Size = new System.Drawing.Size(647, 156);
             this.groupBox3.TabIndex = 194;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Articulo";
             // 
-            // dataGridView1
+            // button1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 57);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(631, 72);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox5.Controls.Add(this.groupBox6);
-            this.groupBox5.Controls.Add(this.dataGridView2);
-            this.groupBox5.Location = new System.Drawing.Point(100, 446);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1166, 306);
-            this.groupBox5.TabIndex = 195;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Codigo";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(514, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(42, 35);
-            this.button2.TabIndex = 194;
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(21, 102);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(721, 163);
-            this.dataGridView2.TabIndex = 0;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(562, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 35);
+            this.button1.TabIndex = 201;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -632,16 +604,34 @@
             this.label2.TabIndex = 200;
             this.label2.Text = "Articulo";
             // 
-            // textBox1
+            // txtNombreArticulo
             // 
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.textBox1.Location = new System.Drawing.Point(253, 20);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(255, 31);
-            this.textBox1.TabIndex = 199;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNombreArticulo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreArticulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtNombreArticulo.Location = new System.Drawing.Point(253, 20);
+            this.txtNombreArticulo.Multiline = true;
+            this.txtNombreArticulo.Name = "txtNombreArticulo";
+            this.txtNombreArticulo.Size = new System.Drawing.Size(255, 31);
+            this.txtNombreArticulo.TabIndex = 199;
+            this.txtNombreArticulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // BtnBuscarArticulo
+            // 
+            this.BtnBuscarArticulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BtnBuscarArticulo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscarArticulo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.BtnBuscarArticulo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.BtnBuscarArticulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscarArticulo.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBuscarArticulo.ForeColor = System.Drawing.Color.White;
+            this.BtnBuscarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscarArticulo.Image")));
+            this.BtnBuscarArticulo.Location = new System.Drawing.Point(514, 19);
+            this.BtnBuscarArticulo.Name = "BtnBuscarArticulo";
+            this.BtnBuscarArticulo.Size = new System.Drawing.Size(42, 35);
+            this.BtnBuscarArticulo.TabIndex = 194;
+            this.BtnBuscarArticulo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscarArticulo.UseVisualStyleBackColor = false;
+            this.BtnBuscarArticulo.Click += new System.EventHandler(this.BtnBuscarArticulo_Click);
             // 
             // label7
             // 
@@ -654,16 +644,36 @@
             this.label7.TabIndex = 197;
             this.label7.Text = "Codigo";
             // 
-            // textBox4
+            // txtCodigoArticulo
             // 
-            this.textBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.textBox4.Location = new System.Drawing.Point(75, 20);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(93, 31);
-            this.textBox4.TabIndex = 198;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCodigoArticulo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoArticulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCodigoArticulo.Location = new System.Drawing.Point(75, 20);
+            this.txtCodigoArticulo.Multiline = true;
+            this.txtCodigoArticulo.Name = "txtCodigoArticulo";
+            this.txtCodigoArticulo.Size = new System.Drawing.Size(93, 31);
+            this.txtCodigoArticulo.TabIndex = 198;
+            this.txtCodigoArticulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // GrivArticulo
+            // 
+            this.GrivArticulo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GrivArticulo.Location = new System.Drawing.Point(10, 57);
+            this.GrivArticulo.Name = "GrivArticulo";
+            this.GrivArticulo.Size = new System.Drawing.Size(631, 93);
+            this.GrivArticulo.TabIndex = 0;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Controls.Add(this.dataGridView2);
+            this.groupBox5.Location = new System.Drawing.Point(100, 446);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1166, 306);
+            this.groupBox5.TabIndex = 195;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Codigo";
             // 
             // groupBox6
             // 
@@ -745,22 +755,13 @@
             this.txtVent.TabIndex = 166;
             this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // button1
+            // dataGridView2
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(562, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 35);
-            this.button1.TabIndex = 201;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(21, 102);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(721, 163);
+            this.dataGridView2.TabIndex = 0;
             // 
             // FrmVentas
             // 
@@ -777,6 +778,7 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.ToolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmVentas";
             this.Text = "FrmVentas";
             this.Load += new System.EventHandler(this.FrmVentas_Load);
@@ -795,11 +797,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGrivCliente)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrivArticulo)).EndInit();
             this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -849,14 +851,14 @@
         private System.Windows.Forms.DataGridView DataGrivCliente;
         private System.Windows.Forms.Label lblCri;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView GrivArticulo;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnBuscarArticulo;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNombreArticulo;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtCodigoArticulo;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtComp;
         private System.Windows.Forms.Label label9;

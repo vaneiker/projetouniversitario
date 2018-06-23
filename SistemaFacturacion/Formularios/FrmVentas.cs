@@ -19,11 +19,11 @@ namespace SistemaFacturacion.Formularios
             InitializeComponent();
             }
         ComboxBosxTools cbo = new ComboxBosxTools();
-        LogicaDbVentas clien = new LogicaDbVentas();
-    
+        LogicaDbVentas f = new LogicaDbVentas();
+        Alertas.AlertError er = new Alertas.AlertError();
 
 
-         private void FrmVentas_Load(object sender, EventArgs e)
+        private void FrmVentas_Load(object sender, EventArgs e)
         {
             cargarTipoF();
         }
@@ -84,7 +84,7 @@ namespace SistemaFacturacion.Formularios
                 c = txtB.Text.Trim();
                 d = txtB.Text.Trim();
 
-                var cliente = clien.BuscarCliente(a, b, c, d);
+                var cliente = f.BuscarCliente(a, b, c, d);
                 if (cliente.Rows.Count > 0)
                 {
                     DataGrivCliente.DataSource = cliente;
@@ -97,11 +97,18 @@ namespace SistemaFacturacion.Formularios
                     groupBox2.Visible = false;
                 }
             }
-          
+          }
 
+       private void BtnBuscarArticulo_Click(object sender, EventArgs e)
+        {
+            var a = txtCodigoArticulo.Text.Trim();
+            var b = txtNombreArticulo.Text.Trim();
            
-        }
+                var art = f.BuscarArticuloFacturar(a,b);
+                    GrivArticulo.DataSource = art;
+                
+            }
     }
- }   
+}   
 
 
