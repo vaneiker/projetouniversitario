@@ -16,6 +16,11 @@ namespace SistemaFacturacion.Alertas
         {
             InitializeComponent();
         }
+        public AlertSuccess(string msg)
+        {
+            InitializeComponent();
+            label1.Text = msg;
+        }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

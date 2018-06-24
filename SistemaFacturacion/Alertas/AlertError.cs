@@ -17,6 +17,12 @@ namespace SistemaFacturacion.Alertas
             InitializeComponent();
         }
 
+        public AlertError(string msg)
+        {
+            InitializeComponent();
+            lbMessage.Text = msg;
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();

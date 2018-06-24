@@ -35,17 +35,23 @@ namespace SistemaFacturacion.Formularios
 
             if (String.IsNullOrWhiteSpace(txtNombre.Text) || String.IsNullOrWhiteSpace(txtApellido.Text))
             {
-                MessageBox.Show("Favor de Digitar su Nombre y Apellidos");
+                string msg = "Favor de Digitar su Nombre y Apellidos";
+                Alertas.AlertError emptyError = new Alertas.AlertError(msg);
+                emptyError.ShowDialog();
                 return;
             }
             else if (String.IsNullOrWhiteSpace(MascCedula.Text) || String.IsNullOrWhiteSpace(dateFechaNacimiento.Text))
             {
-                MessageBox.Show("Favor de Digitar su Cedula y Fecha Nacimiento");
+                string msg = "Favor de Digitar su Cedula y Fecha Nacimiento";
+                Alertas.AlertError cedulaError = new Alertas.AlertError(msg);
+                cedulaError.ShowDialog();
                 return;
             }
             else if (String.IsNullOrWhiteSpace(cboSexo.Text) || String.IsNullOrWhiteSpace(txtTel.Text))
             {
-                MessageBox.Show("Favor de Digitar el Telefono");
+                string msg = "Favor de Digitar el Telefono";
+                Alertas.AlertError sexoError = new Alertas.AlertError(msg);
+                sexoError.ShowDialog();
                 return;
             }
 
@@ -102,11 +108,12 @@ namespace SistemaFacturacion.Formularios
                  , UsuarioModifica);
             if (repuest == true)
             {
-                success.ShowDialog();
+                Alertas.AlertSuccess insertado = new Alertas.AlertSuccess("Datos Ingresados Correctamente!");
             }
             else
             {
-                error.ShowDialog();
+                Alertas.AlertError insertError = new Alertas.AlertError("Error al Insertar los Datos");
+                insertError.ShowDialog();
             }
         }
 
