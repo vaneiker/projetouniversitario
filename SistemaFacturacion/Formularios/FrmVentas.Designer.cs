@@ -74,10 +74,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNombreArticulo = new System.Windows.Forms.TextBox();
+            this.txtBuscarArticulo = new System.Windows.Forms.TextBox();
             this.BtnBuscarArticulo = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtCodigoArticulo = new System.Windows.Forms.TextBox();
             this.GrivArticulo = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -564,10 +562,8 @@
             this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.txtNombreArticulo);
+            this.groupBox3.Controls.Add(this.txtBuscarArticulo);
             this.groupBox3.Controls.Add(this.BtnBuscarArticulo);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.txtCodigoArticulo);
             this.groupBox3.Controls.Add(this.GrivArticulo);
             this.groupBox3.Location = new System.Drawing.Point(619, 284);
             this.groupBox3.Name = "groupBox3";
@@ -598,22 +594,22 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label2.Location = new System.Drawing.Point(174, 23);
+            this.label2.Location = new System.Drawing.Point(8, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 19);
             this.label2.TabIndex = 200;
             this.label2.Text = "Articulo";
             // 
-            // txtNombreArticulo
+            // txtBuscarArticulo
             // 
-            this.txtNombreArticulo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreArticulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtNombreArticulo.Location = new System.Drawing.Point(253, 20);
-            this.txtNombreArticulo.Multiline = true;
-            this.txtNombreArticulo.Name = "txtNombreArticulo";
-            this.txtNombreArticulo.Size = new System.Drawing.Size(255, 31);
-            this.txtNombreArticulo.TabIndex = 199;
-            this.txtNombreArticulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBuscarArticulo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarArticulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtBuscarArticulo.Location = new System.Drawing.Point(87, 20);
+            this.txtBuscarArticulo.Multiline = true;
+            this.txtBuscarArticulo.Name = "txtBuscarArticulo";
+            this.txtBuscarArticulo.Size = new System.Drawing.Size(421, 31);
+            this.txtBuscarArticulo.TabIndex = 199;
+            this.txtBuscarArticulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // BtnBuscarArticulo
             // 
@@ -632,28 +628,6 @@
             this.BtnBuscarArticulo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnBuscarArticulo.UseVisualStyleBackColor = false;
             this.BtnBuscarArticulo.Click += new System.EventHandler(this.BtnBuscarArticulo_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label7.Location = new System.Drawing.Point(4, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 19);
-            this.label7.TabIndex = 197;
-            this.label7.Text = "Codigo";
-            // 
-            // txtCodigoArticulo
-            // 
-            this.txtCodigoArticulo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoArticulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtCodigoArticulo.Location = new System.Drawing.Point(75, 20);
-            this.txtCodigoArticulo.Multiline = true;
-            this.txtCodigoArticulo.Name = "txtCodigoArticulo";
-            this.txtCodigoArticulo.Size = new System.Drawing.Size(93, 31);
-            this.txtCodigoArticulo.TabIndex = 198;
-            this.txtCodigoArticulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // GrivArticulo
             // 
@@ -856,9 +830,7 @@
         private System.Windows.Forms.Button BtnBuscarArticulo;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtNombreArticulo;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtCodigoArticulo;
+        private System.Windows.Forms.TextBox txtBuscarArticulo;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtComp;
         private System.Windows.Forms.Label label9;

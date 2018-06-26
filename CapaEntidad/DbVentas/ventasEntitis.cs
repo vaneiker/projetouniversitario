@@ -15,7 +15,7 @@ namespace CapaEntidad.DbVentas
 
             }
 
-
+       
         public int idventa { get; set; }
 
         public int idcliente { get; set; }

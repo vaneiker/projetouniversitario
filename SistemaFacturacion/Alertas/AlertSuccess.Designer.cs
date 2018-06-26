@@ -30,8 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,16 @@
             this.panel2.Size = new System.Drawing.Size(461, 157);
             this.panel2.TabIndex = 3;
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(113, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(216, 55);
+            this.label1.TabIndex = 178;
+            this.label1.Text = "la operación fue exitosa ";
+            // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
@@ -70,16 +80,6 @@
             this.btnCancelar.Text = "Aceptar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(54, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(334, 55);
-            this.label1.TabIndex = 178;
-            this.label1.Text = "la operación fue exitosar esta accion ";
             // 
             // AlertSuccess
             // 

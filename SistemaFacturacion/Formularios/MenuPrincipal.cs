@@ -102,6 +102,12 @@ namespace SistemaFacturacion.Formularios
             t.ShowDialog();
 
         }
+
+        private void BtnProveedor_Click(object sender, EventArgs e)
+        {
+            FrmProveedor pr = new FrmProveedor();
+            pr.ShowDialog();
+        }
     }
     }
   

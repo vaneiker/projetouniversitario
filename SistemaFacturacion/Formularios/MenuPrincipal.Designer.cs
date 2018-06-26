@@ -374,6 +374,7 @@
             this.BtnProveedor.TabIndex = 6;
             this.BtnProveedor.Text = "Proveedores";
             this.BtnProveedor.UseVisualStyleBackColor = false;
+            this.BtnProveedor.Click += new System.EventHandler(this.BtnProveedor_Click);
             // 
             // BtnIngreso
             // 
