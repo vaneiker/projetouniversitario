@@ -125,30 +125,41 @@ namespace SistemaFacturacion.Formularios
             var c = txtBuscar.Text.Trim();
 
             trabajador = trabajador.ListaTrabajador(a,b,c);
-            DataTable dt = new DataTable();
-            dt.Clear();                          
-            dt.Columns.Add("ID");
-            dt.Columns.Add("Nombre Completo");
-            dt.Columns.Add("sexo");
-            dt.Columns.Add("Cedula");
-            dt.Columns.Add("direccion");
-            dt.Columns.Add("telefono");
-            dt.Columns.Add("email");
-            dt.Columns.Add("Estado");            
+            if(trabajador !=null)
+            {
+                DataTable dt = new DataTable();
+                dt.Clear();
+                dt.Columns.Add("ID");
+                dt.Columns.Add("Nombre Completo");
+                dt.Columns.Add("sexo");
+                dt.Columns.Add("Cedula");
+                dt.Columns.Add("direccion");
+                dt.Columns.Add("telefono");
+                dt.Columns.Add("email");
+                dt.Columns.Add("Estado");
 
-            DataRow fila = dt.NewRow();
-            fila["ID"] = trabajador.idtrabajador.ToString();
-            fila["Nombre Completo"] = trabajador.NombreCompleto;
-            fila["sexo"] = trabajador.sexo.ToString();
-            fila["Cedula"] = trabajador.num_documento.ToString();
-            fila["direccion"] = trabajador.direccion.ToString();
-            fila["telefono"] = trabajador.telefono.ToString();
-            fila["email"] = trabajador.email.ToString();
-            fila["Estado"] = trabajador.estatus.ToString();
-            dt.Rows.Add(fila);
-            GridViewTra.DataSource = dt;
-            GridViewTra.Columns["ID"].Visible = false;
-           
+                DataRow fila = dt.NewRow();
+                fila["ID"] = trabajador.idtrabajador.ToString();
+                fila["Nombre Completo"] = trabajador.NombreCompleto;
+                fila["sexo"] = trabajador.sexo.ToString();
+                fila["Cedula"] = trabajador.num_documento.ToString();
+                fila["direccion"] = trabajador.direccion.ToString();
+                fila["telefono"] = trabajador.telefono.ToString();
+                fila["email"] = trabajador.email.ToString();
+                fila["Estado"] = trabajador.estatus.ToString();
+                dt.Rows.Add(fila);
+                GridViewTra.DataSource = dt;
+                GridViewTra.Columns["ID"].Visible = false;
+
+
+            }
+            else
+            {
+                MessageBox.Show("No se a encontrado ningún Resultado!");
+                txtBuscar.Text = string.Empty;
+                txtBuscar.Focus();
+                return;
+            }
         }
     }
 }
