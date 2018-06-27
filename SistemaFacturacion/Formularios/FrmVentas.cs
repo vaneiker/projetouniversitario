@@ -20,8 +20,9 @@ namespace SistemaFacturacion.Formularios
             }
         ComboxBosxTools cbo = new ComboxBosxTools();
         LogicaDbVentas f = new LogicaDbVentas();
-        Alertas.AlertError er = new Alertas.AlertError();
 
+        Alertas.AlertError er = new Alertas.AlertError();
+       
 
         private void FrmVentas_Load(object sender, EventArgs e)
         {
@@ -101,13 +102,60 @@ namespace SistemaFacturacion.Formularios
 
        private void BtnBuscarArticulo_Click(object sender, EventArgs e)
         {
-            var a = txtCodigoArticulo.Text.Trim();
-            var b = txtNombreArticulo.Text.Trim();
-           
-                var art = f.BuscarArticuloFacturar(a,b);
-                    GrivArticulo.DataSource = art;
-                
+            articulosEntitis articuloF = new articulosEntitis();
+            var a = txtBuscarArticulo.Text.Trim();
+            var b = txtBuscarArticulo.Text.Trim();
+
+
+            articuloF = articuloF.ListaArticuloF(a, b);
+            if (articuloF != null)
+            {
+                DataTable dt = new DataTable();
+                dt.Clear();
+                dt.Columns.Add("idarticulo");
+                dt.Columns.Add("nombre");
+                dt.Columns.Add("idcategoria");
+                dt.Columns.Add("Codigo");
+                dt.Columns.Add("Imag_Url");
+                dt.Columns.Add("descripcion");
+                dt.Columns.Add("precioVenta");
+                dt.Columns.Add("precioCompra");
+                dt.Columns.Add("cantidad");
+                dt.Columns.Add("estado");
+                dt.Columns.Add("idProveedor");
+                dt.Columns.Add("CodigoBarra");
+
+        DataRow fila = dt.NewRow();
+
+              
+                fila["idarticulo"].ToString();
+                fila["nombre"].ToString();
+                fila["idcategoria"].ToString();
+                fila["Codigo"].ToString();
+                fila["Imag_Url"].ToString();
+                fila["descripcion"].ToString();
+                fila["precioVenta"].ToString();
+                fila["precioCompra"].ToString();
+                fila["cantidad"].ToString();
+                fila["estado"].ToString();
+                fila["idProveedor"].ToString();
+                fila["CodigoBarra"].ToString();
+                                                                                         
+                dt.Rows.Add(fila);
+                GrivArticulo.DataSource = dt;
+                //GrivArticulo.Columns["ID"].Visible = false;
+
+
             }
+            else
+            {
+                MessageBox.Show("No se a encontrado ningún Resultado!");
+                txtBuscarArticulo.Text = string.Empty;
+                txtBuscarArticulo.Focus();
+                return;
+            }
+
+        }
     }
 }   
 

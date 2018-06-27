@@ -17,6 +17,8 @@ namespace SistemaFacturacion.Formularios
         private int codigo { get; set; }
         Seccion seccion = Seccion.Instance;
         LogicaDbVentas _metodos = new LogicaDbVentas();
+        Alertas.AlertError error = new Alertas.AlertError();
+        Alertas.AlertSuccess succes = new Alertas.AlertSuccess();
         public FrmClientes()
             {
             InitializeComponent();
@@ -80,8 +82,19 @@ namespace SistemaFacturacion.Formularios
             cliente.email= txtemail.Text;
             cliente.UsuarioAdiciona=seccion.Usuario;
             cliente.UsuarioModifica = seccion.Usuario;
-            _metodos.Registrar_Clientes(cliente);
-            ListaCliente();
+
+           var r= _metodos.Registrar_Clientes(cliente);
+            if (r == true)
+            {
+                succes.ShowDialog();
+                ListaCliente();
+            }
+            else
+            {
+                error.ShowDialog();
+
+            }
+           
             }
 
         private void Eliminar_Click(object sender, DataGridViewCellEventArgs e)

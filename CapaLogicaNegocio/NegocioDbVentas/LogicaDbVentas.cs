@@ -13,8 +13,12 @@ namespace CapaLogicaNegocio.NegocioDbVentas
     public class LogicaDbVentas
         {
         DventasData _metodos = new DventasData();
-      
-         public DataTable ListCategoria()
+        public DataTable Listap()
+        {
+            return _metodos.Listproveedor();
+
+        }
+        public DataTable ListCategoria()
             {
             return _metodos.ListCategoria();
 
@@ -36,14 +40,26 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             cedula.Replace("-","");
             return (_metodos.BuscarCliente(NombreCompleto,cedula,codigo,telefono));
             }
-        public void Registrar_Clientes(ClienteEntitis cliente)
+        public bool Registrar_Clientes(ClienteEntitis cliente)
             {
-            if (cliente.idcliente > 0) {
+           
+            if (cliente.idcliente > 0)
+            {
                 
-                }
+            }
 
-            _metodos.Registrar_Clientes(cliente);
-            
+            //return  /* _metodos.Registrar_Clientes(cliente);*/
+            var r = _metodos.Registrar_Clientes(cliente);
+            if (r == 1)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+
+
+
             }
         public void Borrar_Clientes(ClienteEntitis cliente)
             {
@@ -71,9 +87,24 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             nom.Trim();
             return (_metodos.Buscarproveedor(doc,tel,nom));
             }
-        public void Registrar_Proveedor(ProveedorEntity proveedor)
+        public bool Registrar_Proveedor(ProveedorEntity proveedor)
             {
-            _metodos.Registrar_Proveedor(proveedor);
+            if (proveedor.idproveedor==0)
+            {
+                proveedor.UsuarioModifica = "0";
+            }
+
+            proveedor.telefono.Replace("-","");
+            proveedor.num_documento.Replace("-", "");
+             var r= _metodos.Registrar_Proveedor(proveedor);
+
+            if (r == 1)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
 
             }
         public void Registrar_Articulos(articulosEntitis art)
@@ -156,11 +187,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         }
 
 
-        public DataTable BuscarArticuloFacturar(string codigo, string nom)
-        {
-            return _metodos.BuscarArticuloFacturar(codigo,nom);
-        }
-
+       
         #endregion
 
         #region Metodos Trabajador

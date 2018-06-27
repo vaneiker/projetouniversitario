@@ -21,6 +21,9 @@ namespace CapaEntidad.DbVentas
       public bool? estado {get;set;}
       public int idProveedor {get;set;}
 
-        }
+        public string CodigoBarra {get;set;}
+
+
     }
+}
     
