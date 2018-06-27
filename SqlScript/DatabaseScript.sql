@@ -2885,6 +2885,98 @@ INSERT INTO [dbo].[ingreso]
 		
  END
  GO
+
+ CREATE PROC [dbo].[SP_SET_EMPLEADO]
+       @idtrabajador    int
+      ,@nombre          varchar(20)
+      ,@apellidos       varchar(40)
+      ,@sexo            char(1)
+      ,@Fecha_nac       datetime
+      ,@num_documento   varchar(15)
+      ,@direccion       varchar(100)
+      ,@telefono        varchar(10)
+      ,@email           varchar(50)
+      ,@StatusE         bit
+      ,@UsuarioAdiciona varchar(50)
+	  ,@UsuarioModifica varchar(50)
+
+	  AS
+
+	  BEGIN 
+	  if exists(select * from dbo.trabajador where idtrabajador=@idtrabajador)
+	  begin
+	  UPDATE dbo.trabajador
+	  set
+
+	   nombre         =@nombre         
+	  ,apellidos      =@apellidos      
+	  ,sexo           =@sexo           
+	  ,Fecha_nac      =@Fecha_nac      
+	  ,num_documento  =@num_documento  
+	  ,direccion      =@direccion      
+	  ,telefono       =@telefono       
+	  ,email          =@email          
+	  ,StatusE        =@StatusE    
+	  ,FechaModifica  =GETDATE()
+	  ,UsuarioModifica=@UsuarioModifica
+
+	  WHERE idtrabajador=@idtrabajador;
+	  end
+	  else
+	  begin
+	  INSERT INTO [dbo].[trabajador]
+           ([nombre]
+           ,[apellidos]
+           ,[sexo]
+           ,[Fecha_nac]
+           ,[num_documento]
+           ,[direccion]
+           ,[telefono]
+           ,[email]
+           ,[StatusE]
+           ,[FechaAdiciona]
+           ,[FechaModifica]
+           ,[UsuarioAdiciona]
+           ,[UsuarioModifica])
+     VALUES
+           (
+		   @nombre          
+		   ,@apellidos       
+		   ,@sexo            
+		   ,@Fecha_nac       
+		   ,@num_documento   
+		   ,@direccion       
+		   ,@telefono        
+		   ,@email           
+		   ,@StatusE        
+		   ,GETDATE()   
+		   ,NULL   
+		   ,@UsuarioAdiciona 
+		   ,NULL	
+		   )
+		end    
+	  END
+GO
+
+create proc [DBO].[SELECT_EMPLOYEE_BY_ID]
+@ID INT
+AS
+SELECT [idtrabajador]
+      ,[nombre]
+      ,[apellidos]
+      ,[sexo]
+      ,[Fecha_nac]
+      ,[num_documento]
+      ,[direccion]
+      ,[telefono]
+      ,[email]
+      ,[StatusE]
+      ,[FechaModifica]
+      ,[UsuarioModifica]
+      ,[FechaAdiciona]
+      ,[UsuarioAdiciona]
+  FROM [dbo].[trabajador] WHERE idtrabajador = @ID
+GO
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')

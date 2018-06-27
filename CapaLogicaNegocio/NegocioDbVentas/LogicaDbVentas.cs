@@ -190,11 +190,11 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             tt.idtrabajador     = idtrabajador;
             tt.nombre           =nombre;
             tt.apellidos        =apellidos;
-            tt.sexo             = sexo;           
+            tt.sexo             = sexo[0].ToString();           
             tt.Fecha_nac        =Fecha_nac;
             tt.num_documento    =num_documento;
             tt.direccion        = direccion;
-            tt.telefono         = telefono;  
+            tt.telefono         = telefono.Substring(1).Replace("-","");  
             tt.email            =email;
             tt.StatusE          =StatusE;
             tt.UsuarioAdiciona  = UsuarioAdiciona;

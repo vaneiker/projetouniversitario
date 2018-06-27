@@ -124,6 +124,7 @@
             this.Nuevo.Name = "Nuevo";
             this.Nuevo.Size = new System.Drawing.Size(68, 68);
             this.Nuevo.Text = "Nuevo";
+            this.Nuevo.Click += new System.EventHandler(this.Nuevo_Click);
             // 
             // toolStripSeparator6
             // 
@@ -206,6 +207,7 @@
             this.Limpia.Name = "Limpia";
             this.Limpia.Size = new System.Drawing.Size(68, 68);
             this.Limpia.Text = "Limpia";
+            this.Limpia.Click += new System.EventHandler(this.Limpia_Click);
             // 
             // toolStripSeparator2
             // 
@@ -253,6 +255,8 @@
             this.TabTrabajador.SelectedIndex = 0;
             this.TabTrabajador.Size = new System.Drawing.Size(1170, 519);
             this.TabTrabajador.TabIndex = 13;
+            this.TabTrabajador.SelectedIndexChanged += new System.EventHandler(this.TabTrabajador_SelectedIndexChanged);
+            this.TabTrabajador.TabIndexChanged += new System.EventHandler(this.TabTrabajador_TabIndexChanged);
             // 
             // TabBuscar
             // 
@@ -342,6 +346,7 @@
             this.GridViewTra.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridViewTra.Size = new System.Drawing.Size(830, 271);
             this.GridViewTra.TabIndex = 0;
+            this.GridViewTra.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewTra_CellContentDoubleClick);
             // 
             // tabPage2
             // 
@@ -395,7 +400,7 @@
             this.txtTel.Mask = "1-000-000-0000";
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(329, 33);
-            this.txtTel.TabIndex = 198;
+            this.txtTel.TabIndex = 7;
             // 
             // MascCedula
             // 
@@ -405,7 +410,7 @@
             this.MascCedula.Mask = "000-0000000-0";
             this.MascCedula.Name = "MascCedula";
             this.MascCedula.Size = new System.Drawing.Size(329, 33);
-            this.MascCedula.TabIndex = 197;
+            this.MascCedula.TabIndex = 5;
             // 
             // label10
             // 
@@ -437,7 +442,7 @@
             this.txtCorreo.Multiline = true;
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(329, 34);
-            this.txtCorreo.TabIndex = 194;
+            this.txtCorreo.TabIndex = 8;
             this.txtCorreo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
@@ -459,7 +464,7 @@
             this.txtDireccion.Multiline = true;
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(329, 52);
-            this.txtDireccion.TabIndex = 192;
+            this.txtDireccion.TabIndex = 6;
             this.txtDireccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
@@ -493,7 +498,7 @@
             this.dateFechaNacimiento.Location = new System.Drawing.Point(165, 32);
             this.dateFechaNacimiento.Name = "dateFechaNacimiento";
             this.dateFechaNacimiento.Size = new System.Drawing.Size(229, 20);
-            this.dateFechaNacimiento.TabIndex = 199;
+            this.dateFechaNacimiento.TabIndex = 3;
             // 
             // cboSexo
             // 
@@ -507,7 +512,7 @@
             this.cboSexo.Location = new System.Drawing.Point(165, 70);
             this.cboSexo.Name = "cboSexo";
             this.cboSexo.Size = new System.Drawing.Size(229, 27);
-            this.cboSexo.TabIndex = 198;
+            this.cboSexo.TabIndex = 4;
             // 
             // label2
             // 
@@ -564,7 +569,7 @@
             this.txtNombre.Multiline = true;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(329, 34);
-            this.txtNombre.TabIndex = 192;
+            this.txtNombre.TabIndex = 2;
             this.txtNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblBus
@@ -586,7 +591,7 @@
             this.txtApellido.Multiline = true;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(329, 34);
-            this.txtApellido.TabIndex = 190;
+            this.txtApellido.TabIndex = 1;
             this.txtApellido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel7

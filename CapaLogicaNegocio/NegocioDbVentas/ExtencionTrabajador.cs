@@ -17,5 +17,13 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
             return trabajador;
         }
+
+        public static trabajadorEntitis GetEmployeeById(this trabajadorEntitis trabajador, int id)
+        {
+            if (id <= 0) return null;
+
+            CapaDatos.RepocitoryDbVentas.DventasData db = new CapaDatos.RepocitoryDbVentas.DventasData();
+            return db.GetEmployeeById(id);
+        }
     }
 }

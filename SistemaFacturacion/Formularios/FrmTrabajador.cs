@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaEntidad.DbVentas;
 using CapaLogicaNegocio.NegocioDbVentas;
@@ -15,6 +9,7 @@ namespace SistemaFacturacion.Formularios
 {
     public partial class FrmTrabajador : Form
     {
+        private trabajadorEntitis SelectedEmpleado = null;
         public FrmTrabajador()
         {
             InitializeComponent();
@@ -106,23 +101,46 @@ namespace SistemaFacturacion.Formularios
                  , StatusE
                  , UsuarioAdiciona
                  , UsuarioModifica);
-            if (repuest == true)
+            if (repuest)
             {
                 Alertas.AlertSuccess insertado = new Alertas.AlertSuccess("Datos Ingresados Correctamente!");
+                insertado.ShowDialog();
+                LimpiarFormulario();
             }
             else
             {
                 Alertas.AlertError insertError = new Alertas.AlertError("Error al Insertar los Datos");
                 insertError.ShowDialog();
+                LimpiarFormulario();
             }
+        }
+
+        private void LimpiarFormulario()
+        {
+            txtApellido.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtCorreo.Text = string.Empty;
+            cboSexo.Text = string.Empty;
+            txtTel.Text = string.Empty;
+            dateFechaNacimiento.Value = DateTime.Now;
+            MascCedula.Text = string.Empty;
+            txtApellido.Focus();
         }
 
         private void BuscarD_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                Alertas.Alerwarning warning = new Alertas.Alerwarning("No Se encontraron Datos a Buscar.");
+                warning.ShowDialog();
+                txtBuscar.Focus();
+                return;
+            }
             trabajadorEntitis trabajador = new trabajadorEntitis();
-            var a = txtBuscar.Text.Trim();
-            var b = txtBuscar.Text.Trim();
-            var c = txtBuscar.Text.Trim();
+            var a = txtBuscar.Text.Trim().ToUpper();
+            var b = txtBuscar.Text.Trim().ToUpper();
+            var c = txtBuscar.Text.Trim().ToUpper();
 
             trabajador = trabajador.ListaTrabajador(a,b,c);
             if(trabajador !=null)
@@ -137,11 +155,12 @@ namespace SistemaFacturacion.Formularios
                 dt.Columns.Add("telefono");
                 dt.Columns.Add("email");
                 dt.Columns.Add("Estado");
-
+                string sexo = GetSexo(trabajador.sexo);
+                
                 DataRow fila = dt.NewRow();
                 fila["ID"] = trabajador.idtrabajador.ToString();
                 fila["Nombre Completo"] = trabajador.NombreCompleto;
-                fila["sexo"] = trabajador.sexo.ToString();
+                fila["sexo"] = sexo; 
                 fila["Cedula"] = trabajador.num_documento.ToString();
                 fila["direccion"] = trabajador.direccion.ToString();
                 fila["telefono"] = trabajador.telefono.ToString();
@@ -155,11 +174,79 @@ namespace SistemaFacturacion.Formularios
             }
             else
             {
-                MessageBox.Show("No se a encontrado ningún Resultado!");
+                Alertas.AlertError notFound = new Alertas.AlertError("No Se Encontro Ningun Empleado Por: " + txtBuscar.Text);
                 txtBuscar.Text = string.Empty;
                 txtBuscar.Focus();
                 return;
             }
+        }
+
+        private void GridViewTra_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(MessageBox.Show("Desea Modificar el Empleado?", "Modificar Empleado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            {
+                int id = Convert.ToInt32(GridViewTra.CurrentRow.Cells[0].Value.ToString());
+                SelectedEmpleado = new trabajadorEntitis();
+                SelectedEmpleado = SelectedEmpleado.GetEmployeeById(id);
+                txtApellido.Text = SelectedEmpleado.apellidos;
+                txtCorreo.Text = SelectedEmpleado.email;
+                MascCedula.Text = SelectedEmpleado.num_documento;
+                txtDireccion.Text = SelectedEmpleado.direccion;
+                txtNombre.Text = SelectedEmpleado.nombre;
+                cboSexo.Text = GetSexo(SelectedEmpleado.sexo);
+                txtTel.Text = SelectedEmpleado.telefono;
+                dateFechaNacimiento.Value = SelectedEmpleado.Fecha_nac;
+                TabTrabajador.SelectedTab = TabTrabajador.TabPages[1];
+
+            }
+        }
+
+        private string GetSexo(string sexo)
+        {
+            string s;
+            switch (sexo[0].ToString())
+            {
+                case "M":
+                    s= "Masculino";
+                    break;
+                case "F":
+                    s= "Femenino";
+                    break;
+                default:
+                    s= "Otros";
+                    break;
+            }
+
+            return s;
+        }
+
+        private void Nuevo_Click(object sender, EventArgs e)
+        {
+            if (TabTrabajador.SelectedIndex == 0)
+                TabTrabajador.SelectedTab = TabTrabajador.TabPages[1];
+
+            LimpiarFormulario();
+        }
+
+        private void TabTrabajador_TabIndexChanged(object sender, EventArgs e)
+        {
+            if (TabTrabajador.SelectedIndex == 1)
+                Limpia.Enabled = true;
+            else
+                Limpia.Enabled = false;
+        }
+
+        private void Limpia_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+        }
+
+        private void TabTrabajador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TabTrabajador.SelectedIndex == 1)
+                Limpia.Enabled = true;
+            else
+                Limpia.Enabled = false;
         }
     }
 }
