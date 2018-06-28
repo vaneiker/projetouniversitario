@@ -61,6 +61,34 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
 
             }
+            public ClienteEntitis GetClienteFromDataTable(DataTable source)
+        {
+            ClienteEntitis cliente = new ClienteEntitis();
+            foreach(DataRow row in source.Rows)
+            {
+                cliente.idcliente = Convert.ToInt32(row["idcliente"].ToString());
+                cliente.CodigoCliente = row["CodigoCliente"].ToString();
+                cliente.NombreCompleto = row["Nombre_Completo_Empleado"].ToString();
+                switch(row["Sexo"].ToString()[0])
+                {
+                    case 'M':
+                        cliente.sexo = "Masculino";
+                        break;
+                    case 'F':
+                        cliente.sexo = "Femenino";
+                        break;
+                    default:
+                        cliente.sexo = "Otros";
+                        break;
+                }
+                cliente.fecha_nacimiento = Convert.ToDateTime(row["Fecha Nacimiento"].ToString());
+                cliente.tipo_documento = row["Tipo_de_Documento"].ToString();
+                cliente.direccion = row["Direccion"].ToString();
+                cliente.telefono = row["Telefono"].ToString();
+                cliente.email = row["Correo_electronico"].ToString();
+            }
+            return cliente;
+        }
         public void Borrar_Clientes(ClienteEntitis cliente)
             {
             _metodos.EliminarClientes(cliente);

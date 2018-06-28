@@ -14,6 +14,10 @@ namespace SistemaFacturacion.Formularios
     {
     public partial class FrmVentas : Form
         {
+
+        private ClienteEntitis clienteAFacturar = null;
+        private DataTable dt = null;
+
         public FrmVentas()
             {
             InitializeComponent();
@@ -27,6 +31,7 @@ namespace SistemaFacturacion.Formularios
         private void FrmVentas_Load(object sender, EventArgs e)
         {
             cargarTipoF();
+            txtB.Focus();
         }
 
         private void cargarTipoF()
@@ -71,10 +76,11 @@ namespace SistemaFacturacion.Formularios
 
         private void btnBusc_Click(object sender, EventArgs e)
         {
-            if(txtB.Text=="" || txtB.Text==null)
+            if(string.IsNullOrWhiteSpace(txtB.Text))
             {
-                Alertas.AlertError err = new Alertas.AlertError();
+                Alertas.AlertError err = new Alertas.AlertError("Por Favor Digite la Informacion del Cliente");
                 err.ShowDialog();
+                txtB.Focus();
                 return;
             }
             else
@@ -90,6 +96,8 @@ namespace SistemaFacturacion.Formularios
                 {
                     DataGrivCliente.DataSource = cliente;
                     groupBox2.Visible = true;
+                    LogicaDbVentas db = new LogicaDbVentas();
+                    clienteAFacturar = db.GetClienteFromDataTable(cliente as DataTable);
 
                 }
                 else
@@ -102,50 +110,40 @@ namespace SistemaFacturacion.Formularios
 
        private void BtnBuscarArticulo_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(txtBuscarArticulo.Text))
+            {
+                Alertas.AlertError error = new Alertas.AlertError("El Codigo del Articulo a Buscar");
+                error.ShowDialog();
+                txtBuscarArticulo.Focus();
+                return;
+            }
             articulosEntitis articuloF = new articulosEntitis();
             var a = txtBuscarArticulo.Text.Trim();
             var b = txtBuscarArticulo.Text.Trim();
 
 
             articuloF = articuloF.ListaArticuloF(a, b);
-            if (articuloF != null)
+            if(articuloF == null)
             {
-                DataTable dt = new DataTable();
+                Alertas.AlertError error = new Alertas.AlertError("No Se Encontro El Articulo Buscado..");
+                error.ShowDialog();
+                txtBuscarArticulo.Text = string.Empty;
+                txtBuscarArticulo.Focus();
+                return;
+            }
+            if (articuloF != null && GrivArticulo.DataSource == null)
+            {
+                dt = new DataTable();
                 dt.Clear();
-                dt.Columns.Add("idarticulo");
-                dt.Columns.Add("nombre");
-                dt.Columns.Add("idcategoria");
-                dt.Columns.Add("Codigo");
-                dt.Columns.Add("Imag_Url");
-                dt.Columns.Add("descripcion");
-                dt.Columns.Add("precioVenta");
-                dt.Columns.Add("precioCompra");
-                dt.Columns.Add("cantidad");
-                dt.Columns.Add("estado");
-                dt.Columns.Add("idProveedor");
-                dt.Columns.Add("CodigoBarra");
-
-        DataRow fila = dt.NewRow();
-
-              
-                fila["idarticulo"].ToString();
-                fila["nombre"].ToString();
-                fila["idcategoria"].ToString();
-                fila["Codigo"].ToString();
-                fila["Imag_Url"].ToString();
-                fila["descripcion"].ToString();
-                fila["precioVenta"].ToString();
-                fila["precioCompra"].ToString();
-                fila["cantidad"].ToString();
-                fila["estado"].ToString();
-                fila["idProveedor"].ToString();
-                fila["CodigoBarra"].ToString();
-                                                                                         
-                dt.Rows.Add(fila);
+                LlenarDataTable(ref dt, articuloF);
                 GrivArticulo.DataSource = dt;
                 //GrivArticulo.Columns["ID"].Visible = false;
 
 
+            }else if(GrivArticulo != null)
+            {
+                LlenarDataTable(ref dt, articuloF);
+                GrivArticulo.DataSource = dt;
             }
             else
             {
@@ -155,6 +153,49 @@ namespace SistemaFacturacion.Formularios
                 return;
             }
 
+        }
+
+        private void LlenarDataTable( ref DataTable dt, articulosEntitis nuevoArticulo)
+        {
+            dt.Columns.Add("idarticulo");
+            dt.Columns.Add("nombre");
+            dt.Columns.Add("idcategoria");
+            dt.Columns.Add("Codigo");
+            dt.Columns.Add("Imag_Url");
+            dt.Columns.Add("descripcion");
+            dt.Columns.Add("precioVenta");
+            dt.Columns.Add("precioCompra");
+            dt.Columns.Add("cantidad");
+            dt.Columns.Add("estado");
+            dt.Columns.Add("idProveedor");
+            dt.Columns.Add("CodigoBarra");
+
+            DataRow nuevaFila = dt.NewRow();
+
+
+            nuevaFila["idarticulo"] = nuevoArticulo.idarticulo;
+            nuevaFila["nombre"] = nuevoArticulo.nombre;
+            nuevaFila["idcategoria"] = nuevoArticulo.idcategoria;
+            nuevaFila["Codigo"] = nuevoArticulo.codigo;
+            nuevaFila["Imag_Url"] = nuevoArticulo.Imag_Url;
+            nuevaFila["descripcion"] = nuevoArticulo.descripcion;
+            nuevaFila["precioVenta"] = nuevoArticulo.precioVenta;
+            nuevaFila["precioCompra"] = nuevoArticulo.precioCompra;
+            nuevaFila["cantidad"] = nuevoArticulo.cantidad;
+            nuevaFila["estado"] = nuevoArticulo.estado;
+            nuevaFila["idProveedor"] = nuevoArticulo.idProveedor;
+            nuevaFila["CodigoBarra"] = nuevoArticulo.CodigoBarra;
+
+            dt.Rows.Add(nuevaFila);
+        }
+
+        private void DataGrivCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(clienteAFacturar != null)
+            {
+                txtCliente.Text = clienteAFacturar.NombreCompleto;
+                txtBuscarArticulo.Focus();
+            }
         }
     }
 }   

@@ -85,7 +85,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtVent = new System.Windows.Forms.TextBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
+            this.txtCliente = new System.Windows.Forms.TextBox();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -100,7 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GrivArticulo)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridArticulosAVender)).BeginInit();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -540,10 +541,11 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox2.Controls.Add(this.txtCliente);
             this.groupBox2.Controls.Add(this.DataGrivCliente);
             this.groupBox2.Location = new System.Drawing.Point(100, 284);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(513, 135);
+            this.groupBox2.Size = new System.Drawing.Size(513, 156);
             this.groupBox2.TabIndex = 193;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cliente";
@@ -552,10 +554,12 @@
             // DataGrivCliente
             // 
             this.DataGrivCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGrivCliente.Location = new System.Drawing.Point(10, 19);
+            this.DataGrivCliente.Location = new System.Drawing.Point(10, 57);
             this.DataGrivCliente.Name = "DataGrivCliente";
-            this.DataGrivCliente.Size = new System.Drawing.Size(497, 110);
+            this.DataGrivCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGrivCliente.Size = new System.Drawing.Size(497, 93);
             this.DataGrivCliente.TabIndex = 0;
+            this.DataGrivCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrivCliente_CellContentClick);
             // 
             // groupBox3
             // 
@@ -641,10 +645,10 @@
             // 
             this.groupBox5.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox5.Controls.Add(this.groupBox6);
-            this.groupBox5.Controls.Add(this.dataGridView2);
+            this.groupBox5.Controls.Add(this.gridArticulosAVender);
             this.groupBox5.Location = new System.Drawing.Point(100, 446);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1166, 306);
+            this.groupBox5.Size = new System.Drawing.Size(1166, 249);
             this.groupBox5.TabIndex = 195;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Codigo";
@@ -657,9 +661,9 @@
             this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Controls.Add(this.label5);
             this.groupBox6.Controls.Add(this.txtVent);
-            this.groupBox6.Location = new System.Drawing.Point(748, 93);
+            this.groupBox6.Location = new System.Drawing.Point(733, 13);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(412, 172);
+            this.groupBox6.Size = new System.Drawing.Size(427, 172);
             this.groupBox6.TabIndex = 181;
             this.groupBox6.TabStop = false;
             // 
@@ -729,20 +733,32 @@
             this.txtVent.TabIndex = 166;
             this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dataGridView2
+            // gridArticulosAVender
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(21, 102);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(721, 163);
-            this.dataGridView2.TabIndex = 0;
+            this.gridArticulosAVender.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridArticulosAVender.Location = new System.Drawing.Point(6, 20);
+            this.gridArticulosAVender.Name = "gridArticulosAVender";
+            this.gridArticulosAVender.Size = new System.Drawing.Size(721, 163);
+            this.gridArticulosAVender.TabIndex = 0;
+            // 
+            // txtCliente
+            // 
+            this.txtCliente.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCliente.Location = new System.Drawing.Point(10, 15);
+            this.txtCliente.Multiline = true;
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.ReadOnly = true;
+            this.txtCliente.Size = new System.Drawing.Size(497, 34);
+            this.txtCliente.TabIndex = 191;
+            this.txtCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FrmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1356, 749);
+            this.ClientSize = new System.Drawing.Size(1356, 637);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -753,8 +769,10 @@
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.ToolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmVentas";
-            this.Text = "FrmVentas";
+            this.Text = "Ventas";
             this.Load += new System.EventHandler(this.FrmVentas_Load);
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
@@ -768,6 +786,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrivCliente)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -775,7 +794,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridArticulosAVender)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -828,7 +847,7 @@
         private System.Windows.Forms.DataGridView GrivArticulo;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button BtnBuscarArticulo;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView gridArticulosAVender;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBuscarArticulo;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -839,5 +858,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtVent;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtCliente;
     }
     }
