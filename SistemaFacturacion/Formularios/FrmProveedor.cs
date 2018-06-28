@@ -200,15 +200,7 @@ namespace SistemaFacturacion.Formularios
                 Eliminar.Enabled = false;
                 Aceptar.Enabled =true ;
             }
-
-
-
-
-
-
-
-
-
+            
             ProveedorEntity prov = new ProveedorEntity();
             this.codigo = GrivProveedor.Rows[e.RowIndex].Cells["idProveedor"].Value.ToString();
             selectProveedor = prov.ListaProveedores(int.Parse(this.codigo));
