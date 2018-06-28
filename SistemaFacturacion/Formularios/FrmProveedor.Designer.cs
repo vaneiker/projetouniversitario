@@ -122,6 +122,7 @@
             this.Nuevo.Name = "Nuevo";
             this.Nuevo.Size = new System.Drawing.Size(68, 68);
             this.Nuevo.Text = "Nuevo";
+            this.Nuevo.Click += new System.EventHandler(this.Nuevo_Click);
             // 
             // toolStripSeparator6
             // 
@@ -136,8 +137,9 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Limpiar";
+            this.toolStripButton1.Text = "Actualizar";
             this.toolStripButton1.ToolTipText = "Eliminar";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator5
             // 
@@ -164,6 +166,7 @@
             // Aceptar
             // 
             this.Aceptar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Aceptar.Enabled = false;
             this.Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Aceptar.Image")));
             this.Aceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Aceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -181,12 +184,13 @@
             // Eliminar
             // 
             this.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Eliminar.Enabled = false;
             this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
             this.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.Size = new System.Drawing.Size(52, 68);
-            this.Eliminar.Text = "Limpiar";
+            this.Eliminar.Text = "Eliminar";
             this.Eliminar.ToolTipText = "Eliminar";
             // 
             // toolStripSeparator3

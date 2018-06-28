@@ -44,7 +44,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.ChangerUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -196,7 +196,7 @@
             // 
             this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator4,
-            this.toolStripButton2,
+            this.ChangerUser,
             this.toolStripSeparator2,
             this.toolStripSeparator7,
             this.toolStripButton3,
@@ -218,16 +218,17 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 71);
             // 
-            // toolStripButton2
+            // ChangerUser
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton2.Text = "Configuración de la Aplicación";
-            this.toolStripButton2.ToolTipText = "Eliminar";
+            this.ChangerUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ChangerUser.Image = ((System.Drawing.Image)(resources.GetObject("ChangerUser.Image")));
+            this.ChangerUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ChangerUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ChangerUser.Name = "ChangerUser";
+            this.ChangerUser.Size = new System.Drawing.Size(68, 68);
+            this.ChangerUser.Text = "Configuración de la Aplicación";
+            this.ChangerUser.ToolTipText = "Cambiar de Usuario";
+            this.ChangerUser.Click += new System.EventHandler(this.ChangerUser_Click);
             // 
             // toolStripSeparator2
             // 
@@ -511,7 +512,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.StatusStrip msmusu;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        internal System.Windows.Forms.ToolStripButton toolStripButton2;
+        internal System.Windows.Forms.ToolStripButton ChangerUser;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         internal System.Windows.Forms.ToolStripButton toolStripButton3;
         internal System.Windows.Forms.ToolStripButton toolStripButton4;

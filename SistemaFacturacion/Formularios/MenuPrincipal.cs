@@ -108,6 +108,13 @@ namespace SistemaFacturacion.Formularios
             FrmProveedor pr = new FrmProveedor();
             pr.ShowDialog();
         }
+
+        private void ChangerUser_Click(object sender, EventArgs e)
+        {
+            Login l = new SistemaFacturacion.Login();
+            l.Show();
+            this.Close();
+        }
     }
     }
   
