@@ -255,25 +255,36 @@ CREATE TABLE [dbo].[detalle_ingreso](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[detalle_venta]    Script Date: 21/06/2018 20:41:07 ******/
+/****** Object:  Table [dbo].[detalle_venta]    Script Date: 28/6/18 9:40:17 p. m. ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE TABLE [dbo].[detalle_venta](
 	[iddetalle_venta] [int] IDENTITY(1,1) NOT NULL,
 	[idventa] [int] NOT NULL,
-	[iddetalle_ingreso] [int] NOT NULL,
 	[cantidad] [int] NOT NULL,
-	[precio_venta] [money] NOT NULL,
-	[descuento] [money] NOT NULL,
+	[precio_venta] [decimal](18, 2) NOT NULL,
+	[descuento] [decimal](18, 2) NOT NULL,
+	[itbis] [decimal](9, 2) NOT NULL,
  CONSTRAINT [PK_detalle_venta] PRIMARY KEY CLUSTERED 
 (
 	[iddetalle_venta] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
 GO
-/****** Object:  Table [dbo].[ingreso]    Script Date: 21/06/2018 20:41:07 ******/
+
+ALTER TABLE [dbo].[detalle_venta]  WITH CHECK ADD  CONSTRAINT [FK_detalle_venta_venta] FOREIGN KEY([idventa])
+REFERENCES [dbo].[venta] ([idventa])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[detalle_venta] CHECK CONSTRAINT [FK_detalle_venta_venta]
+GO/****** Object:  Table [dbo].[ingreso]    Script Date: 21/06/2018 20:41:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3005,6 +3016,69 @@ SELECT [idtrabajador]
       ,[FechaAdiciona]
       ,[UsuarioAdiciona]
   FROM [dbo].[trabajador] WHERE idtrabajador = @ID
+GO
+CREATE PROCEDURE [dbo].[SP_INGRESAR_VENTA]
+@idtrabajador int,
+@tipo_comprobante varchar(20),
+@tipo_venta varchar(20),
+@tipo_cliente varchar(20),
+@itbis decimal(9, 2),
+@subtotal decimal(18, 2),
+@total decimal(18,2),
+@ventaid int output
+as
+BEGIN
+ INSERT INTO [dbo].[venta]
+           ([idtrabajador]
+           ,[fecha]
+           ,[tipo_comprobante]
+           ,[tipo_venta]
+           ,[tipo_cliente]
+           ,[itbis]
+           ,[subtotal]
+           ,[total])
+     VALUES
+           (@idtrabajador
+           ,GETDATE()
+           ,@tipo_comprobante
+           ,@tipo_venta
+           ,@tipo_cliente
+           ,@itbis
+           ,@subtotal
+           ,@total)
+
+if(@@IDENTITY > 0)
+BEGIN
+ SET @ventaid = @@IDENTITY
+END
+ELSE
+BEGIN
+ SET @ventaid = 0
+END
+END
+GO
+
+CREATE PROCEDURE [DBO].[SP_INGRESAR_DETALLE_VENTA]
+@idventa int,
+@cantidad int,
+@precio_venta decimal(18,2),
+@descuento decimal(18,2),
+@itbis decimal(9,2)
+AS 
+BEGIN
+INSERT INTO [dbo].[detalle_venta]
+           ([idventa]
+           ,[cantidad]
+           ,[precio_venta]
+           ,[descuento]
+           ,[itbis])
+     VALUES
+           (@idventa
+		   ,@cantidad
+           ,@precio_venta
+           ,@descuento
+           ,@itbis)
+END
 GO
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
