@@ -1057,7 +1057,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     foreach (DataRow row in dt.Rows)
                     {
                         vent.idarticulo = Convert.ToInt32(row["idarticulo"].ToString());
-                        vent.nombre = row["nombre"].ToString(); 
+                        vent.nombre = row["nombre"].ToString();
                         vent.idcategoria = Convert.ToInt32(row["idcategoria"].ToString());
                         vent.codigo = row["Codigo"].ToString(); ;
                         vent.Imag_Url = row["Imag_Url"].ToString(); ;
@@ -1074,10 +1074,16 @@ namespace CapaDatos.RepocitoryDbVentas
 
                 return vent;
             }
+        }
+            public int RegistrarVenta(ventasEntitis venta)
+        {
+            int ventaid = 0;
+
+            return ventaid;
+        }
             #endregion
 
         }
 
 
     }
-}

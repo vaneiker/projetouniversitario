@@ -26,13 +26,15 @@ namespace CapaEntidad.DbVentas
 
         public string tipo_comprobante { get; set; }
 
-        public string serie { get; set; }
+        public string tipo_venta { get; set; }
 
-        public string correlativo { get; set; }
+        public string tipo_cliente { get; set; }
 
-        public decimal igv { get; set; }
+        public decimal itbis { get; set; }
 
+        public decimal subtotal { get; set;  }
 
+        public decimal total { get; set; }
 
         public virtual ClienteEntitis cliente { get; set; }
 
@@ -40,5 +42,6 @@ namespace CapaEntidad.DbVentas
         public virtual ICollection<detalle_ventaEntitis> detalle_venta { get; set; }
 
         public virtual trabajadorEntitis trabajador { get; set; }
+
         }
     }
