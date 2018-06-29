@@ -12,6 +12,7 @@ namespace SistemaFacturacion
         {
         public string Usuario { get; set; }
         public  LogicRoll.LevelRol Rolid { get; set; }
+        public  string  nombreCompleto { get; set; }
 
         private static Seccion _user = null;
 
@@ -25,8 +26,10 @@ namespace SistemaFacturacion
                     _user = new Seccion();
 
                 return _user;
-                }
-
             }
+
         }
+
+
+    }
     }

@@ -690,47 +690,54 @@ namespace CapaDatos.RepocitoryDbVentas
 
             //if (string.IsNullOrWhiteSpace(usuario))
             //    return null;
-
-            using (dbventasEntity db = new dbventasEntity())
-            {
-                using (var connection = db.Database.Connection as SqlConnection)
+            try {
+                using (dbventasEntity db = new dbventasEntity())
                 {
-                    connection.Open();
-                    string procedure = "[dbo].[ListaProveedores]";
-                    SqlCommand cmd = new SqlCommand(procedure, connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@id", idproveedor);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    if (dt.Rows.Count <= 0)
+                    using (var connection = db.Database.Connection as SqlConnection)
                     {
-                        connection.Close();
-                        return null;
-                    }
-                    p = new ProveedorEntity();
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        p.idproveedor = Convert.ToInt32(row["idproveedor"].ToString());
-                        p.razon_social = row["razon_social"].ToString();
-                        p.NombreProveedor = row["NombreProveedor"].ToString();
-                        p.tipo_documento = row["tipo_documento"].ToString();
-                        p.num_documento = row["num_documento"].ToString();
-                        p.direccion = row["direccion"].ToString();
-                        p.telefono = row["telefono"].ToString();
-                        p.email = row["email"].ToString();
-                        p.url = row["url"].ToString();
-                        p.statu = Convert.ToBoolean(row["statu"].ToString());
-                        p.FechaAdiciona = Convert.ToDateTime(row["FechaAdiciona"].ToString());
-                        p.UsuarioAdiciona = row["UsuarioAdiciona"].ToString(); 
+                        connection.Open();
+                        string procedure = "[dbo].[ListaProveedores]";
+                        SqlCommand cmd = new SqlCommand(procedure, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@id", idproveedor);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        if (dt.Rows.Count <= 0)
+                        {
+                            connection.Close();
+                            return null;
+                        }
+                        p = new ProveedorEntity();
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            p.idproveedor = Convert.ToInt32(row["idproveedor"].ToString());
+                            p.razon_social = row["razon_social"].ToString();
+                            p.NombreProveedor = row["NombreProveedor"].ToString();
+                            p.tipo_documento = row["tipo_documento"].ToString();
+                            p.num_documento = row["num_documento"].ToString();
+                            p.direccion = row["direccion"].ToString();
+                            p.telefono = row["telefono"].ToString();
+                            p.email = row["email"].ToString();
+                            p.url = row["url"].ToString();
+                            p.statu = Convert.ToBoolean(row["statu"].ToString());
+                            p.FechaAdiciona = Convert.ToDateTime(row["FechaAdiciona"].ToString());
+                            p.UsuarioAdiciona = row["UsuarioAdiciona"].ToString();
+                        }
                     }
                 }
-            }            
 
-            return p;
+                return p;
+
+            } catch(Exception)
+            {
+
+                throw;
+            }
+                                                                             
         }
         #endregion
 
@@ -875,9 +882,12 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region users Datos
-        public int LoginUser(string user, string pass)
+        public string[]LoginUser(string user, string pass)
         {
             int rolId = 0;
+            string NombreC="";
+             string[] arreglo = new string[2];
+
             try
             {
                 using (dbventasEntity db = new dbventasEntity())
@@ -885,7 +895,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     using (var connection = db.Database.Connection as SqlConnection)
                     {
                         connection.Open();
-                        string query = "[dbo].[SP_LOGIN]";
+                        string query = "SP_LOGIN";
                         SqlCommand cmd = new SqlCommand(query, connection);
                         cmd.CommandType = CommandType.StoredProcedure;
 
@@ -904,11 +914,16 @@ namespace CapaDatos.RepocitoryDbVentas
                         rolid.SqlDbType = SqlDbType.Int;
                         rolid.Direction = ParameterDirection.Output;
 
+                        //parameter.@NombreC
+                        SqlParameter nombreC = new SqlParameter("@NombreC",NombreC);
+                        nombreC.SqlDbType = SqlDbType.VarChar;
+                        nombreC.Size = 80;
+                        nombreC.Direction = ParameterDirection.Output;
                         //add parameters to cmd
                         cmd.Parameters.Add(usuario);
                         cmd.Parameters.Add(contrasena);
                         cmd.Parameters.Add(rolid);
-
+                        cmd.Parameters.Add(nombreC);
                         //exec procedure
                         cmd.ExecuteNonQuery();
                         if (cmd.Parameters["@rolid"].Value == DBNull.Value)
@@ -917,9 +932,12 @@ namespace CapaDatos.RepocitoryDbVentas
                         }
                         else
                         {
-                            rolId = System.Convert.ToInt32(cmd.Parameters["@rolid"].Value);
+                            rolId   = System.Convert.ToInt32(cmd.Parameters["@rolid"].Value);
+                            NombreC = System.Convert.ToString(cmd.Parameters["@NombreC"].Value);
                         }
 
+                        arreglo[0] = rolId.ToString();
+                        arreglo[1] = NombreC;
                     }
                 }
             }
@@ -931,7 +949,7 @@ namespace CapaDatos.RepocitoryDbVentas
             {
                 throw new Exception(ex.Message);
             }
-            return rolId;
+            return arreglo;
         }
 
         public UsersEntitis GetUserByName(string usuario)

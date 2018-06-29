@@ -13,7 +13,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
     public static class  LogicaLogin
     {
         
-        public static bool ValidateLogin(string usuario, string contrasena, out int rolId)
+        public static bool ValidateLogin(string usuario, string contrasena, out int rolId, out string NomC)
         {
             bool isValid = true;
                if(String.IsNullOrWhiteSpace(usuario) || String.IsNullOrWhiteSpace(contrasena))
@@ -21,11 +21,17 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
                 isValid = false;
                 rolId = 0;
+                NomC = string.Empty;
             }
             else
             {
                 CapaDatos.RepocitoryDbVentas.DventasData db = new CapaDatos.RepocitoryDbVentas.DventasData();
-                rolId = db.LoginUser(usuario, contrasena);
+                string[] cont = db.LoginUser(usuario, contrasena);
+                
+                
+                
+                rolId = Convert.ToInt32(cont[0]);
+                NomC = cont[1];
             }
 
             return isValid;

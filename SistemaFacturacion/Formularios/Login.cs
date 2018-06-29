@@ -22,6 +22,7 @@ namespace SistemaFacturacion
        
         private void BtnIngerso_Click(object sender, EventArgs e)
             {
+            string NomC;
             if (txtContrasena.Text == "" || txtContrasena.Text == null || txtUsuario.Text == "" || txtUsuario.Text == null)
                 {
                   panelErrorClave.Visible = true;
@@ -30,7 +31,9 @@ namespace SistemaFacturacion
                 }
             else
                 {
-                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid))
+
+
+                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid,out NomC))
                     {
 
                     if(rollid <= 0)
@@ -44,6 +47,7 @@ namespace SistemaFacturacion
                         Seccion seccion = Seccion.Instance;
                         seccion.Usuario = txtUsuario.Text;
                         seccion.Rolid = (LogicRoll.LevelRol)rollid;
+                        seccion.nombreCompleto = NomC;
                         Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
                         this.Hide();
                         f.Show();

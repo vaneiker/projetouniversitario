@@ -46,7 +46,7 @@ namespace SistemaFacturacion.Formularios
                 return;
             }
             else
-                    if (string.IsNullOrWhiteSpace(RNCradio.Text) || string.IsNullOrWhiteSpace(Cedularadio.Text))
+                    if (string.IsNullOrWhiteSpace(RNCradio.Text) && string.IsNullOrWhiteSpace(Cedularadio.Text))
             {
                 MessageBox.Show("Elija un Tipo de Documento");
                 return;
@@ -60,7 +60,7 @@ namespace SistemaFacturacion.Formularios
                 }
                 else
                 {
-                    if (string.IsNullOrWhiteSpace(CedulaMask.Text) || string.IsNullOrWhiteSpace(RncMasck.Text))
+                    if (string.IsNullOrWhiteSpace(CedulaMask.Text) && string.IsNullOrWhiteSpace(RncMasck.Text))
                     {
                         MessageBox.Show("Asegurese de Digitar la cedula o Rnc según el tipo Seleccionado");
                         return;
@@ -128,7 +128,7 @@ namespace SistemaFacturacion.Formularios
             if (r == true)
             {
                 succes.ShowDialog();
-                CleanData();
+                Inactivar("Guardar");
 
                 //ListaCliente();
             }
@@ -142,9 +142,9 @@ namespace SistemaFacturacion.Formularios
 
         private void BuscarD_Click(object sender, EventArgs e)
         {
-
-
-            CriterioBusquedaProveedor(txtBuscarProveedor.Text.Trim(), txtBuscarProveedor.Text.Trim(), txtBuscarProveedor.Text.Trim());
+              CriterioBusquedaProveedor(txtBuscarProveedor.Text.Trim(),
+                                      txtBuscarProveedor.Text.Trim(), 
+                                      txtBuscarProveedor.Text.Trim());
            
         }
 
@@ -158,6 +158,7 @@ namespace SistemaFacturacion.Formularios
             lblataipo.Text = "RNC";
             lblataipo.Visible = true;
             CedulaMask.Visible = false;
+           
         }
 
         private void Cedularadio_CheckedChanged(object sender, EventArgs e)
@@ -173,21 +174,40 @@ namespace SistemaFacturacion.Formularios
 
         private void FrmProveedor_Load(object sender, EventArgs e)
         {
+            cargarProveedor();
+        }
+
+        private void cargarProveedor()
+        {
             var dato = _metodos.Listap();
             GrivProveedor.DataSource = dato;
             cargarTipoF();
         }
-
         private void GrivProveedor_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+
+            DialogResult resul = MessageBox.Show("Que Acción desea Realizar?, ", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (resul == System.Windows.Forms.DialogResult.OK)
+            {
+                Eliminar.Enabled = true;
+                Aceptar.Enabled = false;
+            }
+            else
+            {
+               
+                Eliminar.Enabled = false;
+                Aceptar.Enabled =true ;
+            }
+            
             ProveedorEntity prov = new ProveedorEntity();
             this.codigo = GrivProveedor.Rows[e.RowIndex].Cells["idProveedor"].Value.ToString();
             selectProveedor = prov.ListaProveedores(int.Parse(this.codigo));
             this.codigo =Convert.ToString(selectProveedor.idproveedor);
             txtProveedor.Text = selectProveedor.NombreProveedor;
-
-
-            
+            //Este metodo me activa la opción de guardar o editar
+            Inactivar("Editar");
             cboR.Text = selectProveedor.razon_social;
             this.tipo = selectProveedor.tipo_documento;           
             txtDireccion.Text = selectProveedor.direccion;
@@ -213,7 +233,12 @@ namespace SistemaFacturacion.Formularios
 
             TabTrabajador.SelectedTab = TabTrabajador.TabPages[1];
         }
-
+        /// <summary>
+        /// Busqueda de Proveedores 
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="documento"></param>
+        /// <param name="telefono"></param>
         private void CriterioBusquedaProveedor(string nom,string documento,string telefono)
         {
             var dato = _metodos.CriterioBusquedaProveedor(documento,telefono,nom);
@@ -221,6 +246,43 @@ namespace SistemaFacturacion.Formularios
            
             GrivProveedor.DataSource = dato;
 
+        }
+
+        private void Inactivar(string actividad)
+        {
+            if(actividad=="Guardar")
+            {
+                Aceptar.Enabled = false;
+                Eliminar.Enabled = false;
+                Nuevo.Enabled = true;
+                CleanData();
+            }
+            else if(actividad=="Editar")
+            {
+                Aceptar.Enabled = true;
+                Nuevo.Enabled = false;
+                Eliminar.Enabled = true;
+
+            }
+            else if (actividad=="Nuevo")
+            {
+                Nuevo.Enabled = false;
+                Aceptar.Enabled  = true;
+                Eliminar.Enabled = false;
+            }
+
+          
+        }
+
+        private void Nuevo_Click(object sender, EventArgs e)
+        {
+            Inactivar("Nuevo");
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            txtBuscarProveedor.Text = string.Empty;
+            cargarProveedor();
         }
     }
     }

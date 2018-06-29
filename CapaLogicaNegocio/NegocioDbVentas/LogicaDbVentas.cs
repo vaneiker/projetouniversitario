@@ -122,8 +122,9 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                 proveedor.UsuarioModifica = "0";
             }
 
-            proveedor.telefono.Replace("-","");
-            proveedor.num_documento.Replace("-", "");
+          proveedor.telefono=proveedor.telefono.Replace("-","");
+          proveedor.num_documento=proveedor.num_documento.Replace("-", "");
+
              var r= _metodos.Registrar_Proveedor(proveedor);
 
             if (r == 1)
@@ -215,7 +216,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         }
 
 
-       
+
         #endregion
 
         #region Metodos Trabajador
@@ -231,7 +232,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                                  ,string    telefono
                                  ,string    email
                                  ,bool      StatusE
-                                ,string    UsuarioAdiciona
+                                ,string     UsuarioAdiciona
                                  ,string    UsuarioModifica
                                  )
         {
@@ -243,6 +244,17 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
           
             tt.idtrabajador     = idtrabajador;
+
+            tt.nombre           = nombre;
+            tt.apellidos        = apellidos;
+            tt.sexo             = sexo;           
+            tt.Fecha_nac        = Fecha_nac;
+            tt.num_documento    = num_documento.Replace("-","");
+            tt.direccion        = direccion.Trim();
+            tt.telefono         = telefono.Replace("-", "");  
+            tt.email            = email;
+            tt.StatusE          = StatusE;
+
             tt.nombre           =nombre;
             tt.apellidos        =apellidos;
             tt.sexo             = sexo[0].ToString();           
@@ -252,6 +264,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             tt.telefono         = telefono.Substring(1).Replace("-","");  
             tt.email            =email;
             tt.StatusE          =StatusE;
+
             tt.UsuarioAdiciona  = UsuarioAdiciona;
             tt.UsuarioModifica  = UsuarioModifica;
            
