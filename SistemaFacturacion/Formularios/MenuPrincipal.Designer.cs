@@ -40,6 +40,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.lblmp = new System.Windows.Forms.Label();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.ChangerUser = new System.Windows.Forms.ToolStripButton();
@@ -63,7 +64,6 @@
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.BtnArticulos = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             panel2 = new System.Windows.Forms.Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -163,11 +163,22 @@
             // panel18
             // 
             this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.panel18.Controls.Add(this.label1);
+            this.panel18.Controls.Add(this.lblmp);
             this.panel18.Location = new System.Drawing.Point(341, 9);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(543, 52);
             this.panel18.TabIndex = 17;
+            // 
+            // lblmp
+            // 
+            this.lblmp.AutoSize = true;
+            this.lblmp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblmp.ForeColor = System.Drawing.Color.White;
+            this.lblmp.Location = new System.Drawing.Point(18, 16);
+            this.lblmp.Name = "lblmp";
+            this.lblmp.Size = new System.Drawing.Size(129, 19);
+            this.lblmp.TabIndex = 200;
+            this.lblmp.Text = "Menu Principal";
             // 
             // ToolStrip1
             // 
@@ -418,17 +429,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(18, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 19);
-            this.label1.TabIndex = 200;
-            this.label1.Text = "Menu Principal";
-            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -492,6 +492,6 @@
         public System.Windows.Forms.Button BtnCategoria;
         private System.Windows.Forms.Button BtnFacturacion;
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblmp;
     }
     }

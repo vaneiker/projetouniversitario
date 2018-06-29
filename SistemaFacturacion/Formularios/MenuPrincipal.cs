@@ -56,6 +56,7 @@ namespace SistemaFacturacion.Formularios
             toolStripStatusLabel1.Text = DateTime.Now.ToString("F");
 
             toolStripStatusLabel2.Text="***Usuario: "+s.Usuario.ToString()+" Cargo : " + cargo;
+            lblmp.Text = "Bienvenido Sr(a): "+s.nombreCompleto;
 
             }
 

@@ -244,7 +244,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
           
             tt.idtrabajador     = idtrabajador;
-<<<<<<< HEAD
+
             tt.nombre           = nombre;
             tt.apellidos        = apellidos;
             tt.sexo             = sexo;           
@@ -254,7 +254,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             tt.telefono         = telefono.Replace("-", "");  
             tt.email            = email;
             tt.StatusE          = StatusE;
-=======
+
             tt.nombre           =nombre;
             tt.apellidos        =apellidos;
             tt.sexo             = sexo[0].ToString();           
@@ -264,7 +264,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             tt.telefono         = telefono.Substring(1).Replace("-","");  
             tt.email            =email;
             tt.StatusE          =StatusE;
->>>>>>> c3bc105b43d6068af065595bb3e4faf54fb4e021
+
             tt.UsuarioAdiciona  = UsuarioAdiciona;
             tt.UsuarioModifica  = UsuarioModifica;
            
