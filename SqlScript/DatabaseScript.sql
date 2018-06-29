@@ -398,26 +398,55 @@ CREATE TABLE [dbo].[trabajador](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[venta]    Script Date: 21/06/2018 20:41:07 ******/
+/****** Object:  Table [dbo].[venta]    Script Date: 28/6/18 9:11:08 p. m. ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
+
+SET ANSI_PADDING ON
+GO
+
 CREATE TABLE [dbo].[venta](
 	[idventa] [int] IDENTITY(1,1) NOT NULL,
 	[idcliente] [int] NOT NULL,
 	[idtrabajador] [int] NOT NULL,
 	[fecha] [date] NOT NULL,
 	[tipo_comprobante] [varchar](20) NOT NULL,
-	[serie] [varchar](4) NOT NULL,
-	[correlativo] [varchar](7) NOT NULL,
+	[tipo_venta] [varchar](20) NOT NULL,
+	[tipo_cliente] [varchar](20) NOT NULL,
 	[itbis] [decimal](9, 2) NOT NULL,
+	[subtotal] [decimal](18, 2) NOT NULL,
+	[total] [decimal](18, 2) NOT NULL,
  CONSTRAINT [PK_venta] PRIMARY KEY CLUSTERED 
 (
 	[idventa] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
 GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[venta] ADD  CONSTRAINT [DF_venta_fecha]  DEFAULT (getdate()) FOR [fecha]
+GO
+
+ALTER TABLE [dbo].[venta]  WITH CHECK ADD  CONSTRAINT [FK_venta_cliente] FOREIGN KEY([idcliente])
+REFERENCES [dbo].[cliente] ([idcliente])
+GO
+
+ALTER TABLE [dbo].[venta] CHECK CONSTRAINT [FK_venta_cliente]
+GO
+
+ALTER TABLE [dbo].[venta]  WITH CHECK ADD  CONSTRAINT [FK_venta_trabajador] FOREIGN KEY([idtrabajador])
+REFERENCES [dbo].[trabajador] ([idtrabajador])
+GO
+
+ALTER TABLE [dbo].[venta] CHECK CONSTRAINT [FK_venta_trabajador]
+GO
+
 ALTER TABLE [dbo].[articulo] ADD  CONSTRAINT [DF__articulo__estado__3F466844]  DEFAULT ((0)) FOR [estado]
 GO
 ALTER TABLE [dbo].[cuentas_x_cobrar] ADD  DEFAULT (getdate()) FOR [fecha]
