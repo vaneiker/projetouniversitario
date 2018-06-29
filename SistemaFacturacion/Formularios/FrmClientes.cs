@@ -64,7 +64,7 @@ namespace SistemaFacturacion.Formularios
 
         private void Aceptar_Click(object sender, EventArgs e)
             {
-            Registrar_Clientes();
+              Registrar_Clientes();
             }
 
         public void Registrar_Clientes()

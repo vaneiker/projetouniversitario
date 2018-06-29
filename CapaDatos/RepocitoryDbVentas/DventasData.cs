@@ -762,18 +762,19 @@ namespace CapaDatos.RepocitoryDbVentas
                         string Qry = "[SP_SET_EMPLEADO]";
                         SqlCommand cmd = new SqlCommand(Qry, connection);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@idtrabajador", trabajador.idtrabajador));
-                        cmd.Parameters.Add(new SqlParameter("@nombre", trabajador.nombre));
-                        cmd.Parameters.Add(new SqlParameter("@apellidos", trabajador.apellidos));
-                        cmd.Parameters.Add(new SqlParameter("@sexo", trabajador.sexo));
-                        cmd.Parameters.Add(new SqlParameter("@Fecha_nac", trabajador.Fecha_nac));
-                        cmd.Parameters.Add(new SqlParameter("@num_documento", trabajador.num_documento));
-                        cmd.Parameters.Add(new SqlParameter("@direccion", trabajador.direccion));
-                        cmd.Parameters.Add(new SqlParameter("@telefono", trabajador.telefono));
-                        cmd.Parameters.Add(new SqlParameter("@email", trabajador.email));
-                        cmd.Parameters.Add(new SqlParameter("@StatusE", trabajador.StatusE));
-                        cmd.Parameters.Add(new SqlParameter("UsuarioAdiciona", trabajador.UsuarioAdiciona));
-                        cmd.Parameters.Add(new SqlParameter("UsuarioModifica", trabajador.UsuarioModifica));
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@idtrabajador", trabajador.idtrabajador);
+                        cmd.Parameters.AddWithValue("@nombre", trabajador.nombre);
+                        cmd.Parameters.AddWithValue("@apellidos", trabajador.apellidos);
+                        cmd.Parameters.AddWithValue("@sexo", trabajador.sexo);
+                        cmd.Parameters.AddWithValue("@Fecha_nac", trabajador.Fecha_nac);
+                        cmd.Parameters.AddWithValue("@num_documento", trabajador.num_documento);
+                        cmd.Parameters.AddWithValue("@direccion", trabajador.direccion);
+                        cmd.Parameters.AddWithValue("@telefono", trabajador.telefono);
+                        cmd.Parameters.AddWithValue("@email", trabajador.email);
+                        cmd.Parameters.AddWithValue("@StatusE", trabajador.StatusE);
+                        cmd.Parameters.AddWithValue("UsuarioAdiciona", trabajador.UsuarioAdiciona);
+                        cmd.Parameters.AddWithValue("UsuarioModifica", trabajador.UsuarioModifica);                  
                         cmd.ExecuteNonQuery();
                         return 1;
                     }
@@ -833,6 +834,48 @@ namespace CapaDatos.RepocitoryDbVentas
             }
 
             return trab;
+        }
+
+        public trabajadorEntitis GetEmployeeById(int id)
+        {
+            trabajadorEntitis trabajador = null;
+
+            using (var db = new dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand("[DBO].[SELECT_EMPLOYEE_BY_ID]", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if(reader.HasRows)
+                    {
+                        trabajador = new trabajadorEntitis();
+
+                        while(reader.Read())
+                        {
+                            trabajador.idtrabajador = Convert.ToInt32(reader["idtrabajador"]);
+                            trabajador.nombre = reader["nombre"].ToString();
+                            trabajador.NombreCompleto = reader["nombre"].ToString() + " " + reader["apellidos"].ToString();
+                            trabajador.num_documento = reader["num_documento"].ToString();
+                            trabajador.sexo = reader["sexo"].ToString();
+                            trabajador.StatusE = Convert.ToBoolean(reader["StatusE"]);
+                            trabajador.telefono = reader["telefono"].ToString();
+                            trabajador.Fecha_nac = Convert.ToDateTime(reader["Fecha_nac"]);
+                            trabajador.apellidos = reader["apellidos"].ToString();
+                            trabajador.direccion = reader["direccion"].ToString();
+                            trabajador.email = reader["email"].ToString();
+                        }
+
+                        reader.Close();
+                    }
+                }
+            }
+
+            return trabajador;
         }
 
 

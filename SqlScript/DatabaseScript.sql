@@ -2702,6 +2702,281 @@ BEGIN
 	END
 END
 GO
+
+GO
+/****** Object:  StoredProcedure [dbo].[SP_GET_EMPLOYEES]    Script Date: 25/06/2018 21:03:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROC [dbo].[SP_GET_EMPLOYEES]
+ @NombreC varchar(80)
+,@num_cedula varchar(15)
+,@telefono varchar(15)
+
+as
+
+begin
+
+
+SELECT [idtrabajador]
+      ,[NombreCompleto]
+      ,[sexo]
+      ,[num_documento]
+      ,[direccion]
+      ,[telefono]
+      ,[email]
+      ,[Estado]
+   
+  FROM [dbventas].[dbo].[wv_get_employees]
+where 
+     NombreCompleto like '%'+@NombreC+'%'
+  or telefono=@telefono
+  or num_documento=@num_cedula
+end
+GO
+
+GO
+/****** Object:  View [dbo].[wv_get_employees]    Script Date: 25/06/2018 21:03:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+	CREATE VIEW [dbo].[wv_get_employees]
+	as
+	
+	 SELECT
+	   [idtrabajador]  
+      ,upper(apellidos+' '+nombre)[NombreCompleto]      
+      ,[sexo]
+      ,[Fecha_nac]
+      ,[num_documento]
+      ,[direccion]
+      ,[telefono]
+      ,[email]
+      ,iif([StatusE]=1,'Activo','Inactivo')[Estado]
+      ,[FechaAdiciona]
+      ,[FechaModifica]
+      ,[UsuarioAdiciona]
+      ,[UsuarioModifica]
+  FROM [dbventas].[dbo].[trabajador]
+  where StatusE=1
+GO
+CREATE VIEW [dbo].[ROL_USER] 
+AS
+SELECT  RolID
+FROM    dbo.USERS WHERE [Statud]=1
+GO
+
+CREATE TABLE [dbo].[Ncf_Comprovante](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Tipo_Comprovante_Fiscal] [varchar](50) NULL,
+	[Number] [varchar](50) NULL,
+	[estado] [bit] NULL,
+ CONSTRAINT [PK_Ncf_Comprovante] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE PROC [dbo].[SP_SET_INSERTAR_ARTICULOS_INGRESO]
+
+ 
+  @nombre              varchar(50)
+ ,@idcategoria         int
+ ,@Codigo              varchar(50)
+ ,@Imag_Url            varchar(250)
+ ,@descripcion         varchar(200)
+ ,@precioVenta         decimal(9,2)
+ ,@precioCompra        decimal(9,2)
+ ,@cantidad            decimal(9,2)
+ ,@estado              bit
+ ,@idProveedor         int
+ ,@idingreso           int
+ ,@fecha               date
+ ,@tipo_comprobante    varchar(20)
+ ,@igv                 decimal(9,2)
+ ,@UsuarioAdiciona     varchar(50)
+ ,@stock_inicial       int
+ ,@fecha_produccion    date
+ ,@fecha_vencimiento   date
+
+ AS
+
+
+ BEGIN 
+INSERT INTO [dbo].[articulo]
+           ([nombre]
+           ,[idcategoria]
+           ,[Codigo]
+           ,[Imag_Url]
+           ,[descripcion]
+           ,[precioVenta]
+           ,[precioCompra]
+           ,[cantidad]
+           ,[estado]
+           ,[idProveedor])
+     VALUES
+           (
+		    @nombre       
+		   ,@idcategoria  
+		   ,@Codigo       
+		   ,@Imag_Url     
+		   ,@descripcion  
+		   ,@precioVenta  
+		   ,@precioCompra 
+		   ,@cantidad     
+		   ,@estado       
+		   ,@idProveedor  
+		   );
+		   
+		   --DECLARE @cd varchar(30)=(select max(idarticulo) from [dbventas].[dbo].[articulo]);
+	DECLARE @cd INT;
+	SET @cd=@@IDENTITY
+	PRINT @cd;
+INSERT INTO [dbo].[ingreso]
+           ([CodigBarra]
+           ,[idproveedor]
+           ,[fecha]
+           ,[tipo_comprobante]
+           ,[igv]
+           ,[FechaAdiciona]
+           ,[FechaModifica]
+           ,[UsuarioAdiciona]
+           ,[UsuarioModifica])
+     VALUES
+
+           (
+		    @cd
+		   ,@idProveedor		   
+		   ,@fecha
+		   ,@tipo_comprobante
+		   ,@igv
+		   ,GETDATE()
+		   ,NULL
+		   ,@UsuarioAdiciona
+		   ,NULL
+		   );
+		  
+		     DECLARE @codigoIng int=(select max(idingreso) from dbo.ingreso); 
+			 DECLARE @art int=(select max(idarticulo) from dbo.articulo); 
+
+		   INSERT INTO [dbo].[detalle_ingreso]
+           ([idingreso]
+           ,[idarticulo]
+           ,[precio_compra]
+           ,[precio_venta]
+           ,[stock_inicial]
+           ,[stock_actual]
+           ,[fecha_produccion]
+           ,[fecha_vencimiento])
+     VALUES
+           (
+		    @codigoIng
+		   ,@art
+		   ,@precioCompra
+		   ,@precioVenta
+		   ,@stock_inicial
+		   ,@cantidad
+		   ,@fecha_produccion
+		   ,@fecha_vencimiento
+		   )
+		
+ END
+ GO
+
+ CREATE PROC [dbo].[SP_SET_EMPLEADO]
+       @idtrabajador    int
+      ,@nombre          varchar(20)
+      ,@apellidos       varchar(40)
+      ,@sexo            char(1)
+      ,@Fecha_nac       datetime
+      ,@num_documento   varchar(15)
+      ,@direccion       varchar(100)
+      ,@telefono        varchar(10)
+      ,@email           varchar(50)
+      ,@StatusE         bit
+      ,@UsuarioAdiciona varchar(50)
+	  ,@UsuarioModifica varchar(50)
+
+	  AS
+
+	  BEGIN 
+	  if exists(select * from dbo.trabajador where idtrabajador=@idtrabajador)
+	  begin
+	  UPDATE dbo.trabajador
+	  set
+
+	   nombre         =@nombre         
+	  ,apellidos      =@apellidos      
+	  ,sexo           =@sexo           
+	  ,Fecha_nac      =@Fecha_nac      
+	  ,num_documento  =@num_documento  
+	  ,direccion      =@direccion      
+	  ,telefono       =@telefono       
+	  ,email          =@email          
+	  ,StatusE        =@StatusE    
+	  ,FechaModifica  =GETDATE()
+	  ,UsuarioModifica=@UsuarioModifica
+
+	  WHERE idtrabajador=@idtrabajador;
+	  end
+	  else
+	  begin
+	  INSERT INTO [dbo].[trabajador]
+           ([nombre]
+           ,[apellidos]
+           ,[sexo]
+           ,[Fecha_nac]
+           ,[num_documento]
+           ,[direccion]
+           ,[telefono]
+           ,[email]
+           ,[StatusE]
+           ,[FechaAdiciona]
+           ,[FechaModifica]
+           ,[UsuarioAdiciona]
+           ,[UsuarioModifica])
+     VALUES
+           (
+		   @nombre          
+		   ,@apellidos       
+		   ,@sexo            
+		   ,@Fecha_nac       
+		   ,@num_documento   
+		   ,@direccion       
+		   ,@telefono        
+		   ,@email           
+		   ,@StatusE        
+		   ,GETDATE()   
+		   ,NULL   
+		   ,@UsuarioAdiciona 
+		   ,NULL	
+		   )
+		end    
+	  END
+GO
+
+create proc [DBO].[SELECT_EMPLOYEE_BY_ID]
+@ID INT
+AS
+SELECT [idtrabajador]
+      ,[nombre]
+      ,[apellidos]
+      ,[sexo]
+      ,[Fecha_nac]
+      ,[num_documento]
+      ,[direccion]
+      ,[telefono]
+      ,[email]
+      ,[StatusE]
+      ,[FechaModifica]
+      ,[UsuarioModifica]
+      ,[FechaAdiciona]
+      ,[UsuarioAdiciona]
+  FROM [dbo].[trabajador] WHERE idtrabajador = @ID
+GO
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')
