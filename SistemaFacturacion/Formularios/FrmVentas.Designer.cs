@@ -59,6 +59,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkDescuento = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -80,15 +81,17 @@
             this.GrivArticulo = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtComp = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtCan = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtVent = new System.Windows.Forms.TextBox();
+            this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
-            this.checkDescuento = new System.Windows.Forms.CheckBox();
-            this.txtCan = new System.Windows.Forms.TextBox();
             this.txtDescuento = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtItbis = new System.Windows.Forms.TextBox();
+            this.btnPagar = new System.Windows.Forms.Button();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -417,6 +420,19 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Datos de Pagos";
             // 
+            // checkDescuento
+            // 
+            this.checkDescuento.AutoSize = true;
+            this.checkDescuento.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkDescuento.ForeColor = System.Drawing.Color.Gray;
+            this.checkDescuento.Location = new System.Drawing.Point(20, 98);
+            this.checkDescuento.Name = "checkDescuento";
+            this.checkDescuento.Size = new System.Drawing.Size(96, 20);
+            this.checkDescuento.TabIndex = 197;
+            this.checkDescuento.Text = "Descuento";
+            this.checkDescuento.UseVisualStyleBackColor = true;
+            this.checkDescuento.CheckedChanged += new System.EventHandler(this.checkDescuento_CheckedChanged);
+            // 
             // comboBox1
             // 
             this.comboBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -461,9 +477,6 @@
             this.cboProv.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboProv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.cboProv.FormattingEnabled = true;
-            this.cboProv.Items.AddRange(new object[] {
-            "Normal",
-            "Comprovante Fiscal"});
             this.cboProv.Location = new System.Drawing.Point(122, 50);
             this.cboProv.Name = "cboProv";
             this.cboProv.Size = new System.Drawing.Size(511, 24);
@@ -676,72 +689,87 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.txtComp);
+            this.groupBox6.Controls.Add(this.btnPagar);
+            this.groupBox6.Controls.Add(this.label6);
+            this.groupBox6.Controls.Add(this.txtItbis);
+            this.groupBox6.Controls.Add(this.txtTotal);
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Controls.Add(this.txtCan);
             this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Controls.Add(this.label5);
-            this.groupBox6.Controls.Add(this.txtVent);
+            this.groupBox6.Controls.Add(this.txtSubtotal);
             this.groupBox6.Location = new System.Drawing.Point(733, 13);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(427, 172);
             this.groupBox6.TabIndex = 181;
             this.groupBox6.TabStop = false;
             // 
-            // txtComp
+            // txtTotal
             // 
-            this.txtComp.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtComp.Location = new System.Drawing.Point(270, 117);
-            this.txtComp.Multiline = true;
-            this.txtComp.Name = "txtComp";
-            this.txtComp.Size = new System.Drawing.Size(123, 34);
-            this.txtComp.TabIndex = 168;
-            this.txtComp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotal.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtTotal.Location = new System.Drawing.Point(270, 134);
+            this.txtTotal.Multiline = true;
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(123, 34);
+            this.txtTotal.TabIndex = 168;
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotal.TextChanged += new System.EventHandler(this.txtTotal_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label9.Location = new System.Drawing.Point(68, 71);
+            this.label9.Location = new System.Drawing.Point(149, 61);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(194, 25);
+            this.label9.Size = new System.Drawing.Size(120, 25);
             this.label9.TabIndex = 179;
-            this.label9.Text = "$ Precio de Venta";
+            this.label9.Text = "$ Subtotal";
+            // 
+            // txtCan
+            // 
+            this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCan.Location = new System.Drawing.Point(270, 19);
+            this.txtCan.Multiline = true;
+            this.txtCan.Name = "txtCan";
+            this.txtCan.Size = new System.Drawing.Size(123, 34);
+            this.txtCan.TabIndex = 164;
+            this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label8.Location = new System.Drawing.Point(49, 117);
+            this.label8.Location = new System.Drawing.Point(186, 137);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(215, 25);
+            this.label8.Size = new System.Drawing.Size(85, 25);
             this.label8.TabIndex = 178;
-            this.label8.Text = "$ Precio de Compra";
+            this.label8.Text = "$ Total";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label5.Location = new System.Drawing.Point(158, 32);
+            this.label5.Location = new System.Drawing.Point(162, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(106, 25);
             this.label5.TabIndex = 163;
             this.label5.Text = "Cantidad";
             // 
-            // txtVent
+            // txtSubtotal
             // 
-            this.txtVent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtVent.Location = new System.Drawing.Point(270, 71);
-            this.txtVent.Multiline = true;
-            this.txtVent.Name = "txtVent";
-            this.txtVent.Size = new System.Drawing.Size(121, 34);
-            this.txtVent.TabIndex = 166;
-            this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSubtotal.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtSubtotal.Location = new System.Drawing.Point(269, 57);
+            this.txtSubtotal.Multiline = true;
+            this.txtSubtotal.Name = "txtSubtotal";
+            this.txtSubtotal.Size = new System.Drawing.Size(124, 34);
+            this.txtSubtotal.TabIndex = 166;
+            this.txtSubtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gridArticulosAVender
             // 
@@ -751,41 +779,53 @@
             this.gridArticulosAVender.Size = new System.Drawing.Size(721, 163);
             this.gridArticulosAVender.TabIndex = 0;
             // 
-            // checkDescuento
-            // 
-            this.checkDescuento.AutoSize = true;
-            this.checkDescuento.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkDescuento.ForeColor = System.Drawing.Color.Gray;
-            this.checkDescuento.Location = new System.Drawing.Point(20, 98);
-            this.checkDescuento.Name = "checkDescuento";
-            this.checkDescuento.Size = new System.Drawing.Size(96, 20);
-            this.checkDescuento.TabIndex = 197;
-            this.checkDescuento.Text = "Descuento";
-            this.checkDescuento.UseVisualStyleBackColor = true;
-            this.checkDescuento.CheckedChanged += new System.EventHandler(this.checkDescuento_CheckedChanged);
-            // 
-            // txtCan
-            // 
-            this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtCan.Location = new System.Drawing.Point(270, 29);
-            this.txtCan.Multiline = true;
-            this.txtCan.Name = "txtCan";
-            this.txtCan.Size = new System.Drawing.Size(123, 34);
-            this.txtCan.TabIndex = 164;
-            this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // txtDescuento
             // 
-            this.txtDescuento.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtDescuento.Location = new System.Drawing.Point(122, 93);
-            this.txtDescuento.Multiline = true;
+            this.txtDescuento.Location = new System.Drawing.Point(122, 98);
             this.txtDescuento.Name = "txtDescuento";
-            this.txtDescuento.ReadOnly = true;
-            this.txtDescuento.Size = new System.Drawing.Size(123, 27);
+            this.txtDescuento.Size = new System.Drawing.Size(100, 20);
             this.txtDescuento.TabIndex = 198;
-            this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDescuento.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 13.75F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label6.Location = new System.Drawing.Point(186, 100);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 23);
+            this.label6.TabIndex = 181;
+            this.label6.Text = "$ ITBIS";
+            // 
+            // txtItbis
+            // 
+            this.txtItbis.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtItbis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtItbis.Location = new System.Drawing.Point(270, 97);
+            this.txtItbis.Multiline = true;
+            this.txtItbis.Name = "txtItbis";
+            this.txtItbis.Size = new System.Drawing.Size(124, 34);
+            this.txtItbis.TabIndex = 180;
+            this.txtItbis.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnPagar
+            // 
+            this.btnPagar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
+            this.btnPagar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPagar.Enabled = false;
+            this.btnPagar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnPagar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPagar.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPagar.ForeColor = System.Drawing.Color.White;
+            this.btnPagar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPagar.Location = new System.Drawing.Point(6, 131);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(120, 35);
+            this.btnPagar.TabIndex = 192;
+            this.btnPagar.Text = "Pagar";
+            this.btnPagar.UseVisualStyleBackColor = false;
             // 
             // FrmVentas
             // 
@@ -885,15 +925,18 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBuscarArticulo;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox txtComp;
+        private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtVent;
+        private System.Windows.Forms.TextBox txtSubtotal;
         private System.Windows.Forms.Button btnAgregarArticulo;
         private System.Windows.Forms.TextBox txtCliente;
-        private System.Windows.Forms.TextBox txtDescuento;
         private System.Windows.Forms.CheckBox checkDescuento;
         private System.Windows.Forms.TextBox txtCan;
+        private System.Windows.Forms.TextBox txtDescuento;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtItbis;
+        private System.Windows.Forms.Button btnPagar;
     }
     }

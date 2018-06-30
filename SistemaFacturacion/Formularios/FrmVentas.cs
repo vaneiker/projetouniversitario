@@ -149,6 +149,9 @@ namespace SistemaFacturacion.Formularios
                 GrivArticulo.Columns["idProveedor"].Visible = false;
             }
 
+            txtBuscarArticulo.Text = string.Empty;
+            txtBuscarArticulo.Focus();
+
         }
 
         private void LlenarDataTable( ref DataTable dt, articulosEntitis nuevoArticulo)
@@ -204,7 +207,7 @@ namespace SistemaFacturacion.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(dt == null)
+            if(dt == null || GrivArticulo.DataSource == null)
             {
                 Alertas.AlertError error = new Alertas.AlertError("Debe Buscar el Articulo");
                 error.ShowDialog();
@@ -214,17 +217,29 @@ namespace SistemaFacturacion.Formularios
             else
             {
                 DataRow filaDeArticuloAVender = dt.Rows[0];
-                if(detallesArticulos == null)
+                string cantidad = "";
+                string subtotal = "";
+                string total = "";
+                string itbis = "";
+                detallesArticulos = AgregarArticulo(detallesArticulos, filaDeArticuloAVender, txtDescuento.Text, out cantidad, out subtotal, out itbis, out total);
+                if(detallesArticulos != null)
                 {
-                    detallesArticulos = new List<DetalleVentaViewModel>();
-                    detallesArticulos.Add(new DetalleVentaViewModel {
-                        iddetalle_venta = 0,
-                        idventa = 0,
-                        producto = filaDeArticuloAVender["nombre"].ToString(),
-                        cantidad = 1,
-                        precio_venta = Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()),
-                    });
+                    txtCan.Text = cantidad;
+                    txtSubtotal.Text = subtotal;
+                    txtTotal.Text = total;
+                    txtItbis.Text = itbis;
+                    gridArticulosAVender.DataSource = null;
+                    gridArticulosAVender.DataSource = detallesArticulos;
+                    GrivArticulo.DataSource = null;
+                    txtBuscarArticulo.Focus();
                 }
+                else
+                {
+                    Alertas.Alerwarning aler = new Alertas.Alerwarning("No se Agrego el Articulo");
+                    aler.ShowDialog();
+                }
+                
+                
             }
 
 
@@ -251,13 +266,114 @@ namespace SistemaFacturacion.Formularios
         {
             if (checkDescuento.Checked)
             {
-                txtDescuento.ReadOnly = false;
+                txtDescuento.Visible = true;
                 txtDescuento.Focus();
             }else
             {
-                txtDescuento.ReadOnly = true;
+                txtDescuento.Visible = false;
                 txtDescuento.Text = string.Empty;
             }
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private List<DetalleVentaViewModel> AgregarArticulo(List<DetalleVentaViewModel> detallesArticulos, DataRow filaDeArticuloAVender, string txtDescuento, out string txtCan, out string txtSubtotal, out string txtItbis, out string txtTotal)
+        {
+            if (detallesArticulos == null)
+            {
+                decimal precioVenta = Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString());
+                decimal descuento = 0.0M;
+                if (!string.IsNullOrWhiteSpace(txtDescuento))
+                {
+                    if (!decimal.TryParse(txtDescuento, out descuento))
+                    {
+                        Alertas.AlertError parseError = new Alertas.AlertError("Asegurese de que el descuento es solo numero");
+                        parseError.ShowDialog();
+                        txtCan = string.Empty;
+                        txtItbis = string.Empty;
+                        txtSubtotal = string.Empty;
+                        txtTotal = string.Empty;
+                        return null;
+                    }
+                }
+
+                detallesArticulos = new List<DetalleVentaViewModel>();
+                detallesArticulos.Add(new DetalleVentaViewModel
+                {
+                    iddetalle_venta = 0,
+                    idventa = 0,
+                    producto = filaDeArticuloAVender["nombre"].ToString(),
+                    cantidad = 1,
+                    precio_venta = precioVenta,
+                    descuento = descuento / 100M,
+                    itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
+                });
+                txtCan = detallesArticulos.Count.ToString();
+                txtSubtotal = detallesArticulos[0].precio_venta.ToString();
+                txtItbis = detallesArticulos[0].itbis.ToString();
+                txtTotal = (detallesArticulos[0].precio_venta + detallesArticulos[0].itbis).ToString();
+
+            }else
+            {
+                //logica para actualizar detalles articulos
+                decimal _total = 0;
+                decimal _subtotal = 0;
+                decimal _itbis = 0;
+
+                decimal precioVenta = Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString());
+                decimal _itbisAgregar = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M);
+                decimal descuento = 0.0M;
+                if (!string.IsNullOrWhiteSpace(txtDescuento))
+                {
+                    if (!decimal.TryParse(txtDescuento, out descuento))
+                    {
+                        Alertas.AlertError parseError = new Alertas.AlertError("Asegurese de que el descuento es solo numero");
+                        parseError.ShowDialog();
+                        txtCan = string.Empty;
+                        txtItbis = string.Empty;
+                        txtSubtotal = string.Empty;
+                        txtTotal = string.Empty;
+                        return null;
+                    }
+                }
+
+                var index = detallesArticulos.FindIndex(de => de.producto.Equals(filaDeArticuloAVender["nombre"].ToString()));
+                if(index >= 0)
+                {
+                    detallesArticulos[index].cantidad++;
+                }else
+                {
+                    detallesArticulos.Add(new DetalleVentaViewModel
+                    {
+                        iddetalle_venta = 0,
+                        idventa = 0,
+                        producto = filaDeArticuloAVender["nombre"].ToString(),
+                        cantidad = 1,
+                        precio_venta = precioVenta,
+                        descuento = descuento / 100M,
+                        itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
+                    });
+                }
+
+                //foreach(DetalleVentaViewModel detalle in detallesArticulos)
+                //{
+                //    _subtotal += (detalle.precio_venta * detalle.cantidad);
+                //    _itbis += (detalle.itbis + _itbisAgregar);
+                //    _total += (_subtotal + _itbis);
+                //}
+                _subtotal = detallesArticulos.Sum(venta => venta.precio_venta * venta.cantidad);
+                _itbis = detallesArticulos.Sum(venta => venta.itbis * venta.cantidad);
+                _total = _subtotal + _itbis;
+                txtCan = detallesArticulos.Count.ToString();
+                txtSubtotal = _subtotal.ToString("0.##");
+                txtItbis = _itbis.ToString("0.##");
+                txtTotal = _total.ToString("0.##");
+            }
+
+            return detallesArticulos;
         }
     }
 }   
