@@ -3174,6 +3174,40 @@ SELECT [id_factura]
   FROM [dbo].[Factura] WHERE id_factura = @id_factura or id_venta = id_venta
 GO
 
+CREATE PROC [DBO].[INGRESAR_FACTURA]
+@nombre_trabajador varchar(100),
+@tipo_pago varchar(25),
+@medio_pago varchar(30),
+@id_venta int,
+@id_trabajador int,
+@cantidad_articulos int,
+@subtotal decimal(18,2),
+@itbis decimal(9,2),
+@total decimal(18,2)
+AS
+INSERT INTO [dbo].[Factura]
+           ([nombre_trabajador]
+           ,[tipo_pago]
+           ,[medio_pago]
+           ,[id_venta]
+           ,[id_trabajador]
+           ,[cantidad_articulos]
+           ,[subtotal]
+           ,[itbis]
+           ,[total])
+     VALUES
+           (@nombre_trabajador
+           ,@tipo_pago
+           ,@medio_pago
+           ,@id_venta
+           ,@id_trabajador
+           ,@cantidad_articulos
+           ,@subtotal
+           ,@itbis
+           ,@total)
+GO
+
+
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')
