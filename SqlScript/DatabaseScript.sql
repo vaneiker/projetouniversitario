@@ -3154,7 +3154,25 @@ GO
 ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [FK_Factura_venta]
 GO
 
-
+CREATE PROC [DBO].[SP_BUSCAR_FACTURA_X_ID]
+@id_factura int,
+@id_venta int
+AS
+SELECT [id_factura]
+      ,[id_cliente]
+      ,[nombre_trabajador]
+      ,[tipo_pago]
+      ,[fecha]
+      ,[medio_pago]
+      ,[id_venta]
+      ,[id_trabajador]
+      ,[cantidad_articulos]
+      ,[subtotal]
+      ,[itbis]
+      ,[total]
+      ,[numero_factura]
+  FROM [dbo].[Factura] WHERE id_factura = @id_factura or id_venta = id_venta
+GO
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
