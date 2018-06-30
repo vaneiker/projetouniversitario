@@ -260,8 +260,21 @@ namespace SistemaFacturacion.Formularios
         {
             var dato = _metodos.CriterioBusquedaProveedor(documento,telefono,nom);
 
+            if (dato.Rows.Count > 0)
+            {
+                GrivProveedor.DataSource = dato;
+
+            }
+            else
+            {
+                MessageBox.Show("No existe Data");
+                
+            }
+
+
+         
            
-            GrivProveedor.DataSource = dato;
+         
 
         }
 
@@ -316,6 +329,7 @@ namespace SistemaFacturacion.Formularios
             if(deletes==true)
             {
                 MessageBox.Show("Registro eliminado satifactoriamente!!!");
+                Eliminar.Enabled = false;
                 CleanData();
                 cargarProveedor();
             }
