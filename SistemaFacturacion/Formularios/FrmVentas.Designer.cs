@@ -44,9 +44,9 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioACredito = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioAlContado = new System.Windows.Forms.RadioButton();
             this.lblBus = new System.Windows.Forms.Label();
             this.txtB = new System.Windows.Forms.TextBox();
             this.btnBusc = new System.Windows.Forms.Button();
@@ -244,18 +244,18 @@
             this.toolStripButton2.Text = "Limpiar";
             this.toolStripButton2.ToolTipText = "Eliminar";
             // 
-            // radioButton2
+            // radioACredito
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioButton2.Location = new System.Drawing.Point(202, 22);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(73, 20);
-            this.radioButton2.TabIndex = 93;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Credito";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioACredito.AutoSize = true;
+            this.radioACredito.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioACredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.radioACredito.Location = new System.Drawing.Point(202, 22);
+            this.radioACredito.Name = "radioACredito";
+            this.radioACredito.Size = new System.Drawing.Size(73, 20);
+            this.radioACredito.TabIndex = 93;
+            this.radioACredito.TabStop = true;
+            this.radioACredito.Text = "Credito";
+            this.radioACredito.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -268,18 +268,19 @@
             this.label4.TabIndex = 175;
             this.label4.Text = "Tipo de Pago";
             // 
-            // radioButton1
+            // radioAlContado
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioButton1.Location = new System.Drawing.Point(105, 22);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(97, 20);
-            this.radioButton1.TabIndex = 94;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Al Contado";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioAlContado.AutoSize = true;
+            this.radioAlContado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioAlContado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.radioAlContado.Location = new System.Drawing.Point(105, 22);
+            this.radioAlContado.Name = "radioAlContado";
+            this.radioAlContado.Size = new System.Drawing.Size(97, 20);
+            this.radioAlContado.TabIndex = 94;
+            this.radioAlContado.TabStop = true;
+            this.radioAlContado.Text = "Al Contado";
+            this.radioAlContado.UseVisualStyleBackColor = true;
+            this.radioAlContado.CheckedChanged += new System.EventHandler(this.radioAlContado_CheckedChanged);
             // 
             // lblBus
             // 
@@ -396,8 +397,8 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox4.Controls.Add(this.radioButton1);
-            this.groupBox4.Controls.Add(this.radioButton2);
+            this.groupBox4.Controls.Add(this.radioAlContado);
+            this.groupBox4.Controls.Add(this.radioACredito);
             this.groupBox4.Controls.Add(this.comboBox1);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.label1);
@@ -419,7 +420,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Efectivo",
-            "Chekes",
+            "Cheques",
             "Tarjeta Credito",
             "tPagos",
             "Paypal",
@@ -456,6 +457,9 @@
             this.cboProv.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboProv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.cboProv.FormattingEnabled = true;
+            this.cboProv.Items.AddRange(new object[] {
+            "Normal",
+            "Comprovante Fiscal"});
             this.cboProv.Location = new System.Drawing.Point(122, 50);
             this.cboProv.Name = "cboProv";
             this.cboProv.Size = new System.Drawing.Size(511, 24);
@@ -817,8 +821,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         internal System.Windows.Forms.ToolStripButton Salir;
         internal System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioAlContado;
+        private System.Windows.Forms.RadioButton radioACredito;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblBus;
         private System.Windows.Forms.TextBox txtB;

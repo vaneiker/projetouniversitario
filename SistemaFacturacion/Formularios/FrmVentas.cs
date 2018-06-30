@@ -214,6 +214,23 @@ namespace SistemaFacturacion.Formularios
 
 
         }
+
+        private void radioAlContado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ventaActual == null)
+            {
+                return;
+            }
+            if (radioAlContado.Checked)
+            {
+                ventaActual.tipo_venta = "Al Contado";
+            }
+
+            if (radioACredito.Checked)
+            {
+                ventaActual.tipo_venta = "A Credito";
+            }
+        }
     }
 }   
 
