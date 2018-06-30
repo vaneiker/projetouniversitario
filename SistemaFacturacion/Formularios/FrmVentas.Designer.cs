@@ -826,6 +826,7 @@
             this.btnPagar.TabIndex = 192;
             this.btnPagar.Text = "Pagar";
             this.btnPagar.UseVisualStyleBackColor = false;
+            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
             // 
             // FrmVentas
             // 

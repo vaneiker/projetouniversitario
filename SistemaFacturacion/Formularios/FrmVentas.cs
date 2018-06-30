@@ -207,6 +207,21 @@ namespace SistemaFacturacion.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(cboProv.SelectedIndex <= 0)
+            {
+                Alertas.AlertError nfc = new Alertas.AlertError("Seleccione el tipo de Comprovante");
+                nfc.ShowDialog();
+                cboProv.Focus();
+                return;
+
+            }
+            if(string.IsNullOrWhiteSpace(comboMedioPago.Text))
+            {
+                Alertas.AlertError tipoPago = new Alertas.AlertError("Debe Seleccionar el tipo de Pago");
+                tipoPago.ShowDialog();
+                comboMedioPago.Focus();
+                return;
+            }
             if(dt == null || GrivArticulo.DataSource == null)
             {
                 Alertas.AlertError error = new Alertas.AlertError("Debe Buscar el Articulo");
@@ -241,7 +256,19 @@ namespace SistemaFacturacion.Formularios
                 
                 
             }
+            if (cboProv.SelectedIndex > 0)
+                btnPagar.Enabled = true;
 
+            if(ventaActual == null)
+            {
+                ventaActual = new VentaViewModel();
+                ventaActual.fecha = DateTime.Now;
+                Seccion seccion = Seccion.Instance;
+                ventaActual.idtrabajador = seccion.IdTrabajador;
+                ventaActual.tipo_cliente = "Ambulatorio";
+                if (cboProv.SelectedIndex > 0)
+                    ventaActual.tipo_comprobante = cboProv.Text;
+            }
 
         }
 
@@ -368,12 +395,24 @@ namespace SistemaFacturacion.Formularios
                 _itbis = detallesArticulos.Sum(venta => venta.itbis * venta.cantidad);
                 _total = _subtotal + _itbis;
                 txtCan = detallesArticulos.Count.ToString();
-                txtSubtotal = _subtotal.ToString("0.##");
-                txtItbis = _itbis.ToString("0.##");
-                txtTotal = _total.ToString("0.##");
+                txtSubtotal = _subtotal.ToString("#.##");
+                txtItbis = _itbis.ToString("#.##");
+                txtTotal = _total.ToString("#.##");
             }
 
             return detallesArticulos;
+        }
+
+        private void btnPagar_Click(object sender, EventArgs e)
+        {
+            if(clienteAFacturar == null)
+            {
+                if(ventaActual != null)
+                {
+
+                }
+            }
+
         }
     }
 }   
