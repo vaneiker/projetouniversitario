@@ -168,9 +168,10 @@ namespace SistemaFacturacion.Formularios
                 GrivArticulo.Columns["idarticulo"].Visible = false;
                 GrivArticulo.Columns["idcategoria"].Visible = false;
                 GrivArticulo.Columns["Imag_Url"].Visible = false;
-                GrivArticulo.Columns["precioVenta"].Visible = false;
+                GrivArticulo.Columns["precioCompra"].Visible = false;
                 GrivArticulo.Columns["estado"].Visible = false;
                 GrivArticulo.Columns["idProveedor"].Visible = false;
+                GrivArticulo.Columns["precioVenta"].Visible = true;
             }
 
             txtBuscarArticulo.Text = string.Empty;
@@ -333,10 +334,16 @@ namespace SistemaFacturacion.Formularios
 
         private List<DetalleVentaViewModel> AgregarArticulo(List<DetalleVentaViewModel> detallesArticulos, DataRow filaDeArticuloAVender, string txtDescuento, out string txtCan, out string txtSubtotal, out string txtItbis, out string txtTotal)
         {
+            txtCan = "";
+            txtTotal = "";
+            txtSubtotal = "";
+            txtItbis = "";
             if (detallesArticulos == null)
             {
                 decimal precioVenta = Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString());
+                decimal precioCompra = Convert.ToDecimal(filaDeArticuloAVender["precioCompra"].ToString());
                 decimal descuento = 0.0M;
+                decimal descontado = 0.0M;
                 if (!string.IsNullOrWhiteSpace(txtDescuento))
                 {
                     if (!decimal.TryParse(txtDescuento, out descuento))
@@ -348,26 +355,41 @@ namespace SistemaFacturacion.Formularios
                         txtSubtotal = string.Empty;
                         txtTotal = string.Empty;
                         return null;
+                    }   
+                    else if (!DescuentoEsValido(descuento, precioVenta, precioCompra))
+                    {
+                        Alertas.AlertError parseError = new Alertas.AlertError("El descuento aplicado no es valido");
+                        parseError.ShowDialog();
+                        txtCan = string.Empty;
+                        txtItbis = string.Empty;
+                        txtSubtotal = string.Empty;
+                        txtTotal = string.Empty;
+                        return null;
+
                     }
+                    descontado = precioVenta - (precioVenta * (descuento / 100));
                 }
-
-                detallesArticulos = new List<DetalleVentaViewModel>();
-                detallesArticulos.Add(new DetalleVentaViewModel
+                else
                 {
-                    iddetalle_venta = 0,
-                    idventa = 0,
-                    producto = filaDeArticuloAVender["nombre"].ToString(),
-                    cantidad = 1,
-                    precio_venta = precioVenta,
-                    descuento = descuento / 100M,
-                    itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
-                });
-                txtCan = detallesArticulos.Count.ToString();
-                txtSubtotal = detallesArticulos[0].precio_venta.ToString();
-                txtItbis = detallesArticulos[0].itbis.ToString();
-                txtTotal = (detallesArticulos[0].precio_venta + detallesArticulos[0].itbis).ToString();
-
-            }else
+                    descontado = precioVenta;
+                    detallesArticulos = new List<DetalleVentaViewModel>();
+                    detallesArticulos.Add(new DetalleVentaViewModel
+                    {
+                        iddetalle_venta = 0,
+                        idventa = 0,
+                        producto = filaDeArticuloAVender["nombre"].ToString(),
+                        cantidad = 1,
+                        precio_venta = descontado,
+                        descuento = descuento / 100M,
+                        itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
+                    });
+                    txtCan = detallesArticulos.Count.ToString();
+                    txtSubtotal = descontado.ToString("N2");
+                    txtItbis = detallesArticulos[0].itbis.ToString("N2");
+                    txtTotal = (detallesArticulos[0].precio_venta + detallesArticulos[0].itbis).ToString("N2");
+                }
+            }
+            else
             {
                 //logica para actualizar detalles articulos
                 decimal _total = 0;
@@ -376,7 +398,10 @@ namespace SistemaFacturacion.Formularios
 
                 decimal precioVenta = Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString());
                 decimal _itbisAgregar = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M);
+                decimal precioCompra = Convert.ToDecimal(filaDeArticuloAVender["precioCompra"].ToString());
                 decimal descuento = 0.0M;
+                decimal precioDescontado;
+
                 if (!string.IsNullOrWhiteSpace(txtDescuento))
                 {
                     if (!decimal.TryParse(txtDescuento, out descuento))
@@ -392,29 +417,47 @@ namespace SistemaFacturacion.Formularios
                 }
 
                 var index = detallesArticulos.FindIndex(de => de.producto.Equals(filaDeArticuloAVender["nombre"].ToString()));
-                if(index >= 0)
+                if (index >= 0)
                 {
-                    detallesArticulos[index].cantidad++;
-                }else
+                    if (DescuentoEsValido(descuento, precioVenta, precioCompra))
+                    {
+                        detallesArticulos[index].cantidad++;
+                        precioDescontado = precioVenta - (precioVenta * (descuento / 100));
+                    }
+                    else
+                    {
+                        Alertas.Alerwarning desc = new Alertas.Alerwarning("El Descuento no Es Valido");
+                        desc.ShowDialog();
+                        txtCan = string.Empty;
+                        txtSubtotal = string.Empty;
+                        txtTotal = string.Empty;
+                        txtItbis = string.Empty;
+                        return null;
+                    }
+
+                }
+                else
                 {
+                    if (DescuentoEsValido(descuento, precioVenta, precioCompra))
+                    {
+                        precioDescontado = precioVenta - (precioVenta * (descuento / 100));
+                    }
+                    else
+                    {
+                        precioDescontado = precioVenta;
+                    }
                     detallesArticulos.Add(new DetalleVentaViewModel
                     {
                         iddetalle_venta = 0,
                         idventa = 0,
                         producto = filaDeArticuloAVender["nombre"].ToString(),
                         cantidad = 1,
-                        precio_venta = precioVenta,
+                        precio_venta = precioDescontado,
                         descuento = descuento / 100M,
                         itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
                     });
                 }
 
-                //foreach(DetalleVentaViewModel detalle in detallesArticulos)
-                //{
-                //    _subtotal += (detalle.precio_venta * detalle.cantidad);
-                //    _itbis += (detalle.itbis + _itbisAgregar);
-                //    _total += (_subtotal + _itbis);
-                //}
                 _subtotal = detallesArticulos.Sum(venta => venta.precio_venta * venta.cantidad);
                 _itbis = detallesArticulos.Sum(venta => venta.itbis * venta.cantidad);
                 _total = _subtotal + _itbis;
@@ -423,8 +466,14 @@ namespace SistemaFacturacion.Formularios
                 txtItbis = _itbis.ToString("N2");
                 txtTotal = _total.ToString("N2");
             }
-
             return detallesArticulos;
+        }
+
+        private bool DescuentoEsValido(decimal descuento, decimal precioVenta, decimal precioCompra)
+        {
+            decimal descuentoAGenerar = (descuento / 100) * precioVenta;
+            decimal descontado = (precioVenta - descuentoAGenerar);
+            return  descontado >  precioCompra;
         }
 
         private void btnPagar_Click(object sender, EventArgs e)
@@ -455,8 +504,6 @@ namespace SistemaFacturacion.Formularios
                 return;
 
             }
-
-            MessageBox.Show("Se puede pagar");
 
         }
     }
