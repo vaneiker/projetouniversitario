@@ -340,6 +340,7 @@ namespace SistemaFacturacion.Formularios
             txtItbis = "";
             if (detallesArticulos == null)
             {
+                
                 decimal precioVenta = Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString());
                 decimal precioCompra = Convert.ToDecimal(filaDeArticuloAVender["precioCompra"].ToString());
                 decimal descuento = 0.0M;
@@ -372,22 +373,23 @@ namespace SistemaFacturacion.Formularios
                 else
                 {
                     descontado = precioVenta;
-                    detallesArticulos = new List<DetalleVentaViewModel>();
-                    detallesArticulos.Add(new DetalleVentaViewModel
-                    {
-                        iddetalle_venta = 0,
-                        idventa = 0,
-                        producto = filaDeArticuloAVender["nombre"].ToString(),
-                        cantidad = 1,
-                        precio_venta = descontado,
-                        descuento = descuento / 100M,
-                        itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
-                    });
-                    txtCan = detallesArticulos.Count.ToString();
-                    txtSubtotal = descontado.ToString("N2");
-                    txtItbis = detallesArticulos[0].itbis.ToString("N2");
-                    txtTotal = (detallesArticulos[0].precio_venta + detallesArticulos[0].itbis).ToString("N2");
+                    
                 }
+                detallesArticulos = new List<DetalleVentaViewModel>();
+                detallesArticulos.Add(new DetalleVentaViewModel
+                {
+                    iddetalle_venta = 0,
+                    idventa = 0,
+                    producto = filaDeArticuloAVender["nombre"].ToString(),
+                    cantidad = 1,
+                    precio_venta = descontado,
+                    descuento = descuento / 100M,
+                    itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
+                });
+                txtCan = detallesArticulos.Count.ToString();
+                txtSubtotal = descontado.ToString("N2");
+                txtItbis = detallesArticulos[0].itbis.ToString("N2");
+                txtTotal = (detallesArticulos[0].precio_venta + detallesArticulos[0].itbis).ToString("N2");
             }
             else
             {
@@ -501,6 +503,21 @@ namespace SistemaFacturacion.Formularios
             {
                 Alertas.AlertError noCliente = new Alertas.AlertError("No se encontraron ningun articulos a facturar");
                 noCliente.ShowDialog();
+                return;
+
+            }
+
+            if(clienteAFacturar.idcliente == 1 && cboCliente.SelectedIndex > 0)
+            {
+                Alertas.Alerwarning ventasDirectas = new Alertas.Alerwarning("Para Ventas Ambulatorias Seleccione Ventas Directas");
+                ventasDirectas.ShowDialog();
+                return;
+            }
+
+            if(clienteAFacturar.idcliente == 1 && (radioACredito.Checked || cboProv.SelectedIndex != 1 || comboMedioPago.SelectedIndex != 0))
+            {
+                Alertas.Alerwarning noCredito = new Alertas.Alerwarning("No se Permites Ventas Directas a Credito, solo Efectivo y factura Normal");
+                noCredito.ShowDialog();
                 return;
 
             }

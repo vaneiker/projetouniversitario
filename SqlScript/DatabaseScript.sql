@@ -3091,6 +3091,71 @@ INSERT INTO [dbo].[detalle_venta]
            ,@itbis)
 END
 GO
+
+/****** Object:  Table [dbo].[Factura]    Script Date: 30/6/18 6:55:20 p. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Factura](
+	[id_factura] [int] IDENTITY(1,1) NOT NULL,
+	[id_cliente] [int] NOT NULL,
+	[nombre_trabajador] [varchar](100) NOT NULL,
+	[tipo_pago] [varchar](25) NOT NULL,
+	[fecha] [date] NOT NULL,
+	[medio_pago] [varchar](30) NOT NULL,
+	[id_venta] [int] NOT NULL,
+	[id_trabajador] [int] NOT NULL,
+	[cantidad_articulos] [int] NOT NULL,
+	[subtotal] [decimal](18, 2) NOT NULL,
+	[itbis] [decimal](9, 2) NOT NULL,
+	[total] [decimal](18, 2) NOT NULL,
+	[numero_factura] [varchar](100) NOT NULL,
+ CONSTRAINT [PK_Factura] PRIMARY KEY CLUSTERED 
+(
+	[id_factura] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[Factura] ADD  CONSTRAINT [DF_Factura_fecha]  DEFAULT (getdate()) FOR [fecha]
+GO
+
+ALTER TABLE [dbo].[Factura] ADD  CONSTRAINT [DF_Factura_numero_factura]  DEFAULT ('(CONVERT([varchar],(upper(substring([nombre_trabajador],(1),(4)))+''000000'')+CONVERT([varchar],[id_factura])))') FOR [numero_factura]
+GO
+
+ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_Factura_cliente] FOREIGN KEY([id_cliente])
+REFERENCES [dbo].[cliente] ([idcliente])
+GO
+
+ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [FK_Factura_cliente]
+GO
+
+ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_Factura_trabajador] FOREIGN KEY([id_trabajador])
+REFERENCES [dbo].[trabajador] ([idtrabajador])
+GO
+
+ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [FK_Factura_trabajador]
+GO
+
+ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_Factura_venta] FOREIGN KEY([id_venta])
+REFERENCES [dbo].[venta] ([idventa])
+GO
+
+ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [FK_Factura_venta]
+GO
+
+
+
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')
