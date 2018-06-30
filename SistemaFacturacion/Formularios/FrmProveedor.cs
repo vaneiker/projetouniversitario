@@ -298,7 +298,7 @@ namespace SistemaFacturacion.Formularios
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
-            DeleteProveedor(int.Parse(this.codigo),true);
+            DeleteProveedor(int.Parse(this.codigo),false);
 
         }
 
