@@ -113,6 +113,29 @@ namespace SistemaFacturacion.Formularios
 
        private void BtnBuscarArticulo_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(cboCliente.Text))
+            {
+                Alertas.AlertError noCliente = new Alertas.AlertError("Asegurese de poner el tipo de cliente a facturar");
+                noCliente.ShowDialog();
+                cboCliente.Focus();
+            }
+            else
+            {
+                if(cboCliente.SelectedIndex == 0)
+                {
+                    LogicaDbVentas db = new LogicaDbVentas();
+                    DataTable cliente = db.BuscarCliente("CLIENTE AMBULATORIO", "NINGUNO", "NINGUNO", "NINGUNO");
+                    clienteAFacturar = db.GetClienteFromDataTable(cliente);
+
+                    ventaActual = new VentaViewModel();
+                    ventaActual.fecha = DateTime.Now;
+                    ventaActual.idcliente = clienteAFacturar.idcliente;
+                    ventaActual.idtrabajador = Seccion.Instance.IdTrabajador;
+                    ventaActual.idventa = 0;
+                    ventaActual.tipo_cliente = "AMBULATORIO";
+                    ventaActual.tipo_comprobante = "NINGUNO";
+                }
+            }
             if(string.IsNullOrWhiteSpace(txtBuscarArticulo.Text))
             {
                 Alertas.AlertError error = new Alertas.AlertError("El Codigo del Articulo a Buscar");
@@ -405,12 +428,9 @@ namespace SistemaFacturacion.Formularios
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            if(clienteAFacturar == null)
+            if(clienteAFacturar != null)
             {
-                if(ventaActual != null)
-                {
-
-                }
+                
             }
 
         }
