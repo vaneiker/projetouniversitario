@@ -131,26 +131,19 @@ namespace SistemaFacturacion.Formularios
                 txtBuscarArticulo.Focus();
                 return;
             }
-            if (articuloF != null && GrivArticulo.DataSource == null)
+           
+            else
             {
                 dt = new DataTable();
                 dt.Clear();
                 LlenarDataTable(ref dt, articuloF);
                 GrivArticulo.DataSource = dt;
-                //GrivArticulo.Columns["ID"].Visible = false;
-
-
-            }else if(GrivArticulo != null)
-            {
-                LlenarDataTable(ref dt, articuloF);
-                GrivArticulo.DataSource = dt;
-            }
-            else
-            {
-                MessageBox.Show("No se a encontrado ningún Resultado!");
-                txtBuscarArticulo.Text = string.Empty;
-                txtBuscarArticulo.Focus();
-                return;
+                GrivArticulo.Columns["idarticulo"].Visible = false;
+                GrivArticulo.Columns["idcategoria"].Visible = false;
+                GrivArticulo.Columns["Imag_Url"].Visible = false;
+                GrivArticulo.Columns["precioVenta"].Visible = false;
+                GrivArticulo.Columns["estado"].Visible = false;
+                GrivArticulo.Columns["idProveedor"].Visible = false;
             }
 
         }

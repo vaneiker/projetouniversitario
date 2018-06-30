@@ -152,6 +152,13 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
             return true;
         }
+
+        public bool IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
+        {
+            _metodos.IngresarVenta(venta, detalles);
+
+            return true;
+        }
         #region Metodos Proveedores
       
         //Apartir de esta Linea Empieso con las Buenas Practivas
