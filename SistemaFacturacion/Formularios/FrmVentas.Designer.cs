@@ -82,11 +82,13 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtComp = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtCan = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtVent = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
+            this.checkDescuento = new System.Windows.Forms.CheckBox();
+            this.txtCan = new System.Windows.Forms.TextBox();
+            this.txtDescuento = new System.Windows.Forms.TextBox();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -397,6 +399,8 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox4.Controls.Add(this.txtDescuento);
+            this.groupBox4.Controls.Add(this.checkDescuento);
             this.groupBox4.Controls.Add(this.radioAlContado);
             this.groupBox4.Controls.Add(this.radioACredito);
             this.groupBox4.Controls.Add(this.comboBox1);
@@ -706,17 +710,6 @@
             this.label9.TabIndex = 179;
             this.label9.Text = "$ Precio de Venta";
             // 
-            // txtCan
-            // 
-            this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtCan.Location = new System.Drawing.Point(270, 29);
-            this.txtCan.Multiline = true;
-            this.txtCan.Name = "txtCan";
-            this.txtCan.Size = new System.Drawing.Size(123, 34);
-            this.txtCan.TabIndex = 164;
-            this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -733,11 +726,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label5.Location = new System.Drawing.Point(176, 32);
+            this.label5.Location = new System.Drawing.Point(158, 32);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 25);
+            this.label5.Size = new System.Drawing.Size(106, 25);
             this.label5.TabIndex = 163;
-            this.label5.Text = "Catidad";
+            this.label5.Text = "Cantidad";
             // 
             // txtVent
             // 
@@ -757,6 +750,42 @@
             this.gridArticulosAVender.Name = "gridArticulosAVender";
             this.gridArticulosAVender.Size = new System.Drawing.Size(721, 163);
             this.gridArticulosAVender.TabIndex = 0;
+            // 
+            // checkDescuento
+            // 
+            this.checkDescuento.AutoSize = true;
+            this.checkDescuento.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkDescuento.ForeColor = System.Drawing.Color.Gray;
+            this.checkDescuento.Location = new System.Drawing.Point(20, 98);
+            this.checkDescuento.Name = "checkDescuento";
+            this.checkDescuento.Size = new System.Drawing.Size(96, 20);
+            this.checkDescuento.TabIndex = 197;
+            this.checkDescuento.Text = "Descuento";
+            this.checkDescuento.UseVisualStyleBackColor = true;
+            this.checkDescuento.CheckedChanged += new System.EventHandler(this.checkDescuento_CheckedChanged);
+            // 
+            // txtCan
+            // 
+            this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCan.Location = new System.Drawing.Point(270, 29);
+            this.txtCan.Multiline = true;
+            this.txtCan.Name = "txtCan";
+            this.txtCan.Size = new System.Drawing.Size(123, 34);
+            this.txtCan.TabIndex = 164;
+            this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtDescuento
+            // 
+            this.txtDescuento.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtDescuento.Location = new System.Drawing.Point(122, 93);
+            this.txtDescuento.Multiline = true;
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.ReadOnly = true;
+            this.txtDescuento.Size = new System.Drawing.Size(123, 27);
+            this.txtDescuento.TabIndex = 198;
+            this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FrmVentas
             // 
@@ -858,11 +887,13 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtComp;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtCan;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtVent;
         private System.Windows.Forms.Button btnAgregarArticulo;
         private System.Windows.Forms.TextBox txtCliente;
+        private System.Windows.Forms.TextBox txtDescuento;
+        private System.Windows.Forms.CheckBox checkDescuento;
+        private System.Windows.Forms.TextBox txtCan;
     }
     }

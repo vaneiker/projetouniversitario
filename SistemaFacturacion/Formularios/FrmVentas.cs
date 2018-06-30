@@ -211,6 +211,21 @@ namespace SistemaFacturacion.Formularios
                 txtBuscarArticulo.Focus();
                 return;
             }
+            else
+            {
+                DataRow filaDeArticuloAVender = dt.Rows[0];
+                if(detallesArticulos == null)
+                {
+                    detallesArticulos = new List<DetalleVentaViewModel>();
+                    detallesArticulos.Add(new DetalleVentaViewModel {
+                        iddetalle_venta = 0,
+                        idventa = 0,
+                        producto = filaDeArticuloAVender["nombre"].ToString(),
+                        cantidad = 1,
+                        precio_venta = Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()),
+                    });
+                }
+            }
 
 
         }
@@ -229,6 +244,19 @@ namespace SistemaFacturacion.Formularios
             if (radioACredito.Checked)
             {
                 ventaActual.tipo_venta = "A Credito";
+            }
+        }
+
+        private void checkDescuento_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkDescuento.Checked)
+            {
+                txtDescuento.ReadOnly = false;
+                txtDescuento.Focus();
+            }else
+            {
+                txtDescuento.ReadOnly = true;
+                txtDescuento.Text = string.Empty;
             }
         }
     }
