@@ -298,17 +298,20 @@ namespace SistemaFacturacion.Formularios
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
+            DeleteProveedor(int.Parse(this.codigo),true);
 
         }
 
-        private void DeleteProveedor(int id , bool status)
+    private void DeleteProveedor(int id , bool status)
         {
             bool deletes = _metodos.EliminarProveedor(id,status);
 
+            
             if(deletes==true)
             {
                 MessageBox.Show("Registro eliminado satifactoriamente!!!");
                 CleanData();
+                cargarProveedor();
             }
             else
             {
