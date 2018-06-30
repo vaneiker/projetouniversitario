@@ -197,6 +197,19 @@ namespace SistemaFacturacion.Formularios
                 txtBuscarArticulo.Focus();
             }
         }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            lblMpgo.Visible = true;
+            CboMetodoPago.Visible = true;
+        }
+
+        private void VentaCreditoRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            lblMpgo.Visible = true;
+            CboMetodoPago.Visible = true;
+            CboMetodoPago.Text = string.Empty;
+        }
     }
 }   
 

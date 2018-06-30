@@ -61,7 +61,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
 
             }
-            public ClienteEntitis GetClienteFromDataTable(DataTable source)
+        public ClienteEntitis GetClienteFromDataTable(DataTable source)
         {
             ClienteEntitis cliente = new ClienteEntitis();
             foreach(DataRow row in source.Rows)
@@ -215,7 +215,16 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return _metodos.ListarticulosX_Codigo(codigo,copia);
         }
 
+        public bool EliminarProveedor(int id , bool status)
+        {
+            ProveedorEntity p = new ProveedorEntity();
+            p.idproveedor = id;
+            p.statu = status;
 
+            int proveedorBorrado = _metodos.EliminarProveedor(p);
+            return proveedorBorrado > 0 ? true : false;
+            
+        }
 
         #endregion
 

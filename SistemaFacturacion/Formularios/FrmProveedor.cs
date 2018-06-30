@@ -193,12 +193,23 @@ namespace SistemaFacturacion.Formularios
             {
                 Eliminar.Enabled = true;
                 Aceptar.Enabled = false;
+                txtProveedor.Enabled = false;
+                cboR.Enabled = false;
+                dateFechaNacimiento.Enabled = false;
+                RncMasck.Enabled = false;
+                CedulaMask.Enabled = false;
+                RNCradio.Enabled = false;
+                Cedularadio.Enabled = false;
+                txtTel.Enabled = false;
+                tctcorreo.Enabled = false;
+                txtDireccion.Enabled = false;
             }
             else
             {
                
                 Eliminar.Enabled = false;
-                Aceptar.Enabled =true ;
+                Aceptar.Enabled =true;
+             
             }
             
             ProveedorEntity prov = new ProveedorEntity();
@@ -283,6 +294,26 @@ namespace SistemaFacturacion.Formularios
         {
             txtBuscarProveedor.Text = string.Empty;
             cargarProveedor();
+        }
+
+        private void Eliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteProveedor(int id , bool status)
+        {
+            bool deletes = _metodos.EliminarProveedor(id,status);
+
+            if(deletes==true)
+            {
+                MessageBox.Show("Registro eliminado satifactoriamente!!!");
+                CleanData();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo eliminar el Registro!!!");
+            }
         }
     }
     }

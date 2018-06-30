@@ -655,7 +655,7 @@ namespace CapaDatos.RepocitoryDbVentas
             }
 
         }
-        public void EliminarProveedor(ProveedorEntity proveedor)
+        public int EliminarProveedor(ProveedorEntity proveedor)
         {
             try
             {
@@ -673,13 +673,13 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.Add(new SqlParameter("@codigo", proveedor.idproveedor));
                         cmd.Parameters.Add(new SqlParameter("@estado", proveedor.statu));
                         cmd.ExecuteNonQuery();
-
+                        return 1;
                     }
                 }
             }
             catch (Exception ex)
             {
-
+                return 0;
                 throw ex;
             }
         }

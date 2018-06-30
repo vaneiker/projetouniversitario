@@ -44,9 +44,9 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.VentaCreditoRadio = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.VenContadoRadio = new System.Windows.Forms.RadioButton();
             this.lblBus = new System.Windows.Forms.Label();
             this.txtB = new System.Windows.Forms.TextBox();
             this.btnBusc = new System.Windows.Forms.Button();
@@ -59,8 +59,8 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.CboMetodoPago = new System.Windows.Forms.ComboBox();
+            this.lblMpgo = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.cboProv = new System.Windows.Forms.ComboBox();
             this.dateFechaVencimiento = new System.Windows.Forms.DateTimePicker();
@@ -70,6 +70,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cboCliente = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
             this.DataGrivCliente = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -86,7 +87,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtVent = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
-            this.txtCliente = new System.Windows.Forms.TextBox();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -244,18 +244,19 @@
             this.toolStripButton2.Text = "Limpiar";
             this.toolStripButton2.ToolTipText = "Eliminar";
             // 
-            // radioButton2
+            // VentaCreditoRadio
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioButton2.Location = new System.Drawing.Point(202, 22);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(73, 20);
-            this.radioButton2.TabIndex = 93;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Credito";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.VentaCreditoRadio.AutoSize = true;
+            this.VentaCreditoRadio.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VentaCreditoRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.VentaCreditoRadio.Location = new System.Drawing.Point(202, 22);
+            this.VentaCreditoRadio.Name = "VentaCreditoRadio";
+            this.VentaCreditoRadio.Size = new System.Drawing.Size(73, 20);
+            this.VentaCreditoRadio.TabIndex = 93;
+            this.VentaCreditoRadio.TabStop = true;
+            this.VentaCreditoRadio.Text = "Credito";
+            this.VentaCreditoRadio.UseVisualStyleBackColor = true;
+            this.VentaCreditoRadio.CheckedChanged += new System.EventHandler(this.VentaCreditoRadio_CheckedChanged);
             // 
             // label4
             // 
@@ -268,18 +269,19 @@
             this.label4.TabIndex = 175;
             this.label4.Text = "Tipo de Pago";
             // 
-            // radioButton1
+            // VenContadoRadio
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.radioButton1.Location = new System.Drawing.Point(105, 22);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(97, 20);
-            this.radioButton1.TabIndex = 94;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Al Contado";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.VenContadoRadio.AutoSize = true;
+            this.VenContadoRadio.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VenContadoRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.VenContadoRadio.Location = new System.Drawing.Point(105, 22);
+            this.VenContadoRadio.Name = "VenContadoRadio";
+            this.VenContadoRadio.Size = new System.Drawing.Size(97, 20);
+            this.VenContadoRadio.TabIndex = 94;
+            this.VenContadoRadio.TabStop = true;
+            this.VenContadoRadio.Text = "Al Contado";
+            this.VenContadoRadio.UseVisualStyleBackColor = true;
+            this.VenContadoRadio.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // lblBus
             // 
@@ -396,11 +398,11 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox4.Controls.Add(this.radioButton1);
-            this.groupBox4.Controls.Add(this.radioButton2);
-            this.groupBox4.Controls.Add(this.comboBox1);
+            this.groupBox4.Controls.Add(this.VenContadoRadio);
+            this.groupBox4.Controls.Add(this.VentaCreditoRadio);
+            this.groupBox4.Controls.Add(this.CboMetodoPago);
             this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.lblMpgo);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.cboProv);
             this.groupBox4.Controls.Add(this.dateFechaVencimiento);
@@ -412,33 +414,36 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Datos de Pagos";
             // 
-            // comboBox1
+            // CboMetodoPago
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.CboMetodoPago.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboMetodoPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.CboMetodoPago.FormattingEnabled = true;
+            this.CboMetodoPago.Items.AddRange(new object[] {
+            "Seleccione un Metodo",
             "Efectivo",
             "Chekes",
             "Tarjeta Credito",
             "tPagos",
             "Paypal",
             "Trasferecia"});
-            this.comboBox1.Location = new System.Drawing.Point(405, 93);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(228, 27);
-            this.comboBox1.TabIndex = 196;
+            this.CboMetodoPago.Location = new System.Drawing.Point(405, 93);
+            this.CboMetodoPago.Name = "CboMetodoPago";
+            this.CboMetodoPago.Size = new System.Drawing.Size(228, 27);
+            this.CboMetodoPago.TabIndex = 196;
+            this.CboMetodoPago.Visible = false;
             // 
-            // label1
+            // lblMpgo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label1.Location = new System.Drawing.Point(281, 99);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 16);
-            this.label1.TabIndex = 195;
-            this.label1.Text = "Medio de Pago";
+            this.lblMpgo.AutoSize = true;
+            this.lblMpgo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMpgo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.lblMpgo.Location = new System.Drawing.Point(281, 99);
+            this.lblMpgo.Name = "lblMpgo";
+            this.lblMpgo.Size = new System.Drawing.Size(102, 16);
+            this.lblMpgo.TabIndex = 195;
+            this.lblMpgo.Text = "Medio de Pago";
+            this.lblMpgo.Visible = false;
             // 
             // label11
             // 
@@ -550,6 +555,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cliente";
             this.groupBox2.Visible = false;
+            // 
+            // txtCliente
+            // 
+            this.txtCliente.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCliente.Location = new System.Drawing.Point(10, 15);
+            this.txtCliente.Multiline = true;
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.ReadOnly = true;
+            this.txtCliente.Size = new System.Drawing.Size(497, 34);
+            this.txtCliente.TabIndex = 191;
+            this.txtCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // DataGrivCliente
             // 
@@ -741,18 +758,6 @@
             this.gridArticulosAVender.Size = new System.Drawing.Size(721, 163);
             this.gridArticulosAVender.TabIndex = 0;
             // 
-            // txtCliente
-            // 
-            this.txtCliente.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtCliente.Location = new System.Drawing.Point(10, 15);
-            this.txtCliente.Multiline = true;
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.ReadOnly = true;
-            this.txtCliente.Size = new System.Drawing.Size(497, 34);
-            this.txtCliente.TabIndex = 191;
-            this.txtCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // FrmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -816,8 +821,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         internal System.Windows.Forms.ToolStripButton Salir;
         internal System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton VenContadoRadio;
+        private System.Windows.Forms.RadioButton VentaCreditoRadio;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblBus;
         private System.Windows.Forms.TextBox txtB;
@@ -831,8 +836,8 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox CboMetodoPago;
+        private System.Windows.Forms.Label lblMpgo;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cboProv;
         private System.Windows.Forms.DateTimePicker dateFechaVencimiento;
