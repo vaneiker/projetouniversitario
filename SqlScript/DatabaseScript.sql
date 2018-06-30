@@ -3068,6 +3068,7 @@ GO
 
 CREATE PROCEDURE [DBO].[SP_INGRESAR_DETALLE_VENTA]
 @idventa int,
+@producto VARCHAR(50),
 @cantidad int,
 @precio_venta decimal(18,2),
 @descuento decimal(18,2),
@@ -3076,12 +3077,14 @@ AS
 BEGIN
 INSERT INTO [dbo].[detalle_venta]
            ([idventa]
+		   ,[producto]
            ,[cantidad]
            ,[precio_venta]
            ,[descuento]
            ,[itbis])
      VALUES
            (@idventa
+		   ,@producto
 		   ,@cantidad
            ,@precio_venta
            ,@descuento

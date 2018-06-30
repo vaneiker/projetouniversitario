@@ -1057,7 +1057,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     foreach (DataRow row in dt.Rows)
                     {
                         vent.idarticulo = Convert.ToInt32(row["idarticulo"].ToString());
-                        vent.nombre = row["nombre"].ToString(); 
+                        vent.nombre = row["nombre"].ToString();
                         vent.idcategoria = Convert.ToInt32(row["idcategoria"].ToString());
                         vent.codigo = row["Codigo"].ToString(); ;
                         vent.Imag_Url = row["Imag_Url"].ToString(); ;
@@ -1074,10 +1074,71 @@ namespace CapaDatos.RepocitoryDbVentas
 
                 return vent;
             }
+
+        }
+            public void IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
+        {
+            using (dbventasEntity db = new dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string sqlVenta = "[DBO].[SP_INGRESAR_VENTA]";
+                    string sqlDetalles = "[DBO].[SP_INGRESAR_DETALLE_VENTA";
+
+                    SqlCommand cmd = new SqlCommand(sqlVenta, connection);
+                    SqlCommand cmd2 = new SqlCommand(sqlDetalles, connection);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd2.CommandType = CommandType.StoredProcedure;
+
+                    int ventaid = 0;
+                    //parameters venta
+                    cmd.Parameters.AddWithValue("@idtrabajador", venta.idtrabajador);
+                    cmd.Parameters.AddWithValue("@tipo_comprobante", venta.tipo_comprobante);
+                    cmd.Parameters.AddWithValue("@tipo_venta", venta.tipo_venta);
+                    cmd.Parameters.AddWithValue("@tipo_cliente", venta.tipo_cliente);
+                    cmd.Parameters.AddWithValue("@itbis", venta.itbis);
+                    cmd.Parameters.AddWithValue("@subtotal", venta.subtotal);
+                    cmd.Parameters.AddWithValue("@total", venta.total);
+                    cmd.Parameters.AddWithValue("@ventaid", ventaid).Direction = ParameterDirection.Output;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        if(cmd.Parameters["@ventaid"].Value == DBNull.Value)
+                        {
+                            ventaid = 0;
+                        }else
+                        {
+                            ventaid = Convert.ToInt32(cmd.Parameters["@ventaid"].Value);
+                        }
+
+                        if(ventaid > 0)
+                        {
+                            cmd2.Parameters.Clear();
+                            foreach(detalle_ventaEntitis detalle in detalles)
+                            {
+                                cmd2.Parameters.AddWithValue("@idventa", ventaid);
+                                cmd2.Parameters.AddWithValue("@producto", detalle.producto);
+                                cmd2.Parameters.AddWithValue("@cantidad", detalle.cantidad);
+                                cmd2.Parameters.AddWithValue("@precio_venta", detalle.precio_venta);
+                                cmd2.Parameters.AddWithValue("@descuento", detalle.descuento);
+                                cmd2.Parameters.AddWithValue("@itbis", detalle.itbis);
+
+                                cmd2.ExecuteNonQuery();
+                            }
+                        }
+                    }catch(Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
             #endregion
 
         }
 
 
     }
-}

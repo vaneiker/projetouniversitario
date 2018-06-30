@@ -13,7 +13,7 @@ namespace CapaEntidad.DbVentas
 
         public int idventa { get; set; }
 
-        public int iddetalle_ingreso { get; set; }
+        public string producto { get; set; }
 
         public int cantidad { get; set; }
 
@@ -21,9 +21,7 @@ namespace CapaEntidad.DbVentas
 
         public decimal descuento { get; set; }
 
-
-
-        public virtual detalle_ingresoEntitis detalle_ingreso { get; set; }
+        public decimal itbis { get; set; }
 
         public virtual ventasEntitis venta { get; set; }
         }
