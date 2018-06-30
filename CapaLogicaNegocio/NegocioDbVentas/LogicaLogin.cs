@@ -13,7 +13,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
     public static class  LogicaLogin
     {
         
-        public static bool ValidateLogin(string usuario, string contrasena, out int rolId, out string NomC)
+        public static bool ValidateLogin(string usuario, string contrasena, out int rolId, out string NomC, out int idTrabajador)
         {
             bool isValid = true;
                if(String.IsNullOrWhiteSpace(usuario) || String.IsNullOrWhiteSpace(contrasena))
@@ -22,6 +22,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                 isValid = false;
                 rolId = 0;
                 NomC = string.Empty;
+                idTrabajador = 0;
             }
             else
             {
@@ -32,6 +33,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                 
                 rolId = Convert.ToInt32(cont[0]);
                 NomC = cont[1];
+                idTrabajador = Convert.ToInt32(cont[2]);
             }
 
             return isValid;

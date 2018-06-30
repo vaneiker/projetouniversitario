@@ -13,6 +13,7 @@ namespace SistemaFacturacion
         public string Usuario { get; set; }
         public  LogicRoll.LevelRol Rolid { get; set; }
         public  string  nombreCompleto { get; set; }
+        public int IdTrabajador { get; set;  }
 
         private static Seccion _user = null;
 

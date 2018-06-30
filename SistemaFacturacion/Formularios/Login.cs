@@ -23,6 +23,8 @@ namespace SistemaFacturacion
         private void BtnIngerso_Click(object sender, EventArgs e)
             {
             string NomC;
+            int idTrabajador;
+
             if (txtContrasena.Text == "" || txtContrasena.Text == null || txtUsuario.Text == "" || txtUsuario.Text == null)
                 {
                   panelErrorClave.Visible = true;
@@ -33,7 +35,7 @@ namespace SistemaFacturacion
                 {
 
 
-                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid,out NomC))
+                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid,out NomC, out idTrabajador))
                     {
 
                     if(rollid <= 0)
@@ -48,6 +50,7 @@ namespace SistemaFacturacion
                         seccion.Usuario = txtUsuario.Text;
                         seccion.Rolid = (LogicRoll.LevelRol)rollid;
                         seccion.nombreCompleto = NomC;
+                        seccion.IdTrabajador = idTrabajador;
                         Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
                         this.Hide();
                         f.Show();

@@ -886,7 +886,9 @@ namespace CapaDatos.RepocitoryDbVentas
         {
             int rolId = 0;
             string NombreC="";
-             string[] arreglo = new string[2];
+            int id_trabajador = 0;
+
+             string[] arreglo = new string[3];
 
             try
             {
@@ -919,11 +921,18 @@ namespace CapaDatos.RepocitoryDbVentas
                         nombreC.SqlDbType = SqlDbType.VarChar;
                         nombreC.Size = 80;
                         nombreC.Direction = ParameterDirection.Output;
+
+                        //parameter.@id_trabajador
+                        SqlParameter idTrabajador = new SqlParameter("@id_trabajador", id_trabajador);
+                        idTrabajador.SqlDbType = SqlDbType.Int;
+                        idTrabajador.Direction = ParameterDirection.Output;
+
                         //add parameters to cmd
                         cmd.Parameters.Add(usuario);
                         cmd.Parameters.Add(contrasena);
                         cmd.Parameters.Add(rolid);
                         cmd.Parameters.Add(nombreC);
+                        cmd.Parameters.Add(idTrabajador);
                         //exec procedure
                         cmd.ExecuteNonQuery();
                         if (cmd.Parameters["@rolid"].Value == DBNull.Value)
@@ -934,10 +943,12 @@ namespace CapaDatos.RepocitoryDbVentas
                         {
                             rolId   = System.Convert.ToInt32(cmd.Parameters["@rolid"].Value);
                             NombreC = System.Convert.ToString(cmd.Parameters["@NombreC"].Value);
+                            id_trabajador = System.Convert.ToInt32(cmd.Parameters["@id_trabajador"].Value);
                         }
 
                         arreglo[0] = rolId.ToString();
                         arreglo[1] = NombreC;
+                        arreglo[2] = id_trabajador.ToString();
                     }
                 }
             }

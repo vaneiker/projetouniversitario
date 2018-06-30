@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaEntidad.DbVentas;
 using CapaLogicaNegocio.NegocioDbVentas;
+using CapaLogicaNegocio.ModeloVista;
 
 namespace SistemaFacturacion.Formularios
     {
@@ -17,6 +18,8 @@ namespace SistemaFacturacion.Formularios
 
         private ClienteEntitis clienteAFacturar = null;
         private DataTable dt = null;
+        private VentaViewModel ventaActual = null;
+        private List<DetalleVentaViewModel> detallesArticulos = null;
 
         public FrmVentas()
             {
@@ -186,9 +189,30 @@ namespace SistemaFacturacion.Formularios
         {
             if(clienteAFacturar != null)
             {
+                ventaActual = new VentaViewModel();
+                Seccion session = Seccion.Instance;
                 txtCliente.Text = clienteAFacturar.NombreCompleto;
+                ventaActual = new VentaViewModel();
+                ventaActual.idcliente = clienteAFacturar.idcliente;
+                ventaActual.idtrabajador = session.IdTrabajador;
+                ventaActual.fecha = DateTime.Now;
+                ventaActual.tipo_cliente = cboCliente.SelectedIndex == 0 ? "Ambulatorio" : "Cliente Existente";
+                ventaActual.tipo_venta = cboCliente.SelectedIndex == 0 ? "Ambulatoria" : "Cliente Existente";
                 txtBuscarArticulo.Focus();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(dt == null)
+            {
+                Alertas.AlertError error = new Alertas.AlertError("Debe Buscar el Articulo");
+                error.ShowDialog();
+                txtBuscarArticulo.Focus();
+                return;
+            }
+
+
         }
     }
 }   

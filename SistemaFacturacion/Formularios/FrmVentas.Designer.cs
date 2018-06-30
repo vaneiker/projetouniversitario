@@ -70,9 +70,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cboCliente = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
             this.DataGrivCliente = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAgregarArticulo = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuscarArticulo = new System.Windows.Forms.TextBox();
             this.BtnBuscarArticulo = new System.Windows.Forms.Button();
@@ -86,7 +87,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtVent = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
-            this.txtCliente = new System.Windows.Forms.TextBox();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -551,6 +551,18 @@
             this.groupBox2.Text = "Cliente";
             this.groupBox2.Visible = false;
             // 
+            // txtCliente
+            // 
+            this.txtCliente.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCliente.Location = new System.Drawing.Point(10, 15);
+            this.txtCliente.Multiline = true;
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.ReadOnly = true;
+            this.txtCliente.Size = new System.Drawing.Size(497, 34);
+            this.txtCliente.TabIndex = 191;
+            this.txtCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // DataGrivCliente
             // 
             this.DataGrivCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -564,7 +576,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnAgregarArticulo);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txtBuscarArticulo);
             this.groupBox3.Controls.Add(this.BtnBuscarArticulo);
@@ -576,22 +588,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Articulo";
             // 
-            // button1
+            // btnAgregarArticulo
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(562, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 35);
-            this.button1.TabIndex = 201;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnAgregarArticulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAgregarArticulo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgregarArticulo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnAgregarArticulo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAgregarArticulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarArticulo.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarArticulo.ForeColor = System.Drawing.Color.White;
+            this.btnAgregarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarArticulo.Image")));
+            this.btnAgregarArticulo.Location = new System.Drawing.Point(562, 20);
+            this.btnAgregarArticulo.Name = "btnAgregarArticulo";
+            this.btnAgregarArticulo.Size = new System.Drawing.Size(42, 35);
+            this.btnAgregarArticulo.TabIndex = 201;
+            this.btnAgregarArticulo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAgregarArticulo.UseVisualStyleBackColor = false;
+            this.btnAgregarArticulo.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -741,18 +754,6 @@
             this.gridArticulosAVender.Size = new System.Drawing.Size(721, 163);
             this.gridArticulosAVender.TabIndex = 0;
             // 
-            // txtCliente
-            // 
-            this.txtCliente.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtCliente.Location = new System.Drawing.Point(10, 15);
-            this.txtCliente.Multiline = true;
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.ReadOnly = true;
-            this.txtCliente.Size = new System.Drawing.Size(497, 34);
-            this.txtCliente.TabIndex = 191;
-            this.txtCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // FrmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -857,7 +858,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtVent;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAgregarArticulo;
         private System.Windows.Forms.TextBox txtCliente;
     }
     }

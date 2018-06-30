@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaLogicaNegocio.ModeloVista
 {
-    class VentaViewModel
+    public class VentaViewModel
     {
         public int idventa { get; set;  }
         public int idcliente { get; set; }
