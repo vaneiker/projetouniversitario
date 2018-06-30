@@ -255,16 +255,20 @@ CREATE TABLE [dbo].[detalle_ingreso](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[detalle_venta]    Script Date: 28/6/18 9:40:17 p. m. ******/
+/****** Object:  Table [dbo].[detalle_venta]    Script Date: 29/6/18 9:02:30 p. m. ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
+SET ANSI_PADDING ON
+GO
+
 CREATE TABLE [dbo].[detalle_venta](
 	[iddetalle_venta] [int] IDENTITY(1,1) NOT NULL,
 	[idventa] [int] NOT NULL,
+	[producto] [varchar](50) NOT NULL,
 	[cantidad] [int] NOT NULL,
 	[precio_venta] [decimal](18, 2) NOT NULL,
 	[descuento] [decimal](18, 2) NOT NULL,
@@ -277,6 +281,9 @@ CREATE TABLE [dbo].[detalle_venta](
 
 GO
 
+SET ANSI_PADDING OFF
+GO
+
 ALTER TABLE [dbo].[detalle_venta]  WITH CHECK ADD  CONSTRAINT [FK_detalle_venta_venta] FOREIGN KEY([idventa])
 REFERENCES [dbo].[venta] ([idventa])
 ON UPDATE CASCADE
@@ -284,6 +291,7 @@ ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[detalle_venta] CHECK CONSTRAINT [FK_detalle_venta_venta]
+GO
 GO/****** Object:  Table [dbo].[ingreso]    Script Date: 21/06/2018 20:41:07 ******/
 SET ANSI_NULLS ON
 GO
