@@ -185,64 +185,70 @@ namespace SistemaFacturacion.Formularios
         }
         private void GrivProveedor_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
-            DialogResult resul = MessageBox.Show("Que Acción desea Realizar?, ", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (resul == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                Eliminar.Enabled = true;
-                Aceptar.Enabled = false;
-                txtProveedor.Enabled = false;
-                cboR.Enabled = false;
-                dateFechaNacimiento.Enabled = false;
-                RncMasck.Enabled = false;
-                CedulaMask.Enabled = false;
-                RNCradio.Enabled = false;
-                Cedularadio.Enabled = false;
-                txtTel.Enabled = false;
-                tctcorreo.Enabled = false;
-                txtDireccion.Enabled = false;
-            }
-            else
-            {
-               
-                Eliminar.Enabled = false;
-                Aceptar.Enabled =true;
-             
-            }
-            
-            ProveedorEntity prov = new ProveedorEntity();
-            this.codigo = GrivProveedor.Rows[e.RowIndex].Cells["idProveedor"].Value.ToString();
-            selectProveedor = prov.ListaProveedores(int.Parse(this.codigo));
-            this.codigo =Convert.ToString(selectProveedor.idproveedor);
-            txtProveedor.Text = selectProveedor.NombreProveedor;
-            //Este metodo me activa la opción de guardar o editar
-            Inactivar("Editar");
-            cboR.Text = selectProveedor.razon_social;
-            this.tipo = selectProveedor.tipo_documento;           
-            txtDireccion.Text = selectProveedor.direccion;
-            txtTel.Text = selectProveedor.telefono;
-            tctcorreo.Text = selectProveedor.email;
+                DialogResult resul = MessageBox.Show("Que Acción desea Realizar?, ", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            var a= selectProveedor.tipo_documento;
-          
-            if (a == "RNC")
+                if (resul == System.Windows.Forms.DialogResult.OK)
+                {
+                    Eliminar.Enabled = true;
+                    Aceptar.Enabled = false;
+                    txtProveedor.Enabled = false;
+                    cboR.Enabled = false;
+                    dateFechaNacimiento.Enabled = false;
+                    RncMasck.Enabled = false;
+                    CedulaMask.Enabled = false;
+                    RNCradio.Enabled = false;
+                    Cedularadio.Enabled = false;
+                    txtTel.Enabled = false;
+                    tctcorreo.Enabled = false;
+                    txtDireccion.Enabled = false;
+                }
+                else
+                {
+
+                    Eliminar.Enabled = false;
+                    Aceptar.Enabled = true;
+
+                }
+
+                ProveedorEntity prov = new ProveedorEntity();
+                this.codigo = GrivProveedor.Rows[e.RowIndex].Cells["idProveedor"].Value.ToString();
+                selectProveedor = prov.ListaProveedores(int.Parse(this.codigo));
+                this.codigo = Convert.ToString(selectProveedor.idproveedor);
+                txtProveedor.Text = selectProveedor.NombreProveedor;
+                //Este metodo me activa la opción de guardar o editar
+                Inactivar("Editar");
+                cboR.Text = selectProveedor.razon_social;
+                this.tipo = selectProveedor.tipo_documento;
+                txtDireccion.Text = selectProveedor.direccion;
+                txtTel.Text = selectProveedor.telefono;
+                tctcorreo.Text = selectProveedor.email;
+
+                var a = selectProveedor.tipo_documento;
+
+                if (a == "RNC")
+                {
+                    RNCradio.Checked = true;
+                    RncMasck.Text = selectProveedor.num_documento;
+                    RncMasck.Visible = true;
+                    lblataipo.Visible = true;
+                }
+                else if (a == "Cedula")
+                {
+                    Cedularadio.Checked = true;
+                    Cedularadio.Text = selectProveedor.num_documento;
+                    CedulaMask.Visible = true;
+                    lblataipo.Visible = true;
+                }
+
+                TabTrabajador.SelectedTab = TabTrabajador.TabPages[1];
+            } catch (Exception ex)
             {
-                RNCradio.Checked=true;
-                RncMasck.Text = selectProveedor.num_documento;
-                RncMasck.Visible = true;
-                lblataipo.Visible = true;
-            }
-            else if (a == "Cedula")
-            {
-                Cedularadio.Checked = true;
-                Cedularadio.Text = selectProveedor.num_documento;
-                CedulaMask.Visible = true;
-                lblataipo.Visible = true;
+                MessageBox.Show("Hubo un error favor de verificar "+ex);
             }
 
-            TabTrabajador.SelectedTab = TabTrabajador.TabPages[1];
+         
         }
         /// <summary>
         /// Busqueda de Proveedores 
