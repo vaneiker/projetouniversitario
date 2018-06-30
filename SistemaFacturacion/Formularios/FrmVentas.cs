@@ -118,10 +118,11 @@ namespace SistemaFacturacion.Formularios
                 Alertas.AlertError noCliente = new Alertas.AlertError("Asegurese de poner el tipo de cliente a facturar");
                 noCliente.ShowDialog();
                 cboCliente.Focus();
+                return;
             }
             else
             {
-                if(cboCliente.SelectedIndex == 0)
+                if(cboCliente.SelectedIndex == 0 && clienteAFacturar == null)
                 {
                     LogicaDbVentas db = new LogicaDbVentas();
                     DataTable cliente = db.BuscarCliente("CLIENTE AMBULATORIO", "NINGUNO", "NINGUNO", "NINGUNO");
@@ -418,9 +419,9 @@ namespace SistemaFacturacion.Formularios
                 _itbis = detallesArticulos.Sum(venta => venta.itbis * venta.cantidad);
                 _total = _subtotal + _itbis;
                 txtCan = detallesArticulos.Count.ToString();
-                txtSubtotal = _subtotal.ToString("#.##");
-                txtItbis = _itbis.ToString("#.##");
-                txtTotal = _total.ToString("#.##");
+                txtSubtotal = _subtotal.ToString("N2");
+                txtItbis = _itbis.ToString("N2");
+                txtTotal = _total.ToString("N2");
             }
 
             return detallesArticulos;
@@ -428,10 +429,34 @@ namespace SistemaFacturacion.Formularios
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            if(clienteAFacturar != null)
+            if(clienteAFacturar == null)
             {
-                
+                Alertas.AlertError noCliente = new Alertas.AlertError("Asegurese de que el tipo de cliente este seleccionado");
+                noCliente.ShowDialog();
+                cboCliente.Focus();
+                return;
             }
+            if(ventaActual == null)
+            {
+                Alertas.AlertError noCliente = new Alertas.AlertError("No se a cargado ninguna venta a facturar");
+                noCliente.ShowDialog();
+                return;
+            }
+
+            if(detallesArticulos == null)
+            {
+                Alertas.AlertError noCliente = new Alertas.AlertError("No se encontraron ningun articulos a facturar");
+                noCliente.ShowDialog();
+                return;
+            }else if (detallesArticulos.Count <= 0)
+            {
+                Alertas.AlertError noCliente = new Alertas.AlertError("No se encontraron ningun articulos a facturar");
+                noCliente.ShowDialog();
+                return;
+
+            }
+
+            MessageBox.Show("Se puede pagar");
 
         }
     }
