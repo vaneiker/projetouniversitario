@@ -3027,6 +3027,7 @@ SELECT [idtrabajador]
 GO
 CREATE PROCEDURE [dbo].[SP_INGRESAR_VENTA]
 @idtrabajador int,
+@id_cliente int,
 @tipo_comprobante varchar(20),
 @tipo_venta varchar(20),
 @tipo_cliente varchar(20),
@@ -3038,6 +3039,7 @@ as
 BEGIN
  INSERT INTO [dbo].[venta]
            ([idtrabajador]
+		   ,[idcliente]
            ,[fecha]
            ,[tipo_comprobante]
            ,[tipo_venta]
@@ -3047,6 +3049,7 @@ BEGIN
            ,[total])
      VALUES
            (@idtrabajador
+		   ,@id_cliente
            ,GETDATE()
            ,@tipo_comprobante
            ,@tipo_venta

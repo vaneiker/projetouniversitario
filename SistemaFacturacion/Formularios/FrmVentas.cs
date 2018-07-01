@@ -522,6 +522,39 @@ namespace SistemaFacturacion.Formularios
 
             }
 
+            //Generar Pago
+            LogicaDbVentas db = new LogicaDbVentas();
+            ventaActual.Detalles = detallesArticulos;
+            ventaActual.fecha = DateTime.Now;
+            ventaActual.subtotal = detallesArticulos.Sum(s => s.precio_venta);
+            ventaActual.itbis = detallesArticulos.Sum(i => i.itbis);
+            ventaActual.cantidad = detallesArticulos.Count;
+            ventaActual.total = ventaActual.subtotal + ventaActual.itbis;
+            ventaActual.tipo_cliente = cboCliente.Text;
+            ventaActual.tipo_venta = radioAlContado.Checked ? "Al Contado" : "A Credito";
+            ventaActual.idcliente = clienteAFacturar.idcliente;
+
+            int idventa = db.IngresarVentaModelo(ventaActual, detallesArticulos);
+            if(idventa > 0)
+            {
+                FacturaEntity facturaGenerada = new FacturaEntity();
+                facturaGenerada.cantidad_articulos = ventaActual.cantidad;
+                facturaGenerada.fecha = ventaActual.fecha;
+                facturaGenerada.id_cliente = ventaActual.idcliente;
+                facturaGenerada.id_factura = 0;
+                facturaGenerada.id_trabajador = ventaActual.idtrabajador;
+                facturaGenerada.id_venta = idventa;
+                facturaGenerada.itbis = ventaActual.itbis;
+                facturaGenerada.medio_pago = comboMedioPago.Text;
+                facturaGenerada.nombre_trabajador = Seccion.Instance.nombreCompleto;
+                facturaGenerada.subtotal = ventaActual.subtotal;
+                facturaGenerada.tipo_pago = radioAlContado.Checked ? "Al Contado" : "A Credito";
+                facturaGenerada.total = ventaActual.total;
+
+                db.IngresarFactura(facturaGenerada);
+            }
+            
+
         }
 
         private void btnCancelarFactura_Click(object sender, EventArgs e)
