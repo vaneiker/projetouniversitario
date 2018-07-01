@@ -166,9 +166,15 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         }
 
         //ingresar factura
-        public void IngresarFactura(FacturaEntity nuevaFactura)
+        public int IngresarFactura(FacturaEntity nuevaFactura)
         {
+            int id_factura = 0;
             _metodos.IngresarFactura(nuevaFactura);
+            FacturaEntity facturaIngresada = BuscarFactura(nuevaFactura.id_venta);
+            if (facturaIngresada != null)
+                id_factura = facturaIngresada.id_factura;
+
+            return id_factura;
         }
 
         public int IngresarVentaModelo(VentaViewModel modeloVenta, List<DetalleVentaViewModel> detalles)

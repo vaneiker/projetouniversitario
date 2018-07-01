@@ -3212,7 +3212,12 @@ INSERT INTO [dbo].[Factura]
 		   ,('NFC'+CONVERT(VARCHAR(50),UPPER(SUBSTRING(@nombre_trabajador, (1), (2)))+'000000')+CONVERT(VARCHAR(10),@id_venta)))
 
 GO
+CREATE PROC [DBO].[SP_GET_FACTURA]
+@id_venta int
+as
+SELECT id_factura FROM FACTURA WHERE id_venta = @id_venta
 
+GO
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')

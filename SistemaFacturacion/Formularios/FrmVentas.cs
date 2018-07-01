@@ -552,7 +552,7 @@ namespace SistemaFacturacion.Formularios
                 facturaGenerada.tipo_pago = radioAlContado.Checked ? "Al Contado" : "A Credito";
                 facturaGenerada.total = ventaActual.total;
 
-                db.IngresarFactura(facturaGenerada);
+               int id_factura =  db.IngresarFactura(facturaGenerada);
             }
             
 
