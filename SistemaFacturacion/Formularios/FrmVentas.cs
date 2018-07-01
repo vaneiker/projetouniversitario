@@ -533,6 +533,7 @@ namespace SistemaFacturacion.Formularios
             ventaActual.tipo_cliente = cboCliente.Text;
             ventaActual.tipo_venta = radioAlContado.Checked ? "Al Contado" : "A Credito";
             ventaActual.idcliente = clienteAFacturar.idcliente;
+            ventaActual.tipo_comprobante = cboProv.Text;
 
             int idventa = db.IngresarVentaModelo(ventaActual, detallesArticulos);
             if(idventa > 0)

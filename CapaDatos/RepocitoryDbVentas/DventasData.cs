@@ -1098,7 +1098,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 {
                     connection.Open();
                     string sqlVenta = "[DBO].[SP_INGRESAR_VENTA]";
-                    string sqlDetalles = "[DBO].[SP_INGRESAR_DETALLE_VENTA";
+                    string sqlDetalles = "[DBO].[SP_INGRESAR_DETALLE_VENTA]";
 
                     SqlCommand cmd = new SqlCommand(sqlVenta, connection);
                     SqlCommand cmd2 = new SqlCommand(sqlDetalles, connection);
@@ -1109,6 +1109,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     int ventaid = 0;
                     //parameters venta
                     cmd.Parameters.AddWithValue("@idtrabajador", venta.idtrabajador);
+                    cmd.Parameters.AddWithValue("@id_cliente", venta.idcliente);
                     cmd.Parameters.AddWithValue("@tipo_comprobante", venta.tipo_comprobante);
                     cmd.Parameters.AddWithValue("@tipo_venta", venta.tipo_venta);
                     cmd.Parameters.AddWithValue("@tipo_cliente", venta.tipo_cliente);
@@ -1142,6 +1143,7 @@ namespace CapaDatos.RepocitoryDbVentas
                                 cmd2.Parameters.AddWithValue("@itbis", detalle.itbis);
 
                                 cmd2.ExecuteNonQuery();
+                                cmd2.Parameters.Clear();
                             }
                             idRetornado = ventaid;
                         }
@@ -1173,6 +1175,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     cmd.Parameters.AddWithValue("@medio_pago", factura.medio_pago).SqlDbType = SqlDbType.VarChar;
                     cmd.Parameters.AddWithValue("@id_venta", factura.id_venta).SqlDbType = SqlDbType.Int;
                     cmd.Parameters.AddWithValue("@id_trabajador", factura.id_trabajador).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@id_cliente", factura.id_cliente).SqlDbType = SqlDbType.Int;
                     cmd.Parameters.AddWithValue("@cantidad_articulos", factura.cantidad_articulos).SqlDbType = SqlDbType.Int;
                     cmd.Parameters.AddWithValue("@subtotal", factura.subtotal).SqlDbType = SqlDbType.Decimal;
                     cmd.Parameters.AddWithValue("@itbis", factura.itbis).SqlDbType = SqlDbType.Decimal;

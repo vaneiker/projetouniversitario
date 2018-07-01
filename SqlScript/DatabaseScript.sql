@@ -3133,9 +3133,6 @@ GO
 ALTER TABLE [dbo].[Factura] ADD  CONSTRAINT [DF_Factura_fecha]  DEFAULT (getdate()) FOR [fecha]
 GO
 
-ALTER TABLE [dbo].[Factura] ADD  CONSTRAINT [DF_Factura_numero_factura]  DEFAULT ('(CONVERT([varchar],(upper(substring([nombre_trabajador],(1),(4)))+''000000'')+CONVERT([varchar],[id_factura])))') FOR [numero_factura]
-GO
-
 ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_Factura_cliente] FOREIGN KEY([id_cliente])
 REFERENCES [dbo].[cliente] ([idcliente])
 GO
@@ -3177,12 +3174,13 @@ SELECT [id_factura]
   FROM [dbo].[Factura] WHERE id_factura = @id_factura or id_venta = id_venta
 GO
 
-CREATE PROC [DBO].[INGRESAR_FACTURA]
+CREATE PROC [dbo].[INGRESAR_FACTURA]
 @nombre_trabajador varchar(100),
 @tipo_pago varchar(25),
 @medio_pago varchar(30),
 @id_venta int,
 @id_trabajador int,
+@id_cliente int,
 @cantidad_articulos int,
 @subtotal decimal(18,2),
 @itbis decimal(9,2),
@@ -3194,20 +3192,25 @@ INSERT INTO [dbo].[Factura]
            ,[medio_pago]
            ,[id_venta]
            ,[id_trabajador]
+		   ,[id_cliente]
            ,[cantidad_articulos]
            ,[subtotal]
            ,[itbis]
-           ,[total])
+           ,[total]
+		   ,[numero_factura])
      VALUES
            (@nombre_trabajador
            ,@tipo_pago
            ,@medio_pago
            ,@id_venta
            ,@id_trabajador
+		   ,@id_cliente
            ,@cantidad_articulos
            ,@subtotal
            ,@itbis
-           ,@total)
+           ,@total
+		   ,('NFC'+CONVERT(VARCHAR(50),UPPER(SUBSTRING(@nombre_trabajador, (1), (2)))+'000000')+CONVERT(VARCHAR(10),@id_venta)))
+
 GO
 
 
