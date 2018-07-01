@@ -157,6 +157,18 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         {
             return _metodos.IngresarVenta(venta, detalles);
         }
+
+        //buscar factura
+        public FacturaEntity BuscarFactura(int idVenta, int idFactura = 0)
+        {
+            return _metodos.BuscarFactura(idVenta, idFactura);
+        }
+
+        //ingresar factura
+        public void IngresarFactura(FacturaEntity nuevaFactura)
+        {
+            _metodos.IngresarFactura(nuevaFactura);
+        }
         #region Metodos Proveedores
       
         //Apartir de esta Linea Empieso con las Buenas Practivas
