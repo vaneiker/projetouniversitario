@@ -1193,7 +1193,7 @@ namespace CapaDatos.RepocitoryDbVentas
             }
         }
 
-        public FacturaEntity BuscarFactura(int idVenta, int idFactura = 0)
+        public FacturaEntity BuscarFactura(int idVenta, int idFactura = 0) //No Usarlo por ahora
         {
             FacturaEntity facturaEncontrada = null;
             using (dbventasEntity db = new CapaDatos.dbventasEntity())
@@ -1237,6 +1237,29 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             }
             return facturaEncontrada;
+        }
+
+        public int BuscarIdFactura(int id_venta)
+        {
+            int id_factura = 0;
+            using (dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using(var connection = db.Database.Connection as SqlConnection)
+                {
+                    string query = "[DBO].[SP_GET_FACTURA]";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@id_venta", id_venta).SqlDbType = SqlDbType.Int;
+                    connection.Open();
+
+                    SqlDataReader lector = cmd.ExecuteReader();
+                    if (lector.HasRows)
+                    {
+                        id_factura = (int)lector["id_factura"];
+                    }
+                    lector.Close();
+                }
+            }
+                return id_factura;
         }
             #endregion
 

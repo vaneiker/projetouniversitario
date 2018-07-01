@@ -170,10 +170,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         {
             int id_factura = 0;
             _metodos.IngresarFactura(nuevaFactura);
-            FacturaEntity facturaIngresada = BuscarFactura(nuevaFactura.id_venta);
-            if (facturaIngresada != null)
-                id_factura = facturaIngresada.id_factura;
-
+            id_factura = _metodos.BuscarIdFactura(nuevaFactura.id_venta);
             return id_factura;
         }
 
