@@ -20,6 +20,7 @@ namespace SistemaFacturacion.Formularios
         private DataTable dt = null;
         private VentaViewModel ventaActual = null;
         private List<DetalleVentaViewModel> detallesArticulos = null;
+        int id_facturaGenerado = 0;
 
         public FrmVentas()
             {
@@ -552,7 +553,33 @@ namespace SistemaFacturacion.Formularios
                 facturaGenerada.tipo_pago = radioAlContado.Checked ? "Al Contado" : "A Credito";
                 facturaGenerada.total = ventaActual.total;
 
-               int id_factura =  db.IngresarFactura(facturaGenerada);
+               id_facturaGenerado =  db.IngresarFactura(facturaGenerada);
+                if(id_facturaGenerado > 0)
+                {
+                    Alertas.AlertSuccess facturaG = new Alertas.AlertSuccess("Se ha Generado La Factura No. " + id_facturaGenerado.ToString());
+                    facturaG.ShowDialog();
+                    GrivArticulo.DataSource = null;
+                    DataGrivCliente.DataSource = null;
+                    txtCan.Text = string.Empty;
+                    txtItbis.Text = string.Empty;
+                    txtSubtotal.Text = string.Empty;
+                    txtTotal.Text = string.Empty;
+                    cargarTipoF();
+                    txtBuscarArticulo.Text = string.Empty;
+                    txtCliente.Text = string.Empty;
+                    cboCliente.Text = string.Empty;
+                    cboProv.Text = string.Empty;
+                    comboMedioPago.SelectedIndex = 0;
+                    checkDescuento.Checked = false;
+                    radioAlContado.Checked = true;
+                    cboCliente.Focus();
+                    if(MessageBox.Show("Desea Imprimir la Factura?", "Impresion", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
+                    {
+                        btnImprimir.Visible = true;
+                        btnPagar.Visible = false;
+                    }
+                    
+                }
             }
             
 
@@ -560,12 +587,25 @@ namespace SistemaFacturacion.Formularios
 
         private void btnCancelarFactura_Click(object sender, EventArgs e)
         {
-
+           if(MessageBox.Show("Desea Cancelar la vental Actual", "Cancelar Venta", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) == DialogResult.OK)
+            {
+                //mostrar formulario modal para digitar el usuario del supervisor y su contraseña.
+            }
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            if(id_facturaGenerado <= 0)
+            {
+                Alertas.AlertError noId = new Alertas.AlertError("No Hay Factura a Imprimir");
+                noId.ShowDialog();
+                btnImprimir.Visible = false;
+                btnPagar.Visible = true;
+            }
+            else
+            {
 
+            }
         }
     }
 }   

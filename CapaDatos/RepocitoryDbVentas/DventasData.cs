@@ -1170,7 +1170,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     //parameters
-                    cmd.Parameters.AddWithValue("@nombre_trabajador", factura.id_trabajador).SqlDbType = SqlDbType.VarChar;
+                    cmd.Parameters.AddWithValue("@nombre_trabajador", factura.nombre_trabajador).SqlDbType = SqlDbType.VarChar;
                     cmd.Parameters.AddWithValue("@tipo_pago", factura.tipo_pago).SqlDbType = SqlDbType.VarChar;
                     cmd.Parameters.AddWithValue("@medio_pago", factura.medio_pago).SqlDbType = SqlDbType.VarChar;
                     cmd.Parameters.AddWithValue("@id_venta", factura.id_venta).SqlDbType = SqlDbType.Int;
@@ -1246,17 +1246,22 @@ namespace CapaDatos.RepocitoryDbVentas
             {
                 using(var connection = db.Database.Connection as SqlConnection)
                 {
+                    connection.Close();
+                    connection.Open();
                     string query = "[DBO].[SP_GET_FACTURA]";
                     SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@id_venta", id_venta).SqlDbType = SqlDbType.Int;
-                    connection.Open();
 
-                    SqlDataReader lector = cmd.ExecuteReader();
-                    if (lector.HasRows)
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter ad = new SqlDataAdapter(cmd);
+                    ad.Fill(dt);
+                    if(dt.Rows.Count > 0)
                     {
-                        id_factura = (int)lector["id_factura"];
+                        id_factura = Convert.ToInt32(dt.Rows[0]["id_factura"].ToString());
                     }
-                    lector.Close();
+                    
                 }
             }
                 return id_factura;
