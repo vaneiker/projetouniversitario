@@ -153,11 +153,9 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return true;
         }
 
-        public bool IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
+        public int IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
         {
-            _metodos.IngresarVenta(venta, detalles);
-
-            return true;
+            return _metodos.IngresarVenta(venta, detalles);
         }
         #region Metodos Proveedores
       

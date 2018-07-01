@@ -1087,8 +1087,11 @@ namespace CapaDatos.RepocitoryDbVentas
             }
 
         }
-            public void IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
+        //ingresa la venta y devuelve el id de la venta creada;
+
+            public int IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
         {
+            int idRetornado = 0;
             using (dbventasEntity db = new dbventasEntity())
             {
                 using (var connection = db.Database.Connection as SqlConnection)
@@ -1139,11 +1142,13 @@ namespace CapaDatos.RepocitoryDbVentas
 
                                 cmd2.ExecuteNonQuery();
                             }
+                            idRetornado = ventaid;
                         }
                     }catch(Exception ex)
                     {
                         throw new Exception(ex.Message);
                     }
+                    return idRetornado;
                 }
             }
         }
