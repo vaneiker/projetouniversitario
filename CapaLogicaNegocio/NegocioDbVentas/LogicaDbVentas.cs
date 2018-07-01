@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaDatos.RepocitoryDbVentas;
 using CapaEntidad.DbVentas;
+using CapaLogicaNegocio.ModeloVista;
 
 namespace CapaLogicaNegocio.NegocioDbVentas
     {
@@ -168,6 +169,39 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         public void IngresarFactura(FacturaEntity nuevaFactura)
         {
             _metodos.IngresarFactura(nuevaFactura);
+        }
+
+        public int IngresarVentaModelo(VentaViewModel modeloVenta, List<DetalleVentaViewModel> detalles)
+        {
+            ventasEntitis domainVenta = new ventasEntitis();
+            List<detalle_ventaEntitis> domainDetalles = new List<detalle_ventaEntitis>();
+
+            domainVenta.fecha = modeloVenta.fecha;
+            domainVenta.idcliente = modeloVenta.idcliente;
+            domainVenta.idtrabajador = modeloVenta.idtrabajador;
+            domainVenta.itbis = modeloVenta.itbis;
+            domainVenta.subtotal = modeloVenta.subtotal;
+            domainVenta.tipo_cliente = modeloVenta.tipo_cliente;
+            domainVenta.tipo_comprobante = modeloVenta.tipo_comprobante;
+            domainVenta.tipo_venta = modeloVenta.tipo_venta;
+            domainVenta.total = modeloVenta.total;
+
+            foreach(DetalleVentaViewModel vmDetalle in detalles)
+            {
+                domainDetalles.Add(new detalle_ventaEntitis
+                {
+                    iddetalle_venta = vmDetalle.iddetalle_venta,
+                    idventa = vmDetalle.idventa,
+                    producto = vmDetalle.producto,
+                    cantidad = vmDetalle.cantidad,
+                    precio_venta = vmDetalle.precio_venta,
+                    descuento = vmDetalle.descuento,
+                    itbis = vmDetalle.itbis
+                });
+            }
+
+            return IngresarVenta(domainVenta, domainDetalles);
+
         }
         #region Metodos Proveedores
       

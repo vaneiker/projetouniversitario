@@ -82,6 +82,8 @@
             this.GrivArticulo = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnCancelarFactura = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.btnPagar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtItbis = new System.Windows.Forms.TextBox();
@@ -697,6 +699,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnCancelarFactura);
+            this.groupBox6.Controls.Add(this.btnImprimir);
             this.groupBox6.Controls.Add(this.btnPagar);
             this.groupBox6.Controls.Add(this.label6);
             this.groupBox6.Controls.Add(this.txtItbis);
@@ -711,6 +715,46 @@
             this.groupBox6.Size = new System.Drawing.Size(427, 172);
             this.groupBox6.TabIndex = 181;
             this.groupBox6.TabStop = false;
+            // 
+            // btnCancelarFactura
+            // 
+            this.btnCancelarFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelarFactura.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelarFactura.Enabled = false;
+            this.btnCancelarFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnCancelarFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnCancelarFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarFactura.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarFactura.ForeColor = System.Drawing.Color.White;
+            this.btnCancelarFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelarFactura.Location = new System.Drawing.Point(6, 12);
+            this.btnCancelarFactura.Name = "btnCancelarFactura";
+            this.btnCancelarFactura.Size = new System.Drawing.Size(129, 35);
+            this.btnCancelarFactura.TabIndex = 194;
+            this.btnCancelarFactura.Text = "Cancelar Factura";
+            this.btnCancelarFactura.UseVisualStyleBackColor = false;
+            this.btnCancelarFactura.Visible = false;
+            this.btnCancelarFactura.Click += new System.EventHandler(this.btnCancelarFactura_Click);
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.ForeColor = System.Drawing.Color.White;
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(6, 132);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(120, 35);
+            this.btnImprimir.TabIndex = 193;
+            this.btnImprimir.Text = "Imprimir Factura";
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Visible = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // btnPagar
             // 
@@ -939,5 +983,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtItbis;
         private System.Windows.Forms.Button btnPagar;
+        private System.Windows.Forms.Button btnCancelarFactura;
+        private System.Windows.Forms.Button btnImprimir;
     }
     }

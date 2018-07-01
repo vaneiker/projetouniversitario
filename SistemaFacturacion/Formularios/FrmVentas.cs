@@ -523,6 +523,16 @@ namespace SistemaFacturacion.Formularios
             }
 
         }
+
+        private void btnCancelarFactura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }   
 
