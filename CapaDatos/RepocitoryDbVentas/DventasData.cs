@@ -1089,7 +1089,7 @@ namespace CapaDatos.RepocitoryDbVentas
         }
         //ingresa la venta y devuelve el id de la venta creada;
 
-            public int IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
+        public int IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
         {
             int idRetornado = 0;
             using (dbventasEntity db = new dbventasEntity())
@@ -1120,18 +1120,19 @@ namespace CapaDatos.RepocitoryDbVentas
                     try
                     {
                         cmd.ExecuteNonQuery();
-                        if(cmd.Parameters["@ventaid"].Value == DBNull.Value)
+                        if (cmd.Parameters["@ventaid"].Value == DBNull.Value)
                         {
                             ventaid = 0;
-                        }else
+                        }
+                        else
                         {
                             ventaid = Convert.ToInt32(cmd.Parameters["@ventaid"].Value);
                         }
 
-                        if(ventaid > 0)
+                        if (ventaid > 0)
                         {
                             cmd2.Parameters.Clear();
-                            foreach(detalle_ventaEntitis detalle in detalles)
+                            foreach (detalle_ventaEntitis detalle in detalles)
                             {
                                 cmd2.Parameters.AddWithValue("@idventa", ventaid);
                                 cmd2.Parameters.AddWithValue("@producto", detalle.producto);
@@ -1144,13 +1145,63 @@ namespace CapaDatos.RepocitoryDbVentas
                             }
                             idRetornado = ventaid;
                         }
-                    }catch(Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         throw new Exception(ex.Message);
                     }
                     return idRetornado;
                 }
             }
+
+        }
+        //metodo para ingresar la factura a la base de datos
+        public void IngresarFactura(FacturaEntity factura)
+        {
+            using (dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string query = "[DBO].[INGRESAR_FACTURA]";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //parameters
+                    cmd.Parameters.AddWithValue("@nombre_trabajador", factura.id_trabajador).SqlDbType = SqlDbType.VarChar;
+                    cmd.Parameters.AddWithValue("@tipo_pago", factura.tipo_pago).SqlDbType = SqlDbType.VarChar;
+                    cmd.Parameters.AddWithValue("@medio_pago", factura.medio_pago).SqlDbType = SqlDbType.VarChar;
+                    cmd.Parameters.AddWithValue("@id_venta", factura.id_venta).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@id_trabajador", factura.id_trabajador).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@cantidad_articulos", factura.cantidad_articulos).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@subtotal", factura.subtotal).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@itbis", factura.itbis).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@total", factura.total).SqlDbType = SqlDbType.Decimal;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
+
+        public FacturaEntity BuscarFactura(int idVenta, int idFactura = 0)
+        {
+            FacturaEntity facturaEncontrada = new FacturaEntity();
+            using (dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string query = "[DBO].[SP_BUSCAR_FACTURA_X_ID]";
+                }
+            }
+            return facturaEncontrada;
         }
             #endregion
 
