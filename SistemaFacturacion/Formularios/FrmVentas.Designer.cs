@@ -75,6 +75,8 @@
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.DataGrivCliente = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textArticuloCantidad = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnAgregarArticulo = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuscarArticulo = new System.Windows.Forms.TextBox();
@@ -223,6 +225,7 @@
             this.Limpia.Name = "Limpia";
             this.Limpia.Size = new System.Drawing.Size(68, 68);
             this.Limpia.Text = "Limpia";
+            this.Limpia.Click += new System.EventHandler(this.Limpia_Click);
             // 
             // toolStripSeparator2
             // 
@@ -607,6 +610,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox3.Controls.Add(this.textArticuloCantidad);
+            this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.btnAgregarArticulo);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txtBuscarArticulo);
@@ -619,6 +624,24 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Articulo";
             // 
+            // textArticuloCantidad
+            // 
+            this.textArticuloCantidad.Location = new System.Drawing.Point(484, 25);
+            this.textArticuloCantidad.Name = "textArticuloCantidad";
+            this.textArticuloCantidad.Size = new System.Drawing.Size(61, 20);
+            this.textArticuloCantidad.TabIndex = 203;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label7.Location = new System.Drawing.Point(418, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 16);
+            this.label7.TabIndex = 202;
+            this.label7.Text = "Cantidad";
+            // 
             // btnAgregarArticulo
             // 
             this.btnAgregarArticulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -629,7 +652,7 @@
             this.btnAgregarArticulo.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarArticulo.ForeColor = System.Drawing.Color.White;
             this.btnAgregarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarArticulo.Image")));
-            this.btnAgregarArticulo.Location = new System.Drawing.Point(562, 20);
+            this.btnAgregarArticulo.Location = new System.Drawing.Point(599, 20);
             this.btnAgregarArticulo.Name = "btnAgregarArticulo";
             this.btnAgregarArticulo.Size = new System.Drawing.Size(42, 35);
             this.btnAgregarArticulo.TabIndex = 201;
@@ -655,7 +678,7 @@
             this.txtBuscarArticulo.Location = new System.Drawing.Point(87, 20);
             this.txtBuscarArticulo.Multiline = true;
             this.txtBuscarArticulo.Name = "txtBuscarArticulo";
-            this.txtBuscarArticulo.Size = new System.Drawing.Size(421, 31);
+            this.txtBuscarArticulo.Size = new System.Drawing.Size(330, 31);
             this.txtBuscarArticulo.TabIndex = 199;
             this.txtBuscarArticulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -669,7 +692,7 @@
             this.BtnBuscarArticulo.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBuscarArticulo.ForeColor = System.Drawing.Color.White;
             this.BtnBuscarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscarArticulo.Image")));
-            this.BtnBuscarArticulo.Location = new System.Drawing.Point(514, 19);
+            this.BtnBuscarArticulo.Location = new System.Drawing.Point(551, 20);
             this.BtnBuscarArticulo.Name = "BtnBuscarArticulo";
             this.BtnBuscarArticulo.Size = new System.Drawing.Size(42, 35);
             this.BtnBuscarArticulo.TabIndex = 194;
@@ -985,5 +1008,7 @@
         private System.Windows.Forms.Button btnPagar;
         private System.Windows.Forms.Button btnCancelarFactura;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.TextBox textArticuloCantidad;
+        private System.Windows.Forms.Label label7;
     }
     }

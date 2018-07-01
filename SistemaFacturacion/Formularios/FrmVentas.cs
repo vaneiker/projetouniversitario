@@ -212,6 +212,7 @@ namespace SistemaFacturacion.Formularios
             nuevaFila["CodigoBarra"] = nuevoArticulo.CodigoBarra;
 
             dt.Rows.Add(nuevaFila);
+            textArticuloCantidad.Focus();
         }
 
         private void DataGrivCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -233,6 +234,16 @@ namespace SistemaFacturacion.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(textArticuloCantidad.Text.Length > 0)
+            {
+                int cantidadArticulo;
+                if(!int.TryParse(textArticuloCantidad.Text, out cantidadArticulo))
+                {
+                    Alertas.AlertError cantidadInvalidad = new Alertas.AlertError("La Cantidad Digitada es Invalidad. Asegurese de entrar un numero");
+                    cantidadInvalidad.ShowDialog();
+                    return;
+                }
+            }
             if(cboProv.SelectedIndex <= 0)
             {
                 Alertas.AlertError nfc = new Alertas.AlertError("Seleccione el tipo de Comprovante");
@@ -339,6 +350,15 @@ namespace SistemaFacturacion.Formularios
             txtTotal = "";
             txtSubtotal = "";
             txtItbis = "";
+            int cantidadArticulo = 1;
+            if(!int.TryParse(textArticuloCantidad.Text, out cantidadArticulo))
+            {
+                txtCan = "";
+                txtTotal = "";
+                txtSubtotal = "";
+                txtItbis = "";
+                return null;
+            }
             if (detallesArticulos == null)
             {
                 
@@ -382,15 +402,17 @@ namespace SistemaFacturacion.Formularios
                     iddetalle_venta = 0,
                     idventa = 0,
                     producto = filaDeArticuloAVender["nombre"].ToString(),
-                    cantidad = 1,
+                    cantidad = cantidadArticulo,
                     precio_venta = descontado,
                     descuento = descuento / 100M,
                     itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
                 });
                 txtCan = detallesArticulos.Count.ToString();
-                txtSubtotal = descontado.ToString("N2");
-                txtItbis = detallesArticulos[0].itbis.ToString("N2");
-                txtTotal = (detallesArticulos[0].precio_venta + detallesArticulos[0].itbis).ToString("N2");
+                decimal sub = detallesArticulos.Sum(venta => venta.precio_venta * venta.cantidad);
+                txtSubtotal = sub.ToString("N2");
+                decimal it = detallesArticulos.Sum(itbis => itbis.itbis * itbis.cantidad);
+                txtItbis = it.ToString("N2");
+                txtTotal = (sub + it).ToString("N2");
             }
             else
             {
@@ -454,7 +476,7 @@ namespace SistemaFacturacion.Formularios
                         iddetalle_venta = 0,
                         idventa = 0,
                         producto = filaDeArticuloAVender["nombre"].ToString(),
-                        cantidad = 1,
+                        cantidad = cantidadArticulo,
                         precio_venta = precioDescontado,
                         descuento = descuento / 100M,
                         itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
@@ -469,6 +491,7 @@ namespace SistemaFacturacion.Formularios
                 txtItbis = _itbis.ToString("N2");
                 txtTotal = _total.ToString("N2");
             }
+            textArticuloCantidad.Text = string.Empty;
             return detallesArticulos;
         }
 
@@ -527,8 +550,8 @@ namespace SistemaFacturacion.Formularios
             LogicaDbVentas db = new LogicaDbVentas();
             ventaActual.Detalles = detallesArticulos;
             ventaActual.fecha = DateTime.Now;
-            ventaActual.subtotal = detallesArticulos.Sum(s => s.precio_venta);
-            ventaActual.itbis = detallesArticulos.Sum(i => i.itbis);
+            ventaActual.subtotal = detallesArticulos.Sum(s => s.precio_venta * s.cantidad);
+            ventaActual.itbis = detallesArticulos.Sum(i => i.itbis * i.cantidad);
             ventaActual.cantidad = detallesArticulos.Count;
             ventaActual.total = ventaActual.subtotal + ventaActual.itbis;
             ventaActual.tipo_cliente = cboCliente.Text;
@@ -572,11 +595,34 @@ namespace SistemaFacturacion.Formularios
                     comboMedioPago.SelectedIndex = 0;
                     checkDescuento.Checked = false;
                     radioAlContado.Checked = true;
+                    gridArticulosAVender.DataSource = null;
                     cboCliente.Focus();
                     if(MessageBox.Show("Desea Imprimir la Factura?", "Impresion", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
                     {
+                        Formularios.VisualFactura facturaAImprimir = new VisualFactura(id_facturaGenerado);
+                        facturaAImprimir.ShowDialog();
+                        btnImprimir.Visible = false;
+                        btnPagar.Visible = true;
+                        btnPagar.Enabled = false;
+                        id_facturaGenerado = 0;
+                        ventaActual = null;
+                        detallesArticulos = null;
+                        clienteAFacturar = null;
+                        dt = null;
+                        GrivArticulo.DataSource = null;
+                        textArticuloCantidad.Text = string.Empty;
+                        gridArticulosAVender.DataSource = null;
+                        txtB.Text = string.Empty;
+                        Limpia.Enabled = false;
+
+                    }
+                    else
+                    {
                         btnImprimir.Visible = true;
+                        btnImprimir.Enabled = true;
                         btnPagar.Visible = false;
+                        btnImprimir.Focus();
+                        Limpia.Enabled = true;
                     }
                     
                 }
@@ -601,11 +647,40 @@ namespace SistemaFacturacion.Formularios
                 noId.ShowDialog();
                 btnImprimir.Visible = false;
                 btnPagar.Visible = true;
+                btnPagar.Enabled = false;
             }
             else
             {
-
+                Formularios.VisualFactura facturaAImprimir = new VisualFactura(id_facturaGenerado);
+                facturaAImprimir.ShowDialog();
+                btnImprimir.Visible = false;
+                btnPagar.Visible = true;
+                btnPagar.Enabled = false;
+                id_facturaGenerado = 0;
+                ventaActual = null;
+                detallesArticulos = null;
+                clienteAFacturar = null;
+                gridArticulosAVender.DataSource = null;
+                dt = null;
+                Limpia.Enabled = false;
             }
+        }
+
+        private void Limpia_Click(object sender, EventArgs e)
+        {
+            btnImprimir.Visible = false;
+            btnPagar.Visible = true;
+            btnPagar.Enabled = false;
+            id_facturaGenerado = 0;
+            ventaActual = null;
+            detallesArticulos = null;
+            clienteAFacturar = null;
+            dt = null;
+            textArticuloCantidad.Text = string.Empty;
+            txtB.Text = string.Empty;
+            cboCliente.Focus();
+            Limpia.Enabled = false;
+            gridArticulosAVender.DataSource = null;
         }
     }
 }   

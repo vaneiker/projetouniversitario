@@ -3219,6 +3219,34 @@ SELECT id_factura FROM FACTURA WHERE id_venta = @id_venta
 
 GO
 
+GO
+CREATE PROCEDURE [dbo].[FACTURA_A_IMPRIMIR]
+@id_factura int
+AS
+SELECT f.[id_factura] AS [Id Factura]
+      ,(c.[nombre] + ' ' + c.[apellidos]) AS [Cliente]
+      ,f.[nombre_trabajador] AS Empleado
+      ,f.[tipo_pago] as [Tipo de Pago]
+      ,f.[fecha] as [Fecha]
+      ,f.[medio_pago] as [Medio de Pago]
+      ,f.[cantidad_articulos] as [No. Articulos]
+      ,f.[subtotal] as [Subtotal]
+      ,f.[itbis] as ITBIS
+      ,f.[total] as Total
+      ,f.[numero_factura] as [No. Factura]
+	  ,d.[producto] as Producto
+	  ,d.[cantidad] as Cantidad
+	  ,d.[precio_venta] as Precio
+	  ,(CONVERT(VARCHAR(10),(d.[descuento] * 100))+'%') as [Descuento]
+	  ,d.[itbis] as PITBIS
+	  ,d.[sub_itbis] as [PSUBITBIS]
+	  ,d.[sub_total] as [PSUBTOTAL]
+  FROM [dbo].[Factura] as f 
+  INNER JOIN cliente c on c.idcliente = f.id_cliente
+  INNER JOIN detalle_venta d on d.idventa = f.id_venta
+  WHERE f.id_factura = @id_factura
+
+
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')
