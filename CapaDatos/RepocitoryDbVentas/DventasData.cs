@@ -1192,13 +1192,45 @@ namespace CapaDatos.RepocitoryDbVentas
 
         public FacturaEntity BuscarFactura(int idVenta, int idFactura = 0)
         {
-            FacturaEntity facturaEncontrada = new FacturaEntity();
+            FacturaEntity facturaEncontrada = null;
             using (dbventasEntity db = new CapaDatos.dbventasEntity())
             {
                 using (var connection = db.Database.Connection as SqlConnection)
                 {
                     connection.Open();
                     string query = "[DBO].[SP_BUSCAR_FACTURA_X_ID]";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //parameters
+                    cmd.Parameters.AddWithValue("@id_factura", idFactura).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@id_venta", idVenta).SqlDbType = SqlDbType.Int;
+                    try
+                    {
+                        facturaEncontrada = new FacturaEntity();
+                        SqlDataReader lector = cmd.ExecuteReader();
+                        if (lector.HasRows)
+                        {
+                            facturaEncontrada.id_factura = (int)lector["id_factura"];
+                            facturaEncontrada.id_cliente = (int)lector["id_cliente"];
+                            facturaEncontrada.nombre_trabajador = lector["nombre_trabajador"].ToString();
+                            facturaEncontrada.tipo_pago = lector["tipo_pago"].ToString();
+                            facturaEncontrada.fecha = (DateTime)lector["fecha"];
+                            facturaEncontrada.medio_pago = lector["medio_pago"].ToString();
+                            facturaEncontrada.id_venta = (int)lector["id_venta"];
+                            facturaEncontrada.id_trabajador = (int)lector["id_trabajador"];
+                            facturaEncontrada.cantidad_articulos = (int)lector["cantidad_articulos"];
+                            facturaEncontrada.subtotal = (decimal)lector["subtotal"];
+                            facturaEncontrada.itbis = (decimal)lector["itbis"];
+                            facturaEncontrada.total = (decimal)lector["total"];
+                            facturaEncontrada.numero_factura = lector["numero_factura"].ToString();
+                        }
+                        lector.Close();
+
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
                 }
             }
             return facturaEncontrada;
