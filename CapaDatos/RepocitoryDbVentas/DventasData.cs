@@ -1276,11 +1276,13 @@ namespace CapaDatos.RepocitoryDbVentas
                     connection.Open();
                     string query = "[DBO].[SP_CREAR_CUENTA_X_COBRAR]";
                     SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     //parameters
                     cmd.Parameters.AddWithValue("@id_cliente", entity.id_cliente).SqlDbType = SqlDbType.Int;
                     cmd.Parameters.AddWithValue("@valor", entity.valor).SqlDbType = SqlDbType.Decimal;
                     cmd.Parameters.AddWithValue("@usuario", entity.usuario).SqlDbType = SqlDbType.VarChar;
+                    cmd.Parameters.AddWithValue("@id_venta", entity.id_venta).SqlDbType = SqlDbType.Int;
 
                     try
                     {

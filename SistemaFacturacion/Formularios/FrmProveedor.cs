@@ -317,26 +317,26 @@ namespace SistemaFacturacion.Formularios
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
-            DeleteProveedor(int.Parse(this.codigo),false);
+            //DeleteProveedor(int.Parse(this.codigo), false);
 
         }
 
-    private void DeleteProveedor(int id , bool status)
-        {
-            bool deletes = _metodos.EliminarProveedor(id,status);
+        //private void DeleteProveedor(int id , bool status)
+        //    {
+        //        bool deletes = _metodos.EliminarProveedor(id,status);
 
-            
-            if(deletes==true)
-            {
-                MessageBox.Show("Registro eliminado satifactoriamente!!!");
-                Eliminar.Enabled = false;
-                CleanData();
-                cargarProveedor();
-            }
-            else
-            {
-                MessageBox.Show("No se pudo eliminar el Registro!!!");
-            }
-        }
+
+        //        if(deletes==true)
+        //        {
+        //            MessageBox.Show("Registro eliminado satifactoriamente!!!");
+        //            Eliminar.Enabled = false;
+        //            CleanData();
+        //            cargarProveedor();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("No se pudo eliminar el Registro!!!");
+        //        }
+        //    }
     }
     }

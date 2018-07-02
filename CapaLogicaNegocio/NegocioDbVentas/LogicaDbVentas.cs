@@ -207,12 +207,13 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
         }
 
-        public void AgregarCuentaACobrar(int id_cliente, decimal valor, string usuario)
+        public void AgregarCuentaACobrar(int id_cliente, int id_venta, decimal valor, string usuario)
         {
             cuentas_x_cobrarEntitis entity = new cuentas_x_cobrarEntitis();
             entity.id_cliente = id_cliente;
             entity.valor = valor;
             entity.usuario = usuario;
+            entity.id_venta = id_venta;
             _metodos.AgregarCuentaACobrar(entity);
         }
         #region Metodos Proveedores

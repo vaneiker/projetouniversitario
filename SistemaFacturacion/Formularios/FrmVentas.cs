@@ -504,6 +504,7 @@ namespace SistemaFacturacion.Formularios
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
+            
             if(clienteAFacturar == null)
             {
                 Alertas.AlertError noCliente = new Alertas.AlertError("Asegurese de que el tipo de cliente este seleccionado");
@@ -562,6 +563,10 @@ namespace SistemaFacturacion.Formularios
             int idventa = db.IngresarVentaModelo(ventaActual, detallesArticulos);
             if(idventa > 0)
             {
+                if (radioACredito.Checked)
+                {
+                    db.AgregarCuentaACobrar(ventaActual.idcliente, idventa, ventaActual.total, Seccion.Instance.nombreCompleto);
+                }
                 FacturaEntity facturaGenerada = new FacturaEntity();
                 facturaGenerada.cantidad_articulos = ventaActual.cantidad;
                 facturaGenerada.fecha = ventaActual.fecha;

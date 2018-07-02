@@ -3233,24 +3233,7 @@ SELECT f.[id_factura] AS [Id Factura]
   WHERE f.id_factura = @id_factura
 
   go
-CREATE PROC [DBO].[SP_CREAR_CUENTA_X_COBRAR]
-@id_cliente int
-,@valor decimal(18,2)
-,@usuario varchar(50)
-as
-INSERT INTO [dbo].[cuentas_x_cobrar]
-           ([id_cliente]
-           ,[fecha]
-           ,[valor]
-           ,[pagado]
-           ,[usuario])
-     VALUES
-           (@id_cliente
-           ,GETDATE()
-           ,@valor
-           ,0
-           ,@usuario)
-GO
+
 
 
 
