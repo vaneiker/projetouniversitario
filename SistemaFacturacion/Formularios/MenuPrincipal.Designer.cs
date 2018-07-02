@@ -51,7 +51,6 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.Salir = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnFacturacion = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -64,6 +63,7 @@
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.BtnArticulos = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Salir = new System.Windows.Forms.ToolStripButton();
             panel2 = new System.Windows.Forms.Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -264,18 +264,6 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 71);
             // 
-            // Salir
-            // 
-            this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Salir.Name = "Salir";
-            this.Salir.Size = new System.Drawing.Size(52, 68);
-            this.Salir.Text = "Salir";
-            this.Salir.ToolTipText = "Salir";
-            this.Salir.Click += new System.EventHandler(this.Salir_Click);
-            // 
             // panel1
             // 
             this.panel1.AutoSize = true;
@@ -429,6 +417,18 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // Salir
+            // 
+            this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
+            this.Salir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Salir.Name = "Salir";
+            this.Salir.Size = new System.Drawing.Size(52, 68);
+            this.Salir.Text = "Salir";
+            this.Salir.ToolTipText = "Salir";
+            this.Salir.Click += new System.EventHandler(this.Salir_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,7 +475,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        internal System.Windows.Forms.ToolStripButton Salir;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel5;
@@ -493,5 +492,6 @@
         private System.Windows.Forms.Button BtnFacturacion;
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.Label lblmp;
+        internal System.Windows.Forms.ToolStripButton Salir;
     }
     }

@@ -255,20 +255,16 @@ CREATE TABLE [dbo].[detalle_ingreso](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[detalle_venta]    Script Date: 29/6/18 9:02:30 p. m. ******/
+/****** Object:  Table [dbo].[detalle_venta]    Script Date: 28/6/18 9:40:17 p. m. ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-SET ANSI_PADDING ON
-GO
-
 CREATE TABLE [dbo].[detalle_venta](
 	[iddetalle_venta] [int] IDENTITY(1,1) NOT NULL,
 	[idventa] [int] NOT NULL,
-	[producto] [varchar](50) NOT NULL,
 	[cantidad] [int] NOT NULL,
 	[precio_venta] [decimal](18, 2) NOT NULL,
 	[descuento] [decimal](18, 2) NOT NULL,
@@ -281,9 +277,6 @@ CREATE TABLE [dbo].[detalle_venta](
 
 GO
 
-SET ANSI_PADDING OFF
-GO
-
 ALTER TABLE [dbo].[detalle_venta]  WITH CHECK ADD  CONSTRAINT [FK_detalle_venta_venta] FOREIGN KEY([idventa])
 REFERENCES [dbo].[venta] ([idventa])
 ON UPDATE CASCADE
@@ -291,7 +284,6 @@ ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[detalle_venta] CHECK CONSTRAINT [FK_detalle_venta_venta]
-GO
 GO/****** Object:  Table [dbo].[ingreso]    Script Date: 21/06/2018 20:41:07 ******/
 SET ANSI_NULLS ON
 GO
@@ -3027,7 +3019,6 @@ SELECT [idtrabajador]
 GO
 CREATE PROCEDURE [dbo].[SP_INGRESAR_VENTA]
 @idtrabajador int,
-@id_cliente int,
 @tipo_comprobante varchar(20),
 @tipo_venta varchar(20),
 @tipo_cliente varchar(20),
@@ -3039,7 +3030,6 @@ as
 BEGIN
  INSERT INTO [dbo].[venta]
            ([idtrabajador]
-		   ,[idcliente]
            ,[fecha]
            ,[tipo_comprobante]
            ,[tipo_venta]
@@ -3049,7 +3039,6 @@ BEGIN
            ,[total])
      VALUES
            (@idtrabajador
-		   ,@id_cliente
            ,GETDATE()
            ,@tipo_comprobante
            ,@tipo_venta
@@ -3071,7 +3060,6 @@ GO
 
 CREATE PROCEDURE [DBO].[SP_INGRESAR_DETALLE_VENTA]
 @idventa int,
-@producto VARCHAR(50),
 @cantidad int,
 @precio_venta decimal(18,2),
 @descuento decimal(18,2),
@@ -3080,20 +3068,19 @@ AS
 BEGIN
 INSERT INTO [dbo].[detalle_venta]
            ([idventa]
-		   ,[producto]
            ,[cantidad]
            ,[precio_venta]
            ,[descuento]
            ,[itbis])
      VALUES
            (@idventa
-		   ,@producto
 		   ,@cantidad
            ,@precio_venta
            ,@descuento
            ,@itbis)
 END
 GO
+<<<<<<< HEAD
 
 /****** Object:  Table [dbo].[Factura]    Script Date: 30/6/18 6:55:20 p. m. ******/
 SET ANSI_NULLS ON
@@ -3269,6 +3256,162 @@ GO
 
 
 
+||||||| merged common ancestors
+
+/****** Object:  Table [dbo].[Factura]    Script Date: 30/6/18 6:55:20 p. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Factura](
+	[id_factura] [int] IDENTITY(1,1) NOT NULL,
+	[id_cliente] [int] NOT NULL,
+	[nombre_trabajador] [varchar](100) NOT NULL,
+	[tipo_pago] [varchar](25) NOT NULL,
+	[fecha] [date] NOT NULL,
+	[medio_pago] [varchar](30) NOT NULL,
+	[id_venta] [int] NOT NULL,
+	[id_trabajador] [int] NOT NULL,
+	[cantidad_articulos] [int] NOT NULL,
+	[subtotal] [decimal](18, 2) NOT NULL,
+	[itbis] [decimal](9, 2) NOT NULL,
+	[total] [decimal](18, 2) NOT NULL,
+	[numero_factura] [varchar](100) NOT NULL,
+ CONSTRAINT [PK_Factura] PRIMARY KEY CLUSTERED 
+(
+	[id_factura] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[Factura] ADD  CONSTRAINT [DF_Factura_fecha]  DEFAULT (getdate()) FOR [fecha]
+GO
+
+ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_Factura_cliente] FOREIGN KEY([id_cliente])
+REFERENCES [dbo].[cliente] ([idcliente])
+GO
+
+ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [FK_Factura_cliente]
+GO
+
+ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_Factura_trabajador] FOREIGN KEY([id_trabajador])
+REFERENCES [dbo].[trabajador] ([idtrabajador])
+GO
+
+ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [FK_Factura_trabajador]
+GO
+
+ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_Factura_venta] FOREIGN KEY([id_venta])
+REFERENCES [dbo].[venta] ([idventa])
+GO
+
+ALTER TABLE [dbo].[Factura] CHECK CONSTRAINT [FK_Factura_venta]
+GO
+
+CREATE PROC [DBO].[SP_BUSCAR_FACTURA_X_ID]
+@id_factura int,
+@id_venta int
+AS
+SELECT [id_factura]
+      ,[id_cliente]
+      ,[nombre_trabajador]
+      ,[tipo_pago]
+      ,[fecha]
+      ,[medio_pago]
+      ,[id_venta]
+      ,[id_trabajador]
+      ,[cantidad_articulos]
+      ,[subtotal]
+      ,[itbis]
+      ,[total]
+      ,[numero_factura]
+  FROM [dbo].[Factura] WHERE id_factura = @id_factura or id_venta = id_venta
+GO
+
+CREATE PROC [dbo].[INGRESAR_FACTURA]
+@nombre_trabajador varchar(100),
+@tipo_pago varchar(25),
+@medio_pago varchar(30),
+@id_venta int,
+@id_trabajador int,
+@id_cliente int,
+@cantidad_articulos int,
+@subtotal decimal(18,2),
+@itbis decimal(9,2),
+@total decimal(18,2)
+AS
+INSERT INTO [dbo].[Factura]
+           ([nombre_trabajador]
+           ,[tipo_pago]
+           ,[medio_pago]
+           ,[id_venta]
+           ,[id_trabajador]
+		   ,[id_cliente]
+           ,[cantidad_articulos]
+           ,[subtotal]
+           ,[itbis]
+           ,[total]
+		   ,[numero_factura])
+     VALUES
+           (@nombre_trabajador
+           ,@tipo_pago
+           ,@medio_pago
+           ,@id_venta
+           ,@id_trabajador
+		   ,@id_cliente
+           ,@cantidad_articulos
+           ,@subtotal
+           ,@itbis
+           ,@total
+		   ,('NFC'+CONVERT(VARCHAR(50),UPPER(SUBSTRING(@nombre_trabajador, (1), (2)))+'000000')+CONVERT(VARCHAR(10),@id_venta)))
+
+GO
+CREATE PROC [DBO].[SP_GET_FACTURA]
+@id_venta int
+as
+SELECT id_factura FROM FACTURA WHERE id_venta = @id_venta
+
+GO
+
+GO
+CREATE PROCEDURE [dbo].[FACTURA_A_IMPRIMIR]
+@id_factura int
+AS
+SELECT f.[id_factura] AS [Id Factura]
+      ,(c.[nombre] + ' ' + c.[apellidos]) AS [Cliente]
+      ,f.[nombre_trabajador] AS Empleado
+      ,f.[tipo_pago] as [Tipo de Pago]
+      ,f.[fecha] as [Fecha]
+      ,f.[medio_pago] as [Medio de Pago]
+      ,f.[cantidad_articulos] as [No. Articulos]
+      ,f.[subtotal] as [Subtotal]
+      ,f.[itbis] as ITBIS
+      ,f.[total] as Total
+      ,f.[numero_factura] as [No. Factura]
+	  ,d.[producto] as Producto
+	  ,d.[cantidad] as Cantidad
+	  ,d.[precio_venta] as Precio
+	  ,(CONVERT(VARCHAR(10),(d.[descuento] * 100))+'%') as [Descuento]
+	  ,d.[itbis] as PITBIS
+	  ,d.[sub_itbis] as [PSUBITBIS]
+	  ,d.[sub_total] as [PSUBTOTAL]
+  FROM [dbo].[Factura] as f 
+  INNER JOIN cliente c on c.idcliente = f.id_cliente
+  INNER JOIN detalle_venta d on d.idventa = f.id_venta
+  WHERE f.id_factura = @id_factura
+
+
+=======
+>>>>>>> bdbcaaa3a20ab4dfbca636732404f7dfc0711c1f
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')

@@ -30,5 +30,10 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             {
             return _cbo.GetRollD();
             }
+
+        public DataTable GetComboEmpleado()
+        {
+            return _cbo.GetEmpleado();
         }
+    }
     }

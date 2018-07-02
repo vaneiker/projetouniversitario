@@ -44,9 +44,15 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+<<<<<<< HEAD
+            this.VentaCreditoRadio = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.VenContadoRadio = new System.Windows.Forms.RadioButton();
+=======
             this.radioACredito = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.radioAlContado = new System.Windows.Forms.RadioButton();
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             this.lblBus = new System.Windows.Forms.Label();
             this.txtB = new System.Windows.Forms.TextBox();
             this.btnBusc = new System.Windows.Forms.Button();
@@ -59,10 +65,15 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+<<<<<<< HEAD
+            this.CboMetodoPago = new System.Windows.Forms.ComboBox();
+            this.lblMpgo = new System.Windows.Forms.Label();
+=======
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.checkDescuento = new System.Windows.Forms.CheckBox();
             this.comboMedioPago = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             this.label11 = new System.Windows.Forms.Label();
             this.cboProv = new System.Windows.Forms.ComboBox();
             this.dateFechaVencimiento = new System.Windows.Forms.DateTimePicker();
@@ -254,6 +265,21 @@
             this.toolStripButton2.Text = "Limpiar";
             this.toolStripButton2.ToolTipText = "Eliminar";
             // 
+<<<<<<< HEAD
+            // VentaCreditoRadio
+            // 
+            this.VentaCreditoRadio.AutoSize = true;
+            this.VentaCreditoRadio.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VentaCreditoRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.VentaCreditoRadio.Location = new System.Drawing.Point(202, 22);
+            this.VentaCreditoRadio.Name = "VentaCreditoRadio";
+            this.VentaCreditoRadio.Size = new System.Drawing.Size(73, 20);
+            this.VentaCreditoRadio.TabIndex = 93;
+            this.VentaCreditoRadio.TabStop = true;
+            this.VentaCreditoRadio.Text = "Credito";
+            this.VentaCreditoRadio.UseVisualStyleBackColor = true;
+            this.VentaCreditoRadio.CheckedChanged += new System.EventHandler(this.VentaCreditoRadio_CheckedChanged);
+=======
             // radioACredito
             // 
             this.radioACredito.AutoSize = true;
@@ -266,6 +292,7 @@
             this.radioACredito.TabStop = true;
             this.radioACredito.Text = "Credito";
             this.radioACredito.UseVisualStyleBackColor = true;
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             // 
             // label4
             // 
@@ -278,6 +305,21 @@
             this.label4.TabIndex = 175;
             this.label4.Text = "Tipo de Pago";
             // 
+<<<<<<< HEAD
+            // VenContadoRadio
+            // 
+            this.VenContadoRadio.AutoSize = true;
+            this.VenContadoRadio.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VenContadoRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.VenContadoRadio.Location = new System.Drawing.Point(105, 22);
+            this.VenContadoRadio.Name = "VenContadoRadio";
+            this.VenContadoRadio.Size = new System.Drawing.Size(97, 20);
+            this.VenContadoRadio.TabIndex = 94;
+            this.VenContadoRadio.TabStop = true;
+            this.VenContadoRadio.Text = "Al Contado";
+            this.VenContadoRadio.UseVisualStyleBackColor = true;
+            this.VenContadoRadio.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+=======
             // radioAlContado
             // 
             this.radioAlContado.AutoSize = true;
@@ -291,6 +333,7 @@
             this.radioAlContado.Text = "Al Contado";
             this.radioAlContado.UseVisualStyleBackColor = true;
             this.radioAlContado.CheckedChanged += new System.EventHandler(this.radioAlContado_CheckedChanged);
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             // 
             // lblBus
             // 
@@ -407,13 +450,19 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonFace;
+<<<<<<< HEAD
+            this.groupBox4.Controls.Add(this.VenContadoRadio);
+            this.groupBox4.Controls.Add(this.VentaCreditoRadio);
+            this.groupBox4.Controls.Add(this.CboMetodoPago);
+=======
             this.groupBox4.Controls.Add(this.txtDescuento);
             this.groupBox4.Controls.Add(this.checkDescuento);
             this.groupBox4.Controls.Add(this.radioAlContado);
             this.groupBox4.Controls.Add(this.radioACredito);
             this.groupBox4.Controls.Add(this.comboMedioPago);
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.lblMpgo);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.cboProv);
             this.groupBox4.Controls.Add(this.dateFechaVencimiento);
@@ -425,6 +474,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Datos de Pagos";
             // 
+<<<<<<< HEAD
+            // CboMetodoPago
+            // 
+            this.CboMetodoPago.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboMetodoPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.CboMetodoPago.FormattingEnabled = true;
+            this.CboMetodoPago.Items.AddRange(new object[] {
+            "Seleccione un Metodo",
+=======
             // txtDescuento
             // 
             this.txtDescuento.Location = new System.Drawing.Point(122, 98);
@@ -452,12 +510,32 @@
             this.comboMedioPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.comboMedioPago.FormattingEnabled = true;
             this.comboMedioPago.Items.AddRange(new object[] {
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             "Efectivo",
             "Cheques",
             "Tarjeta Credito",
             "tPagos",
             "Paypal",
             "Trasferecia"});
+<<<<<<< HEAD
+            this.CboMetodoPago.Location = new System.Drawing.Point(405, 93);
+            this.CboMetodoPago.Name = "CboMetodoPago";
+            this.CboMetodoPago.Size = new System.Drawing.Size(228, 27);
+            this.CboMetodoPago.TabIndex = 196;
+            this.CboMetodoPago.Visible = false;
+            // 
+            // lblMpgo
+            // 
+            this.lblMpgo.AutoSize = true;
+            this.lblMpgo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMpgo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.lblMpgo.Location = new System.Drawing.Point(281, 99);
+            this.lblMpgo.Name = "lblMpgo";
+            this.lblMpgo.Size = new System.Drawing.Size(102, 16);
+            this.lblMpgo.TabIndex = 195;
+            this.lblMpgo.Text = "Medio de Pago";
+            this.lblMpgo.Visible = false;
+=======
             this.comboMedioPago.Location = new System.Drawing.Point(405, 93);
             this.comboMedioPago.Name = "comboMedioPago";
             this.comboMedioPago.Size = new System.Drawing.Size(228, 27);
@@ -473,6 +551,7 @@
             this.label1.Size = new System.Drawing.Size(102, 16);
             this.label1.TabIndex = 195;
             this.label1.Text = "Medio de Pago";
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             // 
             // label11
             // 
@@ -958,8 +1037,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         internal System.Windows.Forms.ToolStripButton Salir;
         internal System.Windows.Forms.ToolStripButton toolStripButton2;
+<<<<<<< HEAD
+        private System.Windows.Forms.RadioButton VenContadoRadio;
+        private System.Windows.Forms.RadioButton VentaCreditoRadio;
+=======
         private System.Windows.Forms.RadioButton radioAlContado;
         private System.Windows.Forms.RadioButton radioACredito;
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblBus;
         private System.Windows.Forms.TextBox txtB;
@@ -973,8 +1057,13 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.GroupBox groupBox4;
+<<<<<<< HEAD
+        private System.Windows.Forms.ComboBox CboMetodoPago;
+        private System.Windows.Forms.Label lblMpgo;
+=======
         private System.Windows.Forms.ComboBox comboMedioPago;
         private System.Windows.Forms.Label label1;
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cboProv;
         private System.Windows.Forms.DateTimePicker dateFechaVencimiento;

@@ -232,6 +232,19 @@ namespace SistemaFacturacion.Formularios
             }
         }
 
+<<<<<<< HEAD
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            lblMpgo.Visible = true;
+            CboMetodoPago.Visible = true;
+        }
+
+        private void VentaCreditoRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            lblMpgo.Visible = true;
+            CboMetodoPago.Visible = true;
+            CboMetodoPago.Text = string.Empty;
+=======
         private void button1_Click(object sender, EventArgs e)
         {
             if(textArticuloCantidad.Text.Length > 0)
@@ -681,6 +694,7 @@ namespace SistemaFacturacion.Formularios
             cboCliente.Focus();
             Limpia.Enabled = false;
             gridArticulosAVender.DataSource = null;
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
         }
     }
 }   

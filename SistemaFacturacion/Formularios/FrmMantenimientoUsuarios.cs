@@ -25,6 +25,7 @@ namespace SistemaFacturacion.Formularios
         private void FrmMantenimientoUsuarios_Load(object sender, EventArgs e)
         {
             Roll();
+            Trabajador();
         }
 
         private void Roll()
@@ -33,6 +34,14 @@ namespace SistemaFacturacion.Formularios
             cboRoll.DataSource = c;
             cboRoll.DisplayMember = "Nombre";
             cboRoll.ValueMember = "id";
+        }
+
+        private void Trabajador()
+        {
+            var c = cbo.GetComboEmpleado();
+            cboTrab.DataSource = c;
+            cboTrab.DisplayMember = "NombreCom";
+            cboTrab.ValueMember = "idtrabajador";
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
