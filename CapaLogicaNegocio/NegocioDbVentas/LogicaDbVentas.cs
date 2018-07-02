@@ -206,6 +206,15 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return IngresarVenta(domainVenta, domainDetalles);
 
         }
+
+        public void AgregarCuentaACobrar(int id_cliente, decimal valor, string usuario)
+        {
+            cuentas_x_cobrarEntitis entity = new cuentas_x_cobrarEntitis();
+            entity.id_cliente = id_cliente;
+            entity.valor = valor;
+            entity.usuario = usuario;
+            _metodos.AgregarCuentaACobrar(entity);
+        }
         #region Metodos Proveedores
       
         //Apartir de esta Linea Empieso con las Buenas Practivas
