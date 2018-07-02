@@ -1266,6 +1266,32 @@ namespace CapaDatos.RepocitoryDbVentas
             }
                 return id_factura;
         }
+
+        public void AgregarCuentaACobrar(cuentas_x_cobrarEntitis entity)
+        {
+            using(dbventasEntity db = new dbventasEntity())
+            {
+                using(var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string query = "[DBO].[SP_CREAR_CUENTA_X_COBRAR]";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+
+                    //parameters
+                    cmd.Parameters.AddWithValue("@id_cliente", entity.id_cliente).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@valor", entity.valor).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@usuario", entity.usuario).SqlDbType = SqlDbType.VarChar;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
             #endregion
 
         }
