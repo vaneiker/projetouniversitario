@@ -3233,6 +3233,39 @@ SELECT f.[id_factura] AS [Id Factura]
   WHERE f.id_factura = @id_factura
 
   go
+USE [dbventas]
+GO
+CREATE PROC [DBO].[REDUCIR_CANTIDAD_ARTICULO]
+@idarticulo int,
+@cantidad int
+as
+begin
+declare @status bit;
+declare @enExistencia int;
+declare @deducido int;
+set @enExistencia = 0;
+set @status = 1;
+set @deducido = 0;
+
+if(exists(SELECT * FROM [dbo].[articulo] WHERE [idarticulo] = @idarticulo))
+BEGIN
+SELECT @enExistencia = [cantidad] FROM [dbo].[articulo] WHERE [idarticulo] = @idarticulo;
+
+if(@enExistencia <= 0)
+begin
+set @status = 0;
+  end
+    else
+   begin
+ set @deducido = @enExistencia - @cantidad;
+end
+UPDATE [dbo].[articulo]
+   SET [cantidad] = @deducido
+      ,[estado] = @status
+ WHERE idarticulo = @idarticulo
+ end
+ END
+GO
 
 
 
