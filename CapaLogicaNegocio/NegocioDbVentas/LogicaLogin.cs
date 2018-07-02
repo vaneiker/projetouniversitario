@@ -51,9 +51,9 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                                                             string clave, 
                                                             int    role, 
                                                             bool   status, 
-                                                            int    id = 0,
-                                                            int    id_trabajador,
-                                                            string UsuarioAdiciona
+                                                            int    id = 0
+                                                            //int    id_trabajador,
+                                                            //string UsuarioAdiciona
                                                     )
         {
           
@@ -63,8 +63,8 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             user.Clave = clave;
             user.RolID = role;
             user.Statud = status;
-            user.id_trabajador = id_trabajador;
-            user.UsuarioAdiciona = UsuarioAdiciona;
+            //user.id_trabajador = id_trabajador;
+            //user.UsuarioAdiciona = UsuarioAdiciona;
             db.RegistrarUsuario(user);
             return user.GetUserByName(user.Usuario);
 
