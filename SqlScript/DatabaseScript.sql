@@ -3246,6 +3246,28 @@ SELECT f.[id_factura] AS [Id Factura]
   INNER JOIN detalle_venta d on d.idventa = f.id_venta
   WHERE f.id_factura = @id_factura
 
+  go
+CREATE PROC [DBO].[SP_CREAR_CUENTA_X_COBRAR]
+@id_cliente int
+,@valor decimal(18,2)
+,@usuario varchar(50)
+as
+INSERT INTO [dbo].[cuentas_x_cobrar]
+           ([id_cliente]
+           ,[fecha]
+           ,[valor]
+           ,[pagado]
+           ,[usuario])
+     VALUES
+           (@id_cliente
+           ,GETDATE()
+           ,@valor
+           ,0
+           ,@usuario)
+GO
+
+
+
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
