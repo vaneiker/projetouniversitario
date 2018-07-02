@@ -27,9 +27,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             {
                 CapaDatos.RepocitoryDbVentas.DventasData db = new CapaDatos.RepocitoryDbVentas.DventasData();
                 string[] cont = db.LoginUser(usuario, contrasena);
-                
-                
-                
+                               
                 rolId = Convert.ToInt32(cont[0]);
                 NomC = cont[1];
             }
@@ -48,16 +46,26 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return user;
         }
 
-        public static UsersEntitis RegistrarUsuario(this UsersEntitis user, string usuario, string clave, int role, bool status, int id = 0)
+        public static UsersEntitis RegistrarUsuario(this    UsersEntitis user, 
+                                                            string usuario, 
+                                                            string clave, 
+                                                            int    role, 
+                                                            bool   status, 
+                                                            int    id = 0,
+                                                            int    id_trabajador,
+                                                            string UsuarioAdiciona
+                                                    )
         {
+          
             CapaDatos.RepocitoryDbVentas.DventasData db = new CapaDatos.RepocitoryDbVentas.DventasData();
             user.id = id;
             user.Usuario = usuario;
             user.Clave = clave;
             user.RolID = role;
             user.Statud = status;
+            user.id_trabajador = id_trabajador;
+            user.UsuarioAdiciona = UsuarioAdiciona;
             db.RegistrarUsuario(user);
-
             return user.GetUserByName(user.Usuario);
 
         }

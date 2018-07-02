@@ -38,10 +38,10 @@ namespace SistemaFacturacion.Formularios
 
         private void Trabajador()
         {
-            var c = cbo.GetRollD();
-            cboRoll.DataSource = c;
-            cboRoll.DisplayMember = "NombreCom";
-            cboRoll.ValueMember = "idtrabajador";
+            var c = cbo.GetComboEmpleado();
+            cboTrab.DataSource = c;
+            cboTrab.DisplayMember = "NombreCom";
+            cboTrab.ValueMember = "idtrabajador";
         }
 
         private void tabPage2_Click(object sender, EventArgs e)

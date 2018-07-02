@@ -17,6 +17,12 @@ namespace CapaEntidad.DbVentas
 
         public int RolID { get; set; }
 
+        public int id_trabajador { get; set; }
+
+        public string UsuarioAdiciona { get; set; }
+
+
+
         public Nullable<bool> Statud { get; set; }
 
 
