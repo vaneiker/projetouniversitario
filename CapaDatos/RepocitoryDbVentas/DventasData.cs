@@ -1294,6 +1294,32 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             }
         }
+        public void ReducirCantidadArticulo(articulosEntitis entity)
+        {
+            using(dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using(var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string query = "[DBO].[REDUCIR_CANTIDAD_ARTICULO]";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //parameters
+                    cmd.Parameters.AddWithValue("@idarticulo", entity.idarticulo).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@cantidad", entity.cantidad).SqlDbType = SqlDbType.Int;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+        }
             #endregion
 
         }
