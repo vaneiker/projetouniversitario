@@ -987,6 +987,8 @@ namespace CapaDatos.RepocitoryDbVentas
                         user.Clave = row["Clave"].ToString();
                         user.RolID = Convert.ToInt32(row["RolID"].ToString());
                         user.Statud = Convert.ToBoolean(row["Statud"].ToString());
+                        user.id_trabajador = Convert.ToInt32(row["id_trabajador"].ToString());
+                        user.UsuarioAdiciona = row["UsuarioAdiciona"].ToString();
                     }
 
                 }
@@ -1013,6 +1015,8 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.AddWithValue("@Clave", entity.Clave);
                         cmd.Parameters.AddWithValue("@RolID", entity.RolID);
                         cmd.Parameters.AddWithValue("@Statud", entity.Statud);
+                        cmd.Parameters.AddWithValue("@id_trabajador", entity.id_trabajador);
+                        cmd.Parameters.AddWithValue("@UsuarioAdiciona", entity.UsuarioAdiciona);
 
                         cmd.ExecuteNonQuery();
 
