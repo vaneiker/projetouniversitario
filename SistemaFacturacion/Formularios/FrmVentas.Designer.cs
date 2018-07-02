@@ -44,9 +44,15 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+<<<<<<< HEAD
             this.VentaCreditoRadio = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.VenContadoRadio = new System.Windows.Forms.RadioButton();
+=======
+            this.radioACredito = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.radioAlContado = new System.Windows.Forms.RadioButton();
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             this.lblBus = new System.Windows.Forms.Label();
             this.txtB = new System.Windows.Forms.TextBox();
             this.btnBusc = new System.Windows.Forms.Button();
@@ -59,8 +65,15 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+<<<<<<< HEAD
             this.CboMetodoPago = new System.Windows.Forms.ComboBox();
             this.lblMpgo = new System.Windows.Forms.Label();
+=======
+            this.txtDescuento = new System.Windows.Forms.TextBox();
+            this.checkDescuento = new System.Windows.Forms.CheckBox();
+            this.comboMedioPago = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             this.label11 = new System.Windows.Forms.Label();
             this.cboProv = new System.Windows.Forms.ComboBox();
             this.dateFechaVencimiento = new System.Windows.Forms.DateTimePicker();
@@ -73,19 +86,26 @@
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.DataGrivCliente = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textArticuloCantidad = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnAgregarArticulo = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuscarArticulo = new System.Windows.Forms.TextBox();
             this.BtnBuscarArticulo = new System.Windows.Forms.Button();
             this.GrivArticulo = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtComp = new System.Windows.Forms.TextBox();
+            this.btnCancelarFactura = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnPagar = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtItbis = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtCan = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtVent = new System.Windows.Forms.TextBox();
+            this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -216,6 +236,7 @@
             this.Limpia.Name = "Limpia";
             this.Limpia.Size = new System.Drawing.Size(68, 68);
             this.Limpia.Text = "Limpia";
+            this.Limpia.Click += new System.EventHandler(this.Limpia_Click);
             // 
             // toolStripSeparator2
             // 
@@ -244,6 +265,7 @@
             this.toolStripButton2.Text = "Limpiar";
             this.toolStripButton2.ToolTipText = "Eliminar";
             // 
+<<<<<<< HEAD
             // VentaCreditoRadio
             // 
             this.VentaCreditoRadio.AutoSize = true;
@@ -257,6 +279,20 @@
             this.VentaCreditoRadio.Text = "Credito";
             this.VentaCreditoRadio.UseVisualStyleBackColor = true;
             this.VentaCreditoRadio.CheckedChanged += new System.EventHandler(this.VentaCreditoRadio_CheckedChanged);
+=======
+            // radioACredito
+            // 
+            this.radioACredito.AutoSize = true;
+            this.radioACredito.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioACredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.radioACredito.Location = new System.Drawing.Point(202, 22);
+            this.radioACredito.Name = "radioACredito";
+            this.radioACredito.Size = new System.Drawing.Size(73, 20);
+            this.radioACredito.TabIndex = 93;
+            this.radioACredito.TabStop = true;
+            this.radioACredito.Text = "Credito";
+            this.radioACredito.UseVisualStyleBackColor = true;
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             // 
             // label4
             // 
@@ -269,6 +305,7 @@
             this.label4.TabIndex = 175;
             this.label4.Text = "Tipo de Pago";
             // 
+<<<<<<< HEAD
             // VenContadoRadio
             // 
             this.VenContadoRadio.AutoSize = true;
@@ -282,6 +319,21 @@
             this.VenContadoRadio.Text = "Al Contado";
             this.VenContadoRadio.UseVisualStyleBackColor = true;
             this.VenContadoRadio.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+=======
+            // radioAlContado
+            // 
+            this.radioAlContado.AutoSize = true;
+            this.radioAlContado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioAlContado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.radioAlContado.Location = new System.Drawing.Point(105, 22);
+            this.radioAlContado.Name = "radioAlContado";
+            this.radioAlContado.Size = new System.Drawing.Size(97, 20);
+            this.radioAlContado.TabIndex = 94;
+            this.radioAlContado.TabStop = true;
+            this.radioAlContado.Text = "Al Contado";
+            this.radioAlContado.UseVisualStyleBackColor = true;
+            this.radioAlContado.CheckedChanged += new System.EventHandler(this.radioAlContado_CheckedChanged);
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             // 
             // lblBus
             // 
@@ -398,9 +450,17 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonFace;
+<<<<<<< HEAD
             this.groupBox4.Controls.Add(this.VenContadoRadio);
             this.groupBox4.Controls.Add(this.VentaCreditoRadio);
             this.groupBox4.Controls.Add(this.CboMetodoPago);
+=======
+            this.groupBox4.Controls.Add(this.txtDescuento);
+            this.groupBox4.Controls.Add(this.checkDescuento);
+            this.groupBox4.Controls.Add(this.radioAlContado);
+            this.groupBox4.Controls.Add(this.radioACredito);
+            this.groupBox4.Controls.Add(this.comboMedioPago);
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.lblMpgo);
             this.groupBox4.Controls.Add(this.label11);
@@ -414,6 +474,7 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Datos de Pagos";
             // 
+<<<<<<< HEAD
             // CboMetodoPago
             // 
             this.CboMetodoPago.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -421,12 +482,42 @@
             this.CboMetodoPago.FormattingEnabled = true;
             this.CboMetodoPago.Items.AddRange(new object[] {
             "Seleccione un Metodo",
+=======
+            // txtDescuento
+            // 
+            this.txtDescuento.Location = new System.Drawing.Point(122, 98);
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.Size = new System.Drawing.Size(100, 20);
+            this.txtDescuento.TabIndex = 198;
+            this.txtDescuento.Visible = false;
+            // 
+            // checkDescuento
+            // 
+            this.checkDescuento.AutoSize = true;
+            this.checkDescuento.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkDescuento.ForeColor = System.Drawing.Color.Gray;
+            this.checkDescuento.Location = new System.Drawing.Point(20, 98);
+            this.checkDescuento.Name = "checkDescuento";
+            this.checkDescuento.Size = new System.Drawing.Size(96, 20);
+            this.checkDescuento.TabIndex = 197;
+            this.checkDescuento.Text = "Descuento";
+            this.checkDescuento.UseVisualStyleBackColor = true;
+            this.checkDescuento.CheckedChanged += new System.EventHandler(this.checkDescuento_CheckedChanged);
+            // 
+            // comboMedioPago
+            // 
+            this.comboMedioPago.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboMedioPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.comboMedioPago.FormattingEnabled = true;
+            this.comboMedioPago.Items.AddRange(new object[] {
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             "Efectivo",
-            "Chekes",
+            "Cheques",
             "Tarjeta Credito",
             "tPagos",
             "Paypal",
             "Trasferecia"});
+<<<<<<< HEAD
             this.CboMetodoPago.Location = new System.Drawing.Point(405, 93);
             this.CboMetodoPago.Name = "CboMetodoPago";
             this.CboMetodoPago.Size = new System.Drawing.Size(228, 27);
@@ -444,6 +535,23 @@
             this.lblMpgo.TabIndex = 195;
             this.lblMpgo.Text = "Medio de Pago";
             this.lblMpgo.Visible = false;
+=======
+            this.comboMedioPago.Location = new System.Drawing.Point(405, 93);
+            this.comboMedioPago.Name = "comboMedioPago";
+            this.comboMedioPago.Size = new System.Drawing.Size(228, 27);
+            this.comboMedioPago.TabIndex = 196;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label1.Location = new System.Drawing.Point(281, 99);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 16);
+            this.label1.TabIndex = 195;
+            this.label1.Text = "Medio de Pago";
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
             // 
             // label11
             // 
@@ -581,7 +689,9 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.textArticuloCantidad);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.btnAgregarArticulo);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txtBuscarArticulo);
             this.groupBox3.Controls.Add(this.BtnBuscarArticulo);
@@ -593,22 +703,41 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Articulo";
             // 
-            // button1
+            // textArticuloCantidad
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(562, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 35);
-            this.button1.TabIndex = 201;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = false;
+            this.textArticuloCantidad.Location = new System.Drawing.Point(484, 25);
+            this.textArticuloCantidad.Name = "textArticuloCantidad";
+            this.textArticuloCantidad.Size = new System.Drawing.Size(61, 20);
+            this.textArticuloCantidad.TabIndex = 203;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label7.Location = new System.Drawing.Point(418, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 16);
+            this.label7.TabIndex = 202;
+            this.label7.Text = "Cantidad";
+            // 
+            // btnAgregarArticulo
+            // 
+            this.btnAgregarArticulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAgregarArticulo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgregarArticulo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnAgregarArticulo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAgregarArticulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarArticulo.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarArticulo.ForeColor = System.Drawing.Color.White;
+            this.btnAgregarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarArticulo.Image")));
+            this.btnAgregarArticulo.Location = new System.Drawing.Point(599, 20);
+            this.btnAgregarArticulo.Name = "btnAgregarArticulo";
+            this.btnAgregarArticulo.Size = new System.Drawing.Size(42, 35);
+            this.btnAgregarArticulo.TabIndex = 201;
+            this.btnAgregarArticulo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAgregarArticulo.UseVisualStyleBackColor = false;
+            this.btnAgregarArticulo.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -628,7 +757,7 @@
             this.txtBuscarArticulo.Location = new System.Drawing.Point(87, 20);
             this.txtBuscarArticulo.Multiline = true;
             this.txtBuscarArticulo.Name = "txtBuscarArticulo";
-            this.txtBuscarArticulo.Size = new System.Drawing.Size(421, 31);
+            this.txtBuscarArticulo.Size = new System.Drawing.Size(330, 31);
             this.txtBuscarArticulo.TabIndex = 199;
             this.txtBuscarArticulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -642,7 +771,7 @@
             this.BtnBuscarArticulo.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBuscarArticulo.ForeColor = System.Drawing.Color.White;
             this.BtnBuscarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscarArticulo.Image")));
-            this.BtnBuscarArticulo.Location = new System.Drawing.Point(514, 19);
+            this.BtnBuscarArticulo.Location = new System.Drawing.Point(551, 20);
             this.BtnBuscarArticulo.Name = "BtnBuscarArticulo";
             this.BtnBuscarArticulo.Size = new System.Drawing.Size(42, 35);
             this.BtnBuscarArticulo.TabIndex = 194;
@@ -672,45 +801,132 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.txtComp);
+            this.groupBox6.Controls.Add(this.btnCancelarFactura);
+            this.groupBox6.Controls.Add(this.btnImprimir);
+            this.groupBox6.Controls.Add(this.btnPagar);
+            this.groupBox6.Controls.Add(this.label6);
+            this.groupBox6.Controls.Add(this.txtItbis);
+            this.groupBox6.Controls.Add(this.txtTotal);
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Controls.Add(this.txtCan);
             this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Controls.Add(this.label5);
-            this.groupBox6.Controls.Add(this.txtVent);
+            this.groupBox6.Controls.Add(this.txtSubtotal);
             this.groupBox6.Location = new System.Drawing.Point(733, 13);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(427, 172);
             this.groupBox6.TabIndex = 181;
             this.groupBox6.TabStop = false;
             // 
-            // txtComp
+            // btnCancelarFactura
             // 
-            this.txtComp.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtComp.Location = new System.Drawing.Point(270, 117);
-            this.txtComp.Multiline = true;
-            this.txtComp.Name = "txtComp";
-            this.txtComp.Size = new System.Drawing.Size(123, 34);
-            this.txtComp.TabIndex = 168;
-            this.txtComp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnCancelarFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelarFactura.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelarFactura.Enabled = false;
+            this.btnCancelarFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnCancelarFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnCancelarFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarFactura.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarFactura.ForeColor = System.Drawing.Color.White;
+            this.btnCancelarFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelarFactura.Location = new System.Drawing.Point(6, 12);
+            this.btnCancelarFactura.Name = "btnCancelarFactura";
+            this.btnCancelarFactura.Size = new System.Drawing.Size(129, 35);
+            this.btnCancelarFactura.TabIndex = 194;
+            this.btnCancelarFactura.Text = "Cancelar Factura";
+            this.btnCancelarFactura.UseVisualStyleBackColor = false;
+            this.btnCancelarFactura.Visible = false;
+            this.btnCancelarFactura.Click += new System.EventHandler(this.btnCancelarFactura_Click);
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.ForeColor = System.Drawing.Color.White;
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(6, 132);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(120, 35);
+            this.btnImprimir.TabIndex = 193;
+            this.btnImprimir.Text = "Imprimir Factura";
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Visible = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnPagar
+            // 
+            this.btnPagar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(132)))), ((int)(((byte)(73)))));
+            this.btnPagar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPagar.Enabled = false;
+            this.btnPagar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnPagar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPagar.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPagar.ForeColor = System.Drawing.Color.White;
+            this.btnPagar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPagar.Location = new System.Drawing.Point(6, 131);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(120, 35);
+            this.btnPagar.TabIndex = 192;
+            this.btnPagar.Text = "Pagar";
+            this.btnPagar.UseVisualStyleBackColor = false;
+            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 13.75F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label6.Location = new System.Drawing.Point(186, 100);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 23);
+            this.label6.TabIndex = 181;
+            this.label6.Text = "$ ITBIS";
+            // 
+            // txtItbis
+            // 
+            this.txtItbis.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtItbis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtItbis.Location = new System.Drawing.Point(270, 97);
+            this.txtItbis.Multiline = true;
+            this.txtItbis.Name = "txtItbis";
+            this.txtItbis.Size = new System.Drawing.Size(124, 34);
+            this.txtItbis.TabIndex = 180;
+            this.txtItbis.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtTotal.Location = new System.Drawing.Point(270, 134);
+            this.txtTotal.Multiline = true;
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(123, 34);
+            this.txtTotal.TabIndex = 168;
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotal.TextChanged += new System.EventHandler(this.txtTotal_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label9.Location = new System.Drawing.Point(68, 71);
+            this.label9.Location = new System.Drawing.Point(149, 61);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(194, 25);
+            this.label9.Size = new System.Drawing.Size(120, 25);
             this.label9.TabIndex = 179;
-            this.label9.Text = "$ Precio de Venta";
+            this.label9.Text = "$ Subtotal";
             // 
             // txtCan
             // 
             this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtCan.Location = new System.Drawing.Point(270, 29);
+            this.txtCan.Location = new System.Drawing.Point(270, 19);
             this.txtCan.Multiline = true;
             this.txtCan.Name = "txtCan";
             this.txtCan.Size = new System.Drawing.Size(123, 34);
@@ -722,33 +938,33 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label8.Location = new System.Drawing.Point(49, 117);
+            this.label8.Location = new System.Drawing.Point(186, 137);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(215, 25);
+            this.label8.Size = new System.Drawing.Size(85, 25);
             this.label8.TabIndex = 178;
-            this.label8.Text = "$ Precio de Compra";
+            this.label8.Text = "$ Total";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label5.Location = new System.Drawing.Point(176, 32);
+            this.label5.Location = new System.Drawing.Point(162, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 25);
+            this.label5.Size = new System.Drawing.Size(106, 25);
             this.label5.TabIndex = 163;
-            this.label5.Text = "Catidad";
+            this.label5.Text = "Cantidad";
             // 
-            // txtVent
+            // txtSubtotal
             // 
-            this.txtVent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtVent.Location = new System.Drawing.Point(270, 71);
-            this.txtVent.Multiline = true;
-            this.txtVent.Name = "txtVent";
-            this.txtVent.Size = new System.Drawing.Size(121, 34);
-            this.txtVent.TabIndex = 166;
-            this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSubtotal.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtSubtotal.Location = new System.Drawing.Point(269, 57);
+            this.txtSubtotal.Multiline = true;
+            this.txtSubtotal.Name = "txtSubtotal";
+            this.txtSubtotal.Size = new System.Drawing.Size(124, 34);
+            this.txtSubtotal.TabIndex = 166;
+            this.txtSubtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gridArticulosAVender
             // 
@@ -821,8 +1037,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         internal System.Windows.Forms.ToolStripButton Salir;
         internal System.Windows.Forms.ToolStripButton toolStripButton2;
+<<<<<<< HEAD
         private System.Windows.Forms.RadioButton VenContadoRadio;
         private System.Windows.Forms.RadioButton VentaCreditoRadio;
+=======
+        private System.Windows.Forms.RadioButton radioAlContado;
+        private System.Windows.Forms.RadioButton radioACredito;
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblBus;
         private System.Windows.Forms.TextBox txtB;
@@ -836,8 +1057,13 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.GroupBox groupBox4;
+<<<<<<< HEAD
         private System.Windows.Forms.ComboBox CboMetodoPago;
         private System.Windows.Forms.Label lblMpgo;
+=======
+        private System.Windows.Forms.ComboBox comboMedioPago;
+        private System.Windows.Forms.Label label1;
+>>>>>>> 89baee07c72a84b30e3f390817d331e1e37544d0
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cboProv;
         private System.Windows.Forms.DateTimePicker dateFechaVencimiento;
@@ -856,13 +1082,22 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBuscarArticulo;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox txtComp;
+        private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtCan;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtVent;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtSubtotal;
+        private System.Windows.Forms.Button btnAgregarArticulo;
         private System.Windows.Forms.TextBox txtCliente;
+        private System.Windows.Forms.CheckBox checkDescuento;
+        private System.Windows.Forms.TextBox txtCan;
+        private System.Windows.Forms.TextBox txtDescuento;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtItbis;
+        private System.Windows.Forms.Button btnPagar;
+        private System.Windows.Forms.Button btnCancelarFactura;
+        private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.TextBox textArticuloCantidad;
+        private System.Windows.Forms.Label label7;
     }
     }
