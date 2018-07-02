@@ -20,6 +20,6 @@ namespace CapaEntidad.DbVentas
         public decimal subtotal { get; set; }
         public decimal itbis { get; set; }
         public decimal total { get; set; }
-        public string numero_factura { get;private set;}
+        public string numero_factura { get; set; }
     }
 }
