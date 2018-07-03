@@ -3267,7 +3267,17 @@ UPDATE [dbo].[articulo]
  END
 GO
 
-
+CREATE PROC [DBO].[VENTAS_DEL_DIA]
+@HOY date
+AS
+select *, [Pagada] = 'Pagada'  from venta v
+where (v.[idventa]) not in (select p.id_venta from cuentas_x_cobrar p where p.fecha = @HOY)
+and v.fecha = @HOY
+union
+select *, [Pagada] = 'Credito' from venta v
+where (v.[idventa]) in (select p.id_venta from cuentas_x_cobrar p where p.fecha = @HOY)
+and v.fecha = @HOY
+GO
 
 
 
