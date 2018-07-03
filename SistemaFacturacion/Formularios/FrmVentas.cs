@@ -696,6 +696,16 @@ namespace SistemaFacturacion.Formularios
            if(MessageBox.Show("Desea Cancelar la vental Actual", "Cancelar Venta", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) == DialogResult.OK)
             {
                 //mostrar formulario modal para digitar el usuario del supervisor y su contraseña.
+                using(CancelForm cancelar = new CancelForm())
+                {
+                    cancelar.ShowDialog();
+
+                    if (cancelar.PuedeCancelar)
+                    {
+                        Limpia_Click(sender, new EventArgs());
+                    }
+                }
+                
             }
         }
 
@@ -728,6 +738,7 @@ namespace SistemaFacturacion.Formularios
 
         private void Limpia_Click(object sender, EventArgs e)
         {
+            
             btnImprimir.Visible = false;
             btnPagar.Visible = true;
             btnPagar.Enabled = false;
@@ -741,6 +752,8 @@ namespace SistemaFacturacion.Formularios
             cboCliente.Focus();
             Limpia.Enabled = false;
             gridArticulosAVender.DataSource = null;
+            txtB.Text = string.Empty;
+
         }
     }
 }   
