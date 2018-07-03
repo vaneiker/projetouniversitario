@@ -282,7 +282,7 @@ namespace SistemaFacturacion.Formularios
                     txtItbis.Text = itbis;
                     gridArticulosAVender.DataSource = null;
                     gridArticulosAVender.DataSource = detallesArticulos;
-                    gridArticulosAVender.Columns["idarticulo"].Visible = false;
+                    gridArticulosAVender.Columns["id_producto"].Visible = false;
                     GrivArticulo.DataSource = null;
                     txtBuscarArticulo.Focus();
                 }
@@ -352,14 +352,18 @@ namespace SistemaFacturacion.Formularios
             txtSubtotal = "";
             txtItbis = "";
             int cantidadArticulo = 1;
-            if(!int.TryParse(textArticuloCantidad.Text, out cantidadArticulo))
+            if (!string.IsNullOrWhiteSpace(textArticuloCantidad.Text))
             {
-                txtCan = "";
-                txtTotal = "";
-                txtSubtotal = "";
-                txtItbis = "";
-                return null;
+                if (!int.TryParse(textArticuloCantidad.Text, out cantidadArticulo))
+                {
+                    txtCan = "";
+                    txtTotal = "";
+                    txtSubtotal = "";
+                    txtItbis = "";
+                    return null;
+                }
             }
+           
             if (detallesArticulos == null)
             {
                 
@@ -397,8 +401,9 @@ namespace SistemaFacturacion.Formularios
                     descontado = precioVenta;
                     
                 }
+                
                 detallesArticulos = new List<DetalleVentaViewModel>();
-                detallesArticulos.Add(new DetalleVentaViewModel
+                DetalleVentaViewModel aGregar = new DetalleVentaViewModel
                 {
                     iddetalle_venta = 0,
                     idventa = 0,
@@ -408,7 +413,18 @@ namespace SistemaFacturacion.Formularios
                     precio_venta = descontado,
                     descuento = descuento / 100M,
                     itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
-                });
+                };
+                if (!HayEnExistencia(Convert.ToDecimal(filaDeArticuloAVender["cantidad"].ToString()), aGregar.cantidad))
+                {
+                    txtCan = string.Empty;
+                    txtSubtotal = string.Empty;
+                    txtTotal = string.Empty;
+                    txtItbis = string.Empty;
+                    Alertas.Alerwarning noHay = new Alertas.Alerwarning("No Hay Articulos en Existencia Para la Cantidad Indicada. Verifique con Su Supervisor..");
+                    noHay.ShowDialog();
+                    return null;
+                }
+                detallesArticulos.Add(aGregar);
                 txtCan = detallesArticulos.Count.ToString();
                 decimal sub = detallesArticulos.Sum(venta => venta.precio_venta * venta.cantidad);
                 txtSubtotal = sub.ToString("N2");
@@ -450,6 +466,17 @@ namespace SistemaFacturacion.Formularios
                     {
                         detallesArticulos[index].cantidad++;
                         precioDescontado = precioVenta - (precioVenta * (descuento / 100));
+                        if (!HayEnExistencia(Convert.ToDecimal(filaDeArticuloAVender["cantidad"].ToString()), detallesArticulos[index].cantidad))
+                        {
+                            txtItbis = string.Empty;
+                            txtSubtotal = string.Empty;
+                            txtTotal = string.Empty;
+                            txtCan = string.Empty;
+
+                            Alertas.Alerwarning noHay = new Alertas.Alerwarning("No Hay Articulos en Existencia Para la Cantidad Indicada. Verifique con Su Supervisor..");
+                            noHay.ShowDialog();
+                            return null;
+                        }
                     }
                     else
                     {
@@ -473,7 +500,7 @@ namespace SistemaFacturacion.Formularios
                     {
                         precioDescontado = precioVenta;
                     }
-                    detallesArticulos.Add(new DetalleVentaViewModel
+                    DetalleVentaViewModel aGregar = new DetalleVentaViewModel
                     {
                         iddetalle_venta = 0,
                         idventa = 0,
@@ -483,7 +510,21 @@ namespace SistemaFacturacion.Formularios
                         precio_venta = precioDescontado,
                         descuento = descuento / 100M,
                         itbis = (Convert.ToDecimal(filaDeArticuloAVender["precioVenta"].ToString()) * 0.18M)
-                    });
+                    };
+
+                    if (!HayEnExistencia(Convert.ToDecimal(filaDeArticuloAVender["cantidad"].ToString()), aGregar.cantidad))
+                    {
+                        txtItbis = string.Empty;
+                        txtSubtotal = string.Empty;
+                        txtTotal = string.Empty;
+                        txtCan = string.Empty;
+
+                        Alertas.Alerwarning noHay = new Alertas.Alerwarning("No Hay Articulos en Existencia Para la Cantidad Indicada. Verifique con Su Supervisor..");
+                        noHay.ShowDialog();
+                        return null;
+                    }
+
+                    detallesArticulos.Add(aGregar);
                 }
 
                 _subtotal = detallesArticulos.Sum(venta => venta.precio_venta * venta.cantidad);
@@ -496,6 +537,13 @@ namespace SistemaFacturacion.Formularios
             }
             textArticuloCantidad.Text = string.Empty;
             return detallesArticulos;
+        }
+
+        private bool HayEnExistencia(decimal enExistencia, int aReducir)
+        {
+            
+            decimal reducido = (enExistencia - aReducir);
+            return  reducido > 0;
         }
 
         private bool DescuentoEsValido(decimal descuento, decimal precioVenta, decimal precioCompra)
