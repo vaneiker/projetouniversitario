@@ -1306,6 +1306,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     //parameters
+                    cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@idarticulo", entity.idarticulo).SqlDbType = SqlDbType.Int;
                     cmd.Parameters.AddWithValue("@cantidad", entity.cantidad).SqlDbType = SqlDbType.Int;
 

@@ -282,6 +282,7 @@ namespace SistemaFacturacion.Formularios
                     txtItbis.Text = itbis;
                     gridArticulosAVender.DataSource = null;
                     gridArticulosAVender.DataSource = detallesArticulos;
+                    gridArticulosAVender.Columns["idarticulo"].Visible = false;
                     GrivArticulo.DataSource = null;
                     txtBuscarArticulo.Focus();
                 }
@@ -402,6 +403,7 @@ namespace SistemaFacturacion.Formularios
                     iddetalle_venta = 0,
                     idventa = 0,
                     producto = filaDeArticuloAVender["nombre"].ToString(),
+                    id_producto = Convert.ToInt32(filaDeArticuloAVender["idarticulo"].ToString()),
                     cantidad = cantidadArticulo,
                     precio_venta = descontado,
                     descuento = descuento / 100M,
@@ -476,6 +478,7 @@ namespace SistemaFacturacion.Formularios
                         iddetalle_venta = 0,
                         idventa = 0,
                         producto = filaDeArticuloAVender["nombre"].ToString(),
+                        id_producto = Convert.ToInt32(filaDeArticuloAVender["idarticulo"].ToString()),
                         cantidad = cantidadArticulo,
                         precio_venta = precioDescontado,
                         descuento = descuento / 100M,
@@ -563,6 +566,10 @@ namespace SistemaFacturacion.Formularios
             int idventa = db.IngresarVentaModelo(ventaActual, detallesArticulos);
             if(idventa > 0)
             {
+                foreach(DetalleVentaViewModel articulo in detallesArticulos)
+                {
+                    db.ReducirArticulo(articulo.id_producto, articulo.cantidad);
+                }
                 if (radioACredito.Checked)
                 {
                     db.AgregarCuentaACobrar(ventaActual.idcliente, idventa, ventaActual.total, Seccion.Instance.nombreCompleto);
