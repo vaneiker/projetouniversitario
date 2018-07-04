@@ -3233,10 +3233,64 @@ SELECT f.[id_factura] AS [Id Factura]
   WHERE f.id_factura = @id_factura
 
   go
+USE [dbventas]
+GO
+CREATE PROC [DBO].[REDUCIR_CANTIDAD_ARTICULO]
+@idarticulo int,
+@cantidad int
+as
+begin
+declare @status bit;
+declare @enExistencia int;
+declare @deducido int;
+set @enExistencia = 0;
+set @status = 1;
+set @deducido = 0;
 
+if(exists(SELECT * FROM [dbo].[articulo] WHERE [idarticulo] = @idarticulo))
+BEGIN
+SELECT @enExistencia = [cantidad] FROM [dbo].[articulo] WHERE [idarticulo] = @idarticulo;
 
+if(@enExistencia <= 0)
+begin
+set @status = 0;
+  end
+    else
+   begin
+ set @deducido = @enExistencia - @cantidad;
+end
+UPDATE [dbo].[articulo]
+   SET [cantidad] = @deducido
+      ,[estado] = @status
+ WHERE idarticulo = @idarticulo
+ end
+ END
+GO
 
+CREATE PROC [DBO].[VENTAS_DEL_DIA]
+@HOY date
+AS
+select *, [Pagada] = 'Pagada'  from venta v
+where (v.[idventa]) not in (select p.id_venta from cuentas_x_cobrar p where p.fecha = @HOY)
+and v.fecha = @HOY
+union
+select *, [Pagada] = 'Credito' from venta v
+where (v.[idventa]) in (select p.id_venta from cuentas_x_cobrar p where p.fecha = @HOY)
+and v.fecha = @HOY
+GO
 
+CREATE PROC [DBO].[SP_GET_VENTAS_DEL_DIA]
+@fecha date
+as
+begin
+DECLARE @TEMP TABLE(idventa int, idcliente int, idtrabajador int, fecha date, tc varchar(25), tv varchar(20), tcli varchar(50), it decimal(9,2), sub decimal(18,2), total decimal(18,2), pagada varchar(25))
+insert into @TEMP EXEC VENTAS_DEL_DIA @fecha
+
+select t.fecha, t.idventa, (c.nombre + ' ' + c.apellidos) AS cliente, t.idtrabajador, t.tc as tipo, t.tv as venta, t.tcli as categoria, t.it as itbis, t.sub as subtotal, t.total as total, t.pagada
+from @TEMP t inner join
+cliente c on c.idcliente = t.idcliente;
+end
+GO
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
