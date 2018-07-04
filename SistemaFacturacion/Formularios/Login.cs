@@ -35,7 +35,7 @@ namespace SistemaFacturacion
                 {
 
 
-                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid,out NomC))
+                if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid,out NomC, out idTrabajador))
                     {
 
                     if(rollid <= 0)
@@ -50,7 +50,7 @@ namespace SistemaFacturacion
                         seccion.Usuario = txtUsuario.Text;
                         seccion.Rolid = (LogicRoll.LevelRol)rollid;
                         seccion.nombreCompleto = NomC;
-                        //seccion.IdTrabajador = idTrabajador;
+                        seccion.IdTrabajador = idTrabajador;
                         Formularios.MenuPrincipal f = new Formularios.MenuPrincipal();
                         this.Hide();
                         f.Show();

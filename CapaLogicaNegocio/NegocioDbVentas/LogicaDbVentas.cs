@@ -216,6 +216,15 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             entity.id_venta = id_venta;
             _metodos.AgregarCuentaACobrar(entity);
         }
+
+        public void ReducirArticulo(int idarticulo, int cantidad)
+        {
+            articulosEntitis entity = new articulosEntitis();
+            entity.idarticulo = idarticulo;
+            entity.cantidad = cantidad;
+            _metodos.ReducirCantidadArticulo(entity);
+
+        }
         #region Metodos Proveedores
       
         //Apartir de esta Linea Empieso con las Buenas Practivas
