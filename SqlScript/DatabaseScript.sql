@@ -3279,7 +3279,18 @@ where (v.[idventa]) in (select p.id_venta from cuentas_x_cobrar p where p.fecha 
 and v.fecha = @HOY
 GO
 
+CREATE PROC [DBO].[SP_GET_VENTAS_DEL_DIA]
+@fecha date
+as
+begin
+DECLARE @TEMP TABLE(idventa int, idcliente int, idtrabajador int, fecha date, tc varchar(25), tv varchar(20), tcli varchar(50), it decimal(9,2), sub decimal(18,2), total decimal(18,2), pagada varchar(25))
+insert into @TEMP EXEC VENTAS_DEL_DIA @fecha
 
+select t.fecha, t.idventa, (c.nombre + ' ' + c.apellidos) AS cliente, t.idtrabajador, t.tc as tipo, t.tv as venta, t.tcli as categoria, t.it as itbis, t.sub as subtotal, t.total as total, t.pagada
+from @TEMP t inner join
+cliente c on c.idcliente = t.idcliente;
+end
+GO
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
