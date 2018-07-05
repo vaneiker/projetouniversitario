@@ -34,12 +34,13 @@ namespace SistemaFacturacion.Formularios
             }else
             {
                 Alertas.Alerwarning noVentas = new Alertas.Alerwarning("No Existen Ventas Para Hoy: " + DateTime.UtcNow.ToShortDateString());
+                noVentas.ShowDialog();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(datePickerHasta.Value > datePickerDesde.Value)
+            if(datePickerHasta.Value < datePickerDesde.Value)
             {
                 Alertas.AlertError mayor = new Alertas.AlertError("Fecha hasta No Puede ser Mayor");
                 mayor.ShowDialog();

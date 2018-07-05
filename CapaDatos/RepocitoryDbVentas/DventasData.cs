@@ -1371,7 +1371,7 @@ namespace CapaDatos.RepocitoryDbVentas
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@FROM", inicio).SqlDbType = SqlDbType.Date;
-                    cmd.Parameters.AddWithValue("@TO", final).SqlDbType = SqlDbType.Date;
+                    cmd.Parameters.AddWithValue("@Tipo_de_Documento", final).SqlDbType = SqlDbType.Date;
 
                     try{
                         ventas = new DataTable();

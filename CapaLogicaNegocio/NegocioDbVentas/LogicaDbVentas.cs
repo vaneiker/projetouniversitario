@@ -231,6 +231,8 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             List<CuadreViewModel> ventas = new List<CuadreViewModel>();
 
             DataTable datos = _metodos.BuscarVentasDelDia();
+            if (datos == null)
+                return null;
             if(datos.Rows.Count > 0)
             {
                 foreach (DataRow fila in datos.Rows)

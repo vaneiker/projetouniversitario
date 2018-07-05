@@ -907,6 +907,7 @@
             this.Cuadrar.Size = new System.Drawing.Size(50, 68);
             this.Cuadrar.Text = "toolStripButton3";
             this.Cuadrar.ToolTipText = "Cuadrar Caja";
+            this.Cuadrar.Click += new System.EventHandler(this.Cuadrar_Click);
             // 
             // FrmVentas
             // 
