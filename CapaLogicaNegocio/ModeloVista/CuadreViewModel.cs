@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CapaLogicaNegocio.ModeloVista
 {
-    class CuadreViewModel
+    public class CuadreViewModel
     {
         public DateTime Fecha { get; set; }
         public int IdVenta { get; set; }
         public string NombreCliente { get; set; }
         public int IdTrabajador { get; set; }
         public string TipoFactura { get; set; }
-        public int TipoVenta { get; set; }
+        public string TipoVenta { get; set; }
         public string Categoria { get; set; }
         public decimal ITBIS { get; set; }
         public decimal SubTotal { get; set; }

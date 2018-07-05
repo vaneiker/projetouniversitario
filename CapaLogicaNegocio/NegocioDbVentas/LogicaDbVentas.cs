@@ -225,8 +225,59 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             _metodos.ReducirCantidadArticulo(entity);
 
         }
+
+        public ICollection<CuadreViewModel> MostrarVentasDelDia()
+        {
+            List<CuadreViewModel> ventas = new List<CuadreViewModel>();
+
+            DataTable datos = _metodos.BuscarVentasDelDia();
+            if(datos.Rows.Count > 0)
+            {
+                foreach (DataRow fila in datos.Rows)
+                    ventas.Add(new CuadreViewModel
+                    {
+                        Fecha = Convert.ToDateTime(fila["fecha"].ToString()),
+                        IdVenta = Convert.ToInt32(fila["idventa"].ToString()),
+                        NombreCliente = fila["cliente"].ToString(),
+                        IdTrabajador = Convert.ToInt32(fila["idtrabajador"].ToString()),
+                        TipoFactura = fila["tipo"].ToString(),
+                        TipoVenta = fila["venta"].ToString(),
+                        Categoria = fila["categoria"].ToString(),
+                        ITBIS = Convert.ToDecimal(fila["itbis"].ToString()),
+                        SubTotal = Convert.ToDecimal(fila["subtotal"].ToString()),
+                        Total = Convert.ToDecimal(fila["total"].ToString())
+                    });
+            }
+            return ventas;
+
+        }
+        public ICollection<CuadreViewModel> MostrarVentasDelMes(DateTime dia1, DateTime ultimoDia)
+        {
+            List<CuadreViewModel> ventas = new List<CuadreViewModel>();
+
+            DataTable datos = _metodos.BuscarVentasDelMes(dia1, ultimoDia);
+            if (datos.Rows.Count > 0)
+            {
+                foreach (DataRow fila in datos.Rows)
+                    ventas.Add(new CuadreViewModel
+                    {
+                        Fecha = Convert.ToDateTime(fila["fecha"].ToString()),
+                        IdVenta = Convert.ToInt32(fila["idventa"].ToString()),
+                        NombreCliente = fila["cliente"].ToString(),
+                        IdTrabajador = Convert.ToInt32(fila["idtrabajador"].ToString()),
+                        TipoFactura = fila["tipo"].ToString(),
+                        TipoVenta = fila["venta"].ToString(),
+                        Categoria = fila["categoria"].ToString(),
+                        ITBIS = Convert.ToDecimal(fila["itbis"].ToString()),
+                        SubTotal = Convert.ToDecimal(fila["subtotal"].ToString()),
+                        Total = Convert.ToDecimal(fila["total"].ToString())
+                    });
+            }
+            return ventas;
+
+        }
         #region Metodos Proveedores
-      
+
         //Apartir de esta Linea Empieso con las Buenas Practivas
         /// <summary>
         /// Metodo que Guarda o Actualiza el Proveedor
