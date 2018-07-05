@@ -874,13 +874,22 @@ GO
 CREATE PROC [dbo].[SP_LOGIN]
 @usuario varchar(50),
 @contrasena varchar(50),
-@rolid int output
+@NombreC varchar(80) output,
+@rolid int output,
+@id_trabajador int output
 AS
 BEGIN
- SELECT @rolid = RolID from [dbo].[USERS] WHERE Usuario = @usuario and Clave = @contrasena and Statud=1;
- IF NOT (@rolid > 0)
+ 
+ SELECT @rolid=RolID,@NombreC=NombreCompleto,@id_trabajador=id_trabajador
+from dbo.wv_usuario_trabajador 
+WHERE Usuario = @usuario and Clave = @contrasena
+ 
+ 
+ IF  (@rolid<=0)
  BEGIN
    SET @rolid = 0
+   SET @NombreC = ''
+   SET @id_trabajador = 0
  END
 END
 
@@ -3290,6 +3299,34 @@ select t.fecha, t.idventa, (c.nombre + ' ' + c.apellidos) AS cliente, t.idtrabaj
 from @TEMP t inner join
 cliente c on c.idcliente = t.idcliente;
 end
+GO
+CREATE PROC [dbo].[VENTAS_DEL_MES]
+@FROM date,
+@TO date
+AS
+select *, [Pagada] = 'Pagada'  from venta v
+where (v.[idventa]) not in (select p.id_venta from cuentas_x_cobrar p where p.fecha between @FROM and @TO)
+and v.fecha between @FROM and @TO
+union
+select *, [Pagada] = 'Credito' from venta v
+where (v.[idventa]) in (select p.id_venta from cuentas_x_cobrar p where p.fecha between @FROM and @TO)
+and v.fecha between @FROM and @TO
+
+GO
+
+CREATE PROC [DBO].[SP_GET_VENTAS_DEL_MES]
+@FROM date,
+@to date
+as
+begin
+DECLARE @TEMP TABLE(idventa int, idcliente int, idtrabajador int, fecha date, tc varchar(25), tv varchar(20), tcli varchar(50), it decimal(9,2), sub decimal(18,2), total decimal(18,2), pagada varchar(25))
+insert into @TEMP EXEC VENTAS_DEL_DIA @FROM, @TO
+
+select t.fecha, t.idventa, (c.nombre + ' ' + c.apellidos) AS cliente, t.idtrabajador, t.tc as tipo, t.tv as venta, t.tcli as categoria, t.it as itbis, t.sub as subtotal, t.total as total, t.pagada
+from @TEMP t inner join
+cliente c on c.idcliente = t.idcliente;
+end
+
 GO
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
