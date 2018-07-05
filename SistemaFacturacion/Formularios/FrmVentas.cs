@@ -755,6 +755,16 @@ namespace SistemaFacturacion.Formularios
             txtB.Text = string.Empty;
 
         }
+
+        private void GrivArticulo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void gridArticulosAVender_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }   
 
