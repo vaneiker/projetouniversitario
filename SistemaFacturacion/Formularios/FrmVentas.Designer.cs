@@ -928,6 +928,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmVentas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ventas";
             this.Load += new System.EventHandler(this.FrmVentas_Load);
             this.ToolStrip1.ResumeLayout(false);
