@@ -1321,6 +1321,42 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             }
         }
+
+        public DataTable BuscarVentasDelDia()
+        {
+            DateTime ahora = DateTime.Now;
+            DataTable ventas = null;
+            using (dbventasEntity db = new dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string proc = "[DBO].[SP_GET_VENTAS_DEL_DIA]";
+
+                    SqlCommand cmd = new SqlCommand(proc, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@fecha", ahora).SqlDbType = SqlDbType.Date;
+
+                    try
+                    {
+                        ventas = new DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                        da.Fill(ventas);
+
+                        if (ventas.Rows.Count <= 0)
+                            return null;
+
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+
+            return ventas;
+        }
             #endregion
 
         }
