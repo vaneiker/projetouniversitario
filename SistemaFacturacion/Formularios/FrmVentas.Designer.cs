@@ -62,11 +62,11 @@
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.checkDescuento = new System.Windows.Forms.CheckBox();
             this.comboMedioPago = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.cboProv = new System.Windows.Forms.ComboBox();
             this.dateFechaVencimiento = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblCri = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -96,6 +96,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
+            this.Cuadrar = new System.Windows.Forms.ToolStripButton();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -129,7 +130,8 @@
             this.Limpia,
             this.toolStripSeparator2,
             this.Salir,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.Cuadrar});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip1.Name = "ToolStrip1";
             this.ToolStrip1.Size = new System.Drawing.Size(1356, 71);
@@ -254,7 +256,6 @@
             this.toolStripButton2.Text = "Limpiar";
             this.toolStripButton2.ToolTipText = "Eliminar";
             // 
-
             // radioACredito
             // 
             this.radioACredito.AutoSize = true;
@@ -279,7 +280,6 @@
             this.label4.TabIndex = 175;
             this.label4.Text = "Tipo de Pago";
             // 
-
             // radioAlContado
             // 
             this.radioAlContado.AutoSize = true;
@@ -409,7 +409,6 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonFace;
-
             this.groupBox4.Controls.Add(this.txtDescuento);
             this.groupBox4.Controls.Add(this.checkDescuento);
             this.groupBox4.Controls.Add(this.radioAlContado);
@@ -460,22 +459,10 @@
             "tPagos",
             "Paypal",
             "Trasferecia"});
-
             this.comboMedioPago.Location = new System.Drawing.Point(405, 93);
             this.comboMedioPago.Name = "comboMedioPago";
             this.comboMedioPago.Size = new System.Drawing.Size(228, 27);
             this.comboMedioPago.TabIndex = 196;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label1.Location = new System.Drawing.Point(281, 99);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 16);
-            this.label1.TabIndex = 195;
-            this.label1.Text = "Medio de Pago";
             // 
             // label11
             // 
@@ -517,6 +504,17 @@
             this.label10.Size = new System.Drawing.Size(107, 16);
             this.label10.TabIndex = 191;
             this.label10.Text = "Tipo de Factura";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label1.Location = new System.Drawing.Point(281, 99);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 16);
+            this.label1.TabIndex = 195;
+            this.label1.Text = "Medio de Pago";
             // 
             // groupBox1
             // 
@@ -898,6 +896,18 @@
             this.gridArticulosAVender.Size = new System.Drawing.Size(721, 163);
             this.gridArticulosAVender.TabIndex = 0;
             // 
+            // Cuadrar
+            // 
+            this.Cuadrar.AutoSize = false;
+            this.Cuadrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Cuadrar.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Cuadrar.Image = ((System.Drawing.Image)(resources.GetObject("Cuadrar.Image")));
+            this.Cuadrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Cuadrar.Name = "Cuadrar";
+            this.Cuadrar.Size = new System.Drawing.Size(50, 68);
+            this.Cuadrar.Text = "toolStripButton3";
+            this.Cuadrar.ToolTipText = "Cuadrar Caja";
+            // 
             // FrmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1013,5 +1023,6 @@
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.TextBox textArticuloCantidad;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripButton Cuadrar;
     }
     }

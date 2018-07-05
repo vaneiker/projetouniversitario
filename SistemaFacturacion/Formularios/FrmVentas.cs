@@ -755,6 +755,7 @@ namespace SistemaFacturacion.Formularios
             txtB.Text = string.Empty;
 
         }
+
     }
 }   
 
