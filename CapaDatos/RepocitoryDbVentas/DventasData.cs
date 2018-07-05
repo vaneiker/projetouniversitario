@@ -1356,6 +1356,37 @@ namespace CapaDatos.RepocitoryDbVentas
             }
 
             return ventas;
+        } 
+
+        public DataTable BuscarVentasDelMes(DateTime inicio, DateTime final)
+        {
+            DataTable ventas = null;
+            using(dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string proc = "[DBO].[SP_GET_VENTAS_DEL_MES]";
+                    SqlCommand cmd = new SqlCommand(proc, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@FROM", inicio).SqlDbType = SqlDbType.Date;
+                    cmd.Parameters.AddWithValue("@TO", final).SqlDbType = SqlDbType.Date;
+
+                    try{
+                        ventas = new DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(ventas);
+                        if (ventas.Rows.Count <= 0)
+                            return null;  
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+
+            return ventas;
         }
             #endregion
 
