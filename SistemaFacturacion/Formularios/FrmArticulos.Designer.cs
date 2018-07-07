@@ -48,25 +48,19 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.TabArticulo = new System.Windows.Forms.TabControl();
             this.TabBuscar = new System.Windows.Forms.TabPage();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchCategoria = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.GridViewArticulos = new System.Windows.Forms.DataGridView();
             this.tabMantenimiento = new System.Windows.Forms.TabPage();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.BtnCategoria = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.MascKcodigoBarra = new System.Windows.Forms.MaskedTextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnRuta = new System.Windows.Forms.Button();
             this.txtruta = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -76,6 +70,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboTasaG = new System.Windows.Forms.ComboBox();
+            this.LBLG = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cboCat = new System.Windows.Forms.ComboBox();
             this.cboProv = new System.Windows.Forms.ComboBox();
@@ -92,12 +88,11 @@
             this.TabArticulo.SuspendLayout();
             this.TabBuscar.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).BeginInit();
             this.tabMantenimiento.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -182,6 +177,7 @@
             // Aceptar
             // 
             this.Aceptar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Aceptar.Enabled = false;
             this.Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Aceptar.Image")));
             this.Aceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Aceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -199,6 +195,7 @@
             // Eliminar
             // 
             this.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Eliminar.Enabled = false;
             this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
             this.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -270,22 +267,31 @@
             this.TabArticulo.Location = new System.Drawing.Point(12, 74);
             this.TabArticulo.Name = "TabArticulo";
             this.TabArticulo.SelectedIndex = 0;
-            this.TabArticulo.Size = new System.Drawing.Size(1158, 514);
+            this.TabArticulo.Size = new System.Drawing.Size(1158, 532);
             this.TabArticulo.TabIndex = 12;
             // 
             // TabBuscar
             // 
-            this.TabBuscar.Controls.Add(this.panel7);
+            this.TabBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.TabBuscar.Controls.Add(this.panel6);
-            this.TabBuscar.Controls.Add(this.panel5);
+            this.TabBuscar.Controls.Add(this.panel7);
             this.TabBuscar.Controls.Add(this.panel4);
             this.TabBuscar.Location = new System.Drawing.Point(4, 22);
             this.TabBuscar.Name = "TabBuscar";
             this.TabBuscar.Padding = new System.Windows.Forms.Padding(3);
-            this.TabBuscar.Size = new System.Drawing.Size(1150, 488);
+            this.TabBuscar.Size = new System.Drawing.Size(1150, 506);
             this.TabBuscar.TabIndex = 0;
             this.TabBuscar.Text = "Busqueda Articulos";
-            this.TabBuscar.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.AutoSize = true;
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel6.ForeColor = System.Drawing.Color.Black;
+            this.panel6.Location = new System.Drawing.Point(0, 456);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1150, 32);
+            this.panel6.TabIndex = 175;
             // 
             // panel7
             // 
@@ -294,86 +300,65 @@
             this.panel7.ForeColor = System.Drawing.Color.Black;
             this.panel7.Location = new System.Drawing.Point(1, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1075, 86);
+            this.panel7.Size = new System.Drawing.Size(1149, 32);
             this.panel7.TabIndex = 93;
-            // 
-            // panel6
-            // 
-            this.panel6.AutoSize = true;
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel6.ForeColor = System.Drawing.Color.Black;
-            this.panel6.Location = new System.Drawing.Point(960, 85);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(116, 323);
-            this.panel6.TabIndex = 92;
-            // 
-            // panel5
-            // 
-            this.panel5.AutoSize = true;
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel5.ForeColor = System.Drawing.Color.Black;
-            this.panel5.Location = new System.Drawing.Point(0, 85);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(114, 323);
-            this.panel5.TabIndex = 91;
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.textBox1);
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.txtSearchCategoria);
-            this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.GridViewArticulos);
             this.panel4.Location = new System.Drawing.Point(112, 85);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(842, 323);
             this.panel4.TabIndex = 0;
             // 
-            // textBox1
+            // panel5
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(235, 37);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 38);
-            this.textBox1.TabIndex = 121;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.panel5.AutoSize = true;
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.ForeColor = System.Drawing.Color.Black;
+            this.panel5.Location = new System.Drawing.Point(1, 2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(841, 32);
+            this.panel5.TabIndex = 174;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(313, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(200, 23);
+            this.label4.TabIndex = 164;
+            this.label4.Text = "Busque de Articulos";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.label1.Location = new System.Drawing.Point(408, 45);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.label1.Location = new System.Drawing.Point(40, 81);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(213, 25);
-            this.label1.TabIndex = 120;
-            this.label1.Text = "Buscar por Nombre";
+            this.label1.Size = new System.Drawing.Size(251, 25);
+            this.label1.TabIndex = 173;
+            this.label1.Text = "Busqueda de Articulos:";
             // 
             // txtSearchCategoria
             // 
             this.txtSearchCategoria.BackColor = System.Drawing.Color.White;
             this.txtSearchCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchCategoria.Location = new System.Drawing.Point(626, 37);
+            this.txtSearchCategoria.Location = new System.Drawing.Point(293, 76);
             this.txtSearchCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCategoria.Multiline = true;
             this.txtSearchCategoria.Name = "txtSearchCategoria";
-            this.txtSearchCategoria.Size = new System.Drawing.Size(182, 38);
+            this.txtSearchCategoria.Size = new System.Drawing.Size(515, 38);
             this.txtSearchCategoria.TabIndex = 119;
             this.txtSearchCategoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.label4.Location = new System.Drawing.Point(28, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(202, 25);
-            this.label4.TabIndex = 118;
-            this.label4.Text = "Buscar por Codigo";
             // 
             // GridViewArticulos
             // 
@@ -382,55 +367,36 @@
             this.GridViewArticulos.AllowUserToOrderColumns = true;
             this.GridViewArticulos.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.GridViewArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewArticulos.Location = new System.Drawing.Point(42, 108);
+            this.GridViewArticulos.Location = new System.Drawing.Point(42, 140);
             this.GridViewArticulos.Name = "GridViewArticulos";
             this.GridViewArticulos.ReadOnly = true;
             this.GridViewArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridViewArticulos.Size = new System.Drawing.Size(766, 191);
+            this.GridViewArticulos.Size = new System.Drawing.Size(766, 159);
             this.GridViewArticulos.TabIndex = 117;
+            this.GridViewArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewArticulos_CellContentClick_1);
             // 
             // tabMantenimiento
             // 
-            this.tabMantenimiento.Controls.Add(this.panel8);
+            this.tabMantenimiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.tabMantenimiento.Controls.Add(this.panel3);
             this.tabMantenimiento.Controls.Add(this.panel2);
             this.tabMantenimiento.Controls.Add(this.panel1);
             this.tabMantenimiento.Location = new System.Drawing.Point(4, 22);
             this.tabMantenimiento.Name = "tabMantenimiento";
             this.tabMantenimiento.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMantenimiento.Size = new System.Drawing.Size(1150, 488);
+            this.tabMantenimiento.Size = new System.Drawing.Size(1150, 506);
             this.tabMantenimiento.TabIndex = 1;
             this.tabMantenimiento.Text = "Mantenimineto Articulos";
-            this.tabMantenimiento.UseVisualStyleBackColor = true;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel8.Location = new System.Drawing.Point(1076, 70);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(74, 418);
-            this.panel8.TabIndex = 121;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel3.Controls.Add(this.BtnCategoria);
-            this.panel3.Location = new System.Drawing.Point(3, 70);
+            this.panel3.AutoSize = true;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel3.ForeColor = System.Drawing.Color.Black;
+            this.panel3.Location = new System.Drawing.Point(2, 483);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(66, 418);
-            this.panel3.TabIndex = 120;
-            // 
-            // BtnCategoria
-            // 
-            this.BtnCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.BtnCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnCategoria.ForeColor = System.Drawing.Color.White;
-            this.BtnCategoria.Location = new System.Drawing.Point(3, 13);
-            this.BtnCategoria.Name = "BtnCategoria";
-            this.BtnCategoria.Size = new System.Drawing.Size(60, 50);
-            this.BtnCategoria.TabIndex = 2;
-            this.BtnCategoria.Text = "&Articulos";
-            this.BtnCategoria.UseVisualStyleBackColor = false;
+            this.panel3.Size = new System.Drawing.Size(1147, 22);
+            this.panel3.TabIndex = 95;
             // 
             // panel2
             // 
@@ -439,7 +405,7 @@
             this.panel2.ForeColor = System.Drawing.Color.Black;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1147, 67);
+            this.panel2.Size = new System.Drawing.Size(1147, 37);
             this.panel2.TabIndex = 94;
             // 
             // panel1
@@ -448,57 +414,26 @@
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Location = new System.Drawing.Point(58, 61);
+            this.panel1.Location = new System.Drawing.Point(26, 46);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1012, 421);
+            this.panel1.Size = new System.Drawing.Size(1050, 431);
             this.panel1.TabIndex = 0;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.pictureBox2);
-            this.groupBox4.Controls.Add(this.MascKcodigoBarra);
-            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.BackColor = System.Drawing.Color.White;
             this.groupBox4.Controls.Add(this.btnRuta);
             this.groupBox4.Controls.Add(this.txtruta);
             this.groupBox4.Controls.Add(this.pictureBox1);
-            this.groupBox4.Location = new System.Drawing.Point(27, 286);
+            this.groupBox4.Location = new System.Drawing.Point(27, 319);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(985, 105);
             this.groupBox4.TabIndex = 183;
             this.groupBox4.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(696, 19);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(283, 72);
-            this.pictureBox2.TabIndex = 178;
-            this.pictureBox2.TabStop = false;
-            // 
-            // MascKcodigoBarra
-            // 
-            this.MascKcodigoBarra.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.MascKcodigoBarra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.MascKcodigoBarra.Location = new System.Drawing.Point(156, 23);
-            this.MascKcodigoBarra.Mask = "0-000000-000000";
-            this.MascKcodigoBarra.Name = "MascKcodigoBarra";
-            this.MascKcodigoBarra.Size = new System.Drawing.Size(278, 33);
-            this.MascKcodigoBarra.TabIndex = 170;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label3.Location = new System.Drawing.Point(6, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 25);
-            this.label3.TabIndex = 169;
-            this.label3.Text = "Codigo Barra";
-            // 
             // btnRuta
             // 
-            this.btnRuta.Location = new System.Drawing.Point(29, 62);
+            this.btnRuta.Location = new System.Drawing.Point(29, 41);
             this.btnRuta.Name = "btnRuta";
             this.btnRuta.Size = new System.Drawing.Size(121, 29);
             this.btnRuta.TabIndex = 176;
@@ -510,7 +445,7 @@
             // 
             this.txtruta.Enabled = false;
             this.txtruta.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtruta.Location = new System.Drawing.Point(156, 62);
+            this.txtruta.Location = new System.Drawing.Point(156, 41);
             this.txtruta.Multiline = true;
             this.txtruta.Name = "txtruta";
             this.txtruta.Size = new System.Drawing.Size(278, 29);
@@ -520,19 +455,20 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(440, 19);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 72);
+            this.pictureBox1.Size = new System.Drawing.Size(539, 72);
             this.pictureBox1.TabIndex = 177;
             this.pictureBox1.TabStop = false;
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.Color.White;
             this.groupBox3.Controls.Add(this.txtDes);
             this.groupBox3.Controls.Add(this.txtNom);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(27, 108);
+            this.groupBox3.Location = new System.Drawing.Point(27, 138);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(567, 172);
+            this.groupBox3.Size = new System.Drawing.Size(564, 172);
             this.groupBox3.TabIndex = 182;
             this.groupBox3.TabStop = false;
             // 
@@ -582,22 +518,57 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.cboTasaG);
+            this.groupBox2.Controls.Add(this.LBLG);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.cboCat);
             this.groupBox2.Controls.Add(this.cboProv);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(30, 15);
+            this.groupBox2.Location = new System.Drawing.Point(27, 15);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(982, 87);
+            this.groupBox2.Size = new System.Drawing.Size(985, 115);
             this.groupBox2.TabIndex = 181;
             this.groupBox2.TabStop = false;
+            // 
+            // cboTasaG
+            // 
+            this.cboTasaG.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.cboTasaG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.cboTasaG.FormattingEnabled = true;
+            this.cboTasaG.Items.AddRange(new object[] {
+            "---Seleccione---",
+            "15%",
+            "20%",
+            "25%",
+            "30%",
+            "35%",
+            "40%",
+            "45%",
+            "50%"});
+            this.cboTasaG.Location = new System.Drawing.Point(280, 67);
+            this.cboTasaG.Name = "cboTasaG";
+            this.cboTasaG.Size = new System.Drawing.Size(209, 33);
+            this.cboTasaG.TabIndex = 176;
+            this.cboTasaG.Text = "---Seleccione---";
+            // 
+            // LBLG
+            // 
+            this.LBLG.AutoSize = true;
+            this.LBLG.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.LBLG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
+            this.LBLG.Location = new System.Drawing.Point(98, 70);
+            this.LBLG.Name = "LBLG";
+            this.LBLG.Size = new System.Drawing.Size(178, 25);
+            this.LBLG.TabIndex = 175;
+            this.LBLG.Text = "Tasa Ganacia%";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label6.Location = new System.Drawing.Point(23, 36);
+            this.label6.Location = new System.Drawing.Point(162, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 25);
             this.label6.TabIndex = 172;
@@ -608,9 +579,9 @@
             this.cboCat.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.cboCat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.cboCat.FormattingEnabled = true;
-            this.cboCat.Location = new System.Drawing.Point(141, 33);
+            this.cboCat.Location = new System.Drawing.Point(280, 20);
             this.cboCat.Name = "cboCat";
-            this.cboCat.Size = new System.Drawing.Size(298, 33);
+            this.cboCat.Size = new System.Drawing.Size(209, 33);
             this.cboCat.TabIndex = 171;
             // 
             // cboProv
@@ -620,9 +591,9 @@
             this.cboProv.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.cboProv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.cboProv.FormattingEnabled = true;
-            this.cboProv.Location = new System.Drawing.Point(570, 28);
+            this.cboProv.Location = new System.Drawing.Point(616, 19);
             this.cboProv.Name = "cboProv";
-            this.cboProv.Size = new System.Drawing.Size(406, 33);
+            this.cboProv.Size = new System.Drawing.Size(363, 33);
             this.cboProv.TabIndex = 173;
             // 
             // label10
@@ -630,7 +601,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label10.Location = new System.Drawing.Point(445, 36);
+            this.label10.Location = new System.Drawing.Point(495, 23);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 25);
             this.label10.TabIndex = 174;
@@ -638,15 +609,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.txtComp);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtCan);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtVent);
-            this.groupBox1.Location = new System.Drawing.Point(600, 108);
+            this.groupBox1.Location = new System.Drawing.Point(597, 138);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 172);
+            this.groupBox1.Size = new System.Drawing.Size(415, 172);
             this.groupBox1.TabIndex = 180;
             this.groupBox1.TabStop = false;
             // 
@@ -659,7 +631,9 @@
             this.txtComp.Name = "txtComp";
             this.txtComp.Size = new System.Drawing.Size(123, 34);
             this.txtComp.TabIndex = 168;
+            this.txtComp.Text = "0";
             this.txtComp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtComp.TextChanged += new System.EventHandler(this.txtComp_TextChanged);
             // 
             // label9
             // 
@@ -676,12 +650,14 @@
             // 
             this.txtCan.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtCan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtCan.Location = new System.Drawing.Point(270, 29);
+            this.txtCan.Location = new System.Drawing.Point(273, 29);
             this.txtCan.Multiline = true;
             this.txtCan.Name = "txtCan";
             this.txtCan.Size = new System.Drawing.Size(123, 34);
             this.txtCan.TabIndex = 164;
+            this.txtCan.Text = "0";
             this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCan.TextChanged += new System.EventHandler(this.txtCan_TextChanged);
             // 
             // label8
             // 
@@ -712,8 +688,10 @@
             this.txtVent.Location = new System.Drawing.Point(270, 71);
             this.txtVent.Multiline = true;
             this.txtVent.Name = "txtVent";
+            this.txtVent.ReadOnly = true;
             this.txtVent.Size = new System.Drawing.Size(121, 34);
             this.txtVent.TabIndex = 166;
+            this.txtVent.Text = "0";
             this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // openFileDialog1
@@ -724,7 +702,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 590);
+            this.ClientSize = new System.Drawing.Size(1182, 609);
             this.Controls.Add(this.TabArticulo);
             this.Controls.Add(this.ToolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -741,14 +719,14 @@
             this.TabBuscar.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewArticulos)).EndInit();
             this.tabMantenimiento.ResumeLayout(false);
             this.tabMantenimiento.PerformLayout();
-            this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -777,18 +755,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         internal System.Windows.Forms.ToolStripButton Salir;
         private System.Windows.Forms.TabControl TabArticulo;
-        private System.Windows.Forms.TabPage TabBuscar;
         private System.Windows.Forms.TabPage tabMantenimiento;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtSearchCategoria;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView GridViewArticulos;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnRuta;
@@ -797,8 +765,6 @@
         private System.Windows.Forms.ComboBox cboProv;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboCat;
-        private System.Windows.Forms.MaskedTextBox MascKcodigoBarra;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtComp;
         private System.Windows.Forms.TextBox txtVent;
         private System.Windows.Forms.Label label7;
@@ -809,17 +775,25 @@
         private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button BtnCategoria;
         internal System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TabPage TabBuscar;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSearchCategoria;
+        private System.Windows.Forms.DataGridView GridViewArticulos;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cboTasaG;
+        private System.Windows.Forms.Label LBLG;
     }
     }

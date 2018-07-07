@@ -81,7 +81,7 @@ namespace SistemaFacturacion.Formularios
 
         private void BtnArticulos_Click(object sender, EventArgs e)
             {
-            FrmIngresos f = new FrmIngresos();
+            FrmArticulos f = new FrmArticulos();
             f.ShowDialog();
             }
 
