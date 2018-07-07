@@ -755,7 +755,6 @@ namespace SistemaFacturacion.Formularios
             txtB.Text = string.Empty;
 
         }
-<<<<<<< HEAD
 
         private void Cuadrar_Click(object sender, EventArgs e)
         {
@@ -782,19 +781,6 @@ namespace SistemaFacturacion.Formularios
             
 
         }
-||||||| merged common ancestors
-=======
-
-        private void GrivArticulo_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void gridArticulosAVender_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
->>>>>>> e61c4892e719500977f1d784e0f65277fdc2a1e1
     }
 }   
 

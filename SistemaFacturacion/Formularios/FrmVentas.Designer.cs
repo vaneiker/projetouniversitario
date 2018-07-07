@@ -722,7 +722,6 @@
             this.GrivArticulo.Name = "GrivArticulo";
             this.GrivArticulo.Size = new System.Drawing.Size(631, 93);
             this.GrivArticulo.TabIndex = 0;
-            this.GrivArticulo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrivArticulo_CellContentClick);
             // 
             // groupBox5
             // 
@@ -911,7 +910,6 @@
             this.gridArticulosAVender.Name = "gridArticulosAVender";
             this.gridArticulosAVender.Size = new System.Drawing.Size(721, 151);
             this.gridArticulosAVender.TabIndex = 0;
-            this.gridArticulosAVender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridArticulosAVender_CellContentClick);
             // 
             // btnRemoveItem
             // 
