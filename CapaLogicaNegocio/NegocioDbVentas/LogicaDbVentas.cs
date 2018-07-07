@@ -253,6 +253,12 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return ventas;
 
         }
+        /// <summary>
+        /// Busca en la Base de Datos las Ventas del Mes.
+        /// </summary>
+        /// <param name="dia1">Dia 1ro. del Mes</param>
+        /// <param name="ultimoDia">Ultimo dia del Mes. 30 o 31</param>
+        /// <returns>Collection De CuadreViewModel Devuelta</returns>
         public ICollection<CuadreViewModel> MostrarVentasDelMes(DateTime dia1, DateTime ultimoDia)
         {
             List<CuadreViewModel> ventas = new List<CuadreViewModel>();

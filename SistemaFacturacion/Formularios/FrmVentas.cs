@@ -761,6 +761,26 @@ namespace SistemaFacturacion.Formularios
             CuadreForm cuadrar = new Formularios.CuadreForm();
             cuadrar.ShowDialog();
         }
+
+        private void btnRemoveItem_Click(object sender, EventArgs e)
+        {
+            if(detallesArticulos == null || gridArticulosAVender.Rows.Count <= 0 || gridArticulosAVender.DataSource == null)
+            {
+                Alertas.Alerwarning noArticulos = new Alertas.Alerwarning("No Hay Articulos en la Lista.");
+                noArticulos.ShowDialog();
+                return;
+            }
+            int idProducto = Convert.ToInt32(gridArticulosAVender.SelectedCells[0].Value);
+            int index = detallesArticulos.FindIndex(c => c.id_producto == idProducto);
+            if (detallesArticulos[index].cantidad == 1)
+                detallesArticulos.RemoveAt(index);
+            else
+            {
+                detallesArticulos[index].cantidad -= 1;
+            }
+            
+
+        }
     }
 }   
 
