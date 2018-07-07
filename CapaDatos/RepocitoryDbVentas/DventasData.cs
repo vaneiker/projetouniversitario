@@ -88,7 +88,7 @@ namespace CapaDatos.RepocitoryDbVentas
             }
 
         }
-        public void Registrar_Articulos(articulosEntitis articulo)
+        public int Registrar_Articulos(articulosEntitis articulo)
         {
             try
             {
@@ -117,6 +117,7 @@ namespace CapaDatos.RepocitoryDbVentas
 
                         //cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", null));
                         cmd.ExecuteNonQuery();
+                        return 1;
 
                     }
                 }
@@ -124,12 +125,13 @@ namespace CapaDatos.RepocitoryDbVentas
             }
             catch (Exception ex)
             {
+                return 0;
 
                 throw ex;
             }
 
         }
-        public void EliminarArticulo(articulosEntitis articulo)
+        public int EliminarArticulo(articulosEntitis articulo)
         {
             try
             {
@@ -144,16 +146,17 @@ namespace CapaDatos.RepocitoryDbVentas
                         string Qry = "[DBO].[SP_SET_DELETE_ARTICULO]";
                         SqlCommand cmd = new SqlCommand(Qry, connection);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@codigo", articulo.codigo));
+                        cmd.Parameters.Add(new SqlParameter("@codigo", articulo.idarticulo));
                         cmd.Parameters.Add(new SqlParameter("@estado", articulo.estado));
                         cmd.ExecuteNonQuery();
-
+                        return 1;
                     }
+
                 }
             }
             catch (Exception ex)
             {
-
+                return 0;
                 throw ex;
             }
         }

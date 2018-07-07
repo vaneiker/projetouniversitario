@@ -58,11 +58,36 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             {
                 return false;
             }
+        }
 
-
+        public bool BorrarArticulo(int id ,bool estatus)
+        {
+            articulosEntitis en = new articulosEntitis();
+            if (id <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                en.idarticulo = id;
+                en.estado = estatus;
+                var r = _metodos.EliminarArticulo(en);
+                if (r == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
             }
-            public ClienteEntitis GetClienteFromDataTable(DataTable source)
+        }
+
+
+
+
+        public ClienteEntitis GetClienteFromDataTable(DataTable source)
         {
             ClienteEntitis cliente = new ClienteEntitis();
             foreach(DataRow row in source.Rows)
@@ -137,10 +162,49 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
 
             }
-        public void Registrar_Articulos(articulosEntitis art)
+        
+          public bool Registrar_Articulos(
+                                  string  idarticulo
+                                , string  codigo
+                                , string  nombre
+                                , int     idcategoria
+                                , string  Imag_Url
+                                , string  descripcion
+                                , decimal precioVenta
+                                , decimal precioCompra
+                                , decimal cantidad
+                                , bool    estado
+                                , int     idProveedor
+    )
+        {
+            articulosEntitis art = new articulosEntitis();
+            if(idarticulo=="" || idarticulo == null)
             {
-            _metodos.Registrar_Articulos(art);
+                idarticulo = "0";
+            }
+            art.idarticulo =int.Parse(idarticulo);
+            art.codigo = codigo;
+            art.nombre = nombre;
+            art.idcategoria = idcategoria;
+            art.Imag_Url = Imag_Url;
+            art.descripcion = descripcion;
+            art.precioVenta = precioVenta;
+            art.precioCompra = precioCompra;
+            art.cantidad = cantidad;
+            art.estado = estado;
+            art.idProveedor = idProveedor;
 
+
+           var repuesta= _metodos.Registrar_Articulos(art);
+            if(repuesta==1)
+            {
+                return true;
+            } else
+
+            {
+                return false;
+            }
+           
             }
         public bool Eliminar_Articulo(articulosEntitis art)
         {
