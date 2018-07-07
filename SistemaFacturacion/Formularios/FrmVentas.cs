@@ -761,6 +761,7 @@ namespace SistemaFacturacion.Formularios
             CuadreForm cuadrar = new Formularios.CuadreForm();
 
             cuadrar.ShowDialog();
+            
         }
 
         private void btnRemoveItem_Click(object sender, EventArgs e)

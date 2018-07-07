@@ -22,6 +22,7 @@ namespace SistemaFacturacion.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lbTotal.Visible = false;
             List<CuadreViewModel> ventas = (List<CuadreViewModel>) db.MostrarVentasDelDia();
             if(ventas != null)
             {
@@ -31,15 +32,18 @@ namespace SistemaFacturacion.Formularios
 
                 decimal total = ventas.Sum(venta => venta.Total);
                 lbTotal.Text = "Ventas del Dia: " + total.ToString("N2");
+                lbTotal.Visible = true;
             }else
             {
                 Alertas.Alerwarning noVentas = new Alertas.Alerwarning("No Existen Ventas Para Hoy: " + DateTime.UtcNow.ToShortDateString());
                 noVentas.ShowDialog();
+                lbTotal.Visible = false;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            lbTotal.Visible = false;
             if(datePickerHasta.Value < datePickerDesde.Value)
             {
                 Alertas.AlertError mayor = new Alertas.AlertError("Fecha hasta No Puede ser Mayor");
@@ -61,6 +65,7 @@ namespace SistemaFacturacion.Formularios
 
                 decimal total = ventas.Sum(venta => venta.Total);
                 lbTotal.Text = "Ventas del Mes: " + total.ToString("N2");
+                lbTotal.Visible = true;
             }else
             {
                 Alertas.Alerwarning noVentas = new Alertas.Alerwarning("No Hay Ventas Generada Desde: " + datePickerDesde.Value.ToShortDateString() + " a " + datePickerHasta.Value.ToShortDateString());
