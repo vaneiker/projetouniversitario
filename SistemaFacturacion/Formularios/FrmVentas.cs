@@ -759,6 +759,7 @@ namespace SistemaFacturacion.Formularios
         private void Cuadrar_Click(object sender, EventArgs e)
         {
             CuadreForm cuadrar = new Formularios.CuadreForm();
+            
             cuadrar.ShowDialog();
         }
 
