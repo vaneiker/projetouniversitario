@@ -3412,7 +3412,32 @@ GO
 ALTER TABLE [dbo].[detalle_cotizacion_productos] CHECK CONSTRAINT [FK_detalle_cotizacion_productos_cotizacion]
 GO
 
-
+CREATE PROC [DBO].[INSERTAR_DETALLES_COTIZADOR_PRODUCTOS]
+@idcotizacion INT,
+@producto VARCHAR(50),
+@cantidad INT,
+@precioVenta DECIMAL(18,2),
+@itbis DECIMAL(9,2),
+@subtotal DECIMAL(18,2),
+@total DECIMAL(18,2)
+AS
+INSERT INTO [dbo].[detalle_cotizacion_productos]
+           ([idcotizacion]
+           ,[producto]
+           ,[cantidad]
+           ,[precioVenta]
+           ,[itbis]
+           ,[subtotal]
+           ,[total])
+     VALUES
+           (@idcotizacion
+           ,@producto
+           ,@cantidad
+           ,@precioVenta
+           ,@itbis
+           ,@subtotal
+           ,@total)
+GO
 
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
