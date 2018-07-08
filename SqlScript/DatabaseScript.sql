@@ -3329,6 +3329,50 @@ end
 
 GO
 
+GO
+
+/****** Object:  Table [dbo].[cotizacion]    Script Date: 7/7/18 7:57:07 p. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[cotizacion](
+	[idcotizacion] [int] IDENTITY(1,1) NOT NULL,
+	[idcliente] [int] NOT NULL,
+	[idtrabajador] [int] NOT NULL,
+	[cantidad] [int] NOT NULL,
+	[subtotal] [decimal](18, 2) NOT NULL,
+	[itbis] [decimal](9, 2) NOT NULL,
+	[total] [decimal](18, 2) NOT NULL,
+	[fecha] [date] NOT NULL,
+	[estatus] [bit] NOT NULL,
+ CONSTRAINT [PK_cotizacion] PRIMARY KEY CLUSTERED 
+(
+	[idcotizacion] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[cotizacion] ADD  CONSTRAINT [DF_cotizacion_estatus]  DEFAULT ((1)) FOR [estatus]
+GO
+
+ALTER TABLE [dbo].[cotizacion]  WITH CHECK ADD  CONSTRAINT [FK_cotizacion_cliente] FOREIGN KEY([idcliente])
+REFERENCES [dbo].[cliente] ([idcliente])
+GO
+
+ALTER TABLE [dbo].[cotizacion] CHECK CONSTRAINT [FK_cotizacion_cliente]
+GO
+
+ALTER TABLE [dbo].[cotizacion]  WITH CHECK ADD  CONSTRAINT [FK_cotizacion_trabajador] FOREIGN KEY([idtrabajador])
+REFERENCES [dbo].[trabajador] ([idtrabajador])
+GO
+
+ALTER TABLE [dbo].[cotizacion] CHECK CONSTRAINT [FK_cotizacion_trabajador]
+GO
+
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')

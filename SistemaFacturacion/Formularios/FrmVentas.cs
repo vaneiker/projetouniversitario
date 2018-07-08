@@ -285,6 +285,10 @@ namespace SistemaFacturacion.Formularios
                     gridArticulosAVender.Columns["id_producto"].Visible = false;
                     GrivArticulo.DataSource = null;
                     txtBuscarArticulo.Focus();
+                    btnCancelarFactura.Visible = true;
+                    btnCancelarFactura.Enabled = true;
+                    btnRemoveItem.Visible = true;
+                    btnRemoveItem.Enabled = true;
                 }
                 else
                 {
@@ -525,6 +529,7 @@ namespace SistemaFacturacion.Formularios
                     }
 
                     detallesArticulos.Add(aGregar);
+                    
                 }
 
                 _subtotal = detallesArticulos.Sum(venta => venta.precio_venta * venta.cantidad);
@@ -656,6 +661,8 @@ namespace SistemaFacturacion.Formularios
                     checkDescuento.Checked = false;
                     radioAlContado.Checked = true;
                     gridArticulosAVender.DataSource = null;
+                    btnCancelarFactura.Visible = false;
+                    btnRemoveItem.Visible = false;
                     cboCliente.Focus();
                     if(MessageBox.Show("Desea Imprimir la Factura?", "Impresion", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
                     {
@@ -674,6 +681,8 @@ namespace SistemaFacturacion.Formularios
                         gridArticulosAVender.DataSource = null;
                         txtB.Text = string.Empty;
                         Limpia.Enabled = false;
+                        btnRemoveItem.Visible = false;
+                        btnCancelarFactura.Visible = false;
 
                     }
                     else
@@ -753,6 +762,13 @@ namespace SistemaFacturacion.Formularios
             Limpia.Enabled = false;
             gridArticulosAVender.DataSource = null;
             txtB.Text = string.Empty;
+            cboCliente.Text = string.Empty;
+            txtCan.Text = string.Empty;
+            txtTotal.Text = string.Empty;
+            txtSubtotal.Text = string.Empty;
+            txtItbis.Text = string.Empty;
+            cboProv.Text = string.Empty;
+            comboMedioPago.Text = string.Empty;
 
         }
 
@@ -772,13 +788,32 @@ namespace SistemaFacturacion.Formularios
                 noArticulos.ShowDialog();
                 return;
             }
-            int idProducto = Convert.ToInt32(gridArticulosAVender.SelectedCells[0].Value);
-            int index = detallesArticulos.FindIndex(c => c.id_producto == idProducto);
+            string idProducto = gridArticulosAVender.CurrentRow.Cells[2].Value.ToString();
+            int index = detallesArticulos.FindIndex(c => c.producto == idProducto);
             if (detallesArticulos[index].cantidad == 1)
+            {
                 detallesArticulos.RemoveAt(index);
+
+                if (detallesArticulos.Count <= 0)
+                {
+                    detallesArticulos = null;
+                    gridArticulosAVender.DataSource = null;
+                    btnRemoveItem.Visible = false;
+                    btnCancelarFactura.Visible = false;
+                    txtTotal.Text = string.Empty;
+                    txtItbis.Text = string.Empty;
+                    txtSubtotal.Text = string.Empty;
+                    txtCan.Text = string.Empty;
+
+                }else
+                {
+                    gridArticulosAVender.Refresh();
+                }
+            }
             else
             {
                 detallesArticulos[index].cantidad -= 1;
+                gridArticulosAVender.Refresh();
             }
             
 
