@@ -418,8 +418,39 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             
         }
 
-       
-        #endregion
-    }
 
+        #endregion
+
+        public bool RegistrarUsuarios(string usuario, string clave, int role, bool status, int id_trabajador, int id=0)
+        {
+            UsersEntitis u = new UsersEntitis();
+          
+            u.Usuario = usuario;
+            u.Clave = clave;
+            u.RolID = role;
+            u.Statud = status;
+            u.id_trabajador = id_trabajador;
+            u.id = id;
+
+            var repuesta = _metodos.RegistrarUsuario(u);
+           
+            if(repuesta==1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
 }
+
+
+
+      
+
+   
+
+
+

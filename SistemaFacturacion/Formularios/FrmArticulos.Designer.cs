@@ -213,13 +213,13 @@
             // Limpia
             // 
             this.Limpia.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Limpia.Enabled = false;
             this.Limpia.Image = ((System.Drawing.Image)(resources.GetObject("Limpia.Image")));
             this.Limpia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.Limpia.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Limpia.Name = "Limpia";
             this.Limpia.Size = new System.Drawing.Size(68, 68);
             this.Limpia.Text = "Limpia";
+            this.Limpia.Click += new System.EventHandler(this.Limpia_Click);
             // 
             // toolStripSeparator2
             // 

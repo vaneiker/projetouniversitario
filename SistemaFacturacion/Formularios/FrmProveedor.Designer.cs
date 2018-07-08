@@ -76,9 +76,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblBus = new System.Windows.Forms.Label();
             this.txtProveedor = new System.Windows.Forms.TextBox();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.ToolStrip1.SuspendLayout();
             this.TabTrabajador.SuspendLayout();
             this.TabBuscar.SuspendLayout();
@@ -339,13 +337,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.panel7);
             this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(3, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1156, 514);
@@ -363,7 +359,7 @@
             this.groupBox4.Controls.Add(this.txtDireccion);
             this.groupBox4.Location = new System.Drawing.Point(156, 277);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(855, 194);
+            this.groupBox4.Size = new System.Drawing.Size(855, 170);
             this.groupBox4.TabIndex = 195;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Domicilio";
@@ -607,14 +603,6 @@
             this.txtProveedor.TabIndex = 190;
             this.txtProveedor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel7.Location = new System.Drawing.Point(1017, 85);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(137, 399);
-            this.panel7.TabIndex = 95;
-            // 
             // panel2
             // 
             this.panel2.AutoSize = true;
@@ -622,16 +610,8 @@
             this.panel2.ForeColor = System.Drawing.Color.Black;
             this.panel2.Location = new System.Drawing.Point(-3, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1157, 85);
+            this.panel2.Size = new System.Drawing.Size(1157, 61);
             this.panel2.TabIndex = 89;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel1.Location = new System.Drawing.Point(0, 85);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(150, 399);
-            this.panel1.TabIndex = 87;
             // 
             // FrmProveedor
             // 
@@ -704,9 +684,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblBus;
         private System.Windows.Forms.TextBox txtProveedor;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tctcorreo;
         private System.Windows.Forms.Label lblataipo;

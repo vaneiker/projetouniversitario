@@ -33,8 +33,6 @@ namespace SistemaFacturacion
                 }
             else
                 {
-
-
                 if (LogicaLogin.ValidateLogin(txtUsuario.Text, Encripatar.Encrypt(txtContrasena.Text), out rollid,out NomC, out idTrabajador))
                     {
 

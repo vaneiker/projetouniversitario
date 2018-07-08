@@ -1009,7 +1009,7 @@ namespace CapaDatos.RepocitoryDbVentas
             return user;
         }
 
-        public void RegistrarUsuario(UsersEntitis entity)
+        public int  RegistrarUsuario(UsersEntitis entity)
         {
             using (dbventasEntity db = new CapaDatos.dbventasEntity())
             {
@@ -1027,12 +1027,14 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.AddWithValue("@Clave", entity.Clave);
                         cmd.Parameters.AddWithValue("@RolID", entity.RolID);
                         cmd.Parameters.AddWithValue("@Statud", entity.Statud);
+                        cmd.Parameters.AddWithValue("@id_trabajador", entity.id_trabajador);
 
                         cmd.ExecuteNonQuery();
-
+                        return 1;
                     }
                     catch (SqlException ex)
                     {
+                        return 0;
                         throw new Exception(ex.Message);
                     }
                 }

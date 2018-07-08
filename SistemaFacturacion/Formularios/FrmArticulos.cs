@@ -112,6 +112,7 @@ namespace SistemaFacturacion.Formularios
         }
         private void clearT()
         {
+            this.codigo = string.Empty;
             cboCat.Text="---Seleccione---";
             cboProv.Text= "---Seleccione---";
             txtNom.Text = string.Empty;
@@ -163,7 +164,45 @@ namespace SistemaFacturacion.Formularios
         private void BuscarD_Click(object sender, EventArgs e)
             {
             TabArticulo.SelectedTab = TabArticulo.TabPages[0];
+           
+           
+
+
+
+            if (string.IsNullOrWhiteSpace(txtSearchCategoria.Text))
+            {
+                Alertas.AlertError err = new Alertas.AlertError("Por Favor Digite la Informacion del Articulo");
+                err.ShowDialog();
+                txtSearchCategoria.Focus();
+                return;
             }
+            else
+            {
+                string a, b;
+                a = txtSearchCategoria.Text.Trim();
+                b = txtSearchCategoria.Text.Trim();
+
+
+                var buscar = _metodos.CriterioBusquedaArticulo(a, b);
+              
+                if (buscar.Rows.Count > 0)
+                {
+                    GridViewArticulos.DataSource = buscar;
+                  
+
+                }
+                else
+                {
+                    Alertas.AlertError err = new Alertas.AlertError("No Existe Data");
+                    err.ShowDialog();
+                    txtSearchCategoria.Focus();
+                }
+            }
+
+
+
+
+        }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             CodigoBarraGenerador c = new CodigoBarraGenerador();
@@ -234,9 +273,10 @@ namespace SistemaFacturacion.Formularios
                     Inactivar("Editar");
                     this.codigo = Convert.ToString(GridViewArticulos.CurrentRow.Cells[0].Value.ToString());
                     txtNom.Text = GridViewArticulos.CurrentRow.Cells[2].Value.ToString();
-                    txtDes.Text = GridViewArticulos.CurrentRow.Cells[3].Value.ToString();
-                   txtCan.Text= GridViewArticulos.CurrentRow.Cells[8].Value.ToString();
-                   txtComp.Text= GridViewArticulos.CurrentRow.Cells[7].Value.ToString();
+                    txtDes.Text = GridViewArticulos.CurrentRow.Cells[5].Value.ToString();
+
+                    txtCan.Text= GridViewArticulos.CurrentRow.Cells[8].Value.ToString();
+                    txtComp.Text= GridViewArticulos.CurrentRow.Cells[7].Value.ToString();
                 }
                 else
                 {
@@ -345,5 +385,10 @@ namespace SistemaFacturacion.Formularios
 
         }
 
+        private void Limpia_Click(object sender, EventArgs e)
+        {
+            ActiveT();
+            clearT();
+        }
     }
     }
