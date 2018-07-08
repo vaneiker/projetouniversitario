@@ -3373,6 +3373,48 @@ GO
 ALTER TABLE [dbo].[cotizacion] CHECK CONSTRAINT [FK_cotizacion_trabajador]
 GO
 
+GO
+
+/****** Object:  Table [dbo].[detalle_cotizacion_productos]    Script Date: 7/7/18 8:12:12 p. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[detalle_cotizacion_productos](
+	[id_cotizacion_producto] [int] IDENTITY(1,1) NOT NULL,
+	[idcotizacion] [int] NOT NULL,
+	[producto] [varchar](50) NOT NULL,
+	[cantidad] [int] NOT NULL,
+	[precioVenta] [decimal](18, 2) NOT NULL,
+	[itbis] [decimal](9, 2) NOT NULL,
+	[subtotal] [decimal](18, 2) NOT NULL,
+	[total] [decimal](18, 2) NOT NULL,
+ CONSTRAINT [PK_detalle_cotizacion_productos] PRIMARY KEY CLUSTERED 
+(
+	[id_cotizacion_producto] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[detalle_cotizacion_productos]  WITH CHECK ADD  CONSTRAINT [FK_detalle_cotizacion_productos_cotizacion] FOREIGN KEY([idcotizacion])
+REFERENCES [dbo].[cotizacion] ([idcotizacion])
+GO
+
+ALTER TABLE [dbo].[detalle_cotizacion_productos] CHECK CONSTRAINT [FK_detalle_cotizacion_productos_cotizacion]
+GO
+
+
+
+
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Notas de Débito')
