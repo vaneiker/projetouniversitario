@@ -3439,6 +3439,38 @@ INSERT INTO [dbo].[detalle_cotizacion_productos]
            ,@total)
 GO
 
+CREATE PROC [DBO].[INSERTAR_COTIZACION]
+@idcliente INT,
+@idtrabajador INT,
+@cantidad INT,
+@subtotal DECIMAL(18, 2),
+@itbis DECIMAL(9,2),
+@total DECIMAL(18, 2),
+@id_cotizacion int output
+AS
+BEGIN
+INSERT INTO [dbo].[cotizacion]
+           ([idcliente]
+           ,[idtrabajador]
+           ,[cantidad]
+           ,[subtotal]
+           ,[itbis]
+           ,[total]
+           ,[fecha]
+           ,[estatus])
+     VALUES
+           (@idcliente
+           ,@idtrabajador
+           ,@cantidad
+           ,@subtotal
+           ,@itbis
+           ,@total
+           ,GETDATE()
+           ,1)
+
+SET @id_cotizacion = @@identity
+END
+GO
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Consumo')
