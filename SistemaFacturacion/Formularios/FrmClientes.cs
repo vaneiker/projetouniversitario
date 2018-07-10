@@ -32,15 +32,15 @@ namespace SistemaFacturacion.Formularios
         private void ListaCliente()
             {
             var lista = _metodos.ListaClientes();
-           
-            GridViewCliente.DataSource = lista;
+
+            GridViewClientes.DataSource = lista;
             }
 
         public void BuscarCliente(string NombreCompleto, string cedula, string codigo, string telefono)
             {
             var lista = _metodos.BuscarCliente(NombreCompleto,cedula,codigo,telefono);
 
-            GridViewCliente.DataSource = lista;
+            GridViewClientes.DataSource = lista;
             }
 
         private void Salir_Click(object sender, EventArgs e)
@@ -54,10 +54,10 @@ namespace SistemaFacturacion.Formularios
         private void BuscarD_Click(object sender, EventArgs e)
             {
             
-            var NomC = txtSearchFullName.Text.Trim();
-            var cod = txtBuscarCodigo.Text.Trim();
-            var tel = txtTelefono.Text.Trim();
-            var ced = txtBuscarCedula.Text.Trim();
+            var NomC = txtSearchCategoria.Text.Trim();
+            var cod = txtSearchCategoria.Text.Trim();
+            var tel = txtSearchCategoria.Text.Trim();
+            var ced = txtSearchCategoria.Text.Trim();
             
             BuscarCliente(NomC,cod,tel,ced);
             }
@@ -72,14 +72,14 @@ namespace SistemaFacturacion.Formularios
             ClienteEntitis cliente = new ClienteEntitis();
             cliente.idcliente = this.codigo;
             cliente.apellidos = txtApellidos.Text.Trim();
-            cliente.nombre=txtNombres.Text.Trim();
-            cliente.sexo = CboSex.Text;
-            cliente.fecha_nacimiento =Convert.ToDateTime(DateNacimiento.Text);
+            cliente.nombre=txtNom.Text.Trim();
+            cliente.sexo = cboSex.Text;
+            cliente.fecha_nacimiento =Convert.ToDateTime(dateFechaNacimiento.Text);
             cliente.tipo_documento ="Cedula";
-            cliente.num_documento = MaskCedula.Text;
-            cliente.direccion = txtDire.Text;
-            cliente.telefono = MascTel.Text;
-            cliente.email= txtemail.Text;
+            cliente.num_documento = txtTel.Text;
+            cliente.direccion = txtDirecion.Text;
+            cliente.telefono = txtTel.Text;
+            cliente.email= txtcorreo.Text;
             cliente.UsuarioAdiciona=seccion.Usuario;
             cliente.UsuarioModifica = seccion.Usuario;
 
@@ -114,17 +114,17 @@ namespace SistemaFacturacion.Formularios
 
             }
 
-        private void GridViewCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GridViewClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
-            if (GridViewCliente.CurrentRow != null)
+            if (GridViewClientes.CurrentRow != null)
                 {
 
-               this.codigo=int.Parse(GridViewCliente.CurrentRow.Cells[0].Value.ToString());
-                txtApellidos.Text = GridViewCliente.CurrentRow.Cells[2].Value.ToString();
-                txtNombres.Text = GridViewCliente.CurrentRow.Cells[3].Value.ToString();
-                CboSex.Text = GridViewCliente.CurrentRow.Cells[4].Value.ToString();
-                MascTel.Text = GridViewCliente.CurrentRow.Cells[5].Value.ToString();
-                txtDire.Text = GridViewCliente.CurrentRow.Cells[6].Value.ToString();
+               this.codigo=int.Parse(GridViewClientes.CurrentRow.Cells[0].Value.ToString());
+                txtApellidos.Text = GridViewClientes.CurrentRow.Cells[2].Value.ToString();
+                txtNom.Text = GridViewClientes.CurrentRow.Cells[3].Value.ToString();
+                cboSex.Text = GridViewClientes.CurrentRow.Cells[4].Value.ToString();
+                txtTel.Text = GridViewClientes.CurrentRow.Cells[5].Value.ToString();
+                txtDirecion.Text = GridViewClientes.CurrentRow.Cells[6].Value.ToString();
                 }
             }
 
@@ -134,7 +134,7 @@ namespace SistemaFacturacion.Formularios
             if (MessageBox.Show("¿Realmente desea eliminar los clientes seleccionados?", "Eliminacion de cliente",
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                c.idcliente = int.Parse(txtcodigo.Text);
+                c.idcliente = this.codigo;
                 _metodos.Borrar_Clientes(c);
                 ListaCliente();
                 MessageBox.Show("Cliente Borrado Satifactoriamente!!!");
@@ -169,21 +169,21 @@ ListaCliente();
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
             {
-            var Rnc = d.IsValidModulo11(maskedTexRnc.Text);
+            //var Rnc = d.IsValidModulo11(maskedTexRnc.Text);
            
-            maskedTexRnc.Visible = true;
-            lblced.Text = "RNC";
-            lblced.Visible = true;
-            MaskCedula.Visible = false;
+            //maskedTexRnc.Visible = true;
+            //lblced.Text = "RNC";
+            //lblced.Visible = true;
+            //MaskCedula.Visible = false;
             }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
             {
-            var Rnc = d.IsValidModulo10(MaskCedula.Text);
-            maskedTexRnc.Visible = false;
-            lblced.Text = "Cedula";
-            lblced.Visible = true;
-            MaskCedula.Visible = true;
+            //var Rnc = d.IsValidModulo10(MaskCedula.Text);
+            //maskedTexRnc.Visible = false;
+            //lblced.Text = "Cedula";
+            //lblced.Visible = true;
+            //MaskCedula.Visible = true;
             
             }
         }

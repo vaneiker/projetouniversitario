@@ -17,6 +17,8 @@ namespace SistemaFacturacion.Formularios
     {
         UsersEntitis selectedUser;
         Alertas.AlertSuccess sucess = new Alertas.AlertSuccess();
+        LogicaDbVentas _metodos = new LogicaDbVentas();
+        private int codigo { get; set; }
         public FrmMantenimientoUsuarios()
         {
             InitializeComponent();
@@ -44,11 +46,7 @@ namespace SistemaFacturacion.Formularios
             cboTrab.ValueMember = "idtrabajador";
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
+     
         private void btnBusc_Click(object sender, EventArgs e)
         {
             UsersEntitis usuario = new UsersEntitis();
@@ -64,11 +62,13 @@ namespace SistemaFacturacion.Formularios
             dt.Clear();
             dt.Columns.Add("id");
             dt.Columns.Add("Usuario");
+            dt.Columns.Add("Usuario");
             dt.Columns.Add("Status");
 
             DataRow fila = dt.NewRow();
             fila["id"] = usuario.id.ToString();
             fila["Usuario"] = usuario.Usuario;
+            fila["id_empleado"] = usuario.id_trabajador.ToString(); 
             fila["Status"] = (usuario.Statud == true) ? "Activo" : "Inactivo";
 
             dt.Rows.Add(fila);
@@ -84,9 +84,13 @@ namespace SistemaFacturacion.Formularios
         {
             UsersEntitis user = new UsersEntitis();
             string usuario = GridViewUsuarios.Rows[e.RowIndex].Cells["Usuario"].Value.ToString();
+
             selectedUser = user.GetUserByName(usuario);
             txtUsuario.Text = selectedUser.Usuario;
             cboRoll.SelectedIndex = selectedUser.RolID;
+            cboTrab.SelectedIndex = selectedUser.id_trabajador;
+            this.codigo = selectedUser.id;
+
             TabArticulo.SelectedTab = TabArticulo.TabPages[1];
             
 
@@ -119,30 +123,60 @@ namespace SistemaFacturacion.Formularios
                 return;
             }
 
-            UsersEntitis nuevoUsuario = new UsersEntitis();
-            if(selectedUser != null)
+            if (cboTrab.SelectedIndex == 0)
             {
-                txtContrasena.Text = AppTools.Encripatar.Encrypt(txtContrasena.Text);
-                nuevoUsuario = selectedUser.RegistrarUsuario(txtUsuario.Text.Trim(), txtContrasena.Text, Convert.ToInt32(cboRoll.SelectedValue), selectedUser.Statud.Value, selectedUser.id);
-                sucess.ShowDialog();
+                MessageBox.Show("Seleccione el Empleado");
+                cboRoll.Focus();
+                return;
+            }
+            txtContrasena.Text = AppTools.Encripatar.Encrypt(txtContrasena.Text);
+            int roll = Convert.ToInt32(cboRoll.SelectedValue);
+            int trab = Convert.ToInt32(cboTrab.SelectedValue);
+
+
+            var repuesta = _metodos.RegistrarUsuarios(txtUsuario.Text,txtContrasena.Text, roll, true,trab,this.codigo=0);
+            if (repuesta == true)
+            {
+                Alertas.AlertSuccess suu = new Alertas.AlertSuccess("Usuario Agregado Exitosamente!");
+                suu.ShowDialog();
                 txtUsuario.Text = string.Empty;
                 txtContrasena.Text = string.Empty;
                 txtRepClave.Text = string.Empty;
+                cboTrab.SelectedIndex = 0;
                 cboRoll.SelectedIndex = 0;
                 txtUsuario.Focus();
             }
             else
             {
-                txtContrasena.Text = AppTools.Encripatar.Encrypt(txtContrasena.Text);
-                nuevoUsuario = nuevoUsuario.RegistrarUsuario(txtUsuario.Text.Trim(), txtContrasena.Text, Convert.ToInt32(cboRoll.SelectedValue), true);
-                sucess.ShowDialog();
-                txtUsuario.Text = string.Empty;
-                txtContrasena.Text = string.Empty;
-                txtRepClave.Text = string.Empty;
-                cboRoll.SelectedIndex = 0;
-                txtUsuario.Focus();
+                Alertas.AlertError error = new Alertas.AlertError("Usuario No pudo ser Agregado");
+                error.ShowDialog();
             }
-            
+
+            //UsersEntitis nuevoUsuario = new UsersEntitis();
+            //if(selectedUser != null)
+            //{
+            //    txtContrasena.Text = AppTools.Encripatar.Encrypt(txtContrasena.Text);
+            //nuevoUsuario = selectedUser.RegistrarUsuario(txtUsuario.Text.Trim(), txtContrasena.Text, Convert.ToInt32(cboRoll.SelectedValue), selectedUser.Statud.Value, Convert.ToInt32(cboTrab.ValueMember), selectedUser.id);
+            //    sucess.ShowDialog();
+            //    txtUsuario.Text = string.Empty;
+            //    txtContrasena.Text = string.Empty;
+            //    txtRepClave.Text = string.Empty;
+            //    cboRoll.SelectedIndex = 0;
+            //    txtUsuario.Focus();
+            //}
+            //else
+            //{
+            //    txtContrasena.Text = AppTools.Encripatar.Encrypt(txtContrasena.Text);
+            //    nuevoUsuario = nuevoUsuario.RegistrarUsuario(txtUsuario.Text.Trim(), txtContrasena.Text, Convert.ToInt32(cboRoll.SelectedValue),selectedUser.Statud.Value,Convert.ToInt32(cboTrab.SelectedValue), selectedUser.id);
+            //    sucess.ShowDialog();
+            //    txtUsuario.Text = string.Empty;
+            //    txtContrasena.Text = string.Empty;
+            //    txtRepClave.Text = string.Empty;
+            //    cboTrab.SelectedIndex = 0;
+            //    cboRoll.SelectedIndex = 0;
+            //    txtUsuario.Focus();
+            //}
+
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)

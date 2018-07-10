@@ -447,6 +447,11 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region cuenta_x_cobrar Datos
+
+        /// <summary>
+        /// Metodo que devuelve un listado de los clientes con deuda
+        /// </summary>
+        /// <returns></returns>
         public DataTable ListCuentasXcobrar()
         {
             using (dbventasEntity context = new dbventasEntity())
@@ -457,7 +462,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 using (connection)
                 {
                     connection.Open();
-                    string Qry = "sp_get_clientes_deudores";
+                    string Qry = "SP_GET_CLIENTE_DEUDA";
                     SqlCommand cmd = new SqlCommand(Qry, connection);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -468,7 +473,11 @@ namespace CapaDatos.RepocitoryDbVentas
             }
 
         }
-
+        /// <summary>
+        /// Metodo que Busca a los clientes con Deudas
+        /// </summary>
+        /// <param name="cxc">Resive un Objeto la cual estan las propiedades</param>
+        /// <returns></returns>
         public DataTable BuscarClientesDeuda(cuentas_x_cobrarEntitis cxc)
         {
 
@@ -1009,7 +1018,7 @@ namespace CapaDatos.RepocitoryDbVentas
             return user;
         }
 
-        public void RegistrarUsuario(UsersEntitis entity)
+        public int  RegistrarUsuario(UsersEntitis entity)
         {
             using (dbventasEntity db = new CapaDatos.dbventasEntity())
             {
@@ -1027,12 +1036,14 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.AddWithValue("@Clave", entity.Clave);
                         cmd.Parameters.AddWithValue("@RolID", entity.RolID);
                         cmd.Parameters.AddWithValue("@Statud", entity.Statud);
+                        cmd.Parameters.AddWithValue("@id_trabajador", entity.id_trabajador);
 
                         cmd.ExecuteNonQuery();
-
+                        return 1;
                     }
                     catch (SqlException ex)
                     {
+                        return 0;
                         throw new Exception(ex.Message);
                     }
                 }
@@ -1348,7 +1359,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 using (var connection = db.Database.Connection as SqlConnection)
                 {
                     connection.Open();
-                    string proc = "[DBO].[SP_GET_VENTAS_DEL_DIA]";
+                    string proc = "[DBO].[    ]";
 
                     SqlCommand cmd = new SqlCommand(proc, connection);
                     cmd.CommandType = CommandType.StoredProcedure;

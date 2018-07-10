@@ -384,6 +384,7 @@
             this.btnCxc.TabIndex = 3;
             this.btnCxc.Text = "Cuentas Por Cobrar";
             this.btnCxc.UseVisualStyleBackColor = false;
+            this.btnCxc.Click += new System.EventHandler(this.btnCxc_Click);
             // 
             // BtnCliente
             // 
