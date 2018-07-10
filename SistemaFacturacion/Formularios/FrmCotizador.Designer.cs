@@ -124,6 +124,7 @@
             this.btnBusc.TabIndex = 192;
             this.btnBusc.Text = "Cotizar";
             this.btnBusc.UseVisualStyleBackColor = false;
+            this.btnBusc.Click += new System.EventHandler(this.btnBusc_Click);
             // 
             // panel2
             // 
@@ -189,6 +190,7 @@
             this.DataGrivCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGrivCliente.Size = new System.Drawing.Size(497, 93);
             this.DataGrivCliente.TabIndex = 200;
+            this.DataGrivCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrivCliente_CellContentClick);
             // 
             // lblCri
             // 

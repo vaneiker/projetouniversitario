@@ -516,9 +516,9 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                     producto = entrada.producto,
                     cantidad = entrada.cantidad,
                     precioVenta = entrada.precio_venta,
-                    itbis = entrada.itbis,
+                    itbis = entrada.itbis * entrada.cantidad,
                     subtotal = (entrada.precio_venta * entrada.cantidad),
-                    total = ((entrada.cantidad * entrada.precio_venta) + entrada.itbis)
+                    total = ((entrada.cantidad * entrada.precio_venta) + (entrada.itbis * entrada.cantidad))
                 };
                 _metodos.IngresarDetallesCotizacion(producto);
             }
