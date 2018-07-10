@@ -1410,9 +1410,12 @@ namespace CapaDatos.RepocitoryDbVentas
 
             return ventas;
         }
-            #endregion
+        #endregion
 
-        }
-
-
+        #region Cotizacion
+   
+        #endregion
     }
+
+
+}
