@@ -1413,7 +1413,40 @@ namespace CapaDatos.RepocitoryDbVentas
         #endregion
 
         #region Cotizacion
-   
+        /// <summary>
+        /// Ingresa el detalle de productos cotizados a la base de datos
+        /// </summary>
+        /// <param name="entity">Entidad de detalles para la cotizacion</param>
+        public void IngresarDetallesCotizacion(detalle_cotizacion_productos entity)
+        {
+            using(dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using(var connection = db.Database.Connection as SqlConnection)
+                {
+                    string proc = "[DBO].[INSERTAR_DETALLES_COTIZADOR_PRODUCTOS]";
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(proc, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //Parameterers
+                    cmd.Parameters.AddWithValue("@idcotizacion", entity.idcotizacion).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@producto", entity.producto).SqlDbType = SqlDbType.VarChar;
+                    cmd.Parameters.AddWithValue("@cantidad", entity.cantidad).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@precioVenta", entity.precioVenta).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@itbis", entity.itbis).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@subtotal", entity.subtotal).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@total", entity.total).SqlDbType = SqlDbType.Decimal;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
         #endregion
     }
 
