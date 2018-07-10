@@ -1447,6 +1447,52 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             }
         }
+        /// <summary>
+        /// Ingresa La Cotizacion a la base de datos.
+        /// </summary>
+        /// <param name="entity">Entidad Cotizacion con los datos</param>
+        /// <returns>El Id de la cotizacion Ingresada</returns>
+        public int IngresarCotizacion(CotizacionEntity entity)
+        {
+            int cotizacionId = 0;
+            using(dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using(var connection = db.Database.Connection as SqlConnection)
+                {
+                    string proc = "[DBO].[INSERTAR_COTIZACION]";
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(proc, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //Parameters
+                    cmd.Parameters.AddWithValue("@idcliente", entity.idcliente).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@idtrabajador", entity.idtrabajador).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@cantidad", entity.cantidad).SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.AddWithValue("@subtotal", entity.subtotal).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@itbis", entity.itbis).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@total", entity.total).SqlDbType = SqlDbType.Decimal;
+                    cmd.Parameters.AddWithValue("@id_cotizacion", cotizacionId).Direction = ParameterDirection.Output;
+                    cmd.Parameters["@id_cotizacion"].SqlDbType = SqlDbType.Int;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+
+                        if(cmd.Parameters["@id_cotizacion"].Value == DBNull.Value)
+                        {
+                            return 0;
+                        }else
+                        {
+                            cotizacionId = Convert.ToInt32(cmd.Parameters["@id_cotizacion"].Value);
+                        }
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+            return cotizacionId;
+        }
         #endregion
     }
 
