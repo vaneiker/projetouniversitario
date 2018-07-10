@@ -122,6 +122,12 @@ namespace SistemaFacturacion.Formularios
             FrmCotizador c = new Formularios.FrmCotizador();
             c.ShowDialog();
         }
+
+        private void btnCxc_Click(object sender, EventArgs e)
+        {
+            FrmCuentasPorCobrarl cxc = new FrmCuentasPorCobrarl();
+            cxc.ShowDialog();
+        }
     }
     }
   

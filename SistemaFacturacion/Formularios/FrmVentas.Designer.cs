@@ -41,10 +41,8 @@
             this.Eliminar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Limpia = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.Cuadrar = new System.Windows.Forms.ToolStripButton();
             this.radioACredito = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.radioAlContado = new System.Windows.Forms.RadioButton();
@@ -84,6 +82,7 @@
             this.BtnBuscarArticulo = new System.Windows.Forms.Button();
             this.GrivArticulo = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnRemoveItem = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnCancelarFactura = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
@@ -97,7 +96,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
-            this.btnRemoveItem = new System.Windows.Forms.Button();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -129,10 +132,13 @@
             this.Eliminar,
             this.toolStripSeparator3,
             this.Limpia,
-            this.toolStripSeparator2,
-            this.Salir,
+            this.toolStripSeparator7,
             this.toolStripButton2,
-            this.Cuadrar});
+            this.toolStripSeparator8,
+            this.toolStripButton3,
+            this.toolStripSeparator9,
+            this.Salir,
+            this.toolStripSeparator10});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip1.Name = "ToolStrip1";
             this.ToolStrip1.Size = new System.Drawing.Size(1356, 71);
@@ -230,11 +236,6 @@
             this.Limpia.Text = "Limpia";
             this.Limpia.Click += new System.EventHandler(this.Limpia_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 71);
-            // 
             // Salir
             // 
             this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -256,19 +257,6 @@
             this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
             this.toolStripButton2.Text = "Limpiar";
             this.toolStripButton2.ToolTipText = "Eliminar";
-            // 
-            // Cuadrar
-            // 
-            this.Cuadrar.AutoSize = false;
-            this.Cuadrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Cuadrar.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Cuadrar.Image = ((System.Drawing.Image)(resources.GetObject("Cuadrar.Image")));
-            this.Cuadrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Cuadrar.Name = "Cuadrar";
-            this.Cuadrar.Size = new System.Drawing.Size(50, 68);
-            this.Cuadrar.Text = "toolStripButton3";
-            this.Cuadrar.ToolTipText = "Cuadrar Caja";
-            this.Cuadrar.Click += new System.EventHandler(this.Cuadrar_Click);
             // 
             // radioACredito
             // 
@@ -736,6 +724,27 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Codigo";
             // 
+            // btnRemoveItem
+            // 
+            this.btnRemoveItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnRemoveItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveItem.Enabled = false;
+            this.btnRemoveItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnRemoveItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnRemoveItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveItem.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveItem.ForeColor = System.Drawing.Color.White;
+            this.btnRemoveItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveItem.Location = new System.Drawing.Point(694, 8);
+            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRemoveItem.Name = "btnRemoveItem";
+            this.btnRemoveItem.Size = new System.Drawing.Size(35, 24);
+            this.btnRemoveItem.TabIndex = 195;
+            this.btnRemoveItem.Text = "x";
+            this.btnRemoveItem.UseVisualStyleBackColor = false;
+            this.btnRemoveItem.Visible = false;
+            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
+            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.btnCancelarFactura);
@@ -911,26 +920,37 @@
             this.gridArticulosAVender.Size = new System.Drawing.Size(721, 151);
             this.gridArticulosAVender.TabIndex = 0;
             // 
-            // btnRemoveItem
+            // toolStripButton3
             // 
-            this.btnRemoveItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnRemoveItem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRemoveItem.Enabled = false;
-            this.btnRemoveItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
-            this.btnRemoveItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnRemoveItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveItem.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveItem.ForeColor = System.Drawing.Color.White;
-            this.btnRemoveItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoveItem.Location = new System.Drawing.Point(694, 8);
-            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRemoveItem.Name = "btnRemoveItem";
-            this.btnRemoveItem.Size = new System.Drawing.Size(35, 24);
-            this.btnRemoveItem.TabIndex = 195;
-            this.btnRemoveItem.Text = "x";
-            this.btnRemoveItem.UseVisualStyleBackColor = false;
-            this.btnRemoveItem.Visible = false;
-            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(52, 68);
+            this.toolStripButton3.Text = "Limpiar";
+            this.toolStripButton3.ToolTipText = "Eliminar";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 71);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 71);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 71);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 71);
             // 
             // FrmVentas
             // 
@@ -993,7 +1013,6 @@
         internal System.Windows.Forms.ToolStripButton Eliminar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         internal System.Windows.Forms.ToolStripButton Limpia;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         internal System.Windows.Forms.ToolStripButton Salir;
         internal System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.RadioButton radioAlContado;
@@ -1048,7 +1067,11 @@
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.TextBox textArticuloCantidad;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ToolStripButton Cuadrar;
         private System.Windows.Forms.Button btnRemoveItem;
+        internal System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
     }
     }

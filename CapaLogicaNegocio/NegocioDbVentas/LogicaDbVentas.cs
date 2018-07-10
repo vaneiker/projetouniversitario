@@ -24,7 +24,6 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return _metodos.ListCategoria();
 
             }
-
         public void Registrar_Categoria(categoriaEntitis categoria)
             {
             _metodos.Registrar_Categoria(categoria);
@@ -59,7 +58,6 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                 return false;
             }
         }
-
         public bool BorrarArticulo(int id ,bool estatus)
         {
             articulosEntitis en = new articulosEntitis();
@@ -83,10 +81,6 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
             }
         }
-
-
-
-
         public ClienteEntitis GetClienteFromDataTable(DataTable source)
         {
             ClienteEntitis cliente = new ClienteEntitis();
@@ -206,17 +200,24 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
            
             }
+        /// <summary>
+        /// Metodo que elimina los articulos 
+        /// </summary>
+        /// <param name="art">Parametro de entrada esto resive un Ojeto</param>
+        /// <returns></returns>
         public bool Eliminar_Articulo(articulosEntitis art)
         {
             try
             {
                 _metodos.EliminarArticulo(art);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
             }
             return true;
         }
+           
 
         public int IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
         {
@@ -501,6 +502,21 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             {
                 return false;
             }
+        }
+
+        public DataTable ListadoCxC()
+        {
+            return _metodos.ListCuentasXcobrar();
+        }
+
+
+        public DataTable BuscarCxC(string num_documento,string codigoCliente,string NombComp) 
+            {
+            cuentas_x_cobrarEntitis cxc = new cuentas_x_cobrarEntitis();
+            cxc.num_documento = num_documento;
+            cxc.codigoCliente = codigoCliente;
+            cxc.NombComp = NombComp;
+            return _metodos.ListCuentasXcobrar();
         }
     }
 }

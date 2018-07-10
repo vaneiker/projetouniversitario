@@ -33,7 +33,19 @@ namespace SistemaFacturacion.Formularios
 
         private void FrmCuentasPorCobrarl_Load(object sender, EventArgs e)
             {
-            ClienteCbox();
+            ListadoClienteCXC();
             }
+
+        private void ListadoClienteCXC()
+        {
+            var cxc_ = _metodos.ListadoCxC();
+            GridViewCXC.DataSource = cxc_;
+            //GridViewCXC
         }
+
+        private void GridViewCXC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
     }
