@@ -1243,7 +1243,11 @@ namespace CapaDatos.RepocitoryDbVentas
             }
             return facturaEncontrada;
         }
-
+        /// <summary>
+        /// Busca En la base de datos el Id de la Factura.
+        /// </summary>
+        /// <param name="id_venta">ID de la Venta Registrad en Relacion a la factura</param>
+        /// <returns>Valor Entero del Id de la Factura</returns>
         public int BuscarIdFactura(int id_venta)
         {
             int id_factura = 0;
@@ -1271,7 +1275,10 @@ namespace CapaDatos.RepocitoryDbVentas
             }
                 return id_factura;
         }
-
+        /// <summary>
+        /// Agrega una Cuenta por Cobrar en la base de datos.
+        /// </summary>
+        /// <param name="entity">Entidad cuentas_x_cobrarEntitis</param>
         public void AgregarCuentaACobrar(cuentas_x_cobrarEntitis entity)
         {
             using(dbventasEntity db = new dbventasEntity())
@@ -1299,6 +1306,10 @@ namespace CapaDatos.RepocitoryDbVentas
                 }
             }
         }
+        /// <summary>
+        /// Reduce la Cantidad de los Articulos registrados
+        /// </summary>
+        /// <param name="entity">Entidad Articulos</param>
         public void ReducirCantidadArticulo(articulosEntitis entity)
         {
             using(dbventasEntity db = new CapaDatos.dbventasEntity())
@@ -1325,6 +1336,81 @@ namespace CapaDatos.RepocitoryDbVentas
 
                 }
             }
+        }
+        /// <summary>
+        /// Busca la Venta de Dia Registradas
+        /// </summary>
+        /// <returns>Ventas Del Dia en DataTable</returns>
+        public DataTable BuscarVentasDelDia()
+        {
+            DateTime ahora = DateTime.Now;
+            DataTable ventas = null;
+            using (dbventasEntity db = new dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string proc = "[DBO].[SP_GET_VENTAS_DEL_DIA]";
+
+                    SqlCommand cmd = new SqlCommand(proc, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@fecha", ahora).SqlDbType = SqlDbType.Date;
+
+                    try
+                    {
+                        ventas = new DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                        da.Fill(ventas);
+
+                        if (ventas.Rows.Count <= 0)
+                            return null;
+
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+
+            return ventas;
+        } 
+        /// <summary>
+        /// Busca en la base de datos las Ventas del Mes
+        /// </summary>
+        /// <param name="inicio">Fecha de Inicio 1ro del Mes</param>
+        /// <param name="final">Fecha final 30 o 31 del Mes</param>
+        /// <returns>Filas de las ventas en DataTable</returns>
+        public DataTable BuscarVentasDelMes(DateTime inicio, DateTime final)
+        {
+            DataTable ventas = null;
+            using(dbventasEntity db = new CapaDatos.dbventasEntity())
+            {
+                using (var connection = db.Database.Connection as SqlConnection)
+                {
+                    connection.Open();
+                    string proc = "[DBO].[SP_GET_VENTAS_DEL_MES]";
+                    SqlCommand cmd = new SqlCommand(proc, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@FROM", inicio).SqlDbType = SqlDbType.Date;
+                    cmd.Parameters.AddWithValue("@Tipo_de_Documento", final).SqlDbType = SqlDbType.Date;
+
+                    try{
+                        ventas = new DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(ventas);
+                        if (ventas.Rows.Count <= 0)
+                            return null;  
+                    }catch(SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+
+            return ventas;
         }
             #endregion
 

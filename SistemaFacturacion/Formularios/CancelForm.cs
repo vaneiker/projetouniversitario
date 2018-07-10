@@ -29,10 +29,12 @@ namespace SistemaFacturacion.Formularios
                 int rol;
                 string name;
                 int id;
-                LogicaLogin.ValidateLogin(txtUsuario.Text.Trim(), txtContraseña.Text.Trim(), out rol, out name, out id);
+                txtContraseña.Text = AppTools.Encripatar.Encrypt(txtContraseña.Text.Trim());
+                LogicaLogin.ValidateLogin(txtUsuario.Text.Trim(), txtContraseña.Text, out rol, out name, out id);
                 if( rol == 1 || rol == 5)
                 {
                     PuedeCancelar = true;
+                    this.Close();
                 }else if(rol <= 0)
                 {
                     Alertas.AlertError noValido = new Alertas.AlertError("Usuario o Contraseña no Valido..");

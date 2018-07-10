@@ -874,13 +874,22 @@ GO
 CREATE PROC [dbo].[SP_LOGIN]
 @usuario varchar(50),
 @contrasena varchar(50),
-@rolid int output
+@NombreC varchar(80) output,
+@rolid int output,
+@id_trabajador int output
 AS
 BEGIN
- SELECT @rolid = RolID from [dbo].[USERS] WHERE Usuario = @usuario and Clave = @contrasena and Statud=1;
- IF NOT (@rolid > 0)
+ 
+ SELECT @rolid=RolID,@NombreC=NombreCompleto,@id_trabajador=id_trabajador
+from dbo.wv_usuario_trabajador 
+WHERE Usuario = @usuario and Clave = @contrasena
+ 
+ 
+ IF  (@rolid<=0)
  BEGIN
    SET @rolid = 0
+   SET @NombreC = ''
+   SET @id_trabajador = 0
  END
 END
 
@@ -3290,6 +3299,177 @@ select t.fecha, t.idventa, (c.nombre + ' ' + c.apellidos) AS cliente, t.idtrabaj
 from @TEMP t inner join
 cliente c on c.idcliente = t.idcliente;
 end
+GO
+CREATE PROC [dbo].[VENTAS_DEL_MES]
+@FROM date,
+@TO date
+AS
+select *, [Pagada] = 'Pagada'  from venta v
+where (v.[idventa]) not in (select p.id_venta from cuentas_x_cobrar p where p.fecha between @FROM and @TO)
+and v.fecha between @FROM and @TO
+union
+select *, [Pagada] = 'Credito' from venta v
+where (v.[idventa]) in (select p.id_venta from cuentas_x_cobrar p where p.fecha between @FROM and @TO)
+and v.fecha between @FROM and @TO
+
+GO
+
+CREATE PROC [DBO].[SP_GET_VENTAS_DEL_MES]
+@FROM date,
+@Tipo_de_Documento date
+as
+begin
+DECLARE @TEMP TABLE(idventa int, idcliente int, idtrabajador int, fecha date, tc varchar(25), tv varchar(20), tcli varchar(50), it decimal(9,2), sub decimal(18,2), total decimal(18,2), pagada varchar(25))
+insert into @TEMP EXEC VENTAS_DEL_DIA @FROM, @Tipo_de_Documento
+
+select t.fecha, t.idventa, (c.nombre + ' ' + c.apellidos) AS cliente, t.idtrabajador, t.tc as tipo, t.tv as venta, t.tcli as categoria, t.it as itbis, t.sub as subtotal, t.total as total, t.pagada
+from @TEMP t inner join
+cliente c on c.idcliente = t.idcliente;
+end
+
+GO
+
+GO
+
+/****** Object:  Table [dbo].[cotizacion]    Script Date: 7/7/18 7:57:07 p. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[cotizacion](
+	[idcotizacion] [int] IDENTITY(1,1) NOT NULL,
+	[idcliente] [int] NOT NULL,
+	[idtrabajador] [int] NOT NULL,
+	[cantidad] [int] NOT NULL,
+	[subtotal] [decimal](18, 2) NOT NULL,
+	[itbis] [decimal](9, 2) NOT NULL,
+	[total] [decimal](18, 2) NOT NULL,
+	[fecha] [date] NOT NULL,
+	[estatus] [bit] NOT NULL,
+ CONSTRAINT [PK_cotizacion] PRIMARY KEY CLUSTERED 
+(
+	[idcotizacion] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[cotizacion] ADD  CONSTRAINT [DF_cotizacion_estatus]  DEFAULT ((1)) FOR [estatus]
+GO
+
+ALTER TABLE [dbo].[cotizacion]  WITH CHECK ADD  CONSTRAINT [FK_cotizacion_cliente] FOREIGN KEY([idcliente])
+REFERENCES [dbo].[cliente] ([idcliente])
+GO
+
+ALTER TABLE [dbo].[cotizacion] CHECK CONSTRAINT [FK_cotizacion_cliente]
+GO
+
+ALTER TABLE [dbo].[cotizacion]  WITH CHECK ADD  CONSTRAINT [FK_cotizacion_trabajador] FOREIGN KEY([idtrabajador])
+REFERENCES [dbo].[trabajador] ([idtrabajador])
+GO
+
+ALTER TABLE [dbo].[cotizacion] CHECK CONSTRAINT [FK_cotizacion_trabajador]
+GO
+
+GO
+
+/****** Object:  Table [dbo].[detalle_cotizacion_productos]    Script Date: 7/7/18 8:12:12 p. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[detalle_cotizacion_productos](
+	[id_cotizacion_producto] [int] IDENTITY(1,1) NOT NULL,
+	[idcotizacion] [int] NOT NULL,
+	[producto] [varchar](50) NOT NULL,
+	[cantidad] [int] NOT NULL,
+	[precioVenta] [decimal](18, 2) NOT NULL,
+	[itbis] [decimal](9, 2) NOT NULL,
+	[subtotal] [decimal](18, 2) NOT NULL,
+	[total] [decimal](18, 2) NOT NULL,
+ CONSTRAINT [PK_detalle_cotizacion_productos] PRIMARY KEY CLUSTERED 
+(
+	[id_cotizacion_producto] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[detalle_cotizacion_productos]  WITH CHECK ADD  CONSTRAINT [FK_detalle_cotizacion_productos_cotizacion] FOREIGN KEY([idcotizacion])
+REFERENCES [dbo].[cotizacion] ([idcotizacion])
+GO
+
+ALTER TABLE [dbo].[detalle_cotizacion_productos] CHECK CONSTRAINT [FK_detalle_cotizacion_productos_cotizacion]
+GO
+
+CREATE PROC [DBO].[INSERTAR_DETALLES_COTIZADOR_PRODUCTOS]
+@idcotizacion INT,
+@producto VARCHAR(50),
+@cantidad INT,
+@precioVenta DECIMAL(18,2),
+@itbis DECIMAL(9,2),
+@subtotal DECIMAL(18,2),
+@total DECIMAL(18,2)
+AS
+INSERT INTO [dbo].[detalle_cotizacion_productos]
+           ([idcotizacion]
+           ,[producto]
+           ,[cantidad]
+           ,[precioVenta]
+           ,[itbis]
+           ,[subtotal]
+           ,[total])
+     VALUES
+           (@idcotizacion
+           ,@producto
+           ,@cantidad
+           ,@precioVenta
+           ,@itbis
+           ,@subtotal
+           ,@total)
+GO
+
+CREATE PROC [DBO].[INSERTAR_COTIZACION]
+@idcliente INT,
+@idtrabajador INT,
+@cantidad INT,
+@subtotal DECIMAL(18, 2),
+@itbis DECIMAL(9,2),
+@total DECIMAL(18, 2),
+@id_cotizacion int output
+AS
+BEGIN
+INSERT INTO [dbo].[cotizacion]
+           ([idcliente]
+           ,[idtrabajador]
+           ,[cantidad]
+           ,[subtotal]
+           ,[itbis]
+           ,[total]
+           ,[fecha]
+           ,[estatus])
+     VALUES
+           (@idcliente
+           ,@idtrabajador
+           ,@cantidad
+           ,@subtotal
+           ,@itbis
+           ,@total
+           ,GETDATE()
+           ,1)
+
+SET @id_cotizacion = @@identity
+END
 GO
 
 INSERT INTO [dbventas].[dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal')

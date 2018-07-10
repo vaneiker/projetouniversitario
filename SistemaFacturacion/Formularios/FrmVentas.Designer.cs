@@ -44,6 +44,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.Cuadrar = new System.Windows.Forms.ToolStripButton();
             this.radioACredito = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.radioAlContado = new System.Windows.Forms.RadioButton();
@@ -96,6 +97,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
+            this.btnRemoveItem = new System.Windows.Forms.Button();
             this.ToolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -129,7 +131,8 @@
             this.Limpia,
             this.toolStripSeparator2,
             this.Salir,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.Cuadrar});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip1.Name = "ToolStrip1";
             this.ToolStrip1.Size = new System.Drawing.Size(1356, 71);
@@ -253,6 +256,19 @@
             this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
             this.toolStripButton2.Text = "Limpiar";
             this.toolStripButton2.ToolTipText = "Eliminar";
+            // 
+            // Cuadrar
+            // 
+            this.Cuadrar.AutoSize = false;
+            this.Cuadrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Cuadrar.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Cuadrar.Image = ((System.Drawing.Image)(resources.GetObject("Cuadrar.Image")));
+            this.Cuadrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Cuadrar.Name = "Cuadrar";
+            this.Cuadrar.Size = new System.Drawing.Size(50, 68);
+            this.Cuadrar.Text = "toolStripButton3";
+            this.Cuadrar.ToolTipText = "Cuadrar Caja";
+            this.Cuadrar.Click += new System.EventHandler(this.Cuadrar_Click);
             // 
             // radioACredito
             // 
@@ -706,11 +722,11 @@
             this.GrivArticulo.Name = "GrivArticulo";
             this.GrivArticulo.Size = new System.Drawing.Size(631, 93);
             this.GrivArticulo.TabIndex = 0;
-            this.GrivArticulo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrivArticulo_CellContentClick);
             // 
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox5.Controls.Add(this.btnRemoveItem);
             this.groupBox5.Controls.Add(this.groupBox6);
             this.groupBox5.Controls.Add(this.gridArticulosAVender);
             this.groupBox5.Location = new System.Drawing.Point(100, 446);
@@ -890,11 +906,31 @@
             // gridArticulosAVender
             // 
             this.gridArticulosAVender.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridArticulosAVender.Location = new System.Drawing.Point(6, 20);
+            this.gridArticulosAVender.Location = new System.Drawing.Point(6, 32);
             this.gridArticulosAVender.Name = "gridArticulosAVender";
-            this.gridArticulosAVender.Size = new System.Drawing.Size(721, 163);
+            this.gridArticulosAVender.Size = new System.Drawing.Size(721, 151);
             this.gridArticulosAVender.TabIndex = 0;
-            this.gridArticulosAVender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridArticulosAVender_CellContentClick);
+            // 
+            // btnRemoveItem
+            // 
+            this.btnRemoveItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnRemoveItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveItem.Enabled = false;
+            this.btnRemoveItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnRemoveItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnRemoveItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveItem.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveItem.ForeColor = System.Drawing.Color.White;
+            this.btnRemoveItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveItem.Location = new System.Drawing.Point(694, 8);
+            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRemoveItem.Name = "btnRemoveItem";
+            this.btnRemoveItem.Size = new System.Drawing.Size(35, 24);
+            this.btnRemoveItem.TabIndex = 195;
+            this.btnRemoveItem.Text = "x";
+            this.btnRemoveItem.UseVisualStyleBackColor = false;
+            this.btnRemoveItem.Visible = false;
+            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
             // 
             // FrmVentas
             // 
@@ -1012,5 +1048,7 @@
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.TextBox textArticuloCantidad;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripButton Cuadrar;
+        private System.Windows.Forms.Button btnRemoveItem;
     }
     }
