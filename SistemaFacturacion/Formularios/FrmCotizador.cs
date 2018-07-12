@@ -418,5 +418,15 @@ namespace SistemaFacturacion.Formularios
             return descontado > precioCompra;
         }
 
+        private void DataGrivCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DataGrivCliente != null)
+            {
+              
+                txtCliente.Text = clienteAFacturar.NombreCompleto;
+             
+                txtBuscarArticulo.Focus();
+            }
+        }
     }
 }

@@ -189,6 +189,7 @@
             this.DataGrivCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGrivCliente.Size = new System.Drawing.Size(497, 93);
             this.DataGrivCliente.TabIndex = 200;
+            this.DataGrivCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrivCliente_CellContentClick);
             // 
             // lblCri
             // 

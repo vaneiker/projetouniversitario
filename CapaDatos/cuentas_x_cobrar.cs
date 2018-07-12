@@ -26,7 +26,7 @@ namespace CapaDatos
         public decimal valor { get; set; }
         public bool pagado { get; set; }
         public string usuario { get; set; }
-    
+        public string idFactura { get; set; }
         public virtual cliente cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovimientosPagosYcobranzas> MovimientosPagosYcobranzas { get; set; }

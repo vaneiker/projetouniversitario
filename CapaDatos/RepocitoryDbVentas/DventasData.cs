@@ -507,7 +507,7 @@ namespace CapaDatos.RepocitoryDbVentas
 
         }
 
-        public int PagarCuentaCXC(cuentas_x_cobrar cxc_)
+        public int PagarCuentaCXC(cuentas_x_cobrarEntitis cxc_)
         {
             try
             {

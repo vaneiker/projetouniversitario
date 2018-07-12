@@ -518,6 +518,27 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             cxc.NombComp = NombComp;
             return _metodos.ListCuentasXcobrar();
         }
+
+        public bool PagarCuentaCXC(int id_cliente,decimal valor,bool pagado,string usuario,int idFactura)
+        {
+            cuentas_x_cobrarEntitis obj = new cuentas_x_cobrarEntitis();
+            obj.id_cliente = id_cliente;
+            obj.valor = valor;
+            obj.pagado = pagado;
+            obj.usuario = usuario;
+            obj.idFactura = idFactura;
+
+            int repuesta = _metodos.PagarCuentaCXC(obj);
+
+            if (repuesta == 1)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
     }
 }
 
