@@ -179,6 +179,104 @@ Controller
         }
 
 
+/******************************************************************************
+<!DOCTYPE html>
+<html>
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <input  id="can1" type="text" placeholder="Digite un valor 1"/>
+    <input  id="can2" type="text" placeholder="Digite un valor 2"/>
+    <br/>
+    <br/>
+    <input  id="resultado" type="text" readonly="readonly" style="height:80px; text-align:center;"  placeholder="Resultado"/>
+
+    <input id="btnSumar" type="button" onclick="Sumar()" style="height:50px;width:50;" value="+"/>
+    <input id="btnResta" type="button" onclick="Resta()" style="height:50px;width:50;" value="-"/>
+    <input id="btnMultiplicacion" type="button" onclick="Multiplicar()" style="height:50px;width:50;" value="x"/>
+    <input id="btnDividir" type="button" onclick="Divicion()" style="height:50px;width:50;" value="/"/>
+    <input id="btnPorciento" type="button" onclick="Porciento()" style="height:50px;width:50;"  value="%"/>
+    <input type="radio" id="rbExample" ></input>
+
+
+    <script>
+
+        
+
+function  Sumar()
+{
+    var x = $("#rbExample").prop("checked");  
+    var cantidad1 = parseInt($("#can1").val());
+    var cantidad2 =parseInt($("#can2").val());
+    
+    if(cantidad1==null || cantidad1=="" || cantidad2==null || cantidad2==""){
+       console.log("No se puede Calcular ya que no hay cantidad");
+       return;
+    }
+     else
+    {
+        var res = cantidad1+cantidad2;
+        $("#resultado").val(res.toString());
+       console.log(res.toString());
+    }    
+}  
+
+     
+function  Resta()
+{
+    var cantidad1 = parseInt($("#can1").val());
+    var cantidad2 =parseInt($("#can2").val());
+    var res = cantidad1-cantidad2;
+    $("#resultado").val(res.toString());
+     console.log(res.toString());
+    
+}  
+
+
+function  Multiplicar()
+{
+    var cantidad1 = parseInt($("#can1").val());
+    var cantidad2 =parseInt($("#can2").val());
+    var res = cantidad1*cantidad2;
+    $("#resultado").val(res.toString());
+console.log(res.toString());
+    
+}  
+
+
+function  Divicion()
+{
+    var cantidad1 = parseInt($("#can1").val());
+    var cantidad2 =parseInt($("#can2").val());
+    var res = cantidad1/cantidad2;
+    $("#resultado").val(res.toString());
+console.log(res.toString());
+    
+}  
+
+
+function  Porciento()
+{
+    var cantidad1 = parseInt($("#can1").val());
+    var cantidad2 =parseInt($("#can2").val());
+    var res = cantidad1*cantidad2/100;
+
+    $("#resultado").val(res.toString());
+console.log(res.toString());
+    
+}  
+
+
+
+</script>
+</body>
+</html>
+
+*******************************************************************************/
+
 
 
 
