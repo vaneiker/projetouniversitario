@@ -25,6 +25,7 @@ namespace SistemaFacturacion.Formularios
 
         private void FrmArticulos_Load(object sender, EventArgs e)
         {
+            Limpia.Enabled = false;
             carga();
 
         }
@@ -58,24 +59,7 @@ namespace SistemaFacturacion.Formularios
         }
         private void toolStripEliminar_Click(object sender, EventArgs e)
         {
-            if (TabArticulo.SelectedIndex == 1)
-            {
-                MessageBox.Show("Por Favor de ir a la pestaña de busqueda.");
-                return;
-            }
-            string codigo = GridViewArticulos.CurrentRow.Cells[1].Value.ToString();
-            string nombre = GridViewArticulos.CurrentRow.Cells[2].Value.ToString();
-            DialogResult result = MessageBox.Show($"Desea Eliminar El Producto {codigo}?", "Eliminar Articulo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (result == DialogResult.OK)
-            {
-                LogicaDbVentas db = new LogicaDbVentas();
-                articulosEntitis entity = new articulosEntitis();
-                if (db.Eliminar_Articulo(entity))
-                {
-
-                }
-            }
-            carga();
+          carga();
         }
         private void GridViewArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -98,9 +82,10 @@ namespace SistemaFacturacion.Formularios
             {
                 Alertas.AlertSuccess trueR = new Alertas.AlertSuccess("Registro Guardado Satifactoriamente");
                 trueR.ShowDialog();
+                Aceptar.Enabled = false;
+                Limpia.Enabled = false;
+                Nuevo.Enabled = true;
                 clearT();
-                carga();
-                Inactivar("Guardar");
 
             }
             else
@@ -122,7 +107,7 @@ namespace SistemaFacturacion.Formularios
             txtComp.Text = "0";
             txtCan.Text = "0";
             txtVent.Text = "0";
-            LBLG.Text="---Seleccione---";
+          
 
         }
         private void Aceptar_Click(object sender, EventArgs e)
@@ -212,6 +197,7 @@ namespace SistemaFacturacion.Formularios
         {
             TabArticulo.SelectedTab = TabArticulo.TabPages["tabMantenimiento"];
             Inactivar("Nuevo");
+            Limpia.Enabled = true;
         }
         private void btnRuta_Click_1(object sender, EventArgs e)
         {
@@ -251,6 +237,7 @@ namespace SistemaFacturacion.Formularios
                     clearT();
                     carga();
                     Inactivar("Borrar");
+                    ActiveT();
 
                 }
                 else
@@ -270,13 +257,17 @@ namespace SistemaFacturacion.Formularios
                 if (resul == System.Windows.Forms.DialogResult.OK)
                 {
                     TabArticulo.SelectedTab = TabArticulo.TabPages["tabMantenimiento"];
-                    Inactivar("Editar");
+                    //Inactivar("Editar");
                     this.codigo = Convert.ToString(GridViewArticulos.CurrentRow.Cells[0].Value.ToString());
                     txtNom.Text = GridViewArticulos.CurrentRow.Cells[2].Value.ToString();
                     txtDes.Text = GridViewArticulos.CurrentRow.Cells[5].Value.ToString();
 
                     txtCan.Text= GridViewArticulos.CurrentRow.Cells[8].Value.ToString();
                     txtComp.Text= GridViewArticulos.CurrentRow.Cells[7].Value.ToString();
+                    Limpia.Enabled = true;
+                    Aceptar.Enabled = true;
+                    Eliminar.Enabled = false;
+                   
                 }
                 else
                 {
@@ -285,9 +276,12 @@ namespace SistemaFacturacion.Formularios
                     Inactivar("Borrar");
                     txtNom.Text = GridViewArticulos.CurrentRow.Cells[2].Value.ToString();
                     txtDes.Text = GridViewArticulos.CurrentRow.Cells[3].Value.ToString();
-
+                    Aceptar.Enabled = false;
                     this.codigo = Convert.ToString(GridViewArticulos.CurrentRow.Cells[0].Value.ToString());
-
+                    Limpia.Enabled = true;
+                    Aceptar.Enabled = false;
+                    Eliminar.Enabled = true;
+                    DctiveT();
                 }
                 this.codigo = Convert.ToString(GridViewArticulos.CurrentRow.Cells[0].Value.ToString());
                 
@@ -329,10 +323,7 @@ namespace SistemaFacturacion.Formularios
         private void Inactivar(string actividad)
         {
             if (actividad == "Guardar")
-            {
-                Aceptar.Enabled = false;
-                Eliminar.Enabled = false;
-                Nuevo.Enabled = true;
+            {                
                 clearT();
                 ActiveT();
             }
@@ -366,7 +357,7 @@ namespace SistemaFacturacion.Formularios
         {
             cboCat.Enabled = false;
             cboProv.Enabled = false;
-            cboTasaG.Enabled = false;
+           
             txtNom.Enabled = false;
             txtDes.Enabled = false;
             txtCan.Enabled = false;
@@ -377,7 +368,7 @@ namespace SistemaFacturacion.Formularios
         {
             cboCat.Enabled = true;
             cboProv.Enabled = true;
-            cboTasaG.Enabled = true;
+            
             txtNom.Enabled = true;
             txtDes.Enabled = true;
             txtCan.Enabled = true;
@@ -387,8 +378,12 @@ namespace SistemaFacturacion.Formularios
 
         private void Limpia_Click(object sender, EventArgs e)
         {
+            TabArticulo.SelectedTab = TabArticulo.TabPages["TabBuscar"];
+            Aceptar.Enabled = false;
             ActiveT();
             clearT();
+            Nuevo.Enabled = true;
+            Limpia.Enabled = false;
         }
     }
     }

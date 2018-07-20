@@ -130,7 +130,7 @@
             this.panel5.ForeColor = System.Drawing.Color.Black;
             this.panel5.Location = new System.Drawing.Point(1, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(841, 32);
+            this.panel5.Size = new System.Drawing.Size(841, 45);
             this.panel5.TabIndex = 174;
             // 
             // label4
@@ -138,7 +138,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(313, 5);
+            this.label4.Location = new System.Drawing.Point(321, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(182, 23);
             this.label4.TabIndex = 164;

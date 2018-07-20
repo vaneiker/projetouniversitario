@@ -70,8 +70,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cboTasaG = new System.Windows.Forms.ComboBox();
-            this.LBLG = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cboCat = new System.Windows.Forms.ComboBox();
             this.cboProv = new System.Windows.Forms.ComboBox();
@@ -148,8 +146,8 @@
             this.toolStripEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripEliminar.Name = "toolStripEliminar";
             this.toolStripEliminar.Size = new System.Drawing.Size(68, 68);
-            this.toolStripEliminar.Text = "Limpiar";
-            this.toolStripEliminar.ToolTipText = "Eliminar";
+            this.toolStripEliminar.Text = "Actualizar";
+            this.toolStripEliminar.ToolTipText = "Actualizar";
             this.toolStripEliminar.Click += new System.EventHandler(this.toolStripEliminar_Click);
             // 
             // toolStripSeparator5
@@ -201,7 +199,7 @@
             this.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.Size = new System.Drawing.Size(52, 68);
-            this.Eliminar.Text = "Limpiar";
+            this.Eliminar.Text = "Borrar";
             this.Eliminar.ToolTipText = "Eliminar";
             this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click);
             // 
@@ -234,8 +232,8 @@
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton2.Text = "Limpiar";
-            this.toolStripButton2.ToolTipText = "Eliminar";
+            this.toolStripButton2.Text = "Impreción";
+            this.toolStripButton2.ToolTipText = "Codigo de Barras";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator7
@@ -310,9 +308,9 @@
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.txtSearchCategoria);
             this.panel4.Controls.Add(this.GridViewArticulos);
-            this.panel4.Location = new System.Drawing.Point(112, 85);
+            this.panel4.Location = new System.Drawing.Point(34, 85);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(842, 323);
+            this.panel4.Size = new System.Drawing.Size(1082, 323);
             this.panel4.TabIndex = 0;
             // 
             // panel5
@@ -323,7 +321,7 @@
             this.panel5.ForeColor = System.Drawing.Color.Black;
             this.panel5.Location = new System.Drawing.Point(1, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(841, 32);
+            this.panel5.Size = new System.Drawing.Size(1078, 32);
             this.panel5.TabIndex = 174;
             // 
             // label4
@@ -331,7 +329,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(313, 5);
+            this.label4.Location = new System.Drawing.Point(387, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(200, 23);
             this.label4.TabIndex = 164;
@@ -356,7 +354,7 @@
             this.txtSearchCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCategoria.Multiline = true;
             this.txtSearchCategoria.Name = "txtSearchCategoria";
-            this.txtSearchCategoria.Size = new System.Drawing.Size(515, 38);
+            this.txtSearchCategoria.Size = new System.Drawing.Size(765, 38);
             this.txtSearchCategoria.TabIndex = 119;
             this.txtSearchCategoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -371,7 +369,7 @@
             this.GridViewArticulos.Name = "GridViewArticulos";
             this.GridViewArticulos.ReadOnly = true;
             this.GridViewArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridViewArticulos.Size = new System.Drawing.Size(766, 159);
+            this.GridViewArticulos.Size = new System.Drawing.Size(1016, 159);
             this.GridViewArticulos.TabIndex = 117;
             this.GridViewArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewArticulos_CellContentClick_1);
             // 
@@ -519,8 +517,6 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.cboTasaG);
-            this.groupBox2.Controls.Add(this.LBLG);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.cboCat);
             this.groupBox2.Controls.Add(this.cboProv);
@@ -530,38 +526,6 @@
             this.groupBox2.Size = new System.Drawing.Size(985, 115);
             this.groupBox2.TabIndex = 181;
             this.groupBox2.TabStop = false;
-            // 
-            // cboTasaG
-            // 
-            this.cboTasaG.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.cboTasaG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.cboTasaG.FormattingEnabled = true;
-            this.cboTasaG.Items.AddRange(new object[] {
-            "---Seleccione---",
-            "15%",
-            "20%",
-            "25%",
-            "30%",
-            "35%",
-            "40%",
-            "45%",
-            "50%"});
-            this.cboTasaG.Location = new System.Drawing.Point(280, 67);
-            this.cboTasaG.Name = "cboTasaG";
-            this.cboTasaG.Size = new System.Drawing.Size(209, 33);
-            this.cboTasaG.TabIndex = 176;
-            this.cboTasaG.Text = "---Seleccione---";
-            // 
-            // LBLG
-            // 
-            this.LBLG.AutoSize = true;
-            this.LBLG.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.LBLG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.LBLG.Location = new System.Drawing.Point(98, 70);
-            this.LBLG.Name = "LBLG";
-            this.LBLG.Size = new System.Drawing.Size(178, 25);
-            this.LBLG.TabIndex = 175;
-            this.LBLG.Text = "Tasa Ganacia%";
             // 
             // label6
             // 
@@ -626,7 +590,7 @@
             // 
             this.txtComp.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtComp.Location = new System.Drawing.Point(270, 117);
+            this.txtComp.Location = new System.Drawing.Point(273, 117);
             this.txtComp.Multiline = true;
             this.txtComp.Name = "txtComp";
             this.txtComp.Size = new System.Drawing.Size(123, 34);
@@ -685,11 +649,11 @@
             // 
             this.txtVent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtVent.Location = new System.Drawing.Point(270, 71);
+            this.txtVent.Location = new System.Drawing.Point(273, 71);
             this.txtVent.Multiline = true;
             this.txtVent.Name = "txtVent";
             this.txtVent.ReadOnly = true;
-            this.txtVent.Size = new System.Drawing.Size(121, 34);
+            this.txtVent.Size = new System.Drawing.Size(123, 34);
             this.txtVent.TabIndex = 166;
             this.txtVent.Text = "0";
             this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -793,7 +757,5 @@
         private System.Windows.Forms.TextBox txtSearchCategoria;
         private System.Windows.Forms.DataGridView GridViewArticulos;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cboTasaG;
-        private System.Windows.Forms.Label LBLG;
     }
     }

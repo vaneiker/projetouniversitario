@@ -43,13 +43,13 @@
             this.lblEst = new System.Windows.Forms.Label();
             this.dateTimePago = new System.Windows.Forms.DateTimePicker();
             this.txtMontoApagar = new System.Windows.Forms.TextBox();
-            this.txtTotalAdeu = new System.Windows.Forms.TextBox();
+            this.txtMontoAdeudado = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtNomC = new System.Windows.Forms.TextBox();
-            this.txtClient = new System.Windows.Forms.TextBox();
+            this.txtNomCompleto = new System.Windows.Forms.TextBox();
+            this.txtCodigoUnico = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtCed = new System.Windows.Forms.TextBox();
+            this.txtCedula = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -192,13 +192,13 @@
             this.groupBox3.Controls.Add(this.lblEst);
             this.groupBox3.Controls.Add(this.dateTimePago);
             this.groupBox3.Controls.Add(this.txtMontoApagar);
-            this.groupBox3.Controls.Add(this.txtTotalAdeu);
+            this.groupBox3.Controls.Add(this.txtMontoAdeudado);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.txtNomC);
-            this.groupBox3.Controls.Add(this.txtClient);
+            this.groupBox3.Controls.Add(this.txtNomCompleto);
+            this.groupBox3.Controls.Add(this.txtCodigoUnico);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.txtCed);
+            this.groupBox3.Controls.Add(this.txtCedula);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label2);
@@ -242,17 +242,17 @@
             this.txtMontoApagar.TabIndex = 168;
             this.txtMontoApagar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtTotalAdeu
+            // txtMontoAdeudado
             // 
-            this.txtTotalAdeu.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtTotalAdeu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtTotalAdeu.Location = new System.Drawing.Point(585, 98);
-            this.txtTotalAdeu.Multiline = true;
-            this.txtTotalAdeu.Name = "txtTotalAdeu";
-            this.txtTotalAdeu.ReadOnly = true;
-            this.txtTotalAdeu.Size = new System.Drawing.Size(200, 36);
-            this.txtTotalAdeu.TabIndex = 167;
-            this.txtTotalAdeu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMontoAdeudado.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtMontoAdeudado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtMontoAdeudado.Location = new System.Drawing.Point(585, 98);
+            this.txtMontoAdeudado.Multiline = true;
+            this.txtMontoAdeudado.Name = "txtMontoAdeudado";
+            this.txtMontoAdeudado.ReadOnly = true;
+            this.txtMontoAdeudado.Size = new System.Drawing.Size(200, 36);
+            this.txtMontoAdeudado.TabIndex = 167;
+            this.txtMontoAdeudado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
@@ -276,29 +276,29 @@
             this.label9.TabIndex = 165;
             this.label9.Text = "Monto Adeudado";
             // 
-            // txtNomC
+            // txtNomCompleto
             // 
-            this.txtNomC.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtNomC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtNomC.Location = new System.Drawing.Point(211, 200);
-            this.txtNomC.Multiline = true;
-            this.txtNomC.Name = "txtNomC";
-            this.txtNomC.ReadOnly = true;
-            this.txtNomC.Size = new System.Drawing.Size(574, 36);
-            this.txtNomC.TabIndex = 161;
-            this.txtNomC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNomCompleto.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtNomCompleto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtNomCompleto.Location = new System.Drawing.Point(211, 200);
+            this.txtNomCompleto.Multiline = true;
+            this.txtNomCompleto.Name = "txtNomCompleto";
+            this.txtNomCompleto.ReadOnly = true;
+            this.txtNomCompleto.Size = new System.Drawing.Size(574, 36);
+            this.txtNomCompleto.TabIndex = 161;
+            this.txtNomCompleto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtClient
+            // txtCodigoUnico
             // 
-            this.txtClient.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtClient.Location = new System.Drawing.Point(211, 148);
-            this.txtClient.Multiline = true;
-            this.txtClient.Name = "txtClient";
-            this.txtClient.ReadOnly = true;
-            this.txtClient.Size = new System.Drawing.Size(179, 35);
-            this.txtClient.TabIndex = 162;
-            this.txtClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCodigoUnico.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtCodigoUnico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCodigoUnico.Location = new System.Drawing.Point(211, 148);
+            this.txtCodigoUnico.Multiline = true;
+            this.txtCodigoUnico.Name = "txtCodigoUnico";
+            this.txtCodigoUnico.ReadOnly = true;
+            this.txtCodigoUnico.Size = new System.Drawing.Size(179, 35);
+            this.txtCodigoUnico.TabIndex = 162;
+            this.txtCodigoUnico.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -311,18 +311,18 @@
             this.label1.TabIndex = 160;
             this.label1.Text = "Estado de la Cuenta $:";
             // 
-            // txtCed
+            // txtCedula
             // 
-            this.txtCed.Enabled = false;
-            this.txtCed.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtCed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtCed.Location = new System.Drawing.Point(211, 95);
-            this.txtCed.Multiline = true;
-            this.txtCed.Name = "txtCed";
-            this.txtCed.ReadOnly = true;
-            this.txtCed.Size = new System.Drawing.Size(179, 36);
-            this.txtCed.TabIndex = 161;
-            this.txtCed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCedula.Enabled = false;
+            this.txtCedula.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtCedula.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtCedula.Location = new System.Drawing.Point(211, 95);
+            this.txtCedula.Multiline = true;
+            this.txtCedula.Name = "txtCedula";
+            this.txtCedula.ReadOnly = true;
+            this.txtCedula.Size = new System.Drawing.Size(179, 36);
+            this.txtCedula.TabIndex = 161;
+            this.txtCedula.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -398,16 +398,16 @@
         private System.Windows.Forms.ComboBox cboTipoDoc;
         private System.Windows.Forms.TabPage tabCuentaP;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox txtNomC;
-        private System.Windows.Forms.TextBox txtClient;
+        private System.Windows.Forms.TextBox txtNomCompleto;
+        private System.Windows.Forms.TextBox txtCodigoUnico;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtCed;
+        private System.Windows.Forms.TextBox txtCedula;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePago;
         private System.Windows.Forms.TextBox txtMontoApagar;
-        private System.Windows.Forms.TextBox txtTotalAdeu;
+        private System.Windows.Forms.TextBox txtMontoAdeudado;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblEst;

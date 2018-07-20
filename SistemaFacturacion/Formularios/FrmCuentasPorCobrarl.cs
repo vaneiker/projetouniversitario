@@ -53,17 +53,18 @@ namespace SistemaFacturacion.Formularios
         {
             if (GridViewCXC.CurrentRow != null)
             {
+                
 
-
-                this.codigoC = Convert.ToInt32(GridViewCXC.CurrentRow.Cells[0].Value.ToString());
-                this.idis = Convert.ToString(GridViewCXC.CurrentRow.Cells[1].Value.ToString());
-                txtCed.Text = GridViewCXC.CurrentRow.Cells[2].Value.ToString();
-                txtClient.Text = GridViewCXC.CurrentRow.Cells[3].Value.ToString();
-                var nom = GridViewCXC.CurrentRow.Cells[4].Value.ToString();
-                txtTotalAdeu.Text = GridViewCXC.CurrentRow.Cells[5].Value.ToString();
+                this.codigoC = Convert.ToInt32(GridViewCXC.CurrentRow.Cells["id_cliente"].Value.ToString());
+                txtCedula.Text = GridViewCXC.CurrentRow.Cells["num_documento"].Value.ToString();                
+                txtCodigoUnico.Text = GridViewCXC.CurrentRow.Cells["CodigoCliente"].Value.ToString();
+                var nom = GridViewCXC.CurrentRow.Cells["NombreCompleto"].Value.ToString();
+                txtNomCompleto.Text = "***" + nom + "***";
+                txtMontoAdeudado.Text=Convert.ToString(GridViewCXC.CurrentRow.Cells["Deuda_Actual"].Value.ToString());
                 this.estatus= GridViewCXC.CurrentRow.Cells[6].Value.ToString() == "TIENE DEUDA" ? true:false;
+                lblEst.Text = GridViewCXC.CurrentRow.Cells["Estado"].Value.ToString();        
                 this.idFactura =Convert.ToInt32(GridViewCXC.CurrentRow.Cells["id_factura"].Value.ToString());
-                txtNomC.Text = "***" + nom + "***";
+             
 
                 TabCXC.SelectedTab = TabCXC.TabPages[1];
             }
@@ -81,7 +82,7 @@ namespace SistemaFacturacion.Formularios
             decimal MontoApagar = decimal.Parse(txtMontoApagar.Text);
           
 
-            montoD = decimal.Parse(txtTotalAdeu.Text);
+            montoD = decimal.Parse(txtMontoAdeudado.Text);
             MontoApagar = decimal.Parse(txtMontoApagar.Text);
 
             bool repuesta = _metodos.PagarCuentaCXC(this.codigoC,
