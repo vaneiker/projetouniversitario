@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GenerateAndSendToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AreaCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BrowserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BrowserVersion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServerIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServerIPOrNameIISRequest" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ISUsa" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="SendSMS" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ISCardApplication" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateAndSendTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateAndSendTokenResult" type="tns:ResponseWS" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseWS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="status" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AutentificationToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TokenNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServerIPOrNameIISRequest" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutentificationTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutentificationTokenResult" type="tns:ResponseWS" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SettingCookie">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CookieKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BrowserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BrowserVersion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServerIPRequest" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServerIPOrNameIISRequest" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SettingCookieResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SettingCookieResult" type="tns:ResponseWS" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCookie">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServerIPOrNameIISRequest" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CookieKeyEncrypty" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCookieResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateCookieResult" type="tns:ResponseWS" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Dencrypt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToEncrypt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DencryptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DencryptResult" type="tns:ResponseWS" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Encrypt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToEncrypt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncryptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptResult" type="tns:ResponseWS" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GenerateAndSendTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateAndSendToken" />
+  </wsdl:message>
+  <wsdl:message name="GenerateAndSendTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateAndSendTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutentificationTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:AutentificationToken" />
+  </wsdl:message>
+  <wsdl:message name="AutentificationTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:AutentificationTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="SettingCookieSoapIn">
+    <wsdl:part name="parameters" element="tns:SettingCookie" />
+  </wsdl:message>
+  <wsdl:message name="SettingCookieSoapOut">
+    <wsdl:part name="parameters" element="tns:SettingCookieResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCookieSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateCookie" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCookieSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateCookieResponse" />
+  </wsdl:message>
+  <wsdl:message name="DencryptSoapIn">
+    <wsdl:part name="parameters" element="tns:Dencrypt" />
+  </wsdl:message>
+  <wsdl:message name="DencryptSoapOut">
+    <wsdl:part name="parameters" element="tns:DencryptResponse" />
+  </wsdl:message>
+  <wsdl:message name="EncryptSoapIn">
+    <wsdl:part name="parameters" element="tns:Encrypt" />
+  </wsdl:message>
+  <wsdl:message name="EncryptSoapOut">
+    <wsdl:part name="parameters" element="tns:EncryptResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TokenSoap">
+    <wsdl:operation name="GenerateAndSendToken">
+      <wsdl:input message="tns:GenerateAndSendTokenSoapIn" />
+      <wsdl:output message="tns:GenerateAndSendTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AutentificationToken">
+      <wsdl:input message="tns:AutentificationTokenSoapIn" />
+      <wsdl:output message="tns:AutentificationTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SettingCookie">
+      <wsdl:input message="tns:SettingCookieSoapIn" />
+      <wsdl:output message="tns:SettingCookieSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCookie">
+      <wsdl:input message="tns:ValidateCookieSoapIn" />
+      <wsdl:output message="tns:ValidateCookieSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Dencrypt">
+      <wsdl:input message="tns:DencryptSoapIn" />
+      <wsdl:output message="tns:DencryptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt">
+      <wsdl:input message="tns:EncryptSoapIn" />
+      <wsdl:output message="tns:EncryptSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TokenSoap" type="tns:TokenSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenerateAndSendToken">
+      <soap:operation soapAction="http://tempuri.org/GenerateAndSendToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutentificationToken">
+      <soap:operation soapAction="http://tempuri.org/AutentificationToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SettingCookie">
+      <soap:operation soapAction="http://tempuri.org/SettingCookie" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCookie">
+      <soap:operation soapAction="http://tempuri.org/ValidateCookie" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dencrypt">
+      <soap:operation soapAction="http://tempuri.org/Dencrypt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt">
+      <soap:operation soapAction="http://tempuri.org/Encrypt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TokenSoap12" type="tns:TokenSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenerateAndSendToken">
+      <soap12:operation soapAction="http://tempuri.org/GenerateAndSendToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutentificationToken">
+      <soap12:operation soapAction="http://tempuri.org/AutentificationToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SettingCookie">
+      <soap12:operation soapAction="http://tempuri.org/SettingCookie" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCookie">
+      <soap12:operation soapAction="http://tempuri.org/ValidateCookie" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dencrypt">
+      <soap12:operation soapAction="http://tempuri.org/Dencrypt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt">
+      <soap12:operation soapAction="http://tempuri.org/Encrypt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Token">
+    <wsdl:port name="TokenSoap" binding="tns:TokenSoap">
+      <soap:address location="http://tokenweb.atlantica.do/webservices/token.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TokenSoap12" binding="tns:TokenSoap12">
+      <soap12:address location="http://tokenweb.atlantica.do/webservices/token.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://statetrust.com/BinaryDoc" elementFormDefault="qualified" targetNamespace="http://statetrust.com/BinaryDoc" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Get_document_data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocumentData" nillable="true" type="tns:DocumentBytesInput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentBytesInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentHandle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="overlay" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentBytesInput" nillable="true" type="tns:DocumentBytesInput" />
+  <xs:element name="Get_document_dataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Get_document_dataResult" nillable="true" type="tns:DocumentBytesOutput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DocumentBytesOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Base64FileStream" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="extension" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentBytesOutput" nillable="true" type="tns:DocumentBytesOutput" />
+</xs:schema>
