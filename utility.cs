@@ -228,6 +228,8 @@ namespace STL.POS.Frontend.Web.NewVersion.CustomCode
             public string DRActualPath { get; set; }
         }
 
+        var a  DecimalToString(25.0);
+
         public static string DecimalToString(this decimal? value)
         {
             string result;
