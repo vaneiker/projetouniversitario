@@ -45,11 +45,12 @@ namespace SistemaFacturacion.Formularios
 
         private void Salir_Click(object sender, EventArgs e)
             {
-            MenuPrincipal mp = new MenuPrincipal();
-            mp.BtnCategoria.Enabled = true;
-            mp.Show();
-            this.Close();
+            DialogResult resul = MessageBox.Show("Seguro que desea salir de este formulario?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (resul == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
             }
+        }
 
         private void BuscarD_Click(object sender, EventArgs e)
             {
@@ -75,8 +76,8 @@ namespace SistemaFacturacion.Formularios
             cliente.nombre=txtNom.Text.Trim();
             cliente.sexo = cboSex.Text;
             cliente.fecha_nacimiento =Convert.ToDateTime(dateFechaNacimiento.Text);
-            cliente.tipo_documento ="Cedula";
-            cliente.num_documento = txtTel.Text;
+            cliente.tipo_documento = cboTipoDoc.Text;
+            cliente.num_documento = txtNumDoc.Text;
             cliente.direccion = txtDirecion.Text;
             cliente.telefono = txtTel.Text;
             cliente.email= txtcorreo.Text;

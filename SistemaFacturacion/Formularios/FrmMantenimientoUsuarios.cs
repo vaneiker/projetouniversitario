@@ -77,7 +77,11 @@ namespace SistemaFacturacion.Formularios
 
         private void btnCerrarSeccion_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult resul = MessageBox.Show("Seguro que desea salir de este formulario?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (resul == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
+            }
         }
 
         private void GridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

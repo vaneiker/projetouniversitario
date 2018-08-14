@@ -57,8 +57,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnEmpleado = new System.Windows.Forms.Button();
             this.BtnProveedor = new System.Windows.Forms.Button();
-            this.BtnIngreso = new System.Windows.Forms.Button();
-            this.btnCuentaPxp = new System.Windows.Forms.Button();
             this.btnCxc = new System.Windows.Forms.Button();
             this.BtnCliente = new System.Windows.Forms.Button();
             this.BtnCategoria = new System.Windows.Forms.Button();
@@ -284,8 +282,6 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnEmpleado);
             this.panel1.Controls.Add(this.BtnProveedor);
-            this.panel1.Controls.Add(this.BtnIngreso);
-            this.panel1.Controls.Add(this.btnCuentaPxp);
             this.panel1.Controls.Add(this.btnCxc);
             this.panel1.Controls.Add(this.BtnCliente);
             this.panel1.Controls.Add(this.BtnCategoria);
@@ -301,7 +297,7 @@
             this.BtnFacturacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.BtnFacturacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnFacturacion.ForeColor = System.Drawing.Color.White;
-            this.BtnFacturacion.Location = new System.Drawing.Point(12, 411);
+            this.BtnFacturacion.Location = new System.Drawing.Point(12, 328);
             this.BtnFacturacion.Name = "BtnFacturacion";
             this.BtnFacturacion.Size = new System.Drawing.Size(158, 37);
             this.BtnFacturacion.TabIndex = 10;
@@ -314,7 +310,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(12, 368);
+            this.button1.Location = new System.Drawing.Point(12, 285);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(158, 37);
             this.button1.TabIndex = 8;
@@ -327,7 +323,7 @@
             this.btnEmpleado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.btnEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEmpleado.ForeColor = System.Drawing.Color.White;
-            this.btnEmpleado.Location = new System.Drawing.Point(12, 325);
+            this.btnEmpleado.Location = new System.Drawing.Point(12, 242);
             this.btnEmpleado.Name = "btnEmpleado";
             this.btnEmpleado.Size = new System.Drawing.Size(158, 37);
             this.btnEmpleado.TabIndex = 7;
@@ -340,38 +336,13 @@
             this.BtnProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.BtnProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnProveedor.ForeColor = System.Drawing.Color.White;
-            this.BtnProveedor.Location = new System.Drawing.Point(12, 282);
+            this.BtnProveedor.Location = new System.Drawing.Point(12, 199);
             this.BtnProveedor.Name = "BtnProveedor";
             this.BtnProveedor.Size = new System.Drawing.Size(158, 37);
             this.BtnProveedor.TabIndex = 6;
             this.BtnProveedor.Text = "Proveedores";
             this.BtnProveedor.UseVisualStyleBackColor = false;
             this.BtnProveedor.Click += new System.EventHandler(this.BtnProveedor_Click);
-            // 
-            // BtnIngreso
-            // 
-            this.BtnIngreso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.BtnIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnIngreso.ForeColor = System.Drawing.Color.White;
-            this.BtnIngreso.Location = new System.Drawing.Point(12, 239);
-            this.BtnIngreso.Name = "BtnIngreso";
-            this.BtnIngreso.Size = new System.Drawing.Size(158, 37);
-            this.BtnIngreso.TabIndex = 5;
-            this.BtnIngreso.Text = "Ingreso Mercancia";
-            this.BtnIngreso.UseVisualStyleBackColor = false;
-            this.BtnIngreso.Click += new System.EventHandler(this.BtnIngreso_Click);
-            // 
-            // btnCuentaPxp
-            // 
-            this.btnCuentaPxp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.btnCuentaPxp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCuentaPxp.ForeColor = System.Drawing.Color.White;
-            this.btnCuentaPxp.Location = new System.Drawing.Point(12, 196);
-            this.btnCuentaPxp.Name = "btnCuentaPxp";
-            this.btnCuentaPxp.Size = new System.Drawing.Size(158, 37);
-            this.btnCuentaPxp.TabIndex = 4;
-            this.btnCuentaPxp.Text = "Cuentas Por Pagar";
-            this.btnCuentaPxp.UseVisualStyleBackColor = false;
             // 
             // btnCxc
             // 
@@ -467,8 +438,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnEmpleado;
         private System.Windows.Forms.Button BtnProveedor;
-        private System.Windows.Forms.Button BtnIngreso;
-        private System.Windows.Forms.Button btnCuentaPxp;
         private System.Windows.Forms.Button btnCxc;
         private System.Windows.Forms.Button BtnArticulos;
         private System.Windows.Forms.Panel panel3;
