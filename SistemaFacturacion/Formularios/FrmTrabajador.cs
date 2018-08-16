@@ -248,6 +248,15 @@ namespace SistemaFacturacion.Formularios
             else
                 Limpia.Enabled = false;
         }
+
+        private void Salir_Click(object sender, EventArgs e)
+        {
+            DialogResult resul = MessageBox.Show("Seguro que desea salir de este formulario?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (resul == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
     }
 }
 

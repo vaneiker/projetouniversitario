@@ -1,0 +1,149 @@
+https://blazor.net/docs/get-started.html
+https://github.com/JheironDotel/XF_mp3Tagger.git
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+homecontroller   
+   
+   public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+       
+        public ActionResult EnvioMensaje()
+        {
+
+            return View();
+        }             
+        public JsonResult EnvioDeDatos(string name, string apell)
+        {
+           
+            var repuesta = _metodos.GuardarPersona(name,apell);
+
+            if(repuesta==true)
+            {
+                return Json(repuesta, JsonRequestBehavior.AllowGet);
+            } else
+            {
+                return Json(repuesta, JsonRequestBehavior.AllowGet);
+            }
+
+            
+        }
+
+
+
+vista mvc
+@{
+    ViewBag.Title = "EnvioMensaje";
+}
+
+<h2>EnvioMensaje</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Calculo de La Prorrata</div>
+    <div>
+       <div class="container">
+           <br />
+           <span>Nombres:</span><input id="nameText" class="form-control" type="text" />
+           <br/>
+           <span>Apellidos:</span><input id="apelliText" class="form-control" type="text" />
+       </div>
+        <div class="container">
+            <br />      
+            <input id="CancelButton" type="button" class="btn btn-danger" onclick="Cancelar()" value="Cancelar" />
+            <input id="submitButton" type="button" class="btn btn-primary" onclick="MandarData()" value="Enviar" />
+            <br />           
+        </div>
+    </div>
+    <ul id="errorContainer"   class="errorSection"/>
+    <ul id="messageContainer" class="messageSection"/>
+</div>
+<script src="~/Scripts/JS/JsMantenimientos.js"></script>
+
+javaScript
+
+function SendMail(name, apell) {
+
+    CallAjax("EnvioDeDatos", JSON.stringify({ name: name, apell: apell }), "json", function (data) {}, "POST");}
+
+        alert("Paso todo bien" + data);
+
+    
+
+
+
+function CallAjax(vUrl, vParameter, vDataType, vSucess, RequestType, isAsync) {
+    $.ajax({
+        type: RequestType,
+        url: vUrl,
+        data: vParameter != undefined ? vParameter : {},
+        contentType: "application/json; charset=utf-8",
+        dataType: vDataType,
+        success: vSucess,
+        async: isAsync != undefined ? isAsync : true,
+        failure: function (data) {
+            alert("Se ejecuto el comando exitosamente "+data.responseText);
+            Cancelar();
+        },
+        error: function (data) {
+            console.log(vUrl);
+            if (data != undefined && data.responseText != undefined)
+                alert("Error al Realizar :"+data.responseText);
+        }
+    });
+}
+
+function MandarData() {
+
+    var name = $("#nameText").val();
+    var apell = $("#apelliText").val();
+
+    SendMail(name, apell);
+}
+
+
+/*
+
+function Cancelar() {
+    $("#nameText").val("");
+    $("#apelliText").val("");
+    $("#nameText").focus();
+}
+
+
+function SendMail(name, apell) {
+
+    var dataValue = JSON.stringify({ "name": name, "apell": apell });
+    $.ajax({
+        type: "POST",
+        url: "/EnvioDeDatos",
+        data: dataValue,
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            alert("Paso todo bien" + response);
+        }
+    });
+}*/

@@ -43,13 +43,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtcorreo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNumDoc = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDirecion = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTel = new System.Windows.Forms.MaskedTextBox();
-            this.txtTipoDocument = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cboTipoDoc = new System.Windows.Forms.ComboBox();
@@ -218,13 +216,11 @@
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.txtcorreo);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtNumDoc);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtDirecion);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtTel);
-            this.groupBox1.Controls.Add(this.txtTipoDocument);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cboTipoDoc);
@@ -238,7 +234,7 @@
             // 
             this.txtcorreo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtcorreo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtcorreo.Location = new System.Drawing.Point(321, 198);
+            this.txtcorreo.Location = new System.Drawing.Point(318, 146);
             this.txtcorreo.Multiline = true;
             this.txtcorreo.Name = "txtcorreo";
             this.txtcorreo.Size = new System.Drawing.Size(329, 36);
@@ -250,29 +246,29 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label7.Location = new System.Drawing.Point(225, 201);
+            this.label7.Location = new System.Drawing.Point(222, 149);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 25);
             this.label7.TabIndex = 204;
             this.label7.Text = "Correo:";
             // 
-            // textBox1
+            // txtNumDoc
             // 
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.textBox1.Location = new System.Drawing.Point(321, 112);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(329, 36);
-            this.textBox1.TabIndex = 203;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNumDoc.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.txtNumDoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.txtNumDoc.Location = new System.Drawing.Point(318, 60);
+            this.txtNumDoc.Multiline = true;
+            this.txtNumDoc.Name = "txtNumDoc";
+            this.txtNumDoc.Size = new System.Drawing.Size(329, 36);
+            this.txtNumDoc.TabIndex = 203;
+            this.txtNumDoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label5.Location = new System.Drawing.Point(175, 115);
+            this.label5.Location = new System.Drawing.Point(172, 63);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(140, 25);
             this.label5.TabIndex = 202;
@@ -282,10 +278,10 @@
             // 
             this.txtDirecion.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtDirecion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtDirecion.Location = new System.Drawing.Point(318, 240);
+            this.txtDirecion.Location = new System.Drawing.Point(318, 188);
             this.txtDirecion.Multiline = true;
             this.txtDirecion.Name = "txtDirecion";
-            this.txtDirecion.Size = new System.Drawing.Size(332, 47);
+            this.txtDirecion.Size = new System.Drawing.Size(329, 47);
             this.txtDirecion.TabIndex = 201;
             this.txtDirecion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -294,7 +290,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label9.Location = new System.Drawing.Point(195, 240);
+            this.label9.Location = new System.Drawing.Point(192, 188);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(117, 25);
             this.label9.TabIndex = 200;
@@ -304,40 +300,18 @@
             // 
             this.txtTel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtTel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtTel.Location = new System.Drawing.Point(321, 159);
+            this.txtTel.Location = new System.Drawing.Point(318, 107);
             this.txtTel.Mask = "1-000-000-0000";
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(329, 33);
             this.txtTel.TabIndex = 199;
-            // 
-            // txtTipoDocument
-            // 
-            this.txtTipoDocument.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txtTipoDocument.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtTipoDocument.Location = new System.Drawing.Point(321, 66);
-            this.txtTipoDocument.Multiline = true;
-            this.txtTipoDocument.Name = "txtTipoDocument";
-            this.txtTipoDocument.Size = new System.Drawing.Size(326, 36);
-            this.txtTipoDocument.TabIndex = 182;
-            this.txtTipoDocument.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label2.Location = new System.Drawing.Point(175, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 25);
-            this.label2.TabIndex = 175;
-            this.label2.Text = "Documento:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label8.Location = new System.Drawing.Point(205, 162);
+            this.label8.Location = new System.Drawing.Point(202, 110);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(110, 25);
             this.label8.TabIndex = 180;
@@ -413,7 +387,7 @@
             // 
             this.txtApellidos.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtApellidos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtApellidos.Location = new System.Drawing.Point(121, 55);
+            this.txtApellidos.Location = new System.Drawing.Point(124, 13);
             this.txtApellidos.Multiline = true;
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(290, 36);
@@ -435,7 +409,7 @@
             // 
             this.txtNom.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtNom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtNom.Location = new System.Drawing.Point(121, 13);
+            this.txtNom.Location = new System.Drawing.Point(124, 61);
             this.txtNom.Multiline = true;
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(290, 36);
@@ -673,7 +647,6 @@
         private System.Windows.Forms.TextBox txtSearchCategoria;
         private System.Windows.Forms.DataGridView GridViewClientes;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboTipoDoc;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -686,8 +659,7 @@
         private System.Windows.Forms.DateTimePicker dateFechaNacimiento;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtTipoDocument;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNumDoc;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDirecion;
         private System.Windows.Forms.Label label9;

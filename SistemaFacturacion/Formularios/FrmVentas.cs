@@ -818,6 +818,15 @@ namespace SistemaFacturacion.Formularios
             
 
         }
+
+        private void Salir_Click(object sender, EventArgs e)
+        {
+            DialogResult resul = MessageBox.Show("Si ha hecho algun cambio y no lo guardo, al cerrar los cambio se perderan, Seguro que desea cerrar?", "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (resul == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
     }
 }   
 

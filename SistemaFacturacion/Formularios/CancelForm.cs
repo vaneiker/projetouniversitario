@@ -22,6 +22,11 @@ namespace SistemaFacturacion.Formularios
 
         public bool PuedeCancelar { get; set; }
 
+        /// <summary>
+        /// Esto es lo que hace la verdadera majia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if(!string.IsNullOrWhiteSpace(txtUsuario.Text) && !string.IsNullOrWhiteSpace(txtContraseña.Text))
