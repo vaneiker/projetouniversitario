@@ -481,6 +481,51 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
         #endregion
 
+        #region Metodos Cotizador
+        /// <summary>
+        /// Registra la Cotizacion.
+        /// Debe tener los detalles de los productos dentro como colleccion.
+        /// </summary>
+        /// <param name="cotizacion">Venta Actual Registrada con todos sus atributos con datos</param>
+        /// <returns>Devuelve el Id de la Cotizacion Registrada</returns>
+        public int IngresarCotizacion(VentaViewModel cotizacion)
+        {
+            CotizacionEntity nuevaCotizacion = new CotizacionEntity();
+            nuevaCotizacion.cantidad = cotizacion.cantidad;
+            nuevaCotizacion.estatus = true;
+            nuevaCotizacion.fecha = DateTime.Now;
+            nuevaCotizacion.idcliente = cotizacion.idcliente;
+            nuevaCotizacion.idtrabajador = cotizacion.idtrabajador;
+            nuevaCotizacion.itbis = cotizacion.itbis;
+            nuevaCotizacion.subtotal = cotizacion.subtotal;
+            nuevaCotizacion.total = cotizacion.total;
+
+            return _metodos.IngresarCotizacion(nuevaCotizacion);
+        }
+        /// <summary>
+        /// Registra la colecion de los detalles de la cotizacion.
+        /// </summary>
+        /// <param name="idCotizacion">Id De la Cotizacion Registrada</param>
+        /// <param name="detalles">Colecion de Detalles de la Cotizacion</param>
+        public void IngresarDetallesCotizacion(int idCotizacion, List<DetalleVentaViewModel> detalles)
+        {
+            foreach(DetalleVentaViewModel entrada in detalles)
+            {
+                detalle_cotizacion_productos producto = new detalle_cotizacion_productos
+                {
+                    idcotizacion = idCotizacion,
+                    producto = entrada.producto,
+                    cantidad = entrada.cantidad,
+                    precioVenta = entrada.precio_venta,
+                    itbis = entrada.itbis * entrada.cantidad,
+                    subtotal = (entrada.precio_venta * entrada.cantidad),
+                    total = ((entrada.cantidad * entrada.precio_venta) + (entrada.itbis * entrada.cantidad))
+                };
+                _metodos.IngresarDetallesCotizacion(producto);
+            }
+        }
+        #endregion
+
         public bool RegistrarUsuarios(string usuario, string clave, int role, bool status, int id_trabajador, int id=0)
         {
             UsersEntitis u = new UsersEntitis();

@@ -418,6 +418,7 @@ namespace SistemaFacturacion.Formularios
             return descontado > precioCompra;
         }
 
+<<<<<<< HEAD
         private void DataGrivCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (DataGrivCliente != null)
@@ -427,6 +428,66 @@ namespace SistemaFacturacion.Formularios
              
                 txtBuscarArticulo.Focus();
             }
+=======
+        private void btnBusc_Click(object sender, EventArgs e)
+        {
+            if(ventaActual == null)
+            {
+                Alertas.AlertError noRegistro = new Alertas.AlertError("No Se ha Registrado Ninguna Cotizacion, Busque El Cliente e Añade los Productos");
+                noRegistro.ShowDialog();
+                return;
+
+            }
+
+            if(string.IsNullOrWhiteSpace(txtTotal.Text.Trim()) || string.IsNullOrWhiteSpace(txtCan.Text.Trim()) || string.IsNullOrWhiteSpace(txtSubtotal.Text.Trim()))
+            {
+                Alertas.AlertError noRegistro = new Alertas.AlertError("No Se ha Registrado Ninguna Cotizacion, Busque El Cliente e Añade los Productos");
+                noRegistro.ShowDialog();
+                return;
+            }
+            LogicaDbVentas db = new LogicaDbVentas();
+            ventaActual.cantidad = detallesArticulos.Count;
+            ventaActual.itbis = detallesArticulos.Sum(de => de.itbis * de.cantidad);
+            ventaActual.subtotal = detallesArticulos.Sum(de => de.precio_venta * de.cantidad);
+            ventaActual.total = ventaActual.itbis + ventaActual.subtotal;
+
+            int idCotizacion = db.IngresarCotizacion(ventaActual);
+            if(idCotizacion <= 0)
+            {
+                Alertas.AlertError noIngreso = new Alertas.AlertError("No Se pudo Registrar la Cotizacion...");
+                noIngreso.ShowDialog();
+                return;
+            }else
+            {
+                db.IngresarDetallesCotizacion(idCotizacion, detallesArticulos);
+                Alertas.AlertSuccess todoBien = new Alertas.AlertSuccess("Se Ha Ingresado La Cotizacion.");
+                todoBien.ShowDialog();
+                DataGrivCliente.DataSource = null;
+                gridArticulosAVender.DataSource = null;
+                txtB.Text = string.Empty;
+                txtCliente.Text = string.Empty;
+                ventaActual = null;
+                clienteAFacturar = null;
+                detallesArticulos = null;
+                txtCan.Text = string.Empty;
+                txtItbis.Text = string.Empty;
+                txtSubtotal.Text = string.Empty;
+                txtTotal.Text = string.Empty;
+                
+            }
+        }
+
+        private void DataGrivCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ventaActual = new VentaViewModel();
+            ventaActual.idcliente = Convert.ToInt32(DataGrivCliente.CurrentRow.Cells["idcliente"].Value.ToString());
+            ventaActual.idtrabajador = Seccion.Instance.IdTrabajador;
+            ventaActual.tipo_cliente = "Cliente Existente";
+            ventaActual.tipo_comprobante = "Cotizacion";
+            ventaActual.tipo_venta = "Cotizacion";
+
+            txtCliente.Text = clienteAFacturar.NombreCompleto;
+>>>>>>> 7bee754ba5446567fbaab1621b51e36d44fdd518
         }
     }
 }

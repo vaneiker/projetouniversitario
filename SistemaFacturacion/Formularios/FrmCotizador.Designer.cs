@@ -124,6 +124,7 @@
             this.btnBusc.TabIndex = 192;
             this.btnBusc.Text = "Cotizar";
             this.btnBusc.UseVisualStyleBackColor = false;
+            this.btnBusc.Click += new System.EventHandler(this.btnBusc_Click);
             // 
             // panel2
             // 
