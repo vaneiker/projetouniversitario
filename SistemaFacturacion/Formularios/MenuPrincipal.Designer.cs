@@ -31,27 +31,21 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Panel panel2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.msmusu = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.lblmp = new System.Windows.Forms.Label();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.ChangerUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.Salir = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnFacturacion = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -62,17 +56,23 @@
             this.BtnCategoria = new System.Windows.Forms.Button();
             this.BtnArticulos = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ChangerUser = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.Salir = new System.Windows.Forms.ToolStripButton();
             panel2 = new System.Windows.Forms.Panel();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel5.SuspendLayout();
             this.msmusu.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel18.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -86,15 +86,6 @@
             panel2.Name = "panel2";
             panel2.Size = new System.Drawing.Size(1063, 552);
             panel2.TabIndex = 1;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(328, 162);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(559, 305);
-            this.pictureBox5.TabIndex = 19;
-            this.pictureBox5.TabStop = false;
             // 
             // panel5
             // 
@@ -137,15 +128,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(185, 99);
             this.panel4.TabIndex = 3;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(185, 101);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -202,18 +184,6 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 71);
             // 
-            // ChangerUser
-            // 
-            this.ChangerUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ChangerUser.Image = ((System.Drawing.Image)(resources.GetObject("ChangerUser.Image")));
-            this.ChangerUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ChangerUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ChangerUser.Name = "ChangerUser";
-            this.ChangerUser.Size = new System.Drawing.Size(68, 68);
-            this.ChangerUser.Text = "Configuración de la Aplicación";
-            this.ChangerUser.ToolTipText = "Cambiar de Usuario";
-            this.ChangerUser.Click += new System.EventHandler(this.ChangerUser_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -223,18 +193,6 @@
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 71);
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton4.Text = "Usuarios y Permisos";
-            this.toolStripButton4.ToolTipText = "Creación de Usuarios";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator3
             // 
@@ -246,33 +204,10 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 71);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Ayuda";
-            this.toolStripButton1.ToolTipText = "Salir";
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Salir
-            // 
-            this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Salir.Name = "Salir";
-            this.Salir.Size = new System.Drawing.Size(52, 68);
-            this.Salir.Text = "Salir";
-            this.Salir.ToolTipText = "Salir";
-            this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
             // panel1
             // 
@@ -402,6 +337,71 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(328, 162);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(559, 305);
+            this.pictureBox5.TabIndex = 19;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(185, 101);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // ChangerUser
+            // 
+            this.ChangerUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ChangerUser.Image = ((System.Drawing.Image)(resources.GetObject("ChangerUser.Image")));
+            this.ChangerUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ChangerUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ChangerUser.Name = "ChangerUser";
+            this.ChangerUser.Size = new System.Drawing.Size(68, 68);
+            this.ChangerUser.Text = "Configuración de la Aplicación";
+            this.ChangerUser.ToolTipText = "Cambiar de Usuario";
+            this.ChangerUser.Click += new System.EventHandler(this.ChangerUser_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(68, 68);
+            this.toolStripButton4.Text = "Usuarios y Permisos";
+            this.toolStripButton4.ToolTipText = "Creación de Usuarios";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
+            this.toolStripButton1.Text = "Ayuda";
+            this.toolStripButton1.ToolTipText = "Salir";
+            // 
+            // Salir
+            // 
+            this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
+            this.Salir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Salir.Name = "Salir";
+            this.Salir.Size = new System.Drawing.Size(52, 68);
+            this.Salir.Text = "Salir";
+            this.Salir.ToolTipText = "Salir";
+            this.Salir.Click += new System.EventHandler(this.Salir_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,13 +415,11 @@
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.msmusu.ResumeLayout(false);
             this.msmusu.PerformLayout();
             this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel18.ResumeLayout(false);
@@ -429,6 +427,8 @@
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
             }

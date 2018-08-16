@@ -58,71 +58,61 @@ namespace SistemaFacturacion.Formularios
             toolStripStatusLabel2.Text="***Usuario: "+s.Usuario.ToString()+" Cargo : " + cargo;
             lblmp.Text = "Bienvenido Sr(a): "+s.nombreCompleto;
 
-            }
+        }
 
         private void BtnCategoria_Click(object sender, EventArgs e)
             {
             FrmCategoria f = new Formularios.FrmCategoria();
             f.ShowDialog();
             }
-
         private void BtnCliente_Click(object sender, EventArgs e)
             {
             FrmClientes cliente = new Formularios.FrmClientes();
 
             cliente.ShowDialog();
             }
-
         private void BtnIngreso_Click(object sender, EventArgs e)
             {
             Formularios.FrmIngresos f = new FrmIngresos();
             f.ShowDialog();
             }
-
         private void BtnArticulos_Click(object sender, EventArgs e)
             {
             FrmArticulos f = new FrmArticulos();
             f.ShowDialog();
             }
-
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             FrmMantenimientoUsuarios m = new Formularios.FrmMantenimientoUsuarios();
             m.ShowDialog();
         }
-
         private void BtnFacturacion_Click(object sender, EventArgs e)
         {
             Formularios.FrmVentas v = new FrmVentas();
             v.ShowDialog();
         }
-
         private void btnEmpleado_Click(object sender, EventArgs e)
         {
             FrmTrabajador t = new FrmTrabajador();
             t.ShowDialog();
 
         }
-
         private void BtnProveedor_Click(object sender, EventArgs e)
         {
             FrmProveedor pr = new FrmProveedor();
             pr.ShowDialog();
         }
-
         private void ChangerUser_Click(object sender, EventArgs e)
         {
             Login l = new SistemaFacturacion.Login();
             l.Show();
             this.Close();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             FrmCotizador c = new Formularios.FrmCotizador();
             c.ShowDialog();
         }
-
         private void btnCxc_Click(object sender, EventArgs e)
         {
             FrmCuentasPorCobrarl cxc = new FrmCuentasPorCobrarl();

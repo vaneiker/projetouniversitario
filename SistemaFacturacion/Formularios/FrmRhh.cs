@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SistemaFacturacion.Formularios
 {
-    public partial class FrmPrueba : Form
+    public partial class FrmRhh : Form
     {
-        public FrmPrueba()
+        public FrmRhh()
         {
             InitializeComponent();
         }
