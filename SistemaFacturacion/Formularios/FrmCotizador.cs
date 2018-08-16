@@ -418,17 +418,6 @@ namespace SistemaFacturacion.Formularios
             return descontado > precioCompra;
         }
 
-<<<<<<< HEAD
-        private void DataGrivCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (DataGrivCliente != null)
-            {
-              
-                txtCliente.Text = clienteAFacturar.NombreCompleto;
-             
-                txtBuscarArticulo.Focus();
-            }
-=======
         private void btnBusc_Click(object sender, EventArgs e)
         {
             if(ventaActual == null)
@@ -487,7 +476,6 @@ namespace SistemaFacturacion.Formularios
             ventaActual.tipo_venta = "Cotizacion";
 
             txtCliente.Text = clienteAFacturar.NombreCompleto;
->>>>>>> 7bee754ba5446567fbaab1621b51e36d44fdd518
         }
     }
 }

@@ -507,45 +507,6 @@ namespace CapaDatos.RepocitoryDbVentas
 
         }
 
-        public int PagarCuentaCXC(cuentas_x_cobrarEntitis cxc_)
-        {
-            try
-            {
-                using (dbventasEntity context = new dbventasEntity())
-                {
-
-                    var connection = context.Database.Connection as SqlConnection;
-
-                    using (connection)
-                    {
-
-                        connection.Open();
-                        string Qry = "SP_CUENTA_POR_COBRAR";
-                        SqlCommand cmd = new SqlCommand(Qry, connection);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@id_cliente", cxc_.id_cliente));
-                        cmd.Parameters.Add(new SqlParameter("@valor", cxc_.valor));
-                        cmd.Parameters.Add(new SqlParameter("@pagado", cxc_.pagado));
-                        cmd.Parameters.Add(new SqlParameter("@usuario", cxc_.usuario));
-                        cmd.Parameters.Add(new SqlParameter("@idFactura", cxc_.idFactura));
-                       
-
-                        //cmd.Parameters.Add(new SqlParameter("@UsuarioModifica", null));
-                        cmd.ExecuteNonQuery();
-                        return 1;
-
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                return 0;
-
-                throw ex;
-            }
-        }
-
 
 
 
