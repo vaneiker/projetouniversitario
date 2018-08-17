@@ -200,6 +200,7 @@ namespace CapaDatos.RepocitoryDbVentas
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return entity;
             }
             return entity;
@@ -559,10 +560,9 @@ namespace CapaDatos.RepocitoryDbVentas
                         cmd.Parameters.Add(new SqlParameter("@fecha_vencimiento", ingreso.fecha_vencimiento));
 
                         cmd.ExecuteNonQuery();
-
-                        return Estado = 1;
                     }
                 }
+                Estado = 1;
 
             }
             catch (Exception ex)
@@ -571,6 +571,8 @@ namespace CapaDatos.RepocitoryDbVentas
                 return Estado = 0;
                 throw ex;
             }
+
+            return Estado;
 
         }
 

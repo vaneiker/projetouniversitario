@@ -213,6 +213,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
             return true;
