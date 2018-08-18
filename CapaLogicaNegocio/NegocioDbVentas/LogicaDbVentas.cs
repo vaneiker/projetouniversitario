@@ -10,9 +10,9 @@ using CapaEntidad.DbVentas;
 using CapaLogicaNegocio.ModeloVista;
 
 namespace CapaLogicaNegocio.NegocioDbVentas
-    {
+{
     public class LogicaDbVentas
-        {
+    {
         DventasData _metodos = new DventasData();
         public DataTable Listap()
         {
@@ -20,32 +20,32 @@ namespace CapaLogicaNegocio.NegocioDbVentas
 
         }
         public DataTable ListCategoria()
-            {
+        {
             return _metodos.ListCategoria();
 
-            }
+        }
         public void Registrar_Categoria(categoriaEntitis categoria)
-            {
+        {
             _metodos.Registrar_Categoria(categoria);
-            
-            }
+
+        }
         public DataTable ListaClientes()
-            {
-            
+        {
+
             return _metodos.ListaCliente();
 
-            }
+        }
         public DataTable BuscarCliente(string NombreCompleto, string cedula, string codigo, string telefono)
-            {
-            cedula.Replace("-","");
-            return (_metodos.BuscarCliente(NombreCompleto,cedula,codigo,telefono));
-            }
+        {
+            cedula.Replace("-", "");
+            return (_metodos.BuscarCliente(NombreCompleto, cedula, codigo, telefono));
+        }
         public bool Registrar_Clientes(ClienteEntitis cliente)
-            {
-           
+        {
+
             if (cliente.idcliente > 0)
             {
-                
+
             }
 
             //return  /* _metodos.Registrar_Clientes(cliente);*/
@@ -53,12 +53,13 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             if (r == 1)
             {
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }
         }
-        public bool BorrarArticulo(int id ,bool estatus)
+        public bool BorrarArticulo(int id, bool estatus)
         {
             articulosEntitis en = new articulosEntitis();
             if (id <= 0)
@@ -84,12 +85,12 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         public ClienteEntitis GetClienteFromDataTable(DataTable source)
         {
             ClienteEntitis cliente = new ClienteEntitis();
-            foreach(DataRow row in source.Rows)
+            foreach (DataRow row in source.Rows)
             {
                 cliente.idcliente = Convert.ToInt32(row["idcliente"].ToString());
                 cliente.CodigoCliente = row["CodigoCliente"].ToString();
                 cliente.NombreCompleto = row["Nombre_Completo_Empleado"].ToString();
-                switch(row["Sexo"].ToString()[0])
+                switch (row["Sexo"].ToString()[0])
                 {
                     case 'M':
                         cliente.sexo = "Masculino";
@@ -110,73 +111,74 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return cliente;
         }
         public void Borrar_Clientes(ClienteEntitis cliente)
-            {
+        {
             _metodos.EliminarClientes(cliente);
 
 
-            }
+        }
         public DataTable ListaArticulos()
-            {
+        {
             return _metodos.ListArticulos();
 
-            }
-        public DataTable CriterioBusquedaArticulo(string codigo , string nombre)
-            {
+        }
+        public DataTable CriterioBusquedaArticulo(string codigo, string nombre)
+        {
             nombre.Trim();
-            return (_metodos.BuscarArticulo(codigo,nombre));
-            }
+            return (_metodos.BuscarArticulo(codigo, nombre));
+        }
         public articulosEntitis BuscarArticulosPorCodigo(string codigo)
         {
             codigo = codigo.ToUpper();
             return _metodos.BuscarArticuloXCodigo(codigo);
         }
         public DataTable CriterioBusquedaProveedor(string doc, string tel, string nom)
-            {
+        {
             nom.Trim();
-            return (_metodos.Buscarproveedor(doc,tel,nom));
-            }
+            return (_metodos.Buscarproveedor(doc, tel, nom));
+        }
         public bool Registrar_Proveedor(ProveedorEntity proveedor)
-            {
-            if (proveedor.idproveedor==0)
+        {
+            if (proveedor.idproveedor == 0)
             {
                 proveedor.UsuarioModifica = "0";
             }
 
-          proveedor.telefono=proveedor.telefono.Replace("-","");
-          proveedor.num_documento=proveedor.num_documento.Replace("-", "");
+            proveedor.telefono = proveedor.telefono.Replace("-", "");
+            proveedor.num_documento = proveedor.num_documento.Replace("-", "");
 
-             var r= _metodos.Registrar_Proveedor(proveedor);
+            var r = _metodos.Registrar_Proveedor(proveedor);
 
             if (r == 1)
             {
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }
 
-            }
-        
-          public bool Registrar_Articulos(
-                                  string  idarticulo
-                                , string  codigo
-                                , string  nombre
-                                , int     idcategoria
-                                , string  Imag_Url
-                                , string  descripcion
-                                , decimal precioVenta
-                                , decimal precioCompra
-                                , decimal cantidad
-                                , bool    estado
-                                , int     idProveedor
-    )
+        }
+
+        public bool Registrar_Articulos(
+                                string idarticulo
+                              , string codigo
+                              , string nombre
+                              , int idcategoria
+                              , string Imag_Url
+                              , string descripcion
+                              , decimal precioVenta
+                              , decimal precioCompra
+                              , decimal cantidad
+                              , bool estado
+                              , int idProveedor
+  )
         {
             articulosEntitis art = new articulosEntitis();
-            if(idarticulo=="" || idarticulo == null)
+            if (idarticulo == "" || idarticulo == null)
             {
                 idarticulo = "0";
             }
-            art.idarticulo =int.Parse(idarticulo);
+            art.idarticulo = int.Parse(idarticulo);
             art.codigo = codigo;
             art.nombre = nombre;
             art.idcategoria = idcategoria;
@@ -189,17 +191,18 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             art.idProveedor = idProveedor;
 
 
-           var repuesta= _metodos.Registrar_Articulos(art);
-            if(repuesta==1)
+            var repuesta = _metodos.Registrar_Articulos(art);
+            if (repuesta == 1)
             {
                 return true;
-            } else
+            }
+            else
 
             {
                 return false;
             }
-           
-            }
+
+        }
         /// <summary>
         /// Metodo que elimina los articulos 
         /// </summary>
@@ -217,7 +220,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             }
             return true;
         }
-           
+
 
         public int IngresarVenta(ventasEntitis venta, ICollection<detalle_ventaEntitis> detalles)
         {
@@ -254,7 +257,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             domainVenta.tipo_venta = modeloVenta.tipo_venta;
             domainVenta.total = modeloVenta.total;
 
-            foreach(DetalleVentaViewModel vmDetalle in detalles)
+            foreach (DetalleVentaViewModel vmDetalle in detalles)
             {
                 domainDetalles.Add(new detalle_ventaEntitis
                 {
@@ -298,7 +301,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             DataTable datos = _metodos.BuscarVentasDelDia();
             if (datos == null)
                 return null;
-            if(datos.Rows.Count > 0)
+            if (datos.Rows.Count > 0)
             {
                 foreach (DataRow fila in datos.Rows)
                     ventas.Add(new CuadreViewModel
@@ -384,7 +387,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                                        , DateTime FechaModifica
                                        , string UsuarioAdiciona
                                        , string UsuarioModifica)
-            {
+        {
             ProveedorEntity p = new ProveedorEntity();
             if (String.IsNullOrWhiteSpace(tipodocumento) || String.IsNullOrWhiteSpace(numdocumento)) return false;
             if (String.IsNullOrWhiteSpace(NombreProveedor) || String.IsNullOrWhiteSpace(telefono)) return false;
@@ -404,12 +407,12 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             p.UsuarioModifica = UsuarioModifica;
             int filasAfectadas = _metodos.Registrar_Proveedor(p);
             return filasAfectadas > 0 ? true : false;
-            }
+        }
 
 
-        public DataTable ListArticuloXcodigo(string codigo,int copia=1)
+        public DataTable ListArticuloXcodigo(string codigo, int copia = 1)
         {
-            return _metodos.ListarticulosX_Codigo(codigo,copia);
+            return _metodos.ListarticulosX_Codigo(codigo, copia);
         }
 
 
@@ -419,18 +422,18 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         #region Metodos Trabajador
 
         public bool Add_employee(
-                                  int       idtrabajador
-                                 ,string    nombre
-                                 ,string    apellidos
-                                 ,string    sexo
-                                 ,DateTime  Fecha_nac
-                                 ,string    num_documento
-                                 ,string    direccion
-                                 ,string    telefono
-                                 ,string    email
-                                 ,bool      StatusE
-                                ,string     UsuarioAdiciona
-                                 ,string    UsuarioModifica
+                                  int idtrabajador
+                                 , string nombre
+                                 , string apellidos
+                                 , string sexo
+                                 , DateTime Fecha_nac
+                                 , string num_documento
+                                 , string direccion
+                                 , string telefono
+                                 , string email
+                                 , bool StatusE
+                                , string UsuarioAdiciona
+                                 , string UsuarioModifica
                                  )
         {
             int respuesta;
@@ -439,32 +442,32 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             {
                 UsuarioModifica = "0";
             }
-          
-            tt.idtrabajador     = idtrabajador;
 
-            tt.nombre           = nombre;
-            tt.apellidos        = apellidos;
-            tt.sexo             = sexo;           
-            tt.Fecha_nac        = Fecha_nac;
-            tt.num_documento    = num_documento.Replace("-","");
-            tt.direccion        = direccion.Trim();
-            tt.telefono         = telefono.Replace("-", "");  
-            tt.email            = email;
-            tt.StatusE          = StatusE;
+            tt.idtrabajador = idtrabajador;
 
-            tt.nombre           =nombre;
-            tt.apellidos        =apellidos;
-            tt.sexo             = sexo[0].ToString();           
-            tt.Fecha_nac        =Fecha_nac;
-            tt.num_documento    =num_documento;
-            tt.direccion        = direccion;
-            tt.telefono         = telefono.Substring(1).Replace("-","");  
-            tt.email            =email;
-            tt.StatusE          =StatusE;
+            tt.nombre = nombre;
+            tt.apellidos = apellidos;
+            tt.sexo = sexo;
+            tt.Fecha_nac = Fecha_nac;
+            tt.num_documento = num_documento.Replace("-", "");
+            tt.direccion = direccion.Trim();
+            tt.telefono = telefono.Replace("-", "");
+            tt.email = email;
+            tt.StatusE = StatusE;
 
-            tt.UsuarioAdiciona  = UsuarioAdiciona;
-            tt.UsuarioModifica  = UsuarioModifica;
-           
+            tt.nombre = nombre;
+            tt.apellidos = apellidos;
+            tt.sexo = sexo[0].ToString();
+            tt.Fecha_nac = Fecha_nac;
+            tt.num_documento = num_documento;
+            tt.direccion = direccion;
+            tt.telefono = telefono.Substring(1).Replace("-", "");
+            tt.email = email;
+            tt.StatusE = StatusE;
+
+            tt.UsuarioAdiciona = UsuarioAdiciona;
+            tt.UsuarioModifica = UsuarioModifica;
+
 
             respuesta = _metodos.Registrar_Empleado(tt);
             if (respuesta == 1)
@@ -475,7 +478,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             {
                 return false;
             }
-            
+
         }
 
 
@@ -509,7 +512,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         /// <param name="detalles">Colecion de Detalles de la Cotizacion</param>
         public void IngresarDetallesCotizacion(int idCotizacion, List<DetalleVentaViewModel> detalles)
         {
-            foreach(DetalleVentaViewModel entrada in detalles)
+            foreach (DetalleVentaViewModel entrada in detalles)
             {
                 detalle_cotizacion_productos producto = new detalle_cotizacion_productos
                 {
@@ -526,10 +529,10 @@ namespace CapaLogicaNegocio.NegocioDbVentas
         }
         #endregion
 
-        public bool RegistrarUsuarios(string usuario, string clave, int role, bool status, int id_trabajador, int id=0)
+        public bool RegistrarUsuarios(string usuario, string clave, int role, bool status, int id_trabajador, int id = 0)
         {
             UsersEntitis u = new UsersEntitis();
-          
+
             u.Usuario = usuario;
             u.Clave = clave;
             u.RolID = role;
@@ -538,8 +541,8 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             u.id = id;
 
             var repuesta = _metodos.RegistrarUsuario(u);
-           
-            if(repuesta==1)
+
+            if (repuesta == 1)
             {
                 return true;
             }
@@ -554,18 +557,46 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             return _metodos.ListCuentasXcobrar();
         }
 
-
-        public DataTable BuscarCxC(string num_documento,string codigoCliente,string NombComp) 
-            {
+        public DataTable BuscarCxC(string num_documento, string codigoCliente, string NombComp)
+        {
             cuentas_x_cobrarEntitis cxc = new cuentas_x_cobrarEntitis();
             cxc.num_documento = num_documento;
             cxc.codigoCliente = codigoCliente;
             cxc.NombComp = NombComp;
-            return _metodos.ListCuentasXcobrar();
+            return _metodos.BuscarClientesDeuda(cxc);
+        }
+
+        public bool PagarCuentaCxc(int id, int id_cliente,int id_factura, DateTime fecha,decimal valor,bool pago,string usuario, decimal cantidadP, bool estado)
+        {
+            if (valor == cantidadP)
+            {
+                valor = cantidadP;
+                pago = true;
+            }
+
+            cuentas_x_cobrarEntitis cxc = new cuentas_x_cobrarEntitis();
+            cxc.id = id;
+            cxc.id_cliente = id_cliente;
+            cxc.fecha = fecha;
+            cxc.valor = valor;
+            cxc.pagado = pago;
+            cxc.usuario = usuario;
+            cxc.idFactura = id_factura;
+            cxc.CantidadPagada = cantidadP;
+            cxc.statud = estado;
+
+            var respuesta = _metodos.PagarCuentaCxc(cxc);
+            if (respuesta == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
-
 
 
       

@@ -507,7 +507,50 @@ namespace CapaDatos.RepocitoryDbVentas
 
         }
 
+        public int PagarCuentaCxc(cuentas_x_cobrarEntitis cxc)
+        {
+          
+            try
+            {
+                using (dbventasEntity context = new dbventasEntity())
+                {
 
+                    var connection = context.Database.Connection as SqlConnection;
+
+                    using (connection)
+                    {
+                        connection.Open();
+                        string Qry = "SP_SET_PAGAR_CXC_NEW";
+                        SqlCommand cmd = new SqlCommand(Qry, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                       
+                        cmd.Parameters.Add(new SqlParameter("@id_cliente", cxc.id_cliente));
+                        cmd.Parameters.Add(new SqlParameter("@fecha", cxc.fecha));
+                        cmd.Parameters.Add(new SqlParameter("@valor", cxc.valor));
+                        cmd.Parameters.Add(new SqlParameter("@pagado", cxc.pagado));
+                        cmd.Parameters.Add(new SqlParameter("@usuario", cxc.usuario));                         
+                        cmd.Parameters.Add(new SqlParameter("@fechaPago", cxc.fecha));
+                        cmd.Parameters.Add(new SqlParameter("@idFactura", cxc.idFactura));
+                        cmd.Parameters.Add(new SqlParameter("@CantidadPagada", cxc.CantidadPagada));
+                        cmd.Parameters.Add(new SqlParameter("@statud",cxc.statud ));
+                        cmd.Parameters.Add(new SqlParameter("@id_cxc", cxc.id));
+                        cmd.ExecuteNonQuery();
+                        return 1;
+
+                    }
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                Console.Write("Se presento un error al realizar esta Acción" + ex.ToString());
+                return 0;
+                throw;
+            }
+
+        }
 
 
         #endregion

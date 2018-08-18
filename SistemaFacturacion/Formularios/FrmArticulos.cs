@@ -58,23 +58,23 @@ namespace SistemaFacturacion.Formularios
         }
         private void toolStripEliminar_Click(object sender, EventArgs e)
         {
-            if (TabArticulo.SelectedIndex == 1)
-            {
-                MessageBox.Show("Por Favor de ir a la pestaña de busqueda.");
-                return;
-            }
-            string codigo = GridViewArticulos.CurrentRow.Cells[1].Value.ToString();
-            string nombre = GridViewArticulos.CurrentRow.Cells[2].Value.ToString();
-            DialogResult result = MessageBox.Show($"Desea Eliminar El Producto {codigo}?", "Eliminar Articulo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (result == DialogResult.OK)
-            {
-                LogicaDbVentas db = new LogicaDbVentas();
-                articulosEntitis entity = new articulosEntitis();
-                if (db.Eliminar_Articulo(entity))
-                {
+            //if (TabArticulo.SelectedIndex == 1)
+            //{
+            //    MessageBox.Show("Por Favor de ir a la pestaña de busqueda.");
+            //    return;
+            //}
+            //string codigo = GridViewArticulos.CurrentRow.Cells[1].Value.ToString();
+            //string nombre = GridViewArticulos.CurrentRow.Cells[2].Value.ToString();
+            //DialogResult result = MessageBox.Show($"Desea Eliminar El Producto {codigo}?", "Eliminar Articulo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            //if (result == DialogResult.OK)
+            //{
+            //    LogicaDbVentas db = new LogicaDbVentas();
+            //    articulosEntitis entity = new articulosEntitis();
+            //    if (db.Eliminar_Articulo(entity))
+            //    {
 
-                }
-            }
+            //    }
+            //}
             carga();
         }
         private void GridViewArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -122,7 +122,7 @@ namespace SistemaFacturacion.Formularios
             txtComp.Text = "0";
             txtCan.Text = "0";
             txtVent.Text = "0";
-            LBLG.Text="---Seleccione---";
+             
 
         }
         private void Aceptar_Click(object sender, EventArgs e)
@@ -366,7 +366,7 @@ namespace SistemaFacturacion.Formularios
         {
             cboCat.Enabled = false;
             cboProv.Enabled = false;
-            cboTasaG.Enabled = false;
+             
             txtNom.Enabled = false;
             txtDes.Enabled = false;
             txtCan.Enabled = false;
@@ -376,8 +376,7 @@ namespace SistemaFacturacion.Formularios
         private void ActiveT()
         {
             cboCat.Enabled = true;
-            cboProv.Enabled = true;
-            cboTasaG.Enabled = true;
+            cboProv.Enabled = true;            
             txtNom.Enabled = true;
             txtDes.Enabled = true;
             txtCan.Enabled = true;
