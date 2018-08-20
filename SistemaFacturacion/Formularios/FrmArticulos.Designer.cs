@@ -634,6 +634,7 @@
             this.txtComp.Text = "0";
             this.txtComp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtComp.TextChanged += new System.EventHandler(this.txtComp_TextChanged);
+            this.txtComp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCan_KeyPress);
             // 
             // label9
             // 
@@ -658,6 +659,7 @@
             this.txtCan.Text = "0";
             this.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCan.TextChanged += new System.EventHandler(this.txtCan_TextChanged);
+            this.txtCan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCan_KeyPress);
             // 
             // label8
             // 
@@ -677,9 +679,9 @@
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
             this.label7.Location = new System.Drawing.Point(176, 32);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(93, 25);
+            this.label7.Size = new System.Drawing.Size(106, 25);
             this.label7.TabIndex = 163;
-            this.label7.Text = "Catidad";
+            this.label7.Text = "Cantidad";
             // 
             // txtVent
             // 

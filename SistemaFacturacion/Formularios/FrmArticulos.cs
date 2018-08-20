@@ -390,5 +390,10 @@ namespace SistemaFacturacion.Formularios
             ActiveT();
             clearT();
         }
+
+        private void txtCan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AppTools.Util.SoloNumeros(e);
+        }
     }
     }
