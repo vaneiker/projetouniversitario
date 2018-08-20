@@ -16,14 +16,14 @@ namespace SistemaFacturacion.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class FacturaReport : ReportClass {
+    public class CotizacionReport : ReportClass {
         
-        public FacturaReport() {
+        public CotizacionReport() {
         }
         
         public override string ResourceName {
             get {
-                return "FacturaReport.rpt";
+                return "CotizacionReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace SistemaFacturacion.Reports {
         
         public override string FullResourceName {
             get {
-                return "SistemaFacturacion.Reports.FacturaReport.rpt";
+                return "SistemaFacturacion.Reports.CotizacionReport.rpt";
             }
             set {
                 // Do nothing
@@ -95,12 +95,20 @@ namespace SistemaFacturacion.Reports {
                 return this.DataDefinition.ParameterFields[0];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_id_cotizacion {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedFacturaReport : Component, ICachedReport {
+    public class CachedCotizacionReport : Component, ICachedReport {
         
-        public CachedFacturaReport() {
+        public CachedCotizacionReport() {
         }
         
         [Browsable(false)]
@@ -137,7 +145,7 @@ namespace SistemaFacturacion.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            FacturaReport rpt = new FacturaReport();
+            CotizacionReport rpt = new CotizacionReport();
             rpt.Site = this.Site;
             return rpt;
         }
