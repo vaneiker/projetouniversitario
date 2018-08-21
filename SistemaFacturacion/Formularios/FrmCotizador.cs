@@ -53,7 +53,6 @@ namespace SistemaFacturacion.Formularios
 
                     LogicaDbVentas db = new LogicaDbVentas();
                     clienteAFacturar = db.GetClienteFromDataTable(cliente as DataTable);
-                    id_facturaGenerado = 0;
 
                 }
                 else
@@ -446,7 +445,6 @@ namespace SistemaFacturacion.Formularios
             {
                 Alertas.AlertError noIngreso = new Alertas.AlertError("No Se pudo Registrar la Cotizacion...");
                 noIngreso.ShowDialog();
-                id_facturaGenerado = 0;
                 return;
             }else
             {
@@ -464,7 +462,6 @@ namespace SistemaFacturacion.Formularios
                 txtItbis.Text = string.Empty;
                 txtSubtotal.Text = string.Empty;
                 txtTotal.Text = string.Empty;
-                id_facturaGenerado = idCotizacion;
                 
             }
         }
@@ -479,22 +476,6 @@ namespace SistemaFacturacion.Formularios
             ventaActual.tipo_venta = "Cotizacion";
 
             txtCliente.Text = clienteAFacturar.NombreCompleto;
-        }
-
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            if(id_facturaGenerado <= 0)
-            {
-                Alertas.Alerwarning noId = new Alertas.Alerwarning("No se Ha Generado la Cotizacion. Asegurece de Generar la Cotizacion primero");
-                noId.ShowDialog();
-                return;
-            }
-            else
-            {
-                CotizacionReporte reporteCotizacion = new Formularios.CotizacionReporte(id_facturaGenerado);
-                reporteCotizacion.ShowDialog();
-                id_facturaGenerado = 0;
-            }
         }
     }
 }
