@@ -18,9 +18,10 @@ namespace SistemaFacturacion
             UsuarioActual = Seccion.Instance;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             //Application.Run(new Formularios.FrmCotizador());
-             Application.Run(new Login());
+            String serverName = AppTools.AppConfiguration.GetServerNameFromConfiguration();
+            String databaseName = AppTools.AppConfiguration.GetDatabaseNameFromConfiguration();
+            Application.Run(new Login());
             }
 
         }

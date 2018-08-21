@@ -31,7 +31,12 @@ namespace SistemaFacturacion.Formularios
                 this.Close();
             }
             //Load report document and set the parameter id to load the report.
+            String serverName = AppTools.AppConfiguration.GetServerNameFromConfiguration();
+            String databaseName = AppTools.AppConfiguration.GetDatabaseNameFromConfiguration();
+
             reportDocument.Load(CotizacionReport1.FileName);
+            
+            reportDocument.DataSourceConnections[0].SetConnection(serverName, databaseName, true);
             reportDocument.SetParameterValue("@id_factura", _cotizacionId);
             reportDocument.SetParameterValue("@id_cotizacion", _cotizacionId);
             crystalReportViewerCotizacion.ReportSource = reportDocument;

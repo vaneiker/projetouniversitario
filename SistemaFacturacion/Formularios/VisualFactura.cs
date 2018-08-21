@@ -1,4 +1,5 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,8 @@ namespace SistemaFacturacion.Formularios
     {
         private ReportDocument reportDocument = new ReportDocument();
         private int idfactura = 0;
-
+        
+        
         public VisualFactura(int idfactura)
         {
             InitializeComponent();
@@ -30,7 +32,14 @@ namespace SistemaFacturacion.Formularios
                 noId.ShowDialog();
                 this.Close();
             }
+
+            String serverName = AppTools.AppConfiguration.GetServerNameFromConfiguration();
+            String databaseName = AppTools.AppConfiguration.GetDatabaseNameFromConfiguration();
+
             reportDocument.Load(FacturaReport1.FileName);
+
+            reportDocument.DataSourceConnections[0].SetConnection(serverName, databaseName, true);
+
             reportDocument.SetParameterValue("@id_factura", this.idfactura);
             facturaReportViewer.ReportSource = reportDocument;
             
