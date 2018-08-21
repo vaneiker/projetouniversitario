@@ -65,6 +65,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -102,6 +103,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.btnImprimir);
             this.panel1.Controls.Add(this.btnBusc);
             this.panel1.Location = new System.Drawing.Point(3, 602);
             this.panel1.Name = "panel1";
@@ -506,6 +508,24 @@
             this.gridArticulosAVender.TabIndex = 0;
             this.gridArticulosAVender.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridArticulosAVender_CellContentClick);
             // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btnImprimir.ForeColor = System.Drawing.Color.White;
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(911, 6);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(157, 35);
+            this.btnImprimir.TabIndex = 193;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
             // FrmCotizador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -584,5 +604,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnImprimir;
     }
 }
