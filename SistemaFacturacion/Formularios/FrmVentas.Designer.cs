@@ -29,22 +29,6 @@
         private void InitializeComponent()
             {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVentas));
-            this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.Nuevo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.BuscarD = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.Aceptar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.Eliminar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.Limpia = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.Salir = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.Cuadrar = new System.Windows.Forms.ToolStripButton();
             this.radioACredito = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.radioAlContado = new System.Windows.Forms.RadioButton();
@@ -52,13 +36,6 @@
             this.txtB = new System.Windows.Forms.TextBox();
             this.btnBusc = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.checkDescuento = new System.Windows.Forms.CheckBox();
@@ -86,6 +63,8 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnRemoveItem = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnVentaNew = new System.Windows.Forms.Button();
+            this.btnCuadre = new System.Windows.Forms.Button();
             this.btnCancelarFactura = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnPagar = new System.Windows.Forms.Button();
@@ -98,12 +77,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.gridArticulosAVender = new System.Windows.Forms.DataGridView();
-            this.ToolStrip1.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel7.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -114,161 +88,6 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridArticulosAVender)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ToolStrip1
-            // 
-            this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Nuevo,
-            this.toolStripSeparator6,
-            this.toolStripButton1,
-            this.toolStripSeparator5,
-            this.BuscarD,
-            this.toolStripSeparator1,
-            this.Aceptar,
-            this.toolStripSeparator4,
-            this.Eliminar,
-            this.toolStripSeparator3,
-            this.Limpia,
-            this.toolStripSeparator2,
-            this.Salir,
-            this.toolStripButton2,
-            this.Cuadrar});
-            this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(1356, 71);
-            this.ToolStrip1.TabIndex = 10;
-            this.ToolStrip1.Text = "ToolStrip1";
-            // 
-            // Nuevo
-            // 
-            this.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Nuevo.Image = ((System.Drawing.Image)(resources.GetObject("Nuevo.Image")));
-            this.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Nuevo.Name = "Nuevo";
-            this.Nuevo.Size = new System.Drawing.Size(68, 68);
-            this.Nuevo.Text = "Nuevo";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 71);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Limpiar";
-            this.toolStripButton1.ToolTipText = "Eliminar";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 71);
-            // 
-            // BuscarD
-            // 
-            this.BuscarD.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BuscarD.Image = ((System.Drawing.Image)(resources.GetObject("BuscarD.Image")));
-            this.BuscarD.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BuscarD.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BuscarD.Name = "BuscarD";
-            this.BuscarD.Size = new System.Drawing.Size(52, 68);
-            this.BuscarD.Text = "Buscar";
-            this.BuscarD.ToolTipText = "Buscar";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Aceptar
-            // 
-            this.Aceptar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Aceptar.Image")));
-            this.Aceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Aceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Aceptar.Name = "Aceptar";
-            this.Aceptar.Size = new System.Drawing.Size(52, 68);
-            this.Aceptar.Text = "Aceptar";
-            this.Aceptar.ToolTipText = "Guardar, Modificar";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
-            this.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Size = new System.Drawing.Size(52, 68);
-            this.Eliminar.Text = "Limpiar";
-            this.Eliminar.ToolTipText = "Eliminar";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Limpia
-            // 
-            this.Limpia.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Limpia.Enabled = false;
-            this.Limpia.Image = ((System.Drawing.Image)(resources.GetObject("Limpia.Image")));
-            this.Limpia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Limpia.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Limpia.Name = "Limpia";
-            this.Limpia.Size = new System.Drawing.Size(68, 68);
-            this.Limpia.Text = "Limpia";
-            this.Limpia.Click += new System.EventHandler(this.Limpia_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 71);
-            // 
-            // Salir
-            // 
-            this.Salir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Salir.Name = "Salir";
-            this.Salir.Size = new System.Drawing.Size(52, 68);
-            this.Salir.Text = "Salir";
-            this.Salir.ToolTipText = "Salir";
-            this.Salir.Click += new System.EventHandler(this.Salir_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton2.Text = "Limpiar";
-            this.toolStripButton2.ToolTipText = "Eliminar";
-            // 
-            // Cuadrar
-            // 
-            this.Cuadrar.AutoSize = false;
-            this.Cuadrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Cuadrar.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Cuadrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Cuadrar.Name = "Cuadrar";
-            this.Cuadrar.Size = new System.Drawing.Size(50, 68);
-            this.Cuadrar.Text = "toolStripButton3";
-            this.Cuadrar.ToolTipText = "Cuadrar Caja";
-            this.Cuadrar.Click += new System.EventHandler(this.Cuadrar_Click);
             // 
             // radioACredito
             // 
@@ -354,71 +173,10 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
-            this.panel6.Controls.Add(this.panel1);
-            this.panel6.Location = new System.Drawing.Point(0, 74);
+            this.panel6.Location = new System.Drawing.Point(0, 45);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1356, 63);
+            this.panel6.Size = new System.Drawing.Size(1356, 49);
             this.panel6.TabIndex = 188;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel1.Location = new System.Drawing.Point(1110, 63);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(116, 417);
-            this.panel1.TabIndex = 124;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel4.Controls.Add(this.panel3);
-            this.panel4.Location = new System.Drawing.Point(-1, 137);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(95, 615);
-            this.panel4.TabIndex = 189;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
-            this.panel3.Controls.Add(this.panel5);
-            this.panel3.Location = new System.Drawing.Point(119, 429);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1226, 63);
-            this.panel3.TabIndex = 188;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel5.Location = new System.Drawing.Point(1110, 63);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(116, 417);
-            this.panel5.TabIndex = 124;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel2.Controls.Add(this.panel7);
-            this.panel2.Location = new System.Drawing.Point(1272, 137);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(84, 615);
-            this.panel2.TabIndex = 190;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
-            this.panel7.Controls.Add(this.panel8);
-            this.panel7.Location = new System.Drawing.Point(119, 429);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1226, 63);
-            this.panel7.TabIndex = 188;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel8.Location = new System.Drawing.Point(1110, 63);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(116, 417);
-            this.panel8.TabIndex = 124;
             // 
             // groupBox4
             // 
@@ -433,7 +191,7 @@
             this.groupBox4.Controls.Add(this.cboProv);
             this.groupBox4.Controls.Add(this.dateFechaVencimiento);
             this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Location = new System.Drawing.Point(619, 143);
+            this.groupBox4.Location = new System.Drawing.Point(619, 104);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(647, 135);
             this.groupBox4.TabIndex = 191;
@@ -539,7 +297,7 @@
             this.groupBox1.Controls.Add(this.btnBusc);
             this.groupBox1.Controls.Add(this.lblBus);
             this.groupBox1.Controls.Add(this.txtB);
-            this.groupBox1.Location = new System.Drawing.Point(100, 143);
+            this.groupBox1.Location = new System.Drawing.Point(100, 104);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(513, 135);
             this.groupBox1.TabIndex = 192;
@@ -592,7 +350,7 @@
             this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox2.Controls.Add(this.txtCliente);
             this.groupBox2.Controls.Add(this.DataGrivCliente);
-            this.groupBox2.Location = new System.Drawing.Point(100, 284);
+            this.groupBox2.Location = new System.Drawing.Point(100, 245);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(513, 156);
             this.groupBox2.TabIndex = 193;
@@ -632,7 +390,7 @@
             this.groupBox3.Controls.Add(this.txtBuscarArticulo);
             this.groupBox3.Controls.Add(this.BtnBuscarArticulo);
             this.groupBox3.Controls.Add(this.GrivArticulo);
-            this.groupBox3.Location = new System.Drawing.Point(619, 284);
+            this.groupBox3.Location = new System.Drawing.Point(619, 245);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(647, 156);
             this.groupBox3.TabIndex = 194;
@@ -729,9 +487,9 @@
             this.groupBox5.Controls.Add(this.btnRemoveItem);
             this.groupBox5.Controls.Add(this.groupBox6);
             this.groupBox5.Controls.Add(this.gridArticulosAVender);
-            this.groupBox5.Location = new System.Drawing.Point(100, 446);
+            this.groupBox5.Location = new System.Drawing.Point(100, 406);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1166, 249);
+            this.groupBox5.Size = new System.Drawing.Size(1166, 246);
             this.groupBox5.TabIndex = 195;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Codigo";
@@ -759,6 +517,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnVentaNew);
+            this.groupBox6.Controls.Add(this.btnCuadre);
             this.groupBox6.Controls.Add(this.btnCancelarFactura);
             this.groupBox6.Controls.Add(this.btnImprimir);
             this.groupBox6.Controls.Add(this.btnPagar);
@@ -775,6 +535,45 @@
             this.groupBox6.Size = new System.Drawing.Size(427, 172);
             this.groupBox6.TabIndex = 181;
             this.groupBox6.TabStop = false;
+            // 
+            // btnVentaNew
+            // 
+            this.btnVentaNew.BackColor = System.Drawing.Color.Navy;
+            this.btnVentaNew.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVentaNew.Enabled = false;
+            this.btnVentaNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnVentaNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnVentaNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVentaNew.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVentaNew.ForeColor = System.Drawing.Color.White;
+            this.btnVentaNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVentaNew.Location = new System.Drawing.Point(6, 53);
+            this.btnVentaNew.Name = "btnVentaNew";
+            this.btnVentaNew.Size = new System.Drawing.Size(129, 35);
+            this.btnVentaNew.TabIndex = 196;
+            this.btnVentaNew.Text = "Imprimir Factura";
+            this.btnVentaNew.UseVisualStyleBackColor = false;
+            this.btnVentaNew.Visible = false;
+            // 
+            // btnCuadre
+            // 
+            this.btnCuadre.BackColor = System.Drawing.Color.Goldenrod;
+            this.btnCuadre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCuadre.Enabled = false;
+            this.btnCuadre.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnCuadre.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnCuadre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCuadre.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCuadre.ForeColor = System.Drawing.Color.White;
+            this.btnCuadre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCuadre.Location = new System.Drawing.Point(6, 90);
+            this.btnCuadre.Name = "btnCuadre";
+            this.btnCuadre.Size = new System.Drawing.Size(129, 35);
+            this.btnCuadre.TabIndex = 195;
+            this.btnCuadre.Text = "Cuadre Caja";
+            this.btnCuadre.UseVisualStyleBackColor = false;
+            this.btnCuadre.Visible = false;
+            this.btnCuadre.Click += new System.EventHandler(this.btnCuadre_Click);
             // 
             // btnCancelarFactura
             // 
@@ -809,7 +608,7 @@
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnImprimir.Location = new System.Drawing.Point(6, 132);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(120, 35);
+            this.btnImprimir.Size = new System.Drawing.Size(129, 35);
             this.btnImprimir.TabIndex = 193;
             this.btnImprimir.Text = "Imprimir Factura";
             this.btnImprimir.UseVisualStyleBackColor = false;
@@ -932,21 +731,27 @@
             this.gridArticulosAVender.Size = new System.Drawing.Size(721, 151);
             this.gridArticulosAVender.TabIndex = 0;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(87)))), ((int)(((byte)(51)))));
+            this.panel1.Location = new System.Drawing.Point(1, 670);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1355, 49);
+            this.panel1.TabIndex = 197;
+            // 
             // FrmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1356, 637);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.ClientSize = new System.Drawing.Size(1356, 719);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.ToolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -954,13 +759,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ventas";
             this.Load += new System.EventHandler(this.FrmVentas_Load);
-            this.ToolStrip1.ResumeLayout(false);
-            this.ToolStrip1.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -976,26 +774,10 @@
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridArticulosAVender)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
             }
 
         #endregion
-        internal System.Windows.Forms.ToolStrip ToolStrip1;
-        internal System.Windows.Forms.ToolStripButton Nuevo;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        internal System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        internal System.Windows.Forms.ToolStripButton BuscarD;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        internal System.Windows.Forms.ToolStripButton Aceptar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        internal System.Windows.Forms.ToolStripButton Eliminar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        internal System.Windows.Forms.ToolStripButton Limpia;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        internal System.Windows.Forms.ToolStripButton Salir;
-        internal System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.RadioButton radioAlContado;
         private System.Windows.Forms.RadioButton radioACredito;
         private System.Windows.Forms.Label label4;
@@ -1003,13 +785,6 @@
         private System.Windows.Forms.TextBox txtB;
         private System.Windows.Forms.Button btnBusc;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox comboMedioPago;
         private System.Windows.Forms.Label label1;
@@ -1048,7 +823,9 @@
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.TextBox textArticuloCantidad;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ToolStripButton Cuadrar;
         private System.Windows.Forms.Button btnRemoveItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnCuadre;
+        private System.Windows.Forms.Button btnVentaNew;
     }
     }

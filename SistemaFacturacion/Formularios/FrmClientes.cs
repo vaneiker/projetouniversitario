@@ -149,7 +149,7 @@ namespace SistemaFacturacion.Formularios
 
         private void toolStripButton1_Click(object sender, EventArgs e)
             {
-ListaCliente();
+              ListaCliente();
             }
 
         private void label14_Click(object sender, EventArgs e)
@@ -189,37 +189,4 @@ ListaCliente();
             }
         }
     }
-//string tipo;
-//tipo = cboTipo.Text;
-
-//            switch (tipo)
-//                {
-//                case "RNC":
-
-//                    var Rnc = d.IsValidModulo11(maskedTexRnc.Text);
-//maskedTexRnc.Visible = true;
-//                    if (Rnc == true)
-//                        {
-//                        MessageBox.Show("El RNC Es Correcta");
-//                        }
-//                    else
-//                        {
-//                        MessageBox.Show("El RNC Es InCorrecta");
-//                        }
-
-//                    break;
-
-//                case "Cedula":
-//                    MaskCedula.Visible = true;
-//                    var Cedula = d.IsValidModulo10(MaskCedula.Text);
-//                    if (Cedula == true)
-//                        {
-//                        MessageBox.Show("La Cedula Es Correcta");
-//                        }
-//                    else
-//                        {
-//                        MessageBox.Show("La Cedula Es InCorrecta");
-//                        }
-//                    break;
-
-//                }
+ 

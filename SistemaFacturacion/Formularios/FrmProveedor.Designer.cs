@@ -622,6 +622,7 @@
             this.Controls.Add(this.TabTrabajador);
             this.Controls.Add(this.ToolStrip1);
             this.Name = "FrmProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedores";
             this.Load += new System.EventHandler(this.FrmProveedor_Load);
             this.ToolStrip1.ResumeLayout(false);

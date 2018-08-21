@@ -664,7 +664,8 @@ namespace SistemaFacturacion.Formularios
                     btnCancelarFactura.Visible = false;
                     btnRemoveItem.Visible = false;
                     cboCliente.Focus();
-                    if(MessageBox.Show("Desea Imprimir la Factura?", "Impresion", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
+                    btnCuadre.Visible = true;
+                    if (MessageBox.Show("Desea Imprimir la Factura?", "Impresion", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
                     {
                         Formularios.VisualFactura facturaAImprimir = new VisualFactura(id_facturaGenerado);
                         facturaAImprimir.ShowDialog();
@@ -680,7 +681,7 @@ namespace SistemaFacturacion.Formularios
                         textArticuloCantidad.Text = string.Empty;
                         gridArticulosAVender.DataSource = null;
                         txtB.Text = string.Empty;
-                        Limpia.Enabled = false;
+                        
                         btnRemoveItem.Visible = false;
                         btnCancelarFactura.Visible = false;
 
@@ -691,9 +692,10 @@ namespace SistemaFacturacion.Formularios
                         btnImprimir.Enabled = true;
                         btnPagar.Visible = false;
                         btnImprimir.Focus();
-                        Limpia.Enabled = true;
+                        
                     }
                     
+
                 }
             }
             
@@ -741,7 +743,7 @@ namespace SistemaFacturacion.Formularios
                 clienteAFacturar = null;
                 gridArticulosAVender.DataSource = null;
                 dt = null;
-                Limpia.Enabled = false;
+                
             }
         }
 
@@ -759,7 +761,7 @@ namespace SistemaFacturacion.Formularios
             textArticuloCantidad.Text = string.Empty;
             txtB.Text = string.Empty;
             cboCliente.Focus();
-            Limpia.Enabled = false;
+          
             gridArticulosAVender.DataSource = null;
             txtB.Text = string.Empty;
             cboCliente.Text = string.Empty;
@@ -826,6 +828,12 @@ namespace SistemaFacturacion.Formularios
             {
                 this.Close();
             }
+        }
+
+        private void btnCuadre_Click(object sender, EventArgs e)
+        {
+            Formularios.CuadreForm cf = new Formularios.CuadreForm();
+            cf.ShowDialog();
         }
     }
 }   

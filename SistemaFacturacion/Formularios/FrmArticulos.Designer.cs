@@ -70,8 +70,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cboTasaG = new System.Windows.Forms.ComboBox();
-            this.LBLG = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cboCat = new System.Windows.Forms.ComboBox();
             this.cboProv = new System.Windows.Forms.ComboBox();
@@ -235,7 +233,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(68, 68);
             this.toolStripButton2.Text = "Limpiar";
-            this.toolStripButton2.ToolTipText = "Eliminar";
+            this.toolStripButton2.ToolTipText = "Impreción de Codigo de Barra";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator7
@@ -519,8 +517,6 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.cboTasaG);
-            this.groupBox2.Controls.Add(this.LBLG);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.cboCat);
             this.groupBox2.Controls.Add(this.cboProv);
@@ -531,44 +527,12 @@
             this.groupBox2.TabIndex = 181;
             this.groupBox2.TabStop = false;
             // 
-            // cboTasaG
-            // 
-            this.cboTasaG.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.cboTasaG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.cboTasaG.FormattingEnabled = true;
-            this.cboTasaG.Items.AddRange(new object[] {
-            "---Seleccione---",
-            "15%",
-            "20%",
-            "25%",
-            "30%",
-            "35%",
-            "40%",
-            "45%",
-            "50%"});
-            this.cboTasaG.Location = new System.Drawing.Point(280, 67);
-            this.cboTasaG.Name = "cboTasaG";
-            this.cboTasaG.Size = new System.Drawing.Size(209, 33);
-            this.cboTasaG.TabIndex = 176;
-            this.cboTasaG.Text = "---Seleccione---";
-            // 
-            // LBLG
-            // 
-            this.LBLG.AutoSize = true;
-            this.LBLG.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.LBLG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.LBLG.Location = new System.Drawing.Point(98, 70);
-            this.LBLG.Name = "LBLG";
-            this.LBLG.Size = new System.Drawing.Size(178, 25);
-            this.LBLG.TabIndex = 175;
-            this.LBLG.Text = "Tasa Ganacia%";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label6.Location = new System.Drawing.Point(162, 23);
+            this.label6.Location = new System.Drawing.Point(144, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 25);
             this.label6.TabIndex = 172;
@@ -579,7 +543,7 @@
             this.cboCat.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.cboCat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.cboCat.FormattingEnabled = true;
-            this.cboCat.Location = new System.Drawing.Point(280, 20);
+            this.cboCat.Location = new System.Drawing.Point(262, 20);
             this.cboCat.Name = "cboCat";
             this.cboCat.Size = new System.Drawing.Size(209, 33);
             this.cboCat.TabIndex = 171;
@@ -591,7 +555,7 @@
             this.cboProv.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.cboProv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
             this.cboProv.FormattingEnabled = true;
-            this.cboProv.Location = new System.Drawing.Point(616, 19);
+            this.cboProv.Location = new System.Drawing.Point(598, 19);
             this.cboProv.Name = "cboProv";
             this.cboProv.Size = new System.Drawing.Size(363, 33);
             this.cboProv.TabIndex = 173;
@@ -601,7 +565,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(139)))), ((int)(((byte)(144)))));
-            this.label10.Location = new System.Drawing.Point(495, 23);
+            this.label10.Location = new System.Drawing.Point(477, 23);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 25);
             this.label10.TabIndex = 174;
@@ -626,7 +590,7 @@
             // 
             this.txtComp.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtComp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtComp.Location = new System.Drawing.Point(270, 117);
+            this.txtComp.Location = new System.Drawing.Point(273, 117);
             this.txtComp.Multiline = true;
             this.txtComp.Name = "txtComp";
             this.txtComp.Size = new System.Drawing.Size(123, 34);
@@ -687,11 +651,11 @@
             // 
             this.txtVent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.txtVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.txtVent.Location = new System.Drawing.Point(270, 71);
+            this.txtVent.Location = new System.Drawing.Point(273, 71);
             this.txtVent.Multiline = true;
             this.txtVent.Name = "txtVent";
             this.txtVent.ReadOnly = true;
-            this.txtVent.Size = new System.Drawing.Size(121, 34);
+            this.txtVent.Size = new System.Drawing.Size(123, 34);
             this.txtVent.TabIndex = 166;
             this.txtVent.Text = "0";
             this.txtVent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -795,7 +759,5 @@
         private System.Windows.Forms.TextBox txtSearchCategoria;
         private System.Windows.Forms.DataGridView GridViewArticulos;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cboTasaG;
-        private System.Windows.Forms.Label LBLG;
     }
     }
