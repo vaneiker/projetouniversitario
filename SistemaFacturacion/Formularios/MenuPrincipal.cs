@@ -118,6 +118,13 @@ namespace SistemaFacturacion.Formularios
             FrmCuentasPorCobrarl cxc = new FrmCuentasPorCobrarl();
             cxc.ShowDialog();
         }
+
+        private void btnCuadre_Click(object sender, EventArgs e)
+        {
+
+            Formularios.CuadreForm cf = new Formularios.CuadreForm();
+            cf.ShowDialog();
+        }
     }
     }
   

@@ -559,14 +559,13 @@
             // 
             this.btnCuadre.BackColor = System.Drawing.Color.Goldenrod;
             this.btnCuadre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCuadre.Enabled = false;
             this.btnCuadre.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
             this.btnCuadre.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnCuadre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCuadre.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCuadre.ForeColor = System.Drawing.Color.White;
             this.btnCuadre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCuadre.Location = new System.Drawing.Point(6, 90);
+            this.btnCuadre.Location = new System.Drawing.Point(5, 94);
             this.btnCuadre.Name = "btnCuadre";
             this.btnCuadre.Size = new System.Drawing.Size(129, 35);
             this.btnCuadre.TabIndex = 195;
