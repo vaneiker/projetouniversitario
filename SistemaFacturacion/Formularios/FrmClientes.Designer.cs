@@ -176,8 +176,10 @@
             this.GridViewClientes.Name = "GridViewClientes";
             this.GridViewClientes.ReadOnly = true;
             this.GridViewClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridViewClientes.ShowEditingIcon = false;
             this.GridViewClientes.Size = new System.Drawing.Size(766, 247);
             this.GridViewClientes.TabIndex = 117;
+            this.GridViewClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewClientes_CellContentClick_1);
             // 
             // panel1
             // 
