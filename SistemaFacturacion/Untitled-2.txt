@@ -1,6 +1,6 @@
- CREATE DATABASE dbventas_new
+CREATE DATABASE dbventas
 go
-USE [dbventas_new]
+USE [dbventas]
 GO
  
 CREATE TABLE [dbo].[articulo](
@@ -540,7 +540,7 @@ SELECT [idcliente]
       ,[Sexo]
       ,[fecha_nacimiento][Fecha Nacimiento]
       ,[tipo_documento][Tipo_de_Documento]
-      ,[num_documento][Numero_Identificación]
+      ,[num_documento][Numero_IdentificaciÃ³n]
       ,[direccion][Direccion]
       ,[telefono][Telefono]
       ,[email][Correo_electronico]
@@ -2202,7 +2202,104 @@ INSERT INTO [dbo].[articulo]
 
 END
 GO
- 
+/****** Object:  StoredProcedure [dbo].[SP_SET_INSERT_UPDATE_INGRESO]    Script Date: 23/08/2018 22:38:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[SP_SET_INSERT_UPDATE_INGRESO]
+
+       @idingreso            int            
+      ,@idproveedor          int
+      ,@fecha                date 
+      ,@tipo_comprobante     varchar(20) 
+      ,@serie                varchar(20) 
+      ,@correlativo          varchar(7)
+      ,@Itbis                decimal(9,2)  
+      ,@FechaAdiciona        datetime
+      ,@FechaModifica        datetime 
+      ,@UsuarioAdiciona      varchar(50)
+      ,@UsuarioModifica      varchar(50)
+	  ,@idarticulo           int 
+	  ,@precio_compra        money
+	  ,@precio_venta         money
+	  ,@stock_inicial        int
+	  ,@stock_actual         int
+	  ,@fecha_produccion     date
+	  ,@fecha_vencimiento    date
+	 
+	  AS
+
+	  BEGIN
+	   declare @id_ingre int
+	  IF EXISTS(SELECT * FROM [dbo].[ingreso] WHERE idingreso=@idingreso) 
+	
+	  UPDATE [dbo].[ingreso]
+	       
+      SET    
+          [idproveedor]       =@idproveedor     
+         ,[fecha]             =@fecha           
+         ,[tipo_comprobante]  =@tipo_comprobante
+         ,[serie]             =@serie           
+         ,[correlativo]       =@correlativo     
+         ,[igv]               =@Itbis           
+         ,[FechaAdiciona]     =@FechaAdiciona   
+         ,[FechaModifica]     =@FechaModifica   
+         ,[UsuarioAdiciona]   =@UsuarioAdiciona 
+         ,[UsuarioModifica]   =@UsuarioModifica 
+     
+	  WHERE [idingreso]=@idingreso
+
+	  ELSE
+	  
+INSERT INTO [dbo].[ingreso]
+           (
+            [idproveedor]
+           ,[fecha]
+           ,[tipo_comprobante]
+           ,[serie]
+           ,[correlativo]
+           ,[igv]
+           ,[FechaAdiciona]
+           ,[FechaModifica]
+           ,[UsuarioAdiciona]
+           ,[UsuarioModifica])
+     VALUES
+           
+		   ( 
+		  
+		    @idproveedor     
+		   ,@fecha           
+		   ,@tipo_comprobante
+           ,@serie           
+           ,@correlativo     
+           ,@Itbis           
+           ,@FechaAdiciona   
+           ,@FechaModifica   
+           ,@UsuarioAdiciona 
+           ,@UsuarioModifica) 
+		set  @id_ingre=(select max(idingreso) from [dbo].[ingreso] )
+
+INSERT INTO [dbo].detalle_ingreso
+SELECT  
+      
+       @id_ingre[idingreso]
+      ,@idarticulo[idarticulo]
+      ,@precio_compra [precio_compra]
+      ,@precio_venta [precio_venta]
+      ,@stock_inicial [stock_inicial]
+      ,@stock_inicial [stock_actual]
+      ,@fecha_produccion [fecha_produccion]
+      ,@fecha_vencimiento [fecha_vencimiento]
+  
+
+
+	  END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_SET_INSERTAR_ARTICULOS_INGRESO]    Script Date: 23/08/2018 22:38:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROC [dbo].[SP_SET_INSERTAR_ARTICULOS_INGRESO]
@@ -2397,7 +2494,7 @@ CREATE PROC [dbo].[SP_SET_UDATE_INSERT_PROVEEDOR]
 ,@UsuarioAdiciona varchar(50)
 ,@UsuarioModifica varchar(50)
 
- 
+
 as
 
 begin 
@@ -2508,7 +2605,7 @@ GO
 INSERT INTO [dbo].[cliente] SELECT 'CLIENTE'[nombre],'AMBULATORIO'[apellidos],'Masculino'[sexo],getdate()[fecha_nacimiento],'NINGUNO'[tipo_documento],'NINGUNO'    [num_documento],'LOCAL'[direccion],'NINGUNO'[telefono],'NINGUNO'[email],1[statu],getdate()[FechaAdiciona],null[FechaModifica],'Administrador'[UsuarioAdiciona],null[UsuarioModifica],host_name()[HostName]
 INSERT INTO [dbo].[cliente] SELECT 'Pedro'[nombre],'Van eiker'[apellidos],'Masculino'[sexo],getdate()[fecha_nacimiento],'Cedula'[tipo_documento],'00158159977'[num_documento],'LOCAL'[direccion],'8295259871'[telefono],'notengo@notengo.com'[email],1[statu],getdate()[FechaAdiciona],null[FechaModifica],'Administrador'[UsuarioAdiciona],null[UsuarioModifica],host_name()[HostName]
 INSERT INTO [dbo].[cliente] SELECT 'carlos'[nombre],'Lebron'[apellidos],'Masculino'[sexo],getdate()[fecha_nacimiento],'Cedula'[tipo_documento],'00158159977'[num_documento],'LOCAL'[direccion],'8298859871'[telefono],'notengo@notengo.com'[email],1[statu],getdate()[FechaAdiciona],null[FechaModifica],'Administrador'[UsuarioAdiciona],null[UsuarioModifica],host_name()[HostName]
-INSERT INTO [dbo].[cliente] SELECT 'juan'[nombre],'Nuñez'[apellidos],'Masculino'[sexo],getdate()[fecha_nacimiento],'Cedula'[tipo_documento],'00158154147'[num_documento],'LOCAL'[direccion],'8299959871'[telefono],'notengo@notengo.com'[email],1[statu],getdate()[FechaAdiciona],null[FechaModifica],'Administrador'[UsuarioAdiciona],null[UsuarioModifica],host_name()[HostName]
+INSERT INTO [dbo].[cliente] SELECT 'juan'[nombre],'NuÃ±ez'[apellidos],'Masculino'[sexo],getdate()[fecha_nacimiento],'Cedula'[tipo_documento],'00158154147'[num_documento],'LOCAL'[direccion],'8299959871'[telefono],'notengo@notengo.com'[email],1[statu],getdate()[FechaAdiciona],null[FechaModifica],'Administrador'[UsuarioAdiciona],null[UsuarioModifica],host_name()[HostName]
 INSERT INTO [dbo].[cliente] SELECT 'alberto'[nombre],'Otillio'[apellidos],'Femenino'[sexo],getdate()[fecha_nacimiento],'Cedula'[tipo_documento],'00158154717'[num_documento],'LOCAL'[direccion],'8297759871'[telefono],'notengo@notengo.com'[email],1[statu],getdate()[FechaAdiciona],null[FechaModifica],'Administrador'[UsuarioAdiciona],null[UsuarioModifica],host_name()[HostName]
 INSERT INTO [dbo].[cliente] SELECT 'Julissa'[nombre],'Van eiker'[apellidos],'Femenino'[sexo],getdate()[fecha_nacimiento],'Cedula'[tipo_documento],'00158155127'[num_documento],'LOCAL'[direccion],'8295259871'[telefono],'notengo@notengo.com'[email],1[statu],getdate()[FechaAdiciona],null[FechaModifica],'Administrador'[UsuarioAdiciona],null[UsuarioModifica],host_name()[HostName]
 INSERT INTO [dbo].[cliente] SELECT 'amandor'[nombre],'Van eiker'[apellidos],'Masculino'[sexo],getdate()[fecha_nacimiento],'Cedula'[tipo_documento],'00158157897'[num_documento],'LOCAL'[direccion],'8295779871'[telefono],'notengo@notengo.com'[email],1[statu],getdate()[FechaAdiciona],null[FechaModifica],'Administrador'[UsuarioAdiciona],null[UsuarioModifica],host_name()[HostName]
@@ -2549,14 +2646,14 @@ INSERT INTO [dbo].[ROLES] VALUES('HHRR','Administrador')
  INSERT INTO [dbo].[UsuarioTrabajador] VALUES(5,5,5,GETDATE(),NULL,1,'ADMINISTRADOR',NULL,GETDATE(),NULL)
  
 INSERT INTO [dbo].[Ncf_comprovante] values('Normal','',1)
-INSERT INTO [dbo].[Ncf_comprovante] values('Facturas de Crédito Fiscal','',1)
+INSERT INTO [dbo].[Ncf_comprovante] values('Facturas de CrÃ©dito Fiscal','',1)
 INSERT INTO [dbo].[Ncf_comprovante] values('Facturas de Consumo','',1)
-INSERT INTO [dbo].[Ncf_comprovante] values('Notas de Débito','',1)
-INSERT INTO [dbo].[Ncf_comprovante] values('Notas de Crédito','',1)
+INSERT INTO [dbo].[Ncf_comprovante] values('Notas de DÃ©bito','',1)
+INSERT INTO [dbo].[Ncf_comprovante] values('Notas de CrÃ©dito','',1)
 INSERT INTO [dbo].[Ncf_comprovante] values('Registro de Proveedores Informales','',1)
-INSERT INTO [dbo].[Ncf_comprovante] values('Registro Único de Ingresos','',1)
+INSERT INTO [dbo].[Ncf_comprovante] values('Registro Ãšnico de Ingresos','',1)
 INSERT INTO [dbo].[Ncf_comprovante] values('Registro de Gastos Menores','',1)
-INSERT INTO [dbo].[Ncf_comprovante] values('Regímenes Especiales de Tributación','',1) 
+INSERT INTO [dbo].[Ncf_comprovante] values('RegÃ­menes Especiales de TributaciÃ³n','',1) 
 INSERT INTO [dbo].[Ncf_comprovante] values('Comprobantes Gubernamentales','',1) 
 
 

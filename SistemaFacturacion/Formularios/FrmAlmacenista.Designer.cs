@@ -45,7 +45,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.ChangerUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -173,7 +172,6 @@
             this.toolStripSeparator4,
             this.ChangerUser,
             this.toolStripSeparator2,
-            this.toolStripButton1,
             this.toolStripSeparator5,
             this.Salir});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -197,22 +195,12 @@
             this.ChangerUser.Size = new System.Drawing.Size(68, 68);
             this.ChangerUser.Text = "Configuración de la Aplicación";
             this.ChangerUser.ToolTipText = "Cambiar de Usuario";
+            this.ChangerUser.Click += new System.EventHandler(this.ChangerUser_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 71);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Ayuda";
-            this.toolStripButton1.ToolTipText = "Salir";
             // 
             // toolStripSeparator5
             // 
@@ -229,6 +217,7 @@
             this.Salir.Size = new System.Drawing.Size(52, 68);
             this.Salir.Text = "Salir";
             this.Salir.ToolTipText = "Salir";
+            this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
             // panel1
             // 
@@ -254,6 +243,7 @@
             this.BtnProveedor.TabIndex = 6;
             this.BtnProveedor.Text = "Proveedores";
             this.BtnProveedor.UseVisualStyleBackColor = false;
+            this.BtnProveedor.Click += new System.EventHandler(this.BtnProveedor_Click);
             // 
             // BtnCategoria
             // 
@@ -266,6 +256,7 @@
             this.BtnCategoria.TabIndex = 1;
             this.BtnCategoria.Text = "&Categoria";
             this.BtnCategoria.UseVisualStyleBackColor = false;
+            this.BtnCategoria.Click += new System.EventHandler(this.BtnCategoria_Click);
             // 
             // BtnArticulos
             // 
@@ -278,6 +269,7 @@
             this.BtnArticulos.TabIndex = 0;
             this.BtnArticulos.Text = "&Articulos";
             this.BtnArticulos.UseVisualStyleBackColor = false;
+            this.BtnArticulos.Click += new System.EventHandler(this.BtnArticulos_Click);
             // 
             // timer1
             // 
@@ -291,6 +283,7 @@
             this.Controls.Add(panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmAlmacenista";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAlmacenista";
             this.Load += new System.EventHandler(this.FrmAlmacenista_Load);
             panel2.ResumeLayout(false);
@@ -329,7 +322,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         internal System.Windows.Forms.ToolStripButton ChangerUser;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        internal System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         internal System.Windows.Forms.ToolStripButton Salir;
         private System.Windows.Forms.Panel panel1;

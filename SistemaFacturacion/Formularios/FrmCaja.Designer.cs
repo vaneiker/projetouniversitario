@@ -44,7 +44,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.ChangerUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,6 +51,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnCxc = new System.Windows.Forms.Button();
             this.BtnCliente = new System.Windows.Forms.Button();
+            this.btnCuadre = new System.Windows.Forms.Button();
             panel2 = new System.Windows.Forms.Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -74,7 +74,7 @@
             panel2.Controls.Add(this.panel1);
             panel2.Location = new System.Drawing.Point(-2, -3);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(1063, 552);
+            panel2.Size = new System.Drawing.Size(1038, 552);
             panel2.TabIndex = 2;
             // 
             // pictureBox5
@@ -172,7 +172,6 @@
             this.toolStripSeparator4,
             this.ChangerUser,
             this.toolStripSeparator7,
-            this.toolStripButton1,
             this.toolStripSeparator5,
             this.Salir});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -196,22 +195,12 @@
             this.ChangerUser.Size = new System.Drawing.Size(68, 68);
             this.ChangerUser.Text = "Configuración de la Aplicación";
             this.ChangerUser.ToolTipText = "Cambiar de Usuario";
+            this.ChangerUser.Click += new System.EventHandler(this.ChangerUser_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 71);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Ayuda";
-            this.toolStripButton1.ToolTipText = "Salir";
             // 
             // toolStripSeparator5
             // 
@@ -228,11 +217,13 @@
             this.Salir.Size = new System.Drawing.Size(52, 68);
             this.Salir.Text = "Salir";
             this.Salir.ToolTipText = "Salir";
+            this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.panel1.Controls.Add(this.btnCuadre);
             this.panel1.Controls.Add(this.BtnFacturacion);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnCxc);
@@ -248,57 +239,75 @@
             this.BtnFacturacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.BtnFacturacion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnFacturacion.ForeColor = System.Drawing.Color.White;
-            this.BtnFacturacion.Location = new System.Drawing.Point(14, 153);
+            this.BtnFacturacion.Location = new System.Drawing.Point(10, 184);
             this.BtnFacturacion.Name = "BtnFacturacion";
             this.BtnFacturacion.Size = new System.Drawing.Size(158, 37);
             this.BtnFacturacion.TabIndex = 10;
             this.BtnFacturacion.Text = "Facturación";
             this.BtnFacturacion.UseVisualStyleBackColor = false;
+            this.BtnFacturacion.Click += new System.EventHandler(this.BtnFacturacion_Click);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(14, 110);
+            this.button1.Location = new System.Drawing.Point(10, 141);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(158, 37);
             this.button1.TabIndex = 8;
             this.button1.Text = "Cotización";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnCxc
             // 
             this.btnCxc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.btnCxc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCxc.ForeColor = System.Drawing.Color.White;
-            this.btnCxc.Location = new System.Drawing.Point(14, 67);
+            this.btnCxc.Location = new System.Drawing.Point(10, 98);
             this.btnCxc.Name = "btnCxc";
             this.btnCxc.Size = new System.Drawing.Size(158, 37);
             this.btnCxc.TabIndex = 3;
             this.btnCxc.Text = "Cuentas Por Cobrar";
             this.btnCxc.UseVisualStyleBackColor = false;
+            this.btnCxc.Click += new System.EventHandler(this.btnCxc_Click);
             // 
             // BtnCliente
             // 
             this.BtnCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.BtnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnCliente.ForeColor = System.Drawing.Color.White;
-            this.BtnCliente.Location = new System.Drawing.Point(14, 24);
+            this.BtnCliente.Location = new System.Drawing.Point(10, 55);
             this.BtnCliente.Name = "BtnCliente";
             this.BtnCliente.Size = new System.Drawing.Size(158, 37);
             this.BtnCliente.TabIndex = 2;
             this.BtnCliente.Text = "Nue&vo Clientes";
             this.BtnCliente.UseVisualStyleBackColor = false;
+            this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
+            // 
+            // btnCuadre
+            // 
+            this.btnCuadre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.btnCuadre.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCuadre.ForeColor = System.Drawing.Color.White;
+            this.btnCuadre.Location = new System.Drawing.Point(10, 227);
+            this.btnCuadre.Name = "btnCuadre";
+            this.btnCuadre.Size = new System.Drawing.Size(158, 37);
+            this.btnCuadre.TabIndex = 12;
+            this.btnCuadre.Text = "Cuadre";
+            this.btnCuadre.UseVisualStyleBackColor = false;
+            this.btnCuadre.Click += new System.EventHandler(this.btnCuadre_Click);
             // 
             // FrmCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1059, 546);
+            this.ClientSize = new System.Drawing.Size(1051, 546);
             this.Controls.Add(panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmCaja";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCaja";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -336,7 +345,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         internal System.Windows.Forms.ToolStripButton ChangerUser;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        internal System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         internal System.Windows.Forms.ToolStripButton Salir;
         private System.Windows.Forms.Panel panel1;
@@ -344,5 +352,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCxc;
         public System.Windows.Forms.Button BtnCliente;
+        private System.Windows.Forms.Button btnCuadre;
     }
 }

@@ -50,7 +50,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnArticulos = new System.Windows.Forms.Button();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.Nuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -72,7 +71,6 @@
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelErrorCategoria.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -299,23 +297,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.panel1.Controls.Add(this.BtnArticulos);
             this.panel1.Location = new System.Drawing.Point(7, 73);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(143, 292);
             this.panel1.TabIndex = 87;
-            // 
-            // BtnArticulos
-            // 
-            this.BtnArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.BtnArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnArticulos.ForeColor = System.Drawing.Color.White;
-            this.BtnArticulos.Location = new System.Drawing.Point(21, 37);
-            this.BtnArticulos.Name = "BtnArticulos";
-            this.BtnArticulos.Size = new System.Drawing.Size(102, 37);
-            this.BtnArticulos.TabIndex = 1;
-            this.BtnArticulos.Text = "&Articulos";
-            this.BtnArticulos.UseVisualStyleBackColor = false;
             // 
             // ToolStrip1
             // 
@@ -362,8 +347,8 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Limpiar";
-            this.toolStripButton1.ToolTipText = "Eliminar";
+            this.toolStripButton1.Text = "Actualizar";
+            this.toolStripButton1.ToolTipText = "Actualizar";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator5
@@ -474,7 +459,6 @@
             this.panel3.PerformLayout();
             this.panelErrorCategoria.ResumeLayout(false);
             this.panelErrorCategoria.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -509,7 +493,6 @@
         private System.Windows.Forms.Panel panelErrorCategoria;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button BtnArticulos;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;

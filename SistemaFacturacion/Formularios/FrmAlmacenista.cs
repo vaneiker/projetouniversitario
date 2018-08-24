@@ -32,5 +32,42 @@ namespace SistemaFacturacion.Formularios
             toolStripStatusLabel2.Text = "***Usuario: " + s.Usuario.ToString() + " Cargo : " + cargo;
             lblmp.Text = "Bienvenido Sr(a): " + s.nombreCompleto;
         }
+
+        private void BtnArticulos_Click(object sender, EventArgs e)
+        {
+            FrmArticulos ar = new FrmArticulos();
+            ar.ShowDialog();
+        }
+
+        private void BtnCategoria_Click(object sender, EventArgs e)
+        {
+            FrmCategoria C = new FrmCategoria();
+            C.ShowDialog();
+        }
+
+        private void BtnProveedor_Click(object sender, EventArgs e)
+        {
+            FrmProveedor p = new FrmProveedor();
+            p.ShowDialog();
+        }
+
+        private void ChangerUser_Click(object sender, EventArgs e)
+        {
+            Login l = new SistemaFacturacion.Login();
+            l.Show();
+            this.Close();
+        }
+
+        private void Salir_Click(object sender, EventArgs e)
+        {
+
+            DialogResult resul = MessageBox.Show("Esta seguro que desea apagar el Sistema?, " + s.Usuario + " " + cargo, "Mensage de Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (resul == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
+                Application.Exit();
+            }
+        }
     }
 }
