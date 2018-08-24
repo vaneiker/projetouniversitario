@@ -47,8 +47,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.lblm = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gridDatos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -199,9 +199,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(195, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(215, 23);
+            this.label4.Size = new System.Drawing.Size(149, 23);
             this.label4.TabIndex = 163;
-            this.label4.Text = "Busqueda de Clientes";
+            this.label4.Text = "Cuadre del Dia";
             // 
             // groupBox2
             // 
@@ -246,16 +246,6 @@
             this.groupBox3.TabIndex = 197;
             this.groupBox3.TabStop = false;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
-            this.panel3.Controls.Add(this.lbNombreTrabajador);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(1, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1173, 39);
-            this.panel3.TabIndex = 206;
-            // 
             // lblm
             // 
             this.lblm.AutoSize = true;
@@ -267,6 +257,16 @@
             this.lblm.TabIndex = 207;
             this.lblm.Text = "Ventas Generada$";
             this.lblm.Visible = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(185)))), ((int)(((byte)(243)))));
+            this.panel3.Controls.Add(this.lbNombreTrabajador);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Location = new System.Drawing.Point(1, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1173, 39);
+            this.panel3.TabIndex = 206;
             // 
             // CuadreForm
             // 

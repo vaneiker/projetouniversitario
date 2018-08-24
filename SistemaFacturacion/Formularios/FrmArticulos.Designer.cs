@@ -146,8 +146,8 @@
             this.toolStripEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripEliminar.Name = "toolStripEliminar";
             this.toolStripEliminar.Size = new System.Drawing.Size(68, 68);
-            this.toolStripEliminar.Text = "Limpiar";
-            this.toolStripEliminar.ToolTipText = "Eliminar";
+            this.toolStripEliminar.Text = "Actualizar";
+            this.toolStripEliminar.ToolTipText = "Actualizar";
             this.toolStripEliminar.Click += new System.EventHandler(this.toolStripEliminar_Click);
             // 
             // toolStripSeparator5

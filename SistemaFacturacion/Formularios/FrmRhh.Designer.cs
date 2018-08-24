@@ -48,7 +48,6 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Salir = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -177,7 +176,6 @@
             this.toolStripButton4,
             this.toolStripSeparator3,
             this.toolStripSeparator6,
-            this.toolStripButton1,
             this.toolStripSeparator5,
             this.Salir});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -201,6 +199,7 @@
             this.ChangerUser.Size = new System.Drawing.Size(68, 68);
             this.ChangerUser.Text = "Configuración de la Aplicación";
             this.ChangerUser.ToolTipText = "Cambiar de Usuario";
+            this.ChangerUser.Click += new System.EventHandler(this.ChangerUser_Click);
             // 
             // toolStripSeparator2
             // 
@@ -222,6 +221,7 @@
             this.toolStripButton4.Size = new System.Drawing.Size(68, 68);
             this.toolStripButton4.Text = "Usuarios y Permisos";
             this.toolStripButton4.ToolTipText = "Creación de Usuarios";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator3
             // 
@@ -232,17 +232,6 @@
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 71);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Ayuda";
-            this.toolStripButton1.ToolTipText = "Salir";
             // 
             // toolStripSeparator5
             // 
@@ -259,6 +248,7 @@
             this.Salir.Size = new System.Drawing.Size(52, 68);
             this.Salir.Text = "Salir";
             this.Salir.ToolTipText = "Salir";
+            this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
             // panel1
             // 
@@ -282,6 +272,7 @@
             this.btnEmpleado.TabIndex = 7;
             this.btnEmpleado.Text = "Empleados";
             this.btnEmpleado.UseVisualStyleBackColor = false;
+            this.btnEmpleado.Click += new System.EventHandler(this.btnEmpleado_Click);
             // 
             // FrmRhh
             // 
@@ -333,7 +324,6 @@
         internal System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        internal System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         internal System.Windows.Forms.ToolStripButton Salir;
         private System.Windows.Forms.Panel panel1;

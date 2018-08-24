@@ -139,8 +139,8 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(68, 68);
-            this.toolStripButton1.Text = "Limpiar";
-            this.toolStripButton1.ToolTipText = "Eliminar";
+            this.toolStripButton1.Text = "Actualizar";
+            this.toolStripButton1.ToolTipText = "Actualizar";
             // 
             // toolStripSeparator5
             // 
