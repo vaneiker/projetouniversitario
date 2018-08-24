@@ -1404,7 +1404,7 @@ namespace CapaDatos.RepocitoryDbVentas
                 using (var connection = db.Database.Connection as SqlConnection)
                 {
                     connection.Open();
-                    string proc = "[DBO].[    ]";
+                    string proc = "[DBO].[SP_GET_VENTAS_DEL_DIA]";
 
                     SqlCommand cmd = new SqlCommand(proc, connection);
                     cmd.CommandType = CommandType.StoredProcedure;
