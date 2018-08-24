@@ -19,8 +19,6 @@ namespace SistemaFacturacion
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Formularios.FrmCotizador());
-            String serverName = AppTools.AppConfiguration.GetServerNameFromConfiguration();
-            String databaseName = AppTools.AppConfiguration.GetDatabaseNameFromConfiguration();
             Application.Run(new Login());
             }
 

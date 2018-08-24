@@ -88,7 +88,7 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             {
                 cliente.idcliente = Convert.ToInt32(row["idcliente"].ToString());
                 cliente.CodigoCliente = row["CodigoCliente"].ToString();
-                cliente.NombreCompleto = row["Nombre_Completo_Empleado"].ToString();
+                cliente.NombreCompleto = row["nombre"].ToString() + " " + row["apellidos"].ToString();
                 switch(row["Sexo"].ToString()[0])
                 {
                     case 'M':
@@ -101,11 +101,11 @@ namespace CapaLogicaNegocio.NegocioDbVentas
                         cliente.sexo = "Otros";
                         break;
                 }
-                cliente.fecha_nacimiento = Convert.ToDateTime(row["Fecha Nacimiento"].ToString());
-                cliente.tipo_documento = row["Tipo_de_Documento"].ToString();
-                cliente.direccion = row["Direccion"].ToString();
-                cliente.telefono = row["Telefono"].ToString();
-                cliente.email = row["Correo_electronico"].ToString();
+                cliente.fecha_nacimiento = Convert.ToDateTime(row["fecha_nacimiento"].ToString());
+                cliente.tipo_documento = row["tipo_documento"].ToString();
+                cliente.direccion = row["direccion"].ToString();
+                cliente.telefono = row["telefono"].ToString();
+                cliente.email = row["email"].ToString();
             }
             return cliente;
         }
