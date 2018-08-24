@@ -33,7 +33,9 @@ namespace SistemaFacturacion.Formularios
                 decimal total = ventas.Sum(venta => venta.Total);
                 lbTotal.Text = "Ventas del Dia: " + total.ToString("N2");
                 lbTotal.Visible = true;
-            }else
+                lblm.Visible = true;
+            }
+            else
             {
                 Alertas.Alerwarning noVentas = new Alertas.Alerwarning("No Existen Ventas Para Hoy: " + DateTime.UtcNow.ToShortDateString());
                 noVentas.ShowDialog();

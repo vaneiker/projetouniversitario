@@ -667,7 +667,7 @@ namespace SistemaFacturacion.Formularios
                     btnCuadre.Visible = true;
                     if (MessageBox.Show("Desea Imprimir la Factura?", "Impresion", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
                     {
-                        Formularios.VisualFactura facturaAImprimir = new VisualFactura(id_facturaGenerado);
+                       Formularios.VisualFactura facturaAImprimir = new VisualFactura(id_facturaGenerado);
                         facturaAImprimir.ShowDialog();
                         btnImprimir.Visible = false;
                         btnPagar.Visible = true;

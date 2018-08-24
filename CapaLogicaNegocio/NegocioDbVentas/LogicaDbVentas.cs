@@ -564,6 +564,38 @@ namespace CapaLogicaNegocio.NegocioDbVentas
             cxc.NombComp = NombComp;
             return _metodos.ListCuentasXcobrar();
         }
+
+
+
+        public bool PagarCuentaCxc(int id, int id_cliente, int id_factura, DateTime fecha, decimal valor, bool pago, string usuario, decimal cantidadP, bool estado)
+        {
+            if (valor == cantidadP)
+            {
+                valor = cantidadP;
+                pago = true;
+            }
+
+            cuentas_x_cobrarEntitis cxc = new cuentas_x_cobrarEntitis();
+            cxc.id = id;
+            cxc.id_cliente = id_cliente;
+            cxc.fecha = fecha;
+            cxc.valor = valor;
+            cxc.pagado = pago;
+            cxc.usuario = usuario;
+            cxc.idFactura = id_factura;
+            cxc.CantidadPagada = cantidadP;
+            cxc.statud = estado;
+
+            var respuesta = _metodos.PagarCuentaCxc(cxc);
+            if (respuesta == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
 

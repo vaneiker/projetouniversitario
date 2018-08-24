@@ -87,6 +87,7 @@ namespace SistemaFacturacion.Formularios
            var r= _metodos.Registrar_Clientes(cliente);
             if (r == true)
             {
+                ClearData();
                 succes.ShowDialog();
                 ListaCliente();
             }
@@ -187,6 +188,46 @@ namespace SistemaFacturacion.Formularios
             //MaskCedula.Visible = true;
             
             }
+
+        private void GridViewClientes_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (GridViewClientes.CurrentRow != null)
+            {
+                TabEmpleado.SelectedTab = TabEmpleado.TabPages[1];
+
+
+                this.codigo = int.Parse(GridViewClientes.CurrentRow.Cells[0].Value.ToString());
+                txtNom.Text = GridViewClientes.CurrentRow.Cells[1].Value.ToString();
+                txtApellidos.Text = GridViewClientes.CurrentRow.Cells[2].Value.ToString();
+                cboSex.Text = GridViewClientes.CurrentRow.Cells[3].Value.ToString();
+                cboTipoDoc.SelectedItem = GridViewClientes.CurrentRow.Cells[5].Value.ToString();
+                txtNumDoc.Text = GridViewClientes.CurrentRow.Cells[6].Value.ToString();
+                txtDirecion.Text = GridViewClientes.CurrentRow.Cells[7].Value.ToString();
+                txtTel.Text = GridViewClientes.CurrentRow.Cells[8].Value.ToString();
+                txtcorreo.Text = GridViewClientes.CurrentRow.Cells[9].Value.ToString();
+
+
+                //blbStado.Visible = true;
+                groupBox1.Enabled = true;
+                groupBox2.Enabled = true;
+
+
+            }
+        }
+
+        private void ClearData()
+        {
+            txtNom.Text = string.Empty;
+            txtApellidos.Text = string.Empty;
+            cboSex.Text = "Seleccionar Sexo";
+            cboTipoDoc.Text= "Seleccionar Tipo Documento";
+            txtNumDoc.Text = string.Empty;
+            txtDirecion.Text = string.Empty;
+            txtTel.Text = string.Empty;
+            txtcorreo.Text = string.Empty;
+            //TabEmpleado.SelectedTab = TabEmpleado.TabPages[0];
+        }
         }
     }
+    
  
