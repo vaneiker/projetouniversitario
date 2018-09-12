@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://devsysflexpolicyservice.statetrustlife.com/SysFlexPolicyService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" />
+  <xs:import schemaLocation="http://devsysflexpolicyservice.statetrustlife.com/SysFlexPolicyService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" />
+  <xs:import schemaLocation="http://devsysflexpolicyservice.statetrustlife.com/SysFlexPolicyService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Service" />
+  <xs:element name="CheckChassisOrRegistry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q1:Policy.Vehicle.Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckChassisOrRegistryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="CheckChassisOrRegistryResult" nillable="true" type="q2:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q3:Policy.RateKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetRateResult" nillable="true" type="q4:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCoverageProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q5:Policy.Coverage.Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCoverageProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetCoverageProductResult" nillable="true" type="q6:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSexoEdadProducto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q7:Policy.SexoEdadKeyParameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSexoEdadProductoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSexoEdadProductoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaximoReaseguro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Ramo" type="xs:int" />
+        <xs:element minOccurs="0" name="SubRamo" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaximoReaseguroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetMaximoReaseguroResult" nillable="true" type="q8:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComboConditionsByParameters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeCondition" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ramo" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="subRamo" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="nombreArchivo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="anio" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComboConditionsByParametersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetComboConditionsByParametersResult" nillable="true" type="q9:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetContrato">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetContratoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetContratoResult" nillable="true" type="q10:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClienteFromPoliza">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PolicyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClienteFromPolizaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetClienteFromPolizaResult" nillable="true" type="q11:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVehiculosFromPoliza">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PolicyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVehiculosFromPolizaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetVehiculosFromPolizaResult" nillable="true" type="q12:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetInclusion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q13:Policy.inclusion.vehicle.DetailMov.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetInclusionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetInclusionResult" nillable="true" type="q14:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPolizaCoberturaMov">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q15:Policy.inclusion.vehicle.Coverage.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPolizaCoberturaMovResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetPolizaCoberturaMovResult" nillable="true" type="q16:ResultCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPolizaHeaderMov">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="concepto" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="montoMov" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPolizaHeaderMovResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetPolizaHeaderMovResult" nillable="true" type="q17:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationHeader">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q18:Policy.QuotationKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationHeaderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationHeaderResult" nillable="true" type="q19:QuotationHeaderResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q20:Policy.QuotationDetailKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationDetailResult" nillable="true" type="q21:QuotationDetailResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q22:Policy.QuotationCoverageKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationCoverageResult" nillable="true" type="q23:QuotationCoverageResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationEmition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q24:Policy.QuotationCoverageEmitionKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationEmitionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationEmitionResult" nillable="true" type="q25:QuotationEmitionResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationEmitionFactura">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q26:Policy.QuotationCoverageEmitionKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationEmitionFacturaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationEmitionFacturaResult" nillable="true" type="q27:QuotationEmitionResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPaymentAgreement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q28:Policy.PaymentAgreement.Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPaymentAgreementResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetPaymentAgreementResult" nillable="true" type="q29:SetPaymentAgreementResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchOffice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="globalOfficeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchOfficeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetMatchOfficeResult" nillable="true" type="q30:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckPolicyActive">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PolicyNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckPolicyActiveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="CheckPolicyActiveResult" nillable="true" type="q31:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationHeaderVehicle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q32:Policy.QuotationKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationHeaderVehicleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationHeaderVehicleResult" nillable="true" type="q33:QuotationHeaderResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationDetailVehicle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q34:Policy.SysFlexCotizacionDetail.Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationDetailVehicleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationDetailVehicleResult" nillable="true" type="q35:QuotationDetailVehicleResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverageVehicle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q36:Policy.QuotationCoverageKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverageVehicleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationCoverageVehicleResult" nillable="true" type="q37:QuotationCoverageResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationReinsuranceVehicle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuencia" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationReinsuranceVehicleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationReinsuranceVehicleResult" nillable="true" type="q38:ResultCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverageReinsuranceVehicle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuencia" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverageReinsuranceVehicleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationCoverageReinsuranceVehicleResult" nillable="true" type="q39:ResultCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationPaymentAgreementVehicle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q40:Policy.QuotationIL.QuotationPaymenAgreement.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationPaymentAgreementVehicleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationPaymentAgreementVehicleResult" nillable="true" type="q41:SetQuotationPaymentAgreementResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPasstransitVehicle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="poliza" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="oficina" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="codigoConcepto" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPasstransitVehicleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetPasstransitVehicleResult" nillable="true" type="q42:SetPassTransitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMotionBillingVehicle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="indicador" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="rutaWebServices" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="separarPrima" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMotionBillingVehicleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetMotionBillingVehicleResult" nillable="true" type="q43:SetMotionBillingResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizaDetailCobertura">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuencia" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizaDetailCoberturaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="ActualizaDetailCoberturaResult" nillable="true" type="q44:ResultCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FacturacionMovimientoSinGP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="indicador" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="rutaWebServices" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="separarPrima" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="ncf" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="numeroGp" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mensajeGp" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="financed" nillable="true" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FacturacionMovimientoSinGPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="FacturacionMovimientoSinGPResult" nillable="true" type="q45:ResultCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNextNCFNumber">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNextNCFNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetNextNCFNumberResult" nillable="true" type="q46:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNCFandInvoiceNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strPolicyNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="InvoiceDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="InvoiceTotalIncludingTax" type="xs:decimal" />
+        <xs:element minOccurs="0" name="TaxAmount" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNCFandInvoiceNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetNCFandInvoiceNumberResult" nillable="true" type="q47:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNCFandDebitNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strPolicyNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DebitDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="DebitTotalIncludingTax" type="xs:decimal" />
+        <xs:element minOccurs="0" name="TaxAmount" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNCFandDebitNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetNCFandDebitNumberResult" nillable="true" type="q48:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNCFandCreditNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strPolicyNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CreditDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="CreditTotalIncludingTax" type="xs:decimal" />
+        <xs:element minOccurs="0" name="TaxAmount" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNCFandCreditNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetNCFandCreditNumberResult" nillable="true" type="q49:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCotizacionEndosoCesion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rNC" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCotizacionEndosoCesionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetCotizacionEndosoCesionResult" nillable="true" type="q50:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CotizacionEndosoCesion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuencia" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idBeneficiario" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="nombreBeneficiario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="valorEndosoCesion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CotizacionEndosoCesionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="CotizacionEndosoCesionResult" nillable="true" type="q51:ResultCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCotizacionCobertura">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="item" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCotizacionCoberturaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="DeleteCotizacionCoberturaResult" nillable="true" type="q52:ResultCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarAcuerdos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="inicial" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="cantidadCuotas" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="estatus" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarAcuerdosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="BuscarAcuerdosResult" nillable="true" type="q53:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetClient_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q54:Policy.QuotationIL.Client.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetClient_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetClient_ILResult" nillable="true" type="q55:SetClientILResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationHeader_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q56:Policy.QuotationIL.QuotationHeader.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationHeader_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationHeader_ILResult" nillable="true" type="q57:SetQuotationHeaderILResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCondition_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q58:Policy.QuotationIL.QuotationCondition.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCondition_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationCondition_ILResult" nillable="true" type="q59:SetQuotationConditionILResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverage_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q60:Policy.QuotationIL.QuotationCoverage.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverage_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationCoverage_ILResult" nillable="true" type="q61:SetQuotationCoverageILResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationDetail_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q62:Policy.QuotationIL.QuotationDetail.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationDetail_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationDetail_ILResult" nillable="true" type="q63:SetQuotationDetailILResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationReinsurance_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuencia" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationReinsurance_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetQuotationReinsurance_ILResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverageReinsurance_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuencia" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationCoverageReinsurance_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetQuotationCoverageReinsurance_ILResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationPaymentAgreement_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q64:Policy.QuotationIL.QuotationPaymenAgreement.parameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetQuotationPaymentAgreement_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetQuotationPaymentAgreement_ILResult" nillable="true" type="q65:SetQuotationPaymentAgreementResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPasstransit_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="poliza" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="oficina" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="codigoConcepto" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPasstransit_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetPasstransit_ILResult" nillable="true" type="q66:SetPassTransitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMotionBilling_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="indicador" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="rutaWebServices" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="separarPrima" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMotionBilling_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetMotionBilling_ILResult" nillable="true" type="q67:SetMotionBillingResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCoverageProduct_IL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ramo" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="subramo" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCoverageProduct_ILResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetCoverageProduct_ILResult" nillable="true" type="q68:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAcuerdosProductoSV">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="buscarEn" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAcuerdosProductoSVResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetAcuerdosProductoSVResult" nillable="true" type="q69:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAcuerdosProducto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compania" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="cotizacion" nillable="true" type="xs:decimal" />
+        <xs:element minOccurs="0" name="secuenciaMov" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="buscarEn" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAcuerdosProductoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetAcuerdosProductoResult" nillable="true" type="q70:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalCrital">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q71:Policy.QuotationIL.Additional.Cristal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalCritalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetAdditionalCritalResult" nillable="true" type="q72:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalEquipoElectronico">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q73:Policy.QuotationIL.Additional.EquipoElectronico" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalEquipoElectronicoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetAdditionalEquipoElectronicoResult" nillable="true" type="q74:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalFiador">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q75:Policy.QuotationIL.Additional.Fiador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalFiadorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetAdditionalFiadorResult" nillable="true" type="q76:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalMaquinaria">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q77:Policy.QuotationIL.Additional.Maquinaria" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalMaquinariaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetAdditionalMaquinariaResult" nillable="true" type="q78:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalObjetoValioso">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q79:Policy.QuotationIL.Additional.ObjetoValioso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalObjetoValiosoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q80="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetAdditionalObjetoValiosoResult" nillable="true" type="q80:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalTransporteAereoMaritimo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q81="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q81:Policy.QuotationIL.Additional.TransporteAereoMaritimo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalTransporteAereoMaritimoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetAdditionalTransporteAereoMaritimoResult" nillable="true" type="q82:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalTransporteTerrestre">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q83="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q83:Policy.QuotationIL.Additional.TransporteTerrestre" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalTransporteTerrestreResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetAdditionalTransporteTerrestreResult" nillable="true" type="q84:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalPiloto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q85:Policy.QuotationIL.Additional.Piloto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdditionalPilotoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetAdditionalPilotoResult" nillable="true" type="q86:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExactMatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/STG.BlackList.Service" minOccurs="0" name="param" nillable="true" type="q87:ExactMatch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExactMatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q88="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="ExactMatchResult" nillable="true" type="q88:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExactMatchBlackListBatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q89="http://schemas.datacontract.org/2004/07/STG.BlackList.Service" minOccurs="0" name="param" nillable="true" type="q89:ArrayOfExactMatch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExactMatchBlackListBatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="GetExactMatchBlackListBatchResult" nillable="true" type="q90:GetExactMatchBlackListBatchResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetFacultativePlacementSysflex">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Entities" minOccurs="0" name="parameter" nillable="true" type="q91:Policy.FacultativePlacementParameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetFacultativePlacementSysflexResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/SysFlexPolicyService.Results" minOccurs="0" name="SetFacultativePlacementSysflexResult" nillable="true" type="q92:getResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,877 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Global_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Global_Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SP_GET_POLICY_DATA" ReturnType="Collection(Global_Model.SP_GET_POLICY_DATA_Result)">
+      <Parameter Name="Company_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Project_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_POLICY_RIDER" ReturnType="Collection(Global_Model.SP_GET_POLICY_RIDER_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="VW_GET_POLICY_CONFIRMATION" EntityType="Global_Model.VW_GET_POLICY_CONFIRMATION" />
+    <EntitySet Name="VW_GET_POLICY_ISSUE" EntityType="Global_Model.VW_GET_POLICY_ISSUE" />
+    <EntitySet Name="VW_GET_POLICY_PRINT" EntityType="Global_Model.VW_GET_POLICY_PRINT" />
+    <FunctionImport Name="SP_GET_UW_DROPDOWN" ReturnType="Collection(Global_Model.SP_GET_UW_DROPDOWN_Result)">
+      <Parameter Name="Type" Mode="In" Type="String" />
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Company_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Project_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Contact_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Agent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="OccupGroup_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="IsInsured" Mode="In" Type="Boolean" />
+      <Parameter Name="Requirement_Cat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="RiskGroup_Id" Mode="In" Type="Int32" />
+      <Parameter Name="RiskDet_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Table_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="For_Exclusion" Mode="In" Type="Boolean" />
+      <Parameter Name="Bl_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Bl_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Payment_Source_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Payment_Source_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Currency_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ABA_Number" Mode="In" Type="String" />
+      <Parameter Name="AppliedByFreqOrCountry" Mode="In" Type="Boolean" />
+      <Parameter Name="Questionnaire_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Question_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Product_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Risk_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Sex" Mode="In" Type="Boolean" />
+      <Parameter Name="Age" Mode="In" Type="Int32" />
+      <Parameter Name="Form_Category_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Exclusion_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name_Key" Mode="In" Type="String" />
+      <Parameter Name="Credit_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Language_Id" Mode="In" Type="Int32" />
+      <Parameter Name="User_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_POLICY_AMMENDMENT" ReturnType="Collection(Global_Model.SP_GET_POLICY_AMMENDMENT_Result)">
+      <Parameter Name="Company_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Project_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_POLICY_AMMENDMENT_DOCUMENT" ReturnType="Collection(Global_Model.SP_SET_POLICY_AMMENDMENT_DOCUMENT_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Ammendment_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Document_Binary" Mode="In" Type="Binary" />
+      <Parameter Name="Document_Name" Mode="In" Type="String" />
+      <Parameter Name="File_Expire_Date" Mode="In" Type="DateTime" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_POLICY_AMMENDMENT_STATUS_PENDING">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Ammendment_Id" Mode="In" Type="Int32" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_PAYMENTS_PAYMENTS_DOCUMENT" ReturnType="Collection(Global_Model.SP_GET_PAYMENTS_PAYMENTS_DOCUMENT_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Doc_Category_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Doc_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Document_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="VW_GET_POLICY_NEVER_ISSUED" EntityType="Global_Model.VW_GET_POLICY_NEVER_ISSUED" />
+    <FunctionImport Name="SP_SET_POLICY_REJECT" ReturnType="Collection(Global_Model.SP_SET_POLICY_REJECT_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Case_No" Mode="In" Type="Int32" />
+      <Parameter Name="Note_Desc" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_POLICY_NEVER_ISSUED_INFO" ReturnType="Collection(Global_Model.SP_GET_POLICY_NEVER_ISSUED_INFO_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_POLICY_NERVER_ISSUED" ReturnType="Collection(Global_Model.SP_SET_POLICY_NERVER_ISSUED_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Case_No" Mode="In" Type="Int32" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_POLICY_NERVER_ISSUED_EDIT" ReturnType="Collection(Global_Model.SP_SET_POLICY_NERVER_ISSUED_EDIT_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Step_Case_No" Mode="In" Type="Int32" />
+      <Parameter Name="Note_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Note_Desc" Mode="In" Type="String" />
+      <Parameter Name="Step_Reason_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Penalty" Mode="In" Type="Boolean" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_POLICY_REJECT_INFO" ReturnType="Collection(Global_Model.SP_GET_POLICY_REJECT_INFO_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_POLICY_DOCUMENT_INFO" ReturnType="Collection(Global_Model.SP_GET_POLICY_DOCUMENT_INFO_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_PL_PCY_STATUS_CHANGE" ReturnType="Collection(Global_Model.SP_SET_PL_PCY_STATUS_CHANGE_Result)">
+      <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="City_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+      <Parameter Name="Status_Change_Type_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Policy_Status_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Status_Change_Id" Mode="In" Type="Int32" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="VW_GET_POLICY_ISSUE_PROCESSING" EntityType="Global_Model.VW_GET_POLICY_ISSUE_PROCESSING" />
+  </EntityContainer>
+  <ComplexType Name="SP_GET_POLICY_DATA_Result">
+    <Property Type="Int32" Name="Corp_Id" Nullable="false" />
+    <Property Type="Int32" Name="Region_Id" Nullable="false" />
+    <Property Type="Int32" Name="Country_Id" Nullable="false" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="false" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="false" />
+    <Property Type="Int32" Name="City_Id" Nullable="false" />
+    <Property Type="Int32" Name="Office_Id" Nullable="false" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="false" />
+    <Property Type="String" Name="Policy_No" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="OwnerFullName" Nullable="true" MaxLength="240" />
+    <Property Type="Int32" Name="Country_Of_Residence_Id_Owner" Nullable="true" />
+    <Property Type="String" Name="Country_Of_Residence_Desc_Owner" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Country_Of_Birth_Id_Owner" Nullable="true" />
+    <Property Type="String" Name="Country_Of_Birth_Desc_Owner" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="Annual_Personal_Income" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="String" Name="InsuredFullName" Nullable="true" MaxLength="240" />
+    <Property Type="Int32" Name="Country_Of_Residence_Id_Insured" Nullable="true" />
+    <Property Type="String" Name="Country_Of_Residence_Desc_Insured" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="Smoker_Insured" Nullable="true" />
+    <Property Type="DateTime" Name="ApplicationDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Product_Desc" Nullable="false" MaxLength="60" />
+    <Property Type="Decimal" Name="Initial_Premium" Nullable="true" Precision="14" Scale="4" />
+    <Property Type="Decimal" Name="Insured_Amount" Nullable="true" Precision="14" Scale="4" />
+    <Property Type="Decimal" Name="Periodic_Premium" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Int32" Name="Underwriter_Id" Nullable="false" />
+    <Property Type="String" Name="Underwriter_Name" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="Contribution_Years" Nullable="true" />
+    <Property Type="Decimal" Name="Annual_premiun" Nullable="true" Precision="21" Scale="4" />
+    <Property Type="Boolean" Name="BackgroundCheckResult" Nullable="true" />
+    <Property Type="String" Name="Smoker_Insured_Desc" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="BackgroundCheckResult_Desc" Nullable="false" MaxLength="11" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_POLICY_RIDER_Result">
+    <Property Type="Int32" Name="Corp_Id" Nullable="false" />
+    <Property Type="Int32" Name="Region_Id" Nullable="false" />
+    <Property Type="Int32" Name="Country_Id" Nullable="false" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="false" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="false" />
+    <Property Type="Int32" Name="City_Id" Nullable="false" />
+    <Property Type="Int32" Name="Office_Id" Nullable="false" />
+    <Property Type="Int32" Name="Case_seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Rider_Type_Id" Nullable="false" />
+    <Property Type="Int32" Name="Rider_id" Nullable="false" />
+    <Property Type="String" Name="Ryder_Type_Desc" Nullable="false" MaxLength="60" />
+    <Property Type="Decimal" Name="Beneficiary_Amount" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="DateTime" Name="Effective_Date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Expire_Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Number_Of_Year" Nullable="true" />
+    <Property Type="Decimal" Name="Extra_Premium" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Extra_Premium_Comments" Nullable="true" />
+    <Property Type="Int32" Name="Rider_Status_Id" Nullable="false" />
+    <Property Type="String" Name="Rider_Status_Desc" Nullable="false" MaxLength="60" />
+  </ComplexType>
+  <EntityType Name="VW_GET_POLICY_CONFIRMATION">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Company_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="Product_Desc" />
+      <PropertyRef Name="Payment_Freq_Type_Desc" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Sent_Date" />
+      <PropertyRef Name="Sent_Days" />
+      <PropertyRef Name="Max_Received_Date" />
+    </Key>
+    <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+    <Property Name="Region_Id" Type="Int32" Nullable="false" />
+    <Property Name="Country_Id" Type="Int32" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+    <Property Name="City_Id" Type="Int32" Nullable="false" />
+    <Property Name="Office_Id" Type="Int32" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Company_Id" Type="Int32" Nullable="false" />
+    <Property Name="Policy_No" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Policy_Effective_Date" Type="DateTime" Precision="3" />
+    <Property Name="Product_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Initial_Premium" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="Payment_Freq_Type_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="MethodOfPayment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LastPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AgentFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Office_Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Sent_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sent_Days" Type="Int32" Nullable="false" />
+    <Property Name="Max_Received_Date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="VW_GET_POLICY_ISSUE">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Step_Type_Id" />
+      <PropertyRef Name="Step_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="ApplicationDate" />
+      <PropertyRef Name="Product_Desc" />
+      <PropertyRef Name="Payment_Freq_Type_Desc" />
+      <PropertyRef Name="FirstPaymentDate" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Company_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+    <Property Name="Region_Id" Type="Int32" Nullable="false" />
+    <Property Name="Country_Id" Type="Int32" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+    <Property Name="City_Id" Type="Int32" Nullable="false" />
+    <Property Name="Office_Id" Type="Int32" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Step_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Step_Id" Type="Int32" Nullable="false" />
+    <Property Name="Step_Case_No" Type="Int32" />
+    <Property Name="Policy_No" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Product_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Initial_Premium" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="Insured_Amount" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="InsuredFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Payment_Freq_Type_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="MethodOfPayment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FirstPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AgentFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Office_Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Company_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VW_GET_POLICY_PRINT">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Company_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="Product_Desc" />
+      <PropertyRef Name="Payment_Freq_Type_Desc" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+    </Key>
+    <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+    <Property Name="Region_Id" Type="Int32" Nullable="false" />
+    <Property Name="Country_Id" Type="Int32" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+    <Property Name="City_Id" Type="Int32" Nullable="false" />
+    <Property Name="Office_Id" Type="Int32" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Company_Id" Type="Int32" Nullable="false" />
+    <Property Name="Policy_No" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Policy_Effective_Date" Type="DateTime" Precision="3" />
+    <Property Name="Product_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Initial_Premium" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="Payment_Freq_Type_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="MethodOfPayment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LastPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AgentFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Office_Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Print" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="SP_GET_UW_DROPDOWN_Result">
+    <Property Type="Int32" Name="Agent_Id" Nullable="true" />
+    <Property Type="String" Name="Agent_Name" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="City_Desc" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="City_Id" Nullable="true" />
+    <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+    <Property Type="Int32" Name="Country_Id" Nullable="true" />
+    <Property Type="String" Name="Dir_Type_Short_Desc" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Directory_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="true" />
+    <Property Type="String" Name="Global_Country_Desc" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Marital_Stat_Id" Nullable="true" />
+    <Property Type="String" Name="Marital_Status_Desc" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Occupation_Desc" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Occupation_Id" Nullable="true" />
+    <Property Type="Int32" Name="OccupGroup_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Office_Desc" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Office_Id" Nullable="true" />
+    <Property Type="String" Name="Policy_Status_Desc" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Policy_Status_Id" Nullable="true" />
+    <Property Type="Int32" Name="Region_Id" Nullable="true" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="true" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Contact_Id" Nullable="true" />
+    <Property Type="Int32" Name="Contact_Role_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Role_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Smoker_Id" Nullable="true" />
+    <Property Type="String" Name="Smoker_Desc" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="Gender_Id" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Gender_Desc" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Contact_Id_Type" Nullable="true" />
+    <Property Type="String" Name="Contact_Id_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Relationship_Id" Nullable="true" />
+    <Property Type="String" Name="Relationship_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="State_Prov_Desc" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Occupation_Group_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Ammend_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Ammend_Type_Desc" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Insured_Scope_Id" Nullable="true" />
+    <Property Type="String" Name="Insured_Scope_Desc" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Rider_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Code_Name" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="Rider_Status_Id" Nullable="true" />
+    <Property Type="String" Name="Rider_Status_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Payment_Status_id" Nullable="true" />
+    <Property Type="String" Name="Payment_Status_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Policy_No" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Requirement_Cat_Id" Nullable="true" />
+    <Property Type="Int32" Name="Requirement_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Requirement_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Requirement_Cat_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Excercise_Id" Nullable="true" />
+    <Property Type="String" Name="Excercise_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Drug_Id" Nullable="true" />
+    <Property Type="String" Name="Drug_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="RiskGroup_Id" Nullable="true" />
+    <Property Type="Int32" Name="RiskDet_Id" Nullable="true" />
+    <Property Type="Int32" Name="Page_Id" Nullable="true" />
+    <Property Type="Int32" Name="Grid_Id" Nullable="true" />
+    <Property Type="Int32" Name="Element_Id" Nullable="true" />
+    <Property Type="String" Name="Element_Desc" Nullable="true" />
+    <Property Type="String" Name="RiskGroup_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="RiskDet_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Table_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Rating_Id" Nullable="true" />
+    <Property Type="String" Name="Rating_Value" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Requirement_Id" Nullable="true" />
+    <Property Type="Int32" Name="Medical_Test_Id" Nullable="true" />
+    <Property Type="Int32" Name="Column_Id" Nullable="true" />
+    <Property Type="Int32" Name="Risk_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Currency_Id" Nullable="true" />
+    <Property Type="String" Name="Currency_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Bl_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Bl_Id" Nullable="true" />
+    <Property Type="String" Name="Bl_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Product_Id" Nullable="true" />
+    <Property Type="String" Name="Product_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Policy_Serie_Id" Nullable="true" />
+    <Property Type="String" Name="Serie_Code" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Serie_Desc" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="PROFILE_TYPE_ID" Nullable="true" />
+    <Property Type="String" Name="PROFILE_TYPE_DESC" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Payment_Freq_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Payment_Freq_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Note_Reference_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Note_Reference_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Doc_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Doc_Category_Id" Nullable="true" />
+    <Property Type="String" Name="Doc_Category_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Counts" Nullable="true" />
+    <Property Type="Int32" Name="Contribution_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Contribution_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Step_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Step_Id" Nullable="true" />
+    <Property Type="String" Name="Step_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Step_Code" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Payment_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Payment_Desc" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Payment_Source_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Payment_Source_Id" Nullable="true" />
+    <Property Type="String" Name="Payment_Source_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Card_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Card_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Account_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Account_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Payment_Control_Id" Nullable="true" />
+    <Property Type="Int32" Name="Bank_Id" Nullable="true" />
+    <Property Type="String" Name="Bank_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="ABA_Number" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Action_Id" Nullable="true" />
+    <Property Type="String" Name="Action_Desc" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Note_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Note_Type_Desc" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Home_Status_Id" Nullable="true" />
+    <Property Type="String" Name="Home_Status_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Namekey" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Labor_Played_Id" Nullable="true" />
+    <Property Type="String" Name="Labor_Played_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Scale_Id" Nullable="true" />
+    <Property Type="Int32" Name="Scale_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Scale_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Questionnaire_Id" Nullable="true" />
+    <Property Type="Int32" Name="Question_Id" Nullable="true" />
+    <Property Type="Int32" Name="Disease_Id" Nullable="true" />
+    <Property Type="String" Name="Disease_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Boolean" Name="MODIFIABLE" Nullable="true" />
+    <Property Type="Int32" Name="Product_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Risk_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Form_Id" Nullable="true" />
+    <Property Type="String" Name="Form_Desc" Nullable="true" MaxLength="350" />
+    <Property Type="Int32" Name="Form_Category_Id" Nullable="true" />
+    <Property Type="String" Name="Form_Cat_Desc" Nullable="true" MaxLength="350" />
+    <Property Type="Int32" Name="Rider_Id" Nullable="true" />
+    <Property Type="Int32" Name="Exclusion_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Exclusion_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Exclusion_Id" Nullable="true" />
+    <Property Type="String" Name="Exclusion_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Credit_Id" Nullable="true" />
+    <Property Type="String" Name="Credit_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Credit_Reason_Id" Nullable="true" />
+    <Property Type="String" Name="Credit_Reason_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Requested_By" Nullable="true" />
+    <Property Type="Int32" Name="UnderwritingId" Nullable="true" />
+    <Property Type="String" Name="UnderwritingName" Nullable="true" MaxLength="240" />
+    <Property Type="Int32" Name="Language_Id" Nullable="true" />
+    <Property Type="String" Name="Language_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Image_Name" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Rating_Type_Id" Nullable="true" />
+    <Property Type="String" Name="Rating_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Credit_Type_Id" Nullable="true" />
+    <Property Type="Boolean" Name="Print_Status" Nullable="true" />
+    <Property Type="String" Name="Global_Time_Zone_Desc" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Step_Reason_Id" Nullable="true" />
+    <Property Type="String" Name="Step_Reason_Desc" Nullable="true" MaxLength="60" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_POLICY_AMMENDMENT_Result">
+    <Property Type="Int32" Name="Corp_Id" Nullable="false" />
+    <Property Type="Int32" Name="Region_Id" Nullable="false" />
+    <Property Type="Int32" Name="Country_Id" Nullable="false" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="false" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="false" />
+    <Property Type="Int32" Name="City_Id" Nullable="false" />
+    <Property Type="Int32" Name="Office_Id" Nullable="false" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Ammendment_Id" Nullable="false" />
+    <Property Type="Int32" Name="Ammendment_Type_Id" Nullable="false" />
+    <Property Type="String" Name="Ammend_Type_Desc" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Insured_Scope_Id" Nullable="false" />
+    <Property Type="String" Name="Insured_Scope_Desc" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="Comments" Nullable="true" />
+    <Property Type="Int32" Name="Ammendment_Det_Id" Nullable="true" />
+    <Property Type="Int32" Name="Doc_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Doc_Category_Id" Nullable="true" />
+    <Property Type="Int32" Name="Document_Id" Nullable="true" />
+    <Property Type="DateTime" Name="Uploaded_On" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Is_Completed" Nullable="true" />
+    <Property Type="String" Name="Status_Desc" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="SP_SET_POLICY_AMMENDMENT_DOCUMENT_Result">
+    <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Doc_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Doc_Category_Id" Nullable="true" />
+    <Property Type="Int32" Name="Document_Id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_PAYMENTS_PAYMENTS_DOCUMENT_Result">
+    <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+    <Property Type="Int32" Name="Region_Id" Nullable="true" />
+    <Property Type="Int32" Name="Country_Id" Nullable="true" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="true" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="true" />
+    <Property Type="Int32" Name="City_Id" Nullable="true" />
+    <Property Type="Int32" Name="Office_Id" Nullable="true" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Doc_Category_Id" Nullable="false" />
+    <Property Type="Int32" Name="Doc_Type_Id" Nullable="false" />
+    <Property Type="Int32" Name="Document_Id" Nullable="false" />
+    <Property Type="String" Name="Document_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="Document_Binary" Nullable="true" />
+    <Property Type="DateTime" Name="File_Creation_Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Doc_Type_Desc" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="Content_Type" Nullable="true" MaxLength="90" />
+    <Property Type="String" Name="Extension" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <EntityType Name="VW_GET_POLICY_NEVER_ISSUED">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Step_Type_Id" />
+      <PropertyRef Name="Step_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="ApplicationDate" />
+      <PropertyRef Name="Product_Desc" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Company_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+    <Property Name="Region_Id" Type="Int32" Nullable="false" />
+    <Property Name="Country_Id" Type="Int32" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+    <Property Name="City_Id" Type="Int32" Nullable="false" />
+    <Property Name="Office_Id" Type="Int32" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Step_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Step_Id" Type="Int32" Nullable="false" />
+    <Property Name="Step_Case_No" Type="Int32" />
+    <Property Name="Policy_No" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Product_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Initial_Premium" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="Insured_Amount" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="InsuredFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Payment_Freq_Type_Desc" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MethodOfPayment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FirstPaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="LastPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AgentFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Office_Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Company_Id" Type="Int32" Nullable="false" />
+    <Property Name="Step_Reason_Id" Type="Int32" />
+    <Property Name="Step_Reason_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Penalty" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="SP_SET_POLICY_REJECT_Result">
+    <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+    <Property Type="Int32" Name="Region_Id" Nullable="true" />
+    <Property Type="Int32" Name="Country_Id" Nullable="true" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="true" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="true" />
+    <Property Type="Int32" Name="City_Id" Nullable="true" />
+    <Property Type="Int32" Name="Office_Id" Nullable="true" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Step_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Step_Id" Nullable="true" />
+    <Property Type="Int32" Name="Step_Case_No" Nullable="true" />
+    <Property Type="Int32" Name="Process_Id" Nullable="true" />
+    <Property Type="Int32" Name="Status_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Status_Id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_POLICY_NEVER_ISSUED_INFO_Result">
+    <Property Type="Int32" Name="Corp_Id" Nullable="false" />
+    <Property Type="Int32" Name="Region_Id" Nullable="false" />
+    <Property Type="Int32" Name="Country_Id" Nullable="false" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="false" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="false" />
+    <Property Type="Int32" Name="City_Id" Nullable="false" />
+    <Property Type="Int32" Name="Office_Id" Nullable="false" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Step_Type_Id" Nullable="false" />
+    <Property Type="Int32" Name="Step_Id" Nullable="false" />
+    <Property Type="Int32" Name="Step_Case_No" Nullable="true" />
+    <Property Type="Int32" Name="Note_Id" Nullable="true" />
+    <Property Type="String" Name="Policy_No" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="Product_Desc" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="AgentFullName" Nullable="true" MaxLength="240" />
+    <Property Type="String" Name="OwnerFullName" Nullable="true" MaxLength="240" />
+    <Property Type="Decimal" Name="Initial_Premium" Nullable="true" Precision="14" Scale="4" />
+    <Property Type="String" Name="Office_Desc" Nullable="false" MaxLength="150" />
+    <Property Type="DateTime" Name="ApplicationDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="Step_Reason_Id" Nullable="true" />
+    <Property Type="Boolean" Name="Penalty" Nullable="true" />
+    <Property Type="String" Name="Note_Desc" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_SET_POLICY_NERVER_ISSUED_Result">
+    <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+    <Property Type="Int32" Name="Region_Id" Nullable="true" />
+    <Property Type="Int32" Name="Country_Id" Nullable="true" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="true" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="true" />
+    <Property Type="Int32" Name="City_Id" Nullable="true" />
+    <Property Type="Int32" Name="Office_Id" Nullable="true" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Step_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Step_Id" Nullable="true" />
+    <Property Type="Int32" Name="Step_Case_No" Nullable="true" />
+    <Property Type="Int32" Name="Process_Id" Nullable="true" />
+    <Property Type="Int32" Name="Status_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Status_Id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_SET_POLICY_NERVER_ISSUED_EDIT_Result">
+    <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+    <Property Type="Int32" Name="Region_Id" Nullable="true" />
+    <Property Type="Int32" Name="Country_Id" Nullable="true" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="true" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="true" />
+    <Property Type="Int32" Name="City_Id" Nullable="true" />
+    <Property Type="Int32" Name="Office_Id" Nullable="true" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Step_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Step_Id" Nullable="true" />
+    <Property Type="Int32" Name="Step_Case_No" Nullable="true" />
+    <Property Type="Int32" Name="Note_Id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_POLICY_REJECT_INFO_Result">
+    <Property Type="Int32" Name="Corp_Id" Nullable="false" />
+    <Property Type="Int32" Name="Region_Id" Nullable="false" />
+    <Property Type="Int32" Name="Country_Id" Nullable="false" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="false" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="false" />
+    <Property Type="Int32" Name="City_Id" Nullable="false" />
+    <Property Type="Int32" Name="Office_Id" Nullable="false" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Step_Type_Id" Nullable="false" />
+    <Property Type="Int32" Name="Step_Id" Nullable="false" />
+    <Property Type="Int32" Name="Step_Case_No" Nullable="true" />
+    <Property Type="String" Name="Policy_No" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="Product_Desc" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="AgentFullName" Nullable="true" MaxLength="240" />
+    <Property Type="String" Name="OwnerFullName" Nullable="true" MaxLength="240" />
+    <Property Type="Decimal" Name="Initial_Premium" Nullable="true" Precision="14" Scale="4" />
+    <Property Type="String" Name="Office_Desc" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_POLICY_DOCUMENT_INFO_Result">
+    <Property Type="Int32" Name="Corp_Id" Nullable="false" />
+    <Property Type="Int32" Name="Region_Id" Nullable="false" />
+    <Property Type="Int32" Name="Country_Id" Nullable="false" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="false" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="false" />
+    <Property Type="Int32" Name="City_Id" Nullable="false" />
+    <Property Type="Int32" Name="Office_Id" Nullable="false" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="false" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="false" />
+    <Property Type="String" Name="Policy_No" Nullable="false" MaxLength="60" />
+    <Property Type="DateTime" Name="Effective_Date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Product_Desc" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="Currency_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Monthly_Anniversary" Nullable="false" MaxLength="7" />
+    <Property Type="DateTime" Name="Expiration_Date" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="Initial_Premium" Nullable="true" Precision="14" Scale="4" />
+    <Property Type="Decimal" Name="Periodic_Premium" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="Insured_Amount" Nullable="true" Precision="14" Scale="4" />
+    <Property Type="String" Name="Rider" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="RiderADB" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="RiderSEGTEMAD" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="RiderSPINS" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="Owner_Address" Nullable="false" MaxLength="18" />
+    <Property Type="String" Name="Owner_Id" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="Insured_Address" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Insured_Id" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Beneficiary" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="BeneficiaryContingent" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="Owner_FullName" Nullable="true" MaxLength="240" />
+    <Property Type="String" Name="Insured_FullName" Nullable="true" MaxLength="240" />
+    <Property Type="Int32" Name="Insured_Age" Nullable="true" />
+    <Property Type="Boolean" Name="Insured_Smoker" Nullable="true" />
+    <Property Type="Int32" Name="Contribution_Years" Nullable="true" />
+    <Property Type="Int32" Name="Insured_Periodic" Nullable="false" />
+    <Property Type="String" Name="Payment_Freq_Type_Desc" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="Rate_Return" Nullable="false" />
+    <Property Type="String" Name="Insured_Gender" Nullable="true" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="SP_SET_PL_PCY_STATUS_CHANGE_Result">
+    <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+    <Property Type="Int32" Name="Region_Id" Nullable="true" />
+    <Property Type="Int32" Name="Country_Id" Nullable="true" />
+    <Property Type="Int32" Name="Domesticreg_Id" Nullable="true" />
+    <Property Type="Int32" Name="State_Prov_Id" Nullable="true" />
+    <Property Type="Int32" Name="City_Id" Nullable="true" />
+    <Property Type="Int32" Name="Office_Id" Nullable="true" />
+    <Property Type="Int32" Name="Case_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Hist_Seq_No" Nullable="true" />
+    <Property Type="Int32" Name="Status_Change_Type_Id" Nullable="true" />
+    <Property Type="Int32" Name="Policy_Status_Id" Nullable="true" />
+    <Property Type="Int32" Name="Status_Change_Id" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="VW_GET_POLICY_ISSUE_PROCESSING">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Step_Type_Id" />
+      <PropertyRef Name="Step_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="ApplicationDate" />
+      <PropertyRef Name="FirstPaymentDate" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Company_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+    <Property Name="Region_Id" Type="Int32" Nullable="false" />
+    <Property Name="Country_Id" Type="Int32" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+    <Property Name="City_Id" Type="Int32" Nullable="false" />
+    <Property Name="Office_Id" Type="Int32" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+    <Property Name="Step_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Step_Id" Type="Int32" Nullable="false" />
+    <Property Name="Step_Case_No" Type="Int32" />
+    <Property Name="Policy_No" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Product_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Initial_Premium" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="Insured_Amount" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="InsuredFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Payment_Freq_Type_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="MethodOfPayment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FirstPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AgentFullName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Office_Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Company_Id" Type="Int32" Nullable="false" />
+    <Property Name="SentCoreStatus" Type="Boolean" />
+  </EntityType>
+</Schema>

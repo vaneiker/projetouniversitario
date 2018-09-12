@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Global_ModelStoreContainer" CdmEntityContainer="Global_Entities">
+    <FunctionImportMapping FunctionImportName="SP_GET_POLICY_DATA" FunctionName="Global_Model.Store.SP_GET_POLICY_DATA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_GET_POLICY_DATA_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="OwnerFullName" ColumnName="OwnerFullName" />
+          <ScalarProperty Name="Country_Of_Residence_Id_Owner" ColumnName="Country_Of_Residence_Id_Owner" />
+          <ScalarProperty Name="Country_Of_Residence_Desc_Owner" ColumnName="Country_Of_Residence_Desc_Owner" />
+          <ScalarProperty Name="Country_Of_Birth_Id_Owner" ColumnName="Country_Of_Birth_Id_Owner" />
+          <ScalarProperty Name="Country_Of_Birth_Desc_Owner" ColumnName="Country_Of_Birth_Desc_Owner" />
+          <ScalarProperty Name="Annual_Personal_Income" ColumnName="Annual_Personal_Income" />
+          <ScalarProperty Name="InsuredFullName" ColumnName="InsuredFullName" />
+          <ScalarProperty Name="Country_Of_Residence_Id_Insured" ColumnName="Country_Of_Residence_Id_Insured" />
+          <ScalarProperty Name="Country_Of_Residence_Desc_Insured" ColumnName="Country_Of_Residence_Desc_Insured" />
+          <ScalarProperty Name="Smoker_Insured" ColumnName="Smoker_Insured" />
+          <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Insured_Amount" ColumnName="Insured_Amount" />
+          <ScalarProperty Name="Periodic_Premium" ColumnName="Periodic_Premium" />
+          <ScalarProperty Name="Underwriter_Id" ColumnName="Underwriter_Id" />
+          <ScalarProperty Name="Underwriter_Name" ColumnName="Underwriter_Name" />
+          <ScalarProperty Name="Contribution_Years" ColumnName="Contribution_Years" />
+          <ScalarProperty Name="Annual_premiun" ColumnName="Annual_premiun" />
+          <ScalarProperty Name="BackgroundCheckResult" ColumnName="BackgroundCheckResult" />
+          <ScalarProperty Name="Smoker_Insured_Desc" ColumnName="Smoker_Insured_Desc" />
+          <ScalarProperty Name="BackgroundCheckResult_Desc" ColumnName="BackgroundCheckResult_Desc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_POLICY_RIDER" FunctionName="Global_Model.Store.SP_GET_POLICY_RIDER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_GET_POLICY_RIDER_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_seq_No" ColumnName="Case_seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Rider_Type_Id" ColumnName="Rider_Type_Id" />
+          <ScalarProperty Name="Rider_id" ColumnName="Rider_id" />
+          <ScalarProperty Name="Ryder_Type_Desc" ColumnName="Ryder_Type_Desc" />
+          <ScalarProperty Name="Beneficiary_Amount" ColumnName="Beneficiary_Amount" />
+          <ScalarProperty Name="Effective_Date" ColumnName="Effective_Date" />
+          <ScalarProperty Name="Expire_Date" ColumnName="Expire_Date" />
+          <ScalarProperty Name="Number_Of_Year" ColumnName="Number_Of_Year" />
+          <ScalarProperty Name="Extra_Premium" ColumnName="Extra_Premium" />
+          <ScalarProperty Name="Extra_Premium_Comments" ColumnName="Extra_Premium_Comments" />
+          <ScalarProperty Name="Rider_Status_Id" ColumnName="Rider_Status_Id" />
+          <ScalarProperty Name="Rider_Status_Desc" ColumnName="Rider_Status_Desc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="VW_GET_POLICY_CONFIRMATION">
+      <EntityTypeMapping TypeName="Global_Model.VW_GET_POLICY_CONFIRMATION">
+        <MappingFragment StoreEntitySet="VW_GET_POLICY_CONFIRMATION">
+          <ScalarProperty Name="Max_Received_Date" ColumnName="Max_Received_Date" />
+          <ScalarProperty Name="Sent_Days" ColumnName="Sent_Days" />
+          <ScalarProperty Name="Sent_Date" ColumnName="Sent_Date" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="AgentFullName" ColumnName="AgentFullName" />
+          <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+          <ScalarProperty Name="MethodOfPayment" ColumnName="MethodOfPayment" />
+          <ScalarProperty Name="Payment_Freq_Type_Desc" ColumnName="Payment_Freq_Type_Desc" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="Policy_Effective_Date" ColumnName="Policy_Effective_Date" />
+          <ScalarProperty Name="OwnerFullName" ColumnName="OwnerFullName" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_GET_POLICY_ISSUE">
+      <EntityTypeMapping TypeName="Global_Model.VW_GET_POLICY_ISSUE">
+        <MappingFragment StoreEntitySet="VW_GET_POLICY_ISSUE">
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="AgentFullName" ColumnName="AgentFullName" />
+          <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+          <ScalarProperty Name="FirstPaymentDate" ColumnName="FirstPaymentDate" />
+          <ScalarProperty Name="MethodOfPayment" ColumnName="MethodOfPayment" />
+          <ScalarProperty Name="Payment_Freq_Type_Desc" ColumnName="Payment_Freq_Type_Desc" />
+          <ScalarProperty Name="InsuredFullName" ColumnName="InsuredFullName" />
+          <ScalarProperty Name="Insured_Amount" ColumnName="Insured_Amount" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+          <ScalarProperty Name="OwnerFullName" ColumnName="OwnerFullName" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Step_Case_No" ColumnName="Step_Case_No" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_GET_POLICY_PRINT">
+      <EntityTypeMapping TypeName="Global_Model.VW_GET_POLICY_PRINT">
+        <MappingFragment StoreEntitySet="VW_GET_POLICY_PRINT">
+          <ScalarProperty Name="Is_Print" ColumnName="Is_Print" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="AgentFullName" ColumnName="AgentFullName" />
+          <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+          <ScalarProperty Name="MethodOfPayment" ColumnName="MethodOfPayment" />
+          <ScalarProperty Name="Payment_Freq_Type_Desc" ColumnName="Payment_Freq_Type_Desc" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="Policy_Effective_Date" ColumnName="Policy_Effective_Date" />
+          <ScalarProperty Name="OwnerFullName" ColumnName="OwnerFullName" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_UW_DROPDOWN" FunctionName="Global_Model.Store.SP_GET_UW_DROPDOWN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_GET_UW_DROPDOWN_Result">
+          <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+          <ScalarProperty Name="Agent_Name" ColumnName="Agent_Name" />
+          <ScalarProperty Name="City_Desc" ColumnName="City_Desc" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Dir_Type_Short_Desc" ColumnName="Dir_Type_Short_Desc" />
+          <ScalarProperty Name="Directory_Type_Id" ColumnName="Directory_Type_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="Global_Country_Desc" ColumnName="Global_Country_Desc" />
+          <ScalarProperty Name="Marital_Stat_Id" ColumnName="Marital_Stat_Id" />
+          <ScalarProperty Name="Marital_Status_Desc" ColumnName="Marital_Status_Desc" />
+          <ScalarProperty Name="Occupation_Desc" ColumnName="Occupation_Desc" />
+          <ScalarProperty Name="Occupation_Id" ColumnName="Occupation_Id" />
+          <ScalarProperty Name="OccupGroup_Type_Id" ColumnName="OccupGroup_Type_Id" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Policy_Status_Desc" ColumnName="Policy_Status_Desc" />
+          <ScalarProperty Name="Policy_Status_Id" ColumnName="Policy_Status_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+          <ScalarProperty Name="Contact_Role_Type_Id" ColumnName="Contact_Role_Type_Id" />
+          <ScalarProperty Name="Role_Desc" ColumnName="Role_Desc" />
+          <ScalarProperty Name="Smoker_Id" ColumnName="Smoker_Id" />
+          <ScalarProperty Name="Smoker_Desc" ColumnName="Smoker_Desc" />
+          <ScalarProperty Name="Gender_Id" ColumnName="Gender_Id" />
+          <ScalarProperty Name="Gender_Desc" ColumnName="Gender_Desc" />
+          <ScalarProperty Name="Contact_Id_Type" ColumnName="Contact_Id_Type" />
+          <ScalarProperty Name="Contact_Id_Type_Desc" ColumnName="Contact_Id_Type_Desc" />
+          <ScalarProperty Name="Relationship_Id" ColumnName="Relationship_Id" />
+          <ScalarProperty Name="Relationship_Desc" ColumnName="Relationship_Desc" />
+          <ScalarProperty Name="State_Prov_Desc" ColumnName="State_Prov_Desc" />
+          <ScalarProperty Name="Occupation_Group_Desc" ColumnName="Occupation_Group_Desc" />
+          <ScalarProperty Name="Ammend_Type_Id" ColumnName="Ammend_Type_Id" />
+          <ScalarProperty Name="Ammend_Type_Desc" ColumnName="Ammend_Type_Desc" />
+          <ScalarProperty Name="Insured_Scope_Id" ColumnName="Insured_Scope_Id" />
+          <ScalarProperty Name="Insured_Scope_Desc" ColumnName="Insured_Scope_Desc" />
+          <ScalarProperty Name="Rider_Type_Id" ColumnName="Rider_Type_Id" />
+          <ScalarProperty Name="Code_Name" ColumnName="Code_Name" />
+          <ScalarProperty Name="Rider_Status_Id" ColumnName="Rider_Status_Id" />
+          <ScalarProperty Name="Rider_Status_Desc" ColumnName="Rider_Status_Desc" />
+          <ScalarProperty Name="Payment_Status_id" ColumnName="Payment_Status_id" />
+          <ScalarProperty Name="Payment_Status_Desc" ColumnName="Payment_Status_Desc" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Requirement_Cat_Id" ColumnName="Requirement_Cat_Id" />
+          <ScalarProperty Name="Requirement_Type_Id" ColumnName="Requirement_Type_Id" />
+          <ScalarProperty Name="Requirement_Type_Desc" ColumnName="Requirement_Type_Desc" />
+          <ScalarProperty Name="Requirement_Cat_Desc" ColumnName="Requirement_Cat_Desc" />
+          <ScalarProperty Name="Excercise_Id" ColumnName="Excercise_Id" />
+          <ScalarProperty Name="Excercise_Desc" ColumnName="Excercise_Desc" />
+          <ScalarProperty Name="Drug_Id" ColumnName="Drug_Id" />
+          <ScalarProperty Name="Drug_Desc" ColumnName="Drug_Desc" />
+          <ScalarProperty Name="RiskGroup_Id" ColumnName="RiskGroup_Id" />
+          <ScalarProperty Name="RiskDet_Id" ColumnName="RiskDet_Id" />
+          <ScalarProperty Name="Page_Id" ColumnName="Page_Id" />
+          <ScalarProperty Name="Grid_Id" ColumnName="Grid_Id" />
+          <ScalarProperty Name="Element_Id" ColumnName="Element_Id" />
+          <ScalarProperty Name="Element_Desc" ColumnName="Element_Desc" />
+          <ScalarProperty Name="RiskGroup_Desc" ColumnName="RiskGroup_Desc" />
+          <ScalarProperty Name="RiskDet_Desc" ColumnName="RiskDet_Desc" />
+          <ScalarProperty Name="Table_Type_Id" ColumnName="Table_Type_Id" />
+          <ScalarProperty Name="Rating_Id" ColumnName="Rating_Id" />
+          <ScalarProperty Name="Rating_Value" ColumnName="Rating_Value" />
+          <ScalarProperty Name="Requirement_Id" ColumnName="Requirement_Id" />
+          <ScalarProperty Name="Medical_Test_Id" ColumnName="Medical_Test_Id" />
+          <ScalarProperty Name="Column_Id" ColumnName="Column_Id" />
+          <ScalarProperty Name="Risk_Type_Id" ColumnName="Risk_Type_Id" />
+          <ScalarProperty Name="Currency_Id" ColumnName="Currency_Id" />
+          <ScalarProperty Name="Currency_Desc" ColumnName="Currency_Desc" />
+          <ScalarProperty Name="Bl_Type_Id" ColumnName="Bl_Type_Id" />
+          <ScalarProperty Name="Bl_Id" ColumnName="Bl_Id" />
+          <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="Policy_Serie_Id" ColumnName="Policy_Serie_Id" />
+          <ScalarProperty Name="Serie_Code" ColumnName="Serie_Code" />
+          <ScalarProperty Name="Serie_Desc" ColumnName="Serie_Desc" />
+          <ScalarProperty Name="PROFILE_TYPE_ID" ColumnName="PROFILE_TYPE_ID" />
+          <ScalarProperty Name="PROFILE_TYPE_DESC" ColumnName="PROFILE_TYPE_DESC" />
+          <ScalarProperty Name="Payment_Freq_Type_Id" ColumnName="Payment_Freq_Type_Id" />
+          <ScalarProperty Name="Payment_Freq_Type_Desc" ColumnName="Payment_Freq_Type_Desc" />
+          <ScalarProperty Name="Note_Reference_Type_Id" ColumnName="Note_Reference_Type_Id" />
+          <ScalarProperty Name="Note_Reference_Type_Desc" ColumnName="Note_Reference_Type_Desc" />
+          <ScalarProperty Name="Doc_Type_Id" ColumnName="Doc_Type_Id" />
+          <ScalarProperty Name="Doc_Category_Id" ColumnName="Doc_Category_Id" />
+          <ScalarProperty Name="Doc_Category_Desc" ColumnName="Doc_Category_Desc" />
+          <ScalarProperty Name="Counts" ColumnName="Counts" />
+          <ScalarProperty Name="Contribution_Type_Id" ColumnName="Contribution_Type_Id" />
+          <ScalarProperty Name="Contribution_Type_Desc" ColumnName="Contribution_Type_Desc" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Desc" ColumnName="Step_Desc" />
+          <ScalarProperty Name="Step_Code" ColumnName="Step_Code" />
+          <ScalarProperty Name="Payment_Type_Id" ColumnName="Payment_Type_Id" />
+          <ScalarProperty Name="Payment_Desc" ColumnName="Payment_Desc" />
+          <ScalarProperty Name="Payment_Source_Type_Id" ColumnName="Payment_Source_Type_Id" />
+          <ScalarProperty Name="Payment_Source_Id" ColumnName="Payment_Source_Id" />
+          <ScalarProperty Name="Payment_Source_Desc" ColumnName="Payment_Source_Desc" />
+          <ScalarProperty Name="Card_Type_Id" ColumnName="Card_Type_Id" />
+          <ScalarProperty Name="Card_Type_Desc" ColumnName="Card_Type_Desc" />
+          <ScalarProperty Name="Account_Type_Id" ColumnName="Account_Type_Id" />
+          <ScalarProperty Name="Account_Desc" ColumnName="Account_Desc" />
+          <ScalarProperty Name="Payment_Control_Id" ColumnName="Payment_Control_Id" />
+          <ScalarProperty Name="Bank_Id" ColumnName="Bank_Id" />
+          <ScalarProperty Name="Bank_Desc" ColumnName="Bank_Desc" />
+          <ScalarProperty Name="ABA_Number" ColumnName="ABA_Number" />
+          <ScalarProperty Name="Action_Id" ColumnName="Action_Id" />
+          <ScalarProperty Name="Action_Desc" ColumnName="Action_Desc" />
+          <ScalarProperty Name="Note_Type_Id" ColumnName="Note_Type_Id" />
+          <ScalarProperty Name="Note_Type_Desc" ColumnName="Note_Type_Desc" />
+          <ScalarProperty Name="Home_Status_Id" ColumnName="Home_Status_Id" />
+          <ScalarProperty Name="Home_Status_Desc" ColumnName="Home_Status_Desc" />
+          <ScalarProperty Name="Namekey" ColumnName="Namekey" />
+          <ScalarProperty Name="Labor_Played_Id" ColumnName="Labor_Played_Id" />
+          <ScalarProperty Name="Labor_Played_Desc" ColumnName="Labor_Played_Desc" />
+          <ScalarProperty Name="Scale_Id" ColumnName="Scale_Id" />
+          <ScalarProperty Name="Scale_Type_Id" ColumnName="Scale_Type_Id" />
+          <ScalarProperty Name="Scale_Desc" ColumnName="Scale_Desc" />
+          <ScalarProperty Name="Questionnaire_Id" ColumnName="Questionnaire_Id" />
+          <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+          <ScalarProperty Name="Disease_Id" ColumnName="Disease_Id" />
+          <ScalarProperty Name="Disease_Desc" ColumnName="Disease_Desc" />
+          <ScalarProperty Name="MODIFIABLE" ColumnName="MODIFIABLE" />
+          <ScalarProperty Name="Product_Type_Id" ColumnName="Product_Type_Id" />
+          <ScalarProperty Name="Risk_Type_Desc" ColumnName="Risk_Type_Desc" />
+          <ScalarProperty Name="Form_Id" ColumnName="Form_Id" />
+          <ScalarProperty Name="Form_Desc" ColumnName="Form_Desc" />
+          <ScalarProperty Name="Form_Category_Id" ColumnName="Form_Category_Id" />
+          <ScalarProperty Name="Form_Cat_Desc" ColumnName="Form_Cat_Desc" />
+          <ScalarProperty Name="Rider_Id" ColumnName="Rider_Id" />
+          <ScalarProperty Name="Exclusion_Type_Id" ColumnName="Exclusion_Type_Id" />
+          <ScalarProperty Name="Exclusion_Type_Desc" ColumnName="Exclusion_Type_Desc" />
+          <ScalarProperty Name="Exclusion_Id" ColumnName="Exclusion_Id" />
+          <ScalarProperty Name="Exclusion_Desc" ColumnName="Exclusion_Desc" />
+          <ScalarProperty Name="Credit_Id" ColumnName="Credit_Id" />
+          <ScalarProperty Name="Credit_Desc" ColumnName="Credit_Desc" />
+          <ScalarProperty Name="Credit_Reason_Id" ColumnName="Credit_Reason_Id" />
+          <ScalarProperty Name="Credit_Reason_Desc" ColumnName="Credit_Reason_Desc" />
+          <ScalarProperty Name="Requested_By" ColumnName="Requested_By" />
+          <ScalarProperty Name="UnderwritingId" ColumnName="UnderwritingId" />
+          <ScalarProperty Name="UnderwritingName" ColumnName="UnderwritingName" />
+          <ScalarProperty Name="Language_Id" ColumnName="Language_Id" />
+          <ScalarProperty Name="Language_Desc" ColumnName="Language_Desc" />
+          <ScalarProperty Name="Image_Name" ColumnName="Image_Name" />
+          <ScalarProperty Name="Rating_Type_Id" ColumnName="Rating_Type_Id" />
+          <ScalarProperty Name="Rating_Type_Desc" ColumnName="Rating_Type_Desc" />
+          <ScalarProperty Name="Credit_Type_Id" ColumnName="Credit_Type_Id" />
+          <ScalarProperty Name="Print_Status" ColumnName="Print_Status" />
+          <ScalarProperty Name="Global_Time_Zone_Desc" ColumnName="Global_Time_Zone_Desc" />
+          <ScalarProperty Name="Step_Reason_Id" ColumnName="Step_Reason_Id" />
+          <ScalarProperty Name="Step_Reason_Desc" ColumnName="Step_Reason_Desc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_POLICY_AMMENDMENT" FunctionName="Global_Model.Store.SP_GET_POLICY_AMMENDMENT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_GET_POLICY_AMMENDMENT_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Ammendment_Id" ColumnName="Ammendment_Id" />
+          <ScalarProperty Name="Ammendment_Type_Id" ColumnName="Ammendment_Type_Id" />
+          <ScalarProperty Name="Ammend_Type_Desc" ColumnName="Ammend_Type_Desc" />
+          <ScalarProperty Name="Insured_Scope_Id" ColumnName="Insured_Scope_Id" />
+          <ScalarProperty Name="Insured_Scope_Desc" ColumnName="Insured_Scope_Desc" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="Ammendment_Det_Id" ColumnName="Ammendment_Det_Id" />
+          <ScalarProperty Name="Doc_Type_Id" ColumnName="Doc_Type_Id" />
+          <ScalarProperty Name="Doc_Category_Id" ColumnName="Doc_Category_Id" />
+          <ScalarProperty Name="Document_Id" ColumnName="Document_Id" />
+          <ScalarProperty Name="Uploaded_On" ColumnName="Uploaded_On" />
+          <ScalarProperty Name="Is_Completed" ColumnName="Is_Completed" />
+          <ScalarProperty Name="Status_Desc" ColumnName="Status_Desc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_POLICY_AMMENDMENT_DOCUMENT" FunctionName="Global_Model.Store.SP_SET_POLICY_AMMENDMENT_DOCUMENT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_SET_POLICY_AMMENDMENT_DOCUMENT_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Doc_Type_Id" ColumnName="Doc_Type_Id" />
+          <ScalarProperty Name="Doc_Category_Id" ColumnName="Doc_Category_Id" />
+          <ScalarProperty Name="Document_Id" ColumnName="Document_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_POLICY_AMMENDMENT_STATUS_PENDING" FunctionName="Global_Model.Store.SP_SET_POLICY_AMMENDMENT_STATUS_PENDING" />
+    <FunctionImportMapping FunctionImportName="SP_GET_PAYMENTS_PAYMENTS_DOCUMENT" FunctionName="Global_Model.Store.SP_GET_PAYMENTS_PAYMENTS_DOCUMENT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_GET_PAYMENTS_PAYMENTS_DOCUMENT_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Doc_Category_Id" ColumnName="Doc_Category_Id" />
+          <ScalarProperty Name="Doc_Type_Id" ColumnName="Doc_Type_Id" />
+          <ScalarProperty Name="Document_Id" ColumnName="Document_Id" />
+          <ScalarProperty Name="Document_Name" ColumnName="Document_Name" />
+          <ScalarProperty Name="Document_Binary" ColumnName="Document_Binary" />
+          <ScalarProperty Name="File_Creation_Date" ColumnName="File_Creation_Date" />
+          <ScalarProperty Name="Doc_Type_Desc" ColumnName="Doc_Type_Desc" />
+          <ScalarProperty Name="Content_Type" ColumnName="Content_Type" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="VW_GET_POLICY_NEVER_ISSUED">
+      <EntityTypeMapping TypeName="Global_Model.VW_GET_POLICY_NEVER_ISSUED">
+        <MappingFragment StoreEntitySet="VW_GET_POLICY_NEVER_ISSUED">
+          <ScalarProperty Name="Penalty" ColumnName="Penalty" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Step_Reason_Desc" ColumnName="Step_Reason_Desc" />
+          <ScalarProperty Name="Step_Reason_Id" ColumnName="Step_Reason_Id" />
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="AgentFullName" ColumnName="AgentFullName" />
+          <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+          <ScalarProperty Name="FirstPaymentDate" ColumnName="FirstPaymentDate" />
+          <ScalarProperty Name="MethodOfPayment" ColumnName="MethodOfPayment" />
+          <ScalarProperty Name="Payment_Freq_Type_Desc" ColumnName="Payment_Freq_Type_Desc" />
+          <ScalarProperty Name="InsuredFullName" ColumnName="InsuredFullName" />
+          <ScalarProperty Name="Insured_Amount" ColumnName="Insured_Amount" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+          <ScalarProperty Name="OwnerFullName" ColumnName="OwnerFullName" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Step_Case_No" ColumnName="Step_Case_No" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_POLICY_REJECT" FunctionName="Global_Model.Store.SP_SET_POLICY_REJECT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_SET_POLICY_REJECT_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Case_No" ColumnName="Step_Case_No" />
+          <ScalarProperty Name="Process_Id" ColumnName="Process_Id" />
+          <ScalarProperty Name="Status_Type_Id" ColumnName="Status_Type_Id" />
+          <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_POLICY_NEVER_ISSUED_INFO" FunctionName="Global_Model.Store.SP_GET_POLICY_NEVER_ISSUED_INFO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_GET_POLICY_NEVER_ISSUED_INFO_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Case_No" ColumnName="Step_Case_No" />
+          <ScalarProperty Name="Note_Id" ColumnName="Note_Id" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="AgentFullName" ColumnName="AgentFullName" />
+          <ScalarProperty Name="OwnerFullName" ColumnName="OwnerFullName" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+          <ScalarProperty Name="Step_Reason_Id" ColumnName="Step_Reason_Id" />
+          <ScalarProperty Name="Penalty" ColumnName="Penalty" />
+          <ScalarProperty Name="Note_Desc" ColumnName="Note_Desc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_POLICY_NERVER_ISSUED" FunctionName="Global_Model.Store.SP_SET_POLICY_NERVER_ISSUED">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_SET_POLICY_NERVER_ISSUED_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Case_No" ColumnName="Step_Case_No" />
+          <ScalarProperty Name="Process_Id" ColumnName="Process_Id" />
+          <ScalarProperty Name="Status_Type_Id" ColumnName="Status_Type_Id" />
+          <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_POLICY_NERVER_ISSUED_EDIT" FunctionName="Global_Model.Store.SP_SET_POLICY_NERVER_ISSUED_EDIT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_SET_POLICY_NERVER_ISSUED_EDIT_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Case_No" ColumnName="Step_Case_No" />
+          <ScalarProperty Name="Note_Id" ColumnName="Note_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_POLICY_REJECT_INFO" FunctionName="Global_Model.Store.SP_GET_POLICY_REJECT_INFO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_GET_POLICY_REJECT_INFO_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Case_No" ColumnName="Step_Case_No" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="AgentFullName" ColumnName="AgentFullName" />
+          <ScalarProperty Name="OwnerFullName" ColumnName="OwnerFullName" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_POLICY_DOCUMENT_INFO" FunctionName="Global_Model.Store.SP_GET_POLICY_DOCUMENT_INFO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_GET_POLICY_DOCUMENT_INFO_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Effective_Date" ColumnName="Effective_Date" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="Currency_Desc" ColumnName="Currency_Desc" />
+          <ScalarProperty Name="Monthly_Anniversary" ColumnName="Monthly_Anniversary" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration_Date" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Periodic_Premium" ColumnName="Periodic_Premium" />
+          <ScalarProperty Name="Insured_Amount" ColumnName="Insured_Amount" />
+          <ScalarProperty Name="Rider" ColumnName="Rider" />
+          <ScalarProperty Name="RiderADB" ColumnName="RiderADB" />
+          <ScalarProperty Name="RiderSEGTEMAD" ColumnName="RiderSEGTEMAD" />
+          <ScalarProperty Name="RiderSPINS" ColumnName="RiderSPINS" />
+          <ScalarProperty Name="Owner_Address" ColumnName="Owner_Address" />
+          <ScalarProperty Name="Owner_Id" ColumnName="Owner_Id" />
+          <ScalarProperty Name="Insured_Address" ColumnName="Insured_Address" />
+          <ScalarProperty Name="Insured_Id" ColumnName="Insured_Id" />
+          <ScalarProperty Name="Beneficiary" ColumnName="Beneficiary" />
+          <ScalarProperty Name="BeneficiaryContingent" ColumnName="BeneficiaryContingent" />
+          <ScalarProperty Name="Owner_FullName" ColumnName="Owner_FullName" />
+          <ScalarProperty Name="Insured_FullName" ColumnName="Insured_FullName" />
+          <ScalarProperty Name="Insured_Age" ColumnName="Insured_Age" />
+          <ScalarProperty Name="Insured_Smoker" ColumnName="Insured_Smoker" />
+          <ScalarProperty Name="Contribution_Years" ColumnName="Contribution_Years" />
+          <ScalarProperty Name="Insured_Periodic" ColumnName="Insured_Periodic" />
+          <ScalarProperty Name="Payment_Freq_Type_Desc" ColumnName="Payment_Freq_Type_Desc" />
+          <ScalarProperty Name="Rate_Return" ColumnName="Rate_Return" />
+          <ScalarProperty Name="Insured_Gender" ColumnName="Insured_Gender" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_PL_PCY_STATUS_CHANGE" FunctionName="Global_Model.Store.SP_SET_PL_PCY_STATUS_CHANGE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Global_Model.SP_SET_PL_PCY_STATUS_CHANGE_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Status_Change_Type_Id" ColumnName="Status_Change_Type_Id" />
+          <ScalarProperty Name="Policy_Status_Id" ColumnName="Policy_Status_Id" />
+          <ScalarProperty Name="Status_Change_Id" ColumnName="Status_Change_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="VW_GET_POLICY_ISSUE_PROCESSING">
+      <EntityTypeMapping TypeName="Global_Model.VW_GET_POLICY_ISSUE_PROCESSING">
+        <MappingFragment StoreEntitySet="VW_GET_POLICY_ISSUE_PROCESSING">
+          <ScalarProperty Name="SentCoreStatus" ColumnName="SentCoreStatus" />
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="AgentFullName" ColumnName="AgentFullName" />
+          <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+          <ScalarProperty Name="FirstPaymentDate" ColumnName="FirstPaymentDate" />
+          <ScalarProperty Name="MethodOfPayment" ColumnName="MethodOfPayment" />
+          <ScalarProperty Name="Payment_Freq_Type_Desc" ColumnName="Payment_Freq_Type_Desc" />
+          <ScalarProperty Name="InsuredFullName" ColumnName="InsuredFullName" />
+          <ScalarProperty Name="Insured_Amount" ColumnName="Insured_Amount" />
+          <ScalarProperty Name="Initial_Premium" ColumnName="Initial_Premium" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+          <ScalarProperty Name="OwnerFullName" ColumnName="OwnerFullName" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Step_Case_No" ColumnName="Step_Case_No" />
+          <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+          <ScalarProperty Name="Step_Type_Id" ColumnName="Step_Type_Id" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

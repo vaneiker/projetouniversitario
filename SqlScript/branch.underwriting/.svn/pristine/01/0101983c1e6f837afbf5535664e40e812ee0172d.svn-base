@@ -1,0 +1,179 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Entity.UnderWriting.Entities
+{
+    public class Requirement
+    {
+        public int CorpId { get; set; }
+        public int RegionId { get; set; }
+        public int CountryId { get; set; }
+        public int DomesticregId { get; set; }
+        public int StateProvId { get; set; }
+        public int CityId { get; set; }
+        public int OfficeId { get; set; }
+        public int CaseSeqNo { get; set; }
+        public int HistSeqNo { get; set; }
+        public int ContactId { get; set; }
+        public int RequirementCatId { get; set; }
+        public int RequirementTypeId { get; set; }
+        public int RequirementId { get; set; }
+        public int AgentId { get; set; }
+        public int? StepTypeId { get; set; }
+        public int? StepId { get; set; }
+        public int? StepCaseNo { get; set; }
+        public string RequirementTypeDesc { get; set; }
+        public int ContactRoleTypeId { get; set; }
+        public string RoleDesc { get; set; }
+        public int RequestedBy { get; set; }
+        public string RequestedByUserName { get; set; }
+        public DateTime RequestedDate { get; set; }
+        public DateTime? ReceivedDate { get; set; }
+        public bool IsManual { get; set; }
+        public bool SendToReinsurance { get; set; }
+        public int? RequirementDocId { get; set; }
+        public int? DocTypeId { get; set; }
+        public int? DocCategoryId { get; set; }
+        public int? DocumentId { get; set; }
+        public bool? IsComplete { get; set; }
+        public bool? Automatic { get; set; }
+        public bool HasDocument { get; set; }
+        public int UserId { get; set; }
+        public string RequirementCatDesc { get; set; }
+        public string Comment { get; set; }
+        public bool RequimentPolicyOnly { get; set; }
+        public string ContactRoleDesc { get; set; }
+        public string ClientName { get; set; } 
+        public DateTime? LastUpdate { get; set; }
+        public IEnumerable<Requirement> AgentList { get; set; }
+
+        public class Document
+        {
+            public int CorpId { get; set; }
+            public int RegionId { get; set; }
+            public int CountryId { get; set; }
+            public int DomesticregId { get; set; }
+            public int StateProvId { get; set; }
+            public int CityId { get; set; }
+            public int OfficeId { get; set; }
+            public int CaseSeqNo { get; set; }
+            public int HistSeqNo { get; set; }
+            public int ContactId { get; set; }
+            public int RequirementCatId { get; set; }
+            public int RequirementTypeId { get; set; }
+            public int RequirementId { get; set; }
+            public int DocumentStatusId { get; set; }
+            public string DocumentStatusDesc { get; set; }
+            public int RequirementDocId { get; set; }
+            public int DocumentTypeId { get; set; }
+            public int DocumentCategoryId { get; set; }
+            public int DocumentId { get; set; }
+            public byte[] DocumentBinary { get; set; }
+            public string DocumentName { get; set; }
+            public string DocumentTypeDesc { get; set; }
+            public string ContentType { get; set; }
+            public string Extension { get; set; }
+            public DateTime? ClientSignatureDate { get; set; } 
+            public int UserId { get; set; }
+        }
+
+        public class Comunication
+        {
+            public int CorpId { get; set; }
+            public int RegionId { get; set; }
+            public int CountryId { get; set; }
+            public int DomesticregId { get; set; }
+            public int StateProvId { get; set; }
+            public int CityId { get; set; }
+            public int OfficeId { get; set; }
+            public int CaseSeqNo { get; set; }
+            public int HistSeqNo { get; set; }
+            public int ContactId { get; set; }
+            public int RequirementCatId { get; set; }
+            public int RequirementTypeId { get; set; }
+            public int RequirementId { get; set; }
+            public int ComunicationId { get; set; }
+            public string Comment { get; set; }
+            public int CommentBy { get; set; }            
+            public string CommentByUserName { get; set; }
+            public int UserId { get; set; }
+            public DateTime CommentDate { get; set; }
+        }
+
+        public struct CategoryByContactRole
+        {
+            public int CorpId { get; set; }
+            public int RegionId { get; set; }
+            public int CountryId { get; set; }
+            public int DomesticregId { get; set; }
+            public int StateProvId { get; set; }
+            public int CityId { get; set; }
+            public int OfficeId { get; set; }
+            public int CaseSeqNo { get; set; }
+            public int HistSeqNo { get; set; }
+            public int RequirementCatId { get; set; }
+            public int ContactId { get; set; }
+            public string RequirementCatDesc { get; set; }
+            public string Roles { get; set; }
+            public string Key { get; set; }
+        }
+
+        public class Product
+        {   
+            public int OrderId { get; set; }
+            public int CorpId { get; set; }
+            public int RequirementCatId { get; set; }
+            public string RequirementCatDesc { get; set; }
+            public int? RequirementTypeId { get; set; }
+            public string RequirementTypeDesc { get; set; }
+            public int? DocTypeId { get; set; }
+            public int? DocCategoryId { get; set; }
+            public bool? Automatic { get; set; }
+            public bool? RequimentPolicyOnly { get; set; }
+            public bool? RequimentAssingToInsured { get; set; }
+            public int? RegionId { get; set; }
+            public int? CountryId { get; set; }
+            public int? DomesticregId { get; set; }
+            public int? StateProvId { get; set; }
+            public int? CityId { get; set; }
+            public int? OfficeId { get; set; }
+            public int? CaseSeqNo { get; set; }
+            public int? HistSeqNo { get; set; }
+            public int? ContactId { get; set; }
+            public int? RequirementId { get; set; }
+            public int? RequirementDocId { get; set; }
+            public int? DocumentId { get; set; }
+            public bool? IsValid { get; set; }
+            public int? FunctionalitySeqNo { get; set; }
+            public bool? IsMandatory { get; set; }
+            public int? InsuredId { get; set; }
+            public int? SeqId { get; set; }
+            public long? UniqueId { get; set; }
+            public string AssingTo { get; set; }
+            public int? FunctionalityId { get; set; }
+            public int? UploadById { get; set; }
+            public string UploadByUserName { get; set; }
+            public int? ValidById { get; set; }
+            public string ValidByUserName { get; set; }
+            public DateTime? ValidByDate { get; set; }
+            public string RequimentOnBaseNameKey { get; set; }
+            public string RequirementTypeSubType { get; set; }
+            public string EndorsementBeneficiary { get; set; }
+            public string DocumentName { get; set; }
+
+            public class Key
+            {
+                public int CorpId { get; set; }
+                public int RegionId { get; set; }
+                public int CountryId { get; set; }
+                public int DomesticRegId { get; set; }
+                public int StateProvId { get; set; }
+                public int CityId { get; set; }
+                public int OfficeId { get; set; }
+                public int CaseSeqNo { get; set; }
+                public int HistSeqNo { get; set; }
+                public int? ContactId { get; set; }   
+            }
+        }
+    }
+}

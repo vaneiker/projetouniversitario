@@ -1,0 +1,203 @@
+﻿using System;
+using System.Linq;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WEB.UnderWriting.Common;
+
+namespace WEB.UnderWriting.Case.UserControls.UnderwritingSteps
+{
+    public partial class UCPopStepComments : WEB.UnderWriting.Common.UC, WEB.UnderWriting.Common.IUC
+    {
+        
+
+        public UCUnderwritingStep UCUnderwritingSteps
+        {
+            get
+            {
+                return (UCUnderwritingStep)this.Parent.Parent.Parent;
+            }
+        }
+       // UnderWritingDIManager diManager = new UnderWritingDIManager();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void Translator(string Lang)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void clearData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void readOnly(bool x)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void edit()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FillData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FillData(Entity.UnderWriting.Entities.Step underStep)
+        {
+            var data = from d in Services.StepManager.GetAllNotes(underStep)
+                       select new
+                       {
+                           d.StepId,
+                           d.StepCaseNo,
+                           d.StepTypeId,
+                           d.OriginatedByName,
+                           d.NoteDesc,
+                           Date = (d.DateAdded.HasValue ? d.DateAdded.Value.ToString("MM/dd/yyyy") : (d.DateModified.HasValue ? d.DateModified.Value.ToString("MM/dd/yyyy") : "")),
+                           Time = (d.DateAdded.HasValue ? d.DateAdded.Value.ToShortTimeString() : (d.DateModified.HasValue ? d.DateModified.Value.ToShortTimeString() : ""))
+                       };
+
+            gvUSComments.DataSource = data;
+            gvUSComments.DataBind();
+
+            //Save Step Key
+            hdnStepId.Value = underStep.StepId.ToString();
+            hdnStepCaseNo.Value = underStep.StepCaseNo.ToString();
+            hdnStepTypeId.Value = underStep.StepTypeId.ToString();
+
+            //Set buttons Visibility
+            pnlBtnAddComment.Visible = underStep.ProcessStatus == 1;
+            pnlBtnVoidStep.Visible = underStep.Voidable;
+            pnlBtnCloseStep.Visible = underStep.Closable;
+        }
+
+        protected void btnUSCSave_Click(object sender, EventArgs e)
+        {
+
+            if (!String.IsNullOrEmpty(txtUSCNewComment.Text.Trim()))
+            {
+                //Obtengo e inserto una nueva nota
+                Services.StepManager.InsertNote(GetNewNote());
+
+                if (hdnSaveCommentSender.Value.ToLower() != "comment")
+                {
+                    switch (hdnSaveCommentSender.Value.ToLower())
+                    {
+                        case "void":
+                            Services.StepManager.VoidStep(GetCurrentStep());
+                            break;
+
+                        case "close":
+                            Services.StepManager.CloseStep(GetCurrentStep());
+                            break;
+                    }
+
+                    if (UCUnderwritingSteps != null)
+                        UCUnderwritingSteps.FillData(hdnStepTypeId.Value == "2");
+
+                    HidePopUp();
+                }
+                else
+                    //Recargo la información del grid para reflejar la nueva nota
+                    FillData(GetCurrentStep());
+            }
+            else
+                this.MessageBox(Message: "The field Comment is required, please try again.", Title: "Required Field");
+
+            var rigth = (Common.Right)Page.Master.FindControl("Right").FindControl("Right");
+            rigth.fillPointSteps();
+            
+
+        }
+
+        /// <summary>
+        /// Función para obtener un objeto tipo "Step" con la información actual
+        /// </summary>
+        /// <returns>Retorna un objeto tipo "Step"</returns>
+        private Entity.UnderWriting.Entities.Step GetCurrentStep()
+        {
+            if (!String.IsNullOrEmpty(hdnStepCaseNo.Value) && !String.IsNullOrEmpty(hdnStepId.Value) && !String.IsNullOrEmpty(hdnStepTypeId.Value))
+            {
+                var stepId = int.Parse(hdnStepId.Value);
+                var stepCaseNo = int.Parse(hdnStepCaseNo.Value);
+                var stepTypeId = int.Parse(hdnStepTypeId.Value);
+
+                var step = new Entity.UnderWriting.Entities.Step
+                {
+                    StepId = stepId,
+                    StepTypeId = stepTypeId,
+                    StepCaseNo = stepCaseNo,
+                    CorpId = Service.Corp_Id,
+                    RegionId = Service.Region_Id,
+                    CountryId = Service.Country_Id,
+                    DomesticregId = Service.Domesticreg_Id,
+                    StateProvId = Service.State_Prov_Id,
+                    CityId = Service.City_Id,
+                    OfficeId = Service.Office_Id,
+                    CaseSeqNo = Service.Case_Seq_No,
+                    HistSeqNo = Service.Hist_Seq_No,
+                    LanguageId = Service.LanguageId,
+					UserId = Service.Underwriter_Id
+                };
+
+                return step;
+            }
+            else
+                return new Entity.UnderWriting.Entities.Step();
+        }
+
+        /// <summary>
+        /// Función para obtener una nueva nota
+        /// </summary>
+        /// <returns>Retorna un objeto tipo "Step.Note" con toda la informacion necesaria para agregar una nueva nota</returns>
+        private Entity.UnderWriting.Entities.Step.Note GetNewNote()
+        {
+            if (!String.IsNullOrEmpty(hdnStepCaseNo.Value) && !String.IsNullOrEmpty(hdnStepId.Value) && !String.IsNullOrEmpty(hdnStepTypeId.Value))
+            {
+                var stepId = int.Parse(hdnStepId.Value);
+                var stepCaseNo = int.Parse(hdnStepCaseNo.Value);
+                var stepTypeId = int.Parse(hdnStepTypeId.Value);
+
+                var step = new Entity.UnderWriting.Entities.Step.Note
+                {
+                    StepId = stepId,
+                    StepTypeId = stepTypeId,
+                    StepCaseNo = stepCaseNo,
+                    CorpId = Service.Corp_Id,
+                    RegionId = Service.Region_Id,
+                    CountryId = Service.Country_Id,
+                    DomesticregId = Service.Domesticreg_Id,
+                    StateProvId = Service.State_Prov_Id,
+                    CityId = Service.City_Id,
+                    OfficeId = Service.Office_Id,
+                    CaseSeqNo = Service.Case_Seq_No,
+                    HistSeqNo = Service.Hist_Seq_No,
+                    NoteDesc = txtUSCNewComment.Text,
+                    UserId = Service.Underwriter_Id,
+                    OriginatedBy = Service.Underwriter_Id,
+                    UnderwriterId = Service.Underwriter_Id
+                };
+
+                return step;
+            }
+            else
+                return new Entity.UnderWriting.Entities.Step.Note();
+        }
+
+        private void HidePopUp()
+        {
+            var hdnPopVisible = (HiddenField)UCUnderwritingSteps.FindControl("hdnUSShowPopComments");
+            hdnPopVisible.Value = "false";
+        }
+    }
+}

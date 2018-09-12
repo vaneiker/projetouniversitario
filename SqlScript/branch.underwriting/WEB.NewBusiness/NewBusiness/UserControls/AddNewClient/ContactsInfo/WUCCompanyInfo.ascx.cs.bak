@@ -1,0 +1,139 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WEB.NewBusiness.Common;
+using RESOURCE.UnderWriting.NewBussiness;
+//wcastro 21-03-2017
+using System.Globalization;
+//fin wcastro
+
+namespace WEB.NewBusiness.NewBusiness.UserControls.AddNewClient.ContactsInfo
+{
+    public partial class WUCCompanyInfo : UC, IUC
+    {
+        public void edit() { }
+        protected void Page_Load(object sender, EventArgs e) { }
+        public String PrefixSession
+        {
+            get { return hdnCurrentSession.Value; }
+            set { hdnCurrentSession.Value = value; }
+        }
+
+        private void FillDrop()
+        {
+            //mavelar 3/14/17
+
+           /* ObjServices.GettingAllDrops(ref ddlCountry,
+                                      Utility.DropDownType.Country,
+                                      "GlobalCountryDesc",
+                                      "CountryId",
+                                       GenerateItemSelect: true                                       
+                                     );*/
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+            Translator("");
+        }
+
+        public void Translator(string Lang)
+        {
+            /*LOwnerInformation.InnerHtml = Resources.OwnerInformationLabel.ToUpper();*/
+            CompanyName.InnerHtml = Resources.CompanyNameLabel;
+            RegistrationNumber.InnerHtml = Resources.RegistrationNumberLabel;
+            RegistrationDate.InnerHtml = Resources.RegistrationDateLabel;
+            //************mavelar 3/14/17
+            /*Country.InnerHtml = Resources.CountryLabel;
+            RegistrationDate.InnerHtml = Resources.RegistrationDateLabel;
+            CompanyPrincipal.InnerHtml = Resources.CompanyContactPerson;
+            PositionHeldAtCompany.InnerHtml = Resources.PositionHeldatCompany;*/
+            //************fin mavelar 3/14/17
+        }
+
+        public void FillData()
+        {
+            var data = ObjServices.GetContact(ObjServices.ContactEntityID.Value);
+
+            if (data != null && data.InstitutionalName != null)
+            {
+                txtCompanyName.Text = data.InstitutionalName;
+                //mavelar 3/14/17
+               /* txtContactPerson.Text = data.InstitutionalPrincipal;
+                txtPositionHeld.Text = data.InstitutionalPositionAtCompany;
+                ddlCountry.SelectIndexByValue(data.InstitutionalCountryId.Value.ToString());*/
+
+                var IdDataItem = ObjServices.GetAllIdDocumentInformation().LastOrDefault(x => x.ContactIdType == 5);
+              
+                //wcastro 14-03-2017
+                var IdDataItemNIT = ObjServices.GetAllIdDocumentInformation().LastOrDefault(x => x.ContactIdType == 7);
+                //fin wcastro
+
+                /*mavelar 3/15/17*/
+                if (IdDataItem != null)
+                {
+                    //wcastro 14-03-2017
+                    txtCompanyNIT.Text = IdDataItemNIT.Id;
+                    //fin wcastro
+                    txtRegistrationNumber.Text = IdDataItem.Id;
+                    //wcastro 21-03-2017 
+                    //Esto nunca lo iba a mostrar porque la fecha se guarda en [Entity].[EN_CONTACTS] 
+                    //txtRegistrationDate.Text = string.Format("{0:MM/dd/yyyy}", IdDataItem.ValidDate);    
+                    //fin wcastro                    
+                }
+
+                //wcastro 21-03-2017
+                // txtRegistrationDate.Text = data.Dob.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                txtRegistrationDate.Text = !string.IsNullOrEmpty(data.Dob.Value.ToString()) ? data.Dob.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture) : null;
+                //wcastro
+            }
+
+            WUCEmailAddress1.Initialize(currentTab);
+            WUCPhoneNumber1.Initialize(currentTab);
+            WUCAddress1.Initialize(currentTab);
+            udpCompanyInfo.Update();
+        }
+
+        public void EnabledControls(bool x)
+        {
+            EnabledControls(pnCompany.Controls, x);
+        }
+
+        public void Initialize(String value = "")
+        {
+            hdnCurrentSession.Value = String.IsNullOrEmpty(value) ? "" : value;
+            Initialize();
+        }
+
+        public void ClearData()
+        {
+            ClearControls();
+        }
+
+        public void Initialize()
+        {
+            ClearData();
+            FillDrop();
+            FillData();
+        }
+
+        public void save()
+        {
+            WUCAddress1.save();
+            WUCPhoneNumber1.Operation = Utility.OperationType.InsertAll;
+            WUCPhoneNumber1.save();
+            WUCEmailAddress1.Operation = Utility.OperationType.InsertAll;
+            WUCEmailAddress1.save();
+        }
+
+
+        public void ReadOnlyControls(bool isReadOnly)
+        {
+            Utility.ReadOnlyControls(pnCompany.Controls, isReadOnly);
+        }
+
+    }
+}

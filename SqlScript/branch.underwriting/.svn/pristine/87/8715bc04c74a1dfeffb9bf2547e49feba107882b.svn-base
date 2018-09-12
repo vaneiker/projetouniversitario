@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StatisticsEntitiesDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Policy.VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH">
+          <Key>
+            <PropertyRef Name="Statistics_Id" />
+            <PropertyRef Name="Bl_Desc" />
+            <PropertyRef Name="Office_Desc" />
+            <PropertyRef Name="Product_Type_Desc" />
+            <PropertyRef Name="Policy_No" />
+            <PropertyRef Name="Annual_Premium" />
+            <PropertyRef Name="Insured_Amount" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="Count" />
+            <PropertyRef Name="Vehicle_Count" />
+            <PropertyRef Name="Performance_Agent_Minute" />
+            <PropertyRef Name="Performance_Subscriber_Minute" />
+            <PropertyRef Name="Performance_Inspector_Minute" />
+            <PropertyRef Name="Agent_Id" />
+            <PropertyRef Name="Agent_Name" />
+            <PropertyRef Name="Distribution_Desc" />
+            <PropertyRef Name="Agent_Id_Comercial" />
+            <PropertyRef Name="Agent_FullName_Comercial" />
+            <PropertyRef Name="Agent_Id_GerenteComercial" />
+            <PropertyRef Name="Agent_FullName_GerenteComercial" />
+            <PropertyRef Name="Agent_Id_DirectorComercial" />
+            <PropertyRef Name="Agent_FullName_DirectorComercial" />
+            <PropertyRef Name="Agent_Id_DirectorSenior" />
+            <PropertyRef Name="Agent_FullName_DirectorSenior" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Month" />
+            <PropertyRef Name="Day" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="MonthDesc" />
+            <PropertyRef Name="PivotDay" />
+            <PropertyRef Name="PivotMonth" />
+            <PropertyRef Name="PivotQuarter" />
+            <PropertyRef Name="PivotSemestral" />
+          </Key>
+          <Property Name="Statistics_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bl_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Office_Desc" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Product_Type_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Annual_Premium" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Insured_Amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="numeric" Precision="33" Scale="19" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Vehicle_Count" Type="int" Nullable="false" />
+          <Property Name="Performance_Agent_Minute" Type="int" Nullable="false" />
+          <Property Name="Performance_Subscriber_Minute" Type="int" Nullable="false" />
+          <Property Name="Performance_Inspector_Minute" Type="int" Nullable="false" />
+          <Property Name="Agent_Id" Type="int" Nullable="false" />
+          <Property Name="Agent_Name" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="Distribution_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Agent_Id_Comercial" Type="int" Nullable="false" />
+          <Property Name="Agent_FullName_Comercial" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="Agent_Id_GerenteComercial" Type="int" Nullable="false" />
+          <Property Name="Agent_FullName_GerenteComercial" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="Agent_Id_DirectorComercial" Type="int" Nullable="false" />
+          <Property Name="Agent_FullName_DirectorComercial" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="Agent_Id_DirectorSenior" Type="int" Nullable="false" />
+          <Property Name="Agent_FullName_DirectorSenior" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="Subscriber_Agent_Id" Type="int" />
+          <Property Name="Subscriber_Name" Type="varchar" MaxLength="240" />
+          <Property Name="Inspector_Agent_Id" Type="int" />
+          <Property Name="Inspector_Name" Type="varchar" MaxLength="240" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Day" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="MonthDesc" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PivotDay" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="PivotMonth" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="PivotQuarter" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PivotSemestral" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Request_Type_Id" Type="int" />
+          <Property Name="Request_Type_Desc" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityContainer Name="StatisticsEntitiesDataModelStoreContainer">
+          <EntitySet Name="VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH" EntityType="Self.VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH" store:Type="Views" store:Schema="Policy">
+            <DefiningQuery>SELECT 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Statistics_Id] AS [Statistics_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Bl_Desc] AS [Bl_Desc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Office_Desc] AS [Office_Desc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Product_Type_Desc] AS [Product_Type_Desc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Policy_No] AS [Policy_No], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Annual_Premium] AS [Annual_Premium], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Insured_Amount] AS [Insured_Amount], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Rate] AS [Rate], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Count] AS [Count], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Vehicle_Count] AS [Vehicle_Count], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Performance_Agent_Minute] AS [Performance_Agent_Minute], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Performance_Subscriber_Minute] AS [Performance_Subscriber_Minute], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Performance_Inspector_Minute] AS [Performance_Inspector_Minute], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id] AS [Agent_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Name] AS [Agent_Name], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Distribution_Desc] AS [Distribution_Desc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id_Comercial] AS [Agent_Id_Comercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_FullName_Comercial] AS [Agent_FullName_Comercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id_GerenteComercial] AS [Agent_Id_GerenteComercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_FullName_GerenteComercial] AS [Agent_FullName_GerenteComercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id_DirectorComercial] AS [Agent_Id_DirectorComercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_FullName_DirectorComercial] AS [Agent_FullName_DirectorComercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id_DirectorSenior] AS [Agent_Id_DirectorSenior], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_FullName_DirectorSenior] AS [Agent_FullName_DirectorSenior], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Subscriber_Agent_Id] AS [Subscriber_Agent_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Subscriber_Name] AS [Subscriber_Name], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Inspector_Agent_Id] AS [Inspector_Agent_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Inspector_Name] AS [Inspector_Name], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Year] AS [Year], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Month] AS [Month], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Day] AS [Day], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Date] AS [Date], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[MonthDesc] AS [MonthDesc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[PivotDay] AS [PivotDay], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[PivotMonth] AS [PivotMonth], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[PivotQuarter] AS [PivotQuarter], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[PivotSemestral] AS [PivotSemestral], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Request_Type_Id] AS [Request_Type_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Request_Type_Desc] AS [Request_Type_Desc]
+    FROM [Policy].[VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH] AS [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StatisticsEntitiesDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StatisticsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH" EntityType="StatisticsEntitiesDataModel.VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH" />
+        </EntityContainer>
+        <EntityType Name="VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH">
+          <Key>
+            <PropertyRef Name="Statistics_Id" />
+            <PropertyRef Name="Bl_Desc" />
+            <PropertyRef Name="Office_Desc" />
+            <PropertyRef Name="Product_Type_Desc" />
+            <PropertyRef Name="Policy_No" />
+            <PropertyRef Name="Annual_Premium" />
+            <PropertyRef Name="Insured_Amount" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="Count" />
+            <PropertyRef Name="Vehicle_Count" />
+            <PropertyRef Name="Performance_Agent_Minute" />
+            <PropertyRef Name="Performance_Subscriber_Minute" />
+            <PropertyRef Name="Performance_Inspector_Minute" />
+            <PropertyRef Name="Agent_Id" />
+            <PropertyRef Name="Agent_Name" />
+            <PropertyRef Name="Distribution_Desc" />
+            <PropertyRef Name="Agent_Id_Comercial" />
+            <PropertyRef Name="Agent_FullName_Comercial" />
+            <PropertyRef Name="Agent_Id_GerenteComercial" />
+            <PropertyRef Name="Agent_FullName_GerenteComercial" />
+            <PropertyRef Name="Agent_Id_DirectorComercial" />
+            <PropertyRef Name="Agent_FullName_DirectorComercial" />
+            <PropertyRef Name="Agent_Id_DirectorSenior" />
+            <PropertyRef Name="Agent_FullName_DirectorSenior" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Month" />
+            <PropertyRef Name="Day" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="MonthDesc" />
+            <PropertyRef Name="PivotDay" />
+            <PropertyRef Name="PivotMonth" />
+            <PropertyRef Name="PivotQuarter" />
+            <PropertyRef Name="PivotSemestral" />
+          </Key>
+          <Property Name="Statistics_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bl_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Office_Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Product_Type_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Policy_No" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Annual_Premium" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Insured_Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="33" Scale="19" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle_Count" Type="Int32" Nullable="false" />
+          <Property Name="Performance_Agent_Minute" Type="Int32" Nullable="false" />
+          <Property Name="Performance_Subscriber_Minute" Type="Int32" Nullable="false" />
+          <Property Name="Performance_Inspector_Minute" Type="Int32" Nullable="false" />
+          <Property Name="Agent_Id" Type="Int32" Nullable="false" />
+          <Property Name="Agent_Name" Type="String" Nullable="false" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Distribution_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Agent_Id_Comercial" Type="Int32" Nullable="false" />
+          <Property Name="Agent_FullName_Comercial" Type="String" Nullable="false" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Agent_Id_GerenteComercial" Type="Int32" Nullable="false" />
+          <Property Name="Agent_FullName_GerenteComercial" Type="String" Nullable="false" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Agent_Id_DirectorComercial" Type="Int32" Nullable="false" />
+          <Property Name="Agent_FullName_DirectorComercial" Type="String" Nullable="false" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Agent_Id_DirectorSenior" Type="Int32" Nullable="false" />
+          <Property Name="Agent_FullName_DirectorSenior" Type="String" Nullable="false" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Subscriber_Agent_Id" Type="Int32" />
+          <Property Name="Subscriber_Name" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Inspector_Agent_Id" Type="Int32" />
+          <Property Name="Inspector_Name" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MonthDesc" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="PivotDay" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="PivotMonth" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="PivotQuarter" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PivotSemestral" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Request_Type_Id" Type="Int32" />
+          <Property Name="Request_Type_Desc" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StatisticsEntitiesDataModelStoreContainer" CdmEntityContainer="StatisticsEntities">
+          <EntitySetMapping Name="VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH">
+            <EntityTypeMapping TypeName="StatisticsEntitiesDataModel.VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH">
+              <MappingFragment StoreEntitySet="VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH">
+                <ScalarProperty Name="Request_Type_Desc" ColumnName="Request_Type_Desc" />
+                <ScalarProperty Name="Request_Type_Id" ColumnName="Request_Type_Id" />
+                <ScalarProperty Name="PivotSemestral" ColumnName="PivotSemestral" />
+                <ScalarProperty Name="PivotQuarter" ColumnName="PivotQuarter" />
+                <ScalarProperty Name="PivotMonth" ColumnName="PivotMonth" />
+                <ScalarProperty Name="PivotDay" ColumnName="PivotDay" />
+                <ScalarProperty Name="MonthDesc" ColumnName="MonthDesc" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Inspector_Name" ColumnName="Inspector_Name" />
+                <ScalarProperty Name="Inspector_Agent_Id" ColumnName="Inspector_Agent_Id" />
+                <ScalarProperty Name="Subscriber_Name" ColumnName="Subscriber_Name" />
+                <ScalarProperty Name="Subscriber_Agent_Id" ColumnName="Subscriber_Agent_Id" />
+                <ScalarProperty Name="Agent_FullName_DirectorSenior" ColumnName="Agent_FullName_DirectorSenior" />
+                <ScalarProperty Name="Agent_Id_DirectorSenior" ColumnName="Agent_Id_DirectorSenior" />
+                <ScalarProperty Name="Agent_FullName_DirectorComercial" ColumnName="Agent_FullName_DirectorComercial" />
+                <ScalarProperty Name="Agent_Id_DirectorComercial" ColumnName="Agent_Id_DirectorComercial" />
+                <ScalarProperty Name="Agent_FullName_GerenteComercial" ColumnName="Agent_FullName_GerenteComercial" />
+                <ScalarProperty Name="Agent_Id_GerenteComercial" ColumnName="Agent_Id_GerenteComercial" />
+                <ScalarProperty Name="Agent_FullName_Comercial" ColumnName="Agent_FullName_Comercial" />
+                <ScalarProperty Name="Agent_Id_Comercial" ColumnName="Agent_Id_Comercial" />
+                <ScalarProperty Name="Distribution_Desc" ColumnName="Distribution_Desc" />
+                <ScalarProperty Name="Agent_Name" ColumnName="Agent_Name" />
+                <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+                <ScalarProperty Name="Performance_Inspector_Minute" ColumnName="Performance_Inspector_Minute" />
+                <ScalarProperty Name="Performance_Subscriber_Minute" ColumnName="Performance_Subscriber_Minute" />
+                <ScalarProperty Name="Performance_Agent_Minute" ColumnName="Performance_Agent_Minute" />
+                <ScalarProperty Name="Vehicle_Count" ColumnName="Vehicle_Count" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Insured_Amount" ColumnName="Insured_Amount" />
+                <ScalarProperty Name="Annual_Premium" ColumnName="Annual_Premium" />
+                <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+                <ScalarProperty Name="Product_Type_Desc" ColumnName="Product_Type_Desc" />
+                <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+                <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+                <ScalarProperty Name="Statistics_Id" ColumnName="Statistics_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

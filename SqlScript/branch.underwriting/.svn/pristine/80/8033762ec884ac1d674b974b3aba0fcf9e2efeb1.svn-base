@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://wssearchxpert.dev.atlantica.local/Search.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" />
+  <xs:complexType name="Results.SearchResponse">
+    <xs:sequence>
+      <xs:element name="_x003C_SearchID_x003E_k__BackingField" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" name="_x003C_Status_x003E_k__BackingField" type="q1:SearchResult.Status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Results.SearchResponse" nillable="true" type="tns:Results.SearchResponse" />
+  <xs:complexType name="Results.QueryResponse">
+    <xs:sequence>
+      <xs:element name="_x003C_Errors_x003E_k__BackingField" nillable="true" type="tns:Results.Error" />
+      <xs:element name="_x003C_SearchID_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" name="_x003C_Status_x003E_k__BackingField" type="q2:SearchResult.Status" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" name="_x003C_UpdatedStatus_x003E_k__BackingField" type="q3:SearchResult.Status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Results.QueryResponse" nillable="true" type="tns:Results.QueryResponse" />
+  <xs:complexType name="Results.Error">
+    <xs:sequence>
+      <xs:element name="_x003C_ErrorDets_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Results.Error" nillable="true" type="tns:Results.Error" />
+  <xs:complexType name="Results.DeleteResponse">
+    <xs:sequence>
+      <xs:element name="_x003C_Errors_x003E_k__BackingField" nillable="true" type="tns:Results.Error" />
+      <xs:element name="_x003C_SearchID_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" name="_x003C_Status_x003E_k__BackingField" type="q4:SearchResult.Status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Results.DeleteResponse" nillable="true" type="tns:Results.DeleteResponse" />
+  <xs:complexType name="ArrayOfResults.SearchResponseListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Results.SearchResponseListItem" nillable="true" type="tns:Results.SearchResponseListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfResults.SearchResponseListItem" nillable="true" type="tns:ArrayOfResults.SearchResponseListItem" />
+  <xs:complexType name="Results.SearchResponseListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Processed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Response" nillable="true" type="tns:Results.SearchResponse" />
+      <xs:element minOccurs="0" name="SourceID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Results.SearchResponseListItem" nillable="true" type="tns:Results.SearchResponseListItem" />
+  <xs:complexType name="Results.Reasign">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Processed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SourceIDAssigned" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceIDReasigned" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Results.Reasign" nillable="true" type="tns:Results.Reasign" />
+</xs:schema>

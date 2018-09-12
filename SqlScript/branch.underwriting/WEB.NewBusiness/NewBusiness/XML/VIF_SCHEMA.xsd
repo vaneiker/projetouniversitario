@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="POS_AUTO" targetNamespace="POS_AUTO" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:element name="POS_AUTO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Transaction" minOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<!-- Id del template de Thunderhead a utilizar-->
+							<xs:element type="xs:long" name="DocumentId" minOccurs="1"/>
+
+							<!--Lugar-->
+							<xs:element type="xs:string" name="Address" minOccurs="0" maxOccurs="1"/>
+
+							<!--Inspector-->
+							<xs:element type="xs:string" name="NombreInspector" minOccurs="0" maxOccurs="1"/>
+
+							<!--Nombre del Intermediario-->
+							<xs:element type="xs:string" name="AgenteComercial" minOccurs="0" maxOccurs="1"/>
+
+							<!--Hora de inicio-->
+							<xs:element type="xs:string" name="InspectionStartHour" minOccurs="0" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="Quotation" minOccurs="0" maxOccurs ="1">
+					<xs:complexType>
+						<xs:sequence>
+							<!--Numero de Cotizacion-->
+							<xs:element type="xs:string" name="QuotationNumber" minOccurs="0" maxOccurs="1"/>
+							
+							<!-- Fecha -->
+							<xs:element type="xs:date" name="StartDate" minOccurs="0" maxOccurs="1"/>
+
+							<!--Nombre del Asegurado-->
+							<xs:element type="xs:string" name="PrincipalName" minOccurs="0" maxOccurs="1"/>
+
+							<!--Telefono Celular-->
+							<xs:element type="xs:string" name="TelephoneNumber" minOccurs="0" maxOccurs="1"/>
+
+							<!--Correo Electronico-->
+							<xs:element type="xs:string" name="Email" minOccurs="0" maxOccurs="1"/>
+
+							<xs:element name="Drivers" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<!-- Telefono Residencial -->
+										<xs:element type="xs:string" name="TelephoneNumber" minOccurs ="0" maxOccurs ="1"></xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+
+							<xs:element name="Vehicles" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<!-- Marca -->
+										<xs:element type="xs:string" name="Brand" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!-- Modelo -->
+										<xs:element type="xs:string" name="Model" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!-- Año -->
+										<xs:element type="xs:int" name="Year" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Version-->
+										<xs:element type="xs:string" name="Version" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Color-->
+										<xs:element type="xs:string" name="Color" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Transmision-->
+										<xs:element type="xs:string" name="Transmision" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Traccion-->
+										<xs:element type="xs:string" name="Traccion" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Cilindraje-->
+										<xs:element type="xs:int" name="Cilindros" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Placa-->
+										<xs:element type="xs:string" name="Placa" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Chasis-->
+										<xs:element type="xs:string" name="Chasis" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Clase-->
+										<xs:element type="xs:string" name="Clase" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Tipo de Vehiculo-->
+										<xs:element type="xs:string" name="Tipo" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Uso-->
+										<xs:element type="xs:string" name="Uso" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Kilometraje-->
+										<xs:element type="xs:int" name="Kilometraje" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Cantidad de Pasajeros-->
+										<xs:element type="xs:int" name="Pasajeros" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<!--Notas del Inspector-->
+										<xs:element type="xs:string" name="NotasInspeccion" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+										<xs:element name="Piezas" minOccurs="1" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<!--Parte-->
+													<xs:element type="xs:string" name="Descripcion" minOccurs ="0" maxOccurs ="1"></xs:element>
+
+													<!--Estado-->
+													<xs:element type="xs:string" name="Estado" minOccurs ="0" maxOccurs ="1"></xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

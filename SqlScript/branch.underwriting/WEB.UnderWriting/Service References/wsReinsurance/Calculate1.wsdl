@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Calculate" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://reinsurance.dev.statetrustlife.sv/Calculate.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://reinsurance.dev.statetrustlife.sv/Calculate.svc?xsd=xsd1" namespace="http://microsoft.com/wsdl/types/" />
+      <xsd:import schemaLocation="http://reinsurance.dev.statetrustlife.sv/Calculate.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://reinsurance.dev.statetrustlife.sv/Calculate.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Reinsurance.ENTITY" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICalculate_GetSegmentsPolicyData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSegmentsPolicyData" />
+  </wsdl:message>
+  <wsdl:message name="ICalculate_GetSegmentsPolicyData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSegmentsPolicyDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICalculate_CalculateReinsuranceRiskByContact_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateReinsuranceRiskByContact" />
+  </wsdl:message>
+  <wsdl:message name="ICalculate_CalculateReinsuranceRiskByContact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateReinsuranceRiskByContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICalculate_CalculateReinsuranceCostByPolicy_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateReinsuranceCostByPolicy" />
+  </wsdl:message>
+  <wsdl:message name="ICalculate_CalculateReinsuranceCostByPolicy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateReinsuranceCostByPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICalculate_CheckForWarning_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckForWarning" />
+  </wsdl:message>
+  <wsdl:message name="ICalculate_CheckForWarning_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckForWarningResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICalculate">
+    <wsdl:operation name="GetSegmentsPolicyData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalculate/GetSegmentsPolicyData" message="tns:ICalculate_GetSegmentsPolicyData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalculate/GetSegmentsPolicyDataResponse" message="tns:ICalculate_GetSegmentsPolicyData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateReinsuranceRiskByContact">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalculate/CalculateReinsuranceRiskByContact" message="tns:ICalculate_CalculateReinsuranceRiskByContact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalculate/CalculateReinsuranceRiskByContactResponse" message="tns:ICalculate_CalculateReinsuranceRiskByContact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateReinsuranceCostByPolicy">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalculate/CalculateReinsuranceCostByPolicy" message="tns:ICalculate_CalculateReinsuranceCostByPolicy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalculate/CalculateReinsuranceCostByPolicyResponse" message="tns:ICalculate_CalculateReinsuranceCostByPolicy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckForWarning">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalculate/CheckForWarning" message="tns:ICalculate_CheckForWarning_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalculate/CheckForWarningResponse" message="tns:ICalculate_CheckForWarning_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICalculate" type="tns:ICalculate">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSegmentsPolicyData">
+      <soap:operation soapAction="http://tempuri.org/ICalculate/GetSegmentsPolicyData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateReinsuranceRiskByContact">
+      <soap:operation soapAction="http://tempuri.org/ICalculate/CalculateReinsuranceRiskByContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateReinsuranceCostByPolicy">
+      <soap:operation soapAction="http://tempuri.org/ICalculate/CalculateReinsuranceCostByPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckForWarning">
+      <soap:operation soapAction="http://tempuri.org/ICalculate/CheckForWarning" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Calculate">
+    <wsdl:port name="BasicHttpBinding_ICalculate" binding="tns:BasicHttpBinding_ICalculate">
+      <soap:address location="http://reinsurance.dev.statetrustlife.sv/Calculate.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

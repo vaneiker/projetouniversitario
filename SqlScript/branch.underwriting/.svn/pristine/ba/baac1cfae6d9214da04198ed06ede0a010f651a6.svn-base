@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Equifax.Entity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Equifax.Entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Input">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:InputParent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="apellidoCasada" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dui" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaNacimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nit" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="primerApellido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="primerNombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="segundoApellido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="segundoNombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tipoPersona" type="tns:TipoPersona" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Input" nillable="true" type="tns:Input" />
+  <xs:complexType name="InputParent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InputParent" nillable="true" type="tns:InputParent" />
+  <xs:simpleType name="TipoPersona">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Empty" />
+      <xs:enumeration value="Natural" />
+      <xs:enumeration value="Juridica" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TipoPersona" nillable="true" type="tns:TipoPersona" />
+  <xs:complexType name="salida">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdIndividuo" type="xs:int" />
+      <xs:element minOccurs="0" name="IdSalida" type="xs:int" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="banca" nillable="true" type="tns:ReporteBanca" />
+      <xs:element minOccurs="0" name="clientes" nillable="true" type="tns:ArrayOfReporteCliente" />
+      <xs:element minOccurs="0" name="codigoRetorno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="consultasRealizadas" nillable="true" type="tns:ArrayOfReporteConsultaRealizadas" />
+      <xs:element minOccurs="0" name="desempenioCrediticio" nillable="true" type="tns:ReporteDesempenioCrediticio" />
+      <xs:element minOccurs="0" name="deudaComTel" nillable="true" type="tns:ReporteDeudaComercioDetalle" />
+      <xs:element minOccurs="0" name="deudaImf" nillable="true" type="tns:ReporteDeudaImfDetalle" />
+      <xs:element minOccurs="0" name="deudasIndirectas" nillable="true" type="tns:ArrayOfReporteDeudasIndirectas" />
+      <xs:element minOccurs="0" name="historialPositivo" nillable="true" type="tns:ReporteHistorialPositivo" />
+      <xs:element minOccurs="0" name="mensajeRetorno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="moraActual" nillable="true" type="tns:ReporteMoraActual" />
+      <xs:element minOccurs="0" name="moraHistorica" nillable="true" type="tns:ReporteMoraHistorica" />
+      <xs:element minOccurs="0" name="reportePdf" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="resumenPuntoaPunto" nillable="true" type="tns:ReporteResumenPuntoaPunto" />
+      <xs:element minOccurs="0" name="score" nillable="true" type="tns:ArrayOfReporteScore" />
+      <xs:element minOccurs="0" name="tarjetas" nillable="true" type="tns:ReporteTarjetasDetalle" />
+      <xs:element minOccurs="0" name="tarjetasBancarias" nillable="true" type="tns:ReporteTarjetasBancarias" />
+      <xs:element minOccurs="0" name="xmlResponse" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="salida" nillable="true" type="tns:salida" />
+  <xs:complexType name="ReporteBanca">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TotalBanca" nillable="true" type="tns:ArrayOfReporteTotalBanca" />
+      <xs:element minOccurs="0" name="bancaConsolidadoMensual" nillable="true" type="tns:ArrayOfReporteBancaConsolidadoMensual" />
+      <xs:element minOccurs="0" name="bancaDetalle" nillable="true" type="tns:ArrayOfReporteBancaDetalle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteBanca" nillable="true" type="tns:ReporteBanca" />
+  <xs:complexType name="ArrayOfReporteTotalBanca">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTotalBanca" nillable="true" type="tns:ReporteTotalBanca" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTotalBanca" nillable="true" type="tns:ArrayOfReporteTotalBanca" />
+  <xs:complexType name="ReporteTotalBanca">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="totalCuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMonto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalSaldo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTotalBanca" nillable="true" type="tns:ReporteTotalBanca" />
+  <xs:complexType name="SalidasDependency">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdSalida" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SalidasDependency" nillable="true" type="tns:SalidasDependency" />
+  <xs:complexType name="ArrayOfReporteBancaConsolidadoMensual">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteBancaConsolidadoMensual" nillable="true" type="tns:ReporteBancaConsolidadoMensual" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteBancaConsolidadoMensual" nillable="true" type="tns:ArrayOfReporteBancaConsolidadoMensual" />
+  <xs:complexType name="ReporteBancaConsolidadoMensual">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuotaMensual" type="xs:decimal" />
+          <xs:element minOccurs="0" name="mejorCategoriaRiesgoMensual" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="montoMensual" type="xs:decimal" />
+          <xs:element minOccurs="0" name="moraMensual" type="xs:decimal" />
+          <xs:element minOccurs="0" name="peorCategoriaRiesgoMensual" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="periodoReportado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="saldoMensual" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteBancaConsolidadoMensual" nillable="true" type="tns:ReporteBancaConsolidadoMensual" />
+  <xs:complexType name="ArrayOfReporteBancaDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteBancaDetalle" nillable="true" type="tns:ReporteBancaDetalle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteBancaDetalle" nillable="true" type="tns:ArrayOfReporteBancaDetalle" />
+  <xs:complexType name="ReporteBancaDetalle">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="categoria" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="destino" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="diasMora" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaOtorgamiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaVencimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="monto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="mora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="referencia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="saldo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteBancaDetalle" nillable="true" type="tns:ReporteBancaDetalle" />
+  <xs:complexType name="ArrayOfReporteCliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteCliente" nillable="true" type="tns:ReporteCliente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteCliente" nillable="true" type="tns:ArrayOfReporteCliente" />
+  <xs:complexType name="ReporteCliente">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dui" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaNacimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nit" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteCliente" nillable="true" type="tns:ReporteCliente" />
+  <xs:complexType name="ArrayOfReporteConsultaRealizadas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteConsultaRealizadas" nillable="true" type="tns:ReporteConsultaRealizadas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteConsultaRealizadas" nillable="true" type="tns:ArrayOfReporteConsultaRealizadas" />
+  <xs:complexType name="ReporteConsultaRealizadas">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdConsulta" type="xs:int" />
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="consultas" nillable="true" type="tns:ArrayOfReporteConsultas" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteConsultaRealizadas" nillable="true" type="tns:ReporteConsultaRealizadas" />
+  <xs:complexType name="ArrayOfReporteConsultas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteConsultas" nillable="true" type="tns:ReporteConsultas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteConsultas" nillable="true" type="tns:ArrayOfReporteConsultas" />
+  <xs:complexType name="ReporteConsultas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdConsulta" type="xs:int" />
+      <xs:element minOccurs="0" name="cantidadConsultas" type="xs:int" />
+      <xs:element minOccurs="0" name="periodo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteConsultas" nillable="true" type="tns:ReporteConsultas" />
+  <xs:complexType name="ReporteDesempenioCrediticio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="desempenioCrediticioBanca" nillable="true" type="tns:ArrayOfReporteDesempenioCrediticioItem" />
+      <xs:element minOccurs="0" name="desempenioCrediticioComercio" nillable="true" type="tns:ArrayOfReporteDesempenioCrediticioItem" />
+      <xs:element minOccurs="0" name="desempenioCrediticioImf" nillable="true" type="tns:ArrayOfReporteDesempenioCrediticioItem" />
+      <xs:element minOccurs="0" name="desempenioCrediticioTarjeta" nillable="true" type="tns:ArrayOfReporteDesempenioCrediticioItem" />
+      <xs:element minOccurs="0" name="desempenioCrediticioTelcos" nillable="true" type="tns:ArrayOfReporteDesempenioCrediticioItem" />
+      <xs:element minOccurs="0" name="totalDesempenioCrediticio" nillable="true" type="tns:ArrayOfReporteTotalDesempenioCrediticio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteDesempenioCrediticio" nillable="true" type="tns:ReporteDesempenioCrediticio" />
+  <xs:complexType name="ArrayOfReporteDesempenioCrediticioItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteDesempenioCrediticioItem" nillable="true" type="tns:ReporteDesempenioCrediticioItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteDesempenioCrediticioItem" nillable="true" type="tns:ArrayOfReporteDesempenioCrediticioItem" />
+  <xs:complexType name="ReporteDesempenioCrediticioItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RubroDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuotaTotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="montoTotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="moraTotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="numeroReferenciaTotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="periodoInformacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="saldoTotal" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteDesempenioCrediticioItem" nillable="true" type="tns:ReporteDesempenioCrediticioItem" />
+  <xs:complexType name="RubroDependency">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdRubro" type="tns:Rubro" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RubroDependency" nillable="true" type="tns:RubroDependency" />
+  <xs:simpleType name="Rubro">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Empty" />
+      <xs:enumeration value="Tarjeta" />
+      <xs:enumeration value="Imf" />
+      <xs:enumeration value="Comercio" />
+      <xs:enumeration value="Telcos" />
+      <xs:enumeration value="Banca" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Rubro" nillable="true" type="tns:Rubro" />
+  <xs:complexType name="ArrayOfReporteTotalDesempenioCrediticio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTotalDesempenioCrediticio" nillable="true" type="tns:ReporteTotalDesempenioCrediticio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTotalDesempenioCrediticio" nillable="true" type="tns:ArrayOfReporteTotalDesempenioCrediticio" />
+  <xs:complexType name="ReporteTotalDesempenioCrediticio">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="periodo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="totalCuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMonto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalReferencias" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalSaldo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTotalDesempenioCrediticio" nillable="true" type="tns:ReporteTotalDesempenioCrediticio" />
+  <xs:complexType name="ReporteDeudaComercioDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="deudaComercioDetalle" nillable="true" type="tns:ArrayOfReporteDeudaComercioDetalleItem" />
+      <xs:element minOccurs="0" name="totalDeudaComercioTelcos" nillable="true" type="tns:ArrayOfReporteTotalDeudaComercioTelcos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteDeudaComercioDetalle" nillable="true" type="tns:ReporteDeudaComercioDetalle" />
+  <xs:complexType name="ArrayOfReporteDeudaComercioDetalleItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteDeudaComercioDetalleItem" nillable="true" type="tns:ReporteDeudaComercioDetalleItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteDeudaComercioDetalleItem" nillable="true" type="tns:ArrayOfReporteDeudaComercioDetalleItem" />
+  <xs:complexType name="ReporteDeudaComercioDetalleItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="diasMora" type="xs:int" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaOtorgamiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaVencimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="monto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="saldo" type="xs:decimal" />
+          <xs:element minOccurs="0" name="saldoMora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteDeudaComercioDetalleItem" nillable="true" type="tns:ReporteDeudaComercioDetalleItem" />
+  <xs:complexType name="ArrayOfReporteTotalDeudaComercioTelcos">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTotalDeudaComercioTelcos" nillable="true" type="tns:ReporteTotalDeudaComercioTelcos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTotalDeudaComercioTelcos" nillable="true" type="tns:ArrayOfReporteTotalDeudaComercioTelcos" />
+  <xs:complexType name="ReporteTotalDeudaComercioTelcos">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="totalCuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMonto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalSaldo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTotalDeudaComercioTelcos" nillable="true" type="tns:ReporteTotalDeudaComercioTelcos" />
+  <xs:complexType name="ReporteDeudaImfDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="deudaImfDetalle" nillable="true" type="tns:ArrayOfReporteDeudaImfDetalleItem" />
+      <xs:element minOccurs="0" name="totalDeudaImf" nillable="true" type="tns:ArrayOfReporteTotalDeudaImf" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteDeudaImfDetalle" nillable="true" type="tns:ReporteDeudaImfDetalle" />
+  <xs:complexType name="ArrayOfReporteDeudaImfDetalleItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteDeudaImfDetalleItem" nillable="true" type="tns:ReporteDeudaImfDetalleItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteDeudaImfDetalleItem" nillable="true" type="tns:ArrayOfReporteDeudaImfDetalleItem" />
+  <xs:complexType name="ReporteDeudaImfDetalleItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="destino" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="diasMora" type="xs:int" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaOtorgamiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaVencimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="monto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="saldo" type="xs:decimal" />
+          <xs:element minOccurs="0" name="saldoMora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteDeudaImfDetalleItem" nillable="true" type="tns:ReporteDeudaImfDetalleItem" />
+  <xs:complexType name="ArrayOfReporteTotalDeudaImf">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTotalDeudaImf" nillable="true" type="tns:ReporteTotalDeudaImf" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTotalDeudaImf" nillable="true" type="tns:ArrayOfReporteTotalDeudaImf" />
+  <xs:complexType name="ReporteTotalDeudaImf">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="totalCuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMonto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalSaldo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTotalDeudaImf" nillable="true" type="tns:ReporteTotalDeudaImf" />
+  <xs:complexType name="ArrayOfReporteDeudasIndirectas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteDeudasIndirectas" nillable="true" type="tns:ReporteDeudasIndirectas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteDeudasIndirectas" nillable="true" type="tns:ArrayOfReporteDeudasIndirectas" />
+  <xs:complexType name="ReporteDeudasIndirectas">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="calificacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="deudorDirecto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="referencia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tipoDeuda" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteDeudasIndirectas" nillable="true" type="tns:ReporteDeudasIndirectas" />
+  <xs:complexType name="ReporteHistorialPositivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="historialPositivoBanca" nillable="true" type="tns:ArrayOfReporteHistorialPositivoItem" />
+      <xs:element minOccurs="0" name="historialPositivoComercio" nillable="true" type="tns:ArrayOfReporteHistorialPositivoItem" />
+      <xs:element minOccurs="0" name="historialPositivoImf" nillable="true" type="tns:ArrayOfReporteHistorialPositivoItem" />
+      <xs:element minOccurs="0" name="historialPositivoTarjeta" nillable="true" type="tns:ArrayOfReporteHistorialPositivoItem" />
+      <xs:element minOccurs="0" name="historialPositivoTelcos" nillable="true" type="tns:ArrayOfReporteHistorialPositivoItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteHistorialPositivo" nillable="true" type="tns:ReporteHistorialPositivo" />
+  <xs:complexType name="ArrayOfReporteHistorialPositivoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteHistorialPositivoItem" nillable="true" type="tns:ReporteHistorialPositivoItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteHistorialPositivoItem" nillable="true" type="tns:ArrayOfReporteHistorialPositivoItem" />
+  <xs:complexType name="ReporteHistorialPositivoItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RubroDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaApertura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaCancelacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="monto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteHistorialPositivoItem" nillable="true" type="tns:ReporteHistorialPositivoItem" />
+  <xs:complexType name="ReporteMoraActual">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="moraBanca" nillable="true" type="tns:ArrayOfReporteMoraActualItem" />
+      <xs:element minOccurs="0" name="moraComercio" nillable="true" type="tns:ArrayOfReporteMoraActualItem" />
+      <xs:element minOccurs="0" name="moraImf" nillable="true" type="tns:ArrayOfReporteMoraActualItem" />
+      <xs:element minOccurs="0" name="moraTarjeta" nillable="true" type="tns:ArrayOfReporteMoraActualItem" />
+      <xs:element minOccurs="0" name="moraTelcos" nillable="true" type="tns:ArrayOfReporteMoraActualItem" />
+      <xs:element minOccurs="0" name="totalMontoMora" nillable="true" type="tns:ArrayOfReporteTotalMontoMora" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteMoraActual" nillable="true" type="tns:ReporteMoraActual" />
+  <xs:complexType name="ArrayOfReporteMoraActualItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteMoraActualItem" nillable="true" type="tns:ReporteMoraActualItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteMoraActualItem" nillable="true" type="tns:ArrayOfReporteMoraActualItem" />
+  <xs:complexType name="ReporteMoraActualItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RubroDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="antiguedad" type="xs:int" />
+          <xs:element minOccurs="0" name="categoria" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaInicioMora" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="mora" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteMoraActualItem" nillable="true" type="tns:ReporteMoraActualItem" />
+  <xs:complexType name="ArrayOfReporteTotalMontoMora">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTotalMontoMora" nillable="true" type="tns:ReporteTotalMontoMora" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTotalMontoMora" nillable="true" type="tns:ArrayOfReporteTotalMontoMora" />
+  <xs:complexType name="ReporteTotalMontoMora">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="montoTotal" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTotalMontoMora" nillable="true" type="tns:ReporteTotalMontoMora" />
+  <xs:complexType name="ReporteMoraHistorica">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="conteosMora" nillable="true" type="tns:ArrayOfReporteConteosMora" />
+      <xs:element minOccurs="0" name="moraHistoricaBanca" nillable="true" type="tns:ArrayOfReporteMoraHistoricaItem" />
+      <xs:element minOccurs="0" name="moraHistoricaComercio" nillable="true" type="tns:ArrayOfReporteMoraHistoricaItem" />
+      <xs:element minOccurs="0" name="moraHistoricaImf" nillable="true" type="tns:ArrayOfReporteMoraHistoricaItem" />
+      <xs:element minOccurs="0" name="moraHistoricaTarjeta" nillable="true" type="tns:ArrayOfReporteMoraHistoricaItem" />
+      <xs:element minOccurs="0" name="moraHistoricaTelcos" nillable="true" type="tns:ArrayOfReporteMoraHistoricaItem" />
+      <xs:element minOccurs="0" name="totalMoraHistorica" nillable="true" type="tns:ArrayOfReporteTotalMoraHistorica" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteMoraHistorica" nillable="true" type="tns:ReporteMoraHistorica" />
+  <xs:complexType name="ArrayOfReporteConteosMora">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteConteosMora" nillable="true" type="tns:ReporteConteosMora" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteConteosMora" nillable="true" type="tns:ArrayOfReporteConteosMora" />
+  <xs:complexType name="ReporteConteosMora">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="antiguedad" type="xs:decimal" />
+          <xs:element minOccurs="0" name="conteo120" type="xs:decimal" />
+          <xs:element minOccurs="0" name="conteo150" type="xs:decimal" />
+          <xs:element minOccurs="0" name="conteo180" type="xs:decimal" />
+          <xs:element minOccurs="0" name="conteo60" type="xs:decimal" />
+          <xs:element minOccurs="0" name="conteo90" type="xs:decimal" />
+          <xs:element minOccurs="0" name="mayorSaldo" type="xs:decimal" />
+          <xs:element minOccurs="0" name="periodo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="periodoAntiguedad" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteConteosMora" nillable="true" type="tns:ReporteConteosMora" />
+  <xs:complexType name="ArrayOfReporteMoraHistoricaItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteMoraHistoricaItem" nillable="true" type="tns:ReporteMoraHistoricaItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteMoraHistoricaItem" nillable="true" type="tns:ArrayOfReporteMoraHistoricaItem" />
+  <xs:complexType name="ReporteMoraHistoricaItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RubroDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdMoraHist" type="xs:int" />
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="meses12_24" type="xs:int" />
+          <xs:element minOccurs="0" name="meses1_12" type="xs:int" />
+          <xs:element minOccurs="0" name="meses24_36" type="xs:int" />
+          <xs:element minOccurs="0" name="moraHistorica" nillable="true" type="tns:ArrayOfReporteMoraHistoricaItemDetail" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteMoraHistoricaItem" nillable="true" type="tns:ReporteMoraHistoricaItem" />
+  <xs:complexType name="ArrayOfReporteMoraHistoricaItemDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteMoraHistoricaItemDetail" nillable="true" type="tns:ReporteMoraHistoricaItemDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteMoraHistoricaItemDetail" nillable="true" type="tns:ArrayOfReporteMoraHistoricaItemDetail" />
+  <xs:complexType name="ReporteMoraHistoricaItemDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdMoraHist" type="xs:int" />
+      <xs:element minOccurs="0" name="montoMora" type="xs:decimal" />
+      <xs:element minOccurs="0" name="periodoInformacion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteMoraHistoricaItemDetail" nillable="true" type="tns:ReporteMoraHistoricaItemDetail" />
+  <xs:complexType name="ArrayOfReporteTotalMoraHistorica">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTotalMoraHistorica" nillable="true" type="tns:ReporteTotalMoraHistorica" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTotalMoraHistorica" nillable="true" type="tns:ArrayOfReporteTotalMoraHistorica" />
+  <xs:complexType name="ReporteTotalMoraHistorica">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="periodoInformacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="totalmora" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTotalMoraHistorica" nillable="true" type="tns:ReporteTotalMoraHistorica" />
+  <xs:complexType name="ReporteResumenPuntoaPunto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="resumenPuntoaPuntoBanca" nillable="true" type="tns:ArrayOfReporteResumenPuntoaPuntoItem" />
+      <xs:element minOccurs="0" name="resumenPuntoaPuntoComercio" nillable="true" type="tns:ArrayOfReporteResumenPuntoaPuntoItem" />
+      <xs:element minOccurs="0" name="resumenPuntoaPuntoImf" nillable="true" type="tns:ArrayOfReporteResumenPuntoaPuntoItem" />
+      <xs:element minOccurs="0" name="resumenPuntoaPuntoTarjeta" nillable="true" type="tns:ArrayOfReporteResumenPuntoaPuntoItem" />
+      <xs:element minOccurs="0" name="resumenPuntoaPuntoTelcos" nillable="true" type="tns:ArrayOfReporteResumenPuntoaPuntoItem" />
+      <xs:element minOccurs="0" name="totalResumenPuntoaPunto" nillable="true" type="tns:ArrayOfReporteTotalResumenPuntoaPunto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteResumenPuntoaPunto" nillable="true" type="tns:ReporteResumenPuntoaPunto" />
+  <xs:complexType name="ArrayOfReporteResumenPuntoaPuntoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteResumenPuntoaPuntoItem" nillable="true" type="tns:ReporteResumenPuntoaPuntoItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteResumenPuntoaPuntoItem" nillable="true" type="tns:ArrayOfReporteResumenPuntoaPuntoItem" />
+  <xs:complexType name="ReporteResumenPuntoaPuntoItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RubroDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuotaTotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="montoTotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="moraTotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="numeroReferenciaTotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="periodoInformacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="saldoTotal" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteResumenPuntoaPuntoItem" nillable="true" type="tns:ReporteResumenPuntoaPuntoItem" />
+  <xs:complexType name="ArrayOfReporteTotalResumenPuntoaPunto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTotalResumenPuntoaPunto" nillable="true" type="tns:ReporteTotalResumenPuntoaPunto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTotalResumenPuntoaPunto" nillable="true" type="tns:ArrayOfReporteTotalResumenPuntoaPunto" />
+  <xs:complexType name="ReporteTotalResumenPuntoaPunto">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="periodo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="totalCuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMonto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalReferencias" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalSaldo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTotalResumenPuntoaPunto" nillable="true" type="tns:ReporteTotalResumenPuntoaPunto" />
+  <xs:complexType name="ArrayOfReporteScore">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteScore" nillable="true" type="tns:ReporteScore" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteScore" nillable="true" type="tns:ArrayOfReporteScore" />
+  <xs:complexType name="ReporteScore">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="mes1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="mes2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="mes3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="mes4" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="mes5" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="score1" type="xs:decimal" />
+          <xs:element minOccurs="0" name="score2" type="xs:decimal" />
+          <xs:element minOccurs="0" name="score3" type="xs:decimal" />
+          <xs:element minOccurs="0" name="score4" type="xs:decimal" />
+          <xs:element minOccurs="0" name="score5" type="xs:decimal" />
+          <xs:element minOccurs="0" name="scoreActual" type="xs:decimal" />
+          <xs:element minOccurs="0" name="scorePromedio" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteScore" nillable="true" type="tns:ReporteScore" />
+  <xs:complexType name="ReporteTarjetasDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="resumenTarjetas" nillable="true" type="tns:ArrayOfReporteResumenTarjetas" />
+      <xs:element minOccurs="0" name="tarjetasDetalle" nillable="true" type="tns:ArrayOfReporteTarjetasDetalleItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteTarjetasDetalle" nillable="true" type="tns:ReporteTarjetasDetalle" />
+  <xs:complexType name="ArrayOfReporteResumenTarjetas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteResumenTarjetas" nillable="true" type="tns:ReporteResumenTarjetas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteResumenTarjetas" nillable="true" type="tns:ArrayOfReporteResumenTarjetas" />
+  <xs:complexType name="ReporteResumenTarjetas">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="totalCuotaTarjeta" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalLimiteTarjeta" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalPorcentajeUsoTarjeta" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalSaldoTarjeta" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteResumenTarjetas" nillable="true" type="tns:ReporteResumenTarjetas" />
+  <xs:complexType name="ArrayOfReporteTarjetasDetalleItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTarjetasDetalleItem" nillable="true" type="tns:ReporteTarjetasDetalleItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTarjetasDetalleItem" nillable="true" type="tns:ArrayOfReporteTarjetasDetalleItem" />
+  <xs:complexType name="ReporteTarjetasDetalleItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="categoria" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="diasMora" type="xs:int" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaApertura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="limite" type="xs:decimal" />
+          <xs:element minOccurs="0" name="porcentajeUso" type="xs:decimal" />
+          <xs:element minOccurs="0" name="saldo" type="xs:decimal" />
+          <xs:element minOccurs="0" name="saldoMora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTarjetasDetalleItem" nillable="true" type="tns:ReporteTarjetasDetalleItem" />
+  <xs:complexType name="ReporteTarjetasBancarias">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TotalTarjetasBancarias" nillable="true" type="tns:ArrayOfReporteTotalTarjetasBancarias" />
+      <xs:element minOccurs="0" name="tarjetaBancarias" nillable="true" type="tns:ArrayOfReporteTarjetaBancarias" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteTarjetasBancarias" nillable="true" type="tns:ReporteTarjetasBancarias" />
+  <xs:complexType name="ArrayOfReporteTotalTarjetasBancarias">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTotalTarjetasBancarias" nillable="true" type="tns:ReporteTotalTarjetasBancarias" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTotalTarjetasBancarias" nillable="true" type="tns:ArrayOfReporteTotalTarjetasBancarias" />
+  <xs:complexType name="ReporteTotalTarjetasBancarias">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="totalCuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMonto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalMora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="totalSaldo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTotalTarjetasBancarias" nillable="true" type="tns:ReporteTotalTarjetasBancarias" />
+  <xs:complexType name="ArrayOfReporteTarjetaBancarias">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteTarjetaBancarias" nillable="true" type="tns:ReporteTarjetaBancarias" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteTarjetaBancarias" nillable="true" type="tns:ArrayOfReporteTarjetaBancarias" />
+  <xs:complexType name="ReporteTarjetaBancarias">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SalidasDependency">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acreedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="categoria" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cuota" type="xs:decimal" />
+          <xs:element minOccurs="0" name="destino" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="diasMora" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaOtorgamiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaVencimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCandidato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="monto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="mora" type="xs:decimal" />
+          <xs:element minOccurs="0" name="referencia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="saldo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReporteTarjetaBancarias" nillable="true" type="tns:ReporteTarjetaBancarias" />
+</xs:schema>

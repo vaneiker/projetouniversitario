@@ -1,0 +1,36 @@
+﻿using System;
+
+namespace WEB.UnderWriting.Common
+{
+    public partial class WUCMainMenu : UC
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            //try
+            //{
+            //    var hdnLang = this.FindControl("STFCUserProfile1").FindControl("hdnLang") as System.Web.UI.WebControls.HiddenField;
+            //}
+            //catch { }
+
+            if (Service.LanguageId == 1)
+            {
+                lblSystem.InnerText = "UNDERWRITING";
+                
+            }
+            else if (Service.LanguageId == 2)
+            {
+                lblSystem.InnerText = "UNDERWRITING";
+            }
+
+
+
+        }
+
+        public void ChangeLogo()
+        {
+            lnkCompanyLogo.CssClass = Service.CompanyId == 2 ? "logo_atl" : "logo_stl";
+        }
+        
+    }
+}

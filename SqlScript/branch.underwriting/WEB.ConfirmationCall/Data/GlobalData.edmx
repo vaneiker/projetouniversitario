@@ -1,0 +1,964 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WEB.ConfirmationCall.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CA_CALL_MEETING_PROCESS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+            <PropertyRef Name="Call_Meeting_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Contact_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Date" Type="datetime" Nullable="false" />
+          <Property Name="Call_Meeting_Status_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Note" Type="varchar(max)" />
+          <Property Name="Call_Assigned_Caller" Type="int" />
+          <Property Name="Notified_to_Email" Type="varchar(max)" />
+          <Property Name="Notified" Type="bit" />
+          <Property Name="Agent_Id" Type="int" />
+          <Property Name="FollowUp_Id" Type="int" />
+          <Property Name="Call_Reason_Id" Type="int" />
+          <Property Name="Attempt_No" Type="int" />
+          <Property Name="Response_Id" Type="int" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="HostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CA_CALL_MEETING_STATUS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Status_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Status_Id" Type="int" Nullable="false" />
+          <Property Name="Status_Desc" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Failed_Id" Type="bit" Nullable="false" />
+          <Property Name="Recall" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="HostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CA_CALL_MEETING_TYPE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="HostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CA_CALL_REASONS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Call_Reason_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Reason_Id" Type="int" Nullable="false" />
+          <Property Name="Call_REason_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Call_Reason_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="HostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CA_EVENTS_CAT">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Event_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Event_Id" Type="int" Nullable="false" />
+          <Property Name="Event_Desc" Type="varchar(max)" Nullable="false" />
+          <Property Name="Event_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="HostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CA_MEETING_EVENT_REMINDERS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+            <PropertyRef Name="Call_Meeting_Id" />
+            <PropertyRef Name="Event_Id" />
+            <PropertyRef Name="Event_Seq" />
+            <PropertyRef Name="Task_Type_Id" />
+            <PropertyRef Name="Reminder_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Contact_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Id" Type="int" Nullable="false" />
+          <Property Name="Event_Id" Type="int" Nullable="false" />
+          <Property Name="Event_Seq" Type="int" Nullable="false" />
+          <Property Name="Task_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Reminder_Id" Type="int" Nullable="false" />
+          <Property Name="Period_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Recurrency_Id" Type="int" Nullable="false" />
+          <Property Name="Related_To" Type="nchar" MaxLength="10" />
+          <Property Name="Repeat_Interval" Type="int" Nullable="false" />
+          <Property Name="Remind_DateTime" Type="int" />
+          <Property Name="Remind_Days_Before_Datetime" Type="int" />
+          <Property Name="Reminder_Note" Type="nchar" MaxLength="10" />
+          <Property Name="ME_Reminder_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CA_MEETING_EVENT_TASKS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+            <PropertyRef Name="Call_Meeting_Id" />
+            <PropertyRef Name="Event_Id" />
+            <PropertyRef Name="Event_Seq" />
+            <PropertyRef Name="Task_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Contact_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Id" Type="int" Nullable="false" />
+          <Property Name="Event_Id" Type="int" Nullable="false" />
+          <Property Name="Event_Seq" Type="int" Nullable="false" />
+          <Property Name="Task_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Action_Date" Type="datetime" Nullable="false" />
+          <Property Name="Input_Date" Type="datetime" />
+          <Property Name="All_Day_Event" Type="bit" />
+          <Property Name="Task_Note" Type="varchar(max)" />
+          <Property Name="Date_From" Type="datetime" />
+          <Property Name="Date_To" Type="datetime" />
+          <Property Name="Subject" Type="varchar(max)" />
+          <Property Name="Event_New_Date" Type="datetime" />
+          <Property Name="Event_Note" Type="varchar(max)" />
+          <Property Name="ME_Task_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="HostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CA_MEETING_EVENTS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+            <PropertyRef Name="Call_Meeting_Id" />
+            <PropertyRef Name="Event_Id" />
+            <PropertyRef Name="Event_Seq" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Contact_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Call_Meeting_Id" Type="int" Nullable="false" />
+          <Property Name="Event_Id" Type="int" Nullable="false" />
+          <Property Name="Event_Seq" Type="int" Nullable="false" />
+          <Property Name="ME_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="HostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CA_TASK_TYPE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Task_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Task_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Task_Type_Desc" Type="varchar(max)" Nullable="false" />
+          <Property Name="Task_Type_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="HostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CALLMEETINGPROC_CALLREASONS">
+          <End Role="CA_CALL_REASONS" Type="Self.CA_CALL_REASONS" Multiplicity="0..1" />
+          <End Role="CA_CALL_MEETING_PROCESS" Type="Self.CA_CALL_MEETING_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CALL_REASONS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Reason_Id" />
+            </Principal>
+            <Dependent Role="CA_CALL_MEETING_PROCESS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Reason_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CALLMEETINGPROCESS_CALLMEETINGSTATUS">
+          <End Role="CA_CALL_MEETING_STATUS" Type="Self.CA_CALL_MEETING_STATUS" Multiplicity="1" />
+          <End Role="CA_CALL_MEETING_PROCESS" Type="Self.CA_CALL_MEETING_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CALL_MEETING_STATUS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Status_Id" />
+            </Principal>
+            <Dependent Role="CA_CALL_MEETING_PROCESS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Meeting_Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CALLMEETINGPROCESS_CALLMEETINGTYPE">
+          <End Role="CA_CALL_MEETING_TYPE" Type="Self.CA_CALL_MEETING_TYPE" Multiplicity="1" />
+          <End Role="CA_CALL_MEETING_PROCESS" Type="Self.CA_CALL_MEETING_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CALL_MEETING_TYPE">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+            </Principal>
+            <Dependent Role="CA_CALL_MEETING_PROCESS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ME_REMINDERS_METASKS">
+          <End Role="CA_MEETING_EVENT_TASKS" Type="Self.CA_MEETING_EVENT_TASKS" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENT_REMINDERS" Type="Self.CA_MEETING_EVENT_REMINDERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_MEETING_EVENT_TASKS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+              <PropertyRef Name="Event_Id" />
+              <PropertyRef Name="Event_Seq" />
+              <PropertyRef Name="Task_Type_Id" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENT_REMINDERS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+              <PropertyRef Name="Event_Id" />
+              <PropertyRef Name="Event_Seq" />
+              <PropertyRef Name="Task_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEETINGEVENTS_CALLMEETINGPROC">
+          <End Role="CA_CALL_MEETING_PROCESS" Type="Self.CA_CALL_MEETING_PROCESS" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENTS" Type="Self.CA_MEETING_EVENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CALL_MEETING_PROCESS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENTS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEETINGEVENTS_EVENTSCAT">
+          <End Role="CA_EVENTS_CAT" Type="Self.CA_EVENTS_CAT" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENTS" Type="Self.CA_MEETING_EVENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_EVENTS_CAT">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Event_Id" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENTS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Event_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEETINGEVENTTASKS_MEETINGEVENTS">
+          <End Role="CA_MEETING_EVENTS" Type="Self.CA_MEETING_EVENTS" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENT_TASKS" Type="Self.CA_MEETING_EVENT_TASKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_MEETING_EVENTS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+              <PropertyRef Name="Event_Id" />
+              <PropertyRef Name="Event_Seq" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENT_TASKS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+              <PropertyRef Name="Event_Id" />
+              <PropertyRef Name="Event_Seq" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEETINGEVENTTASKS_TASKTYPE">
+          <End Role="CA_TASK_TYPE" Type="Self.CA_TASK_TYPE" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENT_TASKS" Type="Self.CA_MEETING_EVENT_TASKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_TASK_TYPE">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Task_Type_Id" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENT_TASKS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Task_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WEBConfirmationCallModelsStoreContainer">
+          <EntitySet Name="CA_CALL_MEETING_PROCESS" EntityType="Self.CA_CALL_MEETING_PROCESS" Schema="Calls" store:Type="Tables" />
+          <EntitySet Name="CA_CALL_MEETING_STATUS" EntityType="Self.CA_CALL_MEETING_STATUS" Schema="Calls" store:Type="Tables" />
+          <EntitySet Name="CA_CALL_MEETING_TYPE" EntityType="Self.CA_CALL_MEETING_TYPE" Schema="Calls" store:Type="Tables" />
+          <EntitySet Name="CA_CALL_REASONS" EntityType="Self.CA_CALL_REASONS" Schema="Calls" store:Type="Tables" />
+          <EntitySet Name="CA_EVENTS_CAT" EntityType="Self.CA_EVENTS_CAT" Schema="Calls" store:Type="Tables" />
+          <EntitySet Name="CA_MEETING_EVENT_REMINDERS" EntityType="Self.CA_MEETING_EVENT_REMINDERS" Schema="Calls" store:Type="Tables" />
+          <EntitySet Name="CA_MEETING_EVENT_TASKS" EntityType="Self.CA_MEETING_EVENT_TASKS" Schema="Calls" store:Type="Tables" />
+          <EntitySet Name="CA_MEETING_EVENTS" EntityType="Self.CA_MEETING_EVENTS" Schema="Calls" store:Type="Tables" />
+          <EntitySet Name="CA_TASK_TYPE" EntityType="Self.CA_TASK_TYPE" Schema="Calls" store:Type="Tables" />
+          <AssociationSet Name="FK_CALLMEETINGPROC_CALLREASONS" Association="Self.FK_CALLMEETINGPROC_CALLREASONS">
+            <End Role="CA_CALL_REASONS" EntitySet="CA_CALL_REASONS" />
+            <End Role="CA_CALL_MEETING_PROCESS" EntitySet="CA_CALL_MEETING_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CALLMEETINGPROCESS_CALLMEETINGSTATUS" Association="Self.FK_CALLMEETINGPROCESS_CALLMEETINGSTATUS">
+            <End Role="CA_CALL_MEETING_STATUS" EntitySet="CA_CALL_MEETING_STATUS" />
+            <End Role="CA_CALL_MEETING_PROCESS" EntitySet="CA_CALL_MEETING_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CALLMEETINGPROCESS_CALLMEETINGTYPE" Association="Self.FK_CALLMEETINGPROCESS_CALLMEETINGTYPE">
+            <End Role="CA_CALL_MEETING_TYPE" EntitySet="CA_CALL_MEETING_TYPE" />
+            <End Role="CA_CALL_MEETING_PROCESS" EntitySet="CA_CALL_MEETING_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ME_REMINDERS_METASKS" Association="Self.FK_ME_REMINDERS_METASKS">
+            <End Role="CA_MEETING_EVENT_TASKS" EntitySet="CA_MEETING_EVENT_TASKS" />
+            <End Role="CA_MEETING_EVENT_REMINDERS" EntitySet="CA_MEETING_EVENT_REMINDERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEETINGEVENTS_CALLMEETINGPROC" Association="Self.FK_MEETINGEVENTS_CALLMEETINGPROC">
+            <End Role="CA_CALL_MEETING_PROCESS" EntitySet="CA_CALL_MEETING_PROCESS" />
+            <End Role="CA_MEETING_EVENTS" EntitySet="CA_MEETING_EVENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEETINGEVENTS_EVENTSCAT" Association="Self.FK_MEETINGEVENTS_EVENTSCAT">
+            <End Role="CA_EVENTS_CAT" EntitySet="CA_EVENTS_CAT" />
+            <End Role="CA_MEETING_EVENTS" EntitySet="CA_MEETING_EVENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEETINGEVENTTASKS_MEETINGEVENTS" Association="Self.FK_MEETINGEVENTTASKS_MEETINGEVENTS">
+            <End Role="CA_MEETING_EVENTS" EntitySet="CA_MEETING_EVENTS" />
+            <End Role="CA_MEETING_EVENT_TASKS" EntitySet="CA_MEETING_EVENT_TASKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEETINGEVENTTASKS_TASKTYPE" Association="Self.FK_MEETINGEVENTTASKS_TASKTYPE">
+            <End Role="CA_TASK_TYPE" EntitySet="CA_TASK_TYPE" />
+            <End Role="CA_MEETING_EVENT_TASKS" EntitySet="CA_MEETING_EVENT_TASKS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WEB.ConfirmationCall.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CA_CALL_MEETING_PROCESS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+            <PropertyRef Name="Call_Meeting_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Contact_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Call_Meeting_Status_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Call_Assigned_Caller" Type="Int32" />
+          <Property Name="Notified_to_Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Notified" Type="Boolean" />
+          <Property Name="Agent_Id" Type="Int32" />
+          <Property Name="FollowUp_Id" Type="Int32" />
+          <Property Name="Call_Reason_Id" Type="Int32" />
+          <Property Name="Attempt_No" Type="Int32" />
+          <Property Name="Response_Id" Type="Int32" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CA_CALL_REASONS" Relationship="Self.FK_CALLMEETINGPROC_CALLREASONS" FromRole="CA_CALL_MEETING_PROCESS" ToRole="CA_CALL_REASONS" />
+          <NavigationProperty Name="CA_CALL_MEETING_STATUS" Relationship="Self.FK_CALLMEETINGPROCESS_CALLMEETINGSTATUS" FromRole="CA_CALL_MEETING_PROCESS" ToRole="CA_CALL_MEETING_STATUS" />
+          <NavigationProperty Name="CA_CALL_MEETING_TYPE" Relationship="Self.FK_CALLMEETINGPROCESS_CALLMEETINGTYPE" FromRole="CA_CALL_MEETING_PROCESS" ToRole="CA_CALL_MEETING_TYPE" />
+          <NavigationProperty Name="CA_MEETING_EVENTS" Relationship="Self.FK_MEETINGEVENTS_CALLMEETINGPROC" FromRole="CA_CALL_MEETING_PROCESS" ToRole="CA_MEETING_EVENTS" />
+        </EntityType>
+        <EntityType Name="CA_CALL_MEETING_STATUS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Status_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Status_Id" Type="Int32" Nullable="false" />
+          <Property Name="Status_Desc" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Failed_Id" Type="Boolean" Nullable="false" />
+          <Property Name="Recall" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CA_CALL_MEETING_PROCESS" Relationship="Self.FK_CALLMEETINGPROCESS_CALLMEETINGSTATUS" FromRole="CA_CALL_MEETING_STATUS" ToRole="CA_CALL_MEETING_PROCESS" />
+        </EntityType>
+        <EntityType Name="CA_CALL_MEETING_TYPE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CA_CALL_MEETING_PROCESS" Relationship="Self.FK_CALLMEETINGPROCESS_CALLMEETINGTYPE" FromRole="CA_CALL_MEETING_TYPE" ToRole="CA_CALL_MEETING_PROCESS" />
+        </EntityType>
+        <EntityType Name="CA_CALL_REASONS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Call_Reason_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Reason_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_REason_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Call_Reason_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CA_CALL_MEETING_PROCESS" Relationship="Self.FK_CALLMEETINGPROC_CALLREASONS" FromRole="CA_CALL_REASONS" ToRole="CA_CALL_MEETING_PROCESS" />
+        </EntityType>
+        <EntityType Name="CA_EVENTS_CAT">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Event_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Event_Id" Type="Int32" Nullable="false" />
+          <Property Name="Event_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Event_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CA_MEETING_EVENTS" Relationship="Self.FK_MEETINGEVENTS_EVENTSCAT" FromRole="CA_EVENTS_CAT" ToRole="CA_MEETING_EVENTS" />
+        </EntityType>
+        <EntityType Name="CA_MEETING_EVENT_REMINDERS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+            <PropertyRef Name="Call_Meeting_Id" />
+            <PropertyRef Name="Event_Id" />
+            <PropertyRef Name="Event_Seq" />
+            <PropertyRef Name="Task_Type_Id" />
+            <PropertyRef Name="Reminder_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Contact_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Id" Type="Int32" Nullable="false" />
+          <Property Name="Event_Id" Type="Int32" Nullable="false" />
+          <Property Name="Event_Seq" Type="Int32" Nullable="false" />
+          <Property Name="Task_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Reminder_Id" Type="Int32" Nullable="false" />
+          <Property Name="Period_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Recurrency_Id" Type="Int32" Nullable="false" />
+          <Property Name="Related_To" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Repeat_Interval" Type="Int32" Nullable="false" />
+          <Property Name="Remind_DateTime" Type="Int32" />
+          <Property Name="Remind_Days_Before_Datetime" Type="Int32" />
+          <Property Name="Reminder_Note" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ME_Reminder_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CA_MEETING_EVENT_TASKS" Relationship="Self.FK_ME_REMINDERS_METASKS" FromRole="CA_MEETING_EVENT_REMINDERS" ToRole="CA_MEETING_EVENT_TASKS" />
+        </EntityType>
+        <EntityType Name="CA_MEETING_EVENT_TASKS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+            <PropertyRef Name="Call_Meeting_Id" />
+            <PropertyRef Name="Event_Id" />
+            <PropertyRef Name="Event_Seq" />
+            <PropertyRef Name="Task_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Contact_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Id" Type="Int32" Nullable="false" />
+          <Property Name="Event_Id" Type="Int32" Nullable="false" />
+          <Property Name="Event_Seq" Type="Int32" Nullable="false" />
+          <Property Name="Task_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Action_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Input_Date" Type="DateTime" Precision="3" />
+          <Property Name="All_Day_Event" Type="Boolean" />
+          <Property Name="Task_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_From" Type="DateTime" Precision="3" />
+          <Property Name="Date_To" Type="DateTime" Precision="3" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Event_New_Date" Type="DateTime" Precision="3" />
+          <Property Name="Event_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ME_Task_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CA_MEETING_EVENT_REMINDERS" Relationship="Self.FK_ME_REMINDERS_METASKS" FromRole="CA_MEETING_EVENT_TASKS" ToRole="CA_MEETING_EVENT_REMINDERS" />
+          <NavigationProperty Name="CA_MEETING_EVENTS" Relationship="Self.FK_MEETINGEVENTTASKS_MEETINGEVENTS" FromRole="CA_MEETING_EVENT_TASKS" ToRole="CA_MEETING_EVENTS" />
+          <NavigationProperty Name="CA_TASK_TYPE" Relationship="Self.FK_MEETINGEVENTTASKS_TASKTYPE" FromRole="CA_MEETING_EVENT_TASKS" ToRole="CA_TASK_TYPE" />
+        </EntityType>
+        <EntityType Name="CA_MEETING_EVENTS">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="Call_Meeting_Type_Id" />
+            <PropertyRef Name="Call_Meeting_Id" />
+            <PropertyRef Name="Event_Id" />
+            <PropertyRef Name="Event_Seq" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Contact_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Call_Meeting_Id" Type="Int32" Nullable="false" />
+          <Property Name="Event_Id" Type="Int32" Nullable="false" />
+          <Property Name="Event_Seq" Type="Int32" Nullable="false" />
+          <Property Name="ME_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CA_CALL_MEETING_PROCESS" Relationship="Self.FK_MEETINGEVENTS_CALLMEETINGPROC" FromRole="CA_MEETING_EVENTS" ToRole="CA_CALL_MEETING_PROCESS" />
+          <NavigationProperty Name="CA_EVENTS_CAT" Relationship="Self.FK_MEETINGEVENTS_EVENTSCAT" FromRole="CA_MEETING_EVENTS" ToRole="CA_EVENTS_CAT" />
+          <NavigationProperty Name="CA_MEETING_EVENT_TASKS" Relationship="Self.FK_MEETINGEVENTTASKS_MEETINGEVENTS" FromRole="CA_MEETING_EVENTS" ToRole="CA_MEETING_EVENT_TASKS" />
+        </EntityType>
+        <EntityType Name="CA_TASK_TYPE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Task_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Task_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Task_Type_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Task_Type_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CA_MEETING_EVENT_TASKS" Relationship="Self.FK_MEETINGEVENTTASKS_TASKTYPE" FromRole="CA_TASK_TYPE" ToRole="CA_MEETING_EVENT_TASKS" />
+        </EntityType>
+        <Association Name="FK_CALLMEETINGPROC_CALLREASONS">
+          <End Role="CA_CALL_REASONS" Type="Self.CA_CALL_REASONS" Multiplicity="0..1" />
+          <End Role="CA_CALL_MEETING_PROCESS" Type="Self.CA_CALL_MEETING_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CALL_REASONS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Reason_Id" />
+            </Principal>
+            <Dependent Role="CA_CALL_MEETING_PROCESS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Reason_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CALLMEETINGPROCESS_CALLMEETINGSTATUS">
+          <End Role="CA_CALL_MEETING_STATUS" Type="Self.CA_CALL_MEETING_STATUS" Multiplicity="1" />
+          <End Role="CA_CALL_MEETING_PROCESS" Type="Self.CA_CALL_MEETING_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CALL_MEETING_STATUS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Status_Id" />
+            </Principal>
+            <Dependent Role="CA_CALL_MEETING_PROCESS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Meeting_Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CALLMEETINGPROCESS_CALLMEETINGTYPE">
+          <End Role="CA_CALL_MEETING_TYPE" Type="Self.CA_CALL_MEETING_TYPE" Multiplicity="1" />
+          <End Role="CA_CALL_MEETING_PROCESS" Type="Self.CA_CALL_MEETING_PROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CALL_MEETING_TYPE">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+            </Principal>
+            <Dependent Role="CA_CALL_MEETING_PROCESS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEETINGEVENTS_CALLMEETINGPROC">
+          <End Role="CA_CALL_MEETING_PROCESS" Type="Self.CA_CALL_MEETING_PROCESS" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENTS" Type="Self.CA_MEETING_EVENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CALL_MEETING_PROCESS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENTS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEETINGEVENTS_EVENTSCAT">
+          <End Role="CA_EVENTS_CAT" Type="Self.CA_EVENTS_CAT" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENTS" Type="Self.CA_MEETING_EVENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_EVENTS_CAT">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Event_Id" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENTS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Event_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ME_REMINDERS_METASKS">
+          <End Role="CA_MEETING_EVENT_TASKS" Type="Self.CA_MEETING_EVENT_TASKS" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENT_REMINDERS" Type="Self.CA_MEETING_EVENT_REMINDERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_MEETING_EVENT_TASKS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+              <PropertyRef Name="Event_Id" />
+              <PropertyRef Name="Event_Seq" />
+              <PropertyRef Name="Task_Type_Id" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENT_REMINDERS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+              <PropertyRef Name="Event_Id" />
+              <PropertyRef Name="Event_Seq" />
+              <PropertyRef Name="Task_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEETINGEVENTTASKS_MEETINGEVENTS">
+          <End Role="CA_MEETING_EVENTS" Type="Self.CA_MEETING_EVENTS" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENT_TASKS" Type="Self.CA_MEETING_EVENT_TASKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_MEETING_EVENTS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+              <PropertyRef Name="Event_Id" />
+              <PropertyRef Name="Event_Seq" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENT_TASKS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Contact_Id" />
+              <PropertyRef Name="Call_Meeting_Type_Id" />
+              <PropertyRef Name="Call_Meeting_Id" />
+              <PropertyRef Name="Event_Id" />
+              <PropertyRef Name="Event_Seq" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEETINGEVENTTASKS_TASKTYPE">
+          <End Role="CA_TASK_TYPE" Type="Self.CA_TASK_TYPE" Multiplicity="1" />
+          <End Role="CA_MEETING_EVENT_TASKS" Type="Self.CA_MEETING_EVENT_TASKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_TASK_TYPE">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Task_Type_Id" />
+            </Principal>
+            <Dependent Role="CA_MEETING_EVENT_TASKS">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Task_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Dev_GlobalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CA_CALL_MEETING_PROCESS" EntityType="Self.CA_CALL_MEETING_PROCESS" />
+          <EntitySet Name="CA_CALL_MEETING_STATUS" EntityType="Self.CA_CALL_MEETING_STATUS" />
+          <EntitySet Name="CA_CALL_MEETING_TYPE" EntityType="Self.CA_CALL_MEETING_TYPE" />
+          <EntitySet Name="CA_CALL_REASONS" EntityType="Self.CA_CALL_REASONS" />
+          <EntitySet Name="CA_EVENTS_CAT" EntityType="Self.CA_EVENTS_CAT" />
+          <EntitySet Name="CA_MEETING_EVENT_REMINDERS" EntityType="Self.CA_MEETING_EVENT_REMINDERS" />
+          <EntitySet Name="CA_MEETING_EVENT_TASKS" EntityType="Self.CA_MEETING_EVENT_TASKS" />
+          <EntitySet Name="CA_MEETING_EVENTS" EntityType="Self.CA_MEETING_EVENTS" />
+          <EntitySet Name="CA_TASK_TYPE" EntityType="Self.CA_TASK_TYPE" />
+          <AssociationSet Name="FK_CALLMEETINGPROC_CALLREASONS" Association="Self.FK_CALLMEETINGPROC_CALLREASONS">
+            <End Role="CA_CALL_REASONS" EntitySet="CA_CALL_REASONS" />
+            <End Role="CA_CALL_MEETING_PROCESS" EntitySet="CA_CALL_MEETING_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CALLMEETINGPROCESS_CALLMEETINGSTATUS" Association="Self.FK_CALLMEETINGPROCESS_CALLMEETINGSTATUS">
+            <End Role="CA_CALL_MEETING_STATUS" EntitySet="CA_CALL_MEETING_STATUS" />
+            <End Role="CA_CALL_MEETING_PROCESS" EntitySet="CA_CALL_MEETING_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CALLMEETINGPROCESS_CALLMEETINGTYPE" Association="Self.FK_CALLMEETINGPROCESS_CALLMEETINGTYPE">
+            <End Role="CA_CALL_MEETING_TYPE" EntitySet="CA_CALL_MEETING_TYPE" />
+            <End Role="CA_CALL_MEETING_PROCESS" EntitySet="CA_CALL_MEETING_PROCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEETINGEVENTS_CALLMEETINGPROC" Association="Self.FK_MEETINGEVENTS_CALLMEETINGPROC">
+            <End Role="CA_CALL_MEETING_PROCESS" EntitySet="CA_CALL_MEETING_PROCESS" />
+            <End Role="CA_MEETING_EVENTS" EntitySet="CA_MEETING_EVENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEETINGEVENTS_EVENTSCAT" Association="Self.FK_MEETINGEVENTS_EVENTSCAT">
+            <End Role="CA_EVENTS_CAT" EntitySet="CA_EVENTS_CAT" />
+            <End Role="CA_MEETING_EVENTS" EntitySet="CA_MEETING_EVENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ME_REMINDERS_METASKS" Association="Self.FK_ME_REMINDERS_METASKS">
+            <End Role="CA_MEETING_EVENT_TASKS" EntitySet="CA_MEETING_EVENT_TASKS" />
+            <End Role="CA_MEETING_EVENT_REMINDERS" EntitySet="CA_MEETING_EVENT_REMINDERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEETINGEVENTTASKS_MEETINGEVENTS" Association="Self.FK_MEETINGEVENTTASKS_MEETINGEVENTS">
+            <End Role="CA_MEETING_EVENTS" EntitySet="CA_MEETING_EVENTS" />
+            <End Role="CA_MEETING_EVENT_TASKS" EntitySet="CA_MEETING_EVENT_TASKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEETINGEVENTTASKS_TASKTYPE" Association="Self.FK_MEETINGEVENTTASKS_TASKTYPE">
+            <End Role="CA_TASK_TYPE" EntitySet="CA_TASK_TYPE" />
+            <End Role="CA_MEETING_EVENT_TASKS" EntitySet="CA_MEETING_EVENT_TASKS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WEBConfirmationCallModelsStoreContainer" CdmEntityContainer="Dev_GlobalEntities">
+          <EntitySetMapping Name="CA_CALL_MEETING_PROCESS">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_CALL_MEETING_PROCESS">
+              <MappingFragment StoreEntitySet="CA_CALL_MEETING_PROCESS">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="Call_Meeting_Type_Id" ColumnName="Call_Meeting_Type_Id" />
+                <ScalarProperty Name="Call_Meeting_Id" ColumnName="Call_Meeting_Id" />
+                <ScalarProperty Name="Call_Meeting_Date" ColumnName="Call_Meeting_Date" />
+                <ScalarProperty Name="Call_Meeting_Status_Id" ColumnName="Call_Meeting_Status_Id" />
+                <ScalarProperty Name="Call_Meeting_Note" ColumnName="Call_Meeting_Note" />
+                <ScalarProperty Name="Call_Assigned_Caller" ColumnName="Call_Assigned_Caller" />
+                <ScalarProperty Name="Notified_to_Email" ColumnName="Notified_to_Email" />
+                <ScalarProperty Name="Notified" ColumnName="Notified" />
+                <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+                <ScalarProperty Name="FollowUp_Id" ColumnName="FollowUp_Id" />
+                <ScalarProperty Name="Call_Reason_Id" ColumnName="Call_Reason_Id" />
+                <ScalarProperty Name="Attempt_No" ColumnName="Attempt_No" />
+                <ScalarProperty Name="Response_Id" ColumnName="Response_Id" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_CALL_MEETING_STATUS">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_CALL_MEETING_STATUS">
+              <MappingFragment StoreEntitySet="CA_CALL_MEETING_STATUS">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+                <ScalarProperty Name="Status_Desc" ColumnName="Status_Desc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Failed_Id" ColumnName="Failed_Id" />
+                <ScalarProperty Name="Recall" ColumnName="Recall" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_CALL_MEETING_TYPE">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_CALL_MEETING_TYPE">
+              <MappingFragment StoreEntitySet="CA_CALL_MEETING_TYPE">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Call_Meeting_Type_Id" ColumnName="Call_Meeting_Type_Id" />
+                <ScalarProperty Name="Call_Meeting_Type_Desc" ColumnName="Call_Meeting_Type_Desc" />
+                <ScalarProperty Name="Call_Meeting_Type_Status" ColumnName="Call_Meeting_Type_Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_CALL_REASONS">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_CALL_REASONS">
+              <MappingFragment StoreEntitySet="CA_CALL_REASONS">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Call_Reason_Id" ColumnName="Call_Reason_Id" />
+                <ScalarProperty Name="Call_REason_Desc" ColumnName="Call_REason_Desc" />
+                <ScalarProperty Name="Call_Reason_Status" ColumnName="Call_Reason_Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_EVENTS_CAT">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_EVENTS_CAT">
+              <MappingFragment StoreEntitySet="CA_EVENTS_CAT">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+                <ScalarProperty Name="Event_Desc" ColumnName="Event_Desc" />
+                <ScalarProperty Name="Event_Status" ColumnName="Event_Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_MEETING_EVENT_REMINDERS">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_MEETING_EVENT_REMINDERS">
+              <MappingFragment StoreEntitySet="CA_MEETING_EVENT_REMINDERS">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="Call_Meeting_Type_Id" ColumnName="Call_Meeting_Type_Id" />
+                <ScalarProperty Name="Call_Meeting_Id" ColumnName="Call_Meeting_Id" />
+                <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+                <ScalarProperty Name="Event_Seq" ColumnName="Event_Seq" />
+                <ScalarProperty Name="Task_Type_Id" ColumnName="Task_Type_Id" />
+                <ScalarProperty Name="Reminder_Id" ColumnName="Reminder_Id" />
+                <ScalarProperty Name="Period_Type_Id" ColumnName="Period_Type_Id" />
+                <ScalarProperty Name="Recurrency_Id" ColumnName="Recurrency_Id" />
+                <ScalarProperty Name="Related_To" ColumnName="Related_To" />
+                <ScalarProperty Name="Repeat_Interval" ColumnName="Repeat_Interval" />
+                <ScalarProperty Name="Remind_DateTime" ColumnName="Remind_DateTime" />
+                <ScalarProperty Name="Remind_Days_Before_Datetime" ColumnName="Remind_Days_Before_Datetime" />
+                <ScalarProperty Name="Reminder_Note" ColumnName="Reminder_Note" />
+                <ScalarProperty Name="ME_Reminder_Status" ColumnName="ME_Reminder_Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_MEETING_EVENT_TASKS">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_MEETING_EVENT_TASKS">
+              <MappingFragment StoreEntitySet="CA_MEETING_EVENT_TASKS">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="Call_Meeting_Type_Id" ColumnName="Call_Meeting_Type_Id" />
+                <ScalarProperty Name="Call_Meeting_Id" ColumnName="Call_Meeting_Id" />
+                <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+                <ScalarProperty Name="Event_Seq" ColumnName="Event_Seq" />
+                <ScalarProperty Name="Task_Type_Id" ColumnName="Task_Type_Id" />
+                <ScalarProperty Name="Action_Date" ColumnName="Action_Date" />
+                <ScalarProperty Name="Input_Date" ColumnName="Input_Date" />
+                <ScalarProperty Name="All_Day_Event" ColumnName="All_Day_Event" />
+                <ScalarProperty Name="Task_Note" ColumnName="Task_Note" />
+                <ScalarProperty Name="Date_From" ColumnName="Date_From" />
+                <ScalarProperty Name="Date_To" ColumnName="Date_To" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Event_New_Date" ColumnName="Event_New_Date" />
+                <ScalarProperty Name="Event_Note" ColumnName="Event_Note" />
+                <ScalarProperty Name="ME_Task_Status" ColumnName="ME_Task_Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_MEETING_EVENTS">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_MEETING_EVENTS">
+              <MappingFragment StoreEntitySet="CA_MEETING_EVENTS">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="Call_Meeting_Type_Id" ColumnName="Call_Meeting_Type_Id" />
+                <ScalarProperty Name="Call_Meeting_Id" ColumnName="Call_Meeting_Id" />
+                <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+                <ScalarProperty Name="Event_Seq" ColumnName="Event_Seq" />
+                <ScalarProperty Name="ME_Status" ColumnName="ME_Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_TASK_TYPE">
+            <EntityTypeMapping TypeName="WEB.ConfirmationCall.Models.CA_TASK_TYPE">
+              <MappingFragment StoreEntitySet="CA_TASK_TYPE">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Task_Type_Id" ColumnName="Task_Type_Id" />
+                <ScalarProperty Name="Task_Type_Desc" ColumnName="Task_Type_Desc" />
+                <ScalarProperty Name="Task_Type_Status" ColumnName="Task_Type_Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

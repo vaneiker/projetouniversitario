@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Global_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Dev_Global_LoadData.SubmitPolicy.VW_GET_POLICY_CONFIRMATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_GET_POLICY_CONFIRMATION">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Company_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="Product_Desc" />
+      <PropertyRef Name="Payment_Freq_Type_Desc" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Sent_Date" />
+      <PropertyRef Name="Sent_Days" />
+      <PropertyRef Name="Max_Received_Date" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Region_Id" Type="int" Nullable="false" />
+    <Property Name="Country_Id" Type="int" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+    <Property Name="City_Id" Type="int" Nullable="false" />
+    <Property Name="Office_Id" Type="int" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Company_Id" Type="int" Nullable="false" />
+    <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="OwnerFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Policy_Effective_Date" Type="datetime" />
+    <Property Name="Product_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Initial_Premium" Type="numeric" Precision="14" Scale="4" />
+    <Property Name="Payment_Freq_Type_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="MethodOfPayment" Type="varchar(max)" />
+    <Property Name="LastPaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="AgentFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Office_Desc" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Sent_Date" Type="datetime" Nullable="false" />
+    <Property Name="Sent_Days" Type="int" Nullable="false" />
+    <Property Name="Max_Received_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Dev_Global_LoadData.SubmitPolicy.VW_GET_POLICY_ISSUE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_GET_POLICY_ISSUE">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Step_Type_Id" />
+      <PropertyRef Name="Step_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="ApplicationDate" />
+      <PropertyRef Name="FirstPaymentDate" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Company_Id" />
+      <PropertyRef Name="Product_Desc" />
+      <PropertyRef Name="Payment_Freq_Type_Desc" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Region_Id" Type="int" Nullable="false" />
+    <Property Name="Country_Id" Type="int" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+    <Property Name="City_Id" Type="int" Nullable="false" />
+    <Property Name="Office_Id" Type="int" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Step_Type_Id" Type="int" Nullable="false" />
+    <Property Name="Step_Id" Type="int" Nullable="false" />
+    <Property Name="Step_Case_No" Type="int" />
+    <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="OwnerFullName" Type="varchar" MaxLength="240" />
+    <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
+    <Property Name="Product_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Initial_Premium" Type="numeric" Precision="14" Scale="4" />
+    <Property Name="Insured_Amount" Type="numeric" Precision="14" Scale="4" />
+    <Property Name="InsuredFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Payment_Freq_Type_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="MethodOfPayment" Type="varchar(max)" />
+    <Property Name="FirstPaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="LastPaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="AgentFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Office_Desc" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Company_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Dev_Global_LoadData.SubmitPolicy.VW_GET_POLICY_ISSUE_PROCESSING' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_GET_POLICY_ISSUE_PROCESSING">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Step_Type_Id" />
+      <PropertyRef Name="Step_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="ApplicationDate" />
+      <PropertyRef Name="FirstPaymentDate" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Company_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Region_Id" Type="int" Nullable="false" />
+    <Property Name="Country_Id" Type="int" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+    <Property Name="City_Id" Type="int" Nullable="false" />
+    <Property Name="Office_Id" Type="int" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Step_Type_Id" Type="int" Nullable="false" />
+    <Property Name="Step_Id" Type="int" Nullable="false" />
+    <Property Name="Step_Case_No" Type="int" />
+    <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="OwnerFullName" Type="varchar" MaxLength="240" />
+    <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
+    <Property Name="Product_Desc" Type="varchar" MaxLength="60" />
+    <Property Name="Initial_Premium" Type="numeric" Precision="14" Scale="4" />
+    <Property Name="Insured_Amount" Type="numeric" Precision="14" Scale="4" />
+    <Property Name="InsuredFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Payment_Freq_Type_Desc" Type="varchar" MaxLength="60" />
+    <Property Name="MethodOfPayment" Type="varchar(max)" />
+    <Property Name="FirstPaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="LastPaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="AgentFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Office_Desc" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Company_Id" Type="int" Nullable="false" />
+    <Property Name="SentCoreStatus" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Dev_Global_LoadData.SubmitPolicy.VW_GET_POLICY_NEVER_ISSUED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_GET_POLICY_NEVER_ISSUED">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Step_Type_Id" />
+      <PropertyRef Name="Step_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="ApplicationDate" />
+      <PropertyRef Name="Product_Desc" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Company_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Region_Id" Type="int" Nullable="false" />
+    <Property Name="Country_Id" Type="int" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+    <Property Name="City_Id" Type="int" Nullable="false" />
+    <Property Name="Office_Id" Type="int" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Step_Type_Id" Type="int" Nullable="false" />
+    <Property Name="Step_Id" Type="int" Nullable="false" />
+    <Property Name="Step_Case_No" Type="int" />
+    <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="OwnerFullName" Type="varchar" MaxLength="240" />
+    <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
+    <Property Name="Product_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Initial_Premium" Type="numeric" Precision="14" Scale="4" />
+    <Property Name="Insured_Amount" Type="numeric" Precision="14" Scale="4" />
+    <Property Name="InsuredFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Payment_Freq_Type_Desc" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="MethodOfPayment" Type="varchar(max)" />
+    <Property Name="FirstPaymentDate" Type="datetime" />
+    <Property Name="LastPaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="AgentFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Office_Desc" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Company_Id" Type="int" Nullable="false" />
+    <Property Name="Step_Reason_Id" Type="int" />
+    <Property Name="Step_Reason_Desc" Type="varchar" MaxLength="60" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Penalty" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Dev_Global_LoadData.SubmitPolicy.VW_GET_POLICY_PRINT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_GET_POLICY_PRINT">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Region_Id" />
+      <PropertyRef Name="Country_Id" />
+      <PropertyRef Name="Domesticreg_Id" />
+      <PropertyRef Name="State_Prov_Id" />
+      <PropertyRef Name="City_Id" />
+      <PropertyRef Name="Office_Id" />
+      <PropertyRef Name="Case_Seq_No" />
+      <PropertyRef Name="Hist_Seq_No" />
+      <PropertyRef Name="Company_Id" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="Product_Desc" />
+      <PropertyRef Name="Payment_Freq_Type_Desc" />
+      <PropertyRef Name="LastPaymentDate" />
+      <PropertyRef Name="Office_Desc" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Region_Id" Type="int" Nullable="false" />
+    <Property Name="Country_Id" Type="int" Nullable="false" />
+    <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+    <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+    <Property Name="City_Id" Type="int" Nullable="false" />
+    <Property Name="Office_Id" Type="int" Nullable="false" />
+    <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+    <Property Name="Company_Id" Type="int" Nullable="false" />
+    <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="OwnerFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Policy_Effective_Date" Type="datetime" />
+    <Property Name="Product_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Initial_Premium" Type="numeric" Precision="14" Scale="4" />
+    <Property Name="Payment_Freq_Type_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="MethodOfPayment" Type="varchar(max)" />
+    <Property Name="LastPaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="AgentFullName" Type="varchar" MaxLength="240" />
+    <Property Name="Office_Desc" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Is_Print" Type="bit" Nullable="false" />
+  </EntityType>
+  <Function Name="SP_SET_PL_PCY_STATUS_CHANGE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Status_Change_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Policy_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="Status_Change_Id" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_POLICY_AMMENDMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Company_Id" Type="int" Mode="In" />
+    <Parameter Name="Project_Id" Type="int" Mode="In" />
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_POLICY_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Company_Id" Type="int" Mode="In" />
+    <Parameter Name="Project_Id" Type="int" Mode="In" />
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_POLICY_DOCUMENT_INFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_POLICY_NEVER_ISSUED_INFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_POLICY_REJECT_INFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_POLICY_RIDER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_POLICY_AMMENDMENT_DOCUMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Ammendment_Id" Type="int" Mode="In" />
+    <Parameter Name="Document_Binary" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="Document_Name" Type="varchar" Mode="In" />
+    <Parameter Name="File_Expire_Date" Type="datetime" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_POLICY_AMMENDMENT_STATUS_PENDING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Ammendment_Id" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_POLICY_NERVER_ISSUED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Step_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Step_Id" Type="int" Mode="In" />
+    <Parameter Name="Step_Case_No" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_POLICY_NERVER_ISSUED_EDIT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Step_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Step_Id" Type="int" Mode="In" />
+    <Parameter Name="Step_Case_No" Type="int" Mode="In" />
+    <Parameter Name="Note_Id" Type="int" Mode="In" />
+    <Parameter Name="Note_Desc" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Step_Reason_Id" Type="int" Mode="In" />
+    <Parameter Name="Penalty" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_POLICY_REJECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="SubmitPolicy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Step_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Step_Id" Type="int" Mode="In" />
+    <Parameter Name="Step_Case_No" Type="int" Mode="In" />
+    <Parameter Name="Note_Desc" Type="varchar(max)" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PAYMENTS_PAYMENTS_DOCUMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Doc_Category_Id" Type="int" Mode="In" />
+    <Parameter Name="Doc_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Document_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_UW_DROPDOWN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="Type" Type="varchar" Mode="In" />
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Company_Id" Type="int" Mode="In" />
+    <Parameter Name="Project_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Contact_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="OccupGroup_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="IsInsured" Type="bit" Mode="In" />
+    <Parameter Name="Requirement_Cat_Id" Type="int" Mode="In" />
+    <Parameter Name="RiskGroup_Id" Type="int" Mode="In" />
+    <Parameter Name="RiskDet_Id" Type="int" Mode="In" />
+    <Parameter Name="Table_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="For_Exclusion" Type="bit" Mode="In" />
+    <Parameter Name="Bl_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Bl_Id" Type="int" Mode="In" />
+    <Parameter Name="Payment_Source_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Payment_Source_Id" Type="int" Mode="In" />
+    <Parameter Name="Currency_Id" Type="int" Mode="In" />
+    <Parameter Name="ABA_Number" Type="varchar" Mode="In" />
+    <Parameter Name="AppliedByFreqOrCountry" Type="bit" Mode="In" />
+    <Parameter Name="Questionnaire_Id" Type="int" Mode="In" />
+    <Parameter Name="Question_Id" Type="int" Mode="In" />
+    <Parameter Name="Product_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Risk_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Sex" Type="bit" Mode="In" />
+    <Parameter Name="Age" Type="int" Mode="In" />
+    <Parameter Name="Form_Category_Id" Type="int" Mode="In" />
+    <Parameter Name="Exclusion_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Name_Key" Type="varchar" Mode="In" />
+    <Parameter Name="Credit_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Language_Id" Type="int" Mode="In" />
+    <Parameter Name="User_Id" Type="int" Mode="In" />
+    <Parameter Name="Provider_Id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Global_ModelStoreContainer">
+    <EntitySet Name="VW_GET_POLICY_CONFIRMATION" EntityType="Self.VW_GET_POLICY_CONFIRMATION" store:Type="Views" store:Schema="SubmitPolicy">
+      <DefiningQuery>SELECT 
+    [VW_GET_POLICY_CONFIRMATION].[Corp_Id] AS [Corp_Id], 
+    [VW_GET_POLICY_CONFIRMATION].[Region_Id] AS [Region_Id], 
+    [VW_GET_POLICY_CONFIRMATION].[Country_Id] AS [Country_Id], 
+    [VW_GET_POLICY_CONFIRMATION].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VW_GET_POLICY_CONFIRMATION].[State_Prov_Id] AS [State_Prov_Id], 
+    [VW_GET_POLICY_CONFIRMATION].[City_Id] AS [City_Id], 
+    [VW_GET_POLICY_CONFIRMATION].[Office_Id] AS [Office_Id], 
+    [VW_GET_POLICY_CONFIRMATION].[Case_Seq_No] AS [Case_Seq_No], 
+    [VW_GET_POLICY_CONFIRMATION].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VW_GET_POLICY_CONFIRMATION].[Company_Id] AS [Company_Id], 
+    [VW_GET_POLICY_CONFIRMATION].[Policy_No] AS [Policy_No], 
+    [VW_GET_POLICY_CONFIRMATION].[OwnerFullName] AS [OwnerFullName], 
+    [VW_GET_POLICY_CONFIRMATION].[Policy_Effective_Date] AS [Policy_Effective_Date], 
+    [VW_GET_POLICY_CONFIRMATION].[Product_Desc] AS [Product_Desc], 
+    [VW_GET_POLICY_CONFIRMATION].[Initial_Premium] AS [Initial_Premium], 
+    [VW_GET_POLICY_CONFIRMATION].[Payment_Freq_Type_Desc] AS [Payment_Freq_Type_Desc], 
+    [VW_GET_POLICY_CONFIRMATION].[MethodOfPayment] AS [MethodOfPayment], 
+    [VW_GET_POLICY_CONFIRMATION].[LastPaymentDate] AS [LastPaymentDate], 
+    [VW_GET_POLICY_CONFIRMATION].[AgentFullName] AS [AgentFullName], 
+    [VW_GET_POLICY_CONFIRMATION].[Office_Desc] AS [Office_Desc], 
+    [VW_GET_POLICY_CONFIRMATION].[Sent_Date] AS [Sent_Date], 
+    [VW_GET_POLICY_CONFIRMATION].[Sent_Days] AS [Sent_Days], 
+    [VW_GET_POLICY_CONFIRMATION].[Max_Received_Date] AS [Max_Received_Date]
+    FROM [SubmitPolicy].[VW_GET_POLICY_CONFIRMATION] AS [VW_GET_POLICY_CONFIRMATION]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_GET_POLICY_ISSUE" EntityType="Self.VW_GET_POLICY_ISSUE" store:Type="Views" store:Schema="SubmitPolicy">
+      <DefiningQuery>SELECT 
+    [VW_GET_POLICY_ISSUE].[Corp_Id] AS [Corp_Id], 
+    [VW_GET_POLICY_ISSUE].[Region_Id] AS [Region_Id], 
+    [VW_GET_POLICY_ISSUE].[Country_Id] AS [Country_Id], 
+    [VW_GET_POLICY_ISSUE].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VW_GET_POLICY_ISSUE].[State_Prov_Id] AS [State_Prov_Id], 
+    [VW_GET_POLICY_ISSUE].[City_Id] AS [City_Id], 
+    [VW_GET_POLICY_ISSUE].[Office_Id] AS [Office_Id], 
+    [VW_GET_POLICY_ISSUE].[Case_Seq_No] AS [Case_Seq_No], 
+    [VW_GET_POLICY_ISSUE].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VW_GET_POLICY_ISSUE].[Step_Type_Id] AS [Step_Type_Id], 
+    [VW_GET_POLICY_ISSUE].[Step_Id] AS [Step_Id], 
+    [VW_GET_POLICY_ISSUE].[Step_Case_No] AS [Step_Case_No], 
+    [VW_GET_POLICY_ISSUE].[Policy_No] AS [Policy_No], 
+    [VW_GET_POLICY_ISSUE].[OwnerFullName] AS [OwnerFullName], 
+    [VW_GET_POLICY_ISSUE].[ApplicationDate] AS [ApplicationDate], 
+    [VW_GET_POLICY_ISSUE].[Product_Desc] AS [Product_Desc], 
+    [VW_GET_POLICY_ISSUE].[Initial_Premium] AS [Initial_Premium], 
+    [VW_GET_POLICY_ISSUE].[Insured_Amount] AS [Insured_Amount], 
+    [VW_GET_POLICY_ISSUE].[InsuredFullName] AS [InsuredFullName], 
+    [VW_GET_POLICY_ISSUE].[Payment_Freq_Type_Desc] AS [Payment_Freq_Type_Desc], 
+    [VW_GET_POLICY_ISSUE].[MethodOfPayment] AS [MethodOfPayment], 
+    [VW_GET_POLICY_ISSUE].[FirstPaymentDate] AS [FirstPaymentDate], 
+    [VW_GET_POLICY_ISSUE].[LastPaymentDate] AS [LastPaymentDate], 
+    [VW_GET_POLICY_ISSUE].[AgentFullName] AS [AgentFullName], 
+    [VW_GET_POLICY_ISSUE].[Office_Desc] AS [Office_Desc], 
+    [VW_GET_POLICY_ISSUE].[Company_Id] AS [Company_Id]
+    FROM [SubmitPolicy].[VW_GET_POLICY_ISSUE] AS [VW_GET_POLICY_ISSUE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_GET_POLICY_ISSUE_PROCESSING" EntityType="Self.VW_GET_POLICY_ISSUE_PROCESSING" store:Type="Views" store:Schema="SubmitPolicy">
+      <DefiningQuery>SELECT 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Corp_Id] AS [Corp_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Region_Id] AS [Region_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Country_Id] AS [Country_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[State_Prov_Id] AS [State_Prov_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[City_Id] AS [City_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Office_Id] AS [Office_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Case_Seq_No] AS [Case_Seq_No], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Step_Type_Id] AS [Step_Type_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Step_Id] AS [Step_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Step_Case_No] AS [Step_Case_No], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Policy_No] AS [Policy_No], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[OwnerFullName] AS [OwnerFullName], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[ApplicationDate] AS [ApplicationDate], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Product_Desc] AS [Product_Desc], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Initial_Premium] AS [Initial_Premium], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Insured_Amount] AS [Insured_Amount], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[InsuredFullName] AS [InsuredFullName], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Payment_Freq_Type_Desc] AS [Payment_Freq_Type_Desc], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[MethodOfPayment] AS [MethodOfPayment], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[FirstPaymentDate] AS [FirstPaymentDate], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[LastPaymentDate] AS [LastPaymentDate], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[AgentFullName] AS [AgentFullName], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Office_Desc] AS [Office_Desc], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[Company_Id] AS [Company_Id], 
+    [VW_GET_POLICY_ISSUE_PROCESSING].[SentCoreStatus] AS [SentCoreStatus]
+    FROM [SubmitPolicy].[VW_GET_POLICY_ISSUE_PROCESSING] AS [VW_GET_POLICY_ISSUE_PROCESSING]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_GET_POLICY_NEVER_ISSUED" EntityType="Self.VW_GET_POLICY_NEVER_ISSUED" store:Type="Views" store:Schema="SubmitPolicy">
+      <DefiningQuery>SELECT 
+    [VW_GET_POLICY_NEVER_ISSUED].[Corp_Id] AS [Corp_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Region_Id] AS [Region_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Country_Id] AS [Country_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[State_Prov_Id] AS [State_Prov_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[City_Id] AS [City_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Office_Id] AS [Office_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Case_Seq_No] AS [Case_Seq_No], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Step_Type_Id] AS [Step_Type_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Step_Id] AS [Step_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Step_Case_No] AS [Step_Case_No], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Policy_No] AS [Policy_No], 
+    [VW_GET_POLICY_NEVER_ISSUED].[OwnerFullName] AS [OwnerFullName], 
+    [VW_GET_POLICY_NEVER_ISSUED].[ApplicationDate] AS [ApplicationDate], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Product_Desc] AS [Product_Desc], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Initial_Premium] AS [Initial_Premium], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Insured_Amount] AS [Insured_Amount], 
+    [VW_GET_POLICY_NEVER_ISSUED].[InsuredFullName] AS [InsuredFullName], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Payment_Freq_Type_Desc] AS [Payment_Freq_Type_Desc], 
+    [VW_GET_POLICY_NEVER_ISSUED].[MethodOfPayment] AS [MethodOfPayment], 
+    [VW_GET_POLICY_NEVER_ISSUED].[FirstPaymentDate] AS [FirstPaymentDate], 
+    [VW_GET_POLICY_NEVER_ISSUED].[LastPaymentDate] AS [LastPaymentDate], 
+    [VW_GET_POLICY_NEVER_ISSUED].[AgentFullName] AS [AgentFullName], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Office_Desc] AS [Office_Desc], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Company_Id] AS [Company_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Step_Reason_Id] AS [Step_Reason_Id], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Step_Reason_Desc] AS [Step_Reason_Desc], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Status] AS [Status], 
+    [VW_GET_POLICY_NEVER_ISSUED].[Penalty] AS [Penalty]
+    FROM [SubmitPolicy].[VW_GET_POLICY_NEVER_ISSUED] AS [VW_GET_POLICY_NEVER_ISSUED]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_GET_POLICY_PRINT" EntityType="Self.VW_GET_POLICY_PRINT" store:Type="Views" store:Schema="SubmitPolicy">
+      <DefiningQuery>SELECT 
+    [VW_GET_POLICY_PRINT].[Corp_Id] AS [Corp_Id], 
+    [VW_GET_POLICY_PRINT].[Region_Id] AS [Region_Id], 
+    [VW_GET_POLICY_PRINT].[Country_Id] AS [Country_Id], 
+    [VW_GET_POLICY_PRINT].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VW_GET_POLICY_PRINT].[State_Prov_Id] AS [State_Prov_Id], 
+    [VW_GET_POLICY_PRINT].[City_Id] AS [City_Id], 
+    [VW_GET_POLICY_PRINT].[Office_Id] AS [Office_Id], 
+    [VW_GET_POLICY_PRINT].[Case_Seq_No] AS [Case_Seq_No], 
+    [VW_GET_POLICY_PRINT].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VW_GET_POLICY_PRINT].[Company_Id] AS [Company_Id], 
+    [VW_GET_POLICY_PRINT].[Policy_No] AS [Policy_No], 
+    [VW_GET_POLICY_PRINT].[OwnerFullName] AS [OwnerFullName], 
+    [VW_GET_POLICY_PRINT].[Policy_Effective_Date] AS [Policy_Effective_Date], 
+    [VW_GET_POLICY_PRINT].[Product_Desc] AS [Product_Desc], 
+    [VW_GET_POLICY_PRINT].[Initial_Premium] AS [Initial_Premium], 
+    [VW_GET_POLICY_PRINT].[Payment_Freq_Type_Desc] AS [Payment_Freq_Type_Desc], 
+    [VW_GET_POLICY_PRINT].[MethodOfPayment] AS [MethodOfPayment], 
+    [VW_GET_POLICY_PRINT].[LastPaymentDate] AS [LastPaymentDate], 
+    [VW_GET_POLICY_PRINT].[AgentFullName] AS [AgentFullName], 
+    [VW_GET_POLICY_PRINT].[Office_Desc] AS [Office_Desc], 
+    [VW_GET_POLICY_PRINT].[Is_Print] AS [Is_Print]
+    FROM [SubmitPolicy].[VW_GET_POLICY_PRINT] AS [VW_GET_POLICY_PRINT]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ED582058-F789-4A0F-82A6-DC24B529A899}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CallRex.UnderWriting</RootNamespace>
+    <AssemblyName>CallRex.UnderWriting</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CallRexClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CallRexClientService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\System.Uri.datasource" />
+    <None Include="Service References\CallRexClientService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ArchiveListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ArchiveTaskListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.AttachedDataContainer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.AuditActionType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.AuditLog.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.CallCount.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.CallRecordingProfileDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.CallRecordingProfileListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ComputerRecordingContainer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ComputerRecordingDeployment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.DataSourceListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.EncryptionInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.EvaluationDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.EvaluationSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.FileTransferInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.Flag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.GeneralSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.GuidPair.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.LicenseInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.MemberListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.PbxListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.RecordedCallContainer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.RecordedMediaContainer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.RecordedMediaType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.Report.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.SavedReport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.SavedSearch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.Scorecard.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ScorecardCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ScorecardQuestion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ScorecardQuestionCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ScreenRecordingProfileDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ScreenRecordingProfileListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.SecurityProfileDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.SecurityProfileListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.SerializedActiveDirectoryNode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ServiceListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.ServiceSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.UserDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.UserListItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.UserMonitorInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\CallRex.UnderWriting.CallRexClientService.UserPreferenceItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CallRexClientService\DataService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CallRexClientService\Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CallRexClientService\service.wsdl" />
+    <None Include="Service References\CallRexClientService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CallRexClientService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CallRexClientService\System.Data.Objects.DataClasses.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CallRexClientService\System.Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CallRexClientService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CallRexClientService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CallRexClientService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CallRexClientService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entity.UnderWriting\Entity.UnderWriting.csproj">
+      <Project>{664bc204-9206-4e88-a9e8-255183325756}</Project>
+      <Name>Entity.UnderWriting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

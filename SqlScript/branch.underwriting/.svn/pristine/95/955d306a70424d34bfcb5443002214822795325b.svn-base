@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Link" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Link" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://devsysflexpolicyservice.statetrustlife.com/SysFlexPolicyService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="Configurations.CategoryType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Hospital">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="People">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Property">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Provider">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Garage">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Vehicle">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Configurations.CategoryType" nillable="true" type="tns:Configurations.CategoryType" />
+  <xs:complexType name="ArrayOfConfigurations.MatchReasons">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Configurations.MatchReasons" nillable="true" type="tns:Configurations.MatchReasons" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfConfigurations.MatchReasons" nillable="true" type="tns:ArrayOfConfigurations.MatchReasons" />
+  <xs:complexType name="Configurations.MatchReasons">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EntityID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Configurations.MatchReasons" nillable="true" type="tns:Configurations.MatchReasons" />
+</xs:schema>

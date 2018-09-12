@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+	<configSections>
+		<sectionGroup name="devExpress">
+			<section name="themes" type="DevExpress.Web.ThemesConfigurationSection, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+			<section name="compression" type="DevExpress.Web.CompressionConfigurationSection, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+			<section name="settings" type="DevExpress.Web.SettingsConfigurationSection, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+			<section name="errors" type="DevExpress.Web.ErrorsConfigurationSection, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+		</sectionGroup>
+		<sectionGroup name="system.web.extensions" type="System.Web.Configuration.SystemWebExtensionsSectionGroup, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+			<sectionGroup name="scripting" type="System.Web.Configuration.ScriptingSectionGroup, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+				<section name="scriptResourceHandler" type="System.Web.Configuration.ScriptingScriptResourceHandlerSection, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" requirePermission="false" allowDefinition="MachineToApplication" />
+				<sectionGroup name="webServices" type="System.Web.Configuration.ScriptingWebServicesSectionGroup, System.Web.Extensions,  Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+					<section name="jsonSerialization" type="System.Web.Configuration.ScriptingJsonSerializationSection, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" requirePermission="false" allowDefinition="Everywhere" />
+					<section name="profileService" type="System.Web.Configuration.ScriptingProfileServiceSection, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" requirePermission="false" allowDefinition="MachineToApplication" />
+					<section name="authenticationService" type="System.Web.Configuration.ScriptingAuthenticationServiceSection, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" requirePermission="false" allowDefinition="MachineToApplication" />
+					<section name="roleService" type="System.Web.Configuration.ScriptingRoleServiceSection, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" requirePermission="false" allowDefinition="MachineToApplication" />
+				</sectionGroup>
+			</sectionGroup>
+		</sectionGroup>
+		<section name="unity" type="Microsoft.Practices.Unity.Configuration.UnityConfigurationSection, Microsoft.Practices.Unity.Configuration" />
+		<section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+		<!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+	</configSections>
+	<system.web.extensions>
+		<scripting>
+			<webServices>
+				<jsonSerialization maxJsonLength="50000000" />
+			</webServices>
+		</scripting>
+	</system.web.extensions>
+	<connectionStrings>
+		<!--QA-->
+		<!--<add name="GlobalEntityDataModel" connectionString="metadata=res://*/Data.GlobalEdm.csdl|res://*/Data.GlobalEdm.ssdl|res://*/Data.GlobalEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=STL-DEV04\SQL2008A;initial catalog=Dev_Global_LoadData;User Id=QA ;Password=QA2015*;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="STFGlobalEntities" connectionString="metadata=res://*/STFGlobalEntities.csdl|res://*/STFGlobalEntities.ssdl|res://*/STFGlobalEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=STL-DEV04\SQL2008A;initial catalog=Dev_Global_LoadData;user id=QA ;password=QA2015*;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="Statetrust.Framework.SecurityConnectionString" connectionString="Data Source=STL-DEV02\SQL2008A;Initial Catalog=Security_ATL;User ID=sa;Password=state" />-->
+
+		<!--PRE-PRODUCCION-->
+		<!--<add name="GlobalEntityDataModel" connectionString="metadata=res://*/Data.GlobalEdm.csdl|res://*/Data.GlobalEdm.ssdl|res://*/Data.GlobalEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ATL-DEV22.dev.atlantica.local;initial catalog=Dev_Global_LoadData;User Id=GlobalApps;Password=global;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="STFGlobalEntities" connectionString="metadata=res://*/STFGlobalEntities.csdl|res://*/STFGlobalEntities.ssdl|res://*/STFGlobalEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ATL-DEV22.dev.atlantica.local;initial catalog=Dev_Global_LoadData;user id=GlobalApps;password=global;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="Statetrust.Framework.SecurityConnectionString" connectionString="Data Source=ATL-DEV22.dev.atlantica.local;Initial Catalog=Security_ATL;User ID=GlobalApps;Password=global" />-->
+
+		<!--PRE-PRODUCCION NUEVO-->
+		<!--<add name="GlobalEntityDataModel" connectionString="metadata=res://*/Data.GlobalEdm.csdl|res://*/Data.GlobalEdm.ssdl|res://*/Data.GlobalEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ATL-PRE-SRV47.qa.atlantica.local;initial catalog=Global;User Id=GlobalApps;Password=global;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="STFGlobalEntities" connectionString="metadata=res://*/STFGlobalEntities.csdl|res://*/STFGlobalEntities.ssdl|res://*/STFGlobalEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ATL-PRE-SRV47.qa.atlantica.local;initial catalog=Global;user id=GlobalApps;password=global;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="Statetrust.Framework.SecurityConnectionString" connectionString="Data Source=ATL-PRE-SRV47.qa.atlantica.local;Initial Catalog=Security;User ID=GlobalApps;Password=global" />-->
+
+		<!--DESARROLLO-->
+		<add name="GlobalEntityDataModel" connectionString="metadata=res://*/Data.GlobalEdm.csdl|res://*/Data.GlobalEdm.ssdl|res://*/Data.GlobalEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ATL-DEV05.atlantica.do;initial catalog=Global;User Id=Developer05;Password=Developer05;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+		<add name="STFGlobalEntities" connectionString="metadata=res://*/STFGlobalEntities.csdl|res://*/STFGlobalEntities.ssdl|res://*/STFGlobalEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ATL-DEV05.atlantica.do;initial catalog=Global;user id=Developer05;password=Developer05;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+		<add name="Statetrust.Framework.SecurityConnectionString" connectionString="Data Source=ATL-DEV05.atlantica.do;Initial Catalog=Security;User ID=Developer05;Password=Developer05" />
+
+		<!--<add name="GlobalEntityDataModel" connectionString="metadata=res://*/Data.GlobalEdm.csdl|res://*/Data.GlobalEdm.ssdl|res://*/Data.GlobalEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=STL-DEV05\SQL2012A;Initial Catalog=Global_20160614;Integrated Security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+		<add name="STFGlobalEntities" connectionString="metadata=res://*/STFGlobalEntities.csdl|res://*/STFGlobalEntities.ssdl|res://*/STFGlobalEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=STL-DEV05\SQL2012A;Initial Catalog=Global_20160614;Integrated Security=True;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+		<add name="Statetrust.Framework.SecurityConnectionString" connectionString="Data Source=172.16.38.12\SQL2008A,49281;Initial Catalog=Security;User ID=sa;Password=state" />-->
+
+		<!--PRODUCCION-->
+		<!--<add name="GlobalEntityDataModel" connectionString="metadata=res://*/Data.GlobalEdm.csdl|res://*/Data.GlobalEdm.ssdl|res://*/Data.GlobalEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ATL-SRV56.atlantica.do;initial catalog=Global;User Id=dev_global;Password=global;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="STFGlobalEntities" connectionString="metadata=res://*/STFGlobalEntities.csdl|res://*/STFGlobalEntities.ssdl|res://*/STFGlobalEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ATL-SRV56.atlantica.do;initial catalog=Global;user id=dev_global;password=global;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="Statetrust.Framework.SecurityConnectionString" connectionString="Data Source=ATL-SRV56.atlantica.do;Initial Catalog=Security;User ID=dev_global;Password=global" />-->
+	</connectionStrings>
+	<unity xmlns="http://schemas.microsoft.com/practices/2010/unity">
+		<assembly name="DI.UnderWriting" />
+		<assembly name="DI.UnderWriting.Implementations" />
+		<assembly name="DI.UnderWriting.Interfaces" />
+		<assembly name="DI.UnderWriting.IllusData.Implementations" />
+		<assembly name="DI.UnderWriting.IllusData.Interfaces" />
+		<namespace name="DI.UnderWriting" />
+		<namespace name="DI.UnderWriting.Implementations" />
+		<namespace name="DI.UnderWriting.Interfaces" />
+		<namespace name="DI.UnderWriting.IllusData.Implementations" />
+		<namespace name="DI.UnderWriting.IllusData.Interfaces" />
+		<container name="DIUnderWritingBll">
+			<register type="ICase" mapTo="CaseBll">
+			</register>
+			<register type="IContact" mapTo="ContactBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IDropDown" mapTo="DropDownBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IForm" mapTo="FormBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IAmmendment" mapTo="AmmendmentBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IBeneficiary" mapTo="BeneficiaryBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IRider" mapTo="RiderBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IPayment" mapTo="PaymentBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IRequirement" mapTo="RequirementBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IPolicy" mapTo="PolicyBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IMedical" mapTo="MedicalBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="INote" mapTo="NoteBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IStep" mapTo="StepBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IConfirmationCall" mapTo="ConfirmationCallBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IDataReview" mapTo="DataReviewBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="ICallRex" mapTo="CallRexBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IHealthDeclaration" mapTo="HealthDeclarationBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IHealth" mapTo="HealthBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IVehicle" mapTo="VehicleBll">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IIllusData" mapTo="IllusDataBll">
+				<lifetime type="singleton" />
+			</register>
+		</container>
+		<container name="DIUnderWritingWS">
+			<register type="ICase" mapTo="CaseWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IContact" mapTo="ContactWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IForm" mapTo="FormWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IDropDown" mapTo="DropDownWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IAmmendment" mapTo="AmmendmentWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IBeneficiary" mapTo="BeneficiaryWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IRider" mapTo="RiderWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IPayment" mapTo="PaymentWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IRequirement" mapTo="RequirementWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IPolicy" mapTo="PolicyWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IMedical" mapTo="MedicalWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="INote" mapTo="NoteWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IStep" mapTo="StepWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IConfirmationCall" mapTo="ConfirmationCallWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IDataReview" mapTo="DataReviewWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="ICallRex" mapTo="CallRexWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IHealthDeclaration" mapTo="HealthDeclarationWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IHealth" mapTo="HealthWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IVehicle" mapTo="VehicleWS">
+				<lifetime type="singleton" />
+			</register>
+			<register type="IIllusData" mapTo="IllusDataWS">
+				<lifetime type="singleton" />
+			</register>
+		</container>
+	</unity>
+	<!--
+		For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
+
+		The following attributes can be set on the <httpRuntime> tag.
+			<system.Web>
+				<httpRuntime targetFramework="4.5" />
+			</system.Web>
+	-->
+  <appSettings>
+    <add key="PDFViewer" value="hq20prexpramtai2prW3qLe0qL+/v78=" />
+    <!--Configuraciones Statetrust Framework-->
+    <add key="STFShowAvailableApps" value="true" />
+    <add key="STFIncludeJquery" value="false" />
+    <add key="STFIncludeJqueryUI" value="false" />
+    <add key="STFSessionNotification" value="true" />
+    <add key="STFSessionTimeWarning" value="1" />
+    <add key="STFAddResetCss" value="true" />
+    <add key="STFEditAgentProfile" value="true" />
+    <add key="STFIncludeJqueryForm" value="true" />
+    <add key="STFShowChangeCompany" value="true" />
+    <add key="STFShowLogo" value="false" />
+    <add key="STFJqueryVersion" value="jQuery_v1_11_3" />
+    <add key="STFEmailHost" value="statetrustlife-com.mail.protection.outlook.com" />
+    <add key="STFEmailFrom" value="clebron@statetrustlife.com" />
+        
+		<!--Configuraciones Modulo Seguridad-->
+		<!--PRE-PRODUCCION-->
+		<!--<add key="AppID" value="47" />-->
+		<!--DESARROLLO-->
+		<add key="AppID" value="UW" />
+		<add key="EncriptionKey" value="$t@teTru$t" />
+		<add key="SecurityMenuBar" value="false" />
+		<add key="ApplySecurity" value="false" />
+		<add key="appTitle" value="Underwriting" />
+		<add key="ApplicationLogin" value="false" />
+		<add key="SecurityLogin" value="http://devintranet.statetrustbank.eu/securitydashboard/Singlein.aspx" />
+		<add key="Version" value="Versión 6.0" />
+
+		<!--Audio executables-->
+		<add key="Recording_path" value="\\172.16.25.17\Call Recordings\" />
+		<add key="SoxExe_Path" value="~\TempFiles\Mp3\Sox\sox.exe" />
+
+		<!--Send To Reinsurance-->
+		<add key="FromEmail" value="jmejia@statetrustlife.com" />
+		<add key="TestReceiptEmail" value="jmejia@statetrustlife.com" />
+		<add key="SmtpServer" value="statetrustlife-com.mail.protection.outlook.com" />
+
+		<!--Esto se usa en el leftmenu ya que el corpID de la sesion no se llena hasta que se entra a un caso-->
+		<add key="CorpId" value="1" />
+		<add key="ProjectId" value="1" />
+	</appSettings>
+	<system.web>
+		<sessionState mode="InProc" timeout="10">
+		</sessionState>
+		<customErrors mode="Off" />
+		<compilation debug="true" targetFramework="4.5.1">
+			<assemblies>
+				<add assembly="DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+				<add assembly="DevExpress.Data.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+				<add assembly="DevExpress.Printing.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+				<add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
+				<add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+				<add assembly="DevExpress.RichEdit.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+				<add assembly="System.Data.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+				<add assembly="DevExpress.Web.ASPxThemes.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+				<add assembly="DevExpress.Web.ASPxPivotGrid.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+				<add assembly="DevExpress.PivotGrid.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+				<add assembly="DevExpress.Web.ASPxHtmlEditor.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+				<add assembly="DevExpress.Web.ASPxSpellChecker.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+				<add assembly="Statetrust.Framework.Security.Core, Version=1.0.5627.28019, Culture=neutral, PublicKeyToken=null" />
+				<add assembly="DevExpress.SpellChecker.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+			</assemblies>
+		</compilation>
+		<httpRuntime />
+		<httpModules>
+			<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+		</httpModules>
+		<httpHandlers>
+			<add verb="*" path="PdfBytesHandler.axd" type="PdfViewer4AspNet.PdfSourceBytesHandler,PdfViewerAspNet">
+			</add>
+			<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="DX.ashx" validate="false" />
+			<add type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" validate="false" />
+		</httpHandlers>
+		<pages controlRenderingCompatibilityVersion="4.0" />
+		<!--<authorization>
+      <deny users="?"/>
+    </authorization>-->
+	</system.web>
+	<system.webServer>
+		<modules>
+			<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+		</modules>
+		<validation validateIntegratedModeConfiguration="false" />
+		<handlers>
+			<add name="PdfBytesHandler" verb="*" path="PdfBytesHandler.axd" type="PdfViewer4AspNet.PdfSourceBytesHandler,PdfViewerAspNet" resourceType="Unspecified" />
+			<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="DX.ashx" name="ASPxHttpHandlerModule" preCondition="integratedMode" />
+			<add type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" name="ASPxUploadProgressHandler" preCondition="integratedMode" />
+		</handlers>
+	</system.webServer>
+	<devExpress>
+		<themes enableThemesAssembly="true" styleSheetTheme="" theme="" customThemeAssemblies="" />
+		<compression enableHtmlCompression="false" enableCallbackCompression="true" enableResourceCompression="true" enableResourceMerging="true" />
+		<settings doctypeMode="Xhtml" rightToLeft="false" embedRequiredClientLibraries="false" ieCompatibilityVersion="edge" />
+		<errors callbackErrorRedirectUrl="" />
+	</devExpress>
+	<system.serviceModel>
+		<bindings>
+			<basicHttpBinding>
+				<binding name="BasicHttpBinding_IClientService" />
+			</basicHttpBinding>
+			<customBinding>
+				<binding name="CustomBinding_IClientService">
+					<binaryMessageEncoding />
+					<httpTransport />
+				</binding>
+			</customBinding>
+		</bindings>
+		<client>
+			<endpoint address="http://172.16.25.17:8002/ClientService" binding="customBinding" bindingConfiguration="CustomBinding_IClientService" contract="CallRexClientService.IClientService" name="CustomBinding_IClientService" />
+			<endpoint address="http://172.16.25.17:8002/ClientServiceBasic" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IClientService" contract="CallRexClientService.IClientService" name="BasicHttpBinding_IClientService" />
+			<endpoint address="http://reinsurance.dev.statetrustlife.sv/Calculate.svc"
+		        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICalculate"
+		        contract="wsReinsurance.ICalculate" name="BasicHttpBinding_ICalculate" />
+		</client>
+	</system.serviceModel>
+	<system.net>
+		<mailSettings>
+			<smtp>
+				<network host="statetrustlife-com.mail.protection.outlook.com" />
+			</smtp>
+		</mailSettings>
+	</system.net>
+	<entityFramework>
+		<defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+		<providers>
+			<provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+		</providers>
+	</entityFramework>
+	<runtime>
+		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+			<dependentAssembly>
+				<assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+				<bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+			</dependentAssembly>
+		</assemblyBinding>
+	</runtime>
+</configuration>

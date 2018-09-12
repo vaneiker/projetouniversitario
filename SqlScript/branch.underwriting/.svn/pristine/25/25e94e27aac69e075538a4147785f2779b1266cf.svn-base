@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IClientService" />
+            </basicHttpBinding>
+            <customBinding>
+                <binding name="CustomBinding_IClientService">
+                    <binaryMessageEncoding />
+                    <httpTransport />
+                </binding>
+            </customBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://172.16.25.17:8002/ClientService" binding="customBinding"
+                bindingConfiguration="CustomBinding_IClientService" contract="CallRexClientService.IClientService"
+                name="CustomBinding_IClientService" />
+            <endpoint address="http://172.16.25.17:8002/ClientServiceBasic"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IClientService"
+                contract="CallRexClientService.IClientService" name="BasicHttpBinding_IClientService" />
+        </client>
+    </system.serviceModel>
+</configuration>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="dataset" type="SYSFLEX_PROPIEDAD"/>
+
+	<xs:complexType name="SYSFLEX_PROPIEDAD">
+		<xs:sequence>
+		<xs:element name="Transaction" type="Transaction" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="Cliente" type="Cliente" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:element name="CotizacionFire" type="CotizacionFire" minOccurs="0" maxOccurs="1"/>
+		 <xs:element name="Construccion" type="Construccion" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:element name="ElementoAsegurado" type="ElementoAsegurado" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="PrimeResume" type="PrimeResume" minOccurs="0" maxOccurs="1"/> 	  
+	  </xs:sequence>
+	
+	</xs:complexType>
+
+	<xs:complexType name="Transaction">
+         
+            <xs:sequence>
+              <xs:element type="xs:long" name="DocumentId" minOccurs="1"/>
+              <!-- Id del template de Thunderhead a utilizar-->
+              <xs:element type="xs:string" name="FullName" minOccurs="0" maxOccurs="1"/>
+              <!-- Nombre del asegurado-->
+			  <xs:element type="xs:string" name="NoPoliza" minOccurs="0" maxOccurs="1"/>
+              <!-- Numero de poliza -->
+			  <xs:element type="xs:string" name="TipoPoliza" minOccurs="0" maxOccurs="1"/>
+              <!-- tipo de poliza -->
+			  <xs:element type="xs:string" name="Plan" minOccurs="0" maxOccurs="1"/>
+              <!-- Plan de la poliza -->
+              <xs:element type="xs:string" name="Username" minOccurs="0" maxOccurs="1"/>
+              <!-- Nombre de usuario de la cuenta sobre la cual se va a trabajar -->		  
+			  <xs:element type="xs:date" name="FechaInicio" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha Inicio -->
+			  <xs:element type="xs:date" name="FechaVencimiento" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha Vencimiento -->
+			   <xs:element type="xs:int" name="DiasVencimiento" minOccurs ="0" maxOccurs ="1"/>
+              <!-- Dias vencimiento poliza -->
+			  <xs:element type="xs:date" name="FechaAutorizacion" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha Autorizacion --><!-- **New 18/04/2016** -->
+			  <xs:element type="xs:string" name="AgenteComercial" minOccurs="0" maxOccurs="1"/>
+			  <!-- Agente Comercial -->
+			   <xs:element type="xs:string" name="OficinaComercial" minOccurs="0" maxOccurs="1"/>
+			  <!-- Oficina Comercial --><!-- **New 18/04/2016** -->
+			  <xs:element type="xs:string" name="NumeroAgenteComercial" minOccurs="0" maxOccurs="1"/>
+              <!-- Codigo Agente Comercial -->
+			  <xs:element type="xs:string" name="Supervisor" minOccurs="0" maxOccurs="1"/>
+              <!-- Supervisor -->
+			  <xs:element type="xs:decimal" name="Fianza" minOccurs ="0" maxOccurs ="1"/>
+			  <!-- Fianza -->
+			  <xs:element type="xs:string" name="Email" minOccurs="0" maxOccurs="1"/>
+              <!-- Email al que se va a enviar -->
+			  <xs:element type="xs:string" name="BCCopy" minOccurs="0" maxOccurs="1"/>
+              <!-- Correos que van en copia oculta -->
+			  <xs:element type="xs:string" name="CCopy" minOccurs="0" maxOccurs="1"/>
+              <!-- Correos que van en copia -->
+			  
+            </xs:sequence>
+         
+        </xs:complexType>
+
+	<xs:complexType name="CotizacionFire">
+		   <xs:sequence>
+			
+								<!--****COTIZACION AUTO****-->
+	    <!--****NOTA: pueden haber propiedades que seran utilizadas para otros documentos****-->
+            
+			<xs:element type="xs:string" name="Name" minOccurs="0" maxOccurs="1"/>
+              <!-- Nombres del solicitante-->
+              <xs:element type="xs:string" name="LastName" minOccurs="0" maxOccurs="1"/>
+              <!-- Apelldidos del solicitante-->
+             <xs:element type="xs:string" name="TipoNegocioOActividad" minOccurs="0" maxOccurs="1"/>
+              <!-- RaTipoNegocio O Actividad del solicitante -->
+			   <xs:element type="xs:string" name="TipoMoneda" minOccurs="0" maxOccurs="1"/>
+              <!-- RaTipoNegocio O Actividad del solicitante -->
+              <xs:element type="xs:date" name="ProposalDate" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha de la propuesta -->
+			  
+			  <xs:element type="xs:date" name="QuotationDate" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha de la cotizacion -->
+			  
+			  <xs:element type="xs:string" name="QuotationNumber" minOccurs="1"/>
+			  
+			  <xs:element type="xs:string" name="ColindanciaNorte" minOccurs="0" maxOccurs="1"/>
+              <xs:element type="xs:string" name="ColindanciaSur" minOccurs="0" maxOccurs="1"/>
+              <xs:element type="xs:string" name="ColindanciaEste" minOccurs="0" maxOccurs="1"/>
+              <xs:element type="xs:string" name="ColindanciaOeste" minOccurs ="0" maxOccurs ="1"/>
+              <xs:element type="xs:string" name="DistanciaRios" minOccurs ="0" maxOccurs ="1"/>
+              <xs:element type="xs:string" name="DistanciaMares" minOccurs ="0" maxOccurs ="1"/>
+              <xs:element type="xs:string" name="DistanciaCañadas" minOccurs ="0" maxOccurs ="1"/>
+			  
+			   <xs:element type="xs:decimal" name="Total" minOccurs ="0" maxOccurs ="1"/>
+
+			  
+	  
+            </xs:sequence>
+
+			
+	</xs:complexType>
+
+	  
+  
+  <xs:complexType name="PrimeResume">
+		<xs:sequence>
+                    <xs:element type="xs:decimal" name="TotalAnualPrime" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- Total Prima Anual -->
+                    <xs:element type="xs:decimal" name="Taxes" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- Impuestos -->
+                    <xs:element type="xs:decimal" name="Discount" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- Descuentos - no esta en el doc enviado pero lo envio igual -->
+                    <xs:element type="xs:decimal" name="TotalPayment" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- Total a pagar-->
+        </xs:sequence>	
+	
+	</xs:complexType>
+	
+	
+	
+	 <xs:complexType name="Construccion">
+		<xs:sequence>
+                    <xs:element type="xs:string" name="Tipo" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- tipo de construcciones -->
+					<xs:element type="xs:string" name="Descripcion" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- Descripcion de construcciones -->
+        </xs:sequence>	
+	</xs:complexType>
+	
+	
+	
+	
+	 <xs:complexType name="Cliente">
+		<xs:sequence>
+                    <xs:element type="xs:string" name="IdNumber" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- numero documento identidad -->
+					<xs:element type="xs:string" name="TelephoneNumber" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- numero documento identidad -->
+					<xs:element type="xs:string" name="Direccion" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- direccion del cliente -->
+					<xs:element type="xs:string" name="Email" minOccurs="0" maxOccurs="1"/>
+              <!-- Email al que se va a enviar -->
+        </xs:sequence>	
+	</xs:complexType>
+	
+	
+	<xs:complexType name="ElementoAsegurado">
+		<xs:sequence>
+                    <xs:element type="xs:decimal" name="Valor" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- numero documento identidad -->
+					<xs:element type="xs:string" name="Descripcion" minOccurs ="0" maxOccurs ="1"/>
+                    <!-- numero documento identidad -->
+		</xs:sequence>	
+	</xs:complexType>
+	
+	
+	
+	
+
+</xs:schema>

@@ -1,0 +1,216 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WEB.NewBusiness.Common;
+
+namespace WEB.NewBusiness.NewBusiness.UserControls.ContactsInfo
+{
+    public partial class ContactsInfoContainer : UC, IUC
+    {
+        protected void Page_Load(object sender, EventArgs e) { }
+
+        public void Translator(string Lang) { }
+
+        public void ChangeView(int ViewIndex)
+        {
+            mtvInfoContainer.ActiveViewIndex = ViewIndex;
+            udpOwnerInfoContainer.Update();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="chk"></param>
+        /// <param name="isLoading"></param>
+        /// <param name="index"></param>
+        /// <param name="IsSameInsured"></param>
+        public void ShowFormOwnerInfo(CheckBox chk, Boolean isLoading = true, int index = 0, bool IsSameInsured = true)
+        {
+            ChangeView(index);
+
+            if (!isLoading)
+            {
+                if (!ObjServices.IsDataReviewMode)
+                {
+                    var RoleType = Utility.getvalueFromEnumType("Owner", typeof(Utility.ContactRoleIDType));
+                    //Despegar el contacto de la poliza que se creo como owner igual al asegurado                        
+                    ObjServices.oPolicyManager.DeleteContactRole(ObjServices.Corp_Id,
+                                                                 ObjServices.Region_Id,
+                                                                 ObjServices.Country_Id,
+                                                                 ObjServices.Domesticreg_Id,
+                                                                 ObjServices.State_Prov_Id,
+                                                                 ObjServices.City_Id,
+                                                                 ObjServices.Office_Id,
+                                                                 ObjServices.Case_Seq_No,
+                                                                 ObjServices.Hist_Seq_No,
+                                                                 ObjServices.Owner_Id,
+                                                                 RoleType,
+                                                                 ObjServices.UserID.Value
+                                                                );
+
+                }
+
+                var WUCSearchContacts = this.Page.Master.FindControl("bodyContent").FindControl("WUCSearchContacts");
+
+                if (!WUCSearchContacts.isNullReferenceControl())
+                {
+                    var oDrop = (WUCSearchContacts.FindControl("ddl_P_ANC_Relationship") as DropDownList);
+                    oDrop.Enabled = !IsSameInsured;
+                    oDrop.SelectIndexByValue("-1", true);
+                    ObjServices.Relationship_With_Owner_ToAgentId = -1;
+                    ObjServices.Owner_Id = -1;
+                    ObjServices.ContactEntityID = -1;
+
+                    var oOwner = ObjServices.GetContact(ObjServices.Owner_Id.Value);
+
+                    if (!oOwner.isNullReferenceObject())
+                        ObjServices.isCompanyOwner = (oOwner.ContactTypeId == Utility.ContactTypeId.Company.ToInt() || chk.ID == "chkIsCompany");
+                }
+
+                //Iniciarlizar los componentes
+                Initialize();
+            }
+        }
+
+        public void save()
+        {
+            WUCPersonalInformation.save();
+
+            //Si existe el Owner
+            if (ObjServices.Owner_Id > 0)
+            {
+                var oOwner = ObjServices.GetContactInfo(Utility.ContactRoleIDType.Owner);
+                ObjServices.isCompanyOwner = (oOwner != null && oOwner.ContactTypeId == Utility.ContactTypeId.Company.ToInt());
+            }
+
+            if (ObjServices.isCompanyOwner && currentTab == "OwnerInfo")
+                WUCCompanyInfo.save();
+            else
+            {
+                //Controles superiores Personal Information, Address y BackgroundInformation           
+                WUCAddress.save();
+                WUCBackgroundInformation.save();
+
+                //Controles inferiores Phone, Email Address e Identifications
+                WUCPhoneNumber.Operation = Utility.OperationType.InsertAll;
+                WUCPhoneNumber.save();
+                WUCIdentification.Operation = Utility.OperationType.InsertAll;
+                WUCIdentification.save();
+                WUCEmailAddress.Operation = Utility.OperationType.InsertAll;
+                WUCEmailAddress.save();
+            }
+
+            if (ObjServices.ContactServicesIsActive)
+            {
+                //Invocar el metodo del webservice para guardar en illusdata
+                ObjServices.oContactServicesClient.SetContactAllInformation(corpId: Utility.Encrypt(ObjServices.Corp_Id.ToString()),
+                                                                            contactId: Utility.Encrypt(ObjServices.ContactEntityID.ToString()), 
+                                                                            companyId: Utility.Encrypt(ObjServices.CompanyId)
+                                                                           );
+            }
+        }
+
+        public void EnabledControls(bool x)
+        {
+            //Si existe el Owner
+            if (ObjServices.Owner_Id > 0)
+            {
+                var oOwner = ObjServices.GetContactInfo(Utility.ContactRoleIDType.Owner);
+                ObjServices.isCompanyOwner = (oOwner != null && oOwner.ContactTypeId == Utility.ContactTypeId.Company.ToInt());
+            }
+
+            if (ObjServices.isCompanyOwner && currentTab == "OwnerInfo")
+            {
+                WUCCompanyInfo.EnabledControls(x);
+                WUCAddress.EnabledControls(x);
+                WUCPhoneNumber.EnabledControls(x);
+                WUCEmailAddress.EnabledControls(x);
+            }
+            else
+            {
+                WUCPersonalInformation.EnabledControls(x);
+                WUCAddress.EnabledControls(x);
+                WUCPhoneNumber.EnabledControls(x);
+                WUCEmailAddress.EnabledControls(x);
+                WUCBackgroundInformation.EnabledControls(x);
+                WUCIdentification.EnabledControls(x);
+            }
+        }
+
+        public void edit()
+        {
+
+        }
+
+        public void FillData()
+        {
+
+        }
+
+        public void Initialize()
+        {
+            ClearData();
+
+            if (!ObjServices.IsDataReviewMode)
+            {
+                //Habilitar todos los controles
+                WUCPersonalInformation.EnabledControls(true);
+                WUCAddress.EnabledControls(true);
+                WUCPhoneNumber.EnabledControls(true);
+                WUCEmailAddress.EnabledControls(true);
+                WUCBackgroundInformation.EnabledControls(true);
+                WUCIdentification.EnabledControls(true);
+                //End 
+            }
+
+            //Si es una compañia y el tab es Owner Info
+            if (ObjServices.isCompanyOwner && currentTab == "OwnerInfo")
+                WUCCompanyInfo.Initialize(currentTab);
+            else
+            {
+                WUCPersonalInformation.Initialize(currentTab);  
+                WUCAddress.Initialize(currentTab);
+                WUCPhoneNumber.Initialize(currentTab);
+                WUCEmailAddress.Initialize(currentTab);
+                WUCBackgroundInformation.Initialize(currentTab);
+                WUCIdentification.Initialize(currentTab);
+            }
+
+            if (currentTab == "OwnerInfo" && ((ObjServices.Contact_Id.Value > 0 && ObjServices.Owner_Id.Value > 0) &&
+                                             (ObjServices.Contact_Id.Value == ObjServices.Owner_Id.Value)))
+                EnabledControls(ObjServices.IsReadOnly);
+
+            if (ObjServices.IsDataReviewMode && getisView ||
+               !ObjServices.IsDataReviewMode && ObjServices.IsReadOnly)
+                ReadOnlyControls(ObjServices.IsReadOnly);
+
+            WUCSaveTab.Initialize();
+        }
+
+        public void ClearData()
+        {
+            WUCPersonalInformation.ClearData();
+            WUCCompanyInfo.ClearData();
+            WUCAddress.ClearData(currentTab);
+            WUCPhoneNumber.ClearData(currentTab);
+            WUCEmailAddress.ClearData(currentTab);
+            WUCBackgroundInformation.ClearData();
+            WUCIdentification.ClearData(currentTab);
+        }
+
+
+        public void ReadOnlyControls(bool isReadOnly)
+        {
+            WUCPersonalInformation.ReadOnlyControls(isReadOnly);
+            WUCCompanyInfo.ReadOnlyControls(isReadOnly);
+            WUCAddress.ReadOnlyControls(isReadOnly);
+            WUCPhoneNumber.ReadOnlyControls(isReadOnly);
+            WUCEmailAddress.ReadOnlyControls(isReadOnly);
+            WUCBackgroundInformation.ReadOnlyControls(isReadOnly);
+            WUCIdentification.ReadOnlyControls(isReadOnly);
+        }
+    }
+}

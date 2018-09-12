@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Global.Common.Results" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Global.Common.Results" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://devpolicyglobalservice.statetrustlife.com/PolicyService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" />
+  <xs:import schemaLocation="http://devpolicyglobalservice.statetrustlife.com/PolicyService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.WebServiceReturnObjects" />
+  <xs:import schemaLocation="http://devpolicyglobalservice.statetrustlife.com/PolicyService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.Clients" />
+  <xs:import schemaLocation="http://devpolicyglobalservice.statetrustlife.com/PolicyService.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/CobrosDomiciados" />
+  <xs:complexType name="SetPropertyResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Property" nillable="true" type="q1:Property.SetPropertyResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetPropertyResult" nillable="true" type="tns:SetPropertyResult" />
+  <xs:complexType name="ResultCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultCode" nillable="true" type="tns:ResultCode" />
+  <xs:complexType name="SetPropertyDetailResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Detail" nillable="true" type="q2:Property.Detail" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetPropertyDetailResult" nillable="true" type="tns:SetPropertyDetailResult" />
+  <xs:complexType name="SetPropertyInsuredResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="PropertyInsured" nillable="true" type="q3:Property.Insured" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetPropertyInsuredResult" nillable="true" type="tns:SetPropertyInsuredResult" />
+  <xs:complexType name="SetPropertyInsuredDetailResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="PropertyInsuredDetail" nillable="true" type="q4:Property.Insured.Detail" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetPropertyInsuredDetailResult" nillable="true" type="tns:SetPropertyInsuredDetailResult" />
+  <xs:complexType name="SetPropertyInsuredDetailCoverageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Coverage" nillable="true" type="q5:Property.Insured.Detail.Coverage" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetPropertyInsuredDetailCoverageResult" nillable="true" type="tns:SetPropertyInsuredDetailCoverageResult" />
+  <xs:complexType name="SetPropertyInsuredDetailFeatureResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Feature" nillable="true" type="q6:Property.Insured.Detail.Feature" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetPropertyInsuredDetailFeatureResult" nillable="true" type="tns:SetPropertyInsuredDetailFeatureResult" />
+  <xs:complexType name="getResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="JSONResult" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="getResult" nillable="true" type="tns:getResult" />
+  <xs:complexType name="SetTransportInsuredResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q7:Transport.Insured.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetTransportInsuredResult" nillable="true" type="tns:SetTransportInsuredResult" />
+  <xs:complexType name="SetTransportInsuredCoverageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q8:Transport.Insured.Coverage.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetTransportInsuredCoverageResult" nillable="true" type="tns:SetTransportInsuredCoverageResult" />
+  <xs:complexType name="SetAirplaneInsuredResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q9:Airplane.Insured.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetAirplaneInsuredResult" nillable="true" type="tns:SetAirplaneInsuredResult" />
+  <xs:complexType name="SetAirPlaneInsuredCoverageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q10:Airplane.Insured.Coverage.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetAirPlaneInsuredCoverageResult" nillable="true" type="tns:SetAirPlaneInsuredCoverageResult" />
+  <xs:complexType name="SetAirPlaneInsuredPilotResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q11:Airplane.Insured.Pilot.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetAirPlaneInsuredPilotResult" nillable="true" type="tns:SetAirPlaneInsuredPilotResult" />
+  <xs:complexType name="SetBailInsuredResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q12:Bail.Insured.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetBailInsuredResult" nillable="true" type="tns:SetBailInsuredResult" />
+  <xs:complexType name="SetBailInsuredCoverageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q13:Bail.Insured.Coverage.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetBailInsuredCoverageResult" nillable="true" type="tns:SetBailInsuredCoverageResult" />
+  <xs:complexType name="SetNavyInsuredResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Navy" nillable="true" type="q14:Navy.Insured.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetNavyInsuredResult" nillable="true" type="tns:SetNavyInsuredResult" />
+  <xs:complexType name="SetNavyInsuredCoverageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q15:Navy.Insured.Coverage.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetNavyInsuredCoverageResult" nillable="true" type="tns:SetNavyInsuredCoverageResult" />
+  <xs:complexType name="SetPolicyInsuredCoverageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="InsuredCoverage" nillable="true" type="q16:Coverage.InsuredCoverage" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetPolicyInsuredCoverageResult" nillable="true" type="tns:SetPolicyInsuredCoverageResult" />
+  <xs:complexType name="VehicleInsuredResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:getResult">
+        <xs:sequence>
+          <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="VehicleInsured" nillable="true" type="q17:Policy.VehicleInsured" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VehicleInsuredResult" nillable="true" type="tns:VehicleInsuredResult" />
+  <xs:complexType name="MakeModelHomologationResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:getResult">
+        <xs:sequence>
+          <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="MakeModelHomologation" nillable="true" type="q18:Policy.MakeModelHomologation" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MakeModelHomologationResult" nillable="true" type="tns:MakeModelHomologationResult" />
+  <xs:complexType name="VehicleCoverageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:getResult">
+        <xs:sequence>
+          <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="VehicleCoverage" nillable="true" type="q19:Policy.VehicleCoverage" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VehicleCoverageResult" nillable="true" type="tns:VehicleCoverageResult" />
+  <xs:complexType name="CalculateLoansResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.WebServiceReturnObjects" minOccurs="0" name="productCalculatorResult" nillable="true" type="q20:ProductCalculatorResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CalculateLoansResult" nillable="true" type="tns:CalculateLoansResult" />
+  <xs:complexType name="ExportAgentResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.Clients" minOccurs="0" name="exportResult" nillable="true" type="q21:ExportResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ExportAgentResult" nillable="true" type="tns:ExportAgentResult" />
+  <xs:complexType name="ExportClientResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.Clients" minOccurs="0" name="exportResult" nillable="true" type="q22:ExportResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ExportClientResult" nillable="true" type="tns:ExportClientResult" />
+  <xs:complexType name="CreateLoanResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.Clients" minOccurs="0" name="exportResult" nillable="true" type="q23:ExportResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreateLoanResult" nillable="true" type="tns:CreateLoanResult" />
+  <xs:complexType name="GpDomiciliationResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/CobrosDomiciados" minOccurs="0" name="oReturn" nillable="true" type="q24:Return" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GpDomiciliationResult" nillable="true" type="tns:GpDomiciliationResult" />
+  <xs:complexType name="ProductResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductResult" nillable="true" type="tns:ProductResult" />
+  <xs:complexType name="ProductTypeResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q25:Product.Type.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductTypeResult" nillable="true" type="tns:ProductTypeResult" />
+  <xs:complexType name="CoverageTypeResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q26:Coverage.Type.Key" />
+          <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Type" nillable="true" type="q27:Coverage.Type" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CoverageTypeResult" nillable="true" type="tns:CoverageTypeResult" />
+  <xs:complexType name="CoverageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Coverage" nillable="true" type="q28:Coverage" />
+          <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q29:Coverage.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CoverageResult" nillable="true" type="tns:CoverageResult" />
+  <xs:complexType name="CoverageGroupResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Group" nillable="true" type="q30:Coverage.Group" />
+          <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q31:Coverage.Group.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CoverageGroupResult" nillable="true" type="tns:CoverageGroupResult" />
+  <xs:complexType name="CoverageGroupDetailResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Detail" nillable="true" type="q32:Coverage.Group.Detail" />
+          <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q33:Coverage.Group.Detail.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CoverageGroupDetailResult" nillable="true" type="tns:CoverageGroupDetailResult" />
+  <xs:complexType name="CoverageProductResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" minOccurs="0" name="Key" nillable="true" type="q34:Coverage.Product.Key" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CoverageProductResult" nillable="true" type="tns:CoverageProductResult" />
+  <xs:complexType name="RequirementResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultCode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RequirementResult" nillable="true" type="tns:RequirementResult" />
+</xs:schema>

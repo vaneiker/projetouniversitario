@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KSIWebServices.DataContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KSIWebServices.DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="LoanType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Vehicles" />
+      <xs:enumeration value="Personal" />
+      <xs:enumeration value="Payroll" />
+      <xs:enumeration value="VehicleInsurance" />
+      <xs:enumeration value="HouseInsurance" />
+      <xs:enumeration value="LifeInsurace" />
+      <xs:enumeration value="EnterpriseInsurance" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LoanType" nillable="true" type="tns:LoanType" />
+</xs:schema>

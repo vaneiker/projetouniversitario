@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Family_Eligibility_Member_Benefit_Plan_Panel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="benefit_contract_period_benefit_plan_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="family_eligibility_id" type="xs:int" />
+      <xs:element minOccurs="0" name="object_row_version" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Family_Eligibility_Member_Benefit_Plan_Panel" nillable="true" type="tns:Family_Eligibility_Member_Benefit_Plan_Panel" />
+  <xs:complexType name="Family_Eligibility_Member_Benefit_Plan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="benefit_plan_id" type="xs:int" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="eligibility_level_id" type="xs:int" />
+      <xs:element minOccurs="0" name="family_eligibility_member_benefit_plan_id" type="xs:int" />
+      <xs:element minOccurs="0" name="family_eligibility_member_benefit_plan_object_row_version" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="family_eligibility_member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="family_eligibility_termination_reason_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="member_eligibility_ud" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="never_under_coverage" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Family_Eligibility_Member_Benefit_Plan" nillable="true" type="tns:Family_Eligibility_Member_Benefit_Plan" />
+</xs:schema>

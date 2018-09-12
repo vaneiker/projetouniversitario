@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D562EFEB-AC0D-4187-B3CD-C2914AA20695}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LOGIC.UnderWriting</RootNamespace>
+    <AssemblyName>LOGIC.UnderWriting</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Encryption.cs" />
+    <Compile Include="Common\MethodExtensions.cs" />
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Global\Underwriting\AirPlaneManager.cs" />
+    <Compile Include="Global\Underwriting\BailManager.cs" />
+    <Compile Include="Global\Underwriting\TransportManager.cs" />
+    <Compile Include="Global\Underwriting\NavyManager.cs" />
+    <Compile Include="Global\Underwriting\PropertyManager.cs" />
+    <Compile Include="Global\Underwriting\AlliedLinesReviewManager.cs" />
+    <Compile Include="Global\Underwriting\VehicleManager.cs" />
+    <Compile Include="Global\Underwriting\AmmendmentManager.cs" />
+    <Compile Include="Global\Underwriting\BeneficiaryManager.cs" />
+    <Compile Include="Global\Underwriting\CaseManager.cs" />
+    <Compile Include="Global\Underwriting\FormManager.cs" />
+    <Compile Include="Global\Underwriting\HealthDeclarationManager.cs" />
+    <Compile Include="Global\Underwriting\DataReviewManager.cs" />
+    <Compile Include="Global\Underwriting\HealthManager.cs" />
+    <Compile Include="Global\Underwriting\NoteManager.cs" />
+    <Compile Include="Global\Underwriting\ContactManager.cs" />
+    <Compile Include="Global\Underwriting\DropDownManager.cs" />
+    <Compile Include="Global\Underwriting\MedicalManager.cs" />
+    <Compile Include="Global\Underwriting\PaymentManager.cs" />
+    <Compile Include="Global\Underwriting\ConfirmationCallManager.cs" />
+    <Compile Include="Global\Underwriting\CallRexManager.cs" />
+    <Compile Include="Global\Underwriting\StepManager.cs" />
+    <Compile Include="Global\Underwriting\PolicyManager.cs" />
+    <Compile Include="Global\Underwriting\RequirementManager.cs" />
+    <Compile Include="Global\Underwriting\RiderManager.cs" />
+    <Compile Include="IllusData\IllusDataManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CallRex.UnderWriting\CallRex.UnderWriting.csproj">
+      <Project>{ed582058-f789-4a0f-82a6-dc24b529a899}</Project>
+      <Name>CallRex.UnderWriting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DATA.UnderWriting\DATA.UnderWriting.csproj">
+      <Project>{271d6476-68e4-4f3b-b428-290d40c12d4d}</Project>
+      <Name>DATA.UnderWriting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity.UnderWriting\Entity.UnderWriting.csproj">
+      <Project>{664bc204-9206-4e88-a9e8-255183325756}</Project>
+      <Name>Entity.UnderWriting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

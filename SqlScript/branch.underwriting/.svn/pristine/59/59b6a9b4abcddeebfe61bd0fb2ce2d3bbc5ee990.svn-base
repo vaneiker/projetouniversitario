@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="unity" type="Microsoft.Practices.Unity.Configuration.UnityConfigurationSection, Microsoft.Practices.Unity.Configuration" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <appSettings>
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+    <add key="ClientSettingsProvider.ServiceUri" value="" />
+    <add key="EncriptionKey" value="$t@teTru$t" />
+    <add key="UsingTest" value="false" />
+  </appSettings>
+  <connectionStrings>
+    <!--App-->
+    <add name="GlobalEntityDataModel" connectionString="metadata=res://*/Data.GlobalEdm.csdl|res://*/Data.GlobalEdm.ssdl|res://*/Data.GlobalEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=atl-dev05.atlantica.do;initial catalog=Global;User Id=Developer05;Password=Developer05;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="IllusDataEntityDataModel" connectionString="metadata=res://*/Data.IllusDataEdm.csdl|res://*/Data.IllusDataEdm.ssdl|res://*/Data.IllusDataEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=atl-dev05.atlantica.do;initial catalog=illusdata;user id=Developer05;password=Developer05;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+  <unity xmlns="http://schemas.microsoft.com/practices/2010/unity">
+    <assembly name="DI.UnderWriting" />
+    <assembly name="DI.UnderWriting.Implementations" />
+    <assembly name="DI.UnderWriting.Interfaces" />  
+    <assembly name="DI.UnderWriting.IllusData.Implementations" />
+    <assembly name="DI.UnderWriting.IllusData.Interfaces" />
+    <namespace name="DI.UnderWriting" />
+    <namespace name="DI.UnderWriting.Implementations" />
+    <namespace name="DI.UnderWriting.Interfaces" />
+    <namespace name="DI.UnderWriting.IllusData.Implementations" />
+    <namespace name="DI.UnderWriting.IllusData.Interfaces" />
+    <container name="DIUnderWritingBll">
+      <register type="ICase" mapTo="CaseBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IContact" mapTo="ContactBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IDropDown" mapTo="DropDownBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IForm" mapTo="FormBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IAmmendment" mapTo="AmmendmentBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IBeneficiary" mapTo="BeneficiaryBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IRider" mapTo="RiderBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IPayment" mapTo="PaymentBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IRequirement" mapTo="RequirementBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IPolicy" mapTo="PolicyBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IMedical" mapTo="MedicalBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="INote" mapTo="NoteBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IStep" mapTo="StepBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IConfirmationCall" mapTo="ConfirmationCallBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IDataReview" mapTo="DataReviewBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="ICallRex" mapTo="CallRexBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IHealthDeclaration" mapTo="HealthDeclarationBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IIllusData" mapTo="IllusDataBll">
+        <lifetime type="singleton" />
+      </register>
+    </container>
+    <container name="DIUnderWritingWS">
+      <register type="ICase" mapTo="CaseWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IContact" mapTo="ContactWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IForm" mapTo="FormWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IDropDown" mapTo="DropDownWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IAmmendment" mapTo="AmmendmentWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IBeneficiary" mapTo="BeneficiaryWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IRider" mapTo="RiderWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IPayment" mapTo="PaymentWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IRequirement" mapTo="RequirementWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IPolicy" mapTo="PolicyWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IMedical" mapTo="MedicalWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="INote" mapTo="NoteWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IStep" mapTo="StepWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IConfirmationCall" mapTo="ConfirmationCallWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IDataReview" mapTo="DataReviewWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="ICallRex" mapTo="CallRexWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IHealthDeclaration" mapTo="HealthDeclarationWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IIllusData" mapTo="IllusDataWS">
+        <lifetime type="singleton" />
+      </register>
+    </container>
+  </unity>
+  <system.web>
+    <compilation debug="true" />
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" />
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" />
+      </providers>
+    </roleManager>
+  </system.web>
+  <!-- When deploying the service library project, the content of the config file must be added to the host's 
+  app.config file. System.Configuration does not support config files for libraries. -->
+  <system.serviceModel>
+	<bindings>
+		  <basicHttpBinding>
+			<binding maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" messageEncoding="Text">
+			  <readerQuotas maxDepth="2000000" maxStringContentLength="2147483647" maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+			</binding>
+		  </basicHttpBinding>
+	</bindings>
+	 <services>
+      <service name="ServicesApi.UnderWriting.Contact.ContactService">
+        <host>
+          <baseAddresses>
+            <add baseAddress="http://localhost:8733/Contact/ContactService/" />
+          </baseAddresses>
+        </host>
+        <!-- Service Endpoints -->
+        <!-- Unless fully qualified, address is relative to base address supplied above -->
+        <endpoint address="" binding="basicHttpBinding" contract="ServicesApi.UnderWriting.Contact.IContactService">
+          <!-- 
+              Upon deployment, the following identity element should be removed or replaced to reflect the 
+              identity under which the deployed service runs.  If removed, WCF will infer an appropriate identity 
+              automatically.
+          -->
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <!-- Metadata Endpoints -->
+        <!-- The Metadata Exchange endpoint is used by the service to describe itself to clients. -->
+        <!-- This endpoint does not use a secure binding and should be secured or removed before deployment -->
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+      </service>
+      <service name="ServicesApi.UnderWriting.PolicyIllustration.PolicyIllustrationService">
+        <host>
+          <baseAddresses>
+            <add baseAddress="http://localhost:8733/PolicyIllustration/PolicyIllustrationService/" />
+          </baseAddresses>
+        </host>
+        <!-- Service Endpoints -->
+        <!-- Unless fully qualified, address is relative to base address supplied above -->
+        <endpoint address="" binding="basicHttpBinding" contract="ServicesApi.UnderWriting.PolicyIllustration.IPolicyIllustrationService">
+          <!-- 
+              Upon deployment, the following identity element should be removed or replaced to reflect the 
+              identity under which the deployed service runs.  If removed, WCF will infer an appropriate identity 
+              automatically.
+          -->
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <!-- Metadata Endpoints -->
+        <!-- The Metadata Exchange endpoint is used by the service to describe itself to clients. -->
+        <!-- This endpoint does not use a secure binding and should be secured or removed before deployment -->
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+      </service>
+      <service name="ServicesApi.UnderWriting.BackgroundCheck.BackGroundCheckService">
+        <host>
+          <baseAddresses>
+            <add baseAddress="http://localhost:8733/BackGroundCheck/BackGroundCheckService/" />
+          </baseAddresses>
+        </host>
+        <!-- Service Endpoints -->
+        <!-- Unless fully qualified, address is relative to base address supplied above -->
+        <endpoint address="" binding="basicHttpBinding" contract="ServicesApi.UnderWriting.BackgroundCheck.IBackGroundCheckService">
+          <!-- 
+              Upon deployment, the following identity element should be removed or replaced to reflect the 
+              identity under which the deployed service runs.  If removed, WCF will infer an appropriate identity 
+              automatically.
+          -->
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <!-- Metadata Endpoints -->
+        <!-- The Metadata Exchange endpoint is used by the service to describe itself to clients. -->
+        <!-- This endpoint does not use a secure binding and should be secured or removed before deployment -->
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+      </service>
+    </services>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior>
+          <!-- To avoid disclosing metadata information, 
+          set the values below to false before deployment -->
+          <serviceMetadata httpGetEnabled="True" httpsGetEnabled="True" />
+          <!-- To receive exception details in faults for debugging purposes, 
+          set the value below to true.  Set to false before deployment 
+          to avoid disclosing exception information -->
+          <serviceDebug includeExceptionDetailInFaults="False" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment minFreeMemoryPercentageToActivateService="0" />
+  </system.serviceModel>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+    <system.webServer>
+        <security>
+            <requestFiltering>
+                <requestLimits maxAllowedContentLength="2147483647" maxUrl="2147483647" maxQueryString="2147483647" />
+            </requestFiltering>
+        </security>
+    </system.webServer>
+</configuration>

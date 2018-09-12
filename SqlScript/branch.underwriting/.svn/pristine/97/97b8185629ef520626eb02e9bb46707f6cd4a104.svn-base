@@ -1,0 +1,729 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <sectionGroup name="devExpress">
+      <section name="themes" type="DevExpress.Web.ThemesConfigurationSection, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="compression" type="DevExpress.Web.CompressionConfigurationSection, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="settings" type="DevExpress.Web.SettingsConfigurationSection, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="errors" type="DevExpress.Web.ErrorsConfigurationSection, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+    </sectionGroup>
+    <section name="unity" type="Microsoft.Practices.Unity.Configuration.UnityConfigurationSection, Microsoft.Practices.Unity.Configuration" />
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+  </configSections>
+  <connectionStrings>
+    <!--App Desarrollo  -->
+    <add name="Statetrust.Framework.SecurityConnectionString" connectionString="Data Source=172.16.193.14;Initial Catalog=Security;User ID=Developer05;Password=Developer05" />
+    <add name="GlobalEntityDataModel" connectionString="metadata=res://*/Data.GlobalEdm.csdl|res://*/Data.GlobalEdm.ssdl|res://*/Data.GlobalEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=172.16.193.14;initial catalog=Global;integrated security=false;User Id=Developer05;Password=Developer05;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="GlobalEntities" connectionString="metadata=res://*/Data.GlobalEdmExtended.csdl|res://*/Data.GlobalEdmExtended.ssdl|res://*/Data.GlobalEdmExtended.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=172.16.193.14;initial catalog=Global;persist security info=True;user id=Developer05;password=Developer05;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="IllusDataEntityDataModel" connectionString="metadata=res://*/Data.IllusDataEdm.csdl|res://*/Data.IllusDataEdm.ssdl|res://*/Data.IllusDataEdm.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=172.16.193.14;initial catalog=illusdata;persist security info=True;user id=Developer05;password=Developer05;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="STFGlobalEntities" connectionString="metadata=res://*/STFGlobalEntities.csdl|res://*/STFGlobalEntities.ssdl|res://*/STFGlobalEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=172.16.193.14;initial catalog=Global;user id=Developer05;password=Developer05;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="StatisticsEntities" connectionString="metadata=res://*/Common.Statistics.StatisticsDataModel.csdl|res://*/Common.Statistics.StatisticsDataModel.ssdl|res://*/Common.Statistics.StatisticsDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=172.16.193.14;initial catalog=Global;user id=Developer05;password=Developer05;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="GlobalForAdoNet" connectionString="Data Source=172.16.193.14;Initial Catalog=Global;User ID=Developer05;Password=Developer05" />
+  </connectionStrings>
+  <unity xmlns="http://schemas.microsoft.com/practices/2010/unity">
+    <assembly name="DI.UnderWriting" />
+    <assembly name="DI.UnderWriting.Implementations" />
+    <assembly name="DI.UnderWriting.Interfaces" />
+    <assembly name="DI.UnderWriting.IllusData.Implementations" />
+    <assembly name="DI.UnderWriting.IllusData.Interfaces" />
+    <namespace name="DI.UnderWriting" />
+    <namespace name="DI.UnderWriting.Implementations" />
+    <namespace name="DI.UnderWriting.Interfaces" />
+    <namespace name="DI.UnderWriting.IllusData.Implementations" />
+    <namespace name="DI.UnderWriting.IllusData.Interfaces" />
+    <container name="DIUnderWritingBll">
+      <register type="ICase" mapTo="CaseBll">
+      </register>
+      <register type="IContact" mapTo="ContactBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IDropDown" mapTo="DropDownBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IForm" mapTo="FormBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IAmmendment" mapTo="AmmendmentBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IBeneficiary" mapTo="BeneficiaryBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IRider" mapTo="RiderBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IPayment" mapTo="PaymentBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IRequirement" mapTo="RequirementBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IPolicy" mapTo="PolicyBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IMedical" mapTo="MedicalBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="INote" mapTo="NoteBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IStep" mapTo="StepBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IConfirmationCall" mapTo="ConfirmationCallBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IDataReview" mapTo="DataReviewBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="ICallRex" mapTo="CallRexBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IHealthDeclaration" mapTo="HealthDeclarationBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IHealth" mapTo="HealthBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IVehicle" mapTo="VehicleBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IIllusData" mapTo="IllusDataBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IProperty" mapTo="PropertyBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="INavy" mapTo="NavyBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="ITransport" mapTo="TransportBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IAirPlane" mapTo="AirPlaneBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IBail" mapTo="BailBll">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IAlliedLinesReview" mapTo="AlliedLinesReviewBll">
+        <lifetime type="singleton" />
+      </register>
+    </container>
+    <container name="DIUnderWritingWS">
+      <register type="ICase" mapTo="CaseWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IContact" mapTo="ContactWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IForm" mapTo="FormWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IDropDown" mapTo="DropDownWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IAmmendment" mapTo="AmmendmentWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IBeneficiary" mapTo="BeneficiaryWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IRider" mapTo="RiderWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IPayment" mapTo="PaymentWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IRequirement" mapTo="RequirementWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IPolicy" mapTo="PolicyWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IMedical" mapTo="MedicalWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="INote" mapTo="NoteWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IStep" mapTo="StepWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IConfirmationCall" mapTo="ConfirmationCallWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IDataReview" mapTo="DataReviewWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="ICallRex" mapTo="CallRexWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IHealthDeclaration" mapTo="HealthDeclarationWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IHealth" mapTo="HealthWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IVehicle" mapTo="VehicleWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IIllusData" mapTo="IllusDataWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IProperty" mapTo="PropertyWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="INavy" mapTo="NavyWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="ITransport" mapTo="TransportWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IAirPlane" mapTo="AirPlaneWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IBail" mapTo="BailWS">
+        <lifetime type="singleton" />
+      </register>
+      <register type="IAlliedLinesReview" mapTo="AlliedLinesReviewWS">
+        <lifetime type="singleton" />
+      </register>
+    </container>
+  </unity>
+  <appSettings>
+    <!--configuraciones Modulo Seguridad-->
+    <add key="ContactServicesIsActive" value="false" />
+    <add key="GPServicesIsActive" value="true" />
+    <add key="timeToRefresh" value="30" />
+    <add key="LoginRedirectDataReview" value="DReview.aspx" />
+    <add key="LoginRedirectNewBusiness" value="Illustrations.aspx" />
+    <add key="highlightedFieldRequired" value="true" />
+    <add key="Char" value="../../Charts/" />
+    <add key="AppID" value="NB" />
+    <add key="VirtualOfficeAppId" value="VO" />
+    <add key="pathHealth" value="AddNewClient.aspx" />
+    <add key="appnameHealth" value="NewBussinesHealth" />
+    <add key="NewBussinesHealthAppId" value="NBUHL" />
+    <add key="SalesPointAppId" value="POSAT" />
+    <add key="PuntodeventaQAAppId" value="POSQA" />
+    <add key="EncriptionKey" value="$t@teTru$t" />
+    <add key="SecurityMenuBar" value="false" />
+    <add key="ApplySecurity" value="false" />
+    <add key="appTitle" value="New Business" />
+    <add key="ApplicationLogin" value="true" />
+    <add key="SecurityLogin" value="http://atlanticasecurity.qa.atlantica.local/index.aspx" />
+    <add key="PDFViewer" value="hq20prexpramtai2prW3qLe0qL+/v78=" />
+    <add key="SMTPServer" value="statetrustlife-com.mail.protection.outlook.com" />
+    <add key="Port" value="25" />
+    <add key="SendEmail" value="true" />
+    <add key="TestEmails" value="clebron@statetrustlife.com" />
+    <add key="EmailFrom" value="subscripcionxpress@atlantica.do" />
+    <add key="EmailCc" value="" />
+    <add key="EmailBCc" value="" />
+    <add key="SubjectEmails" value="Error Site New Business" />
+    <add key="TrainingCenterUrl" value="https://sts.statetrust.com/adfs/ls/IdpInitiatedSignOn.aspx" />
+    <add key="logoCompany" value="logo_atl" />
+    <!--Availables Tabs AddNewClient-->
+    <add key="ClientInfo" value="true" />
+    <add key="OwnerInfo" value="true" />
+    <add key="PlanPolicy" value="true" />
+    <add key="Beneficiaries" value="true" />
+    <add key="Exceptions" value="false" />
+    <add key="Requirements" value="true" />
+    <add key="Payments" value="true" />
+    <add key="HealthDeclaration" value="true" />
+    <!--End Availables Tabs-->
+    <add key="AddNewCase" value="true" />
+    <add key="CasesInProcess" value="true" />
+    <add key="ReadyToReview" value="true" />
+    <add key="SubmittedPolicies" value="true" />
+    <add key="ContactList" value="true" />
+    <add key="AddNewContact" value="true" />
+    <add key="IllustrationTab" value="true" />
+    <add key="Illustrations" value="true" />
+    <add key="Reports" value="false" />
+    <add key="Application" value="false" />
+    <add key="Updates" value="false" />
+    <add key="ProjectIdNewBusiness" value="2" />
+    <add key="ProjectIdDataReview" value="3" />
+    <!--Oficina Test-->
+    <add key="Corp_Id" value="1" />
+    <add key="Region_Id" value="17" />
+    <add key="Country_Id" value="53" />
+    <add key="Domesticreg_Id" value="2" />
+    <add key="State_Prov_Id" value="1" />
+    <add key="City_Id" value="1" />
+    <add key="Office_Id" value="65" />
+    <!--Agent Test-->
+    <add key="Agent_Id" value="2368" />
+    <!--Rene faria  1116-->
+    <!--<add key="Agent_Id" value="1116"/>-->
+    <add key="STFIncludeJquery" value="false" />
+    <add key="STFIncludeJqueryUI" value="false" />
+    <add key="STFIncludeJqueryForm" value="true" />
+    <add key="STFJqueryVersion" value="jQuery_v1_11_3" />
+    <add key="STFShowAvailableApps" value="false" />
+    <add key="STFSessionNotification" value="true" />
+    <add key="STFSessionTimeWarning" value="1" />
+    <add key="STFEditAgentProfile" value="true" />
+    <add key="STFAddResetCss" value="false" />
+    <add key="STFShowChangeCompany" value="true" />
+    <add key="STFShowLogo" value="false" />
+    <add key="STFEmailHost" value="statetrustlife-com.mail.protection.outlook.com" />
+    <add key="STFEmailFrom" value="clebron@statetrustlife.com" />
+    <!--Configuracion para los pagos Atlantica - CardNet -->
+    <add key="ProviderId" value="1" />
+    <add key="ITBISPorc" value="16" />
+    <add key="TransactionTypeNameKey" value="CC" />
+    <add key="TransactionType" value="0200" />
+
+    <!--Configuracion para las bandejas -->
+    <add key="IllustrationExpirationDays" value="30" />
+    <add key="isTestingQuotDebug" value="true" />
+
+    <!--Configuracion tamano de archivo requerido (10MB)-->
+    <add key="RequiredFileSize" value="10485760" />
+    <add key="AvailableDays" value="5" />
+
+    <!--Configuracion OnBase-->
+    <add key="OnBasePathIL" value="\\ATL-DEV06.dev.atlantica.local\PROCESOSDIP\NewBusinessPropiedad"></add>
+    <add key="OnBasePath" value="\\ATL-DEV06.dev.atlantica.local\procesosdip\NewBusinessAuto"></add>
+    <add key="OnBasePathKSI" value="\\stl-dev01\devsite.ATL\OnBaseFiles"></add>
+    <add key="OnBasePathKSIPropiedad" value="\\stl-dev01\devsite.ATL\OnBaseFiles"></add>
+
+    <!--<add key="OnBasePath" value="\\atl-dev06.dev.atlantica.local\dipvo" />-->
+    <add key="OnBaseAvailable" value="True" />
+    <!--Configuracion OnBase Para Vida-->
+    <add key="LifeOnBaseTemplatePath" value="~/TemplateOnBaseFile/" />
+    <add key="LifeOnBaseTemplateFile" value="IndexFile.txt" />
+    <add key="LifeOnBaseFileFormat" value="16" />
+    <add key="LifeOnBaseServerPath" value="\\Atl-dev06.dev.atlantica.local\procesosdip\OIPA\PreEmision\" />
+    <add key="LifeOnBaseAvailable" value="True" />
+
+    <!--Configuracion para consumir servicio de Thunderhead-->
+    <add key="batchConfigResIDQuot" value="1335501590" />
+    <add key="projectIDQuot" value="1335500031" />
+    <!--<add key="projectIDQuot" value="0" />-->
+    <add key="batchConfigResIDMarbeteCondicionado" value="1335501440" />
+    <add key="projectIDMarbeteCondicionado" value="1335500027" />
+    <!--<add key="projectIDMarbeteCondicionado" value="0" />-->
+
+    <add key="batchConfigProperty" value="1335501931" />
+    <add key="batchNameProperty" value="SysFlexPropiedadlIntegration" />
+    <add key="projectIDProperty" value="1335500038" />
+
+    <add key="DocumentIDQuot" value="1335501869" />
+    <add key="DocumentIDQuotExt" value="1335504123" />
+    <add key="DocumentIDMarbete" value="1335501458" />
+    <!--<add key="DocumentIDConcionado" value="1335501457" /> Sustituido por Roberto Nunez por el que esta mas abajo-->
+    <add key="DocumentIDConcionado" value="1335506549" />
+    <add key="DocumentIDCondicionesParticulares" value="1335501623" />
+    
+    
+    <add key="DocumentIDEndoso" value="1335502011" />
+    <add key="DocumentIDEndosoDerecho" value="1335502067" />
+    <add key="DocumentIDEndosoAclaratorio" value="1335502063" />
+    <add key="DocumentIDNotificacionEstatusExtranjero" value="1335503068" />
+    <add key="DocumentIDContratoKSI" value="1335506450" />
+    <add key="DocumentIDContratoKSIPropiedad" value="1335506465" />
+
+
+    <!--<add key="DocumentIDInspeccion" value="1335504075" />-->
+    <add key="DocumentIDInspeccion" value="1335504099" />
+
+    <add key="DocumentIDInspeccionRiesgoRD" value="1472500509" />
+    <add key="DocumentIDInspeccionRiesgoSV" value="" />
+
+    <add key="SUSEndosoCesionDerechos" value="SUS-Endoso de Cesión de Derechos" />
+    <add key="SUSCotizacion" value="SUS-Cotización" />
+    <add key="SUSFormularioInspeccion" value="SUS-Informe de Inspección del Vehículo" />
+
+    <!--Configuracion de Transunion-->
+    <add key="TransunionDefaultPassword" value="E5793BC9-Dd9E-43D6-8aC9-546D1bB000D0" />
+    <add key="TransunionUserName" value="clebron" />
+    <add key="TransunionPass" value="clebron*2025" />
+    <!--End Configuracion de Transunion-->
+
+    <!--Configuracion de Equifax-->
+    <add key="EquifaxDefaultPassword" value="vbarrera" />
+    <add key="EquifaxUserName" value="vbarrera" />
+    <add key="EquifaxPass" value="vbarrera" />
+    <add key="EquifaxEncriptionKey" value="E500D0" />
+    <!--End Configuracion de Equifax-->
+
+    <add key="SendEmailToAgent" value="true" />
+
+    <!--<add key="UrlServiceTH" value="http://172.16.199.39:8080/thunderhead/services/JobAPIWebWrapped" />-->
+    <add key="UrlServiceTH" value="http://172.16.193.18:8080/thunderhead/services/JobAPIWebWrapped" />
+    <add key="batchName" value="VirtualOfficeIntegration" />
+    <add key="batchCollect" value="8" />
+    <add key="finOption" value="0" />
+    <add key="jobType" value="0" />
+
+    <add key="UrlServiceTHSV" value="http://172.18.41.21:8080/thunderhead/services/JobAPIWebWrapped" />
+
+    <add key="batchNameSV" value="NewBusinessPropiedadDEV"></add>
+    <add key="batchConfigPropertySV" value="1472500427" />
+    <add key="batchNamePropertySV" value="SysFlexPropiedadlIntegration" />
+    <add key="projectIDPropertySV" value="1472500000" />
+    <add key="DocumentIDQuotPropertySV" value="1472500510" />
+
+    <!--<add key="DocumentIDQuotPropertyRD" value="1335505249"/>-->
+    <add key="DocumentIDQuotPropertyRD" value="1335505319" />
+
+    <add key="DocumentIDQuotNavySV" value="1472500513" />
+    <add key="DocumentIDQuotTranportSV" value="1472500512" />
+    <add key="DocumentIDQuotBailSV" value="" />
+    <add key="DocumentIDQuotAirplaneSV" value="" />
+    <add key="EnabledChassisOrPlateValidation" value="true" />
+
+    <!--<add key="UserName" value="atlantica\THServices" />-->
+    <add key="UserName" value="dev\THServices" />
+    <add key="Password" value="" />
+
+    <add key="UserNameSV" value="DEVSTSV\THServices" />
+    <add key="PasswordSV" value="" />
+    <!--<add key="CountryKeyMode" value="ElSalvador"/>-->
+    <add key="CountryKeyMode" value="RepublicaDominicana" />
+
+    <!--Fin Configuracion de las bandejas -->
+
+    <add key="RefreshFrecuency" value="50000"></add>
+
+    <add key="NewBusinessAppId" value="NB" />
+
+    <!--Punto de Venta Generales-->
+    <add key="PuntodeVentaLineasAliadasAppId" value="POSG" />
+    <add key="PVLineasAliadasApp_Name" value="PuntodeVentaLineasAliadas" />
+    <add key="PvGeneralHistory" value="Home/QuotationSearch" />
+    <!--Punto de Venta Generales-->
+
+    <!--Punto de Venta Auto-->
+    <add key="PuntodeVentaAppId" value="POSAT" />
+    <add key="PvAutoPath" value="Auto/PosAuto/Index" />
+    <add key="PvAutoApp_Name" value="PuntodeVenta" />
+    <add key="PvAutoApp_Name_Bandeja" value="NewBusiness" />
+    <add key="PvAutoHistory" value="Home/QuotationSearch" />
+    <add key="PvAutoBandeja" value="Illustrations.aspx?vBandeja=Auto" />
+    <!--Punto de Venta Auto-->
+
+    <!--Punto de Venta Salud-->
+    <add key="PuntodeVentaSaludAppId" value="PVSAL" />
+    <add key="PvSaludPath" value="Salud/Pos/Index" />
+    <add key="PvSaludApp_Name" value="PuntodeVentaSalud" />
+    <add key="PvSaludHistory" value="Home/QuotationSearch" />
+    <add key="PvSaludBandeja" value="Illustrations.aspx" />
+    <!--<add key="NewbussinesHealthApp_Name" value="NewBussinesHealth" />
+    <add key="NewBussinesHealthAppId" value="NBUHL" />-->
+    <!--Punto de Venta Salud-->
+
+    <!--Punto de Venta Lineas Aleadas-->
+    <add key="PvLineasPath" value="PropiedaCotizacion.aspx?IDQuotationBusiness=0" />
+    <add key="PvLineasGlobalRamoPath" value="GlobalRamo=3" />
+    <add key="PvLineasPaisPath" value="Pais=129" />
+    <add key="PvLineasHistory" value="login.aspx?v=vListadoCotizacion" />
+    <add key="PvLineasHistoryComercial" value="m=Comerciales" />
+    <add key="PvLineasHistoryEspecialidad" value="m=Especialidad" />
+    <!--Punto de Venta Lineas Aleadas-->
+
+    <!--Punto de Venta Vivienda-->
+    <add key="PvViviendaPath" value="PropiedaCotizacion.aspx?IDQuotationBusiness=0" />
+    <add key="PvViviendaGlobalRamoPath" value="GlobalRamo=2" />
+    <add key="PvViviendaPaisPath" value="Pais=129" />
+    <add key="PvViviendaHistory" value="login.aspx?v=vListadoCotizacion" />
+    <add key="PvViviendaHistoryVivienda" value="m=Vivienda" />
+    <add key="PvViviendaApp_Name_Bandeja" value="NewBusiness" />
+    <add key="PvViviendaBandeja" value="Illustrations.aspx?vBandeja=Propiedad" />
+    <!--Punto de Venta Vivienda-->
+
+    <!--Punto de Venta Vida-->
+    <add key="NuevosNegociosVidaAppId" value="NBL" />
+    <add key="PvLifeHistory" value="CasesInProcess.aspx" />
+    <add key="PvLifeApp_Name" value="NuevosNegociosVida" />
+    <!--Punto de Venta Vida-->
+
+    <add key="PageProtocol" value="'http://"/>
+    <!--<add key="DocumentIDConditionedProperty" value="1335506526" />-->
+    <!--<add key="DocumentIDConditionedAllRiskProperty" value="1335506528" />-->
+    <add key="DocumentIDConditionedProperty" value="1335506548" />
+    <add key="DocumentIDConditionedAllRiskProperty" value="1335506548" />
+
+    <!-- FTP settings KSI-->
+    <add key="ftpksiHostname" value="ftp://OnbaseIntegration.KSI-DEV.DO"></add>
+    <add key="ftpksiUsername" value="KSIFTPUSER"></add>
+    <add key="ftpksiPassword" value="KsiFtp2018"></add>
+    <add key="ftpksiPort" value="22"></add>       
+     
+    <add key="batchConfigCondicionadoVO" value="1335501590" />
+    <add key="projectIDCondicionadoAutoVO" value="1335500031" />
+
+    <add key="batchConfigCondicionesParticularesLineasAliadas" value="1335501931" />
+    <add key="projectIDCondicionesParticularesLineasAliadas" value="1335500038" />    
+    <add key="DocumentIDCondicionesParticularesLineasAliadas" value="1335506546" />
+
+    <add key="DocumentIdSysFlexInvoice" value="1335504157"/>
+    <add key="batchConfigSysFlexInvoice" value="1335501440"/>
+    <add key="projectIDSysFlexInvoice" value="1335500027"/>
+    
+    <add key="DocumentIdEndorsementClarifiyingDepre" value="1335506556"/>
+    <add key="DocumentIdEndorsementApplyDeductible" value="1335506559"/>
+    
+  <add key="DocumentIdEndorsementClarifiyingEconoVida" value="1672000020"/>
+   
+  </appSettings>
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
+
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.5.1" />
+      </system.Web>
+  -->
+  <system.web>
+    <globalization uiCulture="es" culture="es" />
+    <sessionState mode="InProc" timeout="60" />
+    <customErrors mode="Off" />
+    <compilation targetFramework="4.5.1" debug="true">
+      <assemblies>
+        <add assembly="DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.Data.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.Printing.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.Web.ASPxPivotGrid.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+        <add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
+        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="DevExpress.RichEdit.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.PivotGrid.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+        <add assembly="System.Data.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="DevExpress.Web.ASPxThemes.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+      </assemblies>
+    </compilation>
+    <!--Configuracion tamano de archivo requerido (5MB) en KILOBYTES-->
+    <httpRuntime targetFramework="4.5" maxRequestLength="1048576" />
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Optimization" />
+      </namespaces>
+    </pages>
+    <httpModules>
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+    </httpModules>
+    <httpHandlers>
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="DX.ashx" validate="false" />
+      <add type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" validate="false" />
+      <add verb="*" path="PdfBytesHandler.axd" type="PdfViewer4AspNet.PdfSourceBytesHandler,PdfViewerAspNet" />
+      <remove verb="*" path="*.asmx" />
+      <add verb="*" path="*.asmx" type="Microsoft.Web.Script.Services.ScriptHandlerFactory" validate="false" />
+    </httpHandlers>
+  </system.web>
+  <!--<interceptors>
+    <interceptor type="System.Data.Entity.Infrastructure.Interception.DatabaseLogger, EntityFramework">
+      <parameters>
+        <parameter value="C:\Logs\UW-Output.txt"/>
+        <parameter value="true" type="System.Boolean"/>
+      </parameters>
+    </interceptor>
+  </interceptors>-->
+  <system.webServer>
+    <security>
+      <requestFiltering>
+        <!--Configuracion tamano de archivo requerido (5MB) en BYTES-->
+        <requestLimits maxAllowedContentLength="1073741824" />
+      </requestFiltering>
+    </security>
+    <defaultDocument enabled="true">
+      <files>
+        <clear />
+        <add value="NewBusiness/Pages/AddNewClient.aspx" />
+      </files>
+    </defaultDocument>
+    <modules>
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+    </modules>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="DX.ashx" name="ASPxHttpHandlerModule" preCondition="integratedMode" />
+      <add type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" name="ASPxUploadProgressHandler" preCondition="integratedMode" />
+      <add name="PdfBytesHandler" verb="*" path="PdfBytesHandler.axd" type="PdfViewer4AspNet.PdfSourceBytesHandler,PdfViewerAspNet" resourceType="Unspecified" />
+    </handlers>
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.5.2.14234" newVersion="1.5.2.14234" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System" publicKeyToken="b77a5c561934e089" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Extensions" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Drawing" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Xml" publicKeyToken="b77a5c561934e089" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Services" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Data" publicKeyToken="b77a5c561934e089" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Windows.Forms" publicKeyToken="b77a5c561934e089" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.VisualBasic" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-10.0.0.0" newVersion="10.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Configuration" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-7.0.0.0" newVersion="7.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <devExpress>
+    <themes enableThemesAssembly="true" styleSheetTheme="" theme="DevEx" customThemeAssemblies="" />
+    <compression enableHtmlCompression="false" enableCallbackCompression="true" enableResourceCompression="true" enableResourceMerging="true" />
+    <settings doctypeMode="Xhtml" rightToLeft="false" embedRequiredClientLibraries="false" ieCompatibilityVersion="edge" />
+    <errors callbackErrorRedirectUrl="" />
+  </devExpress>
+  <system.serviceModel>
+    <services>
+      <service name="MyServiceName" behaviorConfiguration="debugBehavior" />
+    </services>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="debug">
+          <serviceDebug includeExceptionDetailInFaults="true" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IContactService" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_IQuotesService" closeTimeout="00:25:00"
+          openTimeout="00:25:00" receiveTimeout="00:25:00" sendTimeout="00:25:00"
+          maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_IPolicyIllustrationService" maxBufferPoolSize="2147483647"
+          maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_IGPPayments" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" />
+        <binding name="EndPointBehavior" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_IPolicyService" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpsBinding_ISearch" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_ISysFlexPolicyService" maxBufferPoolSize="2147483647" />      
+      </basicHttpBinding>
+      <wsHttpBinding>
+        <binding name="wsTransunionService" maxReceivedMessageSize="2147483647">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647"
+            maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+          <security mode="TransportWithMessageCredential">
+            <transport clientCredentialType="None" />
+            <message clientCredentialType="UserName" />
+          </security>
+        </binding>
+        <binding name="wsEquifaxService" maxBufferPoolSize="2147483647"
+          maxReceivedMessageSize="2147483647" messageEncoding="Text">
+          <readerQuotas maxDepth="2000000" maxStringContentLength="2147483647"
+            maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+          <security mode="TransportWithMessageCredential">
+            <transport clientCredentialType="None" />
+            <message clientCredentialType="UserName" />
+          </security>
+        </binding>
+        <binding name="WSHttpBinding_HylandOutBoundContract" maxBufferPoolSize="20000000"
+          maxReceivedMessageSize="200000000" allowCookies="true">
+          <readerQuotas maxDepth="32" maxStringContentLength="200000000"
+            maxArrayLength="200000000" />
+          <security mode="None" />
+        </binding>
+        <binding name="WSHttpBinding_HylandOutBoundContract1" maxBufferPoolSize="20000000"
+          maxReceivedMessageSize="20000000" allowCookies="true">
+          <readerQuotas maxDepth="32" maxStringContentLength="200000000"
+            maxArrayLength="200000000" />
+          <security mode="None" />
+        </binding>
+      </wsHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://devservicesapiunderwriting.statetrustlife.com/ServicesApi.UnderWriting.PolicyIllustration.PolicyIllustrationService.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPolicyIllustrationService"
+        contract="ServicesApi.PolicyIllustrationService.IPolicyIllustrationService"
+        name="BasicHttpBinding_IPolicyIllustrationService" />
+      <endpoint address="https://devtransunion.atlantica.do/TransunionService.svc/TransunionService.svc"
+        binding="wsHttpBinding" bindingConfiguration="wsTransunionService"
+        contract="TransunionServiceReference.ITransunionService" name="wsTransunionService" />
+      <endpoint address="http://localhost:54539/QuotesService.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IQuotesService"
+        contract="IllusdataWebServices.IQuotesService" name="BasicHttpBinding_IQuotesService" />
+      <endpoint address="http://devequifax.atlantica.do/EquifaxService.svc/EquifaxService.svc"
+        binding="wsHttpBinding" bindingConfiguration="wsEquifaxService"
+        contract="EquifaxService.IEquifaxService" name="wsEquifaxService" />
+      <endpoint address="http://atl-dev06.dev.atlantica.local/AtlanticaPolizaVida_AtlanticaPolizaVida/SoapService.svc/SOAP12"
+        binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_HylandOutBoundContract"
+        contract="OnBaseSearchDocument.HylandOutBoundContract" name="WSHttpBinding_HylandOutBoundContract" />
+      <endpoint address="http://atl-dev06.dev.atlantica.local/DocData_DocumentData/SoapService.svc/SOAP12"
+        binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_HylandOutBoundContract1"
+        contract="OnBaseDownloadDocument.HylandOutBoundContract" name="WSHttpBinding_HylandOutBoundContract1" />
+      <endpoint address="http://devpolicyglobalservice.statetrustlife.com/PolicyService.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPolicyService"
+        contract="GlobalService.IPolicyService" name="BasicHttpBinding_IPolicyService" />
+      <endpoint address="http://wssearchxpert.dev.atlantica.local/Search.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpsBinding_ISearch"
+        contract="wsSearchXpert.ISearch" name="BasicHttpsBinding_ISearch" />
+      <endpoint address="http://atl-dev24.dev.atlantica.local/CSToGP/GPPayments.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IGPPayments"
+        contract="WSGPPayments.IGPPayments" name="BasicHttpBinding_IGPPayments" />
+      <endpoint address="http://devservicesapiunderwriting.statetrustlife.com/ServicesApi.UnderWriting.Contact.ContactService.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IContactService"
+        contract="ServicesApi.ContactService.IContactService" name="BasicHttpBinding_IContactService" />
+      <endpoint address="http://devsysflexpolicyservice.statetrustlife.com/SysFlexPolicyService.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISysFlexPolicyService"
+        contract="oSysFlexService.ISysFlexPolicyService" name="BasicHttpBinding_ISysFlexPolicyService" />     
+    </client>
+  </system.serviceModel>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="v11.0" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <system.web.extensions>
+    <scripting>
+      <webServices>
+        <jsonSerialization maxJsonLength="2099999999" />
+      </webServices>
+    </scripting>
+  </system.web.extensions>
+</configuration>

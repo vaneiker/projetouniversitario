@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCPolicyCommunication.ascx.cs" Inherits="WEB.UnderWriting.Case.UserControls.PolicyCommunication.UCPolicyCommunication" %>
+PolicyCommunication

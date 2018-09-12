@@ -1,0 +1,2293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/DataService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:complexType name="GeneralSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuditSettings" nillable="true" type="tns:AuditSettings" />
+      <xs:element minOccurs="0" name="EmailSettings" nillable="true" type="tns:EmailSettings" />
+      <xs:element minOccurs="0" name="RetentionSettings" nillable="true" type="tns:RetentionSettings" />
+      <xs:element minOccurs="0" name="VolumeFactors" nillable="true" type="tns:ArrayOfVolumeFactor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GeneralSettings" nillable="true" type="tns:GeneralSettings" />
+  <xs:complexType name="AuditSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuditRetentionMaximumAgeDays" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAuditTrackingEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseAuditRetentionMaximumAgeDays" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuditSettings" nillable="true" type="tns:AuditSettings" />
+  <xs:complexType name="EmailSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlertLanguage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FromEmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsEventLogAlertsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSmtpAlertsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SmtpPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SmtpPort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SmtpRequiresAuthentication" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SmtpServer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SmtpUserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmailSettings" nillable="true" type="tns:EmailSettings" />
+  <xs:complexType name="RetentionSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowAECallDeletion" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RetentionMaximumAgeDays" type="xs:short" />
+      <xs:element minOccurs="0" name="RetentionMinimumDurationSeconds" type="xs:short" />
+      <xs:element minOccurs="0" name="UseRetentionMaximumAgeDays" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseRetentionMinimumDuration" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RetentionSettings" nillable="true" type="tns:RetentionSettings" />
+  <xs:complexType name="ArrayOfVolumeFactor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VolumeFactor" nillable="true" type="tns:VolumeFactor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVolumeFactor" nillable="true" type="tns:ArrayOfVolumeFactor" />
+  <xs:complexType name="VolumeFactor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Factor" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VolumeFactorID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VolumeFactor" nillable="true" type="tns:VolumeFactor" />
+  <xs:complexType name="ArrayOfLicenseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LicenseInfo" nillable="true" type="tns:LicenseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLicenseInfo" nillable="true" type="tns:ArrayOfLicenseInfo" />
+  <xs:complexType name="LicenseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AvailableCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ExpirationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsExpired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsTimeLimited" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TotalCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Type" type="tns:LicenseType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LicenseInfo" nillable="true" type="tns:LicenseInfo" />
+  <xs:simpleType name="LicenseType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CallRecording" />
+      <xs:enumeration value="CallRecording_OD" />
+      <xs:enumeration value="ComputerRecording" />
+      <xs:enumeration value="AgentEvaluation" />
+      <xs:enumeration value="QualityManagementSuite" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LicenseType" nillable="true" type="tns:LicenseType" />
+  <xs:simpleType name="RecordingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CallRecording" />
+      <xs:enumeration value="ScreenRecording" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RecordingType" nillable="true" type="tns:RecordingType" />
+  <xs:simpleType name="FileTransferReason">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Export" />
+      <xs:enumeration value="Playback" />
+      <xs:enumeration value="Api" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FileTransferReason" nillable="true" type="tns:FileTransferReason" />
+  <xs:complexType name="FileTransferInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ArchiveName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Host" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsArchived" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Port" type="xs:short" />
+      <xs:element minOccurs="0" name="TransferFileType" type="tns:XferFileType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileTransferInfo" nillable="true" type="tns:FileTransferInfo" />
+  <xs:simpleType name="XferFileType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CallRecording" />
+      <xs:enumeration value="ScreenRecording" />
+      <xs:enumeration value="Zip" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="XferFileType" nillable="true" type="tns:XferFileType" />
+  <xs:complexType name="ArrayOfRecordedCallContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecordedCallContainer" nillable="true" type="tns:RecordedCallContainer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecordedCallContainer" nillable="true" type="tns:ArrayOfRecordedCallContainer" />
+  <xs:complexType name="RecordedCallContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CallDuration" type="ser:duration" />
+      <xs:element minOccurs="0" name="CallID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CallLogID" type="ser:guid" />
+      <xs:element minOccurs="0" name="CallStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CallStop" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CallerIDName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CallerIDNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DNIS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DialedNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileHash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FromCallLogID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsRecordingChainSegment" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordingFlagValues" nillable="true" type="tns:ArrayOfRecordingFlagValue" />
+      <xs:element minOccurs="0" name="ToCallLogID" type="ser:guid" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:UserListItem" />
+      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
+      <xs:element minOccurs="0" name="XferFrom" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecordedCallContainer" nillable="true" type="tns:RecordedCallContainer" />
+  <xs:complexType name="ArrayOfRecordingFlagValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecordingFlagValue" nillable="true" type="tns:RecordingFlagValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecordingFlagValue" nillable="true" type="tns:ArrayOfRecordingFlagValue" />
+  <xs:complexType name="RecordingFlagValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FlagId" type="ser:guid" />
+      <xs:element minOccurs="0" name="FlagName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FlagValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="RecordingId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecordingFlagValue" nillable="true" type="tns:RecordingFlagValue" />
+  <xs:complexType name="UserListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HasAgentEvalLicense" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasCallRecordingLicense" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasComputerRecordingLicense" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasDemandRecordingLicense" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsAgent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDevice" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserListItem" nillable="true" type="tns:UserListItem" />
+  <xs:complexType name="ArrayOfRecordedMediaContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecordedMediaContainer" nillable="true" type="tns:RecordedMediaContainer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecordedMediaContainer" nillable="true" type="tns:ArrayOfRecordedMediaContainer" />
+  <xs:complexType name="RecordedMediaContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CallRecording" nillable="true" type="tns:RecordedCallContainer" />
+      <xs:element minOccurs="0" name="ComputerRecording" nillable="true" type="tns:ComputerRecordingContainer" />
+      <xs:element minOccurs="0" name="MediaID" type="ser:guid" />
+      <xs:element minOccurs="0" name="MediaType" type="tns:RecordedMediaType" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecordedMediaContainer" nillable="true" type="tns:RecordedMediaContainer" />
+  <xs:complexType name="ComputerRecordingContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CallLogID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Hostname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordingDuration" type="ser:duration" />
+      <xs:element minOccurs="0" name="RecordingFlagValues" nillable="true" type="tns:ArrayOfRecordingFlagValue" />
+      <xs:element minOccurs="0" name="RecordingStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RecordingStop" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ScreenRecordingID" type="ser:guid" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:UserListItem" />
+      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
+      <xs:element minOccurs="0" name="XferFrom" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComputerRecordingContainer" nillable="true" type="tns:ComputerRecordingContainer" />
+  <xs:simpleType name="RecordedMediaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Calls" />
+      <xs:enumeration value="Screens" />
+      <xs:enumeration value="DontCare" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RecordedMediaType" nillable="true" type="tns:RecordedMediaType" />
+  <xs:complexType name="ArrayOfComputerRecordingContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComputerRecordingContainer" nillable="true" type="tns:ComputerRecordingContainer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComputerRecordingContainer" nillable="true" type="tns:ArrayOfComputerRecordingContainer" />
+  <xs:complexType name="EndpointNotFoundFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Uri" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EndpointNotFoundFault" nillable="true" type="tns:EndpointNotFoundFault" />
+  <xs:complexType name="RecordingIsArchivedFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecordingIsArchivedFault" nillable="true" type="tns:RecordingIsArchivedFault" />
+  <xs:complexType name="InvalidDataSourceFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DataSourceName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvalidDataSourceFault" nillable="true" type="tns:InvalidDataSourceFault" />
+  <xs:complexType name="EncryptionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveKeyStartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsEnabled" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EncryptionInfo" nillable="true" type="tns:EncryptionInfo" />
+  <xs:complexType name="AccessDeniedFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="AccessDeniedFault" nillable="true" type="tns:AccessDeniedFault" />
+  <xs:complexType name="InvalidLoginFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="InvalidLoginFault" nillable="true" type="tns:InvalidLoginFault" />
+  <xs:complexType name="UserLicenseRequiredFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="UserLicenseRequiredFault" nillable="true" type="tns:UserLicenseRequiredFault" />
+  <xs:complexType name="ArrayOfServiceListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceListItem" nillable="true" type="tns:ServiceListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceListItem" nillable="true" type="tns:ArrayOfServiceListItem" />
+  <xs:complexType name="ServiceListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastContactTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LocalStorageLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PbxID" type="ser:guid" />
+      <xs:element minOccurs="0" name="PbxName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PbxType" type="xs:int" />
+      <xs:element minOccurs="0" name="PrimaryEndpointSubnet" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemoteStorageLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ServiceType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceListItem" nillable="true" type="tns:ServiceListItem" />
+  <xs:complexType name="ArrayOfPbxListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PbxListItem" nillable="true" type="tns:PbxListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPbxListItem" nillable="true" type="tns:ArrayOfPbxListItem" />
+  <xs:complexType name="PbxListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PbxID" type="ser:guid" />
+      <xs:element minOccurs="0" name="PbxMfgName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PbxName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PbxType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PbxListItem" nillable="true" type="tns:PbxListItem" />
+  <xs:complexType name="ArrayOfUserPreferenceItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserPreferenceItem" nillable="true" type="tns:UserPreferenceItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserPreferenceItem" nillable="true" type="tns:ArrayOfUserPreferenceItem" />
+  <xs:complexType name="UserPreferenceItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IntValue" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsInt" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsString" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PreferenceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserPreferenceItem" nillable="true" type="tns:UserPreferenceItem" />
+  <xs:complexType name="ArrayOfAuditLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AuditLog" nillable="true" type="tns:AuditLog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAuditLog" nillable="true" type="tns:ArrayOfAuditLog" />
+  <xs:complexType name="AuditLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AuditActionTypeId" type="ser:guid" />
+      <xs:element minOccurs="0" name="AuditLogId" type="ser:guid" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="TargetInfo1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetInfo2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetInfo3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuditLog" nillable="true" type="tns:AuditLog" />
+  <xs:complexType name="ArrayOfAuditActionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AuditActionType" nillable="true" type="tns:AuditActionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAuditActionType" nillable="true" type="tns:ArrayOfAuditActionType" />
+  <xs:complexType name="AuditActionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AuditActionTypeId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TargetType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuditActionType" nillable="true" type="tns:AuditActionType" />
+  <xs:simpleType name="Audit.Action">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Add" />
+      <xs:enumeration value="Edit" />
+      <xs:enumeration value="Delete" />
+      <xs:enumeration value="EditManagedUsers" />
+      <xs:enumeration value="StartCallMonitor" />
+      <xs:enumeration value="StartScreenMonitor" />
+      <xs:enumeration value="EditMembership" />
+      <xs:enumeration value="StartPlayback" />
+      <xs:enumeration value="Export" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Audit.Action" nillable="true" type="tns:Audit.Action" />
+  <xs:simpleType name="Audit.TargetType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="User" />
+      <xs:enumeration value="CallRecordingProfile" />
+      <xs:enumeration value="ScreenRecordingProfile" />
+      <xs:enumeration value="SecurityProfile" />
+      <xs:enumeration value="Service" />
+      <xs:enumeration value="License" />
+      <xs:enumeration value="General" />
+      <xs:enumeration value="CallLog" />
+      <xs:enumeration value="ScreenRecording" />
+      <xs:enumeration value="AuditLog" />
+      <xs:enumeration value="SavedReport" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Audit.TargetType" nillable="true" type="tns:Audit.TargetType" />
+  <xs:complexType name="ArrayOfUserDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDetails" nillable="true" type="tns:UserDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDetails" nillable="true" type="tns:ArrayOfUserDetails" />
+  <xs:complexType name="UserDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdditionalExtensions" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AgentID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CallRecordingProfileIDs" nillable="true" type="q1:ArrayOfguid" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CallRecordingProfileNames" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ComputerRecordingProfileIDs" nillable="true" type="q3:ArrayOfguid" />
+      <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceAddressArray" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="DeviceAddressArray2" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="DeviceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExtensionPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HasAgentEvaluationLicense" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasCallRecordingLicense" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasComputerRecordingLicense" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDevice" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDualEndptsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsLookbackEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsOnDemand" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPrivacyEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastComputerLoginTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordSalt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrivateExtensions" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordingServerID" type="ser:guid" />
+      <xs:element minOccurs="0" name="RecordingServerIpAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SecurityProfileID" type="ser:guid" />
+      <xs:element minOccurs="0" name="SecurityProfileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SipURI" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WindowsLogin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isContactCenter" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDetails" nillable="true" type="tns:UserDetails" />
+  <xs:complexType name="GuidPair">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Key" type="ser:guid" />
+      <xs:element minOccurs="0" name="Value" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GuidPair" nillable="true" type="tns:GuidPair" />
+  <xs:complexType name="ArrayOfGuidPair">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GuidPair" nillable="true" type="tns:GuidPair" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGuidPair" nillable="true" type="tns:ArrayOfGuidPair" />
+  <xs:complexType name="ArrayOfComputerRecordingDeployment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComputerRecordingDeployment" nillable="true" type="tns:ComputerRecordingDeployment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComputerRecordingDeployment" nillable="true" type="tns:ArrayOfComputerRecordingDeployment" />
+  <xs:complexType name="ComputerRecordingDeployment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeploymentStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IntelrexDeploymentID" type="ser:guid" />
+      <xs:element minOccurs="0" name="LastContactStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WindowsUserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComputerRecordingDeployment" nillable="true" type="tns:ComputerRecordingDeployment" />
+  <xs:complexType name="RecordNotFoundFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="RecordNotFoundFault" nillable="true" type="tns:RecordNotFoundFault" />
+  <xs:complexType name="SerializedActiveDirectoryNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Context" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="NodeType" type="tns:ActiveDirectoryNodeTypes" />
+      <xs:element minOccurs="0" name="ParentId" type="ser:guid" />
+      <xs:element minOccurs="0" name="QualifiedContext" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubnodesDiscovered" type="xs:boolean" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserDetails" nillable="true" type="q4:ArrayOfKeyValueOfstringstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SerializedActiveDirectoryNode" nillable="true" type="tns:SerializedActiveDirectoryNode" />
+  <xs:simpleType name="ActiveDirectoryNodeTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Domain" />
+      <xs:enumeration value="OrganizationalUnit" />
+      <xs:enumeration value="Container" />
+      <xs:enumeration value="User" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ActiveDirectoryNodeTypes" nillable="true" type="tns:ActiveDirectoryNodeTypes" />
+  <xs:complexType name="ArrayOfSerializedActiveDirectoryNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SerializedActiveDirectoryNode" nillable="true" type="tns:SerializedActiveDirectoryNode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSerializedActiveDirectoryNode" nillable="true" type="tns:ArrayOfSerializedActiveDirectoryNode" />
+  <xs:complexType name="ArrayOfArchiveListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArchiveListItem" nillable="true" type="tns:ArchiveListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfArchiveListItem" nillable="true" type="tns:ArrayOfArchiveListItem" />
+  <xs:complexType name="ArchiveListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Host" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NewestCall" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NewestVideo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OldestCall" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OldestVideo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpaceAvailable" type="xs:unsignedLong" />
+      <xs:element minOccurs="0" name="SpaceUsed" type="xs:unsignedLong" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArchiveListItem" nillable="true" type="tns:ArchiveListItem" />
+  <xs:complexType name="ArrayOfArchiveTaskListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArchiveTaskListItem" nillable="true" type="tns:ArchiveTaskListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfArchiveTaskListItem" nillable="true" type="tns:ArrayOfArchiveTaskListItem" />
+  <xs:complexType name="ArchiveTaskListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllButNewest" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Amount" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="AmountType" nillable="true" type="tns:ArchiveDataSizeType" />
+      <xs:element minOccurs="0" name="ArchiveId" type="ser:guid" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ArchiveLocations" nillable="true" type="q5:ArrayOfguid" />
+      <xs:element minOccurs="0" name="ArchiveName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ArchiveToDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Cancelled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DataSourceId" type="ser:guid" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DaysOfData" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DaysofWeek" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="EmailCulture" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastResult" nillable="true" type="tns:ArchiveStatus" />
+      <xs:element minOccurs="0" name="LastRun" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NextRun" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Recurring" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Target" nillable="true" type="tns:ArchiveTarget" />
+      <xs:element minOccurs="0" name="TimeofRun" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Users" nillable="true" type="q6:ArrayOfguid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArchiveTaskListItem" nillable="true" type="tns:ArchiveTaskListItem" />
+  <xs:simpleType name="ArchiveDataSizeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MB" />
+      <xs:enumeration value="GB" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ArchiveDataSizeType" nillable="true" type="tns:ArchiveDataSizeType" />
+  <xs:simpleType name="ArchiveStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="Fail" />
+      <xs:enumeration value="Running">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NotStarted">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ArchiveStatus" nillable="true" type="tns:ArchiveStatus" />
+  <xs:simpleType name="ArchiveTarget">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CallRecordings">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ComputerRecordings">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Both">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ArchiveTarget" nillable="true" type="tns:ArchiveTarget" />
+  <xs:complexType name="ArrayOfDataSourceListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataSourceListItem" nillable="true" type="tns:DataSourceListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDataSourceListItem" nillable="true" type="tns:ArrayOfDataSourceListItem" />
+  <xs:complexType name="DataSourceListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DataSourceId" type="ser:guid" />
+      <xs:element minOccurs="0" name="DataSourceLocation" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataSourceListItem" nillable="true" type="tns:DataSourceListItem" />
+  <xs:complexType name="RemoteDataSourceCreationItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DataSourceId" type="ser:guid" />
+      <xs:element minOccurs="0" name="DataSourceLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="archiveIpAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dsPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dsUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="serviceID" nillable="true" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoteDataSourceCreationItem" nillable="true" type="tns:RemoteDataSourceCreationItem" />
+  <xs:simpleType name="UserLicenseStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Inactive" />
+      <xs:enumeration value="DontCare" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserLicenseStatusType" nillable="true" type="tns:UserLicenseStatusType" />
+  <xs:complexType name="ArrayOfUserListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserListItem" nillable="true" type="tns:UserListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserListItem" nillable="true" type="tns:ArrayOfUserListItem" />
+  <xs:complexType name="ArrayOfEvaluationSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EvaluationSummary" nillable="true" type="tns:EvaluationSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEvaluationSummary" nillable="true" type="tns:ArrayOfEvaluationSummary" />
+  <xs:complexType name="EvaluationSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EvaluationUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="EvaluatorGuid" type="ser:guid" />
+      <xs:element minOccurs="0" name="EvaluatorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsDraft" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProgressPercent" type="xs:int" />
+      <xs:element minOccurs="0" name="ScorePercent" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ScorecardTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EvaluationSummary" nillable="true" type="tns:EvaluationSummary" />
+  <xs:complexType name="EvaluationDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Calls" nillable="true" type="tns:ArrayOfRecordedCallContainer" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EvaluationUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="Evaluator" nillable="true" type="tns:UserListItem" />
+      <xs:element minOccurs="0" name="IsDraft" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProgressPercent" type="xs:int" />
+      <xs:element minOccurs="0" name="QuestionCategories" nillable="true" type="tns:ArrayOfScorecardQuestionCategory" />
+      <xs:element minOccurs="0" name="Questions" nillable="true" type="tns:ArrayOfEvaluationQuestion" />
+      <xs:element minOccurs="0" name="ScorePercent" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Scorecard" nillable="true" type="tns:Scorecard" />
+      <xs:element minOccurs="0" name="ScreenRecordings" nillable="true" type="tns:ArrayOfComputerRecordingContainer" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:UserListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EvaluationDetails" nillable="true" type="tns:EvaluationDetails" />
+  <xs:complexType name="ArrayOfScorecardQuestionCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScorecardQuestionCategory" nillable="true" type="tns:ScorecardQuestionCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScorecardQuestionCategory" nillable="true" type="tns:ArrayOfScorecardQuestionCategory" />
+  <xs:complexType name="ScorecardQuestionCategory">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ScorecardQuestionListNode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QuestionCategoryChainUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScorecardUid" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScorecardQuestionCategory" nillable="true" type="tns:ScorecardQuestionCategory" />
+  <xs:complexType name="ScorecardQuestionListNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsHighlighted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="QuestionCategoryUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UIOrder" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScorecardQuestionListNode" nillable="true" type="tns:ScorecardQuestionListNode" />
+  <xs:complexType name="ArrayOfEvaluationQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EvaluationQuestion" nillable="true" type="tns:EvaluationQuestion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEvaluationQuestion" nillable="true" type="tns:ArrayOfEvaluationQuestion" />
+  <xs:complexType name="EvaluationQuestion">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ScorecardQuestion">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QuestionBookmarks" nillable="true" type="tns:ArrayOfEvaluationQuestionBookmark" />
+          <xs:element minOccurs="0" name="QuestionScore" nillable="true" type="tns:EvaluationQuestionScore" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EvaluationQuestion" nillable="true" type="tns:EvaluationQuestion" />
+  <xs:complexType name="ScorecardQuestion">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ScorecardQuestionListNode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="QuestionChainUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="QuestionType" type="xs:int" />
+          <xs:element minOccurs="0" name="QuestionUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="Weight" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScorecardQuestion" nillable="true" type="tns:ScorecardQuestion" />
+  <xs:complexType name="ArrayOfEvaluationQuestionBookmark">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EvaluationQuestionBookmark" nillable="true" type="tns:EvaluationQuestionBookmark" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEvaluationQuestionBookmark" nillable="true" type="tns:ArrayOfEvaluationQuestionBookmark" />
+  <xs:complexType name="EvaluationQuestionBookmark">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AudioFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BookmarkEndTicks" type="xs:long" />
+      <xs:element minOccurs="0" name="BookmarkStartTicks" type="xs:long" />
+      <xs:element minOccurs="0" name="CallLogUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EvaluationCallUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="EvaluationQuestionBookmarkUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="EvaluationQuestionScoreUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UIOrder" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EvaluationQuestionBookmark" nillable="true" type="tns:EvaluationQuestionBookmark" />
+  <xs:complexType name="EvaluationQuestionScore">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EvaluationQuestionScoreUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="EvaluationUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QuestionUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="ScoreValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EvaluationQuestionScore" nillable="true" type="tns:EvaluationQuestionScore" />
+  <xs:complexType name="Scorecard">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CategoryScorecardTreeNode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsLatestVersion" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LockedByEvaluationUsage" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ScorecardChainUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScorecardUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="VersionNumber" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Scorecard" nillable="true" type="tns:Scorecard" />
+  <xs:complexType name="CategoryScorecardTreeNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ScorecardCategoryUid" type="ser:guid" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CategoryScorecardTreeNode" nillable="true" type="tns:CategoryScorecardTreeNode" />
+  <xs:complexType name="ArrayOfScorecard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Scorecard" nillable="true" type="tns:Scorecard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScorecard" nillable="true" type="tns:ArrayOfScorecard" />
+  <xs:complexType name="ArrayOfScorecardCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScorecardCategory" nillable="true" type="tns:ScorecardCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScorecardCategory" nillable="true" type="tns:ArrayOfScorecardCategory" />
+  <xs:complexType name="ScorecardCategory">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CategoryScorecardTreeNode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CategoryScorecardList" nillable="true" type="tns:ArrayOfScorecard" />
+          <xs:element minOccurs="0" name="ScorecardCount" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScorecardCategory" nillable="true" type="tns:ScorecardCategory" />
+  <xs:complexType name="ArrayOfScorecardQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScorecardQuestion" nillable="true" type="tns:ScorecardQuestion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScorecardQuestion" nillable="true" type="tns:ArrayOfScorecardQuestion" />
+  <xs:simpleType name="CallDirection">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Inbound" />
+      <xs:enumeration value="Outbound" />
+      <xs:enumeration value="Both" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CallDirection" nillable="true" type="tns:CallDirection" />
+  <xs:simpleType name="SearchDateSpecificationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Any" />
+      <xs:enumeration value="LastXDays" />
+      <xs:enumeration value="Range" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SearchDateSpecificationType" nillable="true" type="tns:SearchDateSpecificationType" />
+  <xs:simpleType name="DateGroupType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Day" />
+      <xs:enumeration value="Week" />
+      <xs:enumeration value="Month" />
+      <xs:enumeration value="Year" />
+      <xs:enumeration value="HalfHourOfDay" />
+      <xs:enumeration value="HourOfDay" />
+      <xs:enumeration value="DayOfWeek" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DateGroupType" nillable="true" type="tns:DateGroupType" />
+  <xs:simpleType name="CallCountGroupType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="AreaCode" />
+      <xs:enumeration value="Prefix" />
+      <xs:enumeration value="RecordingProfile" />
+      <xs:enumeration value="Extension" />
+      <xs:enumeration value="Dnis" />
+      <xs:enumeration value="Department" />
+      <xs:enumeration value="Location" />
+      <xs:enumeration value="Flag" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CallCountGroupType" nillable="true" type="tns:CallCountGroupType" />
+  <xs:simpleType name="CallCountSortType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DateGroup" />
+      <xs:enumeration value="Group" />
+      <xs:enumeration value="Calls" />
+      <xs:enumeration value="TalkTime" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CallCountSortType" nillable="true" type="tns:CallCountSortType" />
+  <xs:complexType name="ArrayOfCallCount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CallCount" nillable="true" type="tns:CallCount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCallCount" nillable="true" type="tns:ArrayOfCallCount" />
+  <xs:complexType name="CallCount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="DateGroup" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DynamicGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TalkTime" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CallCount" nillable="true" type="tns:CallCount" />
+  <xs:complexType name="DuplicateExtensionFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="DuplicateExtensionFault" nillable="true" type="tns:DuplicateExtensionFault" />
+  <xs:complexType name="InvalidOrBlankExtensionFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="InvalidOrBlankExtensionFault" nillable="true" type="tns:InvalidOrBlankExtensionFault" />
+  <xs:complexType name="DuplicateSipUriFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CollidingUser" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DuplicateSipUriFault" nillable="true" type="tns:DuplicateSipUriFault" />
+  <xs:complexType name="DuplicateUsernameFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="DuplicateUsernameFault" nillable="true" type="tns:DuplicateUsernameFault" />
+  <xs:complexType name="LicenseViolationFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="LicenseViolationFault" nillable="true" type="tns:LicenseViolationFault" />
+  <xs:complexType name="DuplicateDeviceAddressFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CollidingUser" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DuplicateDeviceAddressFault" nillable="true" type="tns:DuplicateDeviceAddressFault" />
+  <xs:complexType name="InvalidUserIdFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="InvalidUserIdFault" nillable="true" type="tns:InvalidUserIdFault" />
+  <xs:complexType name="CantDeleteUserLoggedInAsFault">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="CantDeleteUserLoggedInAsFault" nillable="true" type="tns:CantDeleteUserLoggedInAsFault" />
+  <xs:complexType name="ArrayOfMemberListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberListItem" nillable="true" type="tns:MemberListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMemberListItem" nillable="true" type="tns:ArrayOfMemberListItem" />
+  <xs:complexType name="MemberListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberListItem" nillable="true" type="tns:MemberListItem" />
+  <xs:complexType name="ArrayOfFlag">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Flag" nillable="true" type="tns:Flag" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFlag" nillable="true" type="tns:ArrayOfFlag" />
+  <xs:complexType name="Flag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsPredefined" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSystem" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerUserId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="ValueDomain" nillable="true" type="tns:ArrayOfFlagValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Flag" nillable="true" type="tns:Flag" />
+  <xs:complexType name="ArrayOfFlagValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FlagValue" nillable="true" type="tns:FlagValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFlagValue" nillable="true" type="tns:ArrayOfFlagValue" />
+  <xs:complexType name="FlagValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FlagValue" nillable="true" type="tns:FlagValue" />
+  <xs:complexType name="AttachedDataContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HostMediaId" type="ser:guid" />
+      <xs:element minOccurs="0" name="HostMediaType" type="tns:RecordingType" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordingFlagValues" nillable="true" type="tns:ArrayOfRecordingFlagValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttachedDataContainer" nillable="true" type="tns:AttachedDataContainer" />
+  <xs:complexType name="UserMonitorInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Host" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Port" type="xs:short" />
+      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserMonitorInfo" nillable="true" type="tns:UserMonitorInfo" />
+  <xs:complexType name="SavedSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CallDirection" type="tns:CallDirection" />
+      <xs:element minOccurs="0" name="CallerID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Dnis" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FlagID" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="FlagValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastDaysCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxCallDuration" type="xs:int" />
+      <xs:element minOccurs="0" name="MediaType" type="tns:RecordedMediaType" />
+      <xs:element minOccurs="0" name="MinCallDuration" type="xs:int" />
+      <xs:element minOccurs="0" name="OutgoingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SavedSearchDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SavedSearchID" type="ser:guid" />
+      <xs:element minOccurs="0" name="SavedSearchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SavedSearchOwnerUserID" type="ser:guid" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StopTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TimeSearchType" type="tns:SearchDateSpecificationType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SavedSearch" nillable="true" type="tns:SavedSearch" />
+  <xs:complexType name="ArrayOfSavedSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SavedSearch" nillable="true" type="tns:SavedSearch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSavedSearch" nillable="true" type="tns:ArrayOfSavedSearch" />
+  <xs:complexType name="SecurityProfileDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HasAddEditUsersPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasAdministerRecordingProfilesPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasChangeSystemPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasCreateEvaluationPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasCreateScorecardPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasDeleteRecordingPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasDeleteUsersPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasEmailRecordingPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasExportRecordingPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasInitiateUserRecordingPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasLiveMonitorPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasManageFlagsPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasPauseSystemRecordingPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasPlaybackRecordingPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasViewComputerRecordingsPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasViewLivePhoneStatePermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasViewReportingPermission" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDataSericeInADomain" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsProfileEditable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProfileID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SecurityProfileDetails" nillable="true" type="tns:SecurityProfileDetails" />
+  <xs:complexType name="ArrayOfRecordedMediaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecordedMediaType" type="tns:RecordedMediaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecordedMediaType" nillable="true" type="tns:ArrayOfRecordedMediaType" />
+  <xs:complexType name="ArrayOfSavedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SavedReport" nillable="true" type="tns:SavedReport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSavedReport" nillable="true" type="tns:ArrayOfSavedReport" />
+  <xs:complexType name="SavedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Format" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Parameters" nillable="true" type="q7:ArrayOfKeyValueOfstringstring" />
+      <xs:element minOccurs="0" name="ReportId" type="ser:guid" />
+      <xs:element minOccurs="0" name="SavedReportId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ScheduleDateType" type="tns:ReportScheduleDateType" />
+      <xs:element minOccurs="0" name="ScheduleDayOfMonth" type="xs:int" />
+      <xs:element minOccurs="0" name="ScheduleDaysOfWeek" type="xs:int" />
+      <xs:element minOccurs="0" name="ScheduleTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ScheduleWeekFrequency" type="xs:int" />
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Subscribers" nillable="true" type="q8:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SavedReport" nillable="true" type="tns:SavedReport" />
+  <xs:simpleType name="ReportScheduleDateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DaysOfWeek" />
+      <xs:enumeration value="DayOfMonth" />
+      <xs:enumeration value="EndOfMonth" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ReportScheduleDateType" nillable="true" type="tns:ReportScheduleDateType" />
+  <xs:complexType name="ArrayOfReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Report" nillable="true" type="tns:Report" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReport" nillable="true" type="tns:ArrayOfReport" />
+  <xs:complexType name="Report">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Report" nillable="true" type="tns:Report" />
+  <xs:simpleType name="ProfileType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Security" />
+      <xs:enumeration value="CallRecording" />
+      <xs:enumeration value="ScreenRecording" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProfileType" nillable="true" type="tns:ProfileType" />
+  <xs:complexType name="ArrayOfSecurityProfileListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SecurityProfileListItem" nillable="true" type="tns:SecurityProfileListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSecurityProfileListItem" nillable="true" type="tns:ArrayOfSecurityProfileListItem" />
+  <xs:complexType name="SecurityProfileListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MemberCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProfileID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SecurityProfileListItem" nillable="true" type="tns:SecurityProfileListItem" />
+  <xs:complexType name="ProfileNotDeletableFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProfileID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProfileNotDeletableFault" nillable="true" type="tns:ProfileNotDeletableFault" />
+  <xs:complexType name="ProfileInUseFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProfileID" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProfileInUseFault" nillable="true" type="tns:ProfileInUseFault" />
+  <xs:complexType name="ArrayOfCallRecordingProfileListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CallRecordingProfileListItem" nillable="true" type="tns:CallRecordingProfileListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCallRecordingProfileListItem" nillable="true" type="tns:ArrayOfCallRecordingProfileListItem" />
+  <xs:complexType name="CallRecordingProfileListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DefaultState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProfileID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CallRecordingProfileListItem" nillable="true" type="tns:CallRecordingProfileListItem" />
+  <xs:complexType name="CallRecordingProfileDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveDaysOfWeek" type="xs:int" />
+      <xs:element minOccurs="0" name="CallRecordingProfileRules" nillable="true" type="tns:ArrayOfCallRecordingProfileRule" />
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MemberExtensions" nillable="true" type="q9:ArrayOfstring" />
+      <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MemberUserIds" nillable="true" type="q10:ArrayOfguid" />
+      <xs:element minOccurs="0" name="OwnerId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="PercentRecordedInbound" type="xs:int" />
+      <xs:element minOccurs="0" name="PercentRecordedOutbound" type="xs:int" />
+      <xs:element minOccurs="0" name="ProfileId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ProfileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordsGreedily" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RetentionMaximumAgeDays" type="xs:short" />
+      <xs:element minOccurs="0" name="RetentionMinimumDurationSeconds" type="xs:short" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StopTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UseRetentionMaximumAgeDays" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseRetentionMinimumDuration" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CallRecordingProfileDetails" nillable="true" type="tns:CallRecordingProfileDetails" />
+  <xs:complexType name="ArrayOfCallRecordingProfileRule">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CallRecordingProfileRule" nillable="true" type="tns:CallRecordingProfileRule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCallRecordingProfileRule" nillable="true" type="tns:ArrayOfCallRecordingProfileRule" />
+  <xs:complexType name="CallRecordingProfileRule">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q11:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DataMemberID" type="ser:guid" />
+          <xs:element minOccurs="0" name="DataMemberType" type="xs:int" />
+          <xs:element minOccurs="0" name="DirectiveType" type="tns:ProfileRuleDirectiveTypes" />
+          <xs:element minOccurs="0" name="Group" nillable="true" type="tns:DBRecordingProfile" />
+          <xs:element minOccurs="0" name="GroupReference" nillable="true" type="q11:EntityReferenceOfDBRecordingProfile1U8vXZAD" />
+          <xs:element minOccurs="0" name="RelationType" type="tns:ProfileRuleRelationTypes" />
+          <xs:element minOccurs="0" name="callRecordingProfileRuleID" type="ser:guid" />
+          <xs:element minOccurs="0" name="dataMemberID" type="ser:guid" />
+          <xs:element minOccurs="0" name="dataMemberType" type="xs:int" />
+          <xs:element minOccurs="0" name="directiveType" type="xs:int" />
+          <xs:element minOccurs="0" name="groupID" type="ser:guid" />
+          <xs:element minOccurs="0" name="pattern" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="priority" type="xs:int" />
+          <xs:element minOccurs="0" name="relationType" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CallRecordingProfileRule" nillable="true" type="tns:CallRecordingProfileRule" />
+  <xs:simpleType name="ProfileRuleDirectiveTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Record" />
+      <xs:enumeration value="DoNotRecord" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProfileRuleDirectiveTypes" nillable="true" type="tns:ProfileRuleDirectiveTypes" />
+  <xs:complexType name="DBRecordingProfile">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q12:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CallRecordingProfileRules" nillable="true" type="tns:ArrayOfCallRecordingProfileRule" />
+          <xs:element minOccurs="0" name="Members" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="OwnerReference" nillable="true" type="q12:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="groupID" type="ser:guid" />
+          <xs:element minOccurs="0" name="groupName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="groupOwnerUserID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="isDefault" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isInboundName" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isInboundNumbers" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isMaxRecAgeEnabled" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isMinRecLenEnabled" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isOutboundNumbers" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isRecordsGreedilyEnabled" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="maxRecAge" type="xs:short" />
+          <xs:element minOccurs="0" name="minRecLen" type="xs:short" />
+          <xs:element minOccurs="0" name="percentInCallsRecord" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="percentOutCallsRecord" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="scheduleStartTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="scheduleStopTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="scheduleWeekDays" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DBRecordingProfile" nillable="true" type="tns:DBRecordingProfile" />
+  <xs:complexType name="ArrayOfDBUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DBUser" nillable="true" type="tns:DBUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDBUser" nillable="true" type="tns:ArrayOfDBUser" />
+  <xs:complexType name="DBUser">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q13:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_BlockedCall" nillable="true" type="tns:ArrayOfAE_BlockedCall" />
+          <xs:element minOccurs="0" name="AE_BlockedScreenRecording" nillable="true" type="tns:ArrayOfAE_BlockedScreenRecording" />
+          <xs:element minOccurs="0" name="AE_Evaluation" nillable="true" type="tns:ArrayOfAE_Evaluation" />
+          <xs:element minOccurs="0" name="AE_Evaluation1" nillable="true" type="tns:ArrayOfAE_Evaluation" />
+          <xs:element minOccurs="0" name="CallLogs" nillable="true" type="tns:ArrayOfCallLog" />
+          <xs:element minOccurs="0" name="DirectReports" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="FlagFieldNames" nillable="true" type="tns:ArrayOfFlagFieldName" />
+          <xs:element minOccurs="0" name="Groups" nillable="true" type="tns:ArrayOfDBRecordingProfile" />
+          <xs:element minOccurs="0" name="Groups1" nillable="true" type="tns:ArrayOfDBRecordingProfile" />
+          <xs:element minOccurs="0" name="IntelRexDeployment" nillable="true" type="tns:IntelRexDeployment" />
+          <xs:element minOccurs="0" name="IntelRexDeploymentReference" nillable="true" type="q13:EntityReferenceOfIntelRexDeployment1U8vXZAD" />
+          <xs:element minOccurs="0" name="ManagedDepartments" nillable="true" type="tns:ArrayOfUserManagedDepartment" />
+          <xs:element minOccurs="0" name="ManagedLocations" nillable="true" type="tns:ArrayOfUserManagedLocation" />
+          <xs:element minOccurs="0" name="SavedSearches" nillable="true" type="tns:ArrayOfDBSavedSearch" />
+          <xs:element minOccurs="0" name="ScreenRecordingProfiles" nillable="true" type="tns:ArrayOfScreenRecordingProfile" />
+          <xs:element minOccurs="0" name="ScreenRecordingProfiles1" nillable="true" type="tns:ArrayOfScreenRecordingProfile" />
+          <xs:element minOccurs="0" name="ScreenRecordings" nillable="true" type="tns:ArrayOfScreenRecording" />
+          <xs:element minOccurs="0" name="Securities" nillable="true" type="tns:ArrayOfSecurity" />
+          <xs:element minOccurs="0" name="Security" nillable="true" type="tns:Security" />
+          <xs:element minOccurs="0" name="SecurityReference" nillable="true" type="q13:EntityReferenceOfSecurity1U8vXZAD" />
+          <xs:element minOccurs="0" name="Service" nillable="true" type="tns:DBService" />
+          <xs:element minOccurs="0" name="Service1" nillable="true" type="tns:DBService" />
+          <xs:element minOccurs="0" name="Service1Reference" nillable="true" type="q13:EntityReferenceOfDBService1U8vXZAD" />
+          <xs:element minOccurs="0" name="ServiceReference" nillable="true" type="q13:EntityReferenceOfDBService1U8vXZAD" />
+          <xs:element minOccurs="0" name="Supervisors" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="User1" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="User1Reference" nillable="true" type="q13:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="UserPreferences" nillable="true" type="tns:ArrayOfUserPreference" />
+          <xs:element minOccurs="0" name="Users1" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="agentID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="agentStatus" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="alternatePhoneID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="associatedUserID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="callsNotAnsweredStatus" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="controlServiceID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="departmentName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="deviceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="excludedExtensions" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="extension" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="extensionPassword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="hasAgentEvaluationLicense" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="hasCallRecordingLicense" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="hasComputerRecordingLicense" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="intelrexDeploymentID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="ipAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ipOrMachineName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ipmacAddress" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="ipmacAddress2" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="isActive" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isDeleted" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isDevice" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isDualEndPtsEnabled" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isIPAddress" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isLookbackRecordingEnabled" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isMachineName" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isOnDemand" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isPrivacyEnabled" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="lastComputerLoginTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="location" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="machineName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="otherExtensions" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="passwordSalt" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="recordingServiceID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="roleID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="securityID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="sipContact" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sipURI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="timeLoggedIn" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="userID" type="ser:guid" />
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="windowsUserName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DBUser" nillable="true" type="tns:DBUser" />
+  <xs:complexType name="ArrayOfAE_BlockedCall">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_BlockedCall" nillable="true" type="tns:AE_BlockedCall" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_BlockedCall" nillable="true" type="tns:ArrayOfAE_BlockedCall" />
+  <xs:complexType name="AE_BlockedCall">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q14:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CallLog" nillable="true" type="tns:CallLog" />
+          <xs:element minOccurs="0" name="CallLogReference" nillable="true" type="q14:EntityReferenceOfCallLog1U8vXZAD" />
+          <xs:element minOccurs="0" name="CallLogUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q14:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="UserUid" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_BlockedCall" nillable="true" type="tns:AE_BlockedCall" />
+  <xs:complexType name="CallLog">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q15:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_BlockedCall" nillable="true" type="tns:ArrayOfAE_BlockedCall" />
+          <xs:element minOccurs="0" name="AE_XRefEvaluationCall" nillable="true" type="tns:ArrayOfAE_XRefEvaluationCall" />
+          <xs:element minOccurs="0" name="CallLog1" nillable="true" type="tns:ArrayOfCallLog" />
+          <xs:element minOccurs="0" name="CallLog11" nillable="true" type="tns:ArrayOfCallLog" />
+          <xs:element minOccurs="0" name="CallLog2" nillable="true" type="tns:CallLog" />
+          <xs:element minOccurs="0" name="CallLog2Reference" nillable="true" type="q15:EntityReferenceOfCallLog1U8vXZAD" />
+          <xs:element minOccurs="0" name="CallLog3" nillable="true" type="tns:CallLog" />
+          <xs:element minOccurs="0" name="CallLog3Reference" nillable="true" type="q15:EntityReferenceOfCallLog1U8vXZAD" />
+          <xs:element minOccurs="0" name="CallLogFlagDatas" nillable="true" type="tns:ArrayOfCallLogFlagData" />
+          <xs:element minOccurs="0" name="DNIS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DataSource" nillable="true" type="tns:DataSource" />
+          <xs:element minOccurs="0" name="DataSourceReference" nillable="true" type="q15:EntityReferenceOfDataSource1U8vXZAD" />
+          <xs:element minOccurs="0" name="EncryptionKey" nillable="true" type="tns:DBEncryptionKey" />
+          <xs:element minOccurs="0" name="EncryptionKeyReference" nillable="true" type="q15:EntityReferenceOfDBEncryptionKey1U8vXZAD" />
+          <xs:element minOccurs="0" name="ScreenRecordings" nillable="true" type="tns:ArrayOfScreenRecording" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q15:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="callID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="callLogID" type="ser:guid" />
+          <xs:element minOccurs="0" name="callerID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="custom1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="custom2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dataSourceID" type="ser:guid" />
+          <xs:element minOccurs="0" name="descr" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="encryptionKeyID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="fileHash" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fileSize" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="fromCallLogID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="isFileToBeTransferred" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="notes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="outboundNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="recordedByUserID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="recordingFile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="recordingProfileID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="stopTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="toCallLogID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="transferFrom" type="xs:short" />
+          <xs:element minOccurs="0" name="userID" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CallLog" nillable="true" type="tns:CallLog" />
+  <xs:complexType name="ArrayOfAE_XRefEvaluationCall">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_XRefEvaluationCall" nillable="true" type="tns:AE_XRefEvaluationCall" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_XRefEvaluationCall" nillable="true" type="tns:ArrayOfAE_XRefEvaluationCall" />
+  <xs:complexType name="AE_XRefEvaluationCall">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q16:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_Evaluation" nillable="true" type="tns:AE_Evaluation" />
+          <xs:element minOccurs="0" name="AE_EvaluationQuestionBookmark" nillable="true" type="tns:ArrayOfAE_EvaluationQuestionBookmark" />
+          <xs:element minOccurs="0" name="AE_EvaluationReference" nillable="true" type="q16:EntityReferenceOfAE_Evaluation1U8vXZAD" />
+          <xs:element minOccurs="0" name="CallLog" nillable="true" type="tns:CallLog" />
+          <xs:element minOccurs="0" name="CallLogReference" nillable="true" type="q16:EntityReferenceOfCallLog1U8vXZAD" />
+          <xs:element minOccurs="0" name="CallLogUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EvaluationCallUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="EvaluationUid" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_XRefEvaluationCall" nillable="true" type="tns:AE_XRefEvaluationCall" />
+  <xs:complexType name="AE_Evaluation">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q17:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_EvaluationQuestionScore" nillable="true" type="tns:ArrayOfAE_EvaluationQuestionScore" />
+          <xs:element minOccurs="0" name="AE_Scorecard" nillable="true" type="tns:AE_Scorecard" />
+          <xs:element minOccurs="0" name="AE_ScorecardReference" nillable="true" type="q17:EntityReferenceOfAE_Scorecard1U8vXZAD" />
+          <xs:element minOccurs="0" name="AE_XRefEvaluationCall" nillable="true" type="tns:ArrayOfAE_XRefEvaluationCall" />
+          <xs:element minOccurs="0" name="AE_XRefEvaluationScreenRecording" nillable="true" type="tns:ArrayOfAE_XRefEvaluationScreenRecording" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EvaluationScorePercent" type="xs:decimal" />
+          <xs:element minOccurs="0" name="EvaluationUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="EvaluatorUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="IsInDraftMode" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProgressPercent" type="xs:int" />
+          <xs:element minOccurs="0" name="ScorecardUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="User1" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="User1Reference" nillable="true" type="q17:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q17:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="UserUid" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_Evaluation" nillable="true" type="tns:AE_Evaluation" />
+  <xs:complexType name="ArrayOfAE_EvaluationQuestionScore">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_EvaluationQuestionScore" nillable="true" type="tns:AE_EvaluationQuestionScore" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_EvaluationQuestionScore" nillable="true" type="tns:ArrayOfAE_EvaluationQuestionScore" />
+  <xs:complexType name="AE_EvaluationQuestionScore">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q18:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_Evaluation" nillable="true" type="tns:AE_Evaluation" />
+          <xs:element minOccurs="0" name="AE_EvaluationQuestionBookmark" nillable="true" type="tns:ArrayOfAE_EvaluationQuestionBookmark" />
+          <xs:element minOccurs="0" name="AE_EvaluationReference" nillable="true" type="q18:EntityReferenceOfAE_Evaluation1U8vXZAD" />
+          <xs:element minOccurs="0" name="AE_ScorecardQuestion" nillable="true" type="tns:AE_ScorecardQuestion" />
+          <xs:element minOccurs="0" name="AE_ScorecardQuestionReference" nillable="true" type="q18:EntityReferenceOfAE_ScorecardQuestion1U8vXZAD" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EvaluationQuestionScoreUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="EvaluationUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="QuestionUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScoreValue" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_EvaluationQuestionScore" nillable="true" type="tns:AE_EvaluationQuestionScore" />
+  <xs:complexType name="ArrayOfAE_EvaluationQuestionBookmark">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_EvaluationQuestionBookmark" nillable="true" type="tns:AE_EvaluationQuestionBookmark" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_EvaluationQuestionBookmark" nillable="true" type="tns:ArrayOfAE_EvaluationQuestionBookmark" />
+  <xs:complexType name="AE_EvaluationQuestionBookmark">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q19:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_EvaluationQuestionScore" nillable="true" type="tns:AE_EvaluationQuestionScore" />
+          <xs:element minOccurs="0" name="AE_EvaluationQuestionScoreReference" nillable="true" type="q19:EntityReferenceOfAE_EvaluationQuestionScore1U8vXZAD" />
+          <xs:element minOccurs="0" name="AE_XRefEvaluationCall" nillable="true" type="tns:AE_XRefEvaluationCall" />
+          <xs:element minOccurs="0" name="AE_XRefEvaluationCallReference" nillable="true" type="q19:EntityReferenceOfAE_XRefEvaluationCall1U8vXZAD" />
+          <xs:element minOccurs="0" name="BokmarkEndInTicks" type="xs:long" />
+          <xs:element minOccurs="0" name="BokmarkStartTicks" type="xs:long" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EvaluationCallUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="EvaluationQuestionBookmarkUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="EvaluationQuestionScoreUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UIOrder" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_EvaluationQuestionBookmark" nillable="true" type="tns:AE_EvaluationQuestionBookmark" />
+  <xs:complexType name="AE_ScorecardQuestion">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q20="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q20:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_EvaluationQuestionScore" nillable="true" type="tns:ArrayOfAE_EvaluationQuestionScore" />
+          <xs:element minOccurs="0" name="AE_ScorecardQuestionCategory" nillable="true" type="tns:AE_ScorecardQuestionCategory" />
+          <xs:element minOccurs="0" name="AE_ScorecardQuestionCategoryReference" nillable="true" type="q20:EntityReferenceOfAE_ScorecardQuestionCategory1U8vXZAD" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="QuestionCategoryUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="QuestionChainUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="QuestionType" type="xs:int" />
+          <xs:element minOccurs="0" name="QuestionUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UIOrder" type="xs:int" />
+          <xs:element minOccurs="0" name="Weight" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_ScorecardQuestion" nillable="true" type="tns:AE_ScorecardQuestion" />
+  <xs:complexType name="AE_ScorecardQuestionCategory">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q21="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q21:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_Scorecard" nillable="true" type="tns:AE_Scorecard" />
+          <xs:element minOccurs="0" name="AE_ScorecardQuestion" nillable="true" type="tns:ArrayOfAE_ScorecardQuestion" />
+          <xs:element minOccurs="0" name="AE_ScorecardReference" nillable="true" type="q21:EntityReferenceOfAE_Scorecard1U8vXZAD" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="QuestionCategoryChainUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="QuestionCategoryUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScorecardUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UIOrder" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_ScorecardQuestionCategory" nillable="true" type="tns:AE_ScorecardQuestionCategory" />
+  <xs:complexType name="AE_Scorecard">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q22="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q22:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_Evaluation" nillable="true" type="tns:ArrayOfAE_Evaluation" />
+          <xs:element minOccurs="0" name="AE_ScorecardCategory" nillable="true" type="tns:AE_ScorecardCategory" />
+          <xs:element minOccurs="0" name="AE_ScorecardCategoryReference" nillable="true" type="q22:EntityReferenceOfAE_ScorecardCategory1U8vXZAD" />
+          <xs:element minOccurs="0" name="AE_ScorecardQuestionCategory" nillable="true" type="tns:ArrayOfAE_ScorecardQuestionCategory" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsLatestVersion" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LockedByEvaluationUsage" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ScorecardCategoryUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScorecardChainUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScorecardUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="VersionNumber" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_Scorecard" nillable="true" type="tns:AE_Scorecard" />
+  <xs:complexType name="ArrayOfAE_Evaluation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_Evaluation" nillable="true" type="tns:AE_Evaluation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_Evaluation" nillable="true" type="tns:ArrayOfAE_Evaluation" />
+  <xs:complexType name="AE_ScorecardCategory">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q23="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q23:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_Scorecard" nillable="true" type="tns:ArrayOfAE_Scorecard" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ScorecardCategoryUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_ScorecardCategory" nillable="true" type="tns:AE_ScorecardCategory" />
+  <xs:complexType name="ArrayOfAE_Scorecard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_Scorecard" nillable="true" type="tns:AE_Scorecard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_Scorecard" nillable="true" type="tns:ArrayOfAE_Scorecard" />
+  <xs:complexType name="ArrayOfAE_ScorecardQuestionCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_ScorecardQuestionCategory" nillable="true" type="tns:AE_ScorecardQuestionCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_ScorecardQuestionCategory" nillable="true" type="tns:ArrayOfAE_ScorecardQuestionCategory" />
+  <xs:complexType name="ArrayOfAE_ScorecardQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_ScorecardQuestion" nillable="true" type="tns:AE_ScorecardQuestion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_ScorecardQuestion" nillable="true" type="tns:ArrayOfAE_ScorecardQuestion" />
+  <xs:complexType name="ArrayOfAE_XRefEvaluationScreenRecording">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_XRefEvaluationScreenRecording" nillable="true" type="tns:AE_XRefEvaluationScreenRecording" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_XRefEvaluationScreenRecording" nillable="true" type="tns:ArrayOfAE_XRefEvaluationScreenRecording" />
+  <xs:complexType name="AE_XRefEvaluationScreenRecording">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q24="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q24:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_Evaluation" nillable="true" type="tns:AE_Evaluation" />
+          <xs:element minOccurs="0" name="AE_EvaluationReference" nillable="true" type="q24:EntityReferenceOfAE_Evaluation1U8vXZAD" />
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EvaluationScreenRecordingUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="EvaluationUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScreenRecording" nillable="true" type="tns:ScreenRecording" />
+          <xs:element minOccurs="0" name="ScreenRecordingReference" nillable="true" type="q24:EntityReferenceOfScreenRecording1U8vXZAD" />
+          <xs:element minOccurs="0" name="ScreenRecordingUid" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_XRefEvaluationScreenRecording" nillable="true" type="tns:AE_XRefEvaluationScreenRecording" />
+  <xs:complexType name="ScreenRecording">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q25="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q25:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_BlockedScreenRecording" nillable="true" type="tns:ArrayOfAE_BlockedScreenRecording" />
+          <xs:element minOccurs="0" name="AE_XRefEvaluationScreenRecording" nillable="true" type="tns:ArrayOfAE_XRefEvaluationScreenRecording" />
+          <xs:element minOccurs="0" name="CallLog" nillable="true" type="tns:CallLog" />
+          <xs:element minOccurs="0" name="CallLogReference" nillable="true" type="q25:EntityReferenceOfCallLog1U8vXZAD" />
+          <xs:element minOccurs="0" name="DataSource" nillable="true" type="tns:DataSource" />
+          <xs:element minOccurs="0" name="DataSourceReference" nillable="true" type="q25:EntityReferenceOfDataSource1U8vXZAD" />
+          <xs:element minOccurs="0" name="EncryptionKey" nillable="true" type="tns:DBEncryptionKey" />
+          <xs:element minOccurs="0" name="EncryptionKeyReference" nillable="true" type="q25:EntityReferenceOfDBEncryptionKey1U8vXZAD" />
+          <xs:element minOccurs="0" name="ScreenRecordingFlagDatas" nillable="true" type="tns:ArrayOfScreenRecordingFlagData" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q25:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="callRecordingID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="dataSourceID" type="ser:guid" />
+          <xs:element minOccurs="0" name="descr" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="encryptionKeyID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="fileSize" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="hostName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="isCompleted" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isFileToBeTransferred" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="notes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="recordingFile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="screenRecordingID" type="ser:guid" />
+          <xs:element minOccurs="0" name="screenRecordingProfileID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="stopTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="userID" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScreenRecording" nillable="true" type="tns:ScreenRecording" />
+  <xs:complexType name="ArrayOfAE_BlockedScreenRecording">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AE_BlockedScreenRecording" nillable="true" type="tns:AE_BlockedScreenRecording" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAE_BlockedScreenRecording" nillable="true" type="tns:ArrayOfAE_BlockedScreenRecording" />
+  <xs:complexType name="AE_BlockedScreenRecording">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q26="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q26:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ScreenRecording" nillable="true" type="tns:ScreenRecording" />
+          <xs:element minOccurs="0" name="ScreenRecordingReference" nillable="true" type="q26:EntityReferenceOfScreenRecording1U8vXZAD" />
+          <xs:element minOccurs="0" name="ScreenRecordingUid" type="ser:guid" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q26:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="UserUid" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AE_BlockedScreenRecording" nillable="true" type="tns:AE_BlockedScreenRecording" />
+  <xs:complexType name="DataSource">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q27="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q27:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ArchiveSourceLocations" nillable="true" type="tns:ArrayOfArchiveSourceLocation" />
+          <xs:element minOccurs="0" name="CallLogs" nillable="true" type="tns:ArrayOfCallLog" />
+          <xs:element minOccurs="0" name="ScreenRecordings" nillable="true" type="tns:ArrayOfScreenRecording" />
+          <xs:element minOccurs="0" name="Services" nillable="true" type="tns:ArrayOfDBService" />
+          <xs:element minOccurs="0" name="Services1" nillable="true" type="tns:ArrayOfDBService" />
+          <xs:element minOccurs="0" name="archiveIpAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dataSourceID" type="ser:guid" />
+          <xs:element minOccurs="0" name="dataSourceLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dataSourceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dsPassword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dsUsername" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="firstRecord" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="lastRecord" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="serviceID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="spaceAvailable" nillable="true" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DataSource" nillable="true" type="tns:DataSource" />
+  <xs:complexType name="ArrayOfArchiveSourceLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArchiveSourceLocation" nillable="true" type="tns:ArchiveSourceLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfArchiveSourceLocation" nillable="true" type="tns:ArrayOfArchiveSourceLocation" />
+  <xs:complexType name="ArchiveSourceLocation">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q28="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q28:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Archive" nillable="true" type="tns:Archive" />
+          <xs:element minOccurs="0" name="ArchiveReference" nillable="true" type="q28:EntityReferenceOfArchive1U8vXZAD" />
+          <xs:element minOccurs="0" name="DataSource" nillable="true" type="tns:DataSource" />
+          <xs:element minOccurs="0" name="DataSourceReference" nillable="true" type="q28:EntityReferenceOfDataSource1U8vXZAD" />
+          <xs:element minOccurs="0" name="archiveId" type="ser:guid" />
+          <xs:element minOccurs="0" name="archiveSourceId" type="ser:guid" />
+          <xs:element minOccurs="0" name="dataSourceId" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ArchiveSourceLocation" nillable="true" type="tns:ArchiveSourceLocation" />
+  <xs:complexType name="Archive">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q29="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q29:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllButNewest" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Amount" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="AmountType" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ArchiveId" type="ser:guid" />
+          <xs:element minOccurs="0" name="ArchiveName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ArchiveSourceLocations" nillable="true" type="tns:ArrayOfArchiveSourceLocation" />
+          <xs:element minOccurs="0" name="ArchiveToDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Cancelled" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CurrentAmountCopied" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="DatasourceId" type="ser:guid" />
+          <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DaysOfData" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DaysofWeek" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="EmailCulture" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastResult" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="LastRun" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="NextRun" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Recurring" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Target" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="TimeofRun" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Archive" nillable="true" type="tns:Archive" />
+  <xs:complexType name="ArrayOfCallLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CallLog" nillable="true" type="tns:CallLog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCallLog" nillable="true" type="tns:ArrayOfCallLog" />
+  <xs:complexType name="ArrayOfScreenRecording">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScreenRecording" nillable="true" type="tns:ScreenRecording" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScreenRecording" nillable="true" type="tns:ArrayOfScreenRecording" />
+  <xs:complexType name="ArrayOfDBService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DBService" nillable="true" type="tns:DBService" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDBService" nillable="true" type="tns:ArrayOfDBService" />
+  <xs:complexType name="DBService">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q30="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q30:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LocalDataSource" nillable="true" type="tns:DataSource" />
+          <xs:element minOccurs="0" name="LocalDataSourceReference" nillable="true" type="q30:EntityReferenceOfDataSource1U8vXZAD" />
+          <xs:element minOccurs="0" name="PBXType" nillable="true" type="tns:DBPbxType" />
+          <xs:element minOccurs="0" name="PBXTypeReference" nillable="true" type="q30:EntityReferenceOfDBPbxType1U8vXZAD" />
+          <xs:element minOccurs="0" name="RemoteDataSource" nillable="true" type="tns:DataSource" />
+          <xs:element minOccurs="0" name="RemoteDataSourceReference" nillable="true" type="q30:EntityReferenceOfDataSource1U8vXZAD" />
+          <xs:element minOccurs="0" name="ScnDeletionDays" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ScnTotalDataSize" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ScnUserDataSize" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ServiceType" nillable="true" type="tns:ServiceType" />
+          <xs:element minOccurs="0" name="ServiceTypeReference" nillable="true" type="q30:EntityReferenceOfServiceType1U8vXZAD" />
+          <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="Users1" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="alertLanguage" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="apiIPAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="apiPort" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="callControlServiceId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="callConversionServiceId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="ctcHostName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="emailAccount" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="emailAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="emailPassword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fromEmailAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="hostname" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ipAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="isAuthenticationRequired" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isEventLogAlertsEnabled" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isSmtpAlertsEnabled" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isTransferFilesEnabled" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isTransferImmediate" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="lastContactTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="localPercentNotify" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="localStorageLocID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="pbxID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="pbxIPAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pbxPassword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pbxUserName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="primaryDeviceSubnet" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="remoteStorageLocID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="serviceID" type="ser:guid" />
+          <xs:element minOccurs="0" name="serviceTypeID" type="xs:int" />
+          <xs:element minOccurs="0" name="smtpPort" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="smtpServer" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="startingAudioPort" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="switchName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="transferDaysOfWeek" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="transferDelayDays" type="xs:int" />
+          <xs:element minOccurs="0" name="transferStartTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="useSecureSocket" nillable="true" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DBService" nillable="true" type="tns:DBService" />
+  <xs:complexType name="DBPbxType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q31="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q31:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Services" nillable="true" type="tns:ArrayOfDBService" />
+          <xs:element minOccurs="0" name="manufacturerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pbxID" type="ser:guid" />
+          <xs:element minOccurs="0" name="pbxName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pbxType1" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DBPbxType" nillable="true" type="tns:DBPbxType" />
+  <xs:complexType name="ServiceType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q32="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q32:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Services" nillable="true" type="tns:ArrayOfDBService" />
+          <xs:element minOccurs="0" name="serviceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceTypeID" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ServiceType" nillable="true" type="tns:ServiceType" />
+  <xs:complexType name="DBEncryptionKey">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q33="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q33:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CallLogs" nillable="true" type="tns:ArrayOfCallLog" />
+          <xs:element minOccurs="0" name="ScreenRecordings" nillable="true" type="tns:ArrayOfScreenRecording" />
+          <xs:element minOccurs="0" name="encryptionKeyID" type="ser:guid" />
+          <xs:element minOccurs="0" name="isActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isRevoked" type="xs:boolean" />
+          <xs:element minOccurs="0" name="key" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="revokeTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DBEncryptionKey" nillable="true" type="tns:DBEncryptionKey" />
+  <xs:complexType name="ArrayOfScreenRecordingFlagData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScreenRecordingFlagData" nillable="true" type="tns:ScreenRecordingFlagData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScreenRecordingFlagData" nillable="true" type="tns:ArrayOfScreenRecordingFlagData" />
+  <xs:complexType name="ScreenRecordingFlagData">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q34="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q34:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ScreenRecording" nillable="true" type="tns:ScreenRecording" />
+          <xs:element minOccurs="0" name="ScreenRecordingReference" nillable="true" type="q34:EntityReferenceOfScreenRecording1U8vXZAD" />
+          <xs:element minOccurs="0" name="flagID" type="ser:guid" />
+          <xs:element minOccurs="0" name="flagValue" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="screenRecordingFlagDataID" type="ser:guid" />
+          <xs:element minOccurs="0" name="screenRecordingID" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScreenRecordingFlagData" nillable="true" type="tns:ScreenRecordingFlagData" />
+  <xs:complexType name="ArrayOfCallLogFlagData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CallLogFlagData" nillable="true" type="tns:CallLogFlagData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCallLogFlagData" nillable="true" type="tns:ArrayOfCallLogFlagData" />
+  <xs:complexType name="CallLogFlagData">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q35="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q35:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CallLog" nillable="true" type="tns:CallLog" />
+          <xs:element minOccurs="0" name="CallLogReference" nillable="true" type="q35:EntityReferenceOfCallLog1U8vXZAD" />
+          <xs:element minOccurs="0" name="callLogFlagDataID" type="ser:guid" />
+          <xs:element minOccurs="0" name="callLogID" type="ser:guid" />
+          <xs:element minOccurs="0" name="flagID" type="ser:guid" />
+          <xs:element minOccurs="0" name="flagValue" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CallLogFlagData" nillable="true" type="tns:CallLogFlagData" />
+  <xs:complexType name="ArrayOfFlagFieldName">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FlagFieldName" nillable="true" type="tns:FlagFieldName" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFlagFieldName" nillable="true" type="tns:ArrayOfFlagFieldName" />
+  <xs:complexType name="FlagFieldName">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q36="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q36:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q36:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="flagFieldName1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="flagFieldNameID" type="ser:guid" />
+          <xs:element minOccurs="0" name="isPreDefinedFlag" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isSystem" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isVisible" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ownerUserID" type="ser:guid" />
+          <xs:element minOccurs="0" name="typeId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FlagFieldName" nillable="true" type="tns:FlagFieldName" />
+  <xs:complexType name="ArrayOfDBRecordingProfile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DBRecordingProfile" nillable="true" type="tns:DBRecordingProfile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDBRecordingProfile" nillable="true" type="tns:ArrayOfDBRecordingProfile" />
+  <xs:complexType name="IntelRexDeployment">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q37="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q37:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MMServiceID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="MonitoringPassword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="deploymentTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="intelrexDeploymentID" type="ser:guid" />
+          <xs:element minOccurs="0" name="ipAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lastCommunicationTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="machineName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="machinePassword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="machineUsername" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceVersion" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntelRexDeployment" nillable="true" type="tns:IntelRexDeployment" />
+  <xs:complexType name="ArrayOfUserManagedDepartment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserManagedDepartment" nillable="true" type="tns:UserManagedDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserManagedDepartment" nillable="true" type="tns:ArrayOfUserManagedDepartment" />
+  <xs:complexType name="UserManagedDepartment">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q38="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q38:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q38:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="departmentName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="userID" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserManagedDepartment" nillable="true" type="tns:UserManagedDepartment" />
+  <xs:complexType name="ArrayOfUserManagedLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserManagedLocation" nillable="true" type="tns:UserManagedLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserManagedLocation" nillable="true" type="tns:ArrayOfUserManagedLocation" />
+  <xs:complexType name="UserManagedLocation">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q39="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q39:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q39:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="location" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="userID" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserManagedLocation" nillable="true" type="tns:UserManagedLocation" />
+  <xs:complexType name="ArrayOfDBSavedSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DBSavedSearch" nillable="true" type="tns:DBSavedSearch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDBSavedSearch" nillable="true" type="tns:ArrayOfDBSavedSearch" />
+  <xs:complexType name="DBSavedSearch">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q40="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q40:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DNIS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q40:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="callDirection" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="callerID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="flagID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="flagValue" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lastDaysCount" type="xs:int" />
+          <xs:element minOccurs="0" name="maxCallDuration" type="xs:int" />
+          <xs:element minOccurs="0" name="mediaType" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="minCallDuration" type="xs:int" />
+          <xs:element minOccurs="0" name="outboundNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="savedSearchDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="savedSearchID" type="ser:guid" />
+          <xs:element minOccurs="0" name="savedSearchName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="savedSearchOwnerUserID" type="ser:guid" />
+          <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="stopTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="timeSearchType" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DBSavedSearch" nillable="true" type="tns:DBSavedSearch" />
+  <xs:complexType name="ArrayOfScreenRecordingProfile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScreenRecordingProfile" nillable="true" type="tns:ScreenRecordingProfile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScreenRecordingProfile" nillable="true" type="tns:ArrayOfScreenRecordingProfile" />
+  <xs:complexType name="ScreenRecordingProfile">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q41="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q41:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Members" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="OwnerReference" nillable="true" type="q41:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="ScreenRecordingApplications1" nillable="true" type="tns:ArrayOfScreenRecordingApplication" />
+          <xs:element minOccurs="0" name="appNames" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="colorOption" type="xs:short" />
+          <xs:element minOccurs="0" name="diskUsageMinimum" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="fileRetentionDays" type="xs:short" />
+          <xs:element minOccurs="0" name="framesPerHour" type="xs:int" />
+          <xs:element minOccurs="0" name="isDefault" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="mainMonitorOnly" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="maximumUploadKbps" type="xs:short" />
+          <xs:element minOccurs="0" name="monitorFullScreen" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="profileName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="profileOwner" type="ser:guid" />
+          <xs:element minOccurs="0" name="scheduleStartTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="scheduleStopTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="screenRecordingProfileID" type="ser:guid" />
+          <xs:element minOccurs="0" name="wrapUpTimeSeconds" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScreenRecordingProfile" nillable="true" type="tns:ScreenRecordingProfile" />
+  <xs:complexType name="ArrayOfScreenRecordingApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScreenRecordingApplication" nillable="true" type="tns:ScreenRecordingApplication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScreenRecordingApplication" nillable="true" type="tns:ArrayOfScreenRecordingApplication" />
+  <xs:complexType name="ScreenRecordingApplication">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q42="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q42:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ExeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ScreenRecordingApplicationId" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScreenRecordingProfile" nillable="true" type="tns:ScreenRecordingProfile" />
+          <xs:element minOccurs="0" name="ScreenRecordingProfileId" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScreenRecordingProfileReference" nillable="true" type="q42:EntityReferenceOfScreenRecordingProfile1U8vXZAD" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScreenRecordingApplication" nillable="true" type="tns:ScreenRecordingApplication" />
+  <xs:complexType name="ArrayOfSecurity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Security" nillable="true" type="tns:Security" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSecurity" nillable="true" type="tns:ArrayOfSecurity" />
+  <xs:complexType name="Security">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q43="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q43:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Members" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="MembersReference" nillable="true" type="q43:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfDBUser" />
+          <xs:element minOccurs="0" name="isControlAddEditUsers" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlChangeSystem" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlDelete" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlDeleteUsers" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlExport" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlFlag" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlMonitor" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlPauseSystemRecording" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlPlayback" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isControlRecord" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isCreateEvaluation" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isCreateScorecard" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isDeletable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isDeleteEvents" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isEnabledEmailRecording" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isProfileAdminAll" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isProfileEdit" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isReportingAdd" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isReportingAdminAll" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isReportingDelete" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isReportingEdit" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isReportingViewPreDefinedReports" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isSearchAll" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isSearchInactiveUsers" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isSearchRecordedByTrigger" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewApplication" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewEmail" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewEvents" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewIM" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewKeystroke" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewPhone" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewRemoteView" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewReporting" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewScreenShot" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="isViewWeb" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="ownerUserID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="securityID" type="ser:guid" />
+          <xs:element minOccurs="0" name="securityName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Security" nillable="true" type="tns:Security" />
+  <xs:complexType name="ArrayOfUserPreference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserPreference" nillable="true" type="tns:UserPreference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserPreference" nillable="true" type="tns:ArrayOfUserPreference" />
+  <xs:complexType name="UserPreference">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q44="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q44:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:DBUser" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q44:EntityReferenceOfDBUser1U8vXZAD" />
+          <xs:element minOccurs="0" name="intValue" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="isIntValue" type="xs:boolean" />
+          <xs:element minOccurs="0" name="isStringValue" type="xs:boolean" />
+          <xs:element minOccurs="0" name="preferenceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="stringValue" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="userID" type="ser:guid" />
+          <xs:element minOccurs="0" name="userPreferenceID" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserPreference" nillable="true" type="tns:UserPreference" />
+  <xs:simpleType name="ProfileRuleRelationTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Equal" />
+      <xs:enumeration value="NotEqual" />
+      <xs:enumeration value="RegexMatch" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProfileRuleRelationTypes" nillable="true" type="tns:ProfileRuleRelationTypes" />
+  <xs:complexType name="ArrayOfScreenRecordingProfileListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScreenRecordingProfileListItem" nillable="true" type="tns:ScreenRecordingProfileListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScreenRecordingProfileListItem" nillable="true" type="tns:ArrayOfScreenRecordingProfileListItem" />
+  <xs:complexType name="ScreenRecordingProfileListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DefaultState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProfileID" type="ser:guid" />
+      <xs:element minOccurs="0" name="appNames" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mainMonitorOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="monitorFullScreen" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScreenRecordingProfileListItem" nillable="true" type="tns:ScreenRecordingProfileListItem" />
+  <xs:complexType name="ScreenRecordingProfileDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColorOption" type="xs:int" />
+      <xs:element minOccurs="0" name="DiskUsageMinimum" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="FileRetentionDays" type="xs:int" />
+      <xs:element minOccurs="0" name="FramesPerHour" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDefault" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaximumUploadKbps" type="xs:int" />
+      <xs:element xmlns:q45="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MemberExtensions" nillable="true" type="q45:ArrayOfstring" />
+      <xs:element minOccurs="0" name="OwnerId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="ProfileId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ProfileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScreenRecordBetweenCalls" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StopTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WrapUpTimeSeconds" type="xs:int" />
+      <xs:element minOccurs="0" name="appNames" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mainMonitorOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="monitorFullScreen" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScreenRecordingProfileDetails" nillable="true" type="tns:ScreenRecordingProfileDetails" />
+  <xs:complexType name="ServiceSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlertLanguage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApiIPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApiPort" type="xs:int" />
+      <xs:element minOccurs="0" name="CtcHostName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DiskSpaceNotificationPercentage" type="xs:int" />
+      <xs:element minOccurs="0" name="EmailAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FromEmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HostName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsAuthenticationRequired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsEventLogAlertsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFileToBeTransferred" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFileTransferImmediate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSmtpAlertsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LocalStorageLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocalStorageLocationID" type="ser:guid" />
+      <xs:element minOccurs="0" name="MinimumCallDurationSeconds" type="xs:int" />
+      <xs:element minOccurs="0" name="PbxID" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="PbxIPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PbxName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PbxPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PbxType" type="xs:int" />
+      <xs:element minOccurs="0" name="PbxUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrimaryEndpointSubnet" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemoteStorageLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemoteStorageLocationID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ServiceID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ServiceTypeID" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SmtpPort" type="xs:int" />
+      <xs:element minOccurs="0" name="SmtpServer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartingAudioPort" type="xs:int" />
+      <xs:element minOccurs="0" name="SwitchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransferDaysOfWeek" type="xs:int" />
+      <xs:element minOccurs="0" name="TransferDelayDays" type="xs:int" />
+      <xs:element minOccurs="0" name="TransferPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransferStartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TransferUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UseSecureSocket" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceSettings" nillable="true" type="tns:ServiceSettings" />
+</xs:schema>

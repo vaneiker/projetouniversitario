@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.WebServiceReturnObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.WebServiceReturnObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://devpolicyglobalservice.statetrustlife.com/PolicyService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.Financial" />
+  <xs:complexType name="ProductCalculatorResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdjustedAmount" type="xs:double" />
+      <xs:element minOccurs="0" name="AdjustedPeriods" type="xs:int" />
+      <xs:element minOccurs="0" name="AdjustedYear" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.Financial" minOccurs="0" name="AmotizationTable" nillable="true" type="q1:ArrayOfAmortizationScheduleModel" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.Financial" minOccurs="0" name="Expenditures" nillable="true" type="q2:ArrayOfCloseExpenditures" />
+      <xs:element minOccurs="0" name="ExpendituresAmount" type="xs:double" />
+      <xs:element minOccurs="0" name="FinancedAmount" type="xs:double" />
+      <xs:element minOccurs="0" name="MaxNumberOfPeriods" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperationResult" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Payment" type="xs:double" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KSI.VirtualOffice.Core.Models.Financial" minOccurs="0" name="ReturnParam" nillable="true" type="q3:ProductParameter" />
+      <xs:element minOccurs="0" name="ValidationResult" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductCalculatorResult" nillable="true" type="tns:ProductCalculatorResult" />
+</xs:schema>

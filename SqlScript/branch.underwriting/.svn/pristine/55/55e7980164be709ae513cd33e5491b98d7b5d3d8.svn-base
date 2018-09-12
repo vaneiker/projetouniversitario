@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{143003BF-833E-4F42-8C38-7F08B6117A51}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Web.SubmittedPolicies</RootNamespace>
+    <AssemblyName>Web.SubmittedPolicies</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\WEB.NewBusiness\Dll\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfViewerAspNet">
+      <HintPath>..\WEB.UnderWriting\bin\PdfViewerAspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\STF.1.0.109\lib\net451\Statetrust.Framework.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Dal, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\STF.1.0.109\lib\net451\Statetrust.Framework.Dal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Bll, Version=1.0.5876.31667, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\STF.1.0.109\lib\net451\Statetrust.Framework.Security.Bll.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Core, Version=1.0.5876.31667, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\STF.1.0.109\lib\net451\Statetrust.Framework.Security.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Dal, Version=1.0.5876.31666, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\STF.1.0.109\lib\net451\Statetrust.Framework.Security.Dal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\STF.1.0.109\lib\net451\Statetrust.Framework.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="TempFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Common\Pages\KeepAlive.aspx" />
+    <Content Include="Common\Pages\Login.aspx" />
+    <Content Include="Css\amr.css" />
+    <Content Include="Css\jaq.css" />
+    <Content Include="Css\JM.css" />
+    <Content Include="Css\kickstart.min.css" />
+    <Content Include="Css\menu_izq.css" />
+    <Content Include="Css\reset.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\alert_mamei.png" />
+    <Content Include="Images\auto.PNG" />
+    <Content Include="Images\bg-top-menu.png" />
+    <Content Include="Images\btn-fusia-144.png" />
+    <Content Include="Images\btn-green.png" />
+    <Content Include="Images\DXR.png" />
+    <Content Include="Images\DXR_2.png" />
+    <Content Include="Images\DXR_Check.png" />
+    <Content Include="Images\icono\cotejo.png" />
+    <Content Include="Images\icono\doc_delete.png" />
+    <Content Include="Images\icono\edit_icon.png" />
+    <Content Include="Images\icono\enmienda.png" />
+    <Content Include="Images\icono\equis.png" />
+    <Content Include="Images\icono\pdf_grids.png" />
+    <Content Include="Images\icono\plus.png" />
+    <Content Include="Images\icono\review.png" />
+    <Content Include="Images\icono\upload.png" />
+    <Content Include="Images\lcomerciales.PNG" />
+    <Content Include="Images\loading_b03.gif" />
+    <Content Include="Images\logo-02.png" />
+    <Content Include="Images\logo-STL.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\pagination_background.png" />
+    <Content Include="Images\pasos_elements - Copy.png" />
+    <Content Include="Images\pasos_elements.png" />
+    <Content Include="Images\perfil_menu.png" />
+    <Content Include="Images\propiedad.PNG" />
+    <Content Include="Images\Salud.PNG" />
+    <Content Include="Images\top_menu\bg-active.png" />
+    <Content Include="Images\top_menu\ico-auto.png" />
+    <Content Include="Images\top_menu\ico-lcomerciales.png" />
+    <Content Include="Images\top_menu\ico-propiedad.png" />
+    <Content Include="Images\top_menu\ico-salud.png" />
+    <Content Include="Images\top_menu\ico-viaje.png" />
+    <Content Include="Images\top_menu\ico-vida.png" />
+    <Content Include="Images\viaje.PNG" />
+    <Content Include="Images\vida.PNG" />
+    <Content Include="Images\x.png" />
+    <Content Include="Js\kickstart.min.js" />
+    <Content Include="Js\Life.js" />
+    <Content Include="Js\Utilities\JSDateTools.js" />
+    <Content Include="Js\Utilities\JSTools.js" />
+    <Content Include="Js\Utilities\NavigationBar.js" />
+    <Content Include="KeepAlive.aspx" />
+    <Content Include="Life\Pages\Life.aspx" />
+    <Content Include="Life\UserControls\Issue\Confirmation.ascx" />
+    <Content Include="Life\UserControls\Issue\Issue.ascx" />
+    <Content Include="Life\UserControls\Issue\IssueContainer.ascx" />
+    <Content Include="Life\UserControls\Issue\PolicyDetail\PolicyDetail.ascx" />
+    <Content Include="Life\UserControls\Issue\PolicyDetail\Riders.ascx" />
+    <Content Include="Life\UserControls\Issue\Popups\UCAmmendments.ascx" />
+    <Content Include="Life\UserControls\Issue\Popups\UCDocuments.ascx" />
+    <Content Include="Life\UserControls\Issue\Popups\UCReject.ascx" />
+    <Content Include="Life\UserControls\Issue\Popups\UCReview.ascx" />
+    <Content Include="Life\UserControls\Issue\Printing.ascx" />
+    <Content Include="Life\UserControls\NeverIssued\NeverIssued.ascx" />
+    <Content Include="Life\UserControls\NeverIssued\Popups\UCEditNeverIssued.ascx" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\QA.pubxml" />
+    <None Include="Service References\PolicyService\configuration91.svcinfo" />
+    <None Include="Service References\PolicyService\configuration.svcinfo" />
+    <None Include="Service References\PolicyService\PolicyService.wsdl" />
+    <None Include="Service References\PolicyService\PolicyService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PolicyService\PolicyService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PolicyService\PolicyService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PolicyService\PolicyService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PolicyService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Life\UserControls\Processing\Processing.ascx" />
+    <None Include="Service References\PolicyService\PolicyService.disco" />
+    <Content Include="STFConvertImageBase64.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SubmittedPolicies.Master" />
+    <Content Include="Images\Overlay_Forms.pdf" />
+    <EntityDeploy Include="Dal\GlobalDataEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GlobalDataEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Dal\GlobalDataEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GlobalDataEntities.edmx</DependentUpon>
+      <LastGenOutput>GlobalDataEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Dal\GlobalDataEntities.edmx.diagram">
+      <DependentUpon>GlobalDataEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Dal\GlobalDataEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GlobalDataEntities.edmx</DependentUpon>
+      <LastGenOutput>GlobalDataEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Dev.pubxml" />
+    <Content Include="Service References\PolicyService\Web.SubmittedPolicies.PolicyService.SubmitPolicyResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bll\Poco\DropdownItem.cs" />
+    <Compile Include="Bll\Poco\NeverIssuedPolicyInfo.cs" />
+    <Compile Include="Bll\Poco\PolicyAmmendment.cs" />
+    <Compile Include="Bll\Poco\PolicyData.cs" />
+    <Compile Include="Bll\Poco\PolicyDocumentInfo.cs" />
+    <Compile Include="Bll\Poco\PolicyDocuments.cs" />
+    <Compile Include="Bll\Poco\PolicyRider.cs" />
+    <Compile Include="Bll\Poco\RejectPolicyInfo.cs" />
+    <Compile Include="Bll\Poco\VW_GET_POLICY_NEVER_ISSUED.cs" />
+    <Compile Include="Bll\Poco\VW_GET_POLICY_PRINT.cs" />
+    <Compile Include="Bll\SubmittedPoliciesService.cs" />
+    <Compile Include="Common\Classes\Common.cs" />
+    <Compile Include="Common\Classes\Enums.cs" />
+    <Compile Include="Common\Classes\UC.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Interfaces\IUc.cs" />
+    <Compile Include="Common\Pages\KeepAlive.aspx.cs">
+      <DependentUpon>KeepAlive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Pages\KeepAlive.aspx.designer.cs">
+      <DependentUpon>KeepAlive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Pages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\GlobalDataEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalDataEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\GlobalDataEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\GlobalDataEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalDataEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_GET_PAYMENTS_PAYMENTS_DOCUMENT_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_GET_POLICY_AMMENDMENT_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_GET_POLICY_DATA_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_GET_POLICY_DOCUMENT_INFO_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_GET_POLICY_NEVER_ISSUED_INFO_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_GET_POLICY_REJECT_INFO_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_GET_POLICY_RIDER_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_GET_UW_DROPDOWN_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_SET_PL_PCY_STATUS_CHANGE_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_SET_POLICY_AMMENDMENT_DOCUMENT_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_SET_POLICY_NERVER_ISSUED_EDIT_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_SET_POLICY_NERVER_ISSUED_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\SP_SET_POLICY_REJECT_Result.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\VW_GET_POLICY_CONFIRMATION.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\VW_GET_POLICY_ISSUE.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\VW_GET_POLICY_ISSUE_PROCESSING.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\VW_GET_POLICY_NEVER_ISSUED.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dal\VW_GET_POLICY_PRINT.cs">
+      <DependentUpon>GlobalDataEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="KeepAlive.aspx.cs">
+      <DependentUpon>KeepAlive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KeepAlive.aspx.designer.cs">
+      <DependentUpon>KeepAlive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\IssueContainer.ascx.cs">
+      <DependentUpon>IssueContainer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\IssueContainer.ascx.designer.cs">
+      <DependentUpon>IssueContainer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\PolicyDetail\PolicyDetail.ascx.cs">
+      <DependentUpon>PolicyDetail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\PolicyDetail\PolicyDetail.ascx.designer.cs">
+      <DependentUpon>PolicyDetail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\PolicyDetail\Riders.ascx.cs">
+      <DependentUpon>Riders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\PolicyDetail\Riders.ascx.designer.cs">
+      <DependentUpon>Riders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Popups\UCAmmendments.ascx.cs">
+      <DependentUpon>UCAmmendments.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Popups\UCAmmendments.ascx.designer.cs">
+      <DependentUpon>UCAmmendments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Popups\UCDocuments.ascx.cs">
+      <DependentUpon>UCDocuments.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Popups\UCDocuments.ascx.designer.cs">
+      <DependentUpon>UCDocuments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Popups\UCReject.ascx.cs">
+      <DependentUpon>UCReject.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Popups\UCReject.ascx.designer.cs">
+      <DependentUpon>UCReject.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Popups\UCReview.ascx.cs">
+      <DependentUpon>UCReview.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Popups\UCReview.ascx.designer.cs">
+      <DependentUpon>UCReview.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\NeverIssued\Popups\UCEditNeverIssued.ascx.cs">
+      <DependentUpon>UCEditNeverIssued.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\NeverIssued\Popups\UCEditNeverIssued.ascx.designer.cs">
+      <DependentUpon>UCEditNeverIssued.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Processing\Processing.ascx.cs">
+      <DependentUpon>Processing.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Processing\Processing.ascx.designer.cs">
+      <DependentUpon>Processing.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\PolicyService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="STFConvertImageBase64.aspx.cs">
+      <DependentUpon>STFConvertImageBase64.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STFConvertImageBase64.aspx.designer.cs">
+      <DependentUpon>STFConvertImageBase64.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubmittedPolicies.Master.cs">
+      <DependentUpon>SubmittedPolicies.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubmittedPolicies.Master.designer.cs">
+      <DependentUpon>SubmittedPolicies.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Life\Pages\Life.aspx.cs">
+      <DependentUpon>Life.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\Pages\Life.aspx.designer.cs">
+      <DependentUpon>Life.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Confirmation.ascx.cs">
+      <DependentUpon>Confirmation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Confirmation.ascx.designer.cs">
+      <DependentUpon>Confirmation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Issue.ascx.cs">
+      <DependentUpon>Issue.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Issue.ascx.designer.cs">
+      <DependentUpon>Issue.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Printing.ascx.cs">
+      <DependentUpon>Printing.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\Issue\Printing.ascx.designer.cs">
+      <DependentUpon>Printing.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Life\UserControls\NeverIssued\NeverIssued.ascx.cs">
+      <DependentUpon>NeverIssued.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Life\UserControls\NeverIssued\NeverIssued.ascx.designer.cs">
+      <DependentUpon>NeverIssued.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\PolicyService\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59801</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59644/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

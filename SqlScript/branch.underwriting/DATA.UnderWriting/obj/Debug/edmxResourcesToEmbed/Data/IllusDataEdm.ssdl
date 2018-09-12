@@ -1,0 +1,1714 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Data.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="ActualizaUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="agentcallsvisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="charttype" Type="char" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="perfnum" Type="bigint" />
+          <Property Name="logitemcode" Type="varchar" MaxLength="1" />
+          <Property Name="period" Type="varchar" MaxLength="1" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentclosingplan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="planname" Type="varchar" MaxLength="100" />
+          <Property Name="PreviousYear" Type="bigint" />
+          <Property Name="YTD" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentclosingproductfamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="date1" Type="varchar" MaxLength="20" />
+          <Property Name="perfnum" Type="bigint" />
+          <Property Name="productcode" Type="varchar" MaxLength="20" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentclosingproducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Category" Type="varchar" MaxLength="20" />
+          <Property Name="Product" Type="varchar" MaxLength="20" />
+          <Property Name="MTD" Type="bigint" />
+          <Property Name="QTD" Type="bigint" />
+          <Property Name="YTD" Type="bigint" />
+          <Property Name="PreviousMonth" Type="bigint" />
+          <Property Name="PreviousQuarter" Type="bigint" />
+          <Property Name="PreviousYear" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentclosingproductschart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="periodtype" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Period" Type="varchar" MaxLength="20" />
+          <Property Name="Education" Type="bigint" />
+          <Property Name="EduplanGrowth" Type="bigint" />
+          <Property Name="Scholar" Type="bigint" />
+          <Property Name="Compass" Type="bigint" />
+          <Property Name="CompassIndex" Type="bigint" />
+          <Property Name="Legacy" Type="bigint" />
+          <Property Name="Axys" Type="bigint" />
+          <Property Name="Horizon" Type="bigint" />
+          <Property Name="HorizonGrowth" Type="bigint" />
+          <Property Name="Lighthouse" Type="bigint" />
+          <Property Name="Sentinel" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentclosings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <Parameter Name="period" Type="char" Mode="In" />
+    <Parameter Name="from" Type="varchar" Mode="In" />
+    <Parameter Name="to" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="logitem" Type="varchar" Mode="In" />
+    <Parameter Name="plangroup" Type="varchar" Mode="In" />
+    <Parameter Name="product" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="eventdate" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="product" Type="varchar" MaxLength="50" />
+          <Property Name="productcode" Type="varchar" MaxLength="50" />
+          <Property Name="notes" Type="varchar" MaxLength="500" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentgoalperformance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="logitemcode" Type="char" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="goalcount" Type="bigint" />
+          <Property Name="targetpremiumamount" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="perfnum" Type="bigint" />
+          <Property Name="perftargetamount" Type="numeric" Precision="18" Scale="0" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentgoalperformancegrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="logitemcode" Type="char" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="product" Type="varchar" MaxLength="10" />
+          <Property Name="count1" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentgoalperformanceyear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="logitemcode" Type="char" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="year" Type="int" Mode="In" />
+    <Parameter Name="product" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="month1" Type="varchar" MaxLength="3" />
+          <Property Name="perfnum" Type="bigint" />
+          <Property Name="perftargetamount" Type="numeric" Precision="18" Scale="0" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentgoalperformanceyearplangroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="logitemcode" Type="char" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="year" Type="int" Mode="In" />
+    <Parameter Name="plangroup" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="month1" Type="varchar" MaxLength="3" />
+          <Property Name="perfnum" Type="bigint" />
+          <Property Name="perftargetamount" Type="numeric" Precision="18" Scale="0" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentlogsummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="varchar" Mode="In" />
+    <Parameter Name="todate" Type="varchar" Mode="In" />
+    <Parameter Name="logitemcode" Type="varchar" Mode="In" />
+    <Parameter Name="summarytype" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="summaryname" Type="varchar" MaxLength="10" />
+          <Property Name="summaryordername" Type="varchar" MaxLength="10" />
+          <Property Name="perfnum" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="agentsalesvsclosings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="period" Type="varchar" MaxLength="1" />
+          <Property Name="svalue" Type="bigint" />
+          <Property Name="closingvalue" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="backofficeillus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="level" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="fromdate" Type="date" Mode="In" />
+    <Parameter Name="todate" Type="date" Mode="In" />
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="dispillno" Type="varchar" Mode="In" />
+    <Parameter Name="csrid" Type="int" Mode="In" />
+    <Parameter Name="dispplanno" Type="varchar" Mode="In" />
+    <Parameter Name="agentid" Type="int" Mode="In" />
+    <Parameter Name="filter" Type="varchar" Mode="In" />
+    <Parameter Name="loginuserid" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="LastName" Type="varchar" MaxLength="300" />
+          <Property Name="dispillustrationno" Type="varchar" MaxLength="300" />
+          <Property Name="dateupdated" Type="varchar" MaxLength="50" />
+          <Property Name="productcode" Type="varchar" MaxLength="300" />
+          <Property Name="premiumamount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="frequencytypecode" Type="varchar" MaxLength="300" />
+          <Property Name="changetype" Type="varchar" MaxLength="300" />
+          <Property Name="createdby" Type="varchar" MaxLength="300" />
+          <Property Name="isspecial" Type="varchar" MaxLength="300" />
+          <Property Name="customerno" Type="bigint" />
+          <Property Name="customerplanno" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="backofficepolicynumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="level" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="fromdate" Type="date" Mode="In" />
+    <Parameter Name="todate" Type="date" Mode="In" />
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="dispillno" Type="varchar" Mode="In" />
+    <Parameter Name="csrid" Type="int" Mode="In" />
+    <Parameter Name="dispplanno" Type="varchar" Mode="In" />
+    <Parameter Name="agentid" Type="int" Mode="In" />
+    <Parameter Name="filter" Type="varchar" Mode="In" />
+    <Parameter Name="loginuserid" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="LastName" Type="varchar" MaxLength="300" />
+          <Property Name="dispillustrationno" Type="varchar" MaxLength="300" />
+          <Property Name="issuedate" Type="varchar" MaxLength="50" />
+          <Property Name="productcode" Type="varchar" MaxLength="300" />
+          <Property Name="premiumamount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="policystatus" Type="varchar" MaxLength="300" />
+          <Property Name="createdby" Type="varchar" MaxLength="300" />
+          <Property Name="customerno" Type="bigint" />
+          <Property Name="customerplanno" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="backofficepolicynumberpending" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="level" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="fromdate" Type="date" Mode="In" />
+    <Parameter Name="todate" Type="date" Mode="In" />
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="dispillno" Type="varchar" Mode="In" />
+    <Parameter Name="csrid" Type="int" Mode="In" />
+    <Parameter Name="dispplanno" Type="varchar" Mode="In" />
+    <Parameter Name="agentid" Type="int" Mode="In" />
+    <Parameter Name="filter" Type="varchar" Mode="In" />
+    <Parameter Name="loginuserid" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="LastName" Type="varchar" MaxLength="300" />
+          <Property Name="dispillustrationno" Type="varchar" MaxLength="300" />
+          <Property Name="issuedate" Type="varchar" MaxLength="50" />
+          <Property Name="productcode" Type="varchar" MaxLength="300" />
+          <Property Name="premiumamount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="policystatus" Type="varchar" MaxLength="300" />
+          <Property Name="createdby" Type="varchar" MaxLength="300" />
+          <Property Name="customerno" Type="bigint" />
+          <Property Name="customerplanno" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="calendarapp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="varchar" Mode="In" />
+    <Parameter Name="todate" Type="varchar" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Cadena" Type="bit" Mode="In" />
+    <Parameter Name="NameID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="eventdate" Type="datetime" />
+          <Property Name="notes" Type="varchar" MaxLength="1000" />
+          <Property Name="userid" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="calendarData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="smalldatetime" Mode="In" />
+    <Parameter Name="todate" Type="smalldatetime" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Cadena" Type="bit" Mode="In" />
+    <Parameter Name="NameID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="eventdate" Type="datetime" />
+          <Property Name="notes" Type="varchar" MaxLength="1000" />
+          <Property Name="userid" Type="int" />
+          <Property Name="customerno" Type="bigint" />
+          <Property Name="agentlogno" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="calenderapp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="varchar" Mode="In" />
+    <Parameter Name="todate" Type="varchar" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Cadena" Type="bit" Mode="In" />
+    <Parameter Name="NameID" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="eventdate" Type="datetime" />
+          <Property Name="notes" Type="varchar" MaxLength="1000" />
+          <Property Name="userid" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="calenderappNEW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="varchar" Mode="In" />
+    <Parameter Name="todate" Type="varchar" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="eventdate" Type="datetime" />
+          <Property Name="notes" Type="varchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="callsvsvisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <Parameter Name="period" Type="char" Mode="In" />
+    <Parameter Name="from" Type="varchar" Mode="In" />
+    <Parameter Name="to" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="eventdate" Type="varchar" MaxLength="50" />
+          <Property Name="calls" Type="bigint" />
+          <Property Name="visits" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="Case_Review_Upload" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="closingsbyproducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="varchar" Mode="In" />
+    <Parameter Name="todate" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductCode" Type="varchar" MaxLength="5" />
+          <Property Name="Product" Type="varchar" MaxLength="20" />
+          <Property Name="MTD" Type="bigint" />
+          <Property Name="QTD" Type="bigint" />
+          <Property Name="YTD" Type="bigint" />
+          <Property Name="PrevMonth" Type="bigint" />
+          <Property Name="PrevQuarter" Type="bigint" />
+          <Property Name="PrevYear" Type="bigint" />
+          <Property Name="BetweenDates" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="DireccionEmailFullName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="FN_GET_AGENT_NAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="nameid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="FN_GET_CANTIDAD_CONTACT_POR_MES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="NAMEID" Type="int" Mode="In" />
+    <Parameter Name="DATE1" Type="datetime" Mode="In" />
+    <Parameter Name="DATE2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="FN_GET_CANTIDAD_CONTACT_POR_MES_OR_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NAMEID" Type="int" Mode="In" />
+    <Parameter Name="DATE1" Type="datetime" Mode="In" />
+    <Parameter Name="DATE2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="FN_GET_CANTIDAD_INLUSTRACIONES_POR_MES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="NAMEID" Type="int" Mode="In" />
+    <Parameter Name="DATE1" Type="datetime" Mode="In" />
+    <Parameter Name="DATE2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="FN_GET_CANTIDAD_INLUSTRACIONES_POR_MES_OR_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NAMEID" Type="int" Mode="In" />
+    <Parameter Name="DATE1" Type="datetime" Mode="In" />
+    <Parameter Name="DATE2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="FN_GET_CANTIDAD_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="NAMEID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="FN_GET_CANTIDAD_LOGIN_POR_MES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="NAMEID" Type="varchar" Mode="In" />
+    <Parameter Name="DATE1" Type="datetime" Mode="In" />
+    <Parameter Name="DATE2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="FN_GET_CANTIDAD_LOGIN_POR_MES_OR_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NAMEID" Type="varchar" Mode="In" />
+    <Parameter Name="DATE1" Type="datetime" Mode="In" />
+    <Parameter Name="DATE2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_GetDayofWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
+    <Parameter Name="Fecha" Type="datetime" Mode="In" />
+    <Parameter Name="First" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="formatdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="Datetime" Type="datetime" Mode="In" />
+    <Parameter Name="FormatMask" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GettingAgentLogCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="AgentId" Type="int" Mode="In" />
+    <Parameter Name="LogItemCode" Type="char" Mode="In" />
+    <Parameter Name="SpecificWeekNumber" Type="int" Mode="In" />
+    <Parameter Name="visitWith" Type="varchar" Mode="In" />
+    <Parameter Name="Date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="GettingLastedWeeksAgentLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="subManagerName" Type="varchar" Mode="In" />
+    <Parameter Name="logType" Type="char" Mode="In" />
+    <Parameter Name="visitWith" Type="varchar" Mode="In" />
+    <Parameter Name="Date" Type="datetime" Mode="In" />
+    <Parameter Name="Estatus" Type="char" Mode="In" />
+  </Function>
+  <Function Name="GettingWeekDaysAtSpecificWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Date" Type="datetime" Mode="In" />
+    <Parameter Name="SpecificWeekNumber" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="DateFrom" Type="datetime" />
+          <Property Name="DateTo" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="goalsvsachieved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <Parameter Name="period" Type="char" Mode="In" />
+    <Parameter Name="from" Type="varchar" Mode="In" />
+    <Parameter Name="to" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="logitem" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="month1" Type="varchar" MaxLength="50" />
+          <Property Name="mselfgoal" Type="bigint" />
+          <Property Name="achieved" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="InitCap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="InputString" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="NuevosUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="portfolioagent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="treestate" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="userid" Type="bigint" />
+          <Property Name="agentname" Type="varchar" MaxLength="100" />
+          <Property Name="noofagents" Type="bigint" />
+          <Property Name="numpolicies" Type="bigint" />
+          <Property Name="inceptiondate" Type="date" />
+          <Property Name="agentstatus" Type="varchar" MaxLength="10" />
+          <Property Name="canceldate" Type="date" />
+          <Property Name="treestate" Type="char" MaxLength="1" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="portfolioagentapproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="code" Type="varchar" MaxLength="100" />
+          <Property Name="originalagent" Type="varchar" MaxLength="101" />
+          <Property Name="newagent" Type="varchar" MaxLength="101" />
+          <Property Name="assignedagent" Type="varchar" MaxLength="101" />
+          <Property Name="noofagents" Type="int" />
+          <Property Name="numpolicies" Type="int" />
+          <Property Name="inceptiondate" Type="datetime" />
+          <Property Name="agentstatus" Type="char" MaxLength="1" />
+          <Property Name="canceldate" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="recentillustration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <Parameter Name="period" Type="char" Mode="In" />
+    <Parameter Name="from" Type="varchar" Mode="In" />
+    <Parameter Name="to" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="plangroup" Type="varchar" Mode="In" />
+    <Parameter Name="product" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="plandate" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="product" Type="varchar" MaxLength="50" />
+          <Property Name="productcode" Type="varchar" MaxLength="50" />
+          <Property Name="plangroup" Type="varchar" MaxLength="50" />
+          <Property Name="premiumamount" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="insuredamount" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="annuityamount" Type="decimal" Precision="11" Scale="2" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="recentwork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <Parameter Name="period" Type="char" Mode="In" />
+    <Parameter Name="from" Type="varchar" Mode="In" />
+    <Parameter Name="to" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="logitem" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="eventdate" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="notes" Type="varchar" MaxLength="500" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="referalcount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <Parameter Name="period" Type="char" Mode="In" />
+    <Parameter Name="from" Type="varchar" Mode="In" />
+    <Parameter Name="to" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="referraltype" Type="varchar" MaxLength="50" />
+          <Property Name="total" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="referralsourceforsales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ReferralType" Type="varchar" MaxLength="20" />
+          <Property Name="ReferralTypeCode" Type="varchar" MaxLength="1" />
+          <Property Name="MTD" Type="bigint" />
+          <Property Name="QTD" Type="bigint" />
+          <Property Name="YTD" Type="bigint" />
+          <Property Name="PrevMonth" Type="bigint" />
+          <Property Name="PrevQuarter" Type="bigint" />
+          <Property Name="PrevYear" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="referraltypeleads" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="periodtypecode" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="referraltype" Type="varchar" MaxLength="30" />
+          <Property Name="num" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="ReportofVisitforWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NameId" Type="varchar" Mode="In" />
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Week" Type="int" Mode="In" />
+  </Function>
+  <Function Name="resetIdentities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="seed" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="salesvsgoals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="varchar" Mode="In" />
+    <Parameter Name="todate" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Sno" Type="int" />
+          <Property Name="Item" Type="varchar" MaxLength="40" />
+          <Property Name="MTD" Type="bigint" />
+          <Property Name="QTD" Type="bigint" />
+          <Property Name="YTD" Type="bigint" />
+          <Property Name="PrevMonth" Type="bigint" />
+          <Property Name="PrevQuarter" Type="bigint" />
+          <Property Name="PrevYear" Type="bigint" />
+          <Property Name="BetweenDates" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="salesvsgoalschart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="varchar" Mode="In" />
+    <Parameter Name="todate" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="sale" Type="char" Mode="In" />
+    <Parameter Name="salepersgoal" Type="char" Mode="In" />
+    <Parameter Name="salediff" Type="char" Mode="In" />
+    <Parameter Name="closings" Type="char" Mode="In" />
+    <Parameter Name="closingspersgoal" Type="char" Mode="In" />
+    <Parameter Name="closingsdiff" Type="char" Mode="In" />
+    <Parameter Name="saletarget" Type="char" Mode="In" />
+    <Parameter Name="salepremium" Type="char" Mode="In" />
+    <Parameter Name="salepremiumdiff" Type="char" Mode="In" />
+    <Parameter Name="closingtarget" Type="char" Mode="In" />
+    <Parameter Name="closingpremium" Type="char" Mode="In" />
+    <Parameter Name="closingpremiumdiff" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Sno" Type="int" />
+          <Property Name="Item" Type="varchar" MaxLength="40" />
+          <Property Name="MTD" Type="bigint" />
+          <Property Name="QTD" Type="bigint" />
+          <Property Name="YTD" Type="bigint" />
+          <Property Name="PrevMonth" Type="bigint" />
+          <Property Name="PrevQuarter" Type="bigint" />
+          <Property Name="PrevYear" Type="bigint" />
+          <Property Name="BetweenDates" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="SP_customerdet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Proceso" Type="int" Mode="In" />
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="ClientID" Type="varchar" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastName2" Type="nvarchar" Mode="In" />
+    <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Birthdate" Type="datetime" Mode="In" />
+    <Parameter Name="Age" Type="nvarchar" Mode="In" />
+    <Parameter Name="gendercode" Type="char" Mode="In" />
+    <Parameter Name="MaritalStatuscode" Type="char" Mode="In" />
+    <Parameter Name="Smoker" Type="char" Mode="In" />
+    <Parameter Name="Address1" Type="varchar" Mode="In" />
+    <Parameter Name="Address2" Type="varchar" Mode="In" />
+    <Parameter Name="City" Type="varchar" Mode="In" />
+    <Parameter Name="state" Type="varchar" Mode="In" />
+    <Parameter Name="Countryno" Type="int" Mode="In" />
+    <Parameter Name="ZipCode" Type="varchar" Mode="In" />
+    <Parameter Name="Emailid1" Type="varchar" Mode="In" />
+    <Parameter Name="Emailid2" Type="varchar" Mode="In" />
+    <Parameter Name="BusAddress1" Type="nvarchar" Mode="In" />
+    <Parameter Name="BusAddress2" Type="nvarchar" Mode="In" />
+    <Parameter Name="BusZipCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="BusCity" Type="nvarchar" Mode="In" />
+    <Parameter Name="BusCountryno" Type="int" Mode="In" />
+    <Parameter Name="BusState" Type="nvarchar" Mode="In" />
+    <Parameter Name="Agentcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="notes" Type="varchar" Mode="In" />
+    <Parameter Name="referraltypecode" Type="char" Mode="In" />
+    <Parameter Name="BusAddress3" Type="varchar" Mode="In" />
+    <Parameter Name="Address3" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="appointment" Type="datetime" Mode="In" />
+    <Parameter Name="illuscount" Type="int" Mode="In" />
+    <Parameter Name="rcustomerno" Type="bigint" Mode="In" />
+    <Parameter Name="customerstatuscode" Type="char" Mode="In" />
+    <Parameter Name="calls" Type="int" Mode="In" />
+    <Parameter Name="visits" Type="int" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="refname" Type="varchar" Mode="In" />
+    <Parameter Name="reflastname" Type="varchar" Mode="In" />
+    <Parameter Name="refemail" Type="varchar" Mode="In" />
+    <Parameter Name="ext" Type="varchar" Mode="In" />
+    <Parameter Name="phoneno" Type="varchar" Mode="In" />
+    <Parameter Name="rescountryno" Type="int" Mode="In" />
+    <Parameter Name="refcustomerno" Type="bigint" Mode="In" />
+    <Parameter Name="is_deleted" Type="char" Mode="In" />
+    <Parameter Name="idno" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Insured_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Proceso" Type="int" Mode="In" />
+    <Parameter Name="Customer" Type="varchar" Mode="In" />
+    <Parameter Name="Illustration" Type="varchar" Mode="In" />
+    <Parameter Name="First_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Middle_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Last_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Relationship" Type="varchar" Mode="In" />
+    <Parameter Name="AgentID" Type="varchar" Mode="In" />
+    <Parameter Name="Customer_Plan_No" Type="int" Mode="In" />
+    <Parameter Name="Plan_Code" Type="varchar" Mode="In" />
+    <Parameter Name="Plan" Type="varchar" Mode="In" />
+    <Parameter Name="Payment_Frequency_Code" Type="varchar" Mode="In" />
+    <Parameter Name="Payment_Frequency" Type="int" Mode="In" />
+    <Parameter Name="Insured_Ammount" Type="numeric" Mode="In" />
+    <Parameter Name="Premium_Ammount" Type="numeric" Mode="In" />
+    <Parameter Name="Annual_Premium" Type="numeric" Mode="In" />
+    <Parameter Name="Initial_Contribution" Type="numeric" Mode="In" />
+    <Parameter Name="Target_Premium" Type="numeric" Mode="In" />
+    <Parameter Name="Date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SP_New_Business_Insured_Upload" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Customer" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_New_Business_Ready_to_Process_Cmd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Proceso" Type="int" Mode="In" />
+    <Parameter Name="Customer" Type="bigint" Mode="In" />
+    <Parameter Name="Illustration" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_User_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Proceso" Type="int" Mode="In" />
+    <Parameter Name="Type" Type="varchar" Mode="In" />
+    <Parameter Name="NameId" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="ID_Status" Type="int" Mode="In" />
+    <Parameter Name="ID_Supervisor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_vw_New_Business_Login_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Proceso" Type="int" Mode="In" />
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="NameId" Type="varchar" Mode="In" />
+    <Parameter Name="Type" Type="varchar" Mode="In" />
+    <Parameter Name="User_Name" Type="varchar" Mode="In" />
+    <Parameter Name="First_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Middle_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Last_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Birth_Date" Type="datetime" Mode="In" />
+    <Parameter Name="Email_I" Type="varchar" Mode="In" />
+    <Parameter Name="Email_II" Type="varchar" Mode="In" />
+    <Parameter Name="Address_I" Type="varchar" Mode="In" />
+    <Parameter Name="Address_II" Type="varchar" Mode="In" />
+    <Parameter Name="Address_III" Type="varchar" Mode="In" />
+    <Parameter Name="City" Type="varchar" Mode="In" />
+    <Parameter Name="State" Type="varchar" Mode="In" />
+    <Parameter Name="Country" Type="int" Mode="In" />
+    <Parameter Name="Zip_Code" Type="varchar" Mode="In" />
+    <Parameter Name="Rol" Type="int" Mode="In" />
+    <Parameter Name="Email" Type="char" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="Date" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="spa_ClearSyncTransactionMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="SPC_GET_ACTIVIDAD_QUEUE_POR_ANO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="YEAR" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SPC_GET_ACTIVIDAD_QUEUE_POR_ANO_temporal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="YEAR" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SPC_GET_MEETING_AGENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="SPC_GET_MEETING_AGENT_BY_DATE_AND_STAMENTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="Stament" Type="int" Mode="In" />
+    <Parameter Name="DATEINI" Type="date" Mode="In" />
+    <Parameter Name="DATEFIN" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SPC_GET_MEETING_AGENT_BY_DATE_AND_STAMENTS_WORKED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="Stament" Type="int" Mode="In" />
+    <Parameter Name="DATEINI" Type="date" Mode="In" />
+    <Parameter Name="DATEFIN" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SPC_INSERT_APPOINTMENTS_WORKED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AGENTLOGNO" Type="bigint" Mode="In" />
+    <Parameter Name="WorkBy" Type="varchar" Mode="In" />
+    <Parameter Name="WokByID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SPC_INSERTA_ACTIVIDAD_QUEUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Oficina" Type="varchar" Mode="In" />
+    <Parameter Name="CantidadLogin" Type="int" Mode="In" />
+    <Parameter Name="CantidadLoginM1" Type="int" Mode="In" />
+    <Parameter Name="CantidadLoginM2" Type="int" Mode="In" />
+    <Parameter Name="CantidadLoginM3" Type="int" Mode="In" />
+    <Parameter Name="CantidadLoginM4" Type="int" Mode="In" />
+    <Parameter Name="CantidadInlustraciones" Type="int" Mode="In" />
+    <Parameter Name="CantidadInlustracionesM1" Type="int" Mode="In" />
+    <Parameter Name="CantidadInlustracionesM2" Type="int" Mode="In" />
+    <Parameter Name="CantidadInlustracionesM3" Type="int" Mode="In" />
+    <Parameter Name="CantidadInlustracionesM4" Type="int" Mode="In" />
+    <Parameter Name="CantidadContacto1" Type="int" Mode="In" />
+    <Parameter Name="CantidadContactoM11" Type="int" Mode="In" />
+    <Parameter Name="CantidadContactoM21" Type="int" Mode="In" />
+    <Parameter Name="CantidadContactoM31" Type="int" Mode="In" />
+    <Parameter Name="CantidadContactoM41" Type="int" Mode="In" />
+    <Parameter Name="nameID" Type="varchar" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="PolizaEfectivas" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDesactivaUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SPROC_GetNewBussinesGlobalSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NameId" Type="varchar" Mode="In" />
+    <Parameter Name="Poliza" Type="varchar" Mode="In" />
+    <Parameter Name="ClientName" Type="varchar" Mode="In" />
+    <Parameter Name="ClientLastName" Type="varchar" Mode="In" />
+    <Parameter Name="PolicySearch" Type="varchar" Mode="In" />
+    <Parameter Name="PsearchFrom" Type="smalldatetime" Mode="In" />
+    <Parameter Name="PsearchTo" Type="smalldatetime" Mode="In" />
+    <Parameter Name="Estado" Type="varchar" Mode="In" />
+    <Parameter Name="Plan" Type="varchar" Mode="In" />
+    <Parameter Name="Periodicity" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentType" Type="varchar" Mode="In" />
+    <Parameter Name="Payment" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentFrom" Type="smalldatetime" Mode="In" />
+    <Parameter Name="PaymentTo" Type="smalldatetime" Mode="In" />
+    <Parameter Name="Agente" Type="varchar" Mode="In" />
+    <Parameter Name="Queue_From" Type="smalldatetime" Mode="In" />
+    <Parameter Name="Queue_To" Type="smalldatetime" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="CantReg" Type="int" Mode="In" />
+    <Parameter Name="Tot_Reg" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SPROC_GetNewBussinesGlobalSearch_old" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NAMEID" Type="varchar" Mode="In" />
+    <Parameter Name="POLIZA" Type="varchar" Mode="In" />
+    <Parameter Name="CLIENTNAME" Type="varchar" Mode="In" />
+    <Parameter Name="CLIENTLASTNAME" Type="varchar" Mode="In" />
+    <Parameter Name="POLICYSEARCH" Type="varchar" Mode="In" />
+    <Parameter Name="PSEARCHFROM" Type="datetime" Mode="In" />
+    <Parameter Name="PSEARCHTO" Type="datetime" Mode="In" />
+    <Parameter Name="ESTADO" Type="varchar" Mode="In" />
+    <Parameter Name="PLAN" Type="varchar" Mode="In" />
+    <Parameter Name="PERIODICITY" Type="varchar" Mode="In" />
+    <Parameter Name="PAYMENTTYPE" Type="varchar" Mode="In" />
+    <Parameter Name="PAYMENT" Type="varchar" Mode="In" />
+    <Parameter Name="PAYMENTFROM" Type="datetime" Mode="In" />
+    <Parameter Name="PAYMENTTO" Type="datetime" Mode="In" />
+    <Parameter Name="AGENTE" Type="varchar" Mode="In" />
+    <Parameter Name="QUEUE_FROM" Type="datetime" Mode="In" />
+    <Parameter Name="QUEUE_TO" Type="datetime" Mode="In" />
+    <Parameter Name="pageIndex" Type="int" Mode="In" />
+    <Parameter Name="pageSize" Type="int" Mode="In" />
+    <Parameter Name="CantReg" Type="int" Mode="In" />
+    <Parameter Name="TOT_REG" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="spu_GetWeekAgentYears" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NameID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spu_GetWeekInterval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NameID" Type="varchar" Mode="In" />
+    <Parameter Name="Year" Type="int" Mode="In" />
+  </Function>
+  <Function Name="test_001" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="date" Mode="In" />
+    <Parameter Name="todate" Type="date" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="customerplanno" Type="bigint" />
+          <Property Name="datecreated" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="ufn_GetDateOnly" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
+    <Parameter Name="pInputDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="userhierachy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="countrymanager" Type="varchar" MaxLength="300" />
+          <Property Name="prodir" Type="varchar" MaxLength="300" />
+          <Property Name="intrep1" Type="varchar" MaxLength="300" />
+          <Property Name="intrep2" Type="varchar" MaxLength="300" />
+          <Property Name="intrep3" Type="varchar" MaxLength="300" />
+          <Property Name="intrep4" Type="varchar" MaxLength="300" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="useringroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="loginuserid" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="userid" Type="bigint" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetAnnuityNPV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" ReturnType="numeric">
+    <Parameter Name="AnnuityAmount" Type="numeric" Mode="In" />
+    <Parameter Name="AnnuityPeriod" Type="int" Mode="In" />
+    <Parameter Name="InvestmentProfilePercent" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="sp_change_customerplandet_status_automatically" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_delete_customerdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="int" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customeremaildet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customeroccupationdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerphonedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanannuitydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanbeneficiarydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanbeneficiaryno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerPlandet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerPlanno" Type="bigint" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanexamdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="insuredtypecode" Type="char" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanidentificationdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanlifedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanloandet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanloanrepaydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanopbaldet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanotherinsurancedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanotherinsuranceno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanpartnerinsurancedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplantermdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanvarinsureddet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanvarpremiumdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanvarpremiumno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanvarprofiledet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_delete_customerplanvarsurrenderdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_companydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="companyno" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="rcustomerno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanannuitydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanbeneficiarydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="insuredtypecode" Type="char" Mode="In" />
+    <Parameter Name="beneficiarytypecode" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerPlandet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="CustomerPlanno" Type="bigint" Mode="In" />
+    <Parameter Name="Customerno" Type="bigint" Mode="In" />
+    <Parameter Name="rCustomerno" Type="bigint" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="CorpId" Type="int" Mode="In" />
+    <Parameter Name="RegionId" Type="int" Mode="In" />
+    <Parameter Name="CountryId" Type="int" Mode="In" />
+    <Parameter Name="DomesticregId" Type="int" Mode="In" />
+    <Parameter Name="StateProvId" Type="int" Mode="In" />
+    <Parameter Name="CityId" Type="int" Mode="In" />
+    <Parameter Name="OfficeId" Type="int" Mode="In" />
+    <Parameter Name="CaseSeqNo" Type="int" Mode="In" />
+    <Parameter Name="HistSeqNo" Type="int" Mode="In" />
+    <Parameter Name="Language_Id" Type="int" Mode="In" />
+    <Parameter Name="GetHistorical" Type="bit" Mode="In" />
+    <Parameter Name="IllustrationStatusCode" Type="varchar" Mode="In" />
+    <Parameter Name="TabFilter" Type="varchar" Mode="In" />
+    <Parameter Name="AgentNameId" Type="varchar" Mode="In" />
+    <Parameter Name="AgentType" Type="varchar" Mode="In" />
+    <Parameter Name="AssignedSubscriberNameId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_CustomerPlanDet_Count_Quo_20161128" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="CorpId" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="DateTo" Type="date" Mode="In" />
+    <Parameter Name="DateFrom" Type="date" Mode="In" />
+    <Parameter Name="OfficeId" Type="int" Mode="In" />
+    <Parameter Name="Bl_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerPlandet_Old" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerPlanno" Type="bigint" Mode="In" />
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="rcustomerno" Type="bigint" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="companyId" Type="int" Mode="In" />
+    <Parameter Name="dateTo" Type="datetime" Mode="In" />
+    <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="CorpId" Type="int" Mode="In" />
+    <Parameter Name="RegionId" Type="int" Mode="In" />
+    <Parameter Name="CountryId" Type="int" Mode="In" />
+    <Parameter Name="DomesticregId" Type="int" Mode="In" />
+    <Parameter Name="StateProvId" Type="int" Mode="In" />
+    <Parameter Name="CityId" Type="int" Mode="In" />
+    <Parameter Name="OfficeId" Type="int" Mode="In" />
+    <Parameter Name="CaseSeqNo" Type="int" Mode="In" />
+    <Parameter Name="HistSeqNo" Type="int" Mode="In" />
+    <Parameter Name="Language_Id" Type="int" Mode="In" />
+    <Parameter Name="GetHistorical" Type="bit" Mode="In" />
+    <Parameter Name="IllustrationStatusCode" Type="varchar" Mode="In" />
+    <Parameter Name="TabFilter" Type="varchar" Mode="In" />
+    <Parameter Name="AgentNameId" Type="varchar" Mode="In" />
+    <Parameter Name="AgentType" Type="varchar" Mode="In" />
+    <Parameter Name="AssignedSubscriberNameId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_get_CustomerPlanDetGlobalPolicy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="CustomerPlanNo" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanexamdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="insuredtypecode" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanlifedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanloandet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanloanrepaydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanopbaldet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanotherinsurancedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="insuredtypecode" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanpartnerinsurancedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplantermdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanvarinsureddet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanvarpremiumdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanvarprofiledet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_customerplanvarsurrenderdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_dropdown" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="Type" Type="varchar" Mode="In" />
+    <Parameter Name="Company_Id" Type="varchar" Mode="In" />
+    <Parameter Name="productcode" Type="varchar" Mode="In" />
+    <Parameter Name="life" Type="char" Mode="In" />
+    <Parameter Name="plangroupcode" Type="char" Mode="In" />
+    <Parameter Name="education" Type="char" Mode="In" />
+    <Parameter Name="retirement" Type="char" Mode="In" />
+    <Parameter Name="terminsurance" Type="char" Mode="In" />
+    <Parameter Name="class" Type="char" Mode="In" />
+    <Parameter Name="ridertypecode" Type="char" Mode="In" />
+    <Parameter Name="age" Type="int" Mode="In" />
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="Provider_Type_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_get_egr_age" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_egr_slide10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_egr_slide7" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_egr_slide8" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_egr_slide9" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_examcondition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="ProductCode" Type="varchar" Mode="In" />
+    <Parameter Name="Age" Type="int" Mode="In" />
+    <Parameter Name="GenderCode" Type="char" Mode="In" />
+    <Parameter Name="MaritalStatusCode" Type="char" Mode="In" />
+    <Parameter Name="InsuredAmount" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="sp_get_frequencycostdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="productcode" Type="varchar" Mode="In" />
+    <Parameter Name="frequencytypecode" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_get_illustrationsignaturedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_get_invprofilecompareratesdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="classcode" Type="char" Mode="In" />
+    <Parameter Name="productcode" Type="varchar" Mode="In" />
+    <Parameter Name="investmentprofilecode" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_get_max_illustrationno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_productcanceldet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="productcode" Type="varchar" Mode="In" />
+    <Parameter Name="retirementperiod" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_get_productcanceldetailsdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="productcancelno" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_get_profile_de_inversion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_profile_de_inversion_euro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_Axys_fixedincome_slide12" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_Axys_Highperform_slide12" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_Axys_lowrisk_slide12" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_Axys_slide10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_Axys_slide11" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_axys_slide5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_axys_slide6" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_axys_slide8" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_compass_investment_details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="ReturnTypeid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_get_rpt_compass_investment_master" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_Compass_Slide5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_Compass_slide7" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_investment_slide3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_investment_slide4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_investment_slide5_chart1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_investment_slide5_chart2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_investment_slide6" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_investments_inflacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_InvestType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="FundType" Type="varchar" Mode="In" />
+    <Parameter Name="FundCategory" Type="varchar" Mode="In" />
+    <Parameter Name="Region" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_get_rpt_Legacy_10_principles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_lifeexpectancy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_rpt_returns_on_investments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness" />
+  <Function Name="sp_get_ruleparametervaluesdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="ruleparameterno" Type="int" Mode="In" />
+    <Parameter Name="productcode" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_get_totalinsuredamount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="CustomerPlanNo" Type="bigint" Mode="In" />
+    <Parameter Name="InsuredTypeCode" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_get_userdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="nameid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_customeremaildet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="emailtypecode" Type="char" Mode="In" />
+    <Parameter Name="emailid" Type="varchar" Mode="In" />
+    <Parameter Name="additional" Type="char" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_customerphonedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="phonetypecode" Type="char" Mode="In" />
+    <Parameter Name="IntCode" Type="varchar" Mode="In" />
+    <Parameter Name="Areacode" Type="varchar" Mode="In" />
+    <Parameter Name="phoneno" Type="varchar" Mode="In" />
+    <Parameter Name="ext" Type="varchar" Mode="In" />
+    <Parameter Name="additional" Type="char" Mode="In" />
+    <Parameter Name="rcustomerphoneno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="specialphonetype" Type="varchar" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_CustomerPlanDetGlobalPolicy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="CustomerPlanNo" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_insert_customerplanidentificationdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="insuredtypecode" Type="char" Mode="In" />
+    <Parameter Name="identificationtypecode" Type="char" Mode="In" />
+    <Parameter Name="identificationcode" Type="varchar" Mode="In" />
+    <Parameter Name="expirydate" Type="datetime" Mode="In" />
+    <Parameter Name="countryno" Type="int" Mode="In" />
+    <Parameter Name="rcustomeridentificationno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="ClientID" Type="varchar" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastName2" Type="nvarchar" Mode="In" />
+    <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Birthdate" Type="datetime" Mode="In" />
+    <Parameter Name="Age" Type="nvarchar" Mode="In" />
+    <Parameter Name="gendercode" Type="char" Mode="In" />
+    <Parameter Name="MaritalStatuscode" Type="char" Mode="In" />
+    <Parameter Name="Smoker" Type="char" Mode="In" />
+    <Parameter Name="Address1" Type="varchar" Mode="In" />
+    <Parameter Name="Address2" Type="varchar" Mode="In" />
+    <Parameter Name="City" Type="varchar" Mode="In" />
+    <Parameter Name="state" Type="varchar" Mode="In" />
+    <Parameter Name="Countryno" Type="int" Mode="In" />
+    <Parameter Name="ZipCode" Type="varchar" Mode="In" />
+    <Parameter Name="Emailid1" Type="varchar" Mode="In" />
+    <Parameter Name="Emailid2" Type="varchar" Mode="In" />
+    <Parameter Name="BusAddress1" Type="nvarchar" Mode="In" />
+    <Parameter Name="BusAddress2" Type="nvarchar" Mode="In" />
+    <Parameter Name="BusZipCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="BusCity" Type="nvarchar" Mode="In" />
+    <Parameter Name="BusCountryno" Type="int" Mode="In" />
+    <Parameter Name="BusState" Type="nvarchar" Mode="In" />
+    <Parameter Name="Agentcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="notes" Type="varchar" Mode="In" />
+    <Parameter Name="referraltypecode" Type="char" Mode="In" />
+    <Parameter Name="BusAddress3" Type="varchar" Mode="In" />
+    <Parameter Name="Address3" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="appointment" Type="datetime" Mode="In" />
+    <Parameter Name="illuscount" Type="int" Mode="In" />
+    <Parameter Name="rcustomerno" Type="bigint" Mode="In" />
+    <Parameter Name="customerstatuscode" Type="char" Mode="In" />
+    <Parameter Name="calls" Type="int" Mode="In" />
+    <Parameter Name="visits" Type="int" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="refname" Type="varchar" Mode="In" />
+    <Parameter Name="reflastname" Type="varchar" Mode="In" />
+    <Parameter Name="refemail" Type="varchar" Mode="In" />
+    <Parameter Name="ext" Type="varchar" Mode="In" />
+    <Parameter Name="phoneno" Type="varchar" Mode="In" />
+    <Parameter Name="rescountryno" Type="int" Mode="In" />
+    <Parameter Name="refcustomerno" Type="bigint" Mode="In" />
+    <Parameter Name="is_deleted" Type="char" Mode="In" />
+    <Parameter Name="idno" Type="varchar" Mode="In" />
+    <Parameter Name="Company_Id" Type="varchar" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+    <Parameter Name="Comany_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Is_Company" Type="bit" Mode="In" />
+    <Parameter Name="Is_GroupContact" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customeroccupationdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="companyname" Type="varchar" Mode="In" />
+    <Parameter Name="businesstype" Type="varchar" Mode="In" />
+    <Parameter Name="workyears" Type="int" Mode="In" />
+    <Parameter Name="workmonths" Type="int" Mode="In" />
+    <Parameter Name="occupationtypecode" Type="varchar" Mode="In" />
+    <Parameter Name="professiontypecode" Type="varchar" Mode="In" />
+    <Parameter Name="tasks" Type="varchar" Mode="In" />
+    <Parameter Name="annualfamilyincome" Type="numeric" Mode="In" />
+    <Parameter Name="customeroccupationno" Type="bigint" Mode="In" />
+    <Parameter Name="rcustomeroccupationno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanannuitydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanannuityno" Type="bigint" Mode="In" />
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="age" Type="int" Mode="In" />
+    <Parameter Name="year" Type="int" Mode="In" />
+    <Parameter Name="accumulatedcontributions" Type="decimal" Mode="In" />
+    <Parameter Name="deathbenefit" Type="decimal" Mode="In" />
+    <Parameter Name="benefitexclusion" Type="decimal" Mode="In" />
+    <Parameter Name="accountvalue" Type="decimal" Mode="In" />
+    <Parameter Name="surrendervalue" Type="decimal" Mode="In" />
+    <Parameter Name="annualpartialwithdrawal" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanbeneficiarydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="insuredtypecode" Type="char" Mode="In" />
+    <Parameter Name="beneficiarytypecode" Type="char" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="middlename" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="dob" Type="datetime" Mode="In" />
+    <Parameter Name="relationshiptypecode" Type="char" Mode="In" />
+    <Parameter Name="percentvalue" Type="numeric" Mode="In" />
+    <Parameter Name="customerplanbeneficiaryno" Type="bigint" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="rcustomerplanbeneficiaryno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="secondlastname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerPlandet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerPlanno" Type="bigint" Mode="In" />
+    <Parameter Name="plandate" Type="datetime" Mode="In" />
+    <Parameter Name="productcode" Type="varchar" Mode="In" />
+    <Parameter Name="class" Type="char" Mode="In" />
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="frequencytypecode" Type="char" Mode="In" />
+    <Parameter Name="frequency" Type="int" Mode="In" />
+    <Parameter Name="insuredamount" Type="numeric" Mode="In" />
+    <Parameter Name="premiumamount" Type="decimal" Mode="In" />
+    <Parameter Name="annualizedpremium" Type="numeric" Mode="In" />
+    <Parameter Name="enddate" Type="datetime" Mode="In" />
+    <Parameter Name="projectedpremium" Type="numeric" Mode="In" />
+    <Parameter Name="initialcontribution" Type="numeric" Mode="In" />
+    <Parameter Name="initialcommission" Type="numeric" Mode="In" />
+    <Parameter Name="targetpremium" Type="numeric" Mode="In" />
+    <Parameter Name="insurancelevelcode" Type="char" Mode="In" />
+    <Parameter Name="calculatetypecode" Type="char" Mode="In" />
+    <Parameter Name="contributiontypecode" Type="char" Mode="In" />
+    <Parameter Name="investmentprofilecode" Type="char" Mode="In" />
+    <Parameter Name="investmentprofilepercent" Type="numeric" Mode="In" />
+    <Parameter Name="activityrisktypeno" Type="int" Mode="In" />
+    <Parameter Name="healthrisktypeno" Type="int" Mode="In" />
+    <Parameter Name="contributionperiod" Type="int" Mode="In" />
+    <Parameter Name="financialgoal" Type="char" Mode="In" />
+    <Parameter Name="financialgoalage" Type="int" Mode="In" />
+    <Parameter Name="financialgoalamount" Type="numeric" Mode="In" />
+    <Parameter Name="currencycode" Type="varchar" Mode="In" />
+    <Parameter Name="rideradb" Type="char" Mode="In" />
+    <Parameter Name="riderterm" Type="char" Mode="In" />
+    <Parameter Name="rideroir" Type="char" Mode="In" />
+    <Parameter Name="countryno" Type="int" Mode="In" />
+    <Parameter Name="plantypecode" Type="char" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="rideradbamount" Type="numeric" Mode="In" />
+    <Parameter Name="ridertermamount" Type="numeric" Mode="In" />
+    <Parameter Name="ridertermuntilage" Type="int" Mode="In" />
+    <Parameter Name="riderci" Type="char" Mode="In" />
+    <Parameter Name="riderciamount" Type="numeric" Mode="In" />
+    <Parameter Name="rideracdb" Type="char" Mode="In" />
+    <Parameter Name="rcustomerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="illustrationno" Type="bigint" Mode="In" />
+    <Parameter Name="dataentrytypecode" Type="char" Mode="In" />
+    <Parameter Name="plancode" Type="bigint" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="contributionuntilage" Type="int" Mode="In" />
+    <Parameter Name="openingbalance" Type="numeric" Mode="In" />
+    <Parameter Name="minimumpremium" Type="numeric" Mode="In" />
+    <Parameter Name="openingyear" Type="int" Mode="In" />
+    <Parameter Name="planeffectivedate" Type="datetime" Mode="In" />
+    <Parameter Name="illustrationverified" Type="char" Mode="In" />
+    <Parameter Name="rideradbcost" Type="numeric" Mode="In" />
+    <Parameter Name="rideracdbcost" Type="numeric" Mode="In" />
+    <Parameter Name="ridertermcost" Type="numeric" Mode="In" />
+    <Parameter Name="ridercicost" Type="numeric" Mode="In" />
+    <Parameter Name="termperiod" Type="numeric" Mode="In" />
+    <Parameter Name="retirementperiod" Type="numeric" Mode="In" />
+    <Parameter Name="defermentperiod" Type="numeric" Mode="In" />
+    <Parameter Name="annuityamount" Type="numeric" Mode="In" />
+    <Parameter Name="companyno" Type="int" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="otherplans" Type="char" Mode="In" />
+    <Parameter Name="dispillustrationno" Type="varchar" Mode="In" />
+    <Parameter Name="benefitamount" Type="numeric" Mode="In" />
+    <Parameter Name="dispplancode" Type="varchar" Mode="In" />
+    <Parameter Name="termcontributiontypecode" Type="char" Mode="In" />
+    <Parameter Name="isspecial" Type="char" Mode="In" />
+    <Parameter Name="changetype" Type="varchar" Mode="In" />
+    <Parameter Name="boupdatedby" Type="int" Mode="In" />
+    <Parameter Name="bolastupdatedby" Type="int" Mode="In" />
+    <Parameter Name="newstatusdate" Type="datetime" Mode="In" />
+    <Parameter Name="isopeningbalance" Type="char" Mode="In" />
+    <Parameter Name="isapproved" Type="char" Mode="In" />
+    <Parameter Name="policystatuscode" Type="char" Mode="In" />
+    <Parameter Name="ispolicychangesapproved" Type="char" Mode="In" />
+    <Parameter Name="is_deleted" Type="char" Mode="In" />
+    <Parameter Name="studentname" Type="varchar" Mode="In" />
+    <Parameter Name="studentage" Type="int" Mode="In" />
+    <Parameter Name="is_customer_owner" Type="char" Mode="In" />
+    <Parameter Name="ownercustomerno" Type="bigint" Mode="In" />
+    <Parameter Name="illustrationstatuscode" Type="char" Mode="In" />
+    <Parameter Name="Familiar" Type="char" Mode="In" />
+    <Parameter Name="Repatriacion" Type="char" Mode="In" />
+    <Parameter Name="SepulturaLote" Type="char" Mode="In" />
+    <Parameter Name="Company_Id" Type="varchar" Mode="In" />
+    <Parameter Name="UserIdSystem" Type="int" Mode="In" />
+    <Parameter Name="Special_Payment" Type="decimal" Mode="In" />
+    <Parameter Name="Provider_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Provider_Id" Type="int" Mode="In" />
+    <Parameter Name="ContributionPeriod_Month" Type="int" Mode="In" />
+    <Parameter Name="Interest_Rate" Type="decimal" Mode="In" />
+    <Parameter Name="Destination_Of_Funds" Type="varchar" Mode="In" />
+    <Parameter Name="FractionSurcharge" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanexamdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="examcode" Type="varchar" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="customerexamno" Type="bigint" Mode="In" />
+    <Parameter Name="rcustomerexamno" Type="bigint" Mode="In" />
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="insuredtypecode" Type="char" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanlifedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanlifeno" Type="bigint" Mode="In" />
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="age" Type="int" Mode="In" />
+    <Parameter Name="year" Type="int" Mode="In" />
+    <Parameter Name="premium" Type="decimal" Mode="In" />
+    <Parameter Name="accountvalue1" Type="decimal" Mode="In" />
+    <Parameter Name="surrendervalue1" Type="decimal" Mode="In" />
+    <Parameter Name="deathbenefit1" Type="decimal" Mode="In" />
+    <Parameter Name="accountvalue2" Type="decimal" Mode="In" />
+    <Parameter Name="surrendervalue2" Type="decimal" Mode="In" />
+    <Parameter Name="deathbenefit2" Type="decimal" Mode="In" />
+    <Parameter Name="accountvalue3" Type="decimal" Mode="In" />
+    <Parameter Name="surrendervalue3" Type="decimal" Mode="In" />
+    <Parameter Name="deathbenefit3" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanloandet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="fromyearno" Type="int" Mode="In" />
+    <Parameter Name="toyearno" Type="int" Mode="In" />
+    <Parameter Name="loanamount" Type="numeric" Mode="In" />
+    <Parameter Name="customerplanvarloanno" Type="bigint" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="sno" Type="int" Mode="In" />
+    <Parameter Name="rcustomerplanloanno" Type="bigint" Mode="In" />
+    <Parameter Name="rcustomerplanloanrepayno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanloanrepaydet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="fromyearno" Type="int" Mode="In" />
+    <Parameter Name="toyearno" Type="int" Mode="In" />
+    <Parameter Name="paymentamount" Type="numeric" Mode="In" />
+    <Parameter Name="customerplanvarpaymentno" Type="bigint" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="sno" Type="int" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanopbaldet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="currentvalue" Type="numeric" Mode="In" />
+    <Parameter Name="planyear" Type="numeric" Mode="In" />
+    <Parameter Name="targetamount" Type="numeric" Mode="In" />
+    <Parameter Name="minimumpremium" Type="numeric" Mode="In" />
+    <Parameter Name="frequencytypecode" Type="char" Mode="In" />
+    <Parameter Name="periodicpremium" Type="numeric" Mode="In" />
+    <Parameter Name="noofunpaidpremiums" Type="int" Mode="In" />
+    <Parameter Name="investmentprofilecode" Type="char" Mode="In" />
+    <Parameter Name="monthlyinsurancecost" Type="numeric" Mode="In" />
+    <Parameter Name="forceaccountvalue" Type="numeric" Mode="In" />
+    <Parameter Name="openingbalance" Type="numeric" Mode="In" />
+    <Parameter Name="calculatetypeobcode" Type="char" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="productcode" Type="varchar" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="totalamountpaid" Type="numeric" Mode="In" />
+    <Parameter Name="nopaymentsrecieved" Type="numeric" Mode="In" />
+    <Parameter Name="amountdue" Type="numeric" Mode="In" />
+    <Parameter Name="illustrationmonth" Type="numeric" Mode="In" />
+    <Parameter Name="forcetarget" Type="numeric" Mode="In" />
+    <Parameter Name="isoverride" Type="char" Mode="In" />
+    <Parameter Name="fullpaymentyear" Type="int" Mode="In" />
+    <Parameter Name="expectedpremiums" Type="decimal" Mode="In" />
+    <Parameter Name="adjustedaccountvalue" Type="decimal" Mode="In" />
+    <Parameter Name="insuredamount" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanotherinsurancedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="insuredtypecode" Type="char" Mode="In" />
+    <Parameter Name="productcode" Type="varchar" Mode="In" />
+    <Parameter Name="insuredamount" Type="numeric" Mode="In" />
+    <Parameter Name="annuityamount" Type="numeric" Mode="In" />
+    <Parameter Name="annuityperiod" Type="int" Mode="In" />
+    <Parameter Name="customerplanotherinsuranceno" Type="bigint" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="rcustomerplanotherinsuranceno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanpartnerinsurancedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="middlename" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="insuredamount" Type="numeric" Mode="In" />
+    <Parameter Name="age" Type="int" Mode="In" />
+    <Parameter Name="gendercode" Type="char" Mode="In" />
+    <Parameter Name="maritalstatuscode" Type="char" Mode="In" />
+    <Parameter Name="smoker" Type="char" Mode="In" />
+    <Parameter Name="activityrisktypeno" Type="int" Mode="In" />
+    <Parameter Name="healthrisktypeno" Type="int" Mode="In" />
+    <Parameter Name="otherplans" Type="char" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="rideroiramount" Type="numeric" Mode="In" />
+    <Parameter Name="untilage" Type="int" Mode="In" />
+    <Parameter Name="rcustomerplanpartnerinsuranceno" Type="bigint" Mode="In" />
+    <Parameter Name="rideroircost" Type="numeric" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+    <Parameter Name="relationshiptypecode" Type="char" Mode="In" />
+    <Parameter Name="customerno" Type="bigint" Mode="In" />
+    <Parameter Name="contributiontypecode" Type="char" Mode="In" />
+    <Parameter Name="LastName2" Type="varchar" Mode="In" />
+    <Parameter Name="Birthdate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplantermdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplantermno" Type="bigint" Mode="In" />
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="tableno" Type="int" Mode="In" />
+    <Parameter Name="age" Type="int" Mode="In" />
+    <Parameter Name="year" Type="int" Mode="In" />
+    <Parameter Name="primabasiccoverage" Type="decimal" Mode="In" />
+    <Parameter Name="premiumextras" Type="decimal" Mode="In" />
+    <Parameter Name="totalpremium" Type="decimal" Mode="In" />
+    <Parameter Name="accumulatedpremiums" Type="decimal" Mode="In" />
+    <Parameter Name="deathbenefit" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanvarinsureddet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="fromyearno" Type="int" Mode="In" />
+    <Parameter Name="toyearno" Type="int" Mode="In" />
+    <Parameter Name="insuredamount" Type="numeric" Mode="In" />
+    <Parameter Name="customerplanvarinsuredno" Type="bigint" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="sno" Type="int" Mode="In" />
+    <Parameter Name="rcustomerplanvarinsuredno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanvarpremiumdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="fromyearno" Type="int" Mode="In" />
+    <Parameter Name="toyearno" Type="int" Mode="In" />
+    <Parameter Name="premiumamount" Type="numeric" Mode="In" />
+    <Parameter Name="customerplanvarpremiumno" Type="bigint" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="sno" Type="int" Mode="In" />
+    <Parameter Name="rcustomerplanvarpremiumno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanvarprofiledet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="fromyearno" Type="int" Mode="In" />
+    <Parameter Name="toyearno" Type="int" Mode="In" />
+    <Parameter Name="investmentprofilecode" Type="char" Mode="In" />
+    <Parameter Name="customerplanvarprofileno" Type="bigint" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="sno" Type="int" Mode="In" />
+    <Parameter Name="rcustomerplanvarprofiledetno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_set_customerplanvarsurrenderdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="fromyearno" Type="int" Mode="In" />
+    <Parameter Name="toyearno" Type="int" Mode="In" />
+    <Parameter Name="surrenderamount" Type="numeric" Mode="In" />
+    <Parameter Name="customerplansurrenderno" Type="bigint" Mode="In" />
+    <Parameter Name="datecreated" Type="datetime" Mode="In" />
+    <Parameter Name="createdby" Type="int" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="updatedby" Type="int" Mode="In" />
+    <Parameter Name="sno" Type="int" Mode="In" />
+    <Parameter Name="rcustomerplanvarsurrenderno" Type="bigint" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="recordid" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="sp_set_illustrationsignaturedet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="customerplanno" Type="bigint" Mode="In" />
+    <Parameter Name="customersign1" Type="char" Mode="In" />
+    <Parameter Name="agentsign1" Type="char" Mode="In" />
+    <Parameter Name="customersign2" Type="char" Mode="In" />
+    <Parameter Name="agentsign2" Type="char" Mode="In" />
+    <Parameter Name="customersign3" Type="char" Mode="In" />
+    <Parameter Name="agentsign3" Type="char" Mode="In" />
+    <Parameter Name="customersign4" Type="char" Mode="In" />
+    <Parameter Name="agentsign4" Type="char" Mode="In" />
+    <Parameter Name="customersign5" Type="char" Mode="In" />
+    <Parameter Name="agentsign5" Type="char" Mode="In" />
+    <Parameter Name="sign1pageno" Type="int" Mode="In" />
+    <Parameter Name="sign2pageno" Type="int" Mode="In" />
+    <Parameter Name="sign3pageno" Type="int" Mode="In" />
+    <Parameter Name="sign4pageno" Type="int" Mode="In" />
+    <Parameter Name="sign5pageno" Type="int" Mode="In" />
+    <Parameter Name="pdffilename" Type="varchar" Mode="In" />
+    <Parameter Name="ispdflocked" Type="char" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_set_userdet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="userid" Type="bigint" Mode="In" />
+    <Parameter Name="usertypecode" Type="varchar" Mode="In" />
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="roleno" Type="int" Mode="In" />
+    <Parameter Name="emailsent" Type="char" Mode="In" />
+    <Parameter Name="emailid" Type="varchar" Mode="In" />
+    <Parameter Name="active" Type="char" Mode="In" />
+    <Parameter Name="datecreated" Type="smalldatetime" Mode="In" />
+    <Parameter Name="UpdatePassDate" Type="smalldatetime" Mode="In" />
+    <Parameter Name="canlogin" Type="char" Mode="In" />
+    <Parameter Name="Lastlogindate" Type="smalldatetime" Mode="In" />
+    <Parameter Name="datesynced" Type="datetime" Mode="In" />
+    <Parameter Name="dateupdated" Type="datetime" Mode="In" />
+    <Parameter Name="supervisorid" Type="int" Mode="In" />
+    <Parameter Name="designation" Type="varchar" Mode="In" />
+    <Parameter Name="hierarchycode" Type="int" Mode="In" />
+    <Parameter Name="isadmin" Type="char" Mode="In" />
+    <Parameter Name="usergroupno" Type="int" Mode="In" />
+    <Parameter Name="nameid" Type="varchar" Mode="In" />
+    <Parameter Name="msrepl_tran_version" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="IsBlocked" Type="bit" Mode="In" />
+    <Parameter Name="EncryptPassword" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="DataStoreContainer" />
+</Schema>

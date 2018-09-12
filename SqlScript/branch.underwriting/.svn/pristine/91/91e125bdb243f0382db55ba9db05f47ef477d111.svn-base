@@ -1,0 +1,241 @@
+﻿var lang = "";
+function pageLoad() {
+
+    lang = $("#hdnLang").val();
+    sessionTimeout = $("#hdnTimeOut").val();
+    var isEdit = $("#isEdit").val() == "true";
+    //Cambiar de Tab
+    var CurrentTab = $("#hdnCurrentTabContact").val();
+
+    if (CurrentTab == 'lnkContactInformation')
+    {
+        $("#frmPhoneNumbers").removeClass('col-1-3');
+        $($("#frmPhoneNumbers").find(".fondo_blanco").find("div")[1]).css("min-height", isEdit?"301px":"180px");
+
+        var frmEmailAddressHeight = parseInt($("#frmEmailAddress").css("height").replace("px"));
+        $($("#frmIllustration").find(".fondo_blanco").find("div")[1]).css("height", (frmEmailAddressHeight - 51) + "px");
+    } else if (CurrentTab == 'lnkIllustrations')
+        pageLoadIllustration();
+
+    $("#frmPhoneNumbers").show();
+
+    $(".dxWeb_pcCloseButton").hide();
+
+    if (isEdit) {
+        var AdditionalInformationContainer = $("#AdditionalInformationContainer");
+        var dvAdditionalInformation = $("#dvAdditionalInformation");
+        var divs = dvAdditionalInformation.find("div");
+        $(divs[0]).hide();
+        AdditionalInformationContainer.append(dvAdditionalInformation);
+        AdditionalInformationContainer.show();
+
+        var dvIdentification = $("#dvIdentification");
+        $("#dvParentAdditionalInformation").append(dvIdentification);
+        $("#frmIdentifications").removeClass("col-1-3");
+    }
+
+    ChangeTab(CurrentTab);
+
+    $("#txtDateOfBirth").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        maxDate: '-3m',
+        minDate: '-65y',
+        defaultDate: '-3m',
+        yearRange: "c-100:c+100",
+        onSelect: function (selectedDate) {
+            changeBorderColor(this);
+            CallExecuteOnCloseEvent(this, selectedDate);
+        },
+        onClose: function (selectedDate) {
+            changeBorderColor(this);
+            CallExecuteOnCloseEvent(this, selectedDate);
+        }, beforeShow: function () {
+            SavePosDatePicker(this);
+        }
+    }).inputmask('mm/dd/yyyy');
+
+    SetDatePicker();
+
+    var hdnShowFormAddNewContact = $("#hdnShowFormAddNewContact").val();
+
+    $("#liContactInformation").css("display", hdnShowFormAddNewContact == "true" ? "block" : "none");
+    $("#liSurvey").css("display", hdnShowFormAddNewContact == "true" ? "block" : "none");
+    setCurrentAccordeonForIndex("#hfMenuAccordeonContact");
+    Configutations();
+    setOccupationTypeAutoComplete();
+    setOccupationAutoComplete();
+    $(".st-content-inner").scroll(function () {
+
+        if ($("#CurrentDatePickerShow").val() != "") {
+            var objP = $("#ui-datepicker-div");
+            var objR = $($("#CurrentDatePickerShow").val().split(",")[0]);
+            var offset = objR.offset();
+            var ArribaOrAbajo = $("#CurrentDatePickerShow").val().split(",")[1];
+            if (ArribaOrAbajo == "AR") {
+                var TopArriba = parseInt(objP.css("height").replace("px", ""));
+                $(objP).offset({ top: offset.top - TopArriba, left: offset.left });
+            } if (ArribaOrAbajo == "AB") {
+                var TopAbajo = parseInt(objR.css("height").replace("px", ""));
+                $(objP).offset({ top: offset.top + TopAbajo, left: offset.left });
+            }
+        }
+    });
+    fixheight();
+}
+
+validaTab = function (sender)
+{
+    BeginRequestHandler(this);
+    var result = true;
+
+    var validar = $("#hdnShowFormAddNewContact").val() == "true";
+    
+    if (validar)
+       result = validateForms();    
+
+    return result;
+};
+
+function validateForms() {
+    var result = true;
+
+    result = validateForm('frmPersonalInformation');
+
+    if (result)
+        result = validateForm('frmPersonalInformation2');
+
+
+    if (result) {
+        //validar Home Address
+        if ($("#tb_WCU_A_HomeAddress").val().trim() != "" ||
+           ($("#ddl_WUC_A_HomeCountry").val() != null && $("#ddl_WUC_A_HomeCountry").val() != "-1") ||
+           ($("#ddl_WUC_A_HomeState").val() != null && $("#ddl_WUC_A_HomeState").val() != "-1") ||
+           ($("#ddl_WUC_A_HomeCity").val() != null && $("#ddl_WUC_A_HomeCity").val() != "-1")
+           ) {
+            result = validateForm("frmHomeAddress");
+
+        } else if ($("#tb_WCU_A_BusinessAddress").val().trim() != "" ||
+                ($("#ddl_WUC_A_BusinessCountry").val() != null && $("#ddl_WUC_A_BusinessCountry").val() != "-1") ||
+                ($("#ddl_WUC_A_BusinessState").val() != null && $("#ddl_WUC_A_BusinessState").val() != "-1") ||
+                ($("#ddl_WUC_A_BusinessCity").val() != null && $("#ddl_WUC_A_BusinessCity").val() != "-1")
+            ) {
+            //validar Business Address
+            result = validateForm("frmbusinessAddress");
+
+        }
+    }
+
+    if (result) {
+        var PersonalIncome = $("#txtPersonalIncome");
+        var YearLyFamilyIncome = $("#txtYearlyFamilyIncome");
+
+        var valPersonalIncome = parseFloat(replaceAll(",", "", $("#txtPersonalIncome").val()));
+        var valYearLyFamilyIncome = parseFloat(replaceAll(",", "", $("#txtYearlyFamilyIncome").val()));
+
+        if (valPersonalIncome > valYearLyFamilyIncome) {
+            EndRequestHandler();
+            result = false;
+            CustomDialogMessageEx(null, null, null, true, lang == "en" ? "Warning" : "Advertencia", 'PersonalIncomeValidation');
+        }
+    }
+
+    return result
+}
+
+ChangeTab = function (Tab) {
+
+    //Limpiar
+    $("#MenuTabs li").removeClass("active");
+
+    vTab = $('#' + Tab);
+
+    $(vTab).parent().addClass("active");
+
+};
+
+validateFormIdentification = function (form) {
+
+    var resultado = validateForm(form);
+    return resultado;
+};
+
+validateFormEmailAddress = function (sender, form) {
+
+    var resultado = validateForm(form);
+    return resultado;
+};
+
+validateFormPhoneNumbers = function (sender, form) {
+
+    var resultado = validateForm(form);
+    return resultado;
+};
+
+CallExecuteOnCloseEvent = function (sender, selectedDate) {
+
+    if (selectedDate != "") {
+        var fecha = new Date();
+
+        if ($(sender).attr('id') == "tb_WUC_PI_DateBirth" ||
+            $(sender).attr('id') == "txtDateOfBirth" ||
+            $(sender).attr('id') == 'txtDateOfBirthDesignatedPensioner') {
+            var BeforeVal = $("#hdnDateOfBirthBefore").val();
+
+            var pDate = (fecha.getMonth() + 1) + "/" + fecha.getDate() + "/" + fecha.getFullYear();
+
+            if (selectedDate.ToDate('mm/dd/yyyy') > pDate.ToDate('mm/dd/yyyy')) {
+                $(sender).val("");
+                $(sender).focus();
+                CustomDialogMessageEx('The date of birth can not be future, the date "' + selectedDate + '" is a future date..!', null, null, true, "Warning");
+                return false;
+            }
+
+            var age = selectedDate.YearDiff("", "mm/dd/yyyy");
+
+            $("#hdnAge").val(age);
+            $("#tb_WUC_PI_Age").val(age);
+            $("#txtAge").val(age);
+            $("#txtAge").focus();
+
+        } else
+            if ($(sender).attr('id') == 'txtExpDate' ||
+                $(sender).attr('id') == 'txtExpirationDate') {
+
+                var pDate = (fecha.getMonth() + 1) + "/" + fecha.getDate() + "/" + fecha.getFullYear();
+
+                var FechaSeleccionada = selectedDate.split("/");
+
+                var FechaFinal = FechaSeleccionada[0] + "/" + FechaSeleccionada[1] + "/" + FechaSeleccionada[2];
+
+                var Days = pDate.DayDiff(FechaFinal, 'mm/dd/yyyy');
+
+                if (Days < 61) {
+                    $(sender).val("");
+                    CustomDialogMessageEx("The expiration date can not be less than 61 days", null, null, true, "Warning");
+                }
+            } else if ($(sender).attr('id') == 'txtRegistrationDate') {
+
+                var pDate = (fecha.getMonth() + 1) + "/" + fecha.getDate() + "/" + fecha.getFullYear();
+
+                if (selectedDate.ToDate('mm/dd/yyyy') > pDate.ToDate('mm/dd/yyyy')) {
+                    $(sender).val("");
+                    $(sender).focus();
+                    CustomDialogMessageEx('The date of registration of the company should not be a future date, the date "' + selectedDate + '" is a future date..!', null, null, true, "Warning");
+                }
+            } else if ($(sender).attr("alt") == 'validateFutureDateofBirth' ||
+                       $(sender).attr("alt") == 'validateFutureDate') {
+
+                var pDate = (fecha.getMonth() + 1) + "/" + fecha.getDate() + "/" + fecha.getFullYear();
+
+                if (selectedDate.ToDate('mm/dd/yyyy') > pDate.ToDate('mm/dd/yyyy')) {
+                    $(sender).val("");
+                    $(sender).focus();
+                    CustomDialogMessageEx('The date can not be future, the date "' + selectedDate + '" is not valid..!', null, null, true, "Warning");
+                }
+            }
+            else if (divIllustration && $(sender).attr('id') == 'txtDateOfBirth') {
+                ChangeOtherInsuredDateOfBirth(selectedDate);
+            }
+    }
+}

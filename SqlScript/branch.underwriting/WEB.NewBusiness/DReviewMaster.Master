@@ -1,0 +1,157 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="DReviewMaster.master.cs" Inherits="WEB.NewBusiness.DReview.DReviewMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AJAX" %>
+<%@ Register Src="~/NewBusiness/UserControls/Common/WUCShowPDFPopup.ascx" TagPrefix="uc1" TagName="WUCShowPDFPopup" %>
+<%@ Register Assembly="Statetrust.Framework.Web" Namespace="Statetrust.Framework.Web.WebParts.UserControls.UserProfile" TagPrefix="uc1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="refresh" content="" />
+    <title><%# Page.Title %></title>
+    <link href="DReview/css/Site.css" rel="stylesheet" />
+    <link href="DReview/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="DReview/css/Master.css" rel="stylesheet" />
+    <link href="DReview/css/StyleDropDownSelect.css" rel="stylesheet" />
+    <!-- CSS DE LA LA LIBRERIA JQWIDGETS -->
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.base.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.black.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.bootstrap.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.classic.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.darkblue.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.energyblue.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.fresh.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.highcontrast.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.metro.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.office.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.shinyblack.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.summer.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.ui-darkness.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.ui-le-frog.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.ui-lightness.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.ui-overcast.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.ui-redmond.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.ui-smoothness.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.ui-start.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.ui-sunny.css" rel="stylesheet" />
+    <link href="~/DReview/js/JQuery/Pluggins/JQWidgets/styles/jqx.web.css" rel="stylesheet" />
+
+    <script src="../../DReview/js/modernizr.custom.js"></script>
+    <script src="../../DReview/js/JQuery/Core/jquery-1.9.1.js"></script>
+    <script src="../../DReview/js/JQuery/JQueryUI/jquery-ui-1.10.3.js"></script>
+    <script src="../../DReview/Js/JQuery/Pluggins/MeioMask/MeioMask.js"></script>
+    <script src="../../DReview/Js/JQuery/MaskedInput/MaskedInput.js"></script>
+    <script src="../../DReview/js/JQuery/Pluggins/JQWidgets/jqx-all.js"></script>
+    <script src="../../DReview/js/JSDateTools.js"></script>
+    <script src="../../DReview/js/JSTools.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <input type="hidden" id="hdnTimeOut" value='<%=Session.Timeout %>' />
+        <asp:Button runat="server" OnClientClick="return false" ID="btnDummy" CssClass="view_no" />
+        <asp:ScriptManager ID="ScriptManager" runat="server" EnablePartialRendering="true" ScriptMode="Release"  >
+        </asp:ScriptManager>
+        <div id="st-container" class="st-container dcf">
+            <!-- id menu-2 -->
+            <!-- end perfil del agente part-->
+            <uc1:STFCUserProfile runat="server" ID="STFCUserProfile1">
+            </uc1:STFCUserProfile>
+            <div class="st-pusher">
+                <div class="st-content">
+                    <!-- el wrapper del contenido -->
+
+                    <!-- MAIN MENU-->
+                    <div class="main_menu_atl menu2">
+
+                        <div class="box_logo_atl">
+                            <asp:LinkButton runat="server" ID="lnkLogo" class="logo_stl">
+                                <span class="letter"> <%=RESOURCE.UnderWriting.NewBussiness.Resources.DataReviewTitle %> </span>
+                            </asp:LinkButton>
+                        </div>
+
+                        <div id="menu" class="nav">
+                            <ul>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="lnkDataReview" CssClass="active" OnClick="ChangeTabs" OnClientClick="BeginRequestHandler(this)">
+                                        <span class="icon d_review"></span><span><%=RESOURCE.UnderWriting.NewBussiness.Resources.DataReview.ToUpper() %></span>
+                                    </asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="lnkHistoricalCases" OnClick="ChangeTabs" OnClientClick="BeginRequestHandler(this)">
+                                    <span class="icon historical_cases"></span><span><%=RESOURCE.UnderWriting.NewBussiness.Resources.HISTORICALCASES.ToUpper()%></span>
+                                    </asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="lnkCasesNotSubmitted" OnClick="ChangeTabs" OnClientClick="BeginRequestHandler(this)" class="">
+                                    <span class="icon not_submitted"></span><span><%=RESOURCE.UnderWriting.NewBussiness.Resources.CASESNOTSUBMITTED.ToUpper()%></span>
+                                    </asp:LinkButton>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--menu class nav-->
+                    </div>
+                    <!--END MAIN MENU-->
+                    <!--boton abre y cierra el canvas-->
+                    <div id="st-trigger-effects">
+                        <button data-effect="st-effect-2" class="show_profileEN" runat="server" id="btnProfile" onclick="GetUserProfileData(true);"></button>
+                    </div>
+                    <div id="st-trigger-effects">
+                        <button style="display: none" data-effect="st-effect-3" class="toolbar_btn"></button>
+                    </div>
+                    <div id="scroll_2" class="st-content-inner">
+                        <!--extra div para emular el left side fixed-->
+
+                        <!--CONTENIDO EMPIEZA AQUI-->
+                        <div class="main clearfix">
+                            <!--CONTENIDO DERECHA-->
+                            <div class="contenido_derecha forms_mc">
+                                <asp:ContentPlaceHolder ID="bodyContent" runat="server" />
+                                <!--grid grid-pad-->
+                            </div>
+                            <!--contendio derecha-->
+                        </div>
+                        <!-- /main clearfix -->
+                    </div>
+                    <!-- /st-content-inner -->
+                </div>
+                <!-- /st-content -->
+            </div>
+            <!-- /st-pusher -->
+        </div>
+
+        <asp:UpdatePanel ID="upPdfViewer" runat="server">
+            <ContentTemplate>
+                <AJAX:ModalPopupExtender ID="ModalPopupPDFViewer" runat="server" Enabled="true" TargetControlID="hdnShowBeneficiariePDF" PopupControlID="pnModalPopupPDFViewer" DropShadow="false" BackgroundCssClass="ModalBackgroud3">
+                </AJAX:ModalPopupExtender>
+                <asp:Panel ID="pnModalPopupPDFViewer" ClientIDMode="Static" runat="server" Style="display: none; margin: 0px; width: 1191px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-style: none solid solid; border-right-color: rgb(119, 119, 119); border-bottom-color: rgb(119, 119, 119); border-left-color: rgb(119, 119, 119); position: fixed; z-index: 100001; left: 58.5px; top: 107.5px; height: 758px; background-color: rgb(207, 207, 196);">
+                    <uc1:WUCShowPDFPopup runat="server" ID="WUCShowPDFPopup1" />
+                </asp:Panel>
+                <asp:HiddenField ID="hdnShowBeneficiariePDF" ClientIDMode="Static" runat="server" Value="false" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <!--SIDE BAR PERFIL ANIMACION-->
+        <script src='<%=ResolveClientUrl("DReview/js/classie.js")%>'></script>
+        <script src='<%=ResolveClientUrl("DReview/js/sidebarEffects.js")%>'></script>
+        <link href='<%=ResolveClientUrl("DReview/js/JQuery/JQueryUI/jquery-ui-1.9.0.custom.min.css")%>' rel="stylesheet" />
+        <script src='<%=ResolveClientUrl("DReview/js/jquery.nicescroll.min.js")%>'></script>
+        <script src='<%=ResolveClientUrl("DReview/js/ga.js")%>'></script>
+        <script src='<%=ResolveClientUrl("DReview/js/jquery.nestedAccordion.js")%>'></script>
+        <script src='<%=ResolveClientUrl("DReview/js/grids.min.js")%>'></script>
+        <script src='<%=ResolveClientUrl("DReview/js/jquery.sliderTabs.js")%>'></script>
+        <script src='<%=ResolveClientUrl("DReview/js/scripts.js") %>'></script>
+        <asp:HiddenField runat="server" ID="hdnhighlightedFieldRequired" ClientIDMode="Static" Value="" />
+        <asp:HiddenField runat="server" ID="hdnCurrentTabSup" ClientIDMode="Static" Value="lnkDataReview" />
+        <asp:HiddenField runat="server" ID="hdnPosScroll" Value="0" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="CurrentDatePickerShow" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnSessionName" Value="DataReview" />
+        <asp:HiddenField runat="server" ID="TimeRefresh" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnIsrefreshDesignatedPensioner" Value="true" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnURLLogin" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnLangChange" Value="false" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnGetDate" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnDropsValues" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ClientIDMode="Static" ID="hdnRefreshBeneficiariesTab" Value="false" />
+        <asp:HiddenField runat="server" ClientIDMode="Static" ID="hdnPendingRefreshBeneficiariesTab" Value="false" />              
+        <asp:HiddenField runat="server" ClientIDMode="Static" ID="RequiredFileSize" Value="" />    
+    </form>
+</body>
+</html>

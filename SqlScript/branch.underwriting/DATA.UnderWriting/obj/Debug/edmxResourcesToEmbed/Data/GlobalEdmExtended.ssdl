@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GlobalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="SP_GET_QUOTATION_FROM_SYSFLEX" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="poliza" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_AGENT_INFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_EN_CONTACT_FINAL_BENEFICIARY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="Contact_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_AGENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Identity_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Sub_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+    <Parameter Name="Agent_Code" Type="varchar" Mode="In" />
+    <Parameter Name="Name_Id" Type="varchar" Mode="In" />
+    <Parameter Name="First_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Middle_Name" Type="varchar" Mode="In" />
+    <Parameter Name="First_Lastname" Type="varchar" Mode="In" />
+    <Parameter Name="Second_Lastname" Type="varchar" Mode="In" />
+    <Parameter Name="Nickname" Type="varchar" Mode="In" />
+    <Parameter Name="Dob" Type="date" Mode="In" />
+    <Parameter Name="Payment_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Aba_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Bank_Account_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Allocation" Type="numeric" Mode="In" />
+    <Parameter Name="Allocation_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Gender" Type="varchar" Mode="In" />
+    <Parameter Name="Marital_Stat_Id" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Residence_Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Birth_Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Citizenship_Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Directory_Id" Type="int" Mode="In" />
+    <Parameter Name="Active_Date" Type="datetime" Mode="In" />
+    <Parameter Name="Inactive_Date" Type="datetime" Mode="In" />
+    <Parameter Name="Kco_Unique_Id" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_AGENT_Kco_Unique_Id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Kco_Unique_Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_EN_AGENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Identity_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Sub_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+    <Parameter Name="Agent_Code" Type="varchar" Mode="In" />
+    <Parameter Name="Name_Id" Type="varchar" Mode="In" />
+    <Parameter Name="First_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Middle_Name" Type="varchar" Mode="In" />
+    <Parameter Name="First_Lastname" Type="varchar" Mode="In" />
+    <Parameter Name="Second_Lastname" Type="varchar" Mode="In" />
+    <Parameter Name="Nickname" Type="varchar" Mode="In" />
+    <Parameter Name="Dob" Type="date" Mode="In" />
+    <Parameter Name="Payment_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Aba_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Bank_Account_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Allocation" Type="numeric" Mode="In" />
+    <Parameter Name="Allocation_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Gender" Type="varchar" Mode="In" />
+    <Parameter Name="Marital_Stat_Id" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Residence_Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Birth_Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Citizenship_Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Directory_Id" Type="int" Mode="In" />
+    <Parameter Name="Active_Date" Type="datetime" Mode="In" />
+    <Parameter Name="Inactive_Date" Type="datetime" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_EN_CONTACT_FINAL_BENEFICIARY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="Contact_Id" Type="int" Mode="In" />
+    <Parameter Name="Final_Beneficiary_Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="PercentageParticipation" Type="decimal" Mode="In" />
+    <Parameter Name="Final_Beneficiary_Status" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="IsPEP" Type="bit" Mode="In" />
+    <Parameter Name="PepFormularyOptionsId" Type="int" Mode="In" />
+    <Parameter Name="IdentificationTypeId" Type="int" Mode="In" />
+    <Parameter Name="IdentificationNumber" Type="varchar" Mode="In" />
+    <Parameter Name="NationalityCountryId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_EN_CONTACT_PEP_FORMULARY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="Contact_Id" Type="int" Mode="In" />
+    <Parameter Name="Pep_Formulary_Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Relationship_Id" Type="int" Mode="In" />
+    <Parameter Name="Position" Type="varchar" Mode="In" />
+    <Parameter Name="FromYear" Type="int" Mode="In" />
+    <Parameter Name="ToYear" Type="int" Mode="In" />
+    <Parameter Name="Pep_Formulary_Status" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="BeneficiaryId" Type="int" Mode="In" />
+    <Parameter Name="IsPepManagerCompany" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_PCY_ALLIEDLINES_REVIEW_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Global">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="AlliedLine_Id" Type="int" Mode="In" />
+    <Parameter Name="Unique_AlliedLine_Id" Type="bigint" Mode="In" />
+    <Parameter Name="AlliedLine_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Review_Id" Type="int" Mode="In" />
+    <Parameter Name="Review_Detail_Id" Type="int" Mode="In" />
+    <Parameter Name="Review_Group_Id" Type="int" Mode="In" />
+    <Parameter Name="Review_Class_Id" Type="int" Mode="In" />
+    <Parameter Name="Review_Item_Id" Type="int" Mode="In" />
+    <Parameter Name="Review_Option_Id" Type="int" Mode="In" />
+    <Parameter Name="Value_Checked" Type="int" Mode="In" />
+    <Parameter Name="Value_Text" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Review_Status" Type="bit" Mode="In" />
+    <Parameter Name="Required" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="UsuarioInspeccion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_AGENT_DIRECTORY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NewBusiness">
+    <Parameter Name="Directory_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetPaymentAgreementQuots" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_FT_QUO_PL_POLICY_GRIDVIEW_GRID_PV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="CorpId" Type="int" Mode="In" />
+    <Parameter Name="Tab" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="DateTo" Type="date" Mode="In" />
+    <Parameter Name="DateFrom" Type="date" Mode="In" />
+    <Parameter Name="OfficeId" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Bl_Id" Type="int" Mode="In" />
+    <Parameter Name="User_Id" Type="int" Mode="In" />
+    <Parameter Name="Bandeja" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_FT_QUO_TAB_ROL_VISIBLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PL_PCY_VEHICLE_REVIEWS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Insured_Vehicle_Id" Type="int" Mode="In" />
+    <Parameter Name="Make_Id" Type="int" Mode="In" />
+    <Parameter Name="Model_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PL_POLICY_BAIL_INSURED_GUARANTORS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Unique_Bail_Id" Type="bigint" Mode="In" />
+    <Parameter Name="Seq_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PL_POLICY_PROPERTY_INSURED_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PL_POLICY_TRANSPORT_INSURED_EXTRAINFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Unique_Transport_Id" Type="int" Mode="In" />
+    <Parameter Name="SeqId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PL_PROPERTY_CERTIFICATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="corpId" Type="int" Mode="In" />
+    <Parameter Name="CertificateId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PL_PROPERTY_MEASURE_TYPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="corpId" Type="int" Mode="In" />
+    <Parameter Name="MeasureTypeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PL_PROPERTY_POSITION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="corpId" Type="int" Mode="In" />
+    <Parameter Name="PositionId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_REQUIREMENT_DOCUMENT_ONBASE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="corp_id" Type="int" Mode="In" />
+    <Parameter Name="Cat_id" Type="int" Mode="In" />
+    <Parameter Name="Type_id" Type="int" Mode="In" />
+    <Parameter Name="Type" Type="char" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_AIRPLANE_INSURED_PILOT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Unique_Airplane_Id" Type="bigint" Mode="In" />
+    <Parameter Name="Seq_Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Flight_hours" Type="int" Mode="In" />
+    <Parameter Name="Airplane_Pilot_Status" Type="bit" Mode="In" />
+    <Parameter Name="UsrId" Type="int" Mode="In" />
+    <Parameter Name="Source_Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_BAIL_INSURED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Bail_Id" Type="int" Mode="In" />
+    <Parameter Name="Bl_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Bl_Id" Type="int" Mode="In" />
+    <Parameter Name="Product_Id" Type="int" Mode="In" />
+    <Parameter Name="Reinsurance_Id" Type="int" Mode="In" />
+    <Parameter Name="Reinsurance_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="Equipment_Qty" Type="int" Mode="In" />
+    <Parameter Name="ContractAmount" Type="numeric" Mode="In" />
+    <Parameter Name="Beneficiary" Type="varchar" Mode="In" />
+    <Parameter Name="Activity" Type="varchar" Mode="In" />
+    <Parameter Name="BusinessType" Type="varchar" Mode="In" />
+    <Parameter Name="BailType" Type="varchar" Mode="In" />
+    <Parameter Name="PercentageInsuredAmount" Type="varchar" Mode="In" />
+    <Parameter Name="Obligations" Type="varchar(max)" Mode="In" />
+    <Parameter Name="To_Deposit_In" Type="varchar" Mode="In" />
+    <Parameter Name="Address_Street" Type="varchar" Mode="In" />
+    <Parameter Name="Address_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Address_Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Address_Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="Address_State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="Address_City_Id" Type="int" Mode="In" />
+    <Parameter Name="Has_End_Of_Term" Type="varchar" Mode="In" />
+    <Parameter Name="Is_Building" Type="varchar" Mode="In" />
+    <Parameter Name="Insured_Date" Type="datetime" Mode="In" />
+    <Parameter Name="Insured_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="Rate" Type="numeric" Mode="In" />
+    <Parameter Name="Premium_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="Base_Premium_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="Deductible_Percentage" Type="numeric" Mode="In" />
+    <Parameter Name="Deductible_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="Minimum_Deductible_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="New" Type="bit" Mode="In" />
+    <Parameter Name="Requires_Inspection" Type="bit" Mode="In" />
+    <Parameter Name="Reinsurance" Type="bit" Mode="In" />
+    <Parameter Name="Inspected" Type="bit" Mode="In" />
+    <Parameter Name="Endorsement_Clarifying" Type="bit" Mode="In" />
+    <Parameter Name="Endorsement" Type="bit" Mode="In" />
+    <Parameter Name="Endorsement_Beneficiary" Type="varchar" Mode="In" />
+    <Parameter Name="Endorsement_Beneficiary_Rnc" Type="varchar" Mode="In" />
+    <Parameter Name="Endorsement_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="Endorsement_Contact_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Endorsement_Contact_Phone" Type="varchar" Mode="In" />
+    <Parameter Name="Endorsement_Contact_Email" Type="varchar" Mode="In" />
+    <Parameter Name="Inspection_Address" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Bail_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="UsrId" Type="int" Mode="In" />
+    <Parameter Name="Source_Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_BAIL_INSURED_GUARANTORS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Unique_Bail_Id" Type="bigint" Mode="In" />
+    <Parameter Name="Seq_Id" Type="int" Mode="In" />
+    <Parameter Name="Identification_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Identification" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="LastName" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Phone" Type="varchar" Mode="In" />
+    <Parameter Name="Address" Type="varchar" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Nationality_Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Representative_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Representative_Identification_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Representative_Identification" Type="varchar" Mode="In" />
+    <Parameter Name="Bailee_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="Source_Id" Type="varchar" Mode="In" />
+    <Parameter Name="Tipo_Riesgo_Name_Key" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_BLACKLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Blacklist_Check" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_BLACKLIST_MEMBER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Blacklist_Member" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_DIRECTCREDIT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="DirectDebit" Type="bit" Mode="In" />
+    <Parameter Name="IncludeInitial" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_LOANNUMBER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="LoanPetitionNo" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_POLICYNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Policy_No" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_PROPERTY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Property_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Business_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Property_Build_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Activfity_Type_Id" Type="int" Mode="In" />
+    <Parameter Name="Reinsurance_Id" Type="int" Mode="In" />
+    <Parameter Name="Reinsurance_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="Address_Street" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Address_Number" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Evaluation_Value" Type="numeric" Mode="In" />
+    <Parameter Name="Edification_Value" Type="numeric" Mode="In" />
+    <Parameter Name="Machinery_Value" Type="numeric" Mode="In" />
+    <Parameter Name="FurnitureAndEquipment_Value" Type="numeric" Mode="In" />
+    <Parameter Name="Stock_Value" Type="numeric" Mode="In" />
+    <Parameter Name="RemodelingAndFitting_Value" Type="numeric" Mode="In" />
+    <Parameter Name="ValueObjectAndArt_Value" Type="numeric" Mode="In" />
+    <Parameter Name="South_Border_Id" Type="int" Mode="In" />
+    <Parameter Name="North_Border_Id" Type="int" Mode="In" />
+    <Parameter Name="East_Border_Id" Type="int" Mode="In" />
+    <Parameter Name="West_Border_Id" Type="int" Mode="In" />
+    <Parameter Name="Distance_Kilometers_Sea" Type="varchar" Mode="In" />
+    <Parameter Name="Distance_Kilometers_River" Type="varchar" Mode="In" />
+    <Parameter Name="Distance_Kilometers_Stream" Type="varchar" Mode="In" />
+    <Parameter Name="Longitude" Type="decimal" Mode="In" />
+    <Parameter Name="Latitude" Type="decimal" Mode="In" />
+    <Parameter Name="Property_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="UsrId" Type="int" Mode="In" />
+    <Parameter Name="Source_Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PL_POLICY_TRANSPORT_INSURED_EXTRAINFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Unique_Transport_Id" Type="bigint" Mode="In" />
+    <Parameter Name="Seq_Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Brand" Type="varchar" Mode="In" />
+    <Parameter Name="Model" Type="varchar" Mode="In" />
+    <Parameter Name="Plate" Type="varchar" Mode="In" />
+    <Parameter Name="Vin" Type="varchar" Mode="In" />
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Serial_Key" Type="varchar" Mode="In" />
+    <Parameter Name="Transport_ExtraInfo_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="Source_Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_FT_QUO_PL_POLICY_GRIDVIEW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Bussiness_Line_Type" Type="int" Mode="In" />
+    <Parameter Name="Bussiness_Line_Id" Type="int" Mode="In" />
+    <Parameter Name="Company_Id" Type="int" Mode="In" />
+    <Parameter Name="Company_Desc" Type="varchar" Mode="In" />
+    <Parameter Name="Policy_No" Type="varchar" Mode="In" />
+    <Parameter Name="Bl_Desc" Type="varchar" Mode="In" />
+    <Parameter Name="Product_Type_Desc" Type="varchar" Mode="In" />
+    <Parameter Name="Group_Desc" Type="varchar" Mode="In" />
+    <Parameter Name="Office_Desc" Type="varchar" Mode="In" />
+    <Parameter Name="Agent_Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Distribution_Desc" Type="varchar" Mode="In" />
+    <Parameter Name="Policy_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="Policy_Status_Desc" Type="varchar" Mode="In" />
+    <Parameter Name="Policy_Status_Name_Key" Type="varchar" Mode="In" />
+    <Parameter Name="Agent_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Supervisor_Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Supervisor_Agent_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Id" Type="int" Mode="In" />
+    <Parameter Name="Full_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Tipo_Riesgo_Name_Key" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Contact" Type="varchar" Mode="In" />
+    <Parameter Name="Insured_Amount" Type="numeric" Mode="In" />
+    <Parameter Name="Annual_Premium" Type="numeric" Mode="In" />
+    <Parameter Name="Initial_Contribution" Type="numeric" Mode="In" />
+    <Parameter Name="QuoDate" Type="datetime" Mode="In" />
+    <Parameter Name="QuoPosDate" Type="datetime" Mode="In" />
+    <Parameter Name="EffectiveDate" Type="datetime" Mode="In" />
+    <Parameter Name="ExpirationDate" Type="datetime" Mode="In" />
+    <Parameter Name="InspectionQuoDate" Type="datetime" Mode="In" />
+    <Parameter Name="DeclinedQuoDate" Type="datetime" Mode="In" />
+    <Parameter Name="DeclinedQuoReason" Type="varchar" Mode="In" />
+    <Parameter Name="MissingDocumentQuoReason" Type="varchar" Mode="In" />
+    <Parameter Name="Work_Minute" Type="int" Mode="In" />
+    <Parameter Name="Subscription_Minute" Type="int" Mode="In" />
+    <Parameter Name="Inspection_Minute" Type="int" Mode="In" />
+    <Parameter Name="Document_Missing" Type="int" Mode="In" />
+    <Parameter Name="Subscriber_Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Subscriber_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Inspector_Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Inspector_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Days" Type="int" Mode="In" />
+    <Parameter Name="IsExpiring" Type="bit" Mode="In" />
+    <Parameter Name="IsExpired" Type="bit" Mode="In" />
+    <Parameter Name="Policy_No_Temp" Type="varchar" Mode="In" />
+    <Parameter Name="DiscountAmount" Type="numeric" Mode="In" />
+    <Parameter Name="HasDiscount" Type="bit" Mode="In" />
+    <Parameter Name="HasSurcharge" Type="bit" Mode="In" />
+    <Parameter Name="HasEndorsement" Type="bit" Mode="In" />
+    <Parameter Name="HasEndorsementClarifying" Type="bit" Mode="In" />
+    <Parameter Name="Vehicle_Count" Type="int" Mode="In" />
+    <Parameter Name="Tab" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_PL_POLICY_PROPERTY_INSURED_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Property_Id" Type="int" Mode="In" />
+    <Parameter Name="Seq_Id" Type="int" Mode="In" />
+    <Parameter Name="Unique_Property_Id" Type="bigint" Mode="In" />
+    <Parameter Name="Inspected" Type="bit" Mode="In" />
+    <Parameter Name="Endorsement_Clarifying" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_PL_POLICY_VEHICLE_INSURED_INSPECTION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Vehicle_Unique_Id" Type="bigint" Mode="In" />
+    <Parameter Name="Inspection" Type="bit" Mode="In" />
+    <Parameter Name="EndorsementClarifying" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_PL_POLICY_VEHICLE_REVIEW_INSPECTION_ADDRESS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Insured_Vehicle_Id" Type="int" Mode="In" />
+    <Parameter Name="Inspection_Address" Type="varchar(max)" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_PL_POLICY_VEHICLE_REVIEW_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Insured_Vehicle_Id" Type="int" Mode="In" />
+    <Parameter Name="Review_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="Review_Status" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_COUPON_INFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pos">
+    <Parameter Name="Policy_Number" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_FUEL_TYPES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pos">
+    <Parameter Name="FuelTypeId" Type="int" Mode="In" />
+    <Parameter Name="FuelTypeDesc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_REQUEST_CHANGES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pos">
+    <Parameter Name="Policy_Number" Type="varchar" Mode="In" />
+    <Parameter Name="IsLasRecord" Type="bit" Mode="In" />
+    <Parameter Name="Condition_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_REQUEST_CHANGES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pos">
+    <Parameter Name="Change_Id" Type="int" Mode="In" />
+    <Parameter Name="Policy_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Condition_Id" Type="int" Mode="In" />
+    <Parameter Name="Vehicle_Secuence" Type="int" Mode="In" />
+    <Parameter Name="Old_Value" Type="varchar(max)" Mode="In" />
+    <Parameter Name="New_Value" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Source" Type="varchar" Mode="In" />
+    <Parameter Name="Create_User" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_TB_ACCIDENT_RATE_BY_MAKE_AND_MODEL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REPORT">
+    <Parameter Name="MAKE" Type="varchar" Mode="In" />
+    <Parameter Name="MODEL" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="FunctionAgentTreeInfoQuo_AgentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Security">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Id" Type="int" Mode="In" />
+    <Parameter Name="Agent_Name_Id" Type="varchar" Mode="In" />
+    <Parameter Name="Bl_Id" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Agent_Id" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="SP_DEL_SOCIAL_EXPOSURE_CONTACT_RELATIVE_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Contact_Id" Type="int" Mode="In" />
+    <Parameter Name="Exposure_Related_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_BG_MATCH_LINKS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="CORP_ID" Type="int" Mode="In" />
+    <Parameter Name="REGION_ID" Type="int" Mode="In" />
+    <Parameter Name="COUNTRY_ID" Type="int" Mode="In" />
+    <Parameter Name="DOMESTICREG_ID" Type="int" Mode="In" />
+    <Parameter Name="STATE_PROV_ID" Type="int" Mode="In" />
+    <Parameter Name="CITY_ID" Type="int" Mode="In" />
+    <Parameter Name="OFFICE_ID" Type="int" Mode="In" />
+    <Parameter Name="CASE_SEQ_NO" Type="int" Mode="In" />
+    <Parameter Name="HIST_SEQ_NO" Type="int" Mode="In" />
+    <Parameter Name="CONTACT_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_CASE_ALL_HISTORY_BYPOLICY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_CONTACT_IDS_IN_BENEFICIARY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_SOCIAL_EXPOSURE_CONTACT_RELATIVE_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Contact_Id" Type="int" Mode="In" />
+    <Parameter Name="language_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_BG_MATCH_LINKS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="Operation" Type="varchar" Mode="In" />
+    <Parameter Name="CORP_ID" Type="int" Mode="In" />
+    <Parameter Name="REGION_ID" Type="int" Mode="In" />
+    <Parameter Name="COUNTRY_ID" Type="int" Mode="In" />
+    <Parameter Name="DOMESTICREG_ID" Type="int" Mode="In" />
+    <Parameter Name="STATE_PROV_ID" Type="int" Mode="In" />
+    <Parameter Name="CITY_ID" Type="int" Mode="In" />
+    <Parameter Name="OFFICE_ID" Type="int" Mode="In" />
+    <Parameter Name="CASE_SEQ_NO" Type="int" Mode="In" />
+    <Parameter Name="HIST_SEQ_NO" Type="int" Mode="In" />
+    <Parameter Name="CONTACT_ID" Type="int" Mode="In" />
+    <Parameter Name="LINK_ID" Type="int" Mode="In" />
+    <Parameter Name="LINK_URL" Type="varchar" Mode="In" />
+    <Parameter Name="LINK_STATUS" Type="bit" Mode="In" />
+    <Parameter Name="LINK_IMAGE" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="MATCHED" Type="bit" Mode="In" />
+    <Parameter Name="USRID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_SOCIAL_EXPOSURE_CONTACT_RELATIVE_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Underwriting">
+    <Parameter Name="Corp_Id" Type="int" Mode="In" />
+    <Parameter Name="Region_Id" Type="int" Mode="In" />
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+    <Parameter Name="City_Id" Type="int" Mode="In" />
+    <Parameter Name="Office_Id" Type="int" Mode="In" />
+    <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+    <Parameter Name="Contact_Id" Type="int" Mode="In" />
+    <Parameter Name="Exposure_Related_Id" Type="int" Mode="In" />
+    <Parameter Name="Exposure_Related_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Relationship_Id" Type="int" Mode="In" />
+    <Parameter Name="Exposure_Related_Position" Type="varchar" Mode="In" />
+    <Parameter Name="Exposure_Related_Date_From_Position" Type="datetime" Mode="In" />
+    <Parameter Name="Exposure_Related_Date_To_Position" Type="datetime" Mode="In" />
+    <Parameter Name="Create_UsrId" Type="int" Mode="In" />
+    <Parameter Name="Modi_UsrId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="GlobalModelStoreContainer" />
+</Schema>

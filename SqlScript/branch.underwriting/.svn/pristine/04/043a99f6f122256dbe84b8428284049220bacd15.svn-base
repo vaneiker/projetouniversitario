@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Contacts">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="alias_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="company_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="contact_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_name_id" type="xs:int" />
+      <xs:element minOccurs="0" name="name_first" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name_last" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name_middle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name_prefix_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="name_suffix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="requestor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="requestor_id" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contacts" nillable="true" type="tns:Contacts" />
+  <xs:complexType name="Contact_Identifiers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="contact_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_identifier_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_identifier_ud" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="identifier_type_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contact_Identifiers" nillable="true" type="tns:Contact_Identifiers" />
+  <xs:complexType name="Contact_Internet_Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="contact_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_internet_address_id" type="xs:int" />
+      <xs:element minOccurs="0" name="internet_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="internet_address_id" type="xs:int" />
+      <xs:element minOccurs="0" name="internet_address_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="primary_for_contact" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contact_Internet_Address" nillable="true" type="tns:Contact_Internet_Address" />
+  <xs:complexType name="Contact_Preferred_Comunication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="communication_method_id" type="xs:int" />
+      <xs:element minOccurs="0" name="communication_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_preferred_communication_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contact_Preferred_Comunication" nillable="true" type="tns:Contact_Preferred_Comunication" />
+  <xs:complexType name="Contact_Telephone_Numbers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="best_time_to_contact_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="contact_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_telephone_number_id" type="xs:int" />
+      <xs:element minOccurs="0" name="country_code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="prefix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="primary_for_contact" type="xs:boolean" />
+      <xs:element minOccurs="0" name="telephone_number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="telephone_number_extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="telephone_number_id" type="xs:int" />
+      <xs:element minOccurs="0" name="telephone_number_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="telephone_number_type_ud" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contact_Telephone_Numbers" nillable="true" type="tns:Contact_Telephone_Numbers" />
+  <xs:complexType name="Contact_Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="address_1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="address_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="address_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_address_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_address_type_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_id" type="xs:int" />
+      <xs:element minOccurs="0" name="delivery_route" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="locale_id" type="xs:int" />
+      <xs:element minOccurs="0" name="mail_ok" type="xs:boolean" />
+      <xs:element minOccurs="0" name="primary_for_contact" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contact_Address" nillable="true" type="tns:Contact_Address" />
+</xs:schema>

@@ -1,0 +1,2205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/DataService" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="GetGeneralSettings">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneralSettingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetGeneralSettingsResult" nillable="true" type="q1:GeneralSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateGeneralSettings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="settings" nillable="true" type="q2:GeneralSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateGeneralSettingsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicenseList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicenseListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetLicenseListResult" nillable="true" type="q3:ArrayOfLicenseInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvalidateLicenseList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvalidateLicenseListResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServerToken">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServerTokenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetServerTokenResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetLicenseKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="licenseKey" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetLicenseKeyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileTransferAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="recordingID" type="q4:guid" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordingType" type="q5:RecordingType" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="fileTransferReason" type="q6:FileTransferReason" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileTransferAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetFileTransferAddressResult" nillable="true" type="q7:FileTransferInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZippedFilesTransferAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordings" nillable="true" type="q8:ArrayOfRecordedCallContainer" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordingType" type="q9:RecordingType" />
+        <xs:element minOccurs="0" name="ZipTargetFileName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="fileTransferReason" type="q10:FileTransferReason" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZippedFilesTransferAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetZippedFilesTransferAddressResult" nillable="true" type="q11:FileTransferInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZippedMediaFilesTransferAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordings" nillable="true" type="q12:ArrayOfRecordedMediaContainer" />
+        <xs:element minOccurs="0" name="ZipTargetFileName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="fileTransferReason" type="q13:FileTransferReason" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZippedMediaFilesTransferAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetZippedMediaFilesTransferAddressResult" nillable="true" type="q14:FileTransferInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZippedComputerRecordingFilesTransferAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordings" nillable="true" type="q15:ArrayOfComputerRecordingContainer" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordingType" type="q16:RecordingType" />
+        <xs:element minOccurs="0" name="ZipTargetFileName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="fileTransferReason" type="q17:FileTransferReason" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZippedComputerRecordingFilesTransferAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetZippedComputerRecordingFilesTransferAddressResult" nillable="true" type="q18:FileTransferInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMergedWavFilesTransferAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordings" nillable="true" type="q19:ArrayOfRecordedCallContainer" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordingType" type="q20:RecordingType" />
+        <xs:element minOccurs="0" name="MergedWavTargetFileName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="fileTransferReason" type="q21:FileTransferReason" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMergedWavFilesTransferAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetMergedWavFilesTransferAddressResult" nillable="true" type="q22:FileTransferInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMergedWavFilesTransferAddressViaRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userId" type="q23:guid" />
+        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="selectedRecording" type="q24:guid" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordingType" type="q25:RecordingType" />
+        <xs:element minOccurs="0" name="mergedWavTargetFileName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="fileTransferReason" type="q26:FileTransferReason" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMergedWavFilesTransferAddressViaRecordingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetMergedWavFilesTransferAddressViaRecordingResult" nillable="true" type="q27:FileTransferInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="recordingID" type="q28:guid" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordingType" type="q29:RecordingType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRecordingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteRecordingResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRecordings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="recordingIDs" nillable="true" type="q30:ArrayOfguid" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="recordingType" type="q31:RecordingType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRecordingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DeleteRecordingsResult" nillable="true" type="q32:ArrayOfguid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsRecordingValid">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="recordingID" type="q33:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsRecordingValidResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsRecordingValidResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartOnDemandRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q34:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartOnDemandRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopOnDemandRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q35:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopOnDemandRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PauseOnDemandRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q36:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PauseOnDemandRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumeOnDemandRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q37:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumeOnDemandRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEncryptionInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEncryptionInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetEncryptionInfoResult" nillable="true" type="q38:EncryptionInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNewEncryptionKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="username2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="revokeExistingKeys" type="xs:boolean" />
+        <xs:element minOccurs="0" name="enableEncryption" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNewEncryptionKeyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetNewEncryptionKeyResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCallRecordingServiceList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCallRecordingServiceListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetCallRecordingServiceListResult" nillable="true" type="q39:ArrayOfServiceListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLocationList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLocationListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetLocationListResult" nillable="true" type="q40:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDepartmentListResult" nillable="true" type="q41:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPbxList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPbxListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetPbxListResult" nillable="true" type="q42:ArrayOfPbxListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserPreferences">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="preferences" nillable="true" type="q43:ArrayOfUserPreferenceItem" />
+        <xs:element minOccurs="0" name="persistPassed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserPreferencesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetUserPreferencesResult" nillable="true" type="q44:ArrayOfUserPreferenceItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserPreferences">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q45:guid" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="preferences" nillable="true" type="q46:ArrayOfUserPreferenceItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserPreferencesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserPreference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="preference" nillable="true" type="q47:UserPreferenceItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuditLogList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q48:ArrayOfguid" />
+        <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="targetType" nillable="true" type="xs:string" />
+        <xs:element xmlns:q49="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="targetId" nillable="true" type="q49:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuditLogListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetAuditLogListResult" nillable="true" type="q50:ArrayOfAuditLog" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuditActionTypeList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuditActionTypeListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetAuditActionTypeListResult" nillable="true" type="q51:ArrayOfAuditActionType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddAuditLog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="action" type="q52:Audit.Action" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="targetType" type="q53:Audit.TargetType" />
+        <xs:element xmlns:q54="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="targetId" nillable="true" type="q54:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddAuditLogResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComputerRecordingUserDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="departmentFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentBlanksOnly" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComputerRecordingUserDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetComputerRecordingUserDetailsResult" nillable="true" type="q55:ArrayOfUserDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAvailabilityForComputerMonitoring">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="monitorTarget" type="q56:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAvailabilityForComputerMonitoringResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="CheckAvailabilityForComputerMonitoringResult" nillable="true" type="q57:GuidPair" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PrepareComputerRecordingForStream">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="clientToken" type="q58:guid" />
+        <xs:element xmlns:q59="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="screenRecordingID" type="q59:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PrepareComputerRecordingForStreamResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PrepareComputerRecordingForStreamResult" nillable="true" type="xs:anyURI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReleaseComputerRecordingStreamResources">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="clientToken" type="q60:guid" />
+        <xs:element xmlns:q61="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="screenRecordingID" type="q61:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartOnDemandScreenRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q62:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartOnDemandScreenRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopOnDemandScreenRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q63="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q63:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopOnDemandScreenRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PauseOnDemandScreenRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q64:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PauseOnDemandScreenRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumeOnDemandScreenRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q65:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumeOnDemandScreenRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpiredCallRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q66:guid" />
+        <xs:element minOccurs="0" name="endingPriorTo" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpiredCallRecordingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetExpiredCallRecordingResult" nillable="true" type="q67:ArrayOfGuidPair" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpiredComputerRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q68:guid" />
+        <xs:element minOccurs="0" name="endingPriorTo" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpiredComputerRecordingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetExpiredComputerRecordingResult" nillable="true" type="q69:ArrayOfGuidPair" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComputerRecordingDeployments">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComputerRecordingDeploymentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetComputerRecordingDeploymentsResult" nillable="true" type="q70:ArrayOfComputerRecordingDeployment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveComputerRecordingDeployment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q71="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q71:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissibleFileTransferAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q72="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="recordingID" type="q72:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissibleFileTransferAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetPermissibleFileTransferAddressResult" nillable="true" type="q73:FileTransferInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DiscoverADPath">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="node" nillable="true" type="q74:SerializedActiveDirectoryNode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DiscoverADPathResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="DiscoverADPathResult" nillable="true" type="q75:ArrayOfSerializedActiveDirectoryNode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetArchiveList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetArchiveListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetArchiveListResult" nillable="true" type="q76:ArrayOfArchiveListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetArchiveTasks">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetArchiveTasksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetArchiveTasksResult" nillable="true" type="q77:ArrayOfArchiveTaskListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateArchiveTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="atli" nillable="true" type="q78:ArchiveTaskListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateArchiveTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddArchiveTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="atli" nillable="true" type="q79:ArchiveTaskListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddArchiveTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q80="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="AddArchiveTaskResult" type="q80:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRemoteDataSources">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRemoteDataSourcesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q81="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetRemoteDataSourcesResult" nillable="true" type="q81:ArrayOfDataSourceListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRemoteDataSource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="dsci" nillable="true" type="q82:RemoteDataSourceCreationItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRemoteDataSourceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q83="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="AddRemoteDataSourceResult" type="q83:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetArchiveSourceDataSources">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetArchiveSourceDataSourcesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetArchiveSourceDataSourcesResult" nillable="true" type="q84:ArrayOfDataSourceListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubordinatesList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="departmentFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentBlanksOnly" type="xs:boolean" />
+        <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="licenseStatus" type="q85:UserLicenseStatusType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubordinatesListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSubordinatesListResult" nillable="true" type="q86:ArrayOfUserListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEvaluatorsList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEvaluatorsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetEvaluatorsListResult" nillable="true" type="q87:ArrayOfUserListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEvaluations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q88="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="subordinates" nillable="true" type="q88:ArrayOfguid" />
+        <xs:element xmlns:q89="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="evaluators" nillable="true" type="q89:ArrayOfguid" />
+        <xs:element xmlns:q90="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="scorecards" nillable="true" type="q90:ArrayOfguid" />
+        <xs:element minOccurs="0" name="rangeFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="rangeTo" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="includeIncompleteEvaluations" type="xs:boolean" />
+        <xs:element minOccurs="0" name="includeCompleteEvaluations" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEvaluationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetEvaluationsResult" nillable="true" type="q91:ArrayOfEvaluationSummary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEvaluation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q92="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="evaluationGuid" type="q92:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEvaluationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetEvaluationResult" nillable="true" type="q93:EvaluationDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteEvaluation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q94="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="evaluationGuid" type="q94:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteEvaluationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScorecards">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="includeDeleted" type="xs:boolean" />
+        <xs:element minOccurs="0" name="latestVersionOnly" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScorecardsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetScorecardsResult" nillable="true" type="q95:ArrayOfScorecard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScorecardCategories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="includeDeleted" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScorecardCategoriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetScorecardCategoriesResult" nillable="true" type="q96:ArrayOfScorecardCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQuestionCategories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q97="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="scorecardUid" type="q97:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQuestionCategoriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetQuestionCategoriesResult" nillable="true" type="q98:ArrayOfScorecardQuestionCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQuestionsPerCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q99="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="questionCategoryUid" type="q99:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQuestionsPerCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q100="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetQuestionsPerCategoryResult" nillable="true" type="q100:ArrayOfScorecardQuestion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQuestionsPerScorecard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q101="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="scorecardUid" type="q101:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQuestionsPerScorecardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetQuestionsPerScorecardResult" nillable="true" type="q102:ArrayOfScorecardQuestion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="category" nillable="true" type="q103:ScorecardCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCategoryResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q104="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="category" nillable="true" type="q104:ScorecardCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCategoryResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateScorecard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="scorecard" nillable="true" type="q105:Scorecard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateScorecardResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestionCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q106="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="category" nillable="true" type="q106:ScorecardQuestionCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestionCategoryResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestionCategories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="categoryList" nillable="true" type="q107:ArrayOfScorecardQuestionCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestionCategoriesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="question" nillable="true" type="q108:ScorecardQuestion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="question" nillable="true" type="q109:ArrayOfScorecardQuestion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestionsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddScorecard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="scorecard" nillable="true" type="q110:Scorecard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddScorecardResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentEvalRecordedMedia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q111="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="mediaType" type="q111:RecordedMediaType" />
+        <xs:element xmlns:q112="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userDomain" nillable="true" type="q112:ArrayOfguid" />
+        <xs:element minOccurs="0" name="rangeStart" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="rangeStop" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="durationMin" type="xs:int" />
+        <xs:element minOccurs="0" name="durationMax" type="xs:int" />
+        <xs:element xmlns:q113="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="direction" type="q113:CallDirection" />
+        <xs:element minOccurs="0" name="CIDCriteria" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="outgoingNoCriteria" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DNISCriteria" nillable="true" type="xs:string" />
+        <xs:element xmlns:q114="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="flagID" type="q114:guid" />
+        <xs:element minOccurs="0" name="flagValue" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentEvalRecordedMediaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q115="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetAgentEvalRecordedMediaResult" nillable="true" type="q115:ArrayOfRecordedMediaContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockAgentEvalCall">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q116="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="callLogIDToBlockGuid" type="q116:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockAgentEvalCallResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveEvaluation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q117="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="newEvaluation" nillable="true" type="q117:EvaluationDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveEvaluationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockAgentEvalScreenRecording">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q118="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="screenRecordingIDToBlockGuid" type="q118:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockAgentEvalScreenRecordingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIsCallCenter">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIsCallCenterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIsCallCenterResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCallCounts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q119="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q119:ArrayOfguid" />
+        <xs:element xmlns:q120="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="dateRangeType" type="q120:SearchDateSpecificationType" />
+        <xs:element minOccurs="0" name="dateRangeLastXDays" type="xs:int" />
+        <xs:element minOccurs="0" name="dateRangeStart" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dateRangeEnd" type="xs:dateTime" />
+        <xs:element xmlns:q121="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="callDirection" type="q121:CallDirection" />
+        <xs:element minOccurs="0" name="onlyIncludeFlagged" type="xs:boolean" />
+        <xs:element xmlns:q122="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="dateGroupType" type="q122:DateGroupType" />
+        <xs:element xmlns:q123="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="groupType" type="q123:CallCountGroupType" />
+        <xs:element xmlns:q124="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="flagId" type="q124:guid" />
+        <xs:element xmlns:q125="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="sortType" type="q125:CallCountSortType" />
+        <xs:element minOccurs="0" name="maximumRecords" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCallCountsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q126="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetCallCountsResult" nillable="true" type="q126:ArrayOfCallCount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRenderedReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="format" nillable="true" type="xs:string" />
+        <xs:element xmlns:q127="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="savedReportId" type="q127:guid" />
+        <xs:element xmlns:q128="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="parameters" nillable="true" type="q128:ArrayOfKeyValueOfstringstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRenderedReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetRenderedReportResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRenderedReportForDashboard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="format" nillable="true" type="xs:string" />
+        <xs:element xmlns:q129="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="savedReportId" type="q129:guid" />
+        <xs:element xmlns:q130="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="parameters" nillable="true" type="q130:ArrayOfKeyValueOfstringstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRenderedReportForDashboardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetRenderedReportForDashboardResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q131="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="LoginResult" type="q131:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginUsingWinAuthentication">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginUsingWinAuthenticationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q132="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="LoginUsingWinAuthenticationResult" nillable="true" type="q132:UserDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="oldPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="newPassword" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePasswordResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="departmentFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="activeUsersOnly" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q133="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetUserListResult" nillable="true" type="q133:ArrayOfUserListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q134="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="user" nillable="true" type="q134:UserDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q135="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="user" nillable="true" type="q135:UserDetails" />
+        <xs:element minOccurs="0" name="passwordChanged" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q136="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q136:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q137="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q137:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q138="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetUserDetailsResult" nillable="true" type="q138:UserDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserDetails">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q139="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetAllUserDetailsResult" nillable="true" type="q139:ArrayOfUserDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetManagedUserListForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q140="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q140:guid" />
+        <xs:element minOccurs="0" name="locationFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="departmentFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentBlanksOnly" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetManagedUserListForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q141="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetManagedUserListForUserResult" nillable="true" type="q141:ArrayOfMemberListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNonManagedUserListForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q142="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q142:guid" />
+        <xs:element minOccurs="0" name="locationFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="departmentFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentBlanksOnly" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNonManagedUserListForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q143="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetNonManagedUserListForUserResult" nillable="true" type="q143:ArrayOfMemberListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q144="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="supervisorUserID" type="q144:guid" />
+        <xs:element xmlns:q145="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="managedUserIDs" nillable="true" type="q145:ArrayOfguid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedUsersResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q146="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="supervisorUserID" type="q146:guid" />
+        <xs:element xmlns:q147="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="managedUserIDs" nillable="true" type="q147:ArrayOfguid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedUsersResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetManagedDepartmentListForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q148="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q148:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetManagedDepartmentListForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q149="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetManagedDepartmentListForUserResult" nillable="true" type="q149:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNonManagedDepartmentListForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q150="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q150:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNonManagedDepartmentListForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q151="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetNonManagedDepartmentListForUserResult" nillable="true" type="q151:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetManagedLocationListForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q152="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q152:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetManagedLocationListForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q153="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetManagedLocationListForUserResult" nillable="true" type="q153:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNonManagedLocationListForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q154="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q154:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNonManagedLocationListForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q155="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetNonManagedLocationListForUserResult" nillable="true" type="q155:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q156="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q156:guid" />
+        <xs:element minOccurs="0" name="departmentName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q157="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q157:guid" />
+        <xs:element minOccurs="0" name="departmentName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedDepartments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q158="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q158:guid" />
+        <xs:element xmlns:q159="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="departmentNames" nillable="true" type="q159:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedDepartmentsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedDepartments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q160="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q160:guid" />
+        <xs:element xmlns:q161="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="departmentNames" nillable="true" type="q161:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedDepartmentsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q162="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q162:guid" />
+        <xs:element minOccurs="0" name="locationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedLocationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q163="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q163:guid" />
+        <xs:element minOccurs="0" name="locationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedLocationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedLocations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q164="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q164:guid" />
+        <xs:element xmlns:q165="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="locationNames" nillable="true" type="q165:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagedLocationsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedLocations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q166="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q166:guid" />
+        <xs:element xmlns:q167="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="locationNames" nillable="true" type="q167:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveManagedLocationsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSearchableUserListForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="departmentFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentBlanksOnly" type="xs:boolean" />
+        <xs:element xmlns:q168="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="licenseStatus" type="q168:UserLicenseStatusType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSearchableUserListForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q169="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSearchableUserListForUserResult" nillable="true" type="q169:ArrayOfUserListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSearchableFlagsForUser">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSearchableFlagsForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q170="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSearchableFlagsForUserResult" nillable="true" type="q170:ArrayOfFlag" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFlagsListForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q171="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ownerUserId" type="q171:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFlagsListForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q172="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetFlagsListForUserResult" nillable="true" type="q172:ArrayOfFlag" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddFlag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q173="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ownerUserId" type="q173:guid" />
+        <xs:element xmlns:q174="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="flag" nillable="true" type="q174:Flag" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddFlagResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateFlag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q175="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ownerUserId" type="q175:guid" />
+        <xs:element xmlns:q176="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="flag" nillable="true" type="q176:Flag" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateFlagResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteFlag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q177="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="OwnerUserId" type="q177:guid" />
+        <xs:element xmlns:q178="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="flag" nillable="true" type="q178:Flag" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteFlagResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecordedCalls">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q179="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userDomain" nillable="true" type="q179:ArrayOfguid" />
+        <xs:element minOccurs="0" name="rangeStart" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="rangeStop" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="durationMin" type="xs:int" />
+        <xs:element minOccurs="0" name="durationMax" type="xs:int" />
+        <xs:element xmlns:q180="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="direction" type="q180:CallDirection" />
+        <xs:element minOccurs="0" name="CIDCriteria" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="outgoingNoCriteria" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DNISCriteria" nillable="true" type="xs:string" />
+        <xs:element xmlns:q181="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="flagID" type="q181:guid" />
+        <xs:element minOccurs="0" name="flagValue" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecordedCallsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q182="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetRecordedCallsResult" nillable="true" type="q182:ArrayOfRecordedCallContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecordedMediaByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recordingId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecordedMediaByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q183="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetRecordedMediaByIDResult" nillable="true" type="q183:ArrayOfRecordedMediaContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecordedCallChain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q184="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="UserId" type="q184:guid" />
+        <xs:element xmlns:q185="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="RecordingId" type="q185:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecordedCallChainResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q186="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetRecordedCallChainResult" nillable="true" type="q186:ArrayOfRecordedCallContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAttachedDataByCallLogID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q187="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="callLogID" type="q187:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAttachedDataByCallLogIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q188="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetAttachedDataByCallLogIDResult" nillable="true" type="q188:AttachedDataContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAttachedDataByCallLogID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q189="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="attachedData" nillable="true" type="q189:AttachedDataContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAttachedDataByCallLogIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q190="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="UpdateAttachedDataByCallLogIDResult" nillable="true" type="q190:AttachedDataContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAttachedDataByScreenRecordingID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q191="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ScreenRecordingID" type="q191:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAttachedDataByScreenRecordingIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q192="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetAttachedDataByScreenRecordingIDResult" nillable="true" type="q192:AttachedDataContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAttachedDataByScreenRecordingID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q193="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="attachedData" nillable="true" type="q193:AttachedDataContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAttachedDataByScreenRecordingIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q194="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="UpdateAttachedDataByScreenRecordingIDResult" nillable="true" type="q194:AttachedDataContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurrentCallByUserID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q195="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q195:guid" />
+        <xs:element minOccurs="0" name="telephonyCallIdentifier" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCurrentCallByUserIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q196="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetCurrentCallByUserIDResult" nillable="true" type="q196:RecordedCallContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserMonitorInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q197="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q197:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserMonitorInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q198="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetUserMonitorInfoResult" nillable="true" type="q198:UserMonitorInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSavedSearch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q199="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="savedSearch" nillable="true" type="q199:SavedSearch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSavedSearchResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSavedSearch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q200="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="savedSearch" nillable="true" type="q200:SavedSearch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSavedSearchResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSavedSearch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q201="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q201:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSavedSearchResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedSearch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q202="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q202:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedSearchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q203="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSavedSearchResult" nillable="true" type="q203:SavedSearch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedSearchList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedSearchListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q204="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSavedSearchListResult" nillable="true" type="q204:ArrayOfSavedSearch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSecurityProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q205="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q205:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSecurityProfileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q206="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetUserSecurityProfileResult" nillable="true" type="q206:SecurityProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComputerRecordings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q207="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userDomain" nillable="true" type="q207:ArrayOfguid" />
+        <xs:element minOccurs="0" name="rangeStart" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="rangeStop" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComputerRecordingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q208="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetComputerRecordingsResult" nillable="true" type="q208:ArrayOfComputerRecordingContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecordedMedia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q209="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="mediaType" type="q209:RecordedMediaType" />
+        <xs:element xmlns:q210="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userDomain" nillable="true" type="q210:ArrayOfguid" />
+        <xs:element minOccurs="0" name="rangeStart" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="rangeStop" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="durationMin" type="xs:int" />
+        <xs:element minOccurs="0" name="durationMax" type="xs:int" />
+        <xs:element xmlns:q211="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="direction" type="q211:CallDirection" />
+        <xs:element minOccurs="0" name="CIDCriteria" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="outgoingNoCriteria" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DNISCriteria" nillable="true" type="xs:string" />
+        <xs:element xmlns:q212="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="flagID" type="q212:guid" />
+        <xs:element minOccurs="0" name="flagValue" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecordedMediaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q213="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetRecordedMediaResult" nillable="true" type="q213:ArrayOfRecordedMediaContainer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSearchableRecordedMediaTypesForUser">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSearchableRecordedMediaTypesForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q214="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSearchableRecordedMediaTypesForUserResult" nillable="true" type="q214:ArrayOfRecordedMediaType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedReportListComplete">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedReportListCompleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q215="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSavedReportListCompleteResult" nillable="true" type="q215:ArrayOfSavedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedReportList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q216="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="reportid" type="q216:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedReportListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q217="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSavedReportListResult" nillable="true" type="q217:ArrayOfSavedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSavedReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q218="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="savedReport" nillable="true" type="q218:SavedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSavedReportResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSavedReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q219="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="savedReport" nillable="true" type="q219:SavedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSavedReportResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSavedReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q220="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q220:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSavedReportResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q221="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q221:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSavedReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q222="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSavedReportResult" nillable="true" type="q222:SavedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q223="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetReportListResult" nillable="true" type="q223:ArrayOfReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProfileMemberList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q224="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profileType" type="q224:ProfileType" />
+        <xs:element xmlns:q225="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q225:guid" />
+        <xs:element minOccurs="0" name="locationFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="departmentFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentBlanksOnly" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProfileMemberListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q226="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetProfileMemberListResult" nillable="true" type="q226:ArrayOfMemberListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProfileNonMemberList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q227="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profileType" type="q227:ProfileType" />
+        <xs:element xmlns:q228="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q228:guid" />
+        <xs:element minOccurs="0" name="locationFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationBlanksOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="departmentFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentBlanksOnly" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProfileNonMemberListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q229="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetProfileNonMemberListResult" nillable="true" type="q229:ArrayOfMemberListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUsersToProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q230="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profileType" type="q230:ProfileType" />
+        <xs:element xmlns:q231="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q231:guid" />
+        <xs:element xmlns:q232="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIDs" nillable="true" type="q232:ArrayOfguid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUsersToProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUsersFromProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q233="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profileType" type="q233:ProfileType" />
+        <xs:element xmlns:q234="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q234:guid" />
+        <xs:element xmlns:q235="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIDs" nillable="true" type="q235:ArrayOfguid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUsersFromProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSecurityProfileList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSecurityProfileListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q236="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSecurityProfileListResult" nillable="true" type="q236:ArrayOfSecurityProfileListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSecurityProfileDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q237="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q237:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSecurityProfileDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q238="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetSecurityProfileDetailsResult" nillable="true" type="q238:SecurityProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSecurityProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q239="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profile" nillable="true" type="q239:SecurityProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddSecurityProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSecurityProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q240="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profile" nillable="true" type="q240:SecurityProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSecurityProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSecurityProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q241="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q241:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSecurityProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCallRecordingProfileList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCallRecordingProfileListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q242="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetCallRecordingProfileListResult" nillable="true" type="q242:ArrayOfCallRecordingProfileListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCallRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q243="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q243:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCallRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q244="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetCallRecordingProfileResult" nillable="true" type="q244:CallRecordingProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCallRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q245="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profile" nillable="true" type="q245:CallRecordingProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCallRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCallRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q246="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profile" nillable="true" type="q246:CallRecordingProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCallRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCallRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q247="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q247:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCallRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDefaultCallRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q248="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q248:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDefaultCallRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScreenRecordingProfileList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScreenRecordingProfileListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q249="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetScreenRecordingProfileListResult" nillable="true" type="q249:ArrayOfScreenRecordingProfileListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScreenRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q250="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q250:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetScreenRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q251="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetScreenRecordingProfileResult" nillable="true" type="q251:ScreenRecordingProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddScreenRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q252="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profile" nillable="true" type="q252:ScreenRecordingProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddScreenRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateScreenRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q253="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="profile" nillable="true" type="q253:ScreenRecordingProfileDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateScreenRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteScreenRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q254="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q254:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteScreenRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDefaultScreenRecordingProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q255="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="profileID" type="q255:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDefaultScreenRecordingProfileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q256="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetServiceListResult" nillable="true" type="q256:ArrayOfServiceListItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q257="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="serviceID" type="q257:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q258="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="GetServiceResult" nillable="true" type="q258:ServiceSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q259="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="service" nillable="true" type="q259:ServiceSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddServiceResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q260="http://schemas.datacontract.org/2004/07/DataService" minOccurs="0" name="service" nillable="true" type="q260:ServiceSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateServiceResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q261="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="serviceID" type="q261:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteServiceResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPolicy">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPolicyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q262="http://schemas.microsoft.com/Message" name="GetPolicyResult" type="q262:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

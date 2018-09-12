@@ -1,0 +1,168 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Business.master.cs" Inherits="WEB.NewBusiness.NewBusiness.Business" %>
+
+<%@ Register Src="~/Common/UserControls/WUCTopMenu.ascx" TagPrefix="uc1" TagName="WUCTopMenu" %>
+<%@ Register Src="~/Common/UserControls/WUCRightMenu.ascx" TagPrefix="uc1" TagName="WUCRightMenu" %>
+<%@ Register Src="~/NewBusiness/UserControls/Common/WUCShowPDFPopup.ascx" TagPrefix="uc1" TagName="WUCShowPDFPopup" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AJAX" %>
+<%@ Register Assembly="Statetrust.Framework.Web" Namespace="Statetrust.Framework.Web.WebParts.UserControls.UserProfile" TagPrefix="uc1" %>
+<%@ Register Src="~/Common/UserControls/WUCSistemMainMenu.ascx" TagPrefix="uc1" TagName="WUCSistemMainMenu" %>
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head runat="server">
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="w-suero" />
+
+   <%-- <title><%# Page.Title %></title>--%>
+
+    <!-- CSS DE LA APP -->
+    <link href="~/Content/dtl.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/Master.css" rel="stylesheet" />
+    <link href="~/Content/menu.css" rel="stylesheet" />
+    <link href="~/Content/FontAwesome.css" rel="stylesheet" />
+<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> --%>
+<%--    <link href="~/Content/kickstart.min.css" rel="stylesheet" />--%>
+    
+    <!-- CSS DE  LA LIBRERIA JQWIDGETS -->
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.base.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.bootstrap.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.classic.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.darkblue.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.energyblue.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.black.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.fresh.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.highcontrast.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.metro.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.office.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.shinyblack.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.summer.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.ui-darkness.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.ui-le-frog.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.ui-lightness.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.ui-overcast.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.ui-redmond.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.ui-smoothness.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.ui-start.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.ui-sunny.css" rel="stylesheet" />
+    <link href="~/Scripts/JQuery/Pluggins/JQWidgets/styles/jqx.web.css" rel="stylesheet" />
+
+    <!-- JAVASCRIPT -->
+    <script src="../../Scripts/modernizr.custom.js" type="text/javascript"></script>
+    <script src="../../Scripts/JQuery/Core/jquery-1.9.1.js"></script>
+    <script src="../../Scripts/JQuery/JQueryUI/jquery-ui-1.10.3.js"></script>
+
+    <script src="../../Scripts/JQuery/Pluggins/JQWidgets/jqx-all.js"></script>
+    <script src="../../Scripts/Utilities/JSDateTools.js"></script>
+    <script src="../../Scripts/Utilities/JSTools.js"></script>
+    <script src="../../Scripts/JQuery/Pluggins/MeioMask/MeioMask.js"></script>
+    <script src="../../Scripts/JQuery/Pluggins/jquery-timepicker.js"></script>
+    <script src="../../Scripts/JQuery/MaskedInput/MaskedInput.js"></script>
+    <script src="../../Scripts/JQuery/MaskedInput/phone-codes/phone-be.js"></script>
+    <script src="../../Scripts/JQuery/MaskedInput/phone-codes/phone-codes.js"></script>
+    <script src="../../Scripts/JSPages/Requirements/Requirements.js"></script>
+      <script src="../../Scripts/kickstart.min.js"></script> 
+    <script src="../../Scripts/JQuery/Pluggins/accounting.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">        
+        <input type="hidden" id="hdnTimeOut" value='<%=Session.Timeout %>' />
+        <asp:Button runat="server" ID="btnDummy" ClientIDMode="Static" Style="display: none" OnClick="btnDummy_Click" />
+        <asp:ScriptManager ID="ScriptManager" runat="server" EnablePartialRendering="true" ScriptMode="Release">
+        </asp:ScriptManager>
+
+        <div id="st-container" class="st-container">
+            <uc1:WUCRightMenu ID="WUCRightMenu" runat="server" />
+            <uc1:STFCUserProfile runat="server" ID="STFCUserProfile1">
+                <AdditionalControls>
+                    <uc1:WUCSistemMainMenu runat="server" ID="WUCSistemMainMenu" />
+                </AdditionalControls>
+            </uc1:STFCUserProfile>
+            <div class="st-pusher">
+                <div class="st-content">
+                    <uc1:WUCTopMenu ID="WUCTopMenu" runat="server" />
+                    <div id="st-trigger-effects">
+                        <button data-effect="st-effect-2" class="show_profileEN" runat="server" id="btnProfile" onclick="GetUserProfileData(true);"></button>
+                    </div>
+                    <div id="st-trigger-effects">
+                        <button data-effect="st-effect-3" class="toolbar_btn" runat="server" id="btnTools"></button>
+                    </div>
+                    <asp:ContentPlaceHolder runat="server" ID="bodyContent" />
+                </div>
+            </div>
+        </div>
+
+        <asp:UpdatePanel ID="upPdfViewer" runat="server">
+            <ContentTemplate>
+                <AJAX:ModalPopupExtender ID="ModalPopupPDFViewer" runat="server" Enabled="true" TargetControlID="hdnShowBeneficiariePDF" PopupControlID="pnModalPopupPDFViewer" DropShadow="false" BackgroundCssClass="ModalBackgroud3">
+                </AJAX:ModalPopupExtender>
+                <asp:Panel ID="pnModalPopupPDFViewer" ClientIDMode="Static" runat="server" Style="display: none; margin: 0px; width: 1191px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-style: none solid solid; border-right-color: rgb(119, 119, 119); border-bottom-color: rgb(119, 119, 119); border-left-color: rgb(119, 119, 119); position: fixed; z-index: 100001; left: 58.5px; top: 107.5px; height: 758px; background-color: rgb(207, 207, 196);">
+                    <uc1:WUCShowPDFPopup runat="server" ID="WUCShowPDFPopup1" />
+                </asp:Panel>
+                <asp:HiddenField ID="hdnShowBeneficiariePDF" ClientIDMode="Static" runat="server" Value="false" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <AJAX:ModalPopupExtender ID="ModalPopupUploadFileDoc" runat="server" Enabled="true" TargetControlID="hdnUploadFile" PopupControlID="pnUploadFileDoc" DropShadow="false" BackgroundCssClass="ModalBackgroud3">
+        </AJAX:ModalPopupExtender>
+        <asp:Panel ID="pnUploadFileDoc" ClientIDMode="Static" runat="server" Style="display: none; margin: 0px; width: 1191px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-style: none solid solid; border-right-color: rgb(119, 119, 119); border-bottom-color: rgb(119, 119, 119); border-left-color: rgb(119, 119, 119); position: fixed; z-index: 100001; left: 58.5px; top: 107.5px; height: 758px; background-color: rgb(207, 207, 196);">
+        </asp:Panel>
+        <asp:HiddenField ID="hdnUploadFile" ClientIDMode="Static" runat="server" Value="false" />
+        <script src='<%=ResolveClientUrl("Scripts/classie.js")%>'></script>
+        <script src='<%=ResolveClientUrl("Scripts/sidebarEffects.js")%>'></script>
+        <link href='<%=ResolveClientUrl("Scripts/JQuery/JQueryUI/jquery-ui-1.9.0.custom.min.css")%>' rel="stylesheet" />
+        <script src='<%=ResolveClientUrl("Scripts/jquery.nicescroll.min.js")%>'></script>
+        <script src='<%=ResolveClientUrl("Scripts/ga.js")%>'></script>
+        <script src='<%=ResolveClientUrl("Scripts/jquery.nestedAccordion.js")%>'></script>
+        <script src='<%=ResolveClientUrl("Scripts/grids.min.js")%>'></script>
+        <script src='<%=ResolveClientUrl("Scripts/jquery.sliderTabs.js")%>'></script>
+        <script src='<%=ResolveClientUrl("Scripts/scripts.js") %>'></script>
+        <asp:HiddenField runat="server" ID="isRefreshing" Value="false" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnIsReadOnly" Value="false" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnPosScroll" Value="0" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnPosScrollDivs" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnCurrentMenuSelectedMenuLeft" ClientIDMode="Static" Value="" />
+        <asp:HiddenField runat="server" ID="hdnhighlightedFieldRequired" ClientIDMode="Static" Value="" />
+        <asp:HiddenField runat="server" ID="CurrentDatePickerShow" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnSessionName" Value="NewBusiness" />
+        <asp:HiddenField runat="server" ID="hdnURLLogin" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="containerMessage" Value="body" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnDropsValues" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnLangChange" Value="false" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hdnGetDate" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ClientIDMode="Static" ID="hdnRefreshBeneficiariesTab" Value="false" />
+        <asp:HiddenField runat="server" ClientIDMode="Static" ID="hdnPendingRefreshBeneficiariesTab" Value="false" />
+        <asp:HiddenField runat="server" ID="hfisFuneral" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ID="hfProdutLine" Value="" ClientIDMode="Static" />
+        <asp:HiddenField runat="server" ClientIDMode="Static" ID="RequiredFileSize" Value="" />
+    </form>
+    <!--MENU SUPERIOR-->
+    <script type="text/javascript">
+        //  afecta menu para pantallas mas pequenas
+        var menuElements = document.getElementById('menu');
+        menuElements.insertAdjacentHTML('afterBegin', '<button type="button" id="menutoggle" class="navtoogle" aria-hidden="true"><i aria-hidden="true" class="icon-menu"> </i> Menu</button>');
+
+        //  Toggle the class on click to show / hide the menu
+        document.getElementById('menutoggle').onclick = function () {
+            changeClass(this, 'navtoogle active', 'navtoogle');
+        }
+        document.onclick = function (e) {
+            var mobileButton = document.getElementById('menutoggle'),
+                    buttonStyle = mobileButton.currentStyle ? mobileButton.currentStyle.display : getComputedStyle(mobileButton, null).display;
+
+            if (buttonStyle === 'block' && e.target !== mobileButton && new RegExp(' ' + 'active' + ' ').test(' ' + mobileButton.className + ' ')) {
+                changeClass(mobileButton, 'navtoogle active', 'navtoogle');
+            }
+        }
+    </script> 
+    <div id="content">
+        <uc1:WUCShowPDFPopup runat="server" ID="WUCShowPDFPopup" />
+    </div>    
+</body>
+</html>

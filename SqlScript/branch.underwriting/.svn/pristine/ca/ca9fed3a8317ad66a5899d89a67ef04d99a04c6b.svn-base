@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Members">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Birth_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Customer_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Death_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Gender_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Location_code_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Marital_status_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Member_address_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Member_name_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Member_name_is_primary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name_first" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name_last" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name_middle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name_prefix_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Name_suffix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Object_row_version" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Personal_id_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Personal_pid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Use_subscriber_grantor_address" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Use_subscriber_grantor_vendor" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Vendor_id" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Members" nillable="true" type="tns:Members" />
+  <xs:complexType name="Members_Handicap_Indicatior">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Indicator" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Last_verified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Member_handicap_indicator_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Member_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Members_Handicap_Indicatior" nillable="true" type="tns:Members_Handicap_Indicatior" />
+  <xs:complexType name="Member_Additional_Information">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="additional_information_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="additional_information_raw_value" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="additional_information_selection_value" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="additional_information_topic_id" type="xs:int" />
+      <xs:element minOccurs="0" name="additional_information_value" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="is_new_value" type="xs:boolean" />
+      <xs:element minOccurs="0" name="member_additional_information_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_Additional_Information" nillable="true" type="tns:Member_Additional_Information" />
+  <xs:complexType name="Member_Student_Status">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_student_status_id" type="xs:int" />
+      <xs:element minOccurs="0" name="student_status_effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="student_status_effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="student_status_id" type="xs:int" />
+      <xs:element minOccurs="0" name="student_status_last_verified" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_Student_Status" nillable="true" type="tns:Member_Student_Status" />
+  <xs:complexType name="Member_Language">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="language_id" type="xs:int" />
+      <xs:element minOccurs="0" name="language_reads" type="xs:boolean" />
+      <xs:element minOccurs="0" name="language_speaks" type="xs:boolean" />
+      <xs:element minOccurs="0" name="language_writes" type="xs:boolean" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_language_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_Language" nillable="true" type="tns:Member_Language" />
+  <xs:complexType name="Members_Medical_Condition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Diagnosis_code_group_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Has_medical_condition_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Member_medical_condition_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Verified_on" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Members_Medical_Condition" nillable="true" type="tns:Members_Medical_Condition" />
+  <xs:complexType name="Member_User_Defined_Factor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="is_new_value" type="xs:boolean" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_user_defined_factor_id" type="xs:int" />
+      <xs:element minOccurs="0" name="user_defined_factor_id" type="xs:int" />
+      <xs:element minOccurs="0" name="user_defined_factor_raw_value" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user_defined_factor_selection_value" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user_defined_factor_topic_id" type="xs:int" />
+      <xs:element minOccurs="0" name="user_defined_factor_value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_User_Defined_Factor" nillable="true" type="tns:Member_User_Defined_Factor" />
+  <xs:complexType name="Member_Telephone_Number">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="do_not_call" type="xs:boolean" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_telephone_number_id" type="xs:int" />
+      <xs:element minOccurs="0" name="telephone_number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="telephone_number_extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="telephone_number_type_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_Telephone_Number" nillable="true" type="tns:Member_Telephone_Number" />
+  <xs:complexType name="Member_Internet_Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="internet_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="internet_address_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="is_primary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_internet_address_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_Internet_Address" nillable="true" type="tns:Member_Internet_Address" />
+  <xs:complexType name="Member_Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="address_1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="address_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="address_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="delivery_route" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="is_primary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="locale_id" type="xs:int" />
+      <xs:element minOccurs="0" name="mail_ok" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="member_address_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="undeliverable" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_Address" nillable="true" type="tns:Member_Address" />
+  <xs:complexType name="Member_Personal_Id">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_id_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_personal_id_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_ud" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_Personal_Id" nillable="true" type="tns:Member_Personal_Id" />
+  <xs:complexType name="Member_Contacts">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="contact_association_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="contact_id" type="xs:int" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="is_primary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="member_contact_id" type="xs:int" />
+      <xs:element minOccurs="0" name="member_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Member_Contacts" nillable="true" type="tns:Member_Contacts" />
+</xs:schema>

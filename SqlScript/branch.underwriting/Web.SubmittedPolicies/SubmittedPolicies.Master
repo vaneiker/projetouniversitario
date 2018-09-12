@@ -1,0 +1,107 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SubmittedPolicies.master.cs" Inherits="Web.SubmittedPolicies.SubmittedPolicies" %>
+
+<%@ Register Assembly="Statetrust.Framework.Web" Namespace="Statetrust.Framework.Web.WebParts.UserControls.UserProfile" TagPrefix="STF" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="Css/amr.css" rel="stylesheet" />
+    <link href="Css/kickstart.min.css" rel="stylesheet" />
+    <link href="Css/reset.css" rel="stylesheet" />
+    <link href="Css/jaq.css" rel="stylesheet" />
+    <link href="Css/JM.css" rel="stylesheet" />
+    <link href="Css/menu_izq.css" rel="stylesheet" />
+   
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+
+
+        <!-- Inicio -->
+
+
+        <div id="st-container" class="st-container">
+            <!-- COntenido Menu Izquierdo /> -->
+            <STF:STFCUserProfile runat="server" ID="STFCUserProfile1">
+            </STF:STFCUserProfile>
+            <!-- COntenido Menu Izquierdo /> -->
+            <!-- id menu-2 -->
+            <!-- end perfil del agente part-->
+            <div class="st-pusher">
+                <div class="st-content">
+                    <div id="st-trigger-effects">
+                        <button data-effect="st-effect-2" class="show_profile" onclick="GetUserProfileData(true);"></button>
+                    </div>
+                    <div id="scroll_2" class="st-content-inner">
+                        <!-- COntenido Principal /> -->
+                        <div class="wrapper wrapper-fluid box_shw">
+                            <div class="main_menu menu2">
+                                <div class="box_logo">
+                                        <asp:LinkButton ID="lnkCompanyLogo" runat="server" CssClass="logo"></asp:LinkButton>
+                                </div>
+                                <!-- MOBILE-->
+                                <div data-ks-navbar="" class="nav navbar">
+                                    <nav>
+                                        <ul>
+                                            <li class="active menu-item">Menú
+                        <ul>
+                            <li><a href="../auto/auto_pago.html" class=""><span class="icon auto"></span><span>Autos</span></a></li>
+                            <li><a href="../vida/vida_pago.html" class="active"><span class="icon vida"></span><span>Vida</span></a></li>
+                            <li><a href="../salud/salud_pago.html" class=""><span class="icon salud"></span><span>Salud</span></a></li>
+                            <li><a href="../propiedad/propiedad.html" class=""><span class="icon propiedad"></span><span>Propiedad</span> </a></li>
+                            <li><a href="../lcomerciales/lcomerciales.html" class=""><span class="icon lcomerciales"></span><span>Lineas
+                                <br>
+                                Comerciales</span> </a></li>
+                            <li><a href="../viaje/viaje.html" class=""><span class="icon viaje"></span><span>Viaje</span> </a></li>
+                        </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- MOBILE-->
+
+                                <div id="menu" class="nav">
+                                    <ul>
+                                        <li><a href="../auto/auto_pago.html" class=""><span class="icon auto"></span><span>Autos</span></a></li>
+                                        <li><a href="../vida/vida_pago.html" class="active"><span class="icon vida"></span><span>Vida</span></a></li>
+                                        <li><a href="../salud/salud_pago.html" class=""><span class="icon salud"></span><span>Salud</span></a></li>
+                                        <li><a href="../propiedad/propiedad.html" class=""><span class="icon propiedad"></span><span>Propiedad</span> </a></li>
+                                        <li><a href="../lcomerciales/lcomerciales.html" class=""><span class="icon lcomerciales"></span><span>Lineas
+                            <br>
+                                            Comerciales</span> </a></li>
+                                        <li><a href="../viaje/viaje.html" class=""><span class="icon viaje"></span><span>Viaje</span> </a></li>
+                                    </ul>
+                                </div>
+                                <!--menu class nav-->
+                            </div>
+                            <!--main menu-->
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                            <asp:HiddenField runat="server" ID="hdnLang" Value="ES" />
+                            <asp:HiddenField runat="server" ID="hdnValidate" Value="true" ClientIDMode="Static" />
+
+                        </div>
+                        <!-- COntenido Principal /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <script src="../../Js/kickstart.min.js"></script>
+     <script src="../../Js/Utilities/JSTools.js"></script>
+      <script type="text/javascript">
+          var prm = Sys.WebForms.PageRequestManager.getInstance();
+          prm.add_beginRequest(BeginRequestHandler);
+          prm.add_endRequest(EndRequestHandler);
+    </script>
+</body>
+</html>

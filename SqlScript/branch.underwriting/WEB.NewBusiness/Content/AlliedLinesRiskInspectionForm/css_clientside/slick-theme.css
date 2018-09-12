@@ -1,0 +1,201 @@
+﻿@charset 'UTF-8';
+/* Slider */
+.slick-loading .slick-list
+{
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face
+{
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('./fonts/slick.eot');
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
+}
+/* Arrows */
+#AtlanticaContenedor .slick-prev,
+#AtlanticaContenedor .slick-next
+{
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    padding: 0;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+#AtlanticaContenedor .slick-prev:hover,
+#AtlanticaContenedor .slick-prev:focus,
+#AtlanticaContenedor .slick-next:hover,
+#AtlanticaContenedor .slick-next:focus
+{
+    color: transparent;
+    outline: none;
+    background: transparent;
+}
+#AtlanticaContenedor .slick-prev:hover:before,
+#AtlanticaContenedor .slick-prev:focus:before,
+#AtlanticaContenedor .slick-next:hover:before,
+#AtlanticaContenedor .slick-next:focus:before
+{
+    opacity: 1;
+}
+#AtlanticaContenedor .slick-prev.slick-disabled:before,
+#AtlanticaContenedor .slick-next.slick-disabled:before
+{
+    opacity: .25;
+}
+
+#AtlanticaContenedor .slick-prev:before,
+#AtlanticaContenedor .slick-next:before
+{
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+
+    opacity: .75;
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#AtlanticaContenedor .slick-prev
+{
+    left: 0px;
+}
+[dir='rtl'] .slick-prev
+{
+    right: -25px;
+    left: auto;
+}
+#AtlanticaContenedor .slick-prev:before
+{
+    content: '←';
+}
+[dir='rtl'] .slick-prev:before
+{
+    content: '→';
+}
+
+#AtlanticaContenedor .slick-next
+{
+    right: 0px;
+}
+[dir='rtl'] .slick-next
+{
+    right: auto;
+    left: -25px;
+}
+#AtlanticaContenedor .slick-next:before
+{
+    content: '→';
+}
+[dir='rtl'] .slick-next:before
+{
+    content: '←';
+}
+
+/* Dots */
+#AtlanticaContenedor .slick-slider
+{
+    margin-bottom: 30px;
+}
+
+#AtlanticaContenedor .slick-dots
+{
+    position: absolute;
+    bottom: -45px;
+
+    display: block;
+
+    width: 100%;
+    padding: 0;
+
+    list-style: none;
+
+    text-align: center;
+}
+#AtlanticaContenedor .slick-dots li
+{
+    position: relative;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+
+    cursor: pointer;
+}
+#AtlanticaContenedor .slick-dots li button
+{
+    font-size: 0;
+    line-height: 0;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+#AtlanticaContenedor .slick-dots li button:hover,
+#AtlanticaContenedor .slick-dots li button:focus
+{
+    outline: none;
+}
+#AtlanticaContenedor .slick-dots li button:hover:before,
+#AtlanticaContenedor .slick-dots li button:focus:before
+{
+    opacity: 1;
+}
+#AtlanticaContenedor .slick-dots li button:before
+{
+    font-family: 'slick';
+    font-size: 6px;
+    line-height: 20px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 20px;
+    height: 20px;
+
+    content: '•';
+    text-align: center;
+
+    opacity: .25;
+    color: black;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+#AtlanticaContenedor .slick-dots li.slick-active button:before
+{
+    opacity: .75;
+    color: black;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServicesApi.UnderWriting.Common.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServicesApi.UnderWriting.Common.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://devservicesapiunderwriting.statetrustlife.com/ServicesApi.UnderWriting.Contact.ContactService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ReturnMessageData">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListMessage" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Status" type="tns:ReturnMessageData.StatusProcess" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReturnMessageData" nillable="true" type="tns:ReturnMessageData" />
+  <xs:simpleType name="ReturnMessageData.StatusProcess">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="Success" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ReturnMessageData.StatusProcess" nillable="true" type="tns:ReturnMessageData.StatusProcess" />
+</xs:schema>

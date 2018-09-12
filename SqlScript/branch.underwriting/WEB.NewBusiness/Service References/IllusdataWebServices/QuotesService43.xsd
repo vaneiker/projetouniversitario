@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WSVirtualOffice.Models.codes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WSVirtualOffice.Models.codes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:54539/QuotesService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfWSYesNo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSYesNo" nillable="true" type="tns:WSYesNo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSYesNo" nillable="true" type="tns:ArrayOfWSYesNo" />
+  <xs:complexType name="WSYesNo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="label" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSYesNo" nillable="true" type="tns:WSYesNo" />
+  <xs:complexType name="ArrayOfWSPlantype">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSPlantype" nillable="true" type="tns:WSPlantype" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSPlantype" nillable="true" type="tns:ArrayOfWSPlantype" />
+  <xs:complexType name="WSPlantype">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="education" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="life" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="plantypecode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="plantypename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="retirement" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="terminsurance" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSPlantype" nillable="true" type="tns:WSPlantype" />
+  <xs:complexType name="ArrayOfWSCalculatetype">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSCalculatetype" nillable="true" type="tns:WSCalculatetype" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSCalculatetype" nillable="true" type="tns:ArrayOfWSCalculatetype" />
+  <xs:complexType name="WSCalculatetype">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="calculatetypecode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="calculatetypename" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSCalculatetype" nillable="true" type="tns:WSCalculatetype" />
+  <xs:complexType name="ArrayOfWSContributionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSContributionType" nillable="true" type="tns:WSContributionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSContributionType" nillable="true" type="tns:ArrayOfWSContributionType" />
+  <xs:complexType name="WSContributionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="contributiontype" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="contributiontypecode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSContributionType" nillable="true" type="tns:WSContributionType" />
+  <xs:complexType name="ArrayOfWSRidertype">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSRidertype" nillable="true" type="tns:WSRidertype" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSRidertype" nillable="true" type="tns:ArrayOfWSRidertype" />
+  <xs:complexType name="WSRidertype">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ridertypecode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ridertypename" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSRidertype" nillable="true" type="tns:WSRidertype" />
+  <xs:complexType name="ArrayOfWSPlanGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSPlanGroup" nillable="true" type="tns:WSPlanGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSPlanGroup" nillable="true" type="tns:ArrayOfWSPlanGroup" />
+  <xs:complexType name="WSPlanGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="plangroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="plangroupcode" type="ser:char" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSPlanGroup" nillable="true" type="tns:WSPlanGroup" />
+  <xs:complexType name="ArrayOfWSActivityrisktype">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSActivityrisktype" nillable="true" type="tns:WSActivityrisktype" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSActivityrisktype" nillable="true" type="tns:ArrayOfWSActivityrisktype" />
+  <xs:complexType name="WSActivityrisktype">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="activityrisktypename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="activityrisktypeno" type="xs:int" />
+      <xs:element minOccurs="0" name="productcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSActivityrisktype" nillable="true" type="tns:WSActivityrisktype" />
+  <xs:complexType name="ArrayOfWSDefermentPeriod">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSDefermentPeriod" nillable="true" type="tns:WSDefermentPeriod" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSDefermentPeriod" nillable="true" type="tns:ArrayOfWSDefermentPeriod" />
+  <xs:complexType name="WSDefermentPeriod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="period" type="xs:int" />
+      <xs:element minOccurs="0" name="productcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSDefermentPeriod" nillable="true" type="tns:WSDefermentPeriod" />
+  <xs:complexType name="ArrayOfWSAnnuityPeriod">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSAnnuityPeriod" nillable="true" type="tns:WSAnnuityPeriod" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSAnnuityPeriod" nillable="true" type="tns:ArrayOfWSAnnuityPeriod" />
+  <xs:complexType name="WSAnnuityPeriod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="period" type="xs:int" />
+      <xs:element minOccurs="0" name="productcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSAnnuityPeriod" nillable="true" type="tns:WSAnnuityPeriod" />
+  <xs:complexType name="ArrayOfWSClasscodeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSClasscodeData" nillable="true" type="tns:WSClasscodeData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSClasscodeData" nillable="true" type="tns:ArrayOfWSClasscodeData" />
+  <xs:complexType name="WSClasscodeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="classcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="currencycode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSClasscodeData" nillable="true" type="tns:WSClasscodeData" />
+  <xs:complexType name="ArrayOfWSCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSCompany" nillable="true" type="tns:WSCompany" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSCompany" nillable="true" type="tns:ArrayOfWSCompany" />
+  <xs:complexType name="WSCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="company_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="company_name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSCompany" nillable="true" type="tns:WSCompany" />
+  <xs:complexType name="ArrayOfWSCountry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSCountry" nillable="true" type="tns:WSCountry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSCountry" nillable="true" type="tns:ArrayOfWSCountry" />
+  <xs:complexType name="WSCountry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="countryname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="countryno" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSCountry" nillable="true" type="tns:WSCountry" />
+  <xs:complexType name="ArrayOfWSFrequencytype">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSFrequencytype" nillable="true" type="tns:WSFrequencytype" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSFrequencytype" nillable="true" type="tns:ArrayOfWSFrequencytype" />
+  <xs:complexType name="WSFrequencytype">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="frequencytypecode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="frequencytypename" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSFrequencytype" nillable="true" type="tns:WSFrequencytype" />
+  <xs:complexType name="ArrayOfWSGender">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSGender" nillable="true" type="tns:WSGender" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSGender" nillable="true" type="tns:ArrayOfWSGender" />
+  <xs:complexType name="WSGender">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gendercode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gendername" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSGender" nillable="true" type="tns:WSGender" />
+  <xs:complexType name="ArrayOfWSHealthrisktype">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSHealthrisktype" nillable="true" type="tns:WSHealthrisktype" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSHealthrisktype" nillable="true" type="tns:ArrayOfWSHealthrisktype" />
+  <xs:complexType name="WSHealthrisktype">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="healthrisktypename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="healthrisktypeno" type="xs:int" />
+      <xs:element minOccurs="0" name="productcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSHealthrisktype" nillable="true" type="tns:WSHealthrisktype" />
+  <xs:complexType name="ArrayOfWSInvestmentprofile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSInvestmentprofile" nillable="true" type="tns:WSInvestmentprofile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSInvestmentprofile" nillable="true" type="tns:ArrayOfWSInvestmentprofile" />
+  <xs:complexType name="WSInvestmentprofile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="investmentprofilecode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="investmentprofilename" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSInvestmentprofile" nillable="true" type="tns:WSInvestmentprofile" />
+  <xs:complexType name="ArrayOfWSMaritalStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSMaritalStatus" nillable="true" type="tns:WSMaritalStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSMaritalStatus" nillable="true" type="tns:ArrayOfWSMaritalStatus" />
+  <xs:complexType name="WSMaritalStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maritalstatuscode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maritalstatusname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSMaritalStatus" nillable="true" type="tns:WSMaritalStatus" />
+  <xs:complexType name="ArrayOfWSProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSProduct" nillable="true" type="tns:WSProduct" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSProduct" nillable="true" type="tns:ArrayOfWSProduct" />
+  <xs:complexType name="WSProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="company_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isfixed" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isrefund" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="plangroupcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="productcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="productname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSProduct" nillable="true" type="tns:WSProduct" />
+</xs:schema>

@@ -1,0 +1,230 @@
+﻿using Entity.UnderWriting.Entities;
+using Statetrust.Framework.Resources;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WEB.NewBusiness.Common;
+
+namespace WEB.NewBusiness.NewBusiness.UserControls.IllustrationsVehicle
+{
+    public partial class WUCVechicleEditForm : UC, IUC
+    {
+        public delegate void BindingGridEventHandler();
+
+        public event BindingGridEventHandler BindGrid;
+
+        public long? InsuredVehicleId
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(hdnInsuredVehicleId.Value) ? hdnInsuredVehicleId.Value.ToLong()
+                                                                        : 0;
+            }
+            set
+            {
+                hdnInsuredVehicleId.Value = value != null ? value.ToString()
+                                                          : string.Empty;
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Translator(string Lang)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReadOnlyControls(bool isReadOnly)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void edit()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FillDrop()
+        {
+            ObjServices.GettingAllDrops(ref ddlColor,
+                                      Utility.DropDownType.VehicleColor,
+                                      "OfficeDesc",
+                                      "OfficeId",
+                                      GenerateItemSelect: true,
+                                      corpId: ObjServices.Corp_Id
+                                      );
+        }
+
+        public void FillData()
+        {
+
+        }
+
+        public void FillText(string Plate, string Chassis, int ColorId, bool IsNew)
+        {
+            ddlColor.SelectedValue = ColorId.ToString();
+            ddlCondition.SelectedValue = IsNew.ToString().ToLower();
+            txtChassis.Text = Chassis;
+            txtPlate.Text = Plate;
+        }
+
+        public void Initialize()
+        {
+            FillDrop();
+            udpVehicleEditForm.Update();
+        }
+
+        private Entity.UnderWriting.Entities.Policy.VehicleInsured getDataVehicle(long? InsuredVehicleId)
+        {
+            var result = ObjServices.oPolicyManager.GetVehicleInsured(new Entity.UnderWriting.Entities.Policy.Parameter
+            {
+                CorpId = ObjServices.Corp_Id,
+                RegionId = ObjServices.Region_Id,
+                CountryId = ObjServices.Country_Id,
+                DomesticregId = ObjServices.Domesticreg_Id,
+                StateProvId = ObjServices.State_Prov_Id,
+                CityId = ObjServices.City_Id,
+                OfficeId = ObjServices.Office_Id,
+                CaseSeqNo = ObjServices.Case_Seq_No,
+                HistSeqNo = ObjServices.Hist_Seq_No
+            }).FirstOrDefault(k => k.InsuredVehicleId == InsuredVehicleId);
+
+            return result;
+        }
+
+        public void ClearData()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtChassis.Text))
+            {
+                this.MessageBox(string.Format(RESOURCE.UnderWriting.NewBussiness.Resources.ResourceManager.GetString("Required"), RESOURCE.UnderWriting.NewBussiness.Resources.VehicleChasis));
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtPlate.Text))
+            {
+                this.MessageBox(string.Format(RESOURCE.UnderWriting.NewBussiness.Resources.ResourceManager.GetString("Required"), RESOURCE.UnderWriting.NewBussiness.Resources.Registry));
+                return;
+            }
+
+            if (ddlColor.SelectedValue == "-1")
+            {
+                this.MessageBox(string.Format(RESOURCE.UnderWriting.NewBussiness.Resources.ResourceManager.GetString("Required"), RESOURCE.UnderWriting.NewBussiness.Resources.VehicleColor));
+                return;
+            }
+
+            var dataVehicle = getDataVehicle(this.InsuredVehicleId);
+
+            if (dataVehicle != null)
+            {
+                dataVehicle.Registry = txtPlate.Text;
+                dataVehicle.Chassis = txtChassis.Text;
+                dataVehicle.ColorId = ddlColor.SelectedValue.ToInt();
+                dataVehicle.New = ddlCondition.SelectedValue != "-1" ? ddlCondition.SelectedValue.ToBoolean() : (bool?)null;
+                dataVehicle.UserId = ObjServices.UserID.GetValueOrDefault();
+                ObjServices.oPolicyManager.SetVehicleInsured(dataVehicle);
+                BindGrid();
+
+                #region Si existe inspeccion, cambiar valores
+                var vehicleReview = ObjServices.oVehicleManager.GetVehicleReview(new Vehicle
+                 {
+                     CorpId = dataVehicle.CorpId,
+                     RegionId = dataVehicle.RegionId,
+                     CountryId = dataVehicle.CountryId,
+                     DomesticRegId = dataVehicle.DomesticregId,
+                     StateProvId = dataVehicle.StateProvId,
+                     CityId = dataVehicle.CityId,
+                     OfficeId = dataVehicle.OfficeId,
+                     CaseSeqNo = dataVehicle.CaseSeqNo,
+                     HistSeqNo = dataVehicle.HistSeqNo,
+                     InsuredVehicleId = dataVehicle.InsuredVehicleId
+                 }).FirstOrDefault();
+
+                if (vehicleReview != null)
+                {
+                    ObjServices.oVehicleManager.SetVehicleReview(new Vehicle.Review
+                    {
+                        CorpId = dataVehicle.CorpId,
+                        RegionId = dataVehicle.RegionId,
+                        CountryId = dataVehicle.CountryId,
+                        DomesticRegId = dataVehicle.DomesticregId,
+                        StateProvId = dataVehicle.StateProvId,
+                        CityId = dataVehicle.CityId,
+                        OfficeId = dataVehicle.OfficeId,
+                        CaseSeqNo = dataVehicle.CaseSeqNo,
+                        HistSeqNo = dataVehicle.HistSeqNo,
+                        InsuredVehicleId = dataVehicle.InsuredVehicleId,
+                        ReviewId = vehicleReview.ReviewId,
+                        MakeId = vehicleReview.MakeId,
+                        ModelId = vehicleReview.ModelId,
+                        VersionId = vehicleReview.VersionId,
+                        TransmissionTypeId = vehicleReview.TransmissionTypeId,
+                        WheelDriveTypeId = vehicleReview.WheelDriveTypeId,
+                        VehicleClassId = vehicleReview.VehicleClassId,
+                        ModelYear = vehicleReview.ModelYear,
+                        Seats = vehicleReview.Seats,
+                        Cylinder = vehicleReview.Cylinder,
+                        RegistryPlate = txtPlate.Text,
+                        ColorId = ddlColor.SelectedValue.ToInt(),
+                        VehicleTypeId = vehicleReview.VehicleTypeId,
+                        UsageId = vehicleReview.UsageId,
+                        MileageKilometer = vehicleReview.MileageKilometer,
+                        Odometer = vehicleReview.Odometer,
+                        Hubodometer = vehicleReview.Hubodometer,
+                        RegistrationDocument = vehicleReview.RegistrationDocument,
+                        FuelInt = vehicleReview.FuelInt,
+                        InspectedBy = vehicleReview.InspectedBy,
+                        Capacity = vehicleReview.Capacity,
+                        ReviewDate = vehicleReview.ReviewDate,
+                        ReviewNotes = vehicleReview.ReviewNotes,
+                        ReviewAmount = vehicleReview.ReviewAmount,
+                        Mark = txtChassis.Text,
+                        ReviewFinishDate = vehicleReview.ReviewFinishDate,
+                        DocTypeId = vehicleReview.DocTypeId,
+                        DocCategoryId = vehicleReview.DocCategoryId,
+                        DocumentId = vehicleReview.DocumentId,
+                        ReviewStatusId = vehicleReview.ReviewStatusId,
+                        ReviewStatus = vehicleReview.ReviewStatus,
+                        InspectionNumber = vehicleReview.InspectionNumber,
+                        ApplicantInspection = vehicleReview.ApplicantInspection,
+                        IdentificationDocument = vehicleReview.IdentificationDocument,
+                        InspectorSuggestsAcceptRisk = vehicleReview.InspectorSuggestsAcceptRisk,
+                        Email = vehicleReview.Email,
+                        Phone = vehicleReview.Phone,
+                        CreateDate = vehicleReview.CreateDate,
+                        CreateUserId = vehicleReview.CreateUserId ?? ObjServices.UserID.GetValueOrDefault()
+                    });
+                }
+                #endregion
+
+                var IllustrationsVehiclePage = Page as WEB.NewBusiness.NewBusiness.Pages.IllustrationsVehicle;
+                if (IllustrationsVehiclePage != null)
+                {
+                    var VehiclesInformationUC = Utility.GetAllChildren(IllustrationsVehiclePage).FirstOrDefault(uc => uc is UCVehiclesInformation);
+                    if (VehiclesInformationUC != null)
+                        (VehiclesInformationUC as UCVehiclesInformation).FillData();
+                }
+            }
+        }
+
+        protected void ddlCondition_PreRender(object sender, EventArgs e)
+        {
+            pnCondition.Visible = ObjServices.isUserCot;
+        }
+    }
+}

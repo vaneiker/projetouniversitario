@@ -1,0 +1,60 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAmortizationTable.ascx.cs" Inherits="WEB.NewBusiness.NewBusiness.UserControls.IllustrationsVehicle.UCAmortizationTable" %>
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<asp:UpdatePanel runat="server" ID="pnAmortizationTable">
+    <ContentTemplate>
+        <div class="select_buy1">
+            <div class="box_SP row_B">
+                <div class="ttl">Información de financiamiento</div>
+                <div class="boxCont">
+                    <div class="labelbox_50_fluid row_A">
+                        <div class="label_plus_input par col-4">
+                            <span><%=RESOURCE.UnderWriting.NewBussiness.Resources.AnnualPremium %></span>
+                            <asp:TextBox runat="server" ID="txtAnnualPremium" ReadOnly="true"></asp:TextBox>
+                        </div>
+                        <div class="label_plus_input par col-4">
+                            <span><%=RESOURCE.UnderWriting.NewBussiness.Resources.MonthlyPayment %></span>
+                            <asp:TextBox runat="server" ID="txtMonthlyPayment" ReadOnly="true"></asp:TextBox>
+                        </div>
+                        <div class="label_plus_input par col-4">
+                            <span><%=RESOURCE.UnderWriting.NewBussiness.Resources.Period %></span>
+                            <asp:TextBox runat="server" ID="txtPeriod" ReadOnly="true"></asp:TextBox>
+                        </div>
+                        <dx:ASPxGridView
+                            ID="gvAmortizationTable"
+                            runat="server"
+                            EnableCallBacks="False"
+                            AutoGenerateColumns="False"
+                            Width="100%">
+                            <Columns>
+                                <dx:GridViewDataTextColumn VisibleIndex="0" Caption="Pago" FieldName="PeriodNumber">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Fecha de Pago" FieldName="Date">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn VisibleIndex="2" Caption="Cuota" FieldName="Payment">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn VisibleIndex="3" Caption="Capital" FieldName="Principal">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn VisibleIndex="4" Caption="Interes" FieldName="Interest">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn VisibleIndex="5" Caption="Balance" FieldName="Balance">
+                                </dx:GridViewDataTextColumn>
+                            </Columns>
+                            <SettingsPager PageSize="1000" AlwaysShowPager="true">
+                                <PageSizeItemSettings Visible="false" ShowAllItem="true" />
+                            </SettingsPager>
+                            <SettingsBehavior AllowSelectSingleRowOnly="false" AllowSort="False" AllowFocusedRow="false" />
+                            <Settings ShowFooter="True" />
+                        </dx:ASPxGridView>
+                        <div style="height: 20px"></div>
+                        <div class="fr">
+                            <asp:LinkButton runat="server" CssClass="button button-blue alignC embossed" ID="lnkContractDownload" OnClick="lnkContractDownload_Click">
+                      <span>Descargar Contrato</span>
+                            </asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ContentTemplate>
+</asp:UpdatePanel>
+

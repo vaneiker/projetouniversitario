@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Customers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Object_row_version" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="address_1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="address_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="address_id" type="xs:int" />
+      <xs:element minOccurs="0" name="attention_nm" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="attention_nmfederal_ein" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="automatically_apply_overpayments" type="xs:boolean" />
+      <xs:element minOccurs="0" name="currency_id" type="xs:int" />
+      <xs:element minOccurs="0" name="customer_bill_to_id" type="xs:int" />
+      <xs:element minOccurs="0" name="customer_bill_to_nm" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="customer_id" type="xs:int" />
+      <xs:element minOccurs="0" name="customer_nm" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="customer_ud" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="customer_vendor_type_id" type="xs:int" />
+      <xs:element minOccurs="0" name="delivery_route" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="email_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="family_eligibility_id" type="xs:int" />
+      <xs:element minOccurs="0" name="fax_number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="federal_ein" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="federal_eincustomer_ud" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="internet_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="locale_id" type="xs:int" />
+      <xs:element minOccurs="0" name="nsf_fee_amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="phone_number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tax_exempt_number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tax_group_id" type="xs:int" />
+      <xs:element minOccurs="0" name="taxable" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Customers" nillable="true" type="tns:Customers" />
+  <xs:complexType name="Asociate_Customer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="criteria_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="customer_id" type="xs:int" />
+      <xs:element minOccurs="0" name="effective_from" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="effective_thru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="family_eligibility_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Asociate_Customer" nillable="true" type="tns:Asociate_Customer" />
+</xs:schema>

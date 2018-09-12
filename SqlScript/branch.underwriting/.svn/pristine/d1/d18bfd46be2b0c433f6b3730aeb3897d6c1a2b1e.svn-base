@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SysFlex.Entity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SysFlex.Entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Policy.Quotation.Header">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cliente" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CodMoneda" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Compania" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comunicaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Cotizacion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Deudor" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Estatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaAdiciona" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModifica" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Hora" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Intermediario" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MontoNeto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NombreCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Observacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Oficina" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Poliza" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PorcComision" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Prima" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ramo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SourceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SumaAsegurada" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UsuarioAdiciona" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModifica" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.Quotation.Header" nillable="true" type="tns:Policy.Quotation.Header" />
+  <xs:complexType name="Policy.Quotation.Coverage.Emition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoConcepto" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroCxc" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Poliza" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoCxc" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.Quotation.Coverage.Emition" nillable="true" type="tns:Policy.Quotation.Coverage.Emition" />
+  <xs:complexType name="Policy.Quotation.SysFlexCotDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CantidadMeses" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoTarifa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Compania" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Cotizacion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Estatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaAdiciona" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaFinVigencia" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaInicioVigencia" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModifica" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FormadePago" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImpuestoBomberos" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Insured_Vehicle_Id_Source_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MontoAsegurado" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MontoDescuento" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MontoImpuesto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MontoRecargo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Neto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NoFormulario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PorcComision" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PorcDescuento" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PorcImpuesto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PorcRecargo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PrimaBruta" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PrimaDanosPropio" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PrimaServicio" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PrimaTerceros" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ramo" type="xs:int" />
+      <xs:element minOccurs="0" name="RenovacionAutomatica" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Secuencia" type="xs:int" />
+      <xs:element minOccurs="0" name="SubRamo" type="xs:int" />
+      <xs:element minOccurs="0" name="Tasa" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UsuarioAdiciona" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModifica" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.Quotation.SysFlexCotDet" nillable="true" type="tns:Policy.Quotation.SysFlexCotDet" />
+  <xs:complexType name="Policy.QuotationIL.QuotationPaymenAgreement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BalanceCuota" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Compania" type="xs:int" />
+      <xs:element minOccurs="0" name="Cotizacion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Cuota" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaPago" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PorcientoInicial" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ValorCuota" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.QuotationIL.QuotationPaymenAgreement" nillable="true" type="tns:Policy.QuotationIL.QuotationPaymenAgreement" />
+  <xs:complexType name="Policy.QuotationIL.QuotationPassTransit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cliente" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Hora" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Intermediario" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MontoNeto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NombreCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Poliza" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.QuotationIL.QuotationPassTransit" nillable="true" type="tns:Policy.QuotationIL.QuotationPassTransit" />
+  <xs:complexType name="Policy.Quotation.InvoiceMovResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Aviso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompranteFiscal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateProcesses" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorSystems" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Inspeccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberDocuments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroCxc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Policy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoCxc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserProcesses" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.Quotation.InvoiceMovResult" nillable="true" type="tns:Policy.Quotation.InvoiceMovResult" />
+  <xs:complexType name="Policy.QuotationIL.Client">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Apellidos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Beeper" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CargoTrabajo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Celular" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaseCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Cobrador" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CodigoRnc" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comentario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Compania" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CondicionPago" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Consorcio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Contacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descuento" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstadoCivil" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estatus" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Facturacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Fax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaAdiciona" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaLicencia" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModifica" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaNacimiento" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Fecha_Ingreso" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IngresoSalarial" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Itbis" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="LimiteCredito" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LugarTrabajo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nacionalidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ncf" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ocupacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rnc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rnc1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rnc2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sexo" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="SourceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TelefonoOficina" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TelefonoResidencia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoCliente" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TipoRnc" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="TipoRnc1" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="TipoRnc2" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Ubicacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UsuarioAdiciona" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModifica" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Vendedor" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.QuotationIL.Client" nillable="true" type="tns:Policy.QuotationIL.Client" />
+  <xs:complexType name="Policy.QuotationIL.QuotationHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cliente" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CodMoneda" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Compania" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comunicaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Cotizacion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Deudor" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Estatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaAdiciona" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModifica" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Hora" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Intermediario" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MontoNeto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NombreCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Observacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Oficina" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Poliza" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PorcComision" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Prima" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ramo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SumaAsegurada" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UsuarioAdiciona" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModifica" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.QuotationIL.QuotationHeader" nillable="true" type="tns:Policy.QuotationIL.QuotationHeader" />
+  <xs:complexType name="Policy.QuotationIL.QuotationCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoCondicion" type="xs:int" />
+      <xs:element minOccurs="0" name="Compania" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Cotizacion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DatoAlf" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DatoNum" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Decimales" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ramo" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SecuenciaCondicion" type="xs:int" />
+      <xs:element minOccurs="0" name="SecuenciaCot" type="xs:int" />
+      <xs:element minOccurs="0" name="SubRamo" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.QuotationIL.QuotationCondition" nillable="true" type="tns:Policy.QuotationIL.QuotationCondition" />
+  <xs:complexType name="Policy.QuotationIL.QuotationCoverage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Compania" type="xs:int" />
+      <xs:element minOccurs="0" name="Cotizacion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Endoso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MinimoDeducible" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MontoInformativo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PorcCobertura" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PorcDeducible" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Porciento" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Prima" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ramo" type="xs:int" />
+      <xs:element minOccurs="0" name="Secuencia" type="xs:int" />
+      <xs:element minOccurs="0" name="SecuenciaCot" type="xs:int" />
+      <xs:element minOccurs="0" name="SubRamo" type="xs:int" />
+      <xs:element minOccurs="0" name="Sustituye" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TieneCobertura" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValorServicio" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="montoMaximo" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.QuotationIL.QuotationCoverage" nillable="true" type="tns:Policy.QuotationIL.QuotationCoverage" />
+  <xs:complexType name="Policy.QuotationIL.QuotationDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CantidadMeses" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoTarifa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Compania" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Cotizacion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Estatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaAdiciona" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaFinVigencia" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaInicioVigencia" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModifica" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FormadePago" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImpuestoBomberos" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MontoAsegurado" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MontoDescuento" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MontoImpuesto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MontoRecargo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Neto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NoFormulario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PorcComision" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PorcDescuento" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PorcImpuesto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PorcRecargo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PrimaBruta" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ramo" type="xs:int" />
+      <xs:element minOccurs="0" name="RenovacionAutomatica" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Secuencia" type="xs:int" />
+      <xs:element minOccurs="0" name="SourceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubRamo" type="xs:int" />
+      <xs:element minOccurs="0" name="Tasa" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UsuarioAdiciona" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModifica" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy.QuotationIL.QuotationDetail" nillable="true" type="tns:Policy.QuotationIL.QuotationDetail" />
+</xs:schema>

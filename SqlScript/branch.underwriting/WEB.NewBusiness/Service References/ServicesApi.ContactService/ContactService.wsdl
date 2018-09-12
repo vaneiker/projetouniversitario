@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContactService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="https://devservicesapiunderwriting.statetrustlife.com/ServicesApi.UnderWriting.Contact.ContactService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="https://devservicesapiunderwriting.statetrustlife.com/ServicesApi.UnderWriting.Contact.ContactService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://devservicesapiunderwriting.statetrustlife.com/ServicesApi.UnderWriting.Contact.ContactService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServicesApi.UnderWriting.Common.Model" />
+      <xsd:import schemaLocation="https://devservicesapiunderwriting.statetrustlife.com/ServicesApi.UnderWriting.Contact.ContactService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IContactService_SetContactInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactInformation" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactAllInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactAllInformation" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactAllInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactAllInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactEmail" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactPhone" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactIdentification_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactIdentification" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactIdentification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactIdentificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactInformationWithCustomerNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactInformationWithCustomerNo" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactInformationWithCustomerNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactInformationWithCustomerNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactAllInformationWithCustomerNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactAllInformationWithCustomerNo" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactAllInformationWithCustomerNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactAllInformationWithCustomerNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactEmailWithCustomerNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactEmailWithCustomerNo" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactEmailWithCustomerNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactEmailWithCustomerNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactPhoneWithCustomerNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactPhoneWithCustomerNo" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactPhoneWithCustomerNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactPhoneWithCustomerNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactIdentificationWithCustomerNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactIdentificationWithCustomerNo" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactIdentificationWithCustomerNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactIdentificationWithCustomerNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactEmailJuridico_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactEmailJuridico" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactEmailJuridico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactEmailJuridicoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactIdentificationJuridico_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactIdentificationJuridico" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactIdentificationJuridico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactIdentificationJuridicoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactIdentificationJuridicoWithCustomerNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactIdentificationJuridicoWithCustomerNo" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactIdentificationJuridicoWithCustomerNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactIdentificationJuridicoWithCustomerNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactEmailJuridicoWithCustomerNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactEmailJuridicoWithCustomerNo" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactEmailJuridicoWithCustomerNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactEmailJuridicoWithCustomerNoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IContactService">
+    <wsdl:operation name="SetContactInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactInformation" message="tns:IContactService_SetContactInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactInformationResponse" message="tns:IContactService_SetContactInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactAllInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactAllInformation" message="tns:IContactService_SetContactAllInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactAllInformationResponse" message="tns:IContactService_SetContactAllInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactEmail" message="tns:IContactService_SetContactEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactEmailResponse" message="tns:IContactService_SetContactEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactPhone" message="tns:IContactService_SetContactPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactPhoneResponse" message="tns:IContactService_SetContactPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactIdentification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactIdentification" message="tns:IContactService_SetContactIdentification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactIdentificationResponse" message="tns:IContactService_SetContactIdentification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactInformationWithCustomerNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactInformationWithCustomerNo" message="tns:IContactService_SetContactInformationWithCustomerNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactInformationWithCustomerNoResponse" message="tns:IContactService_SetContactInformationWithCustomerNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactAllInformationWithCustomerNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactAllInformationWithCustomerNo" message="tns:IContactService_SetContactAllInformationWithCustomerNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactAllInformationWithCustomerNoResponse" message="tns:IContactService_SetContactAllInformationWithCustomerNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactEmailWithCustomerNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactEmailWithCustomerNo" message="tns:IContactService_SetContactEmailWithCustomerNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactEmailWithCustomerNoResponse" message="tns:IContactService_SetContactEmailWithCustomerNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactPhoneWithCustomerNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactPhoneWithCustomerNo" message="tns:IContactService_SetContactPhoneWithCustomerNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactPhoneWithCustomerNoResponse" message="tns:IContactService_SetContactPhoneWithCustomerNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactIdentificationWithCustomerNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactIdentificationWithCustomerNo" message="tns:IContactService_SetContactIdentificationWithCustomerNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactIdentificationWithCustomerNoResponse" message="tns:IContactService_SetContactIdentificationWithCustomerNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactEmailJuridico">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactEmailJuridico" message="tns:IContactService_SetContactEmailJuridico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactEmailJuridicoResponse" message="tns:IContactService_SetContactEmailJuridico_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactIdentificationJuridico">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactIdentificationJuridico" message="tns:IContactService_SetContactIdentificationJuridico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactIdentificationJuridicoResponse" message="tns:IContactService_SetContactIdentificationJuridico_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactIdentificationJuridicoWithCustomerNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactIdentificationJuridicoWithCustomerNo" message="tns:IContactService_SetContactIdentificationJuridicoWithCustomerNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactIdentificationJuridicoWithCustomerNoResponse" message="tns:IContactService_SetContactIdentificationJuridicoWithCustomerNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactEmailJuridicoWithCustomerNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactEmailJuridicoWithCustomerNo" message="tns:IContactService_SetContactEmailJuridicoWithCustomerNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactEmailJuridicoWithCustomerNoResponse" message="tns:IContactService_SetContactEmailJuridicoWithCustomerNo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IContactService" type="tns:IContactService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SetContactInformation">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactAllInformation">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactAllInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactEmail">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactPhone">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactIdentification">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactIdentification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactInformationWithCustomerNo">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactInformationWithCustomerNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactAllInformationWithCustomerNo">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactAllInformationWithCustomerNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactEmailWithCustomerNo">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactEmailWithCustomerNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactPhoneWithCustomerNo">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactPhoneWithCustomerNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactIdentificationWithCustomerNo">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactIdentificationWithCustomerNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactEmailJuridico">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactEmailJuridico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactIdentificationJuridico">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactIdentificationJuridico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactIdentificationJuridicoWithCustomerNo">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactIdentificationJuridicoWithCustomerNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactEmailJuridicoWithCustomerNo">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactEmailJuridicoWithCustomerNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContactService">
+    <wsdl:port name="BasicHttpBinding_IContactService" binding="tns:BasicHttpBinding_IContactService">
+      <soap:address location="http://devservicesapiunderwriting.statetrustlife.com/ServicesApi.UnderWriting.Contact.ContactService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

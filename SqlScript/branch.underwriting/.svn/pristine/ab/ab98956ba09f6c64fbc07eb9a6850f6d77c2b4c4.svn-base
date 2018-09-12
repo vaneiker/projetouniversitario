@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Members" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://devwsatmplexis.dev.atlanticmed.com/WCF_Services/Members_Services.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://devwsatmplexis.dev.atlanticmed.com/WCF_Services/Members_Services.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://devwsatmplexis.dev.atlanticmed.com/WCF_Services/Members_Services.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Plexis.Entity.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMembers_Set_New_Members_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Members" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Members_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_MembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Members_Handicap_Indicator_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Members_Handicap_Indicator" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Members_Handicap_Indicator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Members_Handicap_IndicatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Additional_Information_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Additional_Information" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Additional_Information_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Additional_InformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Student_Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Student_Status" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Student_Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Student_StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Language_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Language" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Language_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_LanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Medical_Condition_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Medical_Condition" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Medical_Condition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Medical_ConditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_User_Defined_Factor_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_User_Defined_Factor" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_User_Defined_Factor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_User_Defined_FactorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Telephone_Number_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Telephone_Number" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Telephone_Number_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Telephone_NumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Internet_Address_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Internet_Address" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Internet_Address_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Internet_AddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Address_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Address" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Address_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_AddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Personal_Id_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Personal_Id" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Personal_Id_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Personal_IdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Contact_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_Contact" />
+  </wsdl:message>
+  <wsdl:message name="IMembers_Set_New_Member_Contact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Set_New_Member_ContactResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMembers">
+    <wsdl:operation name="Set_New_Members">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Members" message="tns:IMembers_Set_New_Members_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_MembersResponse" message="tns:IMembers_Set_New_Members_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Members_Handicap_Indicator">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Members_Handicap_Indicator" message="tns:IMembers_Set_New_Members_Handicap_Indicator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Members_Handicap_IndicatorResponse" message="tns:IMembers_Set_New_Members_Handicap_Indicator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Additional_Information">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Additional_Information" message="tns:IMembers_Set_New_Member_Additional_Information_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Additional_InformationResponse" message="tns:IMembers_Set_New_Member_Additional_Information_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Student_Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Student_Status" message="tns:IMembers_Set_New_Member_Student_Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Student_StatusResponse" message="tns:IMembers_Set_New_Member_Student_Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Language">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Language" message="tns:IMembers_Set_New_Member_Language_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_LanguageResponse" message="tns:IMembers_Set_New_Member_Language_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Medical_Condition">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Medical_Condition" message="tns:IMembers_Set_New_Member_Medical_Condition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Medical_ConditionResponse" message="tns:IMembers_Set_New_Member_Medical_Condition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_User_Defined_Factor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_User_Defined_Factor" message="tns:IMembers_Set_New_Member_User_Defined_Factor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_User_Defined_FactorResponse" message="tns:IMembers_Set_New_Member_User_Defined_Factor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Telephone_Number">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Telephone_Number" message="tns:IMembers_Set_New_Member_Telephone_Number_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Telephone_NumberResponse" message="tns:IMembers_Set_New_Member_Telephone_Number_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Internet_Address">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Internet_Address" message="tns:IMembers_Set_New_Member_Internet_Address_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Internet_AddressResponse" message="tns:IMembers_Set_New_Member_Internet_Address_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Address">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Address" message="tns:IMembers_Set_New_Member_Address_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_AddressResponse" message="tns:IMembers_Set_New_Member_Address_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Personal_Id">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Personal_Id" message="tns:IMembers_Set_New_Member_Personal_Id_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Personal_IdResponse" message="tns:IMembers_Set_New_Member_Personal_Id_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Contact">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_Contact" message="tns:IMembers_Set_New_Member_Contact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMembers/Set_New_Member_ContactResponse" message="tns:IMembers_Set_New_Member_Contact_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IMembers" type="tns:IMembers">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Set_New_Members">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Members" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Members_Handicap_Indicator">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Members_Handicap_Indicator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Additional_Information">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Additional_Information" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Student_Status">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Student_Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Language">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Language" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Medical_Condition">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Medical_Condition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_User_Defined_Factor">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_User_Defined_Factor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Telephone_Number">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Telephone_Number" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Internet_Address">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Internet_Address" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Address">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Address" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Personal_Id">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Personal_Id" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set_New_Member_Contact">
+      <soap:operation soapAction="http://tempuri.org/IMembers/Set_New_Member_Contact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Members">
+    <wsdl:port name="BasicHttpBinding_IMembers" binding="tns:BasicHttpBinding_IMembers">
+      <soap:address location="http://devwsatmplexis.dev.atlanticmed.com/WCF_Services/Members_Services.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

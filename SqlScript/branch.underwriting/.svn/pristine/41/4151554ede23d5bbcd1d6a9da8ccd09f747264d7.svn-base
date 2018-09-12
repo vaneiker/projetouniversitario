@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IPolicyService" />
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://devpolicyglobalservice.statetrustlife.com/PolicyService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPolicyService"
+                contract="GlobalService.IPolicyService" name="BasicHttpBinding_IPolicyService" />
+        </client>
+    </system.serviceModel>
+</configuration>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://wssearchxpert.dev.atlantica.local/Risk.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" />
+  <xs:complexType name="Risk.Factor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdditionalInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BaseIndicator" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BusinessLine" type="tns:Risk.Enums.BusinessLine" />
+      <xs:element minOccurs="0" name="ChannelsDistributionId" type="xs:int" />
+      <xs:element minOccurs="0" name="ChannelsType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CitizenCountryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CitizenType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyActivityId" nillable="true" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" minOccurs="0" name="CoreId" type="q1:SearchResult.Cores" />
+      <xs:element minOccurs="0" name="EmploymentType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Indicator" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OccupGroupTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OccupationId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Premium" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PremiumType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductTypeGroupId" type="xs:int" />
+      <xs:element minOccurs="0" name="RequiredDocuments" nillable="true" type="tns:ArrayOfRisk.Documents" />
+      <xs:element minOccurs="0" name="RequiredFields" nillable="true" type="tns:ArrayOfRisk.Fields" />
+      <xs:element minOccurs="0" name="Scale" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScaleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ScaleReference" type="tns:Risk.Enums.Scale" />
+      <xs:element minOccurs="0" name="SourceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceNameRef" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.Factor" nillable="true" type="tns:Risk.Factor" />
+  <xs:simpleType name="Risk.Enums.BusinessLine">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EMPTY" />
+      <xs:enumeration value="LIFE" />
+      <xs:enumeration value="AUTO" />
+      <xs:enumeration value="HEALTH" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Risk.Enums.BusinessLine" nillable="true" type="tns:Risk.Enums.BusinessLine" />
+  <xs:complexType name="ArrayOfRisk.Documents">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Risk.Documents" nillable="true" type="tns:Risk.Documents" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRisk.Documents" nillable="true" type="tns:ArrayOfRisk.Documents" />
+  <xs:complexType name="Risk.Documents">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Risk_Document" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Document_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Document_Reference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Document_Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.Documents" nillable="true" type="tns:Risk.Documents" />
+  <xs:complexType name="ArrayOfRisk.Fields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Risk.Fields" nillable="true" type="tns:Risk.Fields" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRisk.Fields" nillable="true" type="tns:ArrayOfRisk.Fields" />
+  <xs:complexType name="Risk.Fields">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Risk_Info" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Info_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Info_Reference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Info_Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.Fields" nillable="true" type="tns:Risk.Fields" />
+  <xs:simpleType name="Risk.Enums.Scale">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EMPTY" />
+      <xs:enumeration value="LOW" />
+      <xs:enumeration value="MODERATE" />
+      <xs:enumeration value="HIGH" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Risk.Enums.Scale" nillable="true" type="tns:Risk.Enums.Scale" />
+  <xs:complexType name="ArrayOfRisk.ClientTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Risk.ClientTypes" nillable="true" type="tns:Risk.ClientTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRisk.ClientTypes" nillable="true" type="tns:ArrayOfRisk.ClientTypes" />
+  <xs:complexType name="Risk.ClientTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Risk_Factor_Client_Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Factor_Client_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Client_Type_Percentage" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Client_Type_Risk_Level" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Client_Type_Severity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Client_Type_Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.ClientTypes" nillable="true" type="tns:Risk.ClientTypes" />
+  <xs:complexType name="ArrayOfRisk.EmploymentTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Risk.EmploymentTypes" nillable="true" type="tns:Risk.EmploymentTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRisk.EmploymentTypes" nillable="true" type="tns:ArrayOfRisk.EmploymentTypes" />
+  <xs:complexType name="Risk.EmploymentTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Company_Activity_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OccupGroup_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Occupation_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Employment_Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Factor_Employment_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Employment_Type_Percentage" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Employment_Type_Risk_Level" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Employment_Type_Severity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Employment_Type_Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.EmploymentTypes" nillable="true" type="tns:Risk.EmploymentTypes" />
+  <xs:complexType name="ArrayOfRisk.CitizenTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Risk.CitizenTypes" nillable="true" type="tns:Risk.CitizenTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRisk.CitizenTypes" nillable="true" type="tns:ArrayOfRisk.CitizenTypes" />
+  <xs:complexType name="Risk.CitizenTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bussiness_Line_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CitizenCountryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Citizen_Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Factor_Citizen_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Citizen_Type_Percentage" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Citizen_Type_Risk_Level" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Citizen_Type_Severity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Citizen_Type_Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.CitizenTypes" nillable="true" type="tns:Risk.CitizenTypes" />
+  <xs:complexType name="ArrayOfRisk.ProductTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Risk.ProductTypes" nillable="true" type="tns:Risk.ProductTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRisk.ProductTypes" nillable="true" type="tns:ArrayOfRisk.ProductTypes" />
+  <xs:complexType name="Risk.ProductTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Risk_Factor_Product_Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Factor_Product_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Product_Type_Percentage" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Product_Type_Risk_Level" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Product_Type_Severity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Product_Type_Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Risk_Factor_Products_Type_Group" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.ProductTypes" nillable="true" type="tns:Risk.ProductTypes" />
+  <xs:complexType name="ArrayOfRisk.PremiumTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Risk.PremiumTypes" nillable="true" type="tns:Risk.PremiumTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRisk.PremiumTypes" nillable="true" type="tns:ArrayOfRisk.PremiumTypes" />
+  <xs:complexType name="Risk.PremiumTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Risk_Factor_Premium_Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Factor_Premium_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Premium_Type_Max" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Premium_Type_Min" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Premium_Type_Percentage" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Premium_Type_Risk_Level" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Premium_Type_Severity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Premium_Type_Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.PremiumTypes" nillable="true" type="tns:Risk.PremiumTypes" />
+  <xs:complexType name="ArrayOfRisk.ChannelsTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Risk.ChannelsTypes" nillable="true" type="tns:Risk.ChannelsTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRisk.ChannelsTypes" nillable="true" type="tns:ArrayOfRisk.ChannelsTypes" />
+  <xs:complexType name="Risk.ChannelsTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Distribution_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Channels_Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Risk_Factor_Channels_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Risk_Factor_Channels_Type_Percentage" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Channels_Type_Risk_Level" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Channels_Type_Severity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Risk_Factor_Channels_Type_Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Risk.ChannelsTypes" nillable="true" type="tns:Risk.ChannelsTypes" />
+</xs:schema>

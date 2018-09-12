@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StatisticsEntitiesDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Policy.VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH">
+    <Key>
+      <PropertyRef Name="Statistics_Id" />
+      <PropertyRef Name="Bl_Desc" />
+      <PropertyRef Name="Office_Desc" />
+      <PropertyRef Name="Product_Type_Desc" />
+      <PropertyRef Name="Policy_No" />
+      <PropertyRef Name="Annual_Premium" />
+      <PropertyRef Name="Insured_Amount" />
+      <PropertyRef Name="Rate" />
+      <PropertyRef Name="Count" />
+      <PropertyRef Name="Vehicle_Count" />
+      <PropertyRef Name="Performance_Agent_Minute" />
+      <PropertyRef Name="Performance_Subscriber_Minute" />
+      <PropertyRef Name="Performance_Inspector_Minute" />
+      <PropertyRef Name="Agent_Id" />
+      <PropertyRef Name="Agent_Name" />
+      <PropertyRef Name="Distribution_Desc" />
+      <PropertyRef Name="Agent_Id_Comercial" />
+      <PropertyRef Name="Agent_FullName_Comercial" />
+      <PropertyRef Name="Agent_Id_GerenteComercial" />
+      <PropertyRef Name="Agent_FullName_GerenteComercial" />
+      <PropertyRef Name="Agent_Id_DirectorComercial" />
+      <PropertyRef Name="Agent_FullName_DirectorComercial" />
+      <PropertyRef Name="Agent_Id_DirectorSenior" />
+      <PropertyRef Name="Agent_FullName_DirectorSenior" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Month" />
+      <PropertyRef Name="Day" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="MonthDesc" />
+      <PropertyRef Name="PivotDay" />
+      <PropertyRef Name="PivotMonth" />
+      <PropertyRef Name="PivotQuarter" />
+      <PropertyRef Name="PivotSemestral" />
+    </Key>
+    <Property Name="Statistics_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bl_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Office_Desc" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Product_Type_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Annual_Premium" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Insured_Amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Rate" Type="numeric" Precision="33" Scale="19" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="Vehicle_Count" Type="int" Nullable="false" />
+    <Property Name="Performance_Agent_Minute" Type="int" Nullable="false" />
+    <Property Name="Performance_Subscriber_Minute" Type="int" Nullable="false" />
+    <Property Name="Performance_Inspector_Minute" Type="int" Nullable="false" />
+    <Property Name="Agent_Id" Type="int" Nullable="false" />
+    <Property Name="Agent_Name" Type="varchar" MaxLength="240" Nullable="false" />
+    <Property Name="Distribution_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Agent_Id_Comercial" Type="int" Nullable="false" />
+    <Property Name="Agent_FullName_Comercial" Type="varchar" MaxLength="240" Nullable="false" />
+    <Property Name="Agent_Id_GerenteComercial" Type="int" Nullable="false" />
+    <Property Name="Agent_FullName_GerenteComercial" Type="varchar" MaxLength="240" Nullable="false" />
+    <Property Name="Agent_Id_DirectorComercial" Type="int" Nullable="false" />
+    <Property Name="Agent_FullName_DirectorComercial" Type="varchar" MaxLength="240" Nullable="false" />
+    <Property Name="Agent_Id_DirectorSenior" Type="int" Nullable="false" />
+    <Property Name="Agent_FullName_DirectorSenior" Type="varchar" MaxLength="240" Nullable="false" />
+    <Property Name="Subscriber_Agent_Id" Type="int" />
+    <Property Name="Subscriber_Name" Type="varchar" MaxLength="240" />
+    <Property Name="Inspector_Agent_Id" Type="int" />
+    <Property Name="Inspector_Name" Type="varchar" MaxLength="240" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Month" Type="int" Nullable="false" />
+    <Property Name="Day" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="MonthDesc" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="PivotDay" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="PivotMonth" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="PivotQuarter" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="PivotSemestral" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Request_Type_Id" Type="int" />
+    <Property Name="Request_Type_Desc" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityContainer Name="StatisticsEntitiesDataModelStoreContainer">
+    <EntitySet Name="VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH" EntityType="Self.VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH" store:Type="Views" store:Schema="Policy">
+      <DefiningQuery>SELECT 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Statistics_Id] AS [Statistics_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Bl_Desc] AS [Bl_Desc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Office_Desc] AS [Office_Desc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Product_Type_Desc] AS [Product_Type_Desc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Policy_No] AS [Policy_No], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Annual_Premium] AS [Annual_Premium], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Insured_Amount] AS [Insured_Amount], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Rate] AS [Rate], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Count] AS [Count], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Vehicle_Count] AS [Vehicle_Count], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Performance_Agent_Minute] AS [Performance_Agent_Minute], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Performance_Subscriber_Minute] AS [Performance_Subscriber_Minute], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Performance_Inspector_Minute] AS [Performance_Inspector_Minute], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id] AS [Agent_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Name] AS [Agent_Name], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Distribution_Desc] AS [Distribution_Desc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id_Comercial] AS [Agent_Id_Comercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_FullName_Comercial] AS [Agent_FullName_Comercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id_GerenteComercial] AS [Agent_Id_GerenteComercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_FullName_GerenteComercial] AS [Agent_FullName_GerenteComercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id_DirectorComercial] AS [Agent_Id_DirectorComercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_FullName_DirectorComercial] AS [Agent_FullName_DirectorComercial], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_Id_DirectorSenior] AS [Agent_Id_DirectorSenior], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Agent_FullName_DirectorSenior] AS [Agent_FullName_DirectorSenior], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Subscriber_Agent_Id] AS [Subscriber_Agent_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Subscriber_Name] AS [Subscriber_Name], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Inspector_Agent_Id] AS [Inspector_Agent_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Inspector_Name] AS [Inspector_Name], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Year] AS [Year], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Month] AS [Month], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Day] AS [Day], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Date] AS [Date], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[MonthDesc] AS [MonthDesc], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[PivotDay] AS [PivotDay], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[PivotMonth] AS [PivotMonth], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[PivotQuarter] AS [PivotQuarter], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[PivotSemestral] AS [PivotSemestral], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Request_Type_Id] AS [Request_Type_Id], 
+    [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH].[Request_Type_Desc] AS [Request_Type_Desc]
+    FROM [Policy].[VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH] AS [VW_GET_QUO_PL_POLICY_STATISTICS_BYMONTH]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

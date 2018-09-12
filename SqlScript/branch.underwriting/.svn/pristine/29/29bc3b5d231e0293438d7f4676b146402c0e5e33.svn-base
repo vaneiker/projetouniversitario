@@ -1,0 +1,283 @@
+﻿using Entity.UnderWriting.Entities;
+using RESOURCE.UnderWriting.NewBussiness;
+using System;
+using System.Globalization;
+using System.Linq;
+using WEB.NewBusiness.Common;
+
+namespace WEB.NewBusiness.NewBusiness.UserControls.IllustrationsVehicle
+{
+    public partial class UCIllustrationInformation : UC, IUC
+    {
+        public string IllustrationStatusCode
+        {
+            get { return ViewState["IllustrationStatusCode"] == null ? null : ViewState["IllustrationStatusCode"].ToString(); }
+            set { ViewState["IllustrationStatusCode"] = value; }
+        }
+
+        public bool HasDiscount
+        {
+            get { return ViewState["HasDiscount"].ToBoolean(); }
+            set { ViewState["HasDiscount"] = value; }
+        }
+
+        public bool HasSurcharge
+        {
+            get { return ViewState["HasSurcharge"].ToBoolean(); }
+            set { ViewState["HasSurcharge"] = value; }
+        }
+
+        public Utility.TipoRiesgo Riesgo
+        {
+            get
+            {
+                var result = (Utility.TipoRiesgo)ViewState["Riesgo"];
+                return result;
+            }
+            set
+            {
+                ViewState["Riesgo"] = value;
+            }
+        }
+
+
+        public Utility.BlackListType BlackListType
+        {
+            get
+            {
+                var result = (Utility.BlackListType)ViewState["BlackListType"];
+                return result;
+            }
+            set
+            {
+                ViewState["BlackListType"] = value;
+            }
+        }
+
+        public DateTime? IllustrationDate
+        {
+            get { return ViewState["IllustrationDate"] == null ? null : ViewState["IllustrationDate"].ToString().IsDateReturnNull(); }
+            set { ViewState["IllustrationDate"] = value; }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            pdfViewerMyPreviewPDF.LicenseKey = System.Configuration.ConfigurationManager.AppSettings["PDFViewer"];
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+            Translator(string.Empty);
+        }
+
+        public void Translator(string Lang)
+        {
+            Session["IllustrationStatusCode"] = IllustrationStatusCode;
+            txtStatus.Text = ("Illustration_" + IllustrationStatusCode).Translate();
+
+            if (ObjServices.isChangingLang)
+                FillData();
+        }
+
+        public void ReadOnlyControls(bool isReadOnly)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void edit()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FillData()
+        {
+            var illustration = ObjServices.oPolicyManager.GetQuotationInfoTemp(new Policy.Quo.Temp
+            {
+                PolicyNo = ObjServices.Policy_Id
+            }).FirstOrDefault();
+
+            if (illustration == null) return;
+
+            var Financed = illustration.Financed.GetValueOrDefault();
+            var MonthlyPayment = illustration.MonthlyPayment;
+            var Period = illustration.Period;
+
+            ObjServices.Financed = Financed;
+            ObjServices.MonthlyPayment = MonthlyPayment;
+            ObjServices.Period = Period;
+            ObjServices.annualPremium = illustration.AnnualPremium;
+
+            txtFinanced.Text = Financed ? Resources.YesLabel : Resources.NoLabel;
+            lnkContractView.CssClass = Financed ? "view_file" : "aspNetDisabled view_file_dbl";
+            lnkContractView.Enabled = Financed;
+
+            var BlackListTypeNameKey = illustration.BlacklistMember;
+            Riesgo = (Utility.TipoRiesgo)Enum.Parse(typeof(Utility.TipoRiesgo), illustration.TipoRiesgoNameKey == "N/A" ? "NONE" : illustration.TipoRiesgoNameKey);
+            BlackListType = (Utility.BlackListType)Enum.Parse(typeof(Utility.BlackListType), BlackListTypeNameKey == "N/A" || string.IsNullOrEmpty(BlackListTypeNameKey) ? "NONE" : BlackListTypeNameKey);
+
+            ObjServices.BlackListHasProblem = BlackListTypeNameKey != "NM" && BlackListTypeNameKey != "N/A" && !string.IsNullOrEmpty(BlackListTypeNameKey);
+
+            ObjServices.BlacklistCheck = illustration.BlacklistCheck;
+            ObjServices.BlacklistCheckUser = illustration.BlacklistCheckUser;
+            ObjServices.BlacklistCheckUserName = illustration.BlacklistCheckUserName;
+            ObjServices.BlacklistMember = illustration.BlacklistMember;
+
+            HasDiscount = illustration.HasDiscount;
+            txtIllustrationNoTemp.Text = illustration.PolicyNoTemp;
+            txtIllustrationNoTemp.Visible = (!String.IsNullOrEmpty(illustration.PolicyNoTemp) && illustration.PolicyNo != illustration.PolicyNoTemp);
+            txtIllustrationNo.Text = illustration.PolicyNo;
+            IllustrationDate = illustration.QuoDate;
+            txtIllustrationDate.Text = illustration.QuoDate.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture).ToUpper();
+            txtInsuredAmount.Text = illustration.InsuredAmount.ToFormatCurrency();
+            txtTotalPremium.Text = illustration.AnnualPremium.ToFormatCurrency();
+            txtOffice.Text = illustration.OfficeDesc;
+            txtAgent.Text = illustration.AgentName;
+            txtChannel.Text = illustration.DistributionDesc;
+            IllustrationStatusCode = illustration.PolicyStatusNameKey;
+            txtBusinessLine.Text = illustration.BlDesc;
+            btnSeeDiscount.Enabled = HasDiscount;
+
+            DateTime? BeginDate = null;
+            DateTime? EndDate = null;
+
+            BeginDate = illustration.EffectiveDate.HasValue ? illustration.EffectiveDate.GetValueOrDefault() : DateTime.Now;
+            EndDate = illustration.PolicyExpirationDate.HasValue ? illustration.PolicyExpirationDate.Value : BeginDate.Value.AddYears(1);
+
+            txtEffectiveDate.Text = BeginDate.HasValue ? BeginDate.Value.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture) : string.Empty;
+            txtExpirationDate.Text = EndDate.HasValue ? EndDate.Value.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture) : string.Empty;
+
+            var Css = string.Format("{0}", btnSeeDiscount.Enabled ? "view_file" : "view_file_dbl");
+            btnSeeDiscount.CssClass = string.Format("{0}", Css);
+
+            HasSurcharge = illustration.HasSurcharge;
+            btnSeeSurcharge.Enabled = HasSurcharge;
+            btnSeeSurcharge.CssClass = string.Format("{0}", btnSeeSurcharge.Enabled ? "view_file" : "view_file_dbl");
+
+            imgRiesgo.ImageUrl = !string.IsNullOrEmpty(illustration.TipoRiesgoNameKey) ? Utility.GetImgRiesgo(Riesgo)
+                                                                                       : string.Empty;
+            ImgBlackList.ImageUrl = Utility.GetImgBlackList(BlackListType);
+
+            Session["IllustrationInspectorAgentId"] = illustration.InspectorAgentId;
+            Session["IllustrationSuscriptorAgentId"] = illustration.SubscriberAgentId;
+        }
+
+        public string GetIllustrationNo()
+        {
+            return txtIllustrationNo.Text;
+        }
+
+        public void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClearData()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void btnSeeIllustration_Click(object sender, EventArgs e)
+        {
+            //Ver los decuentos aplicados
+            UCSeeDiscount.Initialize();
+            ModalPopupSeeDiscount.Show();
+            hdnShowDiscount.Value = "true";
+        }
+
+        protected void btnSeeDiscount_PreRender(object sender, EventArgs e)
+        {
+            txtDiscount.Text = HasDiscount ? Resources.YesLabel : Resources.NoLabel;
+            btnSeeDiscount.Attributes.Add("title", RESOURCE.UnderWriting.NewBussiness.Resources.seediscounts);
+        }
+
+        protected void txtFinancialClearance_PreRender(object sender, EventArgs e)
+        {
+            //Traducir
+            txtFinancialClearance.Text = Utility.GetDescRiesgo(Riesgo);
+        }
+
+        protected void btnSeeSurcharge_PreRender(object sender, EventArgs e)
+        {
+            txtSurcharge.Text = HasSurcharge ? Resources.YesLabel : Resources.NoLabel;
+            btnSeeSurcharge.Attributes.Add("title", RESOURCE.UnderWriting.NewBussiness.Resources.SeeSurcharge);
+        }
+
+        protected void btnSeeSurcharge_Click(object sender, EventArgs e)
+        {
+            var IllustrationsVehiclePage = Page as WEB.NewBusiness.NewBusiness.Pages.IllustrationsVehicle;
+            if (IllustrationsVehiclePage != null)
+            {
+                var ApplySurchargeUC = Utility.GetAllChildren(IllustrationsVehiclePage).FirstOrDefault(uc => uc is UCPopupApplySurcharge);
+                if (ApplySurchargeUC != null)
+                    (ApplySurchargeUC as UCPopupApplySurcharge).SeeAllSurcharges();
+            }
+        }
+
+        protected void txtBlackList_PreRender(object sender, EventArgs e)
+        {
+            txtBlackList.Text = Utility.GetDescBlackList(BlackListType);
+        }
+
+        protected void lnkContractView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                byte[] XMLByteArray = null;
+                ////Mostrar la cotizacion generada via thunderhead
+                //Generar el Documento XML con la data del contrato
+                if (ObjServices.ProductLine == Utility.ProductLine.Auto)
+                {
+                    XMLByteArray = ObjServices.GenerateXMLContratoKSI(ObjServices.Corp_Id,
+                                                                      ObjServices.Region_Id,
+                                                                      ObjServices.Country_Id,
+                                                                      ObjServices.Domesticreg_Id,
+                                                                      ObjServices.State_Prov_Id,
+                                                                      ObjServices.City_Id,
+                                                                      ObjServices.Office_Id,
+                                                                      ObjServices.Case_Seq_No,
+                                                                      ObjServices.Hist_Seq_No,
+                                                                      ServerMaptPath
+                                                                      );
+                }
+                else if (ObjServices.ProductLine == Utility.ProductLine.AlliedLines)
+                {
+                    XMLByteArray = ObjServices.GenerateXMLContratoKSIPropiedad(ObjServices.Corp_Id,
+                                                                               ObjServices.Region_Id,
+                                                                               ObjServices.Country_Id,
+                                                                               ObjServices.Domesticreg_Id,
+                                                                               ObjServices.State_Prov_Id,
+                                                                               ObjServices.City_Id,
+                                                                               ObjServices.Office_Id,
+                                                                               ObjServices.Case_Seq_No,
+                                                                               ObjServices.Hist_Seq_No,
+                                                                               ServerMaptPath
+                                                                              );
+                }
+
+                var PDFByteArray = ObjServices.SendToThunderHead(XMLByteArray,
+                                                                 ThunderheadWrap.Service.TemplateType.ContratoKSI,
+                                                                 ObjServices.ProductLine == Utility.ProductLine.Auto ? ThunderheadWrap.Service.BusinessLine.Vehicle 
+                                                                                                                     : ThunderheadWrap.Service.BusinessLine.IncendioLineasAliadas);
+
+                pdfViewerMyPreviewPDF.PdfSourceBytes = PDFByteArray;
+                pdfViewerMyPreviewPDF.DataBind();
+
+                //Visualizar el pdf
+                hdnShowPopAmortizationTable.Value = "true";
+                //udpQuotationPrev.Update();
+                ModalPopupAmortizationTable.Show();
+                this.ExcecuteJScript("$('#popupBhvr_backgroundElement').css('display', 'none');");
+            }
+            catch (Exception ex)
+            {
+                this.MessageBox(string.Format("ExceptionMessage {0} TraceStack {1}", ex.Message, ex.StackTrace).MyRemoveInvalidCharacters());
+            }
+        }
+    }
+}

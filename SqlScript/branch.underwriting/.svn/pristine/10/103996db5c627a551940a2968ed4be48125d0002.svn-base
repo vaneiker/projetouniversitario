@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GlobalVOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global_VO.reportes.VwPivotIllustration_en' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwPivotIllustration_en">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Domesticreg_Id" />
+            <PropertyRef Name="State_Prov_Id" />
+            <PropertyRef Name="City_Id" />
+            <PropertyRef Name="Office_Id" />
+            <PropertyRef Name="Case_Seq_No" />
+            <PropertyRef Name="Hist_Seq_No" />
+            <PropertyRef Name="PolicyNo" />
+            
+            <PropertyRef Name="PolicyStatusId" />
+            <PropertyRef Name="PolicyStatus" />
+            <PropertyRef Name="Office" />
+            <PropertyRef Name="Company_Id" />
+            <PropertyRef Name="Company" />
+            
+            <PropertyRef Name="Subscriber" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+          <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+          <Property Name="Office_Id" Type="int" Nullable="false" />
+          <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+          <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+          <Property Name="Bussiness_Line_Id" Type="int" />
+          <Property Name="BusinessLine" Type="varchar" MaxLength="60" />
+          <Property Name="InsuredId" Type="int" />
+          <Property Name="InsuredName" Type="varchar" MaxLength="240" />
+          <Property Name="PolicyNo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="StatusDate" Type="datetime" Nullable="false" />
+          <Property Name="PolicyStatusId" Type="int" Nullable="false" />
+          <Property Name="PolicyStatus" Type="varchar(max)" Nullable="false" />
+          <Property Name="Office" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Company_Id" Type="int" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Agent" Type="varchar" MaxLength="121" />
+          <Property Name="AgentId" Type="int" Nullable="false" />
+          <Property Name="Channel" Type="varchar" MaxLength="60" />
+          <Property Name="Subscriber" Type="varchar" MaxLength="121" Nullable="false" />
+          <Property Name="SubscriberId" Type="int" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="NameMonth" Type="varchar" MaxLength="60" />
+          <Property Name="PivotQuarter" Type="nvarchar" MaxLength="34" />
+          <Property Name="PivotMonth" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global_VO.reportes.VwPivotIllustration_es' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwPivotIllustration_es">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Domesticreg_Id" />
+            <PropertyRef Name="State_Prov_Id" />
+            <PropertyRef Name="City_Id" />
+            <PropertyRef Name="Office_Id" />
+            <PropertyRef Name="Case_Seq_No" />
+            <PropertyRef Name="Hist_Seq_No" />
+            <PropertyRef Name="PolicyNo" />
+            
+            <PropertyRef Name="PolicyStatusId" />
+            <PropertyRef Name="PolicyStatus" />
+            <PropertyRef Name="Office" />
+            <PropertyRef Name="Company_Id" />
+            <PropertyRef Name="Company" />
+            
+            <PropertyRef Name="Subscriber" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+          <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+          <Property Name="Office_Id" Type="int" Nullable="false" />
+          <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+          <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+          <Property Name="Bussiness_Line_Id" Type="int" />
+          <Property Name="BusinessLine" Type="varchar" MaxLength="60" />
+          <Property Name="InsuredId" Type="int" />
+          <Property Name="InsuredName" Type="varchar" MaxLength="240" />
+          <Property Name="PolicyNo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="StatusDate" Type="datetime" Nullable="false" />
+          <Property Name="PolicyStatusId" Type="int" Nullable="false" />
+          <Property Name="PolicyStatus" Type="varchar(max)" Nullable="false" />
+          <Property Name="Office" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Company_Id" Type="int" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Agent" Type="varchar" MaxLength="121" />
+          <Property Name="AgentId" Type="int" Nullable="false" />
+          <Property Name="Channel" Type="varchar" MaxLength="60" />
+          <Property Name="Subscriber" Type="varchar" MaxLength="121" Nullable="false" />
+          <Property Name="SubscriberId" Type="int" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="NameMonth" Type="varchar" MaxLength="60" />
+          <Property Name="PivotQuarter" Type="nvarchar" MaxLength="34" />
+          <Property Name="PivotMonth" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="GlobalVOModelStoreContainer">
+          <EntitySet Name="VwPivotIllustration_en" EntityType="Self.VwPivotIllustration_en" store:Type="Views" store:Schema="reportes">
+            <DefiningQuery>SELECT 
+    [VwPivotIllustration_en].[Corp_Id] AS [Corp_Id], 
+    [VwPivotIllustration_en].[Region_Id] AS [Region_Id], 
+    [VwPivotIllustration_en].[Country_Id] AS [Country_Id], 
+    [VwPivotIllustration_en].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VwPivotIllustration_en].[State_Prov_Id] AS [State_Prov_Id], 
+    [VwPivotIllustration_en].[City_Id] AS [City_Id], 
+    [VwPivotIllustration_en].[Office_Id] AS [Office_Id], 
+    [VwPivotIllustration_en].[Case_Seq_No] AS [Case_Seq_No], 
+    [VwPivotIllustration_en].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VwPivotIllustration_en].[Bussiness_Line_Id] AS [Bussiness_Line_Id], 
+    [VwPivotIllustration_en].[BusinessLine] AS [BusinessLine], 
+    [VwPivotIllustration_en].[InsuredId] AS [InsuredId], 
+    [VwPivotIllustration_en].[InsuredName] AS [InsuredName], 
+    [VwPivotIllustration_en].[PolicyNo] AS [PolicyNo], 
+    [VwPivotIllustration_en].[StatusDate] AS [StatusDate], 
+    [VwPivotIllustration_en].[PolicyStatusId] AS [PolicyStatusId], 
+    [VwPivotIllustration_en].[PolicyStatus] AS [PolicyStatus], 
+    [VwPivotIllustration_en].[Office] AS [Office], 
+    [VwPivotIllustration_en].[Company_Id] AS [Company_Id], 
+    [VwPivotIllustration_en].[Company] AS [Company], 
+    [VwPivotIllustration_en].[Agent] AS [Agent], 
+    [VwPivotIllustration_en].[AgentId] AS [AgentId], 
+    [VwPivotIllustration_en].[Channel] AS [Channel], 
+    [VwPivotIllustration_en].[Subscriber] AS [Subscriber], 
+    [VwPivotIllustration_en].[SubscriberId] AS [SubscriberId], 
+    [VwPivotIllustration_en].[Count] AS [Count], 
+    [VwPivotIllustration_en].[Year] AS [Year], 
+    [VwPivotIllustration_en].[Month] AS [Month], 
+    [VwPivotIllustration_en].[NameMonth] AS [NameMonth], 
+    [VwPivotIllustration_en].[PivotQuarter] AS [PivotQuarter], 
+    [VwPivotIllustration_en].[PivotMonth] AS [PivotMonth]
+    FROM [reportes].[VwPivotIllustration_en] AS [VwPivotIllustration_en]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwPivotIllustration_es" EntityType="Self.VwPivotIllustration_es" store:Type="Views" store:Schema="reportes">
+            <DefiningQuery>SELECT 
+    [VwPivotIllustration_es].[Corp_Id] AS [Corp_Id], 
+    [VwPivotIllustration_es].[Region_Id] AS [Region_Id], 
+    [VwPivotIllustration_es].[Country_Id] AS [Country_Id], 
+    [VwPivotIllustration_es].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VwPivotIllustration_es].[State_Prov_Id] AS [State_Prov_Id], 
+    [VwPivotIllustration_es].[City_Id] AS [City_Id], 
+    [VwPivotIllustration_es].[Office_Id] AS [Office_Id], 
+    [VwPivotIllustration_es].[Case_Seq_No] AS [Case_Seq_No], 
+    [VwPivotIllustration_es].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VwPivotIllustration_es].[Bussiness_Line_Id] AS [Bussiness_Line_Id], 
+    [VwPivotIllustration_es].[BusinessLine] AS [BusinessLine], 
+    [VwPivotIllustration_es].[InsuredId] AS [InsuredId], 
+    [VwPivotIllustration_es].[InsuredName] AS [InsuredName], 
+    [VwPivotIllustration_es].[PolicyNo] AS [PolicyNo], 
+    [VwPivotIllustration_es].[StatusDate] AS [StatusDate], 
+    [VwPivotIllustration_es].[PolicyStatusId] AS [PolicyStatusId], 
+    [VwPivotIllustration_es].[PolicyStatus] AS [PolicyStatus], 
+    [VwPivotIllustration_es].[Office] AS [Office], 
+    [VwPivotIllustration_es].[Company_Id] AS [Company_Id], 
+    [VwPivotIllustration_es].[Company] AS [Company], 
+    [VwPivotIllustration_es].[Agent] AS [Agent], 
+    [VwPivotIllustration_es].[AgentId] AS [AgentId], 
+    [VwPivotIllustration_es].[Channel] AS [Channel], 
+    [VwPivotIllustration_es].[Subscriber] AS [Subscriber], 
+    [VwPivotIllustration_es].[SubscriberId] AS [SubscriberId], 
+    [VwPivotIllustration_es].[Count] AS [Count], 
+    [VwPivotIllustration_es].[Year] AS [Year], 
+    [VwPivotIllustration_es].[Month] AS [Month], 
+    [VwPivotIllustration_es].[NameMonth] AS [NameMonth], 
+    [VwPivotIllustration_es].[PivotQuarter] AS [PivotQuarter], 
+    [VwPivotIllustration_es].[PivotMonth] AS [PivotMonth]
+    FROM [reportes].[VwPivotIllustration_es] AS [VwPivotIllustration_es]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GlobalVOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="VwPivotIllustration_en">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Domesticreg_Id" />
+            <PropertyRef Name="State_Prov_Id" />
+            <PropertyRef Name="City_Id" />
+            <PropertyRef Name="Office_Id" />
+            <PropertyRef Name="Case_Seq_No" />
+            <PropertyRef Name="Hist_Seq_No" />
+            <PropertyRef Name="PolicyNo" />
+            <PropertyRef Name="PolicyStatusId" />
+            <PropertyRef Name="PolicyStatus" />
+            <PropertyRef Name="Office" />
+            <PropertyRef Name="Company" />
+            <PropertyRef Name="Subscriber" />
+            <PropertyRef Name="Count" />
+            <PropertyRef Name="Company_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+          <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <Property Name="Office_Id" Type="Int32" Nullable="false" />
+          <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+          <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+          <Property Name="Bussiness_Line_Id" Type="Int32" />
+          <Property Name="BusinessLine" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="InsuredId" Type="Int32" />
+          <Property Name="InsuredName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="PolicyNo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StatusDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="PolicyStatusId" Type="Int32" Nullable="false" />
+          <Property Name="PolicyStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Office" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Agent" Type="String" MaxLength="121" FixedLength="false" Unicode="false" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
+          <Property Name="Channel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Subscriber" Type="String" MaxLength="121" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubscriberId" Type="Int32" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="NameMonth" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="PivotQuarter" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+          <Property Name="PivotMonth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VwPivotIllustration_es">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Domesticreg_Id" />
+            <PropertyRef Name="State_Prov_Id" />
+            <PropertyRef Name="City_Id" />
+            <PropertyRef Name="Office_Id" />
+            <PropertyRef Name="Case_Seq_No" />
+            <PropertyRef Name="Hist_Seq_No" />
+            <PropertyRef Name="PolicyNo" />
+            <PropertyRef Name="PolicyStatusId" />
+            <PropertyRef Name="PolicyStatus" />
+            <PropertyRef Name="Office" />
+            <PropertyRef Name="Company" />
+            <PropertyRef Name="Subscriber" />
+            <PropertyRef Name="Count" />
+            <PropertyRef Name="Company_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+          <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <Property Name="Office_Id" Type="Int32" Nullable="false" />
+          <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+          <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+          <Property Name="Bussiness_Line_Id" Type="Int32" />
+          <Property Name="BusinessLine" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="InsuredId" Type="Int32" />
+          <Property Name="InsuredName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="PolicyNo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StatusDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="PolicyStatusId" Type="Int32" Nullable="false" />
+          <Property Name="PolicyStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Office" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Agent" Type="String" MaxLength="121" FixedLength="false" Unicode="false" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
+          <Property Name="Channel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Subscriber" Type="String" MaxLength="121" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubscriberId" Type="Int32" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="NameMonth" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="PivotQuarter" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+          <Property Name="PivotMonth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GlobalVOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VwPivotIllustration_en" EntityType="Self.VwPivotIllustration_en" />
+          <EntitySet Name="VwPivotIllustration_es" EntityType="Self.VwPivotIllustration_es" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GlobalVOModelStoreContainer" CdmEntityContainer="GlobalVOEntities">
+          <EntitySetMapping Name="VwPivotIllustration_en">
+            <EntityTypeMapping TypeName="GlobalVOModel.VwPivotIllustration_en">
+              <MappingFragment StoreEntitySet="VwPivotIllustration_en">
+                <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+                <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+                <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+                <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+                <ScalarProperty Name="Bussiness_Line_Id" ColumnName="Bussiness_Line_Id" />
+                <ScalarProperty Name="BusinessLine" ColumnName="BusinessLine" />
+                <ScalarProperty Name="InsuredId" ColumnName="InsuredId" />
+                <ScalarProperty Name="InsuredName" ColumnName="InsuredName" />
+                <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+                <ScalarProperty Name="PolicyStatusId" ColumnName="PolicyStatusId" />
+                <ScalarProperty Name="PolicyStatus" ColumnName="PolicyStatus" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Agent" ColumnName="Agent" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="Subscriber" ColumnName="Subscriber" />
+                <ScalarProperty Name="SubscriberId" ColumnName="SubscriberId" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="NameMonth" ColumnName="NameMonth" />
+                <ScalarProperty Name="PivotQuarter" ColumnName="PivotQuarter" />
+                <ScalarProperty Name="PivotMonth" ColumnName="PivotMonth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwPivotIllustration_es">
+            <EntityTypeMapping TypeName="GlobalVOModel.VwPivotIllustration_es">
+              <MappingFragment StoreEntitySet="VwPivotIllustration_es">
+                <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+                <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+                <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+                <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+                <ScalarProperty Name="Bussiness_Line_Id" ColumnName="Bussiness_Line_Id" />
+                <ScalarProperty Name="BusinessLine" ColumnName="BusinessLine" />
+                <ScalarProperty Name="InsuredId" ColumnName="InsuredId" />
+                <ScalarProperty Name="InsuredName" ColumnName="InsuredName" />
+                <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+                <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+                <ScalarProperty Name="PolicyStatusId" ColumnName="PolicyStatusId" />
+                <ScalarProperty Name="PolicyStatus" ColumnName="PolicyStatus" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Agent" ColumnName="Agent" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="Subscriber" ColumnName="Subscriber" />
+                <ScalarProperty Name="SubscriberId" ColumnName="SubscriberId" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="NameMonth" ColumnName="NameMonth" />
+                <ScalarProperty Name="PivotQuarter" ColumnName="PivotQuarter" />
+                <ScalarProperty Name="PivotMonth" ColumnName="PivotMonth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://wssearchxpert.dev.atlantica.local/Search.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="Base.Company">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ATL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ATM">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="STB">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="STI">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="STSV">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="STLSV">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CON">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Base.Company" nillable="true" type="tns:Base.Company" />
+  <xs:simpleType name="Base.Cores">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INTEGRATION">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">99</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OIPA" />
+      <xs:enumeration value="SYSFLEX" />
+      <xs:enumeration value="GLOBAL" />
+      <xs:enumeration value="PLEXYS" />
+      <xs:enumeration value="ADVISOR" />
+      <xs:enumeration value="SALESLOGIX" />
+      <xs:enumeration value="ELSLI" />
+      <xs:enumeration value="ELSIN" />
+      <xs:enumeration value="GLOBAL_VO" />
+      <xs:enumeration value="ATLAN" />
+      <xs:enumeration value="GLOBALAUTO" />
+      <xs:enumeration value="GLOBALHEALTH" />
+      <xs:enumeration value="DATAINTAKE" />
+      <xs:enumeration value="BLACKLIST" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Base.Cores" nillable="true" type="tns:Base.Cores" />
+  <xs:simpleType name="SearchResult.Types">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Name" />
+      <xs:enumeration value="Text" />
+      <xs:enumeration value="None" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SearchResult.Types" nillable="true" type="tns:SearchResult.Types" />
+  <xs:simpleType name="SearchResult.Status">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Empty" />
+      <xs:enumeration value="NotMatch" />
+      <xs:enumeration value="PossibleMatch" />
+      <xs:enumeration value="Match" />
+      <xs:enumeration value="Deleted" />
+      <xs:enumeration value="NotFound" />
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="MatchRelease" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SearchResult.Status" nillable="true" type="tns:SearchResult.Status" />
+</xs:schema>
