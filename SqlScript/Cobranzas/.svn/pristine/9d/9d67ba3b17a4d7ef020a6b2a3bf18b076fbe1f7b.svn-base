@@ -1,0 +1,265 @@
+﻿<div class="stcontent-body">
+    <div class="modal fade" id="ModalMovimiento" tabindex="-1" role="dialog" aria-labelledby="ModalMovimientoLabel">
+    </div>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 id="titleModal" class="modal-title"></h4>
+                </div>
+                <div id="bodymodal" class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="contenedor_tabs cobranzas">
+        <ul class="tabs_ttle dvddo_in_3" id="UlMainMenu">
+            <li class="active dos_lineas" onclick="SetStage(1, this);">
+                <!--<span class="num_cases">4</span>-->
+                <a href="#">
+                    <span>
+                        RECAUDO REFERENCIADO
+                    </span>
+                </a>
+            </li>
+            <li class="dos_lineas" onclick="SetStage(2, this);">
+                <!--<span class="num_cases">1</span>-->
+                <a href="#">
+                    <span>
+                        COBROS AUTOMÁTICOS
+                    </span>
+                </a>
+            </li>
+            <li class=" dos_lineas" onclick="SetStage(3,this);">
+                <!--<span class="num_cases">1</span>-->
+                <a href="#">
+                    <span>
+                        PRE-NOTIFICACIÓN
+                    </span>
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        ARCHIVOS
+                    </a>
+                </h4>
+            </div>
+
+            <div id="" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <!--
+                    Cuerpo del Queue
+                    -->
+                    <div class="accordion-body">
+                        <div class="panel panel-info">
+                            <!--<div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Compañias
+                                </h3>
+                            </div>-->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                                                    <select class="form-control">
+                                                        <option value="">Seleccione un...</option>
+                                                        <option value="1">Fecha</option>
+                                                        <option value="2">Estatuso</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12 pdl0">
+                                                    <button class="btn btn-info btn-block" type="submit" data-toggle="modal" data-target="#myModal5">
+                                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                                        Buscar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="header-table">
+                                                <th>Fecha</th>
+                                                <th>Cantidad Cliente</th>
+                                                <th>Monto Total Recaudación</th>
+                                                <th>Nombre Archivo</th>
+                                                <th>Estatus</th>
+                                                <th>Aprobadas BHD</th>
+                                                <th>Cantidad Pagos</th>
+                                                <th>Monto Pagos BHD</th>
+                                                <th>Montos Pagos Aplicados</th>
+                                                <th>Aprobación Easybank</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Detalle
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                                                    <select class="form-control">
+                                                        <option value="">Seleccione un...</option>
+                                                        <option value="1">Cliente</option>
+                                                        <option value="2">Cédula</option>
+                                                        <option value="3">No. Préstamo</option>
+                                                        <option value="4">Monto</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12 pdl0">
+                                                    <button class="btn btn-info btn-block" type="submit" data-toggle="modal" data-target="#myModal5">
+                                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                                        Buscar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="header-table">
+                                                <th>No. Referencia</th>
+                                                <th>Tipo Registro</th>
+                                                <th>Nombre Completo</th>
+                                                <th>RNC/Cédula</th>
+                                                <th>No. Cuenta</th>
+                                                <th>Total a Pagar</th>
+                                                <th>Total Pagado BHD</th>
+                                                <th>Canal BHD</th>
+                                                <th>Fecha Pago</th>
+                                                <th>Recibo Easybank</th>
+                                                <th>Total Aplicado</th>
+                                                <th>Estatus</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="moduloNotesAtlantica">
+        <div class="moduloNotesAtlanticaHeader">
+            <label class="titulomoduloNotesAtlantica">
+                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                Escribir una nota
+            </label>
+            <a id="btnMinimizarmoduloNotesAtlantica" href="#" class="btnMinimizarmoduloNotesAtlantica" onclick="minizarModalSTSV()" style="display: none;"></a>
+            <a id="btnMaximizarmoduloNotesAtlantica" href="#" class="btnMaximizarmoduloNotesAtlantica" onclick="maximizarModalSTSV()" style="display: none;"></a>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,834 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LoansModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="FILL_DROP_DOWN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+          <Parameter Name="DropDownName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_CLIENT_INFORMATIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+          <Parameter Name="clientId" Type="bigint" Mode="In" />
+          <Parameter Name="IdentificationNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_CONTACT_EMAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+          <Parameter Name="clientId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_CONTACT_PHONE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+          <Parameter Name="clientId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_INFORMATIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+          <Parameter Name="clienteName" Type="varchar" Mode="In" />
+          <Parameter Name="identificationNumber" Type="varchar" Mode="In" />
+          <Parameter Name="quotationId" Type="bigint" Mode="In" />
+          <Parameter Name="accountId" Type="bigint" Mode="In" />
+          <Parameter Name="collateralReference" Type="varchar" Mode="In" />
+          <Parameter Name="Chassis" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_CONTACT_EMAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+          <Parameter Name="contactEmailId" Type="bigint" Mode="In" />
+          <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="emailType" Type="varchar" Mode="In" />
+          <Parameter Name="comments" Type="varchar" Mode="In" />
+          <Parameter Name="IsPrimary" Type="bit" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_CONTACT_PHONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+          <Parameter Name="contactPhoneId" Type="bigint" Mode="In" />
+          <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+          <Parameter Name="CountryID" Type="int" Mode="In" />
+          <Parameter Name="AreaCode" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="PhoneType" Type="varchar" Mode="In" />
+          <Parameter Name="comments" Type="varchar" Mode="In" />
+          <Parameter Name="IsPrimary" Type="bit" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_CODEBTOR_INFORMATIONS_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+          <Parameter Name="accountId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_COLLATERAL_INFORMATIONS_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+          <Parameter Name="collateralId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_COLLATERAL_INFORMATIONS_RESUMEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+          <Parameter Name="accountId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_ENDORSE_COLLATERAL_INFORMATIONS_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+          <Parameter Name="accountId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_INFORMATIONS_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+          <Parameter Name="quotationId" Type="bigint" Mode="In" />
+          <Parameter Name="LoanNumber" Type="int" Mode="In" />
+          <Parameter Name="accountId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_PAYMENT_PLAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_PAYMENT_PLAN_PROYECTIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+          <Parameter Name="DateStatement" Type="date" Mode="In" />
+          <Parameter Name="IdTipo" Type="int" Mode="In" />
+          <Parameter Name="MontoPago" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_LOANS_QUOTA_HEADER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+          <Parameter Name="accountId" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="LoansModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LoansModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LoansEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="SP_GET_CLIENT_INFORMATIONS" ReturnType="Collection(LoansModel.SP_GET_CLIENT_INFORMATIONS_Result)">
+            <Parameter Name="clientId" Mode="In" Type="Int64" />
+            <Parameter Name="IdentificationNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_CONTACT_PHONE" ReturnType="Collection(LoansModel.SP_GET_CONTACT_PHONE_Result)">
+          <Parameter Name="clientId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_CONTACT_EMAIL" ReturnType="Collection(LoansModel.SP_GET_CONTACT_EMAIL_Result)">
+          <Parameter Name="clientId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_INFORMATIONS_DETAIL" ReturnType="Collection(LoansModel.SP_GET_LOANS_INFORMATIONS_DETAIL_Result)">
+            <Parameter Name="quotationId" Mode="In" Type="Int64" />
+            <Parameter Name="LoanNumber" Mode="In" Type="Int32" />
+            <Parameter Name="accountId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_COLLATERAL_INFORMATIONS_RESUMEN" ReturnType="Collection(LoansModel.SP_GET_LOANS_COLLATERAL_INFORMATIONS_RESUMEN_Result)">
+          <Parameter Name="accountId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_COLLATERAL_INFORMATIONS_DETAIL" ReturnType="Collection(LoansModel.SP_GET_LOANS_COLLATERAL_INFORMATIONS_DETAIL_Result)">
+          <Parameter Name="collateralId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_CODEBTOR_INFORMATIONS_DETAIL" ReturnType="Collection(LoansModel.SP_GET_LOANS_CODEBTOR_INFORMATIONS_DETAIL_Result)">
+          <Parameter Name="accountId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_PAYMENT_PLAN" ReturnType="Collection(LoansModel.SP_GET_LOANS_PAYMENT_PLAN_Result)">
+          <Parameter Name="AccountId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_ENDORSE_COLLATERAL_INFORMATIONS_DETAIL" ReturnType="Collection(LoansModel.SP_GET_LOANS_ENDORSE_COLLATERAL_INFORMATIONS_DETAIL_Result)">
+          <Parameter Name="accountId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_QUOTA_HEADER" ReturnType="Collection(LoansModel.SP_GET_LOANS_QUOTA_HEADER_Result)">
+          <Parameter Name="accountId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_INFORMATIONS" ReturnType="Collection(LoansModel.SP_GET_LOANS_INFORMATIONS_Result)">
+            <Parameter Name="clienteName" Mode="In" Type="String" />
+            <Parameter Name="identificationNumber" Mode="In" Type="String" />
+            <Parameter Name="quotationId" Mode="In" Type="Int64" />
+            <Parameter Name="accountId" Mode="In" Type="Int64" />
+            <Parameter Name="collateralReference" Mode="In" Type="String" />
+            <Parameter Name="Chassis" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FILL_DROP_DOWN" ReturnType="Collection(LoansModel.FILL_DROP_DOWN_Result)">
+          <Parameter Name="DropDownName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_CONTACT_PHONES" ReturnType="Collection(LoansModel.SP_SET_CONTACT_PHONES_Result)">
+            <Parameter Name="contactPhoneId" Mode="In" Type="Int64" />
+            <Parameter Name="relatedContactId" Mode="In" Type="Int64" />
+            <Parameter Name="CountryID" Mode="In" Type="Int32" />
+            <Parameter Name="AreaCode" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="PhoneType" Mode="In" Type="String" />
+            <Parameter Name="comments" Mode="In" Type="String" />
+            <Parameter Name="IsPrimary" Mode="In" Type="Boolean" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_CONTACT_EMAIL" ReturnType="Collection(LoansModel.SP_SET_CONTACT_EMAIL_Result)">
+            <Parameter Name="contactEmailId" Mode="In" Type="Int64" />
+            <Parameter Name="relatedContactId" Mode="In" Type="Int64" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="emailType" Mode="In" Type="String" />
+            <Parameter Name="comments" Mode="In" Type="String" />
+            <Parameter Name="IsPrimary" Mode="In" Type="Boolean" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_LOANS_PAYMENT_PLAN_PROYECTIONS" ReturnType="Collection(LoansModel.SP_GET_LOANS_PAYMENT_PLAN_PROYECTIONS_Result)">
+            <Parameter Name="AccountId" Mode="In" Type="Int64" />
+            <Parameter Name="DateStatement" Mode="In" Type="DateTime" />
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+            <Parameter Name="MontoPago" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_GET_CLIENT_INFORMATIONS_Result">
+          <Property Type="Int64" Name="clientId" Nullable="false" />
+          <Property Type="Int64" Name="relatedContactId" Nullable="false" />
+          <Property Type="Int32" Name="countryID" Nullable="true" />
+          <Property Type="Int32" Name="entityRolId" Nullable="true" />
+          <Property Type="Int32" Name="identificationTypeId" Nullable="true" />
+          <Property Type="Int32" Name="entityClassId" Nullable="true" />
+          <Property Type="Int32" Name="personTypeId" Nullable="true" />
+          <Property Type="Int32" Name="maritalStatusId" Nullable="true" />
+          <Property Type="Int32" Name="professionId" Nullable="true" />
+          <Property Type="Int32" Name="companyId" Nullable="false" />
+          <Property Type="Int32" Name="linkedTypeId" Nullable="true" />
+          <Property Type="Int32" Name="clientTypeByCompanyId" Nullable="true" />
+          <Property Type="Int32" Name="reasonId" Nullable="true" />
+          <Property Type="Int32" Name="clientTypeBySIBId" Nullable="true" />
+          <Property Type="String" Name="Sex" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Lastname" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="SecondLastname" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Nickname" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="MarriedName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="IdentificationNumber" Nullable="true" MaxLength="60" />
+          <Property Type="DateTime" Name="BirthDate" Nullable="true" />
+          <Property Type="DateTime" Name="admissionDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="creditInformation" Nullable="true" />
+          <Property Type="String" Name="ClientReference" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InactiveComment" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="numberDependents" Nullable="true" />
+          <Property Type="Int32" Name="numberEmployees" Nullable="true" />
+          <Property Type="Decimal" Name="AnnualSales" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="AssetValue" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="dateIncorporation" Nullable="true" />
+          <Property Type="Boolean" Name="ownHouse" Nullable="true" />
+          <Property Type="Boolean" Name="IsClientSentCollection" Nullable="true" />
+          <Property Type="String" Name="depositType" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="TypeNCF" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="CountryName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="rolName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="IdentificationName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ClassName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="personTypeName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="MaritalStatusName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProfessionName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="companyName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="linkedTypeName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="clientTypeByCompanyName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="clientTypeBySIBName" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ModiDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreateUsrId" Nullable="false" />
+          <Property Type="Int32" Name="ModiUsrId" Nullable="true" />
+          <Property Type="String" Name="hostName" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="addressId" Nullable="true" />
+          <Property Type="Int32" Name="addressCountryID" Nullable="true" />
+          <Property Type="Int32" Name="addressprovinceId" Nullable="true" />
+          <Property Type="Int32" Name="addresscityId" Nullable="true" />
+          <Property Type="Int32" Name="addressphysicalSectorId" Nullable="true" />
+          <Property Type="Int64" Name="contactPhoneId" Nullable="true" />
+          <Property Type="Int64" Name="contactEmailId" Nullable="true" />
+          <Property Type="Boolean" Name="AddressIsPrimary" Nullable="true" />
+          <Property Type="String" Name="addressType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="streetName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="streetNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="buildingName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="postalCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="postalZone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="addressAdditional" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="AddressCountryName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="provinceName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="cityName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="physicalSectorName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="AreaCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhoneType" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="PhoneComments" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="PhoneIsPrimary" Nullable="true" />
+          <Property Type="String" Name="PhoneCountryName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="2500" />
+          <Property Type="String" Name="emailType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="emailComments" Nullable="true" MaxLength="2500" />
+          <Property Type="Boolean" Name="emailIsPrimary" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_CONTACT_PHONE_Result">
+          <Property Type="Int64" Name="contactPhoneId" Nullable="false" />
+          <Property Type="String" Name="AreaCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhoneType" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="IsPrimary" Nullable="true" />
+          <Property Type="String" Name="CountryName" Nullable="true" MaxLength="150" />
+          <Property Type="Int64" Name="relatedContactId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_CONTACT_EMAIL_Result">
+          <Property Type="Int64" Name="contactEmailId" Nullable="false" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="2500" />
+          <Property Type="String" Name="emailType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="comments" Nullable="true" MaxLength="2500" />
+          <Property Type="Boolean" Name="IsPrimary" Nullable="true" />
+          <Property Type="Int64" Name="relatedContactId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_INFORMATIONS_DETAIL_Result">
+          <Property Type="Int64" Name="quotationId" Nullable="true" />
+          <Property Type="Int32" Name="LoanNumber" Nullable="true" />
+          <Property Type="String" Name="fullName" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="clientid" Nullable="false" />
+          <Property Type="String" Name="identificationNumber" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="LoanStatusName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="quotationPaymentTypeName" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="frequency" Nullable="true" />
+          <Property Type="Int32" Name="loanTerm" Nullable="true" />
+          <Property Type="Int32" Name="LoanDillingDay" Nullable="true" />
+          <Property Type="String" Name="CurrencyName" Nullable="true" MaxLength="150" />
+          <Property Type="Decimal" Name="AmountRequested" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="amountApproved" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="financedAmount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="DisbursedAmount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="OutstandingBalance" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="QuotaAmount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="RateAnnual" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="RateMonth" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="RateCommissionAnnual" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="RateCommissionMonth" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="RateLatenAnnual" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="RateLateMonth" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="qoutationDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ApprovedDate" Nullable="true" />
+          <Property Type="DateTime" Name="disbursementDate" Nullable="true" />
+          <Property Type="DateTime" Name="expirationDate" Nullable="true" />
+          <Property Type="DateTime" Name="ClosedDate" Nullable="true" />
+          <Property Type="DateTime" Name="LastClosedDate" Nullable="true" />
+          <Property Type="DateTime" Name="LastQuotaDate" Nullable="true" />
+          <Property Type="DateTime" Name="lastPaidDate" Nullable="true" />
+          <Property Type="String" Name="fullNameExecutive" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="fullNamePromoter" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="frequencyName" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_COLLATERAL_INFORMATIONS_RESUMEN_Result">
+          <Property Type="Int64" Name="accountId" Nullable="false" />
+          <Property Type="Int64" Name="collateralId" Nullable="false" />
+          <Property Type="String" Name="collateralName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="collateralTypeName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="collateralTypeSIBName" Nullable="true" MaxLength="150" />
+          <Property Type="Decimal" Name="percent" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="amount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Int64" Name="contractNumber" Nullable="true" />
+          <Property Type="String" Name="codeDesc" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_COLLATERAL_INFORMATIONS_DETAIL_Result">
+          <Property Type="Int32" Name="collateralFieldId" Nullable="false" />
+          <Property Type="Int64" Name="collateralId" Nullable="false" />
+          <Property Type="String" Name="collateralFieldName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="collateralFieldValue" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="ISRequired" Nullable="true" />
+          <Property Type="String" Name="collateralFieldComment" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_CODEBTOR_INFORMATIONS_DETAIL_Result">
+          <Property Type="String" Name="account" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="accountId" Nullable="false" />
+          <Property Type="String" Name="accountStatusName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="accountName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Fullname" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="codebtorFullname" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="codebtorIdentificationNumber" Nullable="true" MaxLength="60" />
+          <Property Type="Int64" Name="codebtorClientId" Nullable="false" />
+          <Property Type="Int64" Name="codebtorrelatedContactId" Nullable="false" />
+          <Property Type="String" Name="codebtorTypeName" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="companyId" Nullable="false" />
+          <Property Type="Int64" Name="clientId" Nullable="false" />
+          <Property Type="Int32" Name="codebtorTypeId" Nullable="true" />
+          <Property Type="Boolean" Name="canDeposit" Nullable="true" />
+          <Property Type="Boolean" Name="canWithdraw" Nullable="true" />
+          <Property Type="Boolean" Name="canCancel" Nullable="true" />
+          <Property Type="Boolean" Name="IsJointY" Nullable="true" />
+          <Property Type="Boolean" Name="IsJointO" Nullable="true" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ModiDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreateUsrId" Nullable="false" />
+          <Property Type="Int32" Name="ModiUsrId" Nullable="true" />
+          <Property Type="String" Name="hostName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_PAYMENT_PLAN_Result">
+          <Property Type="Int32" Name="Quota" Nullable="true" />
+          <Property Type="DateTime" Name="QuotaDate" Nullable="true" />
+          <Property Type="Decimal" Name="CapitalBalance" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Capital" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LoanRate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FinancialQuota" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Expense" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalPayment" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Commision" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_ENDORSE_COLLATERAL_INFORMATIONS_DETAIL_Result">
+          <Property Type="String" Name="policyTypeName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="policyNo" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Amount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+          <Property Type="String" Name="policyCollateralName" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="DateTime" Name="EffectiveDate" Nullable="true" />
+          <Property Type="String" Name="endorseNo" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="endorseAmount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="DateTime" Name="endorseInicialDate" Nullable="true" />
+          <Property Type="DateTime" Name="endorseEffectiveDate" Nullable="true" />
+          <Property Type="Int32" Name="collateralId" Nullable="false" />
+          <Property Type="Int32" Name="companyId" Nullable="false" />
+          <Property Type="Int32" Name="policyTypeId" Nullable="true" />
+          <Property Type="Int64" Name="relatedContactId" Nullable="true" />
+          <Property Type="String" Name="policyCollateralComment" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="notificationDate" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ModiDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreateUsrId" Nullable="false" />
+          <Property Type="Int32" Name="ModiUsrId" Nullable="true" />
+          <Property Type="String" Name="hostName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="endorseDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_QUOTA_HEADER_Result">
+          <Property Type="Int64" Name="transactionPaymentPlanId" Nullable="false" />
+          <Property Type="Int32" Name="quotaNumber" Nullable="true" />
+          <Property Type="DateTime" Name="emisionQuotaDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="endQuotaDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="validationTotal" Nullable="true" Precision="22" Scale="3" />
+          <Property Type="Decimal" Name="validationBalance" Nullable="true" Precision="23" Scale="3" />
+          <Property Type="Boolean" Name="ISLastQuota" Nullable="true" />
+          <Property Type="Boolean" Name="IsPrepayment" Nullable="true" />
+          <Property Type="String" Name="transactionReasonName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="LoanStatusName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="fullName" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="accountId" Nullable="true" />
+          <Property Type="Int32" Name="loanNumber" Nullable="true" />
+          <Property Type="Int32" Name="transactionReasonId" Nullable="true" />
+          <Property Type="Decimal" Name="capitalAmount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="interestAmoint" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="commissionAmount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="expenseAmount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="rateLateAmount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="chargesPrepayment" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="capitalBalance" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="interestBalance" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="commissionBalance" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="expenseBalance" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="rateLateBalance" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Int32" Name="chargesPrepaymentBalance" Nullable="false" />
+          <Property Type="DateTime" Name="dCapital" Nullable="true" />
+          <Property Type="DateTime" Name="dInterestAmoint" Nullable="true" />
+          <Property Type="DateTime" Name="dCommissionAmoun" Nullable="true" />
+          <Property Type="DateTime" Name="dExpenseAmount" Nullable="true" />
+          <Property Type="DateTime" Name="dRateLateAmount" Nullable="true" />
+          <Property Type="DateTime" Name="dChargeAmount" Nullable="true" />
+          <Property Type="DateTime" Name="dDiscountAmount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_INFORMATIONS_Result">
+          <Property Type="Int64" Name="accountId" Nullable="false" />
+          <Property Type="Int64" Name="quotationId" Nullable="true" />
+          <Property Type="Int64" Name="relatedContactId" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Lastname" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="SecondLastname" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="IdentificationNumber" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="IdentificationName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="account" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AreaCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="FILL_DROP_DOWN_Result">
+          <Property Type="String" Name="Key" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Value" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_CONTACT_PHONES_Result">
+          <Property Type="Int64" Name="contactPhoneId" Nullable="true" />
+          <Property Type="Int64" Name="relatedContactId" Nullable="true" />
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_CONTACT_EMAIL_Result">
+          <Property Type="Int64" Name="contactEmailId" Nullable="true" />
+          <Property Type="Int64" Name="relatedContactId" Nullable="true" />
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_LOANS_PAYMENT_PLAN_PROYECTIONS_Result">
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Value" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="TipoSaldo" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LoansModelStoreContainer" CdmEntityContainer="LoansEntities" >
+          <FunctionImportMapping FunctionImportName="SP_GET_CLIENT_INFORMATIONS" FunctionName="LoansModel.Store.SP_GET_CLIENT_INFORMATIONS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_CLIENT_INFORMATIONS_Result">
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="relatedContactId" ColumnName="relatedContactId" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="entityRolId" ColumnName="entityRolId" />
+                <ScalarProperty Name="identificationTypeId" ColumnName="identificationTypeId" />
+                <ScalarProperty Name="entityClassId" ColumnName="entityClassId" />
+                <ScalarProperty Name="personTypeId" ColumnName="personTypeId" />
+                <ScalarProperty Name="maritalStatusId" ColumnName="maritalStatusId" />
+                <ScalarProperty Name="professionId" ColumnName="professionId" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="linkedTypeId" ColumnName="linkedTypeId" />
+                <ScalarProperty Name="clientTypeByCompanyId" ColumnName="clientTypeByCompanyId" />
+                <ScalarProperty Name="reasonId" ColumnName="reasonId" />
+                <ScalarProperty Name="clientTypeBySIBId" ColumnName="clientTypeBySIBId" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="SecondLastname" ColumnName="SecondLastname" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="MarriedName" ColumnName="MarriedName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="admissionDate" ColumnName="admissionDate" />
+                <ScalarProperty Name="creditInformation" ColumnName="creditInformation" />
+                <ScalarProperty Name="ClientReference" ColumnName="ClientReference" />
+                <ScalarProperty Name="InactiveComment" ColumnName="InactiveComment" />
+                <ScalarProperty Name="numberDependents" ColumnName="numberDependents" />
+                <ScalarProperty Name="numberEmployees" ColumnName="numberEmployees" />
+                <ScalarProperty Name="AnnualSales" ColumnName="AnnualSales" />
+                <ScalarProperty Name="AssetValue" ColumnName="AssetValue" />
+                <ScalarProperty Name="dateIncorporation" ColumnName="dateIncorporation" />
+                <ScalarProperty Name="ownHouse" ColumnName="ownHouse" />
+                <ScalarProperty Name="IsClientSentCollection" ColumnName="IsClientSentCollection" />
+                <ScalarProperty Name="depositType" ColumnName="depositType" />
+                <ScalarProperty Name="TypeNCF" ColumnName="TypeNCF" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="rolName" ColumnName="rolName" />
+                <ScalarProperty Name="IdentificationName" ColumnName="IdentificationName" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="personTypeName" ColumnName="personTypeName" />
+                <ScalarProperty Name="MaritalStatusName" ColumnName="MaritalStatusName" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="linkedTypeName" ColumnName="linkedTypeName" />
+                <ScalarProperty Name="clientTypeByCompanyName" ColumnName="clientTypeByCompanyName" />
+                <ScalarProperty Name="clientTypeBySIBName" ColumnName="clientTypeBySIBName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModiDate" ColumnName="ModiDate" />
+                <ScalarProperty Name="CreateUsrId" ColumnName="CreateUsrId" />
+                <ScalarProperty Name="ModiUsrId" ColumnName="ModiUsrId" />
+                <ScalarProperty Name="hostName" ColumnName="hostName" />
+                <ScalarProperty Name="addressId" ColumnName="addressId" />
+                <ScalarProperty Name="addressCountryID" ColumnName="addressCountryID" />
+                <ScalarProperty Name="addressprovinceId" ColumnName="addressprovinceId" />
+                <ScalarProperty Name="addresscityId" ColumnName="addresscityId" />
+                <ScalarProperty Name="addressphysicalSectorId" ColumnName="addressphysicalSectorId" />
+                <ScalarProperty Name="contactPhoneId" ColumnName="contactPhoneId" />
+                <ScalarProperty Name="contactEmailId" ColumnName="contactEmailId" />
+                <ScalarProperty Name="AddressIsPrimary" ColumnName="AddressIsPrimary" />
+                <ScalarProperty Name="addressType" ColumnName="addressType" />
+                <ScalarProperty Name="streetName" ColumnName="streetName" />
+                <ScalarProperty Name="streetNumber" ColumnName="streetNumber" />
+                <ScalarProperty Name="buildingName" ColumnName="buildingName" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+                <ScalarProperty Name="postalZone" ColumnName="postalZone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="addressAdditional" ColumnName="addressAdditional" />
+                <ScalarProperty Name="AddressCountryName" ColumnName="AddressCountryName" />
+                <ScalarProperty Name="provinceName" ColumnName="provinceName" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="physicalSectorName" ColumnName="physicalSectorName" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PhoneType" ColumnName="PhoneType" />
+                <ScalarProperty Name="PhoneComments" ColumnName="PhoneComments" />
+                <ScalarProperty Name="PhoneIsPrimary" ColumnName="PhoneIsPrimary" />
+                <ScalarProperty Name="PhoneCountryName" ColumnName="PhoneCountryName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="emailType" ColumnName="emailType" />
+                <ScalarProperty Name="emailComments" ColumnName="emailComments" />
+                <ScalarProperty Name="emailIsPrimary" ColumnName="emailIsPrimary" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_CONTACT_PHONE" FunctionName="LoansModel.Store.SP_GET_CONTACT_PHONE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_CONTACT_PHONE_Result">
+                <ScalarProperty Name="contactPhoneId" ColumnName="contactPhoneId" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PhoneType" ColumnName="PhoneType" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="relatedContactId" ColumnName="relatedContactId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_CONTACT_EMAIL" FunctionName="LoansModel.Store.SP_GET_CONTACT_EMAIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_CONTACT_EMAIL_Result">
+                <ScalarProperty Name="contactEmailId" ColumnName="contactEmailId" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="emailType" ColumnName="emailType" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="relatedContactId" ColumnName="relatedContactId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_INFORMATIONS_DETAIL" FunctionName="LoansModel.Store.SP_GET_LOANS_INFORMATIONS_DETAIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_INFORMATIONS_DETAIL_Result">
+                <ScalarProperty Name="quotationId" ColumnName="quotationId" />
+                <ScalarProperty Name="LoanNumber" ColumnName="LoanNumber" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="clientid" ColumnName="clientid" />
+                <ScalarProperty Name="identificationNumber" ColumnName="identificationNumber" />
+                <ScalarProperty Name="LoanStatusName" ColumnName="LoanStatusName" />
+                <ScalarProperty Name="quotationPaymentTypeName" ColumnName="quotationPaymentTypeName" />
+                <ScalarProperty Name="frequency" ColumnName="frequency" />
+                <ScalarProperty Name="loanTerm" ColumnName="loanTerm" />
+                <ScalarProperty Name="LoanDillingDay" ColumnName="LoanDillingDay" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="AmountRequested" ColumnName="AmountRequested" />
+                <ScalarProperty Name="amountApproved" ColumnName="amountApproved" />
+                <ScalarProperty Name="financedAmount" ColumnName="financedAmount" />
+                <ScalarProperty Name="DisbursedAmount" ColumnName="DisbursedAmount" />
+                <ScalarProperty Name="OutstandingBalance" ColumnName="OutstandingBalance" />
+                <ScalarProperty Name="QuotaAmount" ColumnName="QuotaAmount" />
+                <ScalarProperty Name="RateAnnual" ColumnName="RateAnnual" />
+                <ScalarProperty Name="RateMonth" ColumnName="RateMonth" />
+                <ScalarProperty Name="RateCommissionAnnual" ColumnName="RateCommissionAnnual" />
+                <ScalarProperty Name="RateCommissionMonth" ColumnName="RateCommissionMonth" />
+                <ScalarProperty Name="RateLatenAnnual" ColumnName="RateLatenAnnual" />
+                <ScalarProperty Name="RateLateMonth" ColumnName="RateLateMonth" />
+                <ScalarProperty Name="qoutationDate" ColumnName="qoutationDate" />
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="disbursementDate" ColumnName="disbursementDate" />
+                <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="LastClosedDate" ColumnName="LastClosedDate" />
+                <ScalarProperty Name="LastQuotaDate" ColumnName="LastQuotaDate" />
+                <ScalarProperty Name="lastPaidDate" ColumnName="lastPaidDate" />
+                <ScalarProperty Name="fullNameExecutive" ColumnName="fullNameExecutive" />
+                <ScalarProperty Name="fullNamePromoter" ColumnName="fullNamePromoter" />
+                <ScalarProperty Name="frequencyName" ColumnName="frequencyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_COLLATERAL_INFORMATIONS_RESUMEN" FunctionName="LoansModel.Store.SP_GET_LOANS_COLLATERAL_INFORMATIONS_RESUMEN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_COLLATERAL_INFORMATIONS_RESUMEN_Result">
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="collateralId" ColumnName="collateralId" />
+                <ScalarProperty Name="collateralName" ColumnName="collateralName" />
+                <ScalarProperty Name="collateralTypeName" ColumnName="collateralTypeName" />
+                <ScalarProperty Name="collateralTypeSIBName" ColumnName="collateralTypeSIBName" />
+                <ScalarProperty Name="percent" ColumnName="percent" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="contractNumber" ColumnName="contractNumber" />
+                <ScalarProperty Name="codeDesc" ColumnName="codeDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_COLLATERAL_INFORMATIONS_DETAIL" FunctionName="LoansModel.Store.SP_GET_LOANS_COLLATERAL_INFORMATIONS_DETAIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_COLLATERAL_INFORMATIONS_DETAIL_Result">
+                <ScalarProperty Name="collateralFieldId" ColumnName="collateralFieldId" />
+                <ScalarProperty Name="collateralId" ColumnName="collateralId" />
+                <ScalarProperty Name="collateralFieldName" ColumnName="collateralFieldName" />
+                <ScalarProperty Name="collateralFieldValue" ColumnName="collateralFieldValue" />
+                <ScalarProperty Name="ISRequired" ColumnName="ISRequired" />
+                <ScalarProperty Name="collateralFieldComment" ColumnName="collateralFieldComment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_CODEBTOR_INFORMATIONS_DETAIL" FunctionName="LoansModel.Store.SP_GET_LOANS_CODEBTOR_INFORMATIONS_DETAIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_CODEBTOR_INFORMATIONS_DETAIL_Result">
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="accountStatusName" ColumnName="accountStatusName" />
+                <ScalarProperty Name="accountName" ColumnName="accountName" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="codebtorFullname" ColumnName="codebtorFullname" />
+                <ScalarProperty Name="codebtorIdentificationNumber" ColumnName="codebtorIdentificationNumber" />
+                <ScalarProperty Name="codebtorClientId" ColumnName="codebtorClientId" />
+                <ScalarProperty Name="codebtorrelatedContactId" ColumnName="codebtorrelatedContactId" />
+                <ScalarProperty Name="codebtorTypeName" ColumnName="codebtorTypeName" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="codebtorTypeId" ColumnName="codebtorTypeId" />
+                <ScalarProperty Name="canDeposit" ColumnName="canDeposit" />
+                <ScalarProperty Name="canWithdraw" ColumnName="canWithdraw" />
+                <ScalarProperty Name="canCancel" ColumnName="canCancel" />
+                <ScalarProperty Name="IsJointY" ColumnName="IsJointY" />
+                <ScalarProperty Name="IsJointO" ColumnName="IsJointO" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModiDate" ColumnName="ModiDate" />
+                <ScalarProperty Name="CreateUsrId" ColumnName="CreateUsrId" />
+                <ScalarProperty Name="ModiUsrId" ColumnName="ModiUsrId" />
+                <ScalarProperty Name="hostName" ColumnName="hostName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_PAYMENT_PLAN" FunctionName="LoansModel.Store.SP_GET_LOANS_PAYMENT_PLAN" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_PAYMENT_PLAN_Result">
+                <ScalarProperty Name="Quota" ColumnName="Quota" />
+                <ScalarProperty Name="QuotaDate" ColumnName="QuotaDate" />
+                <ScalarProperty Name="CapitalBalance" ColumnName="CapitalBalance" />
+                <ScalarProperty Name="Capital" ColumnName="Capital" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="LoanRate" ColumnName="LoanRate" />
+                <ScalarProperty Name="FinancialQuota" ColumnName="FinancialQuota" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="TotalPayment" ColumnName="TotalPayment" />
+                <ScalarProperty Name="Commision" ColumnName="Commision" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_ENDORSE_COLLATERAL_INFORMATIONS_DETAIL" FunctionName="LoansModel.Store.SP_GET_LOANS_ENDORSE_COLLATERAL_INFORMATIONS_DETAIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_ENDORSE_COLLATERAL_INFORMATIONS_DETAIL_Result">
+                <ScalarProperty Name="policyTypeName" ColumnName="policyTypeName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="policyNo" ColumnName="policyNo" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="policyCollateralName" ColumnName="policyCollateralName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="endorseNo" ColumnName="endorseNo" />
+                <ScalarProperty Name="endorseAmount" ColumnName="endorseAmount" />
+                <ScalarProperty Name="endorseInicialDate" ColumnName="endorseInicialDate" />
+                <ScalarProperty Name="endorseEffectiveDate" ColumnName="endorseEffectiveDate" />
+                <ScalarProperty Name="collateralId" ColumnName="collateralId" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="policyTypeId" ColumnName="policyTypeId" />
+                <ScalarProperty Name="relatedContactId" ColumnName="relatedContactId" />
+                <ScalarProperty Name="policyCollateralComment" ColumnName="policyCollateralComment" />
+                <ScalarProperty Name="notificationDate" ColumnName="notificationDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModiDate" ColumnName="ModiDate" />
+                <ScalarProperty Name="CreateUsrId" ColumnName="CreateUsrId" />
+                <ScalarProperty Name="ModiUsrId" ColumnName="ModiUsrId" />
+                <ScalarProperty Name="hostName" ColumnName="hostName" />
+                <ScalarProperty Name="endorseDate" ColumnName="endorseDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_QUOTA_HEADER" FunctionName="LoansModel.Store.SP_GET_LOANS_QUOTA_HEADER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_QUOTA_HEADER_Result">
+                <ScalarProperty Name="transactionPaymentPlanId" ColumnName="transactionPaymentPlanId" />
+                <ScalarProperty Name="quotaNumber" ColumnName="quotaNumber" />
+                <ScalarProperty Name="emisionQuotaDate" ColumnName="emisionQuotaDate" />
+                <ScalarProperty Name="endQuotaDate" ColumnName="endQuotaDate" />
+                <ScalarProperty Name="validationTotal" ColumnName="validationTotal" />
+                <ScalarProperty Name="validationBalance" ColumnName="validationBalance" />
+                <ScalarProperty Name="ISLastQuota" ColumnName="ISLastQuota" />
+                <ScalarProperty Name="IsPrepayment" ColumnName="IsPrepayment" />
+                <ScalarProperty Name="transactionReasonName" ColumnName="transactionReasonName" />
+                <ScalarProperty Name="LoanStatusName" ColumnName="LoanStatusName" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="loanNumber" ColumnName="loanNumber" />
+                <ScalarProperty Name="transactionReasonId" ColumnName="transactionReasonId" />
+                <ScalarProperty Name="capitalAmount" ColumnName="capitalAmount" />
+                <ScalarProperty Name="interestAmoint" ColumnName="interestAmoint" />
+                <ScalarProperty Name="commissionAmount" ColumnName="commissionAmount" />
+                <ScalarProperty Name="expenseAmount" ColumnName="expenseAmount" />
+                <ScalarProperty Name="rateLateAmount" ColumnName="rateLateAmount" />
+                <ScalarProperty Name="chargesPrepayment" ColumnName="chargesPrepayment" />
+                <ScalarProperty Name="capitalBalance" ColumnName="capitalBalance" />
+                <ScalarProperty Name="interestBalance" ColumnName="interestBalance" />
+                <ScalarProperty Name="commissionBalance" ColumnName="commissionBalance" />
+                <ScalarProperty Name="expenseBalance" ColumnName="expenseBalance" />
+                <ScalarProperty Name="rateLateBalance" ColumnName="rateLateBalance" />
+                <ScalarProperty Name="chargesPrepaymentBalance" ColumnName="chargesPrepaymentBalance" />
+                <ScalarProperty Name="dCapital" ColumnName="dCapital" />
+                <ScalarProperty Name="dInterestAmoint" ColumnName="dInterestAmoint" />
+                <ScalarProperty Name="dCommissionAmoun" ColumnName="dCommissionAmoun" />
+                <ScalarProperty Name="dExpenseAmount" ColumnName="dExpenseAmount" />
+                <ScalarProperty Name="dRateLateAmount" ColumnName="dRateLateAmount" />
+                <ScalarProperty Name="dChargeAmount" ColumnName="dChargeAmount" />
+                <ScalarProperty Name="dDiscountAmount" ColumnName="dDiscountAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_INFORMATIONS" FunctionName="LoansModel.Store.SP_GET_LOANS_INFORMATIONS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_INFORMATIONS_Result">
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="quotationId" ColumnName="quotationId" />
+                <ScalarProperty Name="relatedContactId" ColumnName="relatedContactId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="SecondLastname" ColumnName="SecondLastname" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
+                <ScalarProperty Name="IdentificationName" ColumnName="IdentificationName" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FILL_DROP_DOWN" FunctionName="LoansModel.Store.FILL_DROP_DOWN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.FILL_DROP_DOWN_Result">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_CONTACT_PHONES" FunctionName="LoansModel.Store.SP_SET_CONTACT_PHONES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_SET_CONTACT_PHONES_Result">
+                <ScalarProperty Name="contactPhoneId" ColumnName="contactPhoneId" />
+                <ScalarProperty Name="relatedContactId" ColumnName="relatedContactId" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_CONTACT_EMAIL" FunctionName="LoansModel.Store.SP_SET_CONTACT_EMAIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_SET_CONTACT_EMAIL_Result">
+                <ScalarProperty Name="contactEmailId" ColumnName="contactEmailId" />
+                <ScalarProperty Name="relatedContactId" ColumnName="relatedContactId" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LOANS_PAYMENT_PLAN_PROYECTIONS" FunctionName="LoansModel.Store.SP_GET_LOANS_PAYMENT_PLAN_PROYECTIONS" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoansModel.SP_GET_LOANS_PAYMENT_PLAN_PROYECTIONS_Result">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TipoSaldo" ColumnName="TipoSaldo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
