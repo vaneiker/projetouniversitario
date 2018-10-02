@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AgentService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="secureHttpsBinding_AgentSevice_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="https://devagentservice.statetrustlife.com/AgentService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="https://devagentservice.statetrustlife.com/AgentService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Global.Agent.Service" />
+      <xsd:import schemaLocation="https://devagentservice.statetrustlife.com/AgentService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://devagentservice.statetrustlife.com/AgentService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" />
+      <xsd:import schemaLocation="https://devagentservice.statetrustlife.com/AgentService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAgentService_GetAgentsbyBussinesLine_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentsbyBussinesLine" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentsbyBussinesLine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentsbyBussinesLineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentsbyBussinesLine_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q1:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentData" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentData_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q2:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgent" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgent_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q3:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetListAgentsId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListAgentsId" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetListAgentsId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListAgentsIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetListAgentsId_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q4:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentArray_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentArray" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentArray_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentArrayResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentArray_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q5:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentSaleChannels_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentSaleChannels" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentSaleChannels_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentSaleChannelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentSaleChannels_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q6:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAcademic_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentAcademic" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAcademic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentAcademicResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAcademic_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q7:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentChain_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentChain" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentChain_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentChainResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentChain_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q8:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAgentChainDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentAgentChainDetail" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAgentChainDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentAgentChainDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAgentChainDetail_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q9:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentFamily_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentFamily" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentFamily_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentFamilyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentFamily_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q10:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentLevel" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentLevel_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q11:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentReferences_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentReferences" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentReferences_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentReferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentReferences_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q12:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentDirections_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentDirections" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentDirections_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentDirectionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentDirections_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q13:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentEmail" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentEmail_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q14:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentPhone" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentPhone_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q15:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentDocument" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentDocument_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q16:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentTree_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentTree" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentTree_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentTreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentTree_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q17:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentTreeNewInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentTreeNewInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentTreeNewInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentTreeNewInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentTreeNewInfo_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q18:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAssignedOfficeNew_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentAssignedOfficeNew" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAssignedOfficeNew_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentAssignedOfficeNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentAssignedOfficeNew_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q19:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetListFileOnBase_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListFileOnBase" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetListFileOnBase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListFileOnBaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetListFileOnBase_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q20:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetBinaryFileOnBase_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBinaryFileOnBase" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetBinaryFileOnBase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBinaryFileOnBaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetBinaryFileOnBase_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q21:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAgent_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAgent" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAgent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAgent_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q22:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAddress" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAddress_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q23:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SavePhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:SavePhone" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SavePhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SavePhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SavePhone_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q24:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveEmail" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveEmail_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q25:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveFamily_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveFamily" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveFamily_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveFamilyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveFamily_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q26:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveReferences_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReferences" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveReferences_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveReferences_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q27:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAcademic_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAcademic" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAcademic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAcademicResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveAcademic_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q28:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveChainDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveChainDetail" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveChainDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveChainDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_SaveChainDetail_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/Global.Agent.Service" name="detail" element="q29:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentInfoATLKSI_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentInfoATLKSI" />
+  </wsdl:message>
+  <wsdl:message name="IAgentService_GetAgentInfoATLKSI_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentInfoATLKSIResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAgentService">
+    <wsdl:operation name="GetAgentsbyBussinesLine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentsbyBussinesLine" message="tns:IAgentService_GetAgentsbyBussinesLine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentsbyBussinesLineResponse" message="tns:IAgentService_GetAgentsbyBussinesLine_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentsbyBussinesLineCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentsbyBussinesLine_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentData" message="tns:IAgentService_GetAgentData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentDataResponse" message="tns:IAgentService_GetAgentData_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentDataCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentData_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgent" message="tns:IAgentService_GetAgent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentResponse" message="tns:IAgentService_GetAgent_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgent_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListAgentsId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetListAgentsId" message="tns:IAgentService_GetListAgentsId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetListAgentsIdResponse" message="tns:IAgentService_GetListAgentsId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetListAgentsIdCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetListAgentsId_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentArray">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentArray" message="tns:IAgentService_GetAgentArray_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentArrayResponse" message="tns:IAgentService_GetAgentArray_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentArrayCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentArray_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentSaleChannels">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentSaleChannels" message="tns:IAgentService_GetAgentSaleChannels_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentSaleChannelsResponse" message="tns:IAgentService_GetAgentSaleChannels_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentSaleChannelsCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentSaleChannels_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAcademic">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentAcademic" message="tns:IAgentService_GetAgentAcademic_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentAcademicResponse" message="tns:IAgentService_GetAgentAcademic_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentAcademicCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentAcademic_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentChain">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentChain" message="tns:IAgentService_GetAgentChain_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentChainResponse" message="tns:IAgentService_GetAgentChain_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentChainCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentChain_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAgentChainDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentAgentChainDetail" message="tns:IAgentService_GetAgentAgentChainDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentAgentChainDetailResponse" message="tns:IAgentService_GetAgentAgentChainDetail_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentAgentChainDetailCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentAgentChainDetail_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentFamily">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentFamily" message="tns:IAgentService_GetAgentFamily_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentFamilyResponse" message="tns:IAgentService_GetAgentFamily_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentFamilyCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentFamily_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentLevel" message="tns:IAgentService_GetAgentLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentLevelResponse" message="tns:IAgentService_GetAgentLevel_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentLevelCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentLevel_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentReferences">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentReferences" message="tns:IAgentService_GetAgentReferences_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentReferencesResponse" message="tns:IAgentService_GetAgentReferences_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentReferencesCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentReferences_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDirections">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentDirections" message="tns:IAgentService_GetAgentDirections_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentDirectionsResponse" message="tns:IAgentService_GetAgentDirections_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentDirectionsCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentDirections_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentEmail" message="tns:IAgentService_GetAgentEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentEmailResponse" message="tns:IAgentService_GetAgentEmail_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentEmailCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentEmail_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentPhone" message="tns:IAgentService_GetAgentPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentPhoneResponse" message="tns:IAgentService_GetAgentPhone_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentPhoneCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentPhone_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentDocument" message="tns:IAgentService_GetAgentDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentDocumentResponse" message="tns:IAgentService_GetAgentDocument_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentDocumentCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentDocument_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentTree">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentTree" message="tns:IAgentService_GetAgentTree_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentTreeResponse" message="tns:IAgentService_GetAgentTree_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentTreeCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentTree_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentTreeNewInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentTreeNewInfo" message="tns:IAgentService_GetAgentTreeNewInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentTreeNewInfoResponse" message="tns:IAgentService_GetAgentTreeNewInfo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentTreeNewInfoCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentTreeNewInfo_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAssignedOfficeNew">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentAssignedOfficeNew" message="tns:IAgentService_GetAgentAssignedOfficeNew_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentAssignedOfficeNewResponse" message="tns:IAgentService_GetAgentAssignedOfficeNew_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetAgentAssignedOfficeNewCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetAgentAssignedOfficeNew_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListFileOnBase">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetListFileOnBase" message="tns:IAgentService_GetListFileOnBase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetListFileOnBaseResponse" message="tns:IAgentService_GetListFileOnBase_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetListFileOnBaseCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetListFileOnBase_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryFileOnBase">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetBinaryFileOnBase" message="tns:IAgentService_GetBinaryFileOnBase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetBinaryFileOnBaseResponse" message="tns:IAgentService_GetBinaryFileOnBase_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/GetBinaryFileOnBaseCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_GetBinaryFileOnBase_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAgent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/SaveAgent" message="tns:IAgentService_SaveAgent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/SaveAgentResponse" message="tns:IAgentService_SaveAgent_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/SaveAgentCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_SaveAgent_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/SaveAddress" message="tns:IAgentService_SaveAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/SaveAddressResponse" message="tns:IAgentService_SaveAddress_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/SaveAddressCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_SaveAddress_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/SavePhone" message="tns:IAgentService_SavePhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/SavePhoneResponse" message="tns:IAgentService_SavePhone_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/SavePhoneCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_SavePhone_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/SaveEmail" message="tns:IAgentService_SaveEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/SaveEmailResponse" message="tns:IAgentService_SaveEmail_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/SaveEmailCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_SaveEmail_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFamily">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/SaveFamily" message="tns:IAgentService_SaveFamily_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/SaveFamilyResponse" message="tns:IAgentService_SaveFamily_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/SaveFamilyCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_SaveFamily_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveReferences">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/SaveReferences" message="tns:IAgentService_SaveReferences_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/SaveReferencesResponse" message="tns:IAgentService_SaveReferences_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/SaveReferencesCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_SaveReferences_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAcademic">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/SaveAcademic" message="tns:IAgentService_SaveAcademic_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/SaveAcademicResponse" message="tns:IAgentService_SaveAcademic_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/SaveAcademicCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_SaveAcademic_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveChainDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/SaveChainDetail" message="tns:IAgentService_SaveChainDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/SaveChainDetailResponse" message="tns:IAgentService_SaveChainDetail_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAgentService/SaveChainDetailCustomExceptionFault" name="CustomExceptionFault" message="tns:IAgentService_SaveChainDetail_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentInfoATLKSI">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentService/GetAgentInfoATLKSI" message="tns:IAgentService_GetAgentInfoATLKSI_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentService/GetAgentInfoATLKSIResponse" message="tns:IAgentService_GetAgentInfoATLKSI_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NormalHttpBinding_AgentSevice" type="tns:IAgentService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAgentsbyBussinesLine">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentsbyBussinesLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentData">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetListAgentsId">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetListAgentsId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentArray">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentSaleChannels">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentSaleChannels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAcademic">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentAcademic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentChain">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentChain" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAgentChainDetail">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentAgentChainDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentFamily">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentFamily" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentLevel">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentReferences">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentReferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDirections">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentDirections" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentEmail">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentPhone">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDocument">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentTree">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentTree" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentTreeNewInfo">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentTreeNewInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAssignedOfficeNew">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentAssignedOfficeNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetListFileOnBase">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetListFileOnBase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryFileOnBase">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetBinaryFileOnBase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAgent">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAddress">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SavePhone">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SavePhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveEmail">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFamily">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveFamily" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReferences">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveReferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAcademic">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveAcademic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveChainDetail">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveChainDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentInfoATLKSI">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentInfoATLKSI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="secureHttpsBinding_AgentSevice" type="tns:IAgentService">
+    <wsp:PolicyReference URI="#secureHttpsBinding_AgentSevice_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAgentsbyBussinesLine">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentsbyBussinesLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentData">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgent">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetListAgentsId">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetListAgentsId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentArray">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentSaleChannels">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentSaleChannels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAcademic">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentAcademic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentChain">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentChain" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAgentChainDetail">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentAgentChainDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentFamily">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentFamily" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentLevel">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentReferences">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentReferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDirections">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentDirections" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentEmail">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentPhone">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentDocument">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentTree">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentTree" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentTreeNewInfo">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentTreeNewInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAssignedOfficeNew">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentAssignedOfficeNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetListFileOnBase">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetListFileOnBase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryFileOnBase">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetBinaryFileOnBase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAgent">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAddress">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SavePhone">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SavePhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveEmail">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFamily">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveFamily" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReferences">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveReferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAcademic">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveAcademic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveChainDetail">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/SaveChainDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentInfoATLKSI">
+      <soap:operation soapAction="http://tempuri.org/IAgentService/GetAgentInfoATLKSI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AgentService">
+    <wsdl:port name="NormalHttpBinding_AgentSevice" binding="tns:NormalHttpBinding_AgentSevice">
+      <soap:address location="http://devagentservice.statetrustlife.com/AgentService.svc/AgentService.svc" />
+    </wsdl:port>
+    <wsdl:port name="secureHttpsBinding_AgentSevice" binding="tns:secureHttpsBinding_AgentSevice">
+      <soap:address location="https://devagentservice.statetrustlife.com/AgentService.svc/AgentService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

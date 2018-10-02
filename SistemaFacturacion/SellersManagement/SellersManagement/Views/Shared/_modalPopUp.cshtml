@@ -1,0 +1,135 @@
+﻿<div id="newRegistryModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nuevo Registro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputEmail1">Código</label>
+                            <input type="text" class="form-control" id="txtAgentCode">
+                        </div>
+
+                        <div class="form-group col-md-9">
+                            <label for="">Vendedor</label>
+                            <input type="text" class="form-control toclean" id="txtAgentName" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="">Canal</label>
+                            <input type="text" class="form-control toclean" id="txtAgentChannel" readonly="readonly">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="">Oficina</label>
+                            <input type="text" class="form-control toclean" id="txtAgentOffice" readonly="readonly">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="">Teléfono(s)</label>
+                            <input type="text" class="form-control toclean" id="txtAgentPhone" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="">Tipo</label>
+                            <select class="dropdown form-control" id="dropAgenTypeManagement">
+                                <option>Llamada</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="">Resultado</label>
+                            <select class="dropdown form-control" id="dropAgenResultManagement">
+                                <option>N/A</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="">Comentario</label>
+                        <textarea class="form-control" rows="5" cols="3" id="txtCommentManagement"></textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="">Mejora Sugerida - que le duele</label>
+                        <textarea class="form-control" rows="5" cols="3" id="txtSuggestedImprovementManagement"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btnSave">Guardar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Error -->
+<div class="modal fade z9999" id="ppError" tabindex="-1" role="dialog" aria-labelledby="ppError" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-danger">
+                    <h3 class="block-title d-block">
+                        <strong id="errorTitle">Se han producido los siguientes errores:</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-danger cursor border border-white" data-dismiss="modal" aria-label="Close">
+                            ×
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-8 m-auto text-center">
+                        <ul id="errorListContainer"></ul>
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        <button type="button" data-dismiss="modal" class="btn btn-danger cursor">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="modal bootstrap-dialog fade size-normal in type-danger" role="dialog" aria-hidden="true" id="haymama" aria-labelledby="f51477f6-254b-4c5d-9dd5-3c758759ca01_title"
+         tabindex="-1" style="z-index: 1050; display: block; padding-right: 17px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="bootstrap-dialog-header">
+                        <div class="bootstrap-dialog-close-button" style="display: block;"><button class="close">×</button></div>
+                        <div class="bootstrap-dialog-title" id="f51477f6-254b-4c5d-9dd5-3c758759ca01_title">Changing dialog type</div>
+                    </div>
+                </div><div class="modal-body">
+                    <div class="bootstrap-dialog-body"><div class="bootstrap-dialog-message">Click buttons below...</div></div>
+                </div><div class="modal-footer" style="display: block;">
+                    <div class="bootstrap-dialog-footer">
+                        <div class="bootstrap-dialog-footer-buttons">
+                            <button class="btn btn-default btn-sm" id="650b996a-6080-4299-9091-ab88e8439292">type-default</button>
+                            <button class="btn btn-default btn-sm" id="7f7d9ada-5241-44e3-9f58-92bee0e69d17">type-info</button>
+                            <button class="btn btn-default btn-sm" id="c7c5486a-6b21-4528-923a-c1937c8a74e7">type-primary</button>
+                            <button class="btn btn-default btn-sm" id="0e4625b4-260f-41ea-847d-e039164dd16c">type-success</button>
+                            <button class="btn btn-default btn-sm" id="254d2c72-3df0-4f4e-8a7c-babc49ed599e">type-warning</button>
+                            <button class="btn btn-default btn-sm" id="12755bb8-98ef-47a7-b411-032d97cdcdb6">type-danger</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<!-- Popup Error -->

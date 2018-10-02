@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SellersManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SellersManagementEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SP_FILL_DROPDOWN" ReturnType="Collection(SellersManagementModel.SP_FILL_DROPDOWN_Result)">
+      <Parameter Name="DropDownType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_MANAGEMENT_RESULTS" ReturnType="Collection(SellersManagementModel.SP_GET_MANAGEMENT_RESULTS_Result)">
+      <Parameter Name="ManagementResultId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_MANAGEMENT_TYPES" ReturnType="Collection(SellersManagementModel.SP_GET_MANAGEMENT_TYPES_Result)">
+      <Parameter Name="ManagementTypeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_MANAGEMENT" ReturnType="Collection(SellersManagementModel.SP_SET_MANAGEMENT_Result)">
+      <Parameter Name="ManagementId" Mode="In" Type="Int32" />
+      <Parameter Name="ManagementSupervisorCode" Mode="In" Type="Int32" />
+      <Parameter Name="ManagementSellerCode" Mode="In" Type="Int32" />
+      <Parameter Name="ManagementTypeId" Mode="In" Type="Int32" />
+      <Parameter Name="ManagementResultsId" Mode="In" Type="Int32" />
+      <Parameter Name="Comment" Mode="In" Type="String" />
+      <Parameter Name="SuggestedImprovement" Mode="In" Type="String" />
+      <Parameter Name="CreateUserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_MANAGEMENT" ReturnType="Collection(SellersManagementModel.SP_GET_MANAGEMENT_Result)">
+      <Parameter Name="ManagementId" Mode="In" Type="Int32" />
+      <Parameter Name="ManagementSupervisorCode" Mode="In" Type="Int32" />
+      <Parameter Name="ManagementSellerCode" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_FILL_DROPDOWN_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_MANAGEMENT_RESULTS_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_MANAGEMENT_TYPES_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="300" />
+  </ComplexType>
+  <ComplexType Name="SP_SET_MANAGEMENT_Result">
+    <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_MANAGEMENT_Result">
+    <Property Type="Int32" Name="Management_Supervisor_Code" Nullable="false" />
+    <Property Type="Int32" Name="Management_Seller_Code" Nullable="false" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+    <Property Type="String" Name="Suggested_Improvement" Nullable="true" />
+    <Property Type="DateTime" Name="Management_Date" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ManagementResultsIdSelected" Nullable="false" />
+    <Property Type="Int32" Name="ManagementTypeIdSelected" Nullable="false" />
+    <Property Type="Int32" Name="Management_Id" Nullable="false" />
+  </ComplexType>
+</Schema>

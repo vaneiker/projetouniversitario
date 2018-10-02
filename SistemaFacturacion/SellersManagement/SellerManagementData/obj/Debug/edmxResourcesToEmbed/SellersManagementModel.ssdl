@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SellersManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="SP_FILL_DROPDOWN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DropDownType" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_MANAGEMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ManagementId" Type="int" Mode="In" />
+    <Parameter Name="ManagementSupervisorCode" Type="int" Mode="In" />
+    <Parameter Name="ManagementSellerCode" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_MANAGEMENT_RESULTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ManagementResultId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_MANAGEMENT_TYPES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ManagementTypeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_MANAGEMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ManagementId" Type="int" Mode="In" />
+    <Parameter Name="ManagementSupervisorCode" Type="int" Mode="In" />
+    <Parameter Name="ManagementSellerCode" Type="int" Mode="In" />
+    <Parameter Name="ManagementTypeId" Type="int" Mode="In" />
+    <Parameter Name="ManagementResultsId" Type="int" Mode="In" />
+    <Parameter Name="Comment" Type="varchar(max)" Mode="In" />
+    <Parameter Name="SuggestedImprovement" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CreateUserId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="SellersManagementModelStoreContainer" />
+</Schema>
