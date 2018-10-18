@@ -1,0 +1,45 @@
+﻿
+@model KSI.Cobranza.Web.Models.ViewModels.CardDomitiliationViewModel
+@{
+    var webGrid = new WebGrid(source: Model.AffiliateCards, ajaxUpdateContainerId: "dvGridCardList", ajaxUpdateCallback: "InitCardList();");
+}
+
+<div id="dvGridCardList">
+    @webGrid.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                     headerStyle: "header-table",
+                     mode: WebGridPagerModes.All,
+                     htmlAttributes: new { @id = "gvAffiliateCards" },
+                                    columns: webGrid.Columns(
+                                                                      webGrid.Column("CardHolder", "Afiliada"),
+                                                                      webGrid.Column("LastFourDigits", "No. Tarjeta"),
+                                                                      webGrid.Column("CardTypeDesc", "Tipo Tarjeta"),
+                                                                      webGrid.Column("ExpirationDate", "Fecha de Vencimiento"),
+                                                                      webGrid.Column("StatusDesc", "Estatus"),
+                                                                         webGrid.Column(null, null,
+                                                              format: @<text><input id="key" type="hidden" value="@item._dataRequest" ) /></text>,
+                                                                                  style: "text-center")
+
+                                                                              )
+                                                                           )
+</div>
+@*<table class="table table-striped car">
+    <thead>
+        <tr class="header-table">
+            <th class="text-center">Afiliada</th>
+            <th class="text-center">No. Tarjeta</th>
+            <th class="text-center">Tipo Tarjeta</th>
+            <th class="text-center">Fecha de Vencimiento</th>
+            <th class="text-center">Estatus</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">-</td>
+            <td class="text-center">-</td>
+            <td class="text-center">-</td>
+            <td class="text-center">-</td>
+            <td class="text-center">-</td>
+            
+        </tr>
+    </tbody>
+</table>*@
