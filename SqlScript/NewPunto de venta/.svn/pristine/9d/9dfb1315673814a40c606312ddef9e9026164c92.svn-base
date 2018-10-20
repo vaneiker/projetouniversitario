@@ -1,0 +1,83 @@
+﻿<div style="display:none">
+    @* Continuar a la pantalla de resumen *@
+    @Ajax.RawActionLink(string.Format("<strong class='x-hide mt-1 d-block float-left'>Siguiente</strong><i class='material-icons float-right ml-2'>arrow_forward</i>"),
+                                      "Summary",
+                                      "Home", null,
+                                      new AjaxOptions
+                                      {
+                                          UpdateTargetId = "dvContainer",
+                                          InsertionMode = InsertionMode.Replace,
+                                          OnSuccess = "InitializeSummary()"
+                                      },
+                                      new
+                                      {
+                                          @id = "lnkContinue",
+                                          @class = "btn btn-outline-info mb-1 mr-2 float-right returnStep2"
+                                      })
+
+    @* Continuar a los datos del conductor *@
+    @Ajax.RawActionLink(string.Format("<strong class='x-hide d-block float-left mr-2'>Comprar</strong> <i class='material-icons x-block xl-hide float-left mt-1'>&#xE8CC;</i><i class='material-icons float-right ml-2'>arrow_forward</i>"),
+                                    "InfoAddDriver",
+                                    "Home",
+                                     null,
+                                     new AjaxOptions
+                                     {
+                                         UpdateTargetId = "dvContainer",
+                                         InsertionMode = InsertionMode.Replace,
+                                         OnSuccess = "InitializeDriver()"
+                                     },
+                                              new { @class = "btn btn-outline-success mb-1 float-right lh22 returnStep3" })
+
+
+    @* Continuar a los datos del vehiculo *@
+    @Ajax.RawActionLink("<strong class='x-hide mt-1 d-block float-left'>Info. Adicional Vehículo</strong> <i class='material-icons float-left mr-3'>&#xE531;</i><i class='material-icons x-block xl-hide float-right'>&#xE88F;</i>",
+                                            "InfoAddVehicle",
+                                            "Home",
+                                             null,
+                                             new AjaxOptions
+                                             {
+                                                 InsertionMode = InsertionMode.Replace,
+                                                 UpdateTargetId = "dvContainer",
+                                                 OnSuccess = "InitializeVehicle()"
+                                             }, new
+                                             {
+                                                 @data = @ViewBag.QuoId,
+                                                 @class = "btn btn-outline-info mb-1 mr-2 float-left returnStep4"
+                                             }
+                                            )
+    @* Continuar a los documentos requeridos *@
+    @Ajax.RawActionLink("<strong class='x-hide d-block float-left mr-2'>Continuar</strong><i class='material-icons float-right ml-2'>arrow_forward</i>",
+                                          "DocumentRequired",
+                                          "Home",
+                                          null,
+                                          new AjaxOptions
+                                          {
+                                              UpdateTargetId = "dvContainer",
+                                              InsertionMode = InsertionMode.Replace                                       
+                                          },
+                                          new
+                                          {
+                                              @class = "btn btn-outline-success mb-1 lh22 float-right btnSendToPaymentCheckOut returnStep5"
+                                          }
+                                          )
+
+    @* Continuar a los pagos *@
+    @Ajax.RawActionLink("<strong class='x-hide d-block float-left mr-2'>Continuar</strong><i class='material-icons float-right ml-2'>arrow_forward</i>",
+                        "_PaymentCheckout",
+                        "Home",
+                        null,
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "dvContainer",
+                            InsertionMode = InsertionMode.Replace
+                        },
+                        new
+                        {
+                            @class = "btn btn-outline-success mb-1 lh22 float-right returnStep6"
+                        }
+                        )
+
+
+
+
+</div>

@@ -1,0 +1,30 @@
+﻿@model List<Entity.Entities.WSEntities.ServiceTypeWS>
+
+@foreach (var item in Model)
+{
+    <tr class="table-primary">
+        <td align="left"><button class="cleanService" data='@item.Name.Replace(" ","")' onclick="ClearSelection(this)">Limpiar</button></td>
+        <td align="center" class="font-weight-bold text-uppercase">@item.Name</td>
+        <td align="center"></td>
+    </tr>
+
+    foreach (var itemCoverages in item.Coverages)
+    {
+        <tr>
+            <td align="left">
+                <span class="mdl-list__item-secondary-action float-left mr-3">
+                    <label class="mb-1 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="IdentificationTypeCedPasaport">
+                        <input type="radio" id='chk_@itemCoverages.Name.Replace(" ","")' @(itemCoverages.IsSelected ? "checked='checked'" : "") onclick="SetTotalServices()" class="mdl-radio__button servicesChecked" name="@item.Name.Replace(" ","")" data='@item.Name' dataItem="@itemCoverages.CoverageDetailCoreId">
+                        <span class="mdl-radio__label"></span>
+                    </label>
+                </span><span class="mdl-list__item-primary-content">@itemCoverages.Name</span>
+            </td>
+            <td align="center">@itemCoverages.Name</td>
+            <td align="center">
+                @itemCoverages.Amount.ToString("#,0.00", System.Globalization.CultureInfo.InvariantCulture)
+            </td>
+        </tr>
+    }
+}
+
+@Html.Hidden("dvVehicleIdFromAdditionalServices")

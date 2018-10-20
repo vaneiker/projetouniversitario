@@ -1,0 +1,245 @@
+﻿@using STL.POS.Data;
+@{var _Model = (ProductTypeFamilyBrochure)Model; }
+<div class="row_A cont_tabs mB">
+    <ul class="tabs " data-ks-tabs>
+        @{int x = 0; }
+        @foreach (var pt in Model.ProductTypes)
+        {
+            <li class="@(@x == 0 ? "open" : @String.Empty)"><a href="#pt_@(pt.Id.ToString() + x)">@pt.Name</a></li>
+            x++;
+        }
+    </ul>
+</div>
+<div class="cont_gnl tab_pane_container ">
+    @{int j = 0; }
+    @foreach (var pt in _Model.ProductTypes)
+    {
+        <article id="pt_@(pt.Id.ToString() + j)">
+            @{j++;}
+
+            @{
+                var mergeThirdParty = new Dictionary<string, List<string>>();
+
+                var keys = new List<string>();
+
+                foreach (var coverage in pt.CoverageTypes.Where(m => m.Name == "Terceros").First().Coverages)
+                {
+                    foreach (var cDetail in coverage.CoverageDetails)
+                    {
+                        if (!keys.Contains(cDetail.Name))
+                        {
+                            keys.Add(cDetail.Name);
+                        }
+                    }
+                }
+
+                foreach (var key in keys)
+                {
+                    var values = new List<string>();
+
+                    foreach (var coverage in pt.CoverageTypes.Where(m => m.Name == "Terceros").First().Coverages)
+                    {
+
+                        var value = coverage.CoverageDetails.Where(cd => cd.Name == key).FirstOrDefault();
+                        if (value != null)
+                        {
+                            values.Add(value.Value);
+                        }
+                        else {
+                            values.Add("-");
+                        }
+                    }
+                    mergeThirdParty.Add(key, values);
+                }
+            }
+
+            @{
+                var mergeSelfDamages = new Dictionary<string, List<string>>();
+
+                var selfCoveragesExists = pt.CoverageTypes.Where(m => m.Name == "Propios").Count() > 0 &&
+                        pt.CoverageTypes.Where(m => m.Name == "Propios").First().Coverages.Count() > 0;
+
+                var benefitsExists = pt.Benefits.Count() > 0;
+
+                if (selfCoveragesExists)
+                {
+
+                    keys = new List<string>();
+
+                    foreach (var coverage in pt.CoverageTypes.Where(m => m.Name == "Propios").First().Coverages)
+                    {
+                        foreach (var cDetail in coverage.CoverageDetails)
+                        {
+                            if (!keys.Contains(cDetail.Name))
+                            {
+                                keys.Add(cDetail.Name);
+                            }
+                        }
+                    }
+
+                    foreach (var key in keys)
+                    {
+                        var values = new List<string>();
+
+                        foreach (var coverage in pt.CoverageTypes.Where(m => m.Name == "Propios").First().Coverages)
+                        {
+
+                            var value = coverage.CoverageDetails.Where(cd => cd.Name == key).FirstOrDefault();
+                            if (value != null)
+                            {
+                                values.Add(value.Value);
+                            }
+                            else {
+                                values.Add("-");
+                            }
+                        }
+                        mergeSelfDamages.Add(key, values);
+                    }
+                }
+            }
+            <div class="row_B">
+                <div class="tbl data_Gpl cont_gnl col-12 mB">
+                    <table>
+                        <tr class="gradient_azul">
+                            <th align="left" class="c1">&nbsp;</th>
+                            @foreach (var cobertura in pt.CoverageTypes.Where(m => m.Name == "Terceros").First().Coverages)
+                            {
+                                <th align="center" class="c2"><span>@Html.Raw(cobertura.Name)</span></th>
+                            }
+                        </tr>
+                        <tr class="gradient_azul">
+                            <th align="left" class="c1"><span>Daños a Terceros</span></th>
+                            @foreach (var cobertura in pt.CoverageTypes.Where(m => m.Name == "Terceros").First().Coverages)
+                            {
+                                <th align="center" class="c2"><span>Límite</span></th>
+                            }
+                        </tr>
+                        @{
+                            foreach (var key in mergeThirdParty.Keys)
+                            {
+                                <tr>
+                                    <td align="left">@key</td>
+                                    @foreach (var value in mergeThirdParty[key])
+                                    {
+                                        <td align="center">@value</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+
+            <div class="row_B">
+                @if (selfCoveragesExists)
+                {
+                <div class="tbl data_Gpl cont_gnl col-12 mB">
+
+
+                    <table>
+                        <tr class="gradient_azul">
+                            <th align="left" class="c1">&nbsp;</th>
+                            @{
+                                    try
+                                    {
+                                        foreach (var cobertura in pt.CoverageTypes.Where(m => m.Name == "Propios").First().Coverages)
+                                        {
+                                <th align="center" class="c2"><span>@cobertura.Name</span></th>
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+                                        ;
+                                    }
+                            }
+                        </tr>
+                        <tr class="gradient_azul">
+                            <th align="left" class="c1"><span>Cobertura Daños Propios</span></th>
+                            @{
+                                try
+                                {
+                                    foreach (var cobertura in pt.CoverageTypes.Where(m => m.Name == "Propios").First().Coverages)
+                                    {
+                                        <th align="center" class="c2"><span>Límite</span></th>
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    ;
+                                }
+                            }
+                        </tr>
+                        @{
+                                foreach (var key in mergeSelfDamages.Keys)
+                                {
+                            <tr>
+                                <td align="left">@key</td>
+                                @foreach (var value in mergeSelfDamages[key])
+                                        {
+                                <td align="center">@value</td>
+                                        }
+                            </tr>
+                                }
+                        }
+                        <tr class="txtBold em1-2">
+                            <td align="left">Opciones de deducibles</td>
+                            <td colspan="@pt.CoverageTypes.Where(m => m.Name == "Propios").First().Coverages.Count" align="center">@pt.Deducible</td>
+                        </tr>
+                    </table>
+
+                </div> }
+
+                @if (benefitsExists)
+                {
+                    <div class="tbl data_Gpl cont_gnl col-12 fl mB">
+                        <table>
+                            <tr class="gradient_azul">
+                                <th align="center" class="c1"><span>Beneficios Principales</span></th>
+                                <th align="center" class="c2"><span>&nbsp;</span></th>
+                                @*<th align="center" class="c2"><span>Basico</span></th>
+                                <th align="center" class="c3"><span>Ultra</span></th>*@
+                            </tr>
+                            @foreach (var b in pt.Benefits)
+                    {
+                                <tr>
+                                    <td align="left">@b.Description</td>
+                                    <td align="center"><span>Incluido</span></td>
+                                    @*<td align="center">
+                                        @if (b.Ultra)
+                                        {<a href="#" class="ico_G30 icon_checked2"></a>}
+                                    </td>
+                                    <td align="center">
+                                        @if (b.Basic)
+                                        {<a href="#" class="ico_G30 icon_checked2"></a>}
+                                    </td>*@
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+
+                <div class="col-12 fl brochure_box">
+                    <div class="row_A">
+                        <div class="col-3 fl m0">&nbsp;</div>
+                        <div class="col-3 fl m0 labelAZ">@pt.Name</div>
+                        <div class="col-3 fl m0 labelAZ">Productos linea de vehiculos</div>
+                        <div class="col-3 fl m0 labelAZ">Quienes somos?</div>
+                    </div>
+                    <div class="row_A cont_gnl fpdf">
+                        <div class="col-3 fl m0"><strong>Brochure</strong></div>
+                        <div class="col-3 fl m0">@BrochureHelper.LinkPdfBrochure(@pt.Name, this)</div>
+                        <div class="col-3 fl m0">@BrochureHelper.LinkPdfBrochure("Productos linea de vehiculos", this)</div>
+                        <div class="col-3 fl m0">@BrochureHelper.LinkPdfBrochure("Quienes somos", this)</div>
+                    </div>
+
+                </div>
+                <div class="row_A">
+                    <button class="col-2 fr button button-red alignC embossed" onclick="$('#brochurePopup').hide();">Cerrar</button>
+                </div>
+
+            </div>
+
+           
+        </article>
+                            }
+</div>

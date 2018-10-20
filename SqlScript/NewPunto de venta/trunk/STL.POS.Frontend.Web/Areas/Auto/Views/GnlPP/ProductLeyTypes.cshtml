@@ -1,0 +1,91 @@
+﻿@using STL.POS.Data;
+@{var _Model = (ProductTypeFamilyBrochure)Model; }
+<div class="row_B">
+    <div class=" tbl data_Gpl cont_gnl col-12 fl mB">
+        <table>
+            <tr class="gradient_azul">
+                <th align="left" class="c1"></th>
+                @foreach (var c in _Model.ProductTypes.First().CoverageTypes.First().Coverages)
+                {
+                    <th align="center" class="c2"><span>Limite Minimo</span></th>
+                }
+            </tr>
+            <tr class="gradient_azul">
+                <th align="left" class="c1"><span>Cobertura Daños a Tercero</span></th>
+                @foreach (var c in _Model.ProductTypes.First().CoverageTypes.First().Coverages)
+                {
+                    <th align="center" class="c2"><span>@c.Name</span></th>
+                }
+            </tr>
+            @{
+                Dictionary<string, List<decimal>> CoverageDetails_Coverage = new Dictionary<string, List<decimal>>();
+                foreach (var c in _Model.ProductTypes.First().CoverageTypes.First().Coverages)
+                {
+
+                    foreach (var cd in c.CoverageDetails)
+                    {
+                        if (!CoverageDetails_Coverage.ContainsKey(cd.Name.Trim()))
+                        {
+                            List<decimal> list = new List<decimal>();
+                            CoverageDetails_Coverage.Add(cd.Name.Trim(), list);
+                        }
+                        CoverageDetails_Coverage[cd.Name].Add(cd.Value);
+                    }
+                }
+                foreach (var d in CoverageDetails_Coverage.Keys)
+                {
+                    <tr>
+                        <td align="left">@d</td>
+                        @foreach (var e in CoverageDetails_Coverage[d])
+                        {
+                            <td align="center">@e</td>
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div class=" tbl data_Gpl cont_gnl col-12 fl mB">
+        <table>
+            <tr class="gradient_azul">
+                <th align="center" class="c1"><span>Beneficios Principales</span></th>
+                <th align="center" class="c2"><span>&nbsp;</span></th>
+                @*<th align="center" class="c2"><span>Basico</span></th>*@
+                @*<th align="center" class="c3"><span>Ultra</span></th>*@
+            </tr>
+            @foreach (var b in _Model.ProductTypes.First().Benefits)
+            {
+                <tr>
+                    <td align="left">@b.Description</td>
+                    <td align="center"><span>Incluido</span></td>
+                    @*<td align="center">
+                        @if (b.Ultra)
+                        {<a href="#" class="ico_G30 icon_checked2"></a>}
+                    </td>
+                    <td align="center">
+                        @if (b.Basic)
+                        {<a href="#" class="ico_G30 icon_checked2"></a>}
+                    </td>*@
+                </tr>
+            }
+        </table>
+    </div>
+    <div class=" col-12 fl brochure_box">
+        <div class="row_A">
+            <div class="col-3 fl m0">&nbsp;</div>
+            <div class="col-3 fl m0 labelAZ">@_Model.Name</div>
+            <div class="col-3 fl m0 labelAZ">Productos linea de vehiculos</div>
+            <div class="col-3 fl m0 labelAZ">Quienes somos?</div>
+        </div>
+        <div class="row_A cont_gnl fpdf">
+            <div class="col-3 fl m0"><strong>Brochure</strong></div>
+            <div class="col-3 fl m0">@BrochureHelper.LinkPdfBrochure(@_Model.Name, this)</div>
+            <div class="col-3 fl m0">@BrochureHelper.LinkPdfBrochure("Productos linea de vehiculos", this)</div>
+            <div class="col-3 fl m0">@BrochureHelper.LinkPdfBrochure("Quienes somos", this)</div>
+        </div>
+    </div>
+    <div class="row_A">
+        <button class="col-2 fr button button-red alignC embossed" onclick="$('#brochurePopup').hide();">Cerrar</button>
+    </div>
+</div>
+

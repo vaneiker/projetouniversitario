@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Cotizador Salud";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var culture = System.Globalization.CultureInfo.CreateSpecificCulture(ViewBag.CurrentLanguage);
+    System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+    System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+}
+@Scripts.Render("~/bundles/saludKO")
+
+<div class="pdv_cont_salud">
+    <input type="hidden" id="stepNames" value="@Globalization.PosSalud.Index.Steps" />
+    <input type="hidden" id="columnNames" value="@Globalization.PosSalud.Index.ColumnNames" />
+    <input type="hidden" id="insuredType" value="@Globalization.PosSalud.Index.InsuredType" />
+
+    @{
+        Html.RenderPartial("_CotizadorLayout");
+
+        System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+        System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+        Html.RenderPartial("StepPersons");
+        Html.RenderPartial("StepPreconditions");
+        Html.RenderPartial("StepBenefit");
+
+        Html.RenderPartial("StepBuy1");
+        Html.RenderPartial("StepBuy2");
+        Html.RenderPartial("StepBuy3");
+
+        Html.RenderPartial("_GlobalPopups");
+    }
+</div>
+
+<script type="text/javascript">
+
+    var today = new Date('@DateTime.Now.ToString("yyyy-MM-ddThh:mm:ss")');
+    var idCountryDefault = '@STL.POS.Frontend.Web.Helpers.Constants.ID_COUNTRY_REPUBLICA_DOMINCANA';
+
+</script>

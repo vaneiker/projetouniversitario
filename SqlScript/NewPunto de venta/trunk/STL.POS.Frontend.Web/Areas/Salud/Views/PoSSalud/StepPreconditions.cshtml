@@ -1,0 +1,86 @@
+﻿<script type="text/html" id="stepPreconditions">
+    <div data-bind="with: stepData">
+        <form data-bind="submit: saveCurrentPerson" id="savePreconditionForm">
+            <div class="precondiciones">
+                <div class="box_SP col-5 fl">
+                    <div class="boxCont">
+
+                        <div class="label_plus_input alCenter wd100">
+                            <input type="text" class="wd100" data-bind="value: currentPersonToPreconditionApply() ? currentPersonToPreconditionApply().toString() : '-'" disabled="disabled" />
+                        </div>
+                        <div class="label_plus_input par">
+                            <span>@Globalization.PosSalud.StepPreconditions.SmokerLabel</span>
+                            <select data-bind="options: $root.boolList, optionsText: 'name', optionsValue: 'id', value: currentPreconditionSmoker"></select>
+                        </div>
+                        <div class="label_plus_input par">
+                            <span>@Globalization.PosSalud.StepPreconditions.HighPressureLabel</span>
+                            <select data-bind="options: $root.boolList, optionsText: 'name', optionsValue: 'id', value: currentPreconditionHighPressure"></select>
+                        </div>
+                        <div class="label_plus_input par">
+                            <span>@Globalization.PosSalud.StepPreconditions.WeightLabel</span>
+                            <input name="weight" type="text" maxlength="10" data-bind="value: currentPreconditionWeight, css: {errorBorder: !currentPreconditionWeight()}" placeholder="@Globalization.Global.WriteHere" class="">
+                        </div>
+                        <div class="label_plus_input par">
+                            <span>@Globalization.PosSalud.StepPreconditions.HeightLabel</span>
+                            <input name="height" type="text" maxlength="10" data-bind="value: currentPreconditionHeight, css: {errorBorder: !currentPreconditionHeight()}" placeholder="@Globalization.Global.WriteHere" class="">
+                        </div>
+                        <div class="label_plus_input par">
+                            <span>@Globalization.PosSalud.StepPreconditions.SexLabel</span>
+                            <select name="sexo" data-bind="options: currentPersonToPreconditionApply() ? currentPersonToPreconditionApply().sexes : ko.observableArray([]), value: currentPreconditionSelectedSex"></select>
+                        </div>
+                        <div class="label_plus_input par doble triple">
+                            <span>@Globalization.PosSalud.StepPreconditions.PreexistingConditionLabel</span>
+                            <select data-bind="options: $root.countConditionList, optionsText: 'name', optionsValue: 'id', value: currentPreconditionPreexistingCondition"></select>
+                        </div>
+                        <div class="label_plus_input par doble triple">
+                            <span>@Globalization.PosSalud.StepPreconditions.ExtremeSportLabel</span>
+                            <select data-bind="options: $root.boolList, optionsText: 'name', optionsValue: 'id', value: currentPreconditionExtremeSport"></select>
+                        </div>
+
+                    </div><!--boxCont-->
+                </div>
+                <div class="col-1 fl flecha_comp">
+                    <div class="arr_comp"></div>
+                </div>
+                <div class="col-6 fl">
+                    <div class="box_SP">
+                        <div class="ttl">@Globalization.PosSalud.StepPreconditions.DetailTitle</div>
+                        <div class="boxCont mB aSolicitante">
+
+                            <div class="label_plus_input2 par doble">
+                                <span>@Globalization.PosSalud.StepPreconditions.Disease1Label</span>
+                                <select data-bind="options: $root.conditionList, optionsText: 'name', optionsValue: 'id', value: currentPreconditionCondition1, optionsCaption: '@Globalization.Global.Select', enable: currentPreconditionPreexistingCondition() >= 1"></select>
+                                <textarea placeholder="@Globalization.PosSalud.StepPreconditions.WriteBriefly" data-bind="value: currentPreconditionCondition1Description, enable: currentPreconditionPreexistingCondition() >= 1"></textarea>
+                            </div>
+
+                            <div class="label_plus_input2 par doble">
+                                <span>@Globalization.PosSalud.StepPreconditions.Disease2Label</span>
+                                <select data-bind="options: $root.conditionList, optionsText: 'name', optionsValue: 'id', value: currentPreconditionCondition2, optionsCaption: '@Globalization.Global.Select', enable: currentPreconditionPreexistingCondition() >= 2"></select>
+                                <textarea placeholder="@Globalization.PosSalud.StepPreconditions.WriteBriefly" data-bind="value: currentPreconditionCondition2Description, enable: currentPreconditionPreexistingCondition() >= 2"></textarea>
+                            </div>
+
+                            <div class="label_plus_input2 par doble">
+                                <span>@Globalization.PosSalud.StepPreconditions.Disease3Label</span>
+                                <select data-bind="options: $root.conditionList, optionsText: 'name', optionsValue: 'id', value: currentPreconditionCondition3, optionsCaption: '@Globalization.Global.Select', enable: currentPreconditionPreexistingCondition() >= 3"></select>
+                                <textarea placeholder="@Globalization.PosSalud.StepPreconditions.WriteBriefly" data-bind="value: currentPreconditionCondition3Description, enable: currentPreconditionPreexistingCondition() >= 3"></textarea>
+                            </div>
+
+                        </div><!--boxCont-->
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row_A mT10 mB pdL10 pdR20">
+                <input type="submit" style="white-space: normal;" class="btn bgreen doble fr" data-bind="value: persons().length > 1 ? '@Globalization.PosSalud.StepPreconditions.NextPersonButtonLabel' : '@Globalization.PosSalud.StepPreconditions.SaveButtonLabel'" />
+            </div>
+        </form>
+        
+    </div>
+    <!-- Boton de Funcion -->
+    <div class="row_A alignC mT10 mB10 bbFuntion">
+        <div class="col-2 fl"><a href="#" class="btn backBtn" data-bind="click: function () { $parent.prevStep(); }"><i class="flecha_iz_az"></i></a></div>
+        <div class="col-7 fl">&nbsp;</div>
+        <div class="col-3 fr"><a href="index_p3.html" class="btn bgreen fr" data-bind="text: nextStepButtonTitle, click: stepData.stepPreconditionsCompleted"></a></div>
+    </div>
+</script>

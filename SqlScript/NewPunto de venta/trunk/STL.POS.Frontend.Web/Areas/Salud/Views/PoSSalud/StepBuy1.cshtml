@@ -1,0 +1,86 @@
+﻿<script type="text/html" id="stepBuy1">
+
+    <div class="select_buy1 info_ad_conduc" data-bind="with: stepData">
+        <form data-bind="submit: setAditionalPersonInfo" id="setAditionalPersonInfoForm">
+            <div class="col-6 fl">
+                <div class="label_plus_input">
+                    <span>Asegurado</span>
+                    <input type="text" data-bind="value: infoAdPerson().toString" readonly="readonly" />
+                </div>
+                <div class="">
+                    <div class="label_plus_input">
+                        <span>Fecha de Nacimiento</span>
+                        <input id="dateOfBirthAdd" type="text" class="datepicker dateOfBirth" name="dateOfBirth" data-bind="value: infoAdPerson().dateOfBirth, css: {errorBorder: !infoAdPerson().dateOfBirth()}" readonly="readonly" />
+                    </div>
+                    <div class="label_plus_input">
+                        <span>Sexo</span>
+                        <select name="sexo" data-bind="options: infoAdPerson().sexes, value: infoAdPerson().selectedSex"></select>
+                    </div>
+                    <div class="label_plus_input">
+                        <span>Estado Civil</span>
+                        <select name="maritalStatus" data-bind="options: $root.maritalStatusList, optionsText: 'name', optionsValue: 'name', value: infoAdPerson().maritalStatus, optionsCaption: 'Seleccione estado civil', css: {errorBorder: !infoAdPerson().maritalStatus()}"></select>
+                    </div>
+                    <div class="label_plus_input">
+                        <span>Nombre del Cónyuge</span>
+                        <input type="text" value="" placeholder="Escriba Aquí" name="partnerName" data-bind="value: infoAdPerson().partnerName, css: {errorBorder: !infoAdPerson().partnerName()}" />
+                    </div>
+                    <div class="label_plus_input de3">
+                        <span>Email Asegurado</span>
+                        <input type="text" value="" placeholder="Escriba Aquí" name="email" data-bind="value: infoAdPerson().email1, css: {errorBorder: !infoAdPerson().email1()}" />
+                        <input type="text" value="" placeholder="Escriba Aquí" name="email2" data-bind="value: infoAdPerson().email2" />
+                        <input type="text" value="" placeholder="Escriba Aquí" name="email3" data-bind="value: infoAdPerson().email3" />
+                    </div>
+                    <div class="label_plus_input">
+                        <span>Nombre de la Empresa</span>
+                        <input type="text" value="" placeholder="Escriba Aquí" name="company" data-bind="value: infoAdPerson().company, css: {errorBorder: !infoAdPerson().company()}" />
+                    </div>
+                    <div class="label_plus_input">
+                        <span>Posición</span>
+                        <input type="text" value="" placeholder="Escriba Aquí" name="job" data-bind="value: infoAdPerson().job, css: {errorBorder: !infoAdPerson().job()}" />
+                    </div>
+                    <div class="label_plus_input">
+                        <span>A&ntilde;os en la empresa</span>
+                        <select name="yearsInCompany" data-bind="options: $root.yearsInCompanyList, optionsText: 'name', optionsValue: 'id', value: infoAdPerson().yearsInCompany, optionsCaption: 'Seleccione', css: {errorBorder: !infoAdPerson().yearsInCompany()}"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 fl mT55">
+                
+                <div class="label_plus_input de3">
+                    <span>Teléfonos</span>
+                    <input type="text" class="icon_home" placeholder="Escriba Aquí" name="phoneNumber" data-bind="value: infoAdPerson().phoneNumber, css: {errorBorder: !infoAdPerson().phoneNumber()}" />
+                    <input type="text" class="icon_work" placeholder="Escriba Aquí" name="workPhone" data-bind="value: infoAdPerson().workPhone" />
+                    <input type="text" class="icon_celular" placeholder="Escriba Aquí" name="mobile" data-bind="value: infoAdPerson().mobile" />
+                </div>
+                <div class="label_plus_input de4">
+                    <span>Direcci&oacute;n Domicilio</span>
+                    <input type="text" class="icon_home" placeholder="Escriba Aquí" name="address" data-bind="value: infoAdPerson().address, css: {errorBorder: !infoAdPerson().address()}" />
+                    <select name="countryId" data-bind="options: $root.nationalitiesList, optionsText: 'name', optionsValue: 'id', value: infoAdPerson().countryId, optionsCaption: 'Seleccione país', css: {errorBorder: !infoAdPerson().countryId()}"></select>
+                    <select name="provinceId" data-bind="options: infoAdPerson().provincesList, optionsText: 'name', optionsValue: 'id', value: infoAdPerson().provinceId, optionsCaption: 'Seleccione provincia', css: {errorBorder: !infoAdPerson().provinceId()}"></select>
+                    <select name="cityId" data-bind="options: _.filter(infoAdPerson().citiesList(), function(c){ return c.id.split('-')[1] == infoAdPerson().provinceId();}), optionsText: 'name', optionsValue: 'id', value: infoAdPerson().cityId, optionsCaption: 'Seleccione ciudad', css: {errorBorder: !infoAdPerson().cityId()}"></select>
+                </div>
+                <div class="label_plus_input de4">
+                    <span>Direcci&oacute;n Laboral</span>
+                    <input type="text" class="icon_work" placeholder="Escriba Aquí" name="" data-bind="value: infoAdPerson().workAddress, css: {errorBorder: !infoAdPerson().workAddress    ()}" />
+                    <select name="workCountryId" data-bind="options: $root.nationalitiesList, optionsText: 'name', optionsValue: 'id', value: infoAdPerson().workCountryId, optionsCaption: 'Seleccione país', css: {errorBorder: !infoAdPerson().workCountryId()}"></select>
+                    <select name="provinceId" data-bind="options: infoAdPerson().workProvincesList, optionsText: 'name', optionsValue: 'id', value: infoAdPerson().workProvinceId, optionsCaption: 'Seleccione provincia', css: {errorBorder: !infoAdPerson().workProvinceId()}"></select>
+                    <select name="cityId" data-bind="options: _.filter(infoAdPerson().workCitiesList(), function(c){ return c.id.split('-')[1] == infoAdPerson().workProvinceId();}), optionsText: 'name', optionsValue: 'id', value: infoAdPerson().workCityId, optionsCaption: 'Seleccione ciudad', css: {errorBorder: !infoAdPerson().workCityId()}"></select>
+                </div>
+                
+            </div>
+
+            <!-- Boton de Funcion -->
+            <div class="row_A mT10 mB10 pdR20">
+                <input type="submit" style="white-space: normal;" class="btn bgreen doble fr" data-bind="value: 'Continuar al Próximo Asegurado', visible: persons().length > 1" />
+            </div>
+        </form>
+        
+        <div class="row_A mT10 mB10 pdR20">
+            <a href="#" class="btn backBtn" data-bind="click: function() { parent.mainData().initSteps(true); parent.setSelectedStep(3); }"></a>
+            <!-- ko if: getStepStatus($root.currentStepId()) == stepStatuses.COMPLETED || persons().length == 1 -->
+            <input class="btn bgreen doble fr" data-bind="value: parent.steps()[$root.currentStepId()-1].nextStepButtonTitle(), click: fourthStepAdvance" />
+            <!-- /ko -->
+        </div>
+        
+    </div>
+</script>

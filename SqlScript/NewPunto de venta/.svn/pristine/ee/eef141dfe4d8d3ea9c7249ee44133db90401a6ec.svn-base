@@ -1,0 +1,18 @@
+﻿
+@using System.Configuration;
+@using System.Web.Mvc.Html;
+@using System.Web.Mvc
+
+@helper LinkPdfBrochure(string title, WebViewPage page)
+{
+
+var path = Path.Combine(ConfigurationManager.AppSettings["PdfBrochoure"], title + ".pdf");
+if (System.IO.File.Exists(path))
+{
+        <td><a href="@page.Url.Action("BrochurePdf",new { title = title })" target="_blank" class="ico_G30 pdf_ico bgrscale"></a></td>
+}
+else
+{
+        <td align="center"><a class="ico_G30 pdf_ico grayscale"></a></td>
+}
+}

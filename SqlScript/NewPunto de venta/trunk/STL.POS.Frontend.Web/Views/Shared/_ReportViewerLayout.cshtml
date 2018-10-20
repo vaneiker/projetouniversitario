@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="dcastro-amateo" />
+    <title>@ViewBag.Title</title>
+
+    <!--CSS Style-->
+    @Styles.Render("~/Content/reset")
+    @Styles.Render("~/Content/vo")
+    @Styles.Render("~/Content/kickstart")
+    @Styles.Render("~/Content/menuBundle")
+    @Styles.Render("~/Content/amr")
+    @Styles.Render("~/Content/dtl")
+    @Styles.Render("~/Content/jqueryuilib")
+
+    <!--SCRIPTS -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/underscore")
+    @Scripts.Render("~/bundles/kickstart")
+    @Scripts.Render("~/bundles/knockoutjs")
+    @Scripts.Render("~/bundles/global")
+    @Scripts.Render("~/bundles/jqueryvalidate")
+
+    @*<script type="text/javascript" src="~/Scripts/knockout.simpleGrid.3.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/Areas/Auto/vehicleDuplicateViewModel.js"></script>*@
+</head>
+<body>
+    @RenderBody()
+    <div class="btn_funciones cont_gnl fl">
+        <ul class="">
+            <li id="reportBuyButton" style="display:none;"><button class="buy_icon"></button></li>
+            <li id="reportSaveButton"><button class="save_icon"></button></li>
+            <li><button class="emailB" data-bind="click: function () { $root.showEmailSender(); }"></button></li>
+            <li id="reportPrintButton"><button class="print_icon" data-bind="click: function () { $root.printReporteCotizacion(); }"></button></li>
+            <li id="reportDownloadButton"><div><a target="_blank" href="#" class="pdf_icon" download="Cotizacion"></a></div></li>
+        </ul>
+    </div>
+
+    <div id="popupEmail" class="modal popup03 popupEmail">
+        <!--   -->
+        <a data-modal-close="true" class="closeX" href="#" onclick="$('#popupEmail').hide();">×</a>
+        <p>
+            Ingrese los destinatarios
+        </p>
+        <div class="tbl grid_popup">
+            <table>
+                <thead>
+                    <tr class="gradient_azul">
+                        <th align="center"><span>Email</span></th>
+                        <th align="center" style="width:40px"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: emailDestList">
+                    <tr>
+                        <td align="center">
+                            <input type="text" data-bind="value: $rawData" placeholder="--" />
+                        </td>
+                        <td align="center">
+                            <!--ko if: $index() != 0 -->
+                            <a class="grid_icons cazul delete" href="#" data-bind="click: function () { $parent.emailDestList.splice($index(), 1); }"></a>
+                            <!--/ko-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="btnPlus plus" data-bind="click: addEmailDest"></button>
+        <div class="mT10">
+            <button id="send" class="pbtn pb_green">Aceptar</button>
+            <button class="pbtn pb_red" onclick="$('#popupEmail').hide();">Cancelar</button>
+        </div>
+    </div><!--cpopup-->
+</body>
+</html>
