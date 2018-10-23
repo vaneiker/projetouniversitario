@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="POS_SITEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="SP_FILL_DROP_DOWN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="POS">
+    <Parameter Name="Filtro" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PARAMETERS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="POS">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_CALL_BACK_LOG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="POS">
+    <Parameter Name="FirstName" Type="varchar" Mode="In" />
+    <Parameter Name="SecondName" Type="varchar" Mode="In" />
+    <Parameter Name="PhoneType" Type="int" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Reference" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="POS_SITEModelStoreContainer" />
+</Schema>

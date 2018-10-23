@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="POS_SITEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="POS_SITEEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SP_FILL_DROP_DOWN" ReturnType="Collection(POS_SITEModel.SP_FILL_DROP_DOWN_Result)">
+      <Parameter Name="Filtro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_CALL_BACK_LOG" ReturnType="Collection(Int32)">
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="SecondName" Mode="In" Type="String" />
+      <Parameter Name="PhoneType" Mode="In" Type="Int32" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="Reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_PARAMETERS" ReturnType="Collection(POS_SITEModel.SP_GET_PARAMETERS_Result)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_FILL_DROP_DOWN_Result">
+    <Property Type="String" Name="id" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_PARAMETERS_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Value" Nullable="true" MaxLength="2000" />
+  </ComplexType>
+</Schema>

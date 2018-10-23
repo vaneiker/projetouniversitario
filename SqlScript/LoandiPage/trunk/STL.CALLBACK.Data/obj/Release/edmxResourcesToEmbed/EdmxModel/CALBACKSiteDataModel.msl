@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="POS_SITEModelStoreContainer" CdmEntityContainer="POS_SITEEntities">
+    <FunctionImportMapping FunctionImportName="SP_FILL_DROP_DOWN" FunctionName="POS_SITEModel.Store.SP_FILL_DROP_DOWN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="POS_SITEModel.SP_FILL_DROP_DOWN_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_CALL_BACK_LOG" FunctionName="POS_SITEModel.Store.SP_SET_CALL_BACK_LOG" />
+    <FunctionImportMapping FunctionImportName="SP_GET_PARAMETERS" FunctionName="POS_SITEModel.Store.SP_GET_PARAMETERS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="POS_SITEModel.SP_GET_PARAMETERS_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
