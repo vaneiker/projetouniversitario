@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SysFlexSegurosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="IN_DocumentoCobrar" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="Compania" />
+      <PropertyRef Name="TipoFactura" />
+      <PropertyRef Name="Anulado" />
+      <PropertyRef Name="Sistema" />
+      <PropertyRef Name="Tipo" />
+      <PropertyRef Name="Numero" />
+    </Key>
+    <Property Name="Compania" Type="Int32" Nullable="false" />
+    <Property Name="TipoFactura" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Anulado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Sistema" Type="Int32" Nullable="false" />
+    <Property Name="Tipo" Type="Int32" Nullable="false" />
+    <Property Name="Numero" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Cliente" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NombreCliente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Vendedor" Type="Int32" />
+    <Property Name="NombreVendedor" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Cobrador" Type="Int32" />
+    <Property Name="NombreCobrador" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="CondicionPago" Type="Byte" />
+    <Property Name="FechaCobro" Type="DateTime" Precision="3" />
+    <Property Name="Concepto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Estatus" Type="Int32" />
+    <Property Name="UsuarioTransfiere" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="FechaTransferido" Type="DateTime" Precision="3" />
+    <Property Name="UsuarioAnula" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="FechaAnula" Type="DateTime" Precision="3" />
+    <Property Name="ValorItbis" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PorcItbis" Type="Byte" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NumeroCotizacion" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DeContado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="TasaDolar" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CodMoneda" Type="Int32" />
+    <Property Name="Poliza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PorcComision" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ValorComision" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FacturaAnterior" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SecuenciaPoliza" Type="Int32" />
+    <Property Name="Ncf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Oficina" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="SysFlexSegurosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="IN_DocumentoCobrar" EntityType="Self.IN_DocumentoCobrar" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="ReassignNCF_log" EntityType="SysFlexSegurosModel.ReassignNCF_log" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+    <EntitySet Name="Tipo_Movimiento" EntityType="SysFlexSegurosModel.Tipo_Movimiento" />
+  </EntityContainer>
+  <EntityType Name="ReassignNCF_log" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Poliza" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Valor_old" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="ValorItbis_old" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Ncf_old" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Valor_new" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="ValorItbis_new" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Ncf_new" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Factura_old" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Factura_new" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Movimiento">
+    <Key>
+      <PropertyRef Name="Codigo" />
+      <PropertyRef Name="Compania" />
+    </Key>
+    <Property Name="Codigo" Type="Byte" Nullable="false" />
+    <Property Name="Compania" Type="Byte" Nullable="false" />
+    <Property Name="Siglas" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Contador" Type="Int32" />
+    <Property Name="AceptaBanco" Type="Byte" />
+    <Property Name="Concilia" Type="Byte" />
+    <Property Name="TipoContrario" Type="Byte" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Origen" Type="Byte" />
+    <Property Name="Contador_B" Type="Int32" />
+  </EntityType>
+</Schema>

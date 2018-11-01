@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SysFlexSegurosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CXC_Vendedor">
+    <Key>
+      <PropertyRef Name="Compania" />
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Compania" Type="tinyint" Nullable="false" />
+    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="Cuenta" Type="varchar" MaxLength="50" />
+    <Property Name="Auxiliar" Type="int" />
+    <Property Name="TipoRnc" Type="int" />
+    <Property Name="Rnc" Type="varchar" MaxLength="50" />
+    <Property Name="NombreVendedor" Type="varchar" MaxLength="200" />
+    <Property Name="PorcientoComision" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="CodigoSupervisor" Type="int" />
+    <Property Name="Estatus" Type="tinyint" />
+    <Property Name="Fecha_Entrada" Type="datetime" />
+    <Property Name="UsuarioAdiciona" Type="varchar" MaxLength="50" />
+    <Property Name="FechaAdiciona" Type="datetime" />
+    <Property Name="UsuarioModifica" Type="nvarchar" MaxLength="50" />
+    <Property Name="FechaModifica" Type="datetime" />
+    <Property Name="PorcientoGastos" Type="numeric" Precision="8" Scale="2" />
+    <Property Name="nota" Type="varchar(max)" />
+    <Property Name="tipo_Intermediario" Type="varchar" MaxLength="50" />
+    <Property Name="Agencia" Type="varchar" MaxLength="100" />
+    <Property Name="Fec_Nac" Type="datetime" />
+    <Property Name="Publicidad" Type="varchar" MaxLength="1" />
+    <Property Name="PagoComPor" Type="varchar" MaxLength="10" />
+    <Property Name="Banco" Type="int" />
+    <Property Name="CtaBanco" Type="varchar" MaxLength="50" />
+    <Property Name="CodigoRnc" Type="int" />
+    <Property Name="Retencion" Type="varchar" MaxLength="1" />
+    <Property Name="PorcDescuento" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="SupervisorCrea" Type="int" />
+    <Property Name="VendedorCrea" Type="int" />
+    <Property Name="Poliza" Type="varchar" MaxLength="50" />
+    <Property Name="Direccion" Type="varchar" MaxLength="255" />
+    <Property Name="Ubicacion" Type="int" />
+    <Property Name="Telefono" Type="varchar" MaxLength="30" />
+    <Property Name="TelefonoOficina" Type="varchar" MaxLength="30" />
+    <Property Name="Celular" Type="varchar" MaxLength="30" />
+    <Property Name="Beeper" Type="varchar" MaxLength="30" />
+    <Property Name="Fax" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="LicenciaSeguro" Type="varchar" MaxLength="50" />
+    <Property Name="CodigoAnterior" Type="varchar" MaxLength="50" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Oficina" Type="int" />
+    <Property Name="TipoCuentaBco" Type="varchar" MaxLength="50" />
+    <Property Name="EjecutivoServicio" Type="int" />
+    <Property Name="AsumeCxc" Type="tinyint" />
+    <Property Name="CodigoCliente" Type="int" />
+    <Property Name="Record_Id" Type="uniqueidentifier" />
+    <Property Name="PorcientoCapitalizacion" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Gestor" Type="int" />
+    <Property Name="EjecutivoCobros" Type="int" />
+    <Property Name="DiasCancelacionAutomatica" Type="int" />
+  </EntityType>
+  <EntityType Name="IN_DocumentoCobrar">
+    <Key>
+      <PropertyRef Name="Compania" />
+      <PropertyRef Name="TipoFactura" />
+      <PropertyRef Name="Anulado" />
+      <PropertyRef Name="Sistema" />
+      <PropertyRef Name="Tipo" />
+      <PropertyRef Name="Numero" />
+    </Key>
+    <Property Name="Compania" Type="int" Nullable="false" />
+    <Property Name="TipoFactura" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Anulado" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Sistema" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="int" Nullable="false" />
+    <Property Name="Numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Valor" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Cliente" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="NombreCliente" Type="varchar" MaxLength="255" />
+    <Property Name="Vendedor" Type="int" />
+    <Property Name="NombreVendedor" Type="varchar" MaxLength="200" />
+    <Property Name="Cobrador" Type="int" />
+    <Property Name="NombreCobrador" Type="varchar" MaxLength="75" />
+    <Property Name="CondicionPago" Type="tinyint" />
+    <Property Name="FechaCobro" Type="datetime" />
+    <Property Name="Concepto" Type="varchar" MaxLength="200" />
+    <Property Name="Usuario" Type="varchar" MaxLength="30" />
+    <Property Name="Estatus" Type="int" />
+    <Property Name="UsuarioTransfiere" Type="varchar" MaxLength="30" />
+    <Property Name="FechaTransferido" Type="datetime" />
+    <Property Name="UsuarioAnula" Type="varchar" MaxLength="30" />
+    <Property Name="FechaAnula" Type="datetime" />
+    <Property Name="ValorItbis" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="PorcItbis" Type="tinyint" />
+    <Property Name="Balance" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Descuento" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="NumeroCotizacion" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="DeContado" Type="varchar" MaxLength="1" />
+    <Property Name="TasaDolar" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="CodMoneda" Type="int" />
+    <Property Name="Poliza" Type="varchar" MaxLength="50" />
+    <Property Name="PorcComision" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="ValorComision" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="FacturaAnterior" Type="varchar" MaxLength="50" />
+    <Property Name="SecuenciaPoliza" Type="int" />
+    <Property Name="Ncf" Type="varchar" MaxLength="50" />
+    <Property Name="Oficina" Type="int" />
+  </EntityType>
+  <EntityType Name="Log_TraspasoCartera">
+    <Key>
+      <PropertyRef Name="logId" />
+    </Key>
+    <Property Name="logId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaTraspaso" Type="datetime" Nullable="false" />
+    <Property Name="poliza" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IntermediarioOrigen" Type="int" Nullable="false" />
+    <Property Name="IntermediarioDestino" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="transferido" Type="bit" Nullable="false" />
+  </EntityType>
+  <Function Name="ATL_TraspasoCartera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IntermediarioOrigen" Type="int" Mode="In" />
+    <Parameter Name="IntermediarioDestino" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="SysFlexSegurosModelStoreContainer">
+    <EntitySet Name="CXC_Vendedor" EntityType="Self.CXC_Vendedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IN_DocumentoCobrar" EntityType="Self.IN_DocumentoCobrar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log_TraspasoCartera" EntityType="Self.Log_TraspasoCartera" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

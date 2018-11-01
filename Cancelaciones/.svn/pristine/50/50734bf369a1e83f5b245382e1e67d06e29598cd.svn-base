@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SysFlexSegurosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="P_PolizaCoberturasMov">
+          <Key>
+            <PropertyRef Name="Compania" />
+            <PropertyRef Name="Cotizacion" />
+            <PropertyRef Name="SecuenciaCot" />
+            <PropertyRef Name="Secuencia" />
+            <PropertyRef Name="SecuenciaMov" />
+          </Key>
+          <Property Name="Compania" Type="int" Nullable="false" />
+          <Property Name="Cotizacion" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Ramo" Type="int" Nullable="false" />
+          <Property Name="SubRamo" Type="int" Nullable="false" />
+          <Property Name="SecuenciaCot" Type="int" Nullable="false" />
+          <Property Name="Secuencia" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="MontoInformativo" Type="varchar" MaxLength="50" />
+          <Property Name="TieneCobertura" Type="char" MaxLength="1" />
+          <Property Name="Porciento" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="Prima" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="PorcDeducible" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MinimoDeducible" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Endoso" Type="varchar" MaxLength="50" />
+          <Property Name="PorcCobertura" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ValorServicio" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SecuenciaMov" Type="int" Nullable="false" />
+          <Property Name="PrimaMov" Type="numeric" Precision="18" Scale="8" />
+        </EntityType>
+        <EntityType Name="P_PolizaHeaderMov">
+          <Key>
+            <PropertyRef Name="Compania" />
+            <PropertyRef Name="Cotizacion" />
+            <PropertyRef Name="SecuenciaMov" />
+          </Key>
+          <Property Name="Compania" Type="tinyint" Nullable="false" />
+          <Property Name="Cotizacion" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Cliente" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Intermediario" Type="int" />
+          <Property Name="Poliza" Type="varchar" MaxLength="50" />
+          <Property Name="MontoNeto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UsuarioAdiciona" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaAdiciona" Type="datetime" />
+          <Property Name="UsuarioModifica" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModifica" Type="datetime" />
+          <Property Name="Estatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ramo" Type="int" />
+          <Property Name="Hora" Type="varchar" MaxLength="50" />
+          <Property Name="SumaAsegurada" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Deudor" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CodMoneda" Type="int" />
+          <Property Name="Prima" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SecuenciaMov" Type="int" Nullable="false" />
+          <Property Name="ConceptoMov" Type="varchar" MaxLength="50" />
+          <Property Name="FechaFacturacion" Type="datetime" />
+          <Property Name="CodigoConcepto" Type="int" />
+          <Property Name="MontoMov" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Observacion" Type="varchar" MaxLength="4000" />
+          <Property Name="PorcComision" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Oficina" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SysFlexSeguros.dbo.Reaseguro_INVOCE_Report_VIEW' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Reaseguro_INVOCE_Report_VIEW">
+          <Key>
+            <PropertyRef Name="DOCUMENT_NUMBER" />
+            <PropertyRef Name="DOCUMENT_TYPE" />
+          </Key>
+          <Property Name="POLICY_NUMBER" Type="varchar" MaxLength="50" />
+          <Property Name="DOCUMENT_NUMBER" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DOCUMENT_TYPE" Type="int" Nullable="false" />
+          <Property Name="INVOICE_DATE" Type="datetime" />
+          <Property Name="VEHICLE_PRODUCT" Type="nvarchar" MaxLength="150" />
+          <Property Name="VEHICLE_ITEM" Type="int" />
+          <Property Name="VEHICLE_TYPE" Type="varchar" MaxLength="200" />
+          <Property Name="VEHICLE_AMOUNT" Type="numeric" Precision="29" Scale="2" />
+          <Property Name="DPA_AMOUNT" Type="numeric" Precision="38" Scale="6" />
+          <Property Name="DP_AMOUNT" Type="numeric" Precision="38" Scale="6" />
+          <Property Name="SERVICE_AMOUNT" Type="numeric" Precision="38" Scale="6" />
+          <Property Name="TAX_AMOUNT" Type="numeric" Precision="38" Scale="6" />
+          <Property Name="MOv" Type="int" />
+        </EntityType>
+        <EntityContainer Name="SysFlexSegurosModelStoreContainer">
+          <EntitySet Name="P_PolizaCoberturasMov" EntityType="Self.P_PolizaCoberturasMov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P_PolizaHeaderMov" EntityType="Self.P_PolizaHeaderMov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reaseguro_INVOCE_Report_VIEW" EntityType="Self.Reaseguro_INVOCE_Report_VIEW" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Reaseguro_INVOCE_Report_VIEW].[POLICY_NUMBER] AS [POLICY_NUMBER], 
+    [Reaseguro_INVOCE_Report_VIEW].[DOCUMENT_NUMBER] AS [DOCUMENT_NUMBER], 
+    [Reaseguro_INVOCE_Report_VIEW].[DOCUMENT_TYPE] AS [DOCUMENT_TYPE], 
+    [Reaseguro_INVOCE_Report_VIEW].[INVOICE_DATE] AS [INVOICE_DATE], 
+    [Reaseguro_INVOCE_Report_VIEW].[VEHICLE_PRODUCT] AS [VEHICLE_PRODUCT], 
+    [Reaseguro_INVOCE_Report_VIEW].[VEHICLE_ITEM] AS [VEHICLE_ITEM], 
+    [Reaseguro_INVOCE_Report_VIEW].[VEHICLE_TYPE] AS [VEHICLE_TYPE], 
+    [Reaseguro_INVOCE_Report_VIEW].[VEHICLE_AMOUNT] AS [VEHICLE_AMOUNT], 
+    [Reaseguro_INVOCE_Report_VIEW].[DPA_AMOUNT] AS [DPA_AMOUNT], 
+    [Reaseguro_INVOCE_Report_VIEW].[DP_AMOUNT] AS [DP_AMOUNT], 
+    [Reaseguro_INVOCE_Report_VIEW].[SERVICE_AMOUNT] AS [SERVICE_AMOUNT], 
+    [Reaseguro_INVOCE_Report_VIEW].[TAX_AMOUNT] AS [TAX_AMOUNT], 
+    [Reaseguro_INVOCE_Report_VIEW].[MOv] AS [MOv]
+    FROM [dbo].[Reaseguro_INVOCE_Report_VIEW] AS [Reaseguro_INVOCE_Report_VIEW]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SysFlexSegurosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="P_PolizaCoberturasMov">
+          <Key>
+            <PropertyRef Name="Compania" />
+            <PropertyRef Name="Cotizacion" />
+            <PropertyRef Name="SecuenciaCot" />
+            <PropertyRef Name="Secuencia" />
+            <PropertyRef Name="SecuenciaMov" />
+          </Key>
+          <Property Name="Compania" Type="Int32" Nullable="false" />
+          <Property Name="Cotizacion" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Ramo" Type="Int32" Nullable="false" />
+          <Property Name="SubRamo" Type="Int32" Nullable="false" />
+          <Property Name="SecuenciaCot" Type="Int32" Nullable="false" />
+          <Property Name="Secuencia" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MontoInformativo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TieneCobertura" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Porciento" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Prima" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="PorcDeducible" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MinimoDeducible" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Endoso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PorcCobertura" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValorServicio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SecuenciaMov" Type="Int32" Nullable="false" />
+          <Property Name="PrimaMov" Type="Decimal" Precision="18" Scale="8" />
+        </EntityType>
+        <EntityType Name="Reaseguro_INVOCE_Report_VIEW">
+          <Key>
+            <PropertyRef Name="DOCUMENT_NUMBER" />
+            <PropertyRef Name="DOCUMENT_TYPE" />
+          </Key>
+          <Property Name="POLICY_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOCUMENT_NUMBER" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DOCUMENT_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="INVOICE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="VEHICLE_PRODUCT" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="VEHICLE_ITEM" Type="Int32" />
+          <Property Name="VEHICLE_TYPE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VEHICLE_AMOUNT" Type="Decimal" Precision="29" Scale="2" />
+          <Property Name="DPA_AMOUNT" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="DP_AMOUNT" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="SERVICE_AMOUNT" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="TAX_AMOUNT" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="MOv" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="SysFlexSegurosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="P_PolizaCoberturasMov" EntityType="Self.P_PolizaCoberturasMov" />
+          <EntitySet Name="Reaseguro_INVOCE_Report_VIEW" EntityType="Self.Reaseguro_INVOCE_Report_VIEW" />
+          <EntitySet Name="P_PolizaHeaderMov" EntityType="SysFlexSegurosModel.P_PolizaHeaderMov" />
+        </EntityContainer>
+        <EntityType Name="P_PolizaHeaderMov">
+          <Key>
+            <PropertyRef Name="Compania" />
+            <PropertyRef Name="Cotizacion" />
+            <PropertyRef Name="SecuenciaMov" />
+          </Key>
+          <Property Name="Compania" Type="Byte" Nullable="false" />
+          <Property Name="Cotizacion" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Cliente" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Intermediario" Type="Int32" />
+          <Property Name="Poliza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MontoNeto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UsuarioAdiciona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAdiciona" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioModifica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="Estatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ramo" Type="Int32" />
+          <Property Name="Hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SumaAsegurada" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Deudor" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CodMoneda" Type="Int32" />
+          <Property Name="Prima" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SecuenciaMov" Type="Int32" Nullable="false" />
+          <Property Name="ConceptoMov" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaFacturacion" Type="DateTime" Precision="3" />
+          <Property Name="CodigoConcepto" Type="Int32" />
+          <Property Name="MontoMov" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Observacion" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="PorcComision" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Oficina" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SysFlexSegurosModelStoreContainer" CdmEntityContainer="SysFlexSegurosEntities">
+          <EntitySetMapping Name="P_PolizaCoberturasMov">
+            <EntityTypeMapping TypeName="SysFlexSegurosModel.P_PolizaCoberturasMov">
+              <MappingFragment StoreEntitySet="P_PolizaCoberturasMov">
+                <ScalarProperty Name="Compania" ColumnName="Compania" />
+                <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+                <ScalarProperty Name="Ramo" ColumnName="Ramo" />
+                <ScalarProperty Name="SubRamo" ColumnName="SubRamo" />
+                <ScalarProperty Name="SecuenciaCot" ColumnName="SecuenciaCot" />
+                <ScalarProperty Name="Secuencia" ColumnName="Secuencia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="MontoInformativo" ColumnName="MontoInformativo" />
+                <ScalarProperty Name="TieneCobertura" ColumnName="TieneCobertura" />
+                <ScalarProperty Name="Porciento" ColumnName="Porciento" />
+                <ScalarProperty Name="Prima" ColumnName="Prima" />
+                <ScalarProperty Name="PorcDeducible" ColumnName="PorcDeducible" />
+                <ScalarProperty Name="MinimoDeducible" ColumnName="MinimoDeducible" />
+                <ScalarProperty Name="Endoso" ColumnName="Endoso" />
+                <ScalarProperty Name="PorcCobertura" ColumnName="PorcCobertura" />
+                <ScalarProperty Name="ValorServicio" ColumnName="ValorServicio" />
+                <ScalarProperty Name="SecuenciaMov" ColumnName="SecuenciaMov" />
+                <ScalarProperty Name="PrimaMov" ColumnName="PrimaMov" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reaseguro_INVOCE_Report_VIEW">
+            <EntityTypeMapping TypeName="SysFlexSegurosModel.Reaseguro_INVOCE_Report_VIEW">
+              <MappingFragment StoreEntitySet="Reaseguro_INVOCE_Report_VIEW">
+                <ScalarProperty Name="POLICY_NUMBER" ColumnName="POLICY_NUMBER" />
+                <ScalarProperty Name="DOCUMENT_NUMBER" ColumnName="DOCUMENT_NUMBER" />
+                <ScalarProperty Name="DOCUMENT_TYPE" ColumnName="DOCUMENT_TYPE" />
+                <ScalarProperty Name="INVOICE_DATE" ColumnName="INVOICE_DATE" />
+                <ScalarProperty Name="VEHICLE_PRODUCT" ColumnName="VEHICLE_PRODUCT" />
+                <ScalarProperty Name="VEHICLE_ITEM" ColumnName="VEHICLE_ITEM" />
+                <ScalarProperty Name="VEHICLE_TYPE" ColumnName="VEHICLE_TYPE" />
+                <ScalarProperty Name="VEHICLE_AMOUNT" ColumnName="VEHICLE_AMOUNT" />
+                <ScalarProperty Name="DPA_AMOUNT" ColumnName="DPA_AMOUNT" />
+                <ScalarProperty Name="DP_AMOUNT" ColumnName="DP_AMOUNT" />
+                <ScalarProperty Name="SERVICE_AMOUNT" ColumnName="SERVICE_AMOUNT" />
+                <ScalarProperty Name="TAX_AMOUNT" ColumnName="TAX_AMOUNT" />
+                <ScalarProperty Name="MOv" ColumnName="MOv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P_PolizaHeaderMov">
+            <EntityTypeMapping TypeName="SysFlexSegurosModel.P_PolizaHeaderMov">
+              <MappingFragment StoreEntitySet="P_PolizaHeaderMov">
+                <ScalarProperty Name="Oficina" ColumnName="Oficina" />
+                <ScalarProperty Name="PorcComision" ColumnName="PorcComision" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="MontoMov" ColumnName="MontoMov" />
+                <ScalarProperty Name="CodigoConcepto" ColumnName="CodigoConcepto" />
+                <ScalarProperty Name="FechaFacturacion" ColumnName="FechaFacturacion" />
+                <ScalarProperty Name="ConceptoMov" ColumnName="ConceptoMov" />
+                <ScalarProperty Name="SecuenciaMov" ColumnName="SecuenciaMov" />
+                <ScalarProperty Name="Prima" ColumnName="Prima" />
+                <ScalarProperty Name="CodMoneda" ColumnName="CodMoneda" />
+                <ScalarProperty Name="Deudor" ColumnName="Deudor" />
+                <ScalarProperty Name="SumaAsegurada" ColumnName="SumaAsegurada" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Ramo" ColumnName="Ramo" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="FechaModifica" ColumnName="FechaModifica" />
+                <ScalarProperty Name="UsuarioModifica" ColumnName="UsuarioModifica" />
+                <ScalarProperty Name="FechaAdiciona" ColumnName="FechaAdiciona" />
+                <ScalarProperty Name="UsuarioAdiciona" ColumnName="UsuarioAdiciona" />
+                <ScalarProperty Name="MontoNeto" ColumnName="MontoNeto" />
+                <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+                <ScalarProperty Name="Intermediario" ColumnName="Intermediario" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+                <ScalarProperty Name="Compania" ColumnName="Compania" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

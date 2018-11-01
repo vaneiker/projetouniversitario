@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ATLServicesModelStoreContainer" CdmEntityContainer="ATLServicesEntities">
+    <EntitySetMapping Name="RequestLogs">
+      <EntityTypeMapping TypeName="ATLServicesModel.RequestLog">
+        <MappingFragment StoreEntitySet="RequestLog">
+          <ScalarProperty Name="ErrorComment" ColumnName="ErrorComment" />
+          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Ip" ColumnName="Ip" />
+          <ScalarProperty Name="clientId" ColumnName="clientId" />
+          <ScalarProperty Name="policy" ColumnName="policy" />
+          <ScalarProperty Name="Services" ColumnName="Services" />
+          <ScalarProperty Name="RequestURL" ColumnName="RequestURL" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SendedLogs">
+      <EntityTypeMapping TypeName="ATLServicesModel.SendedLog">
+        <MappingFragment StoreEntitySet="SendedLog">
+          <ScalarProperty Name="ErrorCount" ColumnName="ErrorCount" />
+          <ScalarProperty Name="ResponseStatusDesc" ColumnName="ResponseStatusDesc" />
+          <ScalarProperty Name="ResponseStatus" ColumnName="ResponseStatus" />
+          <ScalarProperty Name="SendedDate" ColumnName="SendedDate" />
+          <ScalarProperty Name="clientId" ColumnName="clientId" />
+          <ScalarProperty Name="policy" ColumnName="policy" />
+          <ScalarProperty Name="Services" ColumnName="Services" />
+          <ScalarProperty Name="SendedURL" ColumnName="SendedURL" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
