@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SysFlexSeguros_RecoveredModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CancelacionesEntity" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SPCCancelarPolizasAutomaticasNew">
+      <Parameter Name="Compania" Mode="In" Type="Int32" />
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="DiasNoRenovadas" Mode="In" Type="Int32" />
+      <Parameter Name="Indicador" Mode="In" Type="Int32" />
+      <Parameter Name="DiasAdelantados" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>
