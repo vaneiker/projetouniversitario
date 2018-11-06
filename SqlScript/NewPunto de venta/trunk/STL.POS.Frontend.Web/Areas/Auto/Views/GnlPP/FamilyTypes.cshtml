@@ -1,9 +1,0 @@
-﻿@using STL.POS.Data;
-
-@{int n = 0;}
-@foreach (var family in (ProductTypeFamilyBrochure[])Model)
-{
-    <li class="@(@n == 0 ? "open" : @String.Empty) "><a href="#family_@n">@family.Name</a></li>
-    n++;
-}
-
