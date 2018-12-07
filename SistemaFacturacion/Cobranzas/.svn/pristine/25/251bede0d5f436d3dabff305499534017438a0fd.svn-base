@@ -1,0 +1,60 @@
+﻿@model  KSI.Cobranza.Web.Models.ViewModels.AttachedFilesViewModels
+<div class="col-lg-12">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            ADJUNTAR ARCHIVOS
+        </div>       
+        <div class="panel-body">
+            <div id="dvForm">
+                @Html.HiddenFor(o => o.HasLoadedFile, new { @id = "hdnHasLoadedFileNotes" })
+                <input type="reset" id="btnReset" style="display:none" />
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Grupos de Documentos:</label>
+                            @Html.DropDownListFor(o => o.DocumentGroupId, Model.DocumentsGroup.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccione un...", new { @id = "cbxDocumentGroupId", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Tipos de Documentos:</label>
+                            @Html.DropDownListFor(o => o.DocumentTypeId, Model.DocumentsTypes.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccione un...", new { @id = "cbxDocumentTypesId", @class = "form-control" })
+                        </div>
+                    </div>
+                </div><!--row-->
+                <div class="row mb20">
+                    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                        <button id="btnNuevo" type="button" class="btn btn-primary-st btn-block" onclick="$('#fFile').click()">
+                            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            Seleccionar Archivo
+                        </button>
+                        <input type="file" accept="application/pdf" id="fFile" name="fFile" style="display:none" onchange="validateLoadedFileNote(this)" />
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                        <button class="btn btn-success btn-block" type="button" onclick="CloneFrmAttachedFile()">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            Cargar
+                        </button>
+                    </div>
+                </div><!--row-->
+            </div>
+            <div id="dvCargando" style="display:none">
+                <div>
+                    Cargando...
+                </div>
+                <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success">0%</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="dvAttachedFiles">
+                    @Html.Partial("_MeetingAttachedFiles", Model.AttachedFiles)
+                </div>
+            </div><!--row-->
+            @Html.Hidden("hdnMsg", (object)ViewBag.msgLoadFile)
+            <!--row-->
+        </div>
+    </div>
+</div>

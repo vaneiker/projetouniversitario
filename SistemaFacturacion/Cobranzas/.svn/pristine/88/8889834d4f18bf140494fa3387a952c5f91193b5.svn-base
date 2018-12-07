@@ -1,0 +1,20 @@
+﻿@{
+
+    var webdvAttachedFiles = new WebGrid(source: Model, ajaxUpdateContainerId: "dvAttachedFiles", canPage: true, rowsPerPage: 5);
+}
+<div class="table-responsive">
+    <div id="dvAttachedFiles">
+        @webdvAttachedFiles.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                                                      headerStyle: "header-table",
+                                                      htmlAttributes: new { @id = "gvAttachedFiles" },
+                                                      mode: WebGridPagerModes.All,
+                                                               columns: webdvAttachedFiles.Columns(
+                                                                                         webdvAttachedFiles.Column("documentGroupName", "GRUPO DE DOCUMENTO"),
+                                                                                         webdvAttachedFiles.Column("DocumentTypeDesc", "TIPO DE DOCUMENTO"),
+                                                                                         webdvAttachedFiles.Column("FileName", "NOMBRE ARCHIVO"),
+                                                                                         webdvAttachedFiles.Column(null, null, @<text><button class="btn btn-default" type="button" onclick="ShowPDF('@item.DocumentPath')">Ver</button> </text>),
+                                                                                         webdvAttachedFiles.Column(null,null,@<text><button class="btn btn-default" type="button" onclick="DeleteRelatedDocument(@item.templateSentId,@item.templateSentRelatedFileId,@item.accountId)">Borrar</button> </text>)
+                                                                                        ))
+
+    </div>
+</div>

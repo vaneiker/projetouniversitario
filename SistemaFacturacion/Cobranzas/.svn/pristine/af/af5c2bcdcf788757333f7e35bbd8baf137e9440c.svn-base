@@ -1,0 +1,91 @@
+﻿@model IEnumerable<KSI.Cobranza.Web.Models.ViewModels.QueueViewModels>
+
+@{
+    var webGrid = new WebGrid(source: Model, ajaxUpdateContainerId: "dvGrid", ajaxUpdateCallback: "Init()");
+}
+
+<div id="dvGrid">
+    @webGrid.GetHtml(tableStyle: "table table-striped qcobranzas",
+                     headerStyle: "header-table",
+                     mode: WebGridPagerModes.All,
+                     htmlAttributes: new { @id = "gvLoansQueue" },
+                                    columns: webGrid.Columns(
+                                                              webGrid.Column("Id", "Id"),
+                                                              webGrid.Column("CustomerFullName", "Nombre del Cliente"),
+                                                              webGrid.Column("AmountFinanced", "Monto financiado"),
+                                                              webGrid.Column("InterestRate", "Tasa Interés"),
+                                                              webGrid.Column("ExecutiveName", "Ejecutivo"),
+                                                              webGrid.Column("SponsorName", "Promotor"),
+
+                                                              webGrid.Column("Term", "Plazo"),
+                                                              webGrid.Column("CreditState", "Estado"),
+                                                              webGrid.Column("Office", "Oficina"),
+                                                              webGrid.Column("Product", "Producto"),
+                                                              webGrid.Column("QueuePosition", "QUEUE"),
+                                                              webGrid.Column("ActionDate", "Fecha de acción"),
+                                                              webGrid.Column("ReferrerDepartment", "Departamento"),
+                                                              webGrid.Column("AssignTo", "Asignado"),
+                                                              webGrid.Column("KindOfFollowup", "Tipo de Seguimiento"),
+                                                              webGrid.Column("AmountOwed", "Monto adeudado"),
+
+
+                                                              webGrid.Column(null, null,
+                                                              format: @<text><input id="key" type="hidden" value="@item._dataRequest" ) /></text>,
+                                                                                  style: "text-center")
+                                                             )
+                                                           )
+</div>
+
+
+@*<table class="table table-striped qcobranzas">
+    <thead>
+        <tr>
+           
+            <td>Id</td>
+            <td>Nombre del Cliente</td>
+            <td>Monto financiado</td>
+            <td>Tasa Interés</td>
+            <td>Ejecutivo</td>
+            <td>Promotor</td>
+
+            <td>Plazo</td>
+            <td>Estado</td>
+            <td>Oficina</td>
+            <td>Producto</td>
+            <td> QUEUE</td>
+            <td>Fecha de acción</td>
+            <td>Departamento</td>
+            <td>Asignado a</td>
+            <td>Tipo de Seguimiento</td>
+         
+            <td>Monto adeudado</td>
+          
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr onclick="goToProcess('@item.LoanNumber')">
+             
+                <td>@item.Id</td>
+                <td>@item.CustomerFullName</td>
+                <td>@item.AmountFinanced</td>
+                <td>@item.InterestRate</td>
+                <td>@item.ExecutiveName</td>
+                <td>@item.SponsorName</td>
+                <td>@item.Term</td>
+                <td>@item.CreditState</td>
+                <td>@item.Office</td>
+                <td>@item.Product</td>
+                <td>@item.QueuePosition</td>
+                <td>@item.ActionDate</td>
+                <td>@item.ReferrerDepartment</td>
+                <td>@item.AssignTo</td>
+                <td>@item.KindOfFollowup</td>
+              
+                <td>@item.AmountOwed</td>
+            </tr>
+        }
+
+    </tbody>
+</table>*@

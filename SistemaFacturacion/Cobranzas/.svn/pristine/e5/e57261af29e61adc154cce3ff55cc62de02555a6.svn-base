@@ -1,0 +1,21 @@
+﻿@model IEnumerable<KSI.Cobranza.Web.Models.ViewModels.AttachedFilesViewModels>
+@{
+
+    var webdvAttachedFiles = new WebGrid(source: Model, ajaxUpdateContainerId: "dvMeetingAttachedFiles", canPage: true);
+}
+<div class="table-responsive">
+    <div id="dvMeetingAttachedFiles">
+        @webdvAttachedFiles.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                                                      headerStyle: "header-table",
+                                                      htmlAttributes: new { @id = "gvAttachedFiles" },
+                                                               columns: webdvAttachedFiles.Columns(
+                                                                                         webdvAttachedFiles.Column("documentGroupName", "GRUPO DE DOCUMENTO"),
+                                                                                         webdvAttachedFiles.Column("DocumentTypeDesc", "TIPO DE DOCUMENTO"),
+                                                                                         webdvAttachedFiles.Column("FileName", "NOMBRE ARCHIVO"),                                                                                         
+                                                                                         webdvAttachedFiles.Column(null,null,@<text><button class="btn btn-default" type="button" onclick="DeleteFile('@item.Id')">Borrar</button> </text>)
+                                                                                        ))
+
+    </div>
+</div>
+
+

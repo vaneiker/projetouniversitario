@@ -1,0 +1,130 @@
+﻿
+<div class="row  row-eq">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row-eq">
+        <div class="panel panel-info col-eq">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>Filtral por:</label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="myFilters" value="0" id="filterAll">TODOS
+                            </label>
+                            @foreach (var item in @ViewBag.TransactionReasons)
+                            {
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="myFilters" value="@item.Value">@item.Key
+                                </label>
+                            }
+                            <button class="btn btn-info" id="ApplyFilters">Aplicar Filtros</button>
+                        </div>
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">No. Cuenta:</label>
+                            <input class="form-control" id="NoCuenta" type="text" disabled="" value="@ViewBag.AccountNumber">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Id:</label>
+                            <input class="form-control" id="loanNumber" type="text" disabled="" value="@ViewBag.LoanNumber">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Estado:</label>
+                            <input class="form-control" id="LoanStatusName" type="text" disabled="" value="@ViewBag.LoanStatusName">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Nombre Cuenta:</label>
+                            <input class="form-control" id="AccountName" type="text"  disabled="" value="@ViewBag.AccountName">
+                        </div>
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="table-responsive">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div id="dvGridReceipOfPayment">
+
+                            </div>                           
+                        </div>
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="table-responsive">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <table class="table table-striped car">
+                                <thead>
+                                    <tr class="header-table">
+                                        <th class="text-center"></th>
+                                        <th class="text-center">Monto</th>
+                                        <th class="text-center">Saldo</th>
+                                        <th class="text-center">Señal</th>
+                                        <th class="text-center">Fecha Ult. Pago</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">Capital:</td>
+                                        <td class="text-center" id="CapitalMonto">0.00</td>
+                                        <td class="text-center" id="CapitalSaldo">0.00</td>
+                                        <td class="text-center" id="SenalCapital"></td>
+                                        <td class="text-center" id="FechaUltPagoCapital"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center">Interes:</td>
+                                        <td class="text-center" id="MontoInteres">0.00</td>
+                                        <td class="text-center" id="SaldoInteres">0.00</td>
+                                        <td class="text-center" id="SenalInteres"></td>
+                                        <td class="text-center" id="UltFechaPagoInteres"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center">Comisión:</td>
+                                        <td class="text-center" id="MontoComision">0.00</td>
+                                        <td class="text-center" id="SaldoComision">0.00</td>
+                                        <td class="text-center" id="SenalComision"></td>
+                                        <td class="text-center" id="FechaUltPagoComision"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center">Gastos:</td>
+                                        <td class="text-center" id="MontoGastos">0.00</td>
+                                        <td class="text-center" id="GastosSaldo">0.00</td>
+                                        <td class="text-center" id="SenalGastos"></td>
+                                        <td class="text-center" id="dExpenseAmount"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center">Mora:</td>
+                                        <td class="text-center" id="MontoMora">0.00</td>
+                                        <td class="text-center" id="MoraSaldo">0.00</td>
+                                        <td class="text-center" id="SenalMora"></td>
+                                        <td class="text-center" id="dRateLateAmount"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center">Cargo:</td>
+                                        <td class="text-center" id="MontoCargo">0.00</td>
+                                        <td class="text-center" id="CargoSaldo">0.00</td>
+                                        <td class="text-center" id="SenalCargo"></td>
+                                        <td class="text-center" id="dChargeAmount"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><!--row-->
+            </div>
+        </div>
+    </div>
+</div>

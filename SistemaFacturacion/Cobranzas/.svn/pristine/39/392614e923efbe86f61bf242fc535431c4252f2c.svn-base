@@ -1,0 +1,409 @@
+﻿@model KSI.Cobranza.Web.Models.ViewModels.CorrespondenceViewModels
+@{
+    var webTemplateList = new WebGrid(source: Model.TemplateDocuments, ajaxUpdateContainerId: "dvDocumentList", canPage: true);
+}
+<div class="row  row-eq mb20">
+    <br />
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 row-eq">
+        @using (Ajax.BeginForm("SetCorrespondences", "Process", new AjaxOptions
+                                        {
+                                            HttpMethod = "POST",
+                                            UpdateTargetId = "frmCorrenpondences",
+                                            InsertionMode = InsertionMode.Replace,
+                                            OnSuccess = "GetCorrespondencesView(" + Model.accountId + "," + Model.CustomerId + ")",
+                                            OnComplete = "$('.validation-summary-errors').hide()",
+                                            OnBegin = "$('.validation-summary-errors').hide()"
+                                        }, new { @id = "frmCorrenpondences" }))
+        {
+            @Html.HiddenFor(o => o.accountId)
+            @Html.HiddenFor(o => o.LoanType)
+            @Html.HiddenFor(o => o.MontoApagar)
+            @Html.HiddenFor(o => o.NumeroCuota)
+            @Html.HiddenFor(o => o.StartDate)
+            @Html.HiddenFor(o => Model.RooTemplateSentId, new { @id = "RooTemplateSentId" })
+            @Html.CheckBoxFor(o => Model.HasSelectedAnyEmail, new { @style = "display:none" })
+            @Html.CheckBoxFor(o => Model.HasGenerateTemplateBySent, new { @style = "display:none" })
+            @Html.CheckBoxFor(o => Model.HasSelectPrincipal, new { @style = "display:none" })
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0">
+                <div class="panel panel-info col-eq">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            SELECCIONAR NO. DE CASO
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="CaseNumber">No. de Caso:</label>
+                                    @Html.TextBoxFor(o => o.CaseNumber, new { @class = "form-control", @disabled = "disabled", id = "txtCaseNumber" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="LoanNumber">No. de Cuenta:</label>
+                                    @Html.TextBoxFor(o => o.LoanNumber, new { @class = "form-control", @disabled = "disabled", id = "txtLoanNumber" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="ProductType">Tipo de Producto:</label>
+                                    @Html.TextBoxFor(o => o.ProductType, new { @class = "form-control", @disabled = "disabled", id = "txtProductType" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="CompanyID">Tipo de Caso:</label>
+                                    @Html.TextBoxFor(o => o.CaseType, new { @class = "form-control", @disabled = "disabled", id = "txtCaseType" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="Department">Departamento:</label>
+                                    @Html.TextBoxFor(o => o.Department, new { @class = "form-control", @disabled = "disabled", id = "txtDepartment" })
+                                </div>
+                            </div>
+                        </div><!--row-->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0 mt20">
+                <div class="row mt-5 row-eq">
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 row-eq style=" max-width:611px;">
+                        <div class="panel panel-info col-eq">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    SELECCIONAR TEMPLATE
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="table-responsive">
+                                            <div id="dvDocumentList">
+                                                @webTemplateList.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                                                          headerStyle: "header-table",
+                                                          htmlAttributes: new { @id = "gvDocument" },
+                                                                   columns: webTemplateList.Columns(webTemplateList.Column("TemplateName", "Nombre del documento"),
+                                                                                                    webTemplateList.Column(null, null, format: @<text><input id="hdnPartialViewName" type="hidden" value="@item.PartialViewName" /></text>),
+                                                                                                    webTemplateList.Column(null, null, format: @<text><input id="hdnTemplateId" type="hidden" value="@item.TemplateId" /></text>)
+
+))
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--row-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 row-eq" style="max-width:611px;">
+                        <div class="panel panel-info col-eq">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    PARÁMETROS
+                                </h3>
+                            </div>
+                            <div class="panel-body" id="dvTemplates">
+                                <input type="hidden" value="" id="hdnThTemplateSelected" />
+                                <input type="hidden" name="SelectedTemplateId" id="SelectedTemplateId" value="" />
+                                <div id="dvTemplateContainer">
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <input type="button" class="btn btn-info mt24" onclick="GetTemplate(@Model.LoanNumber);" value="Generar Template" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br clear="all" />
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0 mt20">
+
+                <div class=" panel panel-info col-eq">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            INFORMACIÓN DEL CORREO
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row" id="dvMailInformation">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="MailInformation.PrimaryCustomer" class="textb">
+                                        @Html.CheckBoxFor(o => o.HasSelectedPrimaryCustomer)Cliente Primario:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.PrimaryCustomer, new { @class = "form-control", @disabled = "disabled", id = "txtPrimaryCustomer" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="SecundaryCustomer" class="textb">
+                                        @Html.CheckBoxFor(o => o.HasSelectedSecundaryCustomer)Cliente Secundario:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.SecundaryCustomer, new { @class = "form-control", @disabled = "disabled", id = "txtSecundaryCustomer" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="PrimaryAgent" class="textb">
+                                        @Html.CheckBoxFor(o => o.HasSelectedPrimaryAgent)Agente Primario:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.PrimaryAgent, new { @class = "form-control", @disabled = "disabled", id = "txtPrimaryAgent" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="HasSelectedOffice" class="textb">
+                                        @Html.CheckBoxFor(o => o.HasSelectedOffice)Oficina:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.Office, new { @class = "form-control", @disabled = "disabled", id = "txtOffice" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="Provider" class="textb">
+                                        @Html.CheckBoxFor(o => o.HasSelectedProvider)Proveedor:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.Provider, new { @class = "form-control", @disabled = "disabled", id = "txtOffice" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="HasSelectedExtra" class="textb">
+                                        @Html.CheckBoxFor(o => o.HasSelectedExtra)Extra:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.Extra, new { @class = "form-control", @disabled = "disabled", id = "txtOffice" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="DepartmentId" class="textb">
+                                        @Html.CheckBoxFor(o => o.HasSelectedDepartment)Departamento:
+                                    </label>
+                                    @Html.DropDownListFor(o => o.Department, Model.Departments.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccione un...", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="SubjectId">Asunto:</label>
+                                    @Html.DropDownListFor(o => o.SubjectId, Model.Subjects.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccione un...", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div><!--row-->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0 mt20">
+
+                <div class="panel panel-info col-eq">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            SELECCIONAR PRINCIPAL
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row" id="dvRadios">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="PrincipalCustomer" class="textb">
+                                        @Html.CheckBoxFor(o => o.SendPrincipalCustomer)
+                                        Cliente:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.PrincipalCustomer, new { @class = "form-control", @disabled = "disabled", id = "txtPrincipalCustomer" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="PrincipalAgent" class="textb">
+                                        @Html.CheckBoxFor(o => o.SendPrincipalAgent)
+                                        Agente:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.PrincipalAgent, new { @class = "form-control", @disabled = "disabled", id = "txtPrincipalAgent" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group checkbox">
+                                    <label for="PrincipalOffice" class="textb">
+                                        @Html.CheckBoxFor(o => o.SendPrincipalOffice)
+                                        Oficina:
+                                    </label>
+                                    @Html.TextBoxFor(o => o.PrincipalOffice, new { @class = "form-control", @disabled = "disabled", id = "txtPrincipalOffice" })
+                                </div>
+                            </div>
+
+                        </div><!--row-->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0">
+                <div class="panel panel-info col-eq">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            SEGUIMIENTO
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="checkbox ">
+                                        <label class="textb">
+                                            @Html.CheckBoxFor(o => o.HasSelectedTracingType)Agregar el Seguimiento
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="CompanyID">Asignar Seguimiento:</label>
+                                    @Html.DropDownListFor(o => o.TracingTypeId, Model.TracingTypes.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccione un...", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="Tracing.TracingDate">Fecha de Seguimiento:</label>
+                                    <div class="form-group input-group buscar">
+                                        @Html.TextBoxFor(o => o.TracingDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", id = "txtTracingDate" })
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="Tracing.Tracinghour">Hora de Seguimiento:</label>
+                                    @Html.TextBoxFor(o => o.Tracinghour, new { @class = "form-control", @disabled = "disabled", id = "txtTracinghour" })
+                                </div>
+                            </div>
+                        </div><!--row-->
+                    </div>
+                </div>
+
+            </div>
+
+        }
+        <div class="panel panel-info col-eq">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    ADJUNTAR DOCUMENTO
+                </h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("LoadFile", "Process", FormMethod.Post, new { @id = "frmLoadFile" }))
+                {   <input type="reset" id="btnReset" style="display:none" />
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Grupos de Documentos:</label>
+                                @Html.DropDownListFor(o => o.DocumentGroupId, Model.DocumentsGroup.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccione un...", new { @id = "cbxDocumentGroupId", @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Tipos de Documentos:</label>
+                                @Html.DropDownListFor(o => o.DocumentTypeId, Model.DocumentsTypes.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccione un...", new { @id = "cbxDocumentTypesId", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div><!--row-->
+                    @Html.HiddenFor(o => Model.HasGenereateTemplate, new { @id = "hdnHasGenereateTemplate" })
+                    @Html.HiddenFor(o => Model.HasLoadedFile, new { @id = "hdnHasLoadedFile" })
+                    @Html.HiddenFor(o => Model.LoanNumber, new { @id = "hfLoanNumber" })
+                    @Html.HiddenFor(o => Model.templateSentRelatedFileId, new { @id = "templateSentRelatedFileId" })
+                    @Html.HiddenFor(o => Model.templateSentId, new { @id = "templateSentId" })
+                    @Html.HiddenFor(o => Model.SelectedTemplateId, new { @id = "templateId" })
+                    @Html.HiddenFor(o => Model.accountId, new { @id = "accountId" })
+
+                    @Html.AntiForgeryToken()
+                    <div class="row mb20">
+                        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                            <button id="btnNuevo" type="button" class="btn btn-primary-st btn-block" onclick="$('#fFile').click()">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                Seleccionar Archivo
+                            </button>
+                            <input type="file" accept="application/pdf" id="fFile" name="fFile" style="display:none" onchange="validateLoadedFile(this)" />
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                            <button class="btn btn-success btn-block" type="button" onclick="return UploadFile()">
+                                <i class="fa fa-upload" aria-hidden="true"></i>
+                                Cargar
+                            </button>
+                        </div>
+                    </div><!--row-->
+
+                    <div id="dvCargando" style="display:none">
+                        <div>
+                            Cargando...
+                        </div>
+                        <div class="progress progress-striped">
+                            <div class="progress-bar progress-bar-success">0%</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="dvAttachedFiles">
+                            @Html.Partial("_AttachedFiles", Model.AttachedFiles)
+                        </div>
+                    </div><!--row-->
+                    @Html.Hidden("hdnMsg", (object)ViewBag.msgLoadFile)
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 row-eq" id="dvPdfViewerCorrespondence">
+        @Html.Partial("_PdfViewer", new Tuple<string, string>("", "100%"))
+    </div>
+</div><!--row-->
+
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"></div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <button id="btnNuevo" class="btn btn-danger btn-block" onclick="CancelSentTemplate(@Model.accountId,@Model.CustomerId)">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    Cancelar
+                </button>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <button class="btn btn-info btn-block" type="button" onclick="return doSubmitTemplate()">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    Enviar Template
+                </button>
+            </div>
+        </div>
+    </div>
+</div><!--row-->
+@Html.Hidden("hdnClientId", (object)Model.CustomerId)

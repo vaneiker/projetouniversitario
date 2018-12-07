@@ -1,0 +1,105 @@
+﻿@using KSI.Cobranza.Web.Common
+@model KSI.Cobranza.Web.Models.ViewModels.CardDomitiliationViewModel
+@{
+  var htmlAttributes = new Dictionary<string, object>
+  {
+    { "class" , "form-control"},
+  };
+ 
+  if (Model.IsEditMode != "")
+  {
+        htmlAttributes.Add("readonly", "readonly");
+  }
+}
+
+<div id="dvCardDomitiliation">
+    @using (Ajax.BeginForm("SetDomicliation", "LoanSearch",
+                                    new AjaxOptions
+                                    {
+                                        HttpMethod = "POST",
+                                        UpdateTargetId = "frmCardDomitiliation",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnSuccess = "ClearFields(this);",
+                                        OnComplete = "GetCardDomitiliation(" + Model.AccountId + ")"
+
+                                    }, new
+                                    {
+                                        @id = "frmCardDomitiliation"
+                                    }))
+    {
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Tipo de Tarjeta:</label>
+                                @Html.DropDownListFor(o => o.CardTypeId, Model.CardTypes.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", htmlAttributes = htmlAttributes)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Número de Tarjeta:</label>
+                                @Html.TextBoxFor(o => o.CardNumber, htmlAttributes = htmlAttributes)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Año / Mes Expiración:</label>
+                                <div class="row">
+                                    <div class="col-lg-6">
+
+                                        @Html.DropDownListFor(o => o.CardExpirationYear, Model.Years.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "--", new { @id = "cboYears", @class = "form-control" })
+                                    </div>
+                                    <div class="col-lg-6">
+                                        @Html.MyDropDownListFor(o => o.CardExpirationMonth, new List<SelectListItem>(0), "--", new { @id = "cboMonths", @class = "form-control" }, false)                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Tarjetahabiente:</label>
+                                @Html.TextBoxFor(o => o.CardHolder, new { @id = "txtCardNumber", @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Estatus:</label>
+                                @Html.DropDownListFor(o => o.StatusId, Model.StatusTypes.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @id = "cboStatusType", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb20">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pdl0">
+                            <button id="btnProcesar" onclick="" class="btn btn-info btn-block" style="margin-top: 25px;" type="submit">
+                                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                Procesar
+                            </button>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pdl0">
+                            <button id="btnCancelar" class="btn btn-danger btn-block" style="margin-top: 25px;" type="button" data-dismiss="modal">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.HiddenFor(o => o.CustomerId)
+        @Html.HiddenFor(o => o.AccountId)
+        @Html.HiddenFor(o => o.LastFourDigits)
+        <br />
+        @Html.ValidationSummary(false, "Para continuar por favor complete los campos requeridos.", new { @class = "alert alert-danger" })
+    }
+</div>
+@Scripts.Render("~/bundles/Process")

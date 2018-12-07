@@ -1,0 +1,337 @@
+﻿@model IEnumerable<KSI.Cobranza.Web.Models.ViewModels.QueueViewModels>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="stcontent-body">
+    <div class="modal fade" id="ModalMovimiento" tabindex="-1" role="dialog" aria-labelledby="ModalMovimientoLabel">
+    </div>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 id="titleModal" class="modal-title"></h4>
+                </div>
+                <div id="bodymodal" class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-secundary-st " disabled="" id="btnQueueAssignCase" data-toggle="modal"
+                                data-target="#ModalQueueCaseAssign">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            Asignar casos
+                        </button>
+                        <button type="button" class="btn btn-secundary-st" disabled="" id="btnQueueAssignNote" data-toggle="modal" data-target="#ModalQueueAssignNote">
+                            <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                            Agregar nota
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenedor_tabs">
+        <ul class="tabs_ttle dvddo_in_3" id="UlMainMenu">
+            <li class="active dos_lineas" onclick="SetStage(1, this);">
+                @if (Model != null)
+                {
+                    <span class="num_cases">
+                        @Model.Where(a => a.queueTypeId == 1 ).Count().ToString()
+                    </span>
+                }
+                else
+                {
+                    <span class="num_cases">0</span>
+                }
+
+                <a href="#">
+                    <span>
+                        PROMESAS DEL DÍA
+                    </span>
+                </a>
+            </li>
+            <li class="dos_lineas" onclick="SetStage(2, this);">
+               
+
+                @if (Model != null)
+                {
+                    <span class="num_cases">
+                        @Model.Where(a => a.queueTypeId == 1001 || a.queueTypeId == 1002 || a.queueTypeId == 1003 || a.queueTypeId == 1004 || a.queueTypeId == 1005).Count().ToString()
+                    </span>
+                }
+                else
+                {
+                    <span class="num_cases">0</span>
+                }
+
+
+
+                <a href="#">
+                    <span>
+                        COBRANZAS CORRECTIVA
+                    </span>
+                </a>
+            </li>
+            <li class=" dos_lineas" onclick="SetStage(3,this);">
+                @if (Model != null)
+                {
+                    <span class="num_cases">
+                        @Model.Where(a => a.queueTypeId == 2001 || a.queueTypeId == 2002 || a.queueTypeId == 2003 || a.queueTypeId == 2004 || a.queueTypeId == 2005 || a.queueTypeId == 2006).Count().ToString()
+                    </span>
+                }
+                else
+                {
+                    <span class="num_cases">0</span>
+                }
+
+                <a href="#">
+                    <span>
+                        COBRANZAS JUDICIAL
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <div id="dvMenues">
+            <div id="dvPromesasDelDia" >
+
+            </div>
+            <div id="dvCobranzasCorrectivas" style="display:none">
+                <ul class="atlantica_steps kscobranzas">
+                    <li class="active dos_lineas" role="presentation" style="">
+
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 1001).Count().ToString()</span>
+                        }
+                        else
+                        {
+                             <span class="num_cases2">0</span>
+                        }
+
+
+                  
+                        <a href="#" onclick="GetQueueData(1001)" class="una_linea">
+                            Atrasos 0-5 días
+                        </a>
+</li>
+                    <li class=" dos_lineas" role="presentation" style="">
+                    
+
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 1002).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(1002)" return false;" class="una_linea">
+                            Atrasos 6-16 días
+                        </a>
+                    </li>
+                    <li class=" dos_lineas" role="presentation" style="">
+         
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 1003).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(1003)" return false;" class="una_linea">
+                            Atrasos 16-21 días
+                        </a>
+                    </li>
+                    <li class=" dos_lineas" role="presentation" style="">
+                        
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 1004).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(1004)" return false;" class="una_linea">
+                            Atrasos > 21 días no esta en legal
+                        </a>
+                    </li>
+                    <li class=" dos_lineas" role="presentation" style="">
+                      
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 1005).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(1005)" return false;" class="una_linea">
+                            Cobranza Legal
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="dvCobranzasJudiales" style="display:none">
+                <ul class="atlantica_steps kscobranzas">
+                    <li class="active dos_lineas" role="presentation" style="">
+                     
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 2000).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(2000)" return false;" class="dos_linea">
+                            MANDAMIENTO DE PAGO
+                        </a>
+                    </li>
+                    <li class=" dos_lineas" role="presentation" style="">
+
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 2001).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(2001)" return false;" class="dos_linea">
+                            REQUERIMIENTO DE PRENDA
+                        </a>
+                    </li>
+                    <li class=" dos_lineas" role="presentation" style="">
+
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 2003).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(2003)" return false;" class="dos_linea">
+                            INCAUTACIÓN DEL VEHÍCULO
+                        </a>
+                    </li>
+                    <li class=" dos_lineas" role="presentation" style="">
+
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 2004).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(2004)"return false;" class="una_linea">
+                            AUDIENCIA DE VENTA
+                        </a>
+                    </li>
+                    <li class=" dos_lineas" role="presentation" style="">
+
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 2005).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(2005)" return false;" class="dos_linea">
+                            SENTENCIA DE ADJUDICACIÓN
+                        </a>
+                    </li>
+                    <li class=" dos_lineas" role="presentation" style="">
+
+                        @if (Model != null)
+                        {
+                            <span class="num_cases2">
+                                @Model.Where(a => a.queueTypeId == 2006).Count().ToString()
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="num_cases2">0</span>
+                        }
+                        <a href="#" onclick="GetQueueData(2006)" return false;" class="una_linea">
+                            COBRANZA LEGAL
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        DATOS GENERALES DE LA BANDEJA
+                    </a>
+                </h4>
+            </div>
+
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <!--
+                    Cuerpo del Queue
+                    -->
+                    <div class="table-responsive" id="divQueueData">
+
+                        @Html.Partial("_QueueData", Model.Where(a=>a.queueTypeId==1))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="moduloNotesAtlantica">
+        <div class="moduloNotesAtlanticaHeader">
+            <label class="titulomoduloNotesAtlantica">
+                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                Escribir una nota
+            </label>
+            <a id="btnMinimizarmoduloNotesAtlantica" href="#" class="btnMinimizarmoduloNotesAtlantica" onclick="minizarModalSTSV()" style="display: none;"></a>
+            <a id="btnMaximizarmoduloNotesAtlantica" href="#" class="btnMaximizarmoduloNotesAtlantica" onclick="maximizarModalSTSV()" style="display: none;"></a>
+        </div>
+    </div>
+</div>
+<link href="~/Content/atlantica.css" rel="stylesheet" />
+<script src="~/Scripts/ViewJS/Queue.js"></script>
+
+

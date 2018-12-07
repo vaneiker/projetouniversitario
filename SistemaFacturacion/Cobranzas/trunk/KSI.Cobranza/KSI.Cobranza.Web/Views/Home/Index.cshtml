@@ -1,0 +1,105 @@
+﻿@model KSI.Cobranza.Web.Models.ViewModels.SearchViewModels
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="stcontent-body">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingInfoQuotation">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseInfoQuotation" aria-expanded="false" aria-controls="collapseInfoQuotation">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        Búsqueda
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseInfoQuotation" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingInfoQuotation">
+                <div class="panel-body">
+                    <div class="accordion-body">
+                        <div class="row  row-eq">
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 row-eq">
+                                <div class="panel panel-info col-eq">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            Buscar
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row" id="pnFiltros">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="txtNombre">Nombre:</label>
+                                                    <input type="text" name="txtNombre" id="txtNombre" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="txtIdentificación">Identificación:</label>
+                                                    <input type="text" name="txtIdentificacion" id="txtIdentificacion" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="txtPrestamo">Préstamo:</label>
+                                                    <input type="text" name="txtPrestamo" id="txtPrestamo" class="form-control" data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="txtSolicitud">Solicitud:</label>
+                                                    <input type="text" name="txtSolicitud" id="txtSolicitud" class="form-control" data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="txtGarantia">No. Garantía:</label>
+                                                    <input type="text" name="txtGarantia" id="txtGarantia" class="form-control" data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="txtChasis">Chassis:</label>
+                                                    <input type="text" name="txtChassis" id="txtChassis" class="form-control">
+                                                </div>
+                                            </div>
+                                            <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="txtNombre">Chasis del Vehículo:</label>
+                                                    <input type="text" name="txtNombre" id="txtNombre" class="form-control">
+                                                </div>
+                                            </div>-->
+
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <br>
+                                                <button class="btn btn-primary-st btn-block" type="button" id="txtSearch" onclick="Search()">
+                                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                                    Buscar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 row-eq">
+                                <div class="panel panel-info col-eq">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            Resultado
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive" id="dvSearch">
+                                            @Html.Partial("_SearchResult", Model)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/Search")

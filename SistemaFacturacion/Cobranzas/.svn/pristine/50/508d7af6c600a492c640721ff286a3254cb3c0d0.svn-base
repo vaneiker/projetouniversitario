@@ -1,0 +1,79 @@
+﻿using KSI.Cobranza.Web.Common.CustomValidators;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace KSI.Cobranza.Web.Models.ViewModels
+{
+    public class MeetingNoteViewModels : BaseViewModels
+    {
+        public int originatedById { get; set; }
+        public long? accountId { get; set; }
+        public long? relatedContactId { get; set; }
+        public int? meetingCaseId { get; set; }
+        public int? meetingCaseNoteId { get; set; }
+        public string LoanNumber { get; set; }
+        public string ProcessStatus { get; set; }
+        public string CustomerName { get; set; }
+        [Required(ErrorMessage = "El campo Servicio es requerido.")]
+        public int ServiceId { get; set; }
+        public IEnumerable<KeyValue> Services { get; set; }
+        [Required(ErrorMessage = "El campo Canal del Servicio es requerido.")]
+        public int ChannelServiceId { get; set; }
+        public IEnumerable<KeyValue> ChannelServices { get; set; }
+        [Required(ErrorMessage = "El campo Sub Servicio es requerido.")]
+        public int SubServiceId { get; set; }
+        public IEnumerable<KeyValue> SubServices { get; set; }
+        [Required(ErrorMessage = "El campo Categoria es requerido.")]
+        public int CategoryId { get; set; }
+        public IEnumerable<KeyValue> Categories { get; set; }
+        [Required(ErrorMessage = "El campo Razon Contacto es requerido.")]
+        public int ContactReasonId { get; set; }
+        public IEnumerable<KeyValue> ContactReason { get; set; }
+        [Required(ErrorMessage = "El campo Tipo de contacto es requerido.")]
+        public int ContactTypeId { get; set; }
+        public IEnumerable<KeyValue> ContactType { get; set; }
+        [Required(ErrorMessage = "El campo Estatus es requerido.")]
+        public int CasesStatusId { get; set; }
+        public IEnumerable<KeyValue> StatusCases { get; set; }
+        public int? CaseId { get; set; }
+        public IEnumerable<KeyValue> Cases { get; set; }
+        [Required(ErrorMessage = "El campo Prioridad es requerido.")]
+        public int PriorityId { get; set; }
+        public IEnumerable<KeyValue> Priority { get; set; }
+        [Required(ErrorMessage = "El campo Nota es requerido.")]
+        public string Note { get; set; }
+    }
+
+    public class AttachedFilesViewModels : BaseViewModels
+    {
+        public IEnumerable<KeyValue> DocumentsTypes { get; set; }
+        public IEnumerable<KeyValue> DocumentsGroup { get; set; }
+        public long? accountId { get; set; }
+        [Required(ErrorMessage = "El campo tipo de documento es requerido")]
+        public int DocumentTypeId { get; set; }
+        [Required(ErrorMessage = "El campo tipo de Grupo de documento es requerido")]
+        public int DocumentGroupId { get; set; }
+        [MustBeTrue(ErrorMessage = "Debe elegir un documento a adjuntar")]
+        public bool HasLoadedFile { get; set; }
+        public IEnumerable<AttFiles> AttachedFiles { get; set; }
+    }
+
+    public class AttFiles
+    {
+        public string DocumentTypeDesc { get; set; }
+        public string FileName { get; set; }
+        public string DocumentPath { get; set; }
+        public string documentGroupName { get; set; }
+        public decimal? sizeFile { get; set; }
+    }
+
+    public class PhoneCallViewModels : BaseViewModels
+    {
+        public string UserName { get; set; }
+        public DateTime CreateDate { get; set; }
+        public IEnumerable<PhoneCallViewModels> phoneCallList { get; set; }
+    }
+}

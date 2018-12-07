@@ -1,0 +1,84 @@
+﻿@model KSI.Cobranza.Web.Models.ViewModels.Phone
+<div id="dvContainerPhone">
+    @using (Ajax.BeginForm("SetPhone", "Process",
+                                            new AjaxOptions
+                                            {
+                                                HttpMethod = "POST",
+                                                UpdateTargetId = "frmPhone",
+                                                InsertionMode = InsertionMode.Replace,
+                                                OnSuccess = "ClearFields(this)",
+                                                OnComplete = "GetPhones($('#CustomerId').val(),false);SetMask();",
+                                                //OnBegin = "return ValidateClientForm()"
+                                            }, new
+                                            {
+                                                @id = "frmPhone"
+                                            }))
+    {
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="ComponentID">Tipo:</label>
+                    @Html.DropDownListFor(o => o.Type, Model.phoneTypes.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                    @Html.Hidden("CustomerId")
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="CompanyID">Teléfono:</label>
+                    @Html.TextBoxFor(o => o.Number, null, new { @class = "form-control", @phonenumber = "PhoneNumber", @mydataMessage = "Teléfono" })
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="ComponentID">País:</label>
+                    @Html.DropDownListFor(o => Model.countryID, Model.Countries.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Estatus:</label>
+                            <div>
+                                @Html.CheckBoxFor(model => model.IsActive, new {@checked=true }) Activo
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Principal:</label>
+                            <div>
+                                @Html.CheckBoxFor(model => model.IsPrimary)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="CompanyID">Observaciones:</label>
+                    @Html.TextArea("Comments", new { @class = "form-control col-eq", @rows = "3" })
+                </div>
+            </div>
+        </div><!--row-->
+
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <button type="submit" class="btn btn-success btn-block">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Agregar
+                </button>
+            </div>
+        </div>
+    <br />
+        @Html.ValidationSummary(false, "Para continuar por favor complete los campos requeridos.", new { @class = "alert alert-danger" })
+    }
+</div>

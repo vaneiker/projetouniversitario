@@ -1,0 +1,22 @@
+﻿@model  IEnumerable<KSI.Cobranza.Web.Models.ViewModels.CollectionHistoryPaymentViewModels>
+
+
+@{
+    var webGrid = new WebGrid(source: Model, ajaxUpdateContainerId: "dvGridHistoryPaymentCobranza");
+}
+
+<div id="dvGridHistoryPaymentCobranza">
+    @webGrid.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                     headerStyle: "header-table",
+                     mode: WebGridPagerModes.All,
+                     htmlAttributes: new { @id = "gvHistoryPaymentCobranza" },
+                                    columns: webGrid.Columns(
+                                                                      webGrid.Column("QuotaNumber", "Número de cuota"),
+                                                                      webGrid.Column(header: "Fecha de vencimiento cuota", format: @<text><span>@string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:dd/MM/yyyy}", item.DueDate)</span></text>, style: "text-center"),                                                                      
+                                                                      webGrid.Column(header: "Monto de la cuota", format: @<text><span>@string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0.00}", item.QuotaAmount)</span></text>, style: "text-center"),
+                                                                      webGrid.Column(header: "Fecha de pago de la cuota", format: @<text><span>@string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:dd/MM/yyyy}", item.DatePaid)</span></text>, style: "text-center"),
+                                                                      webGrid.Column(header: "Monto pagado de la cuota", format: @<text><span>@string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0.00}", item.PaidAmount)</span></text>, style: "text-center")
+                                                                     
+                                                                                                                                                                                                                                 ))
+                                                               
+</div>

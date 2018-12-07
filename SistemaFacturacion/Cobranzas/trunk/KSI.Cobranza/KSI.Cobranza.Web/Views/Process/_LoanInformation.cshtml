@@ -1,0 +1,312 @@
+﻿@model KSI.Cobranza.Web.Models.ViewModels.LoanInformationViewModels
+@{
+    var DateFormat = "{0:dd/MM/yyyy}";
+    var NumericFormat = "{0:0,0.00}";
+}
+<div class="row  row-eq">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 row-eq">
+        <div class="panel panel-info col-eq">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fa fa-user fa-fw"></i>DATOS DEL CLIENTE
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">No. Solicitud:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.quotationId">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">No. Préstamo:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.LoanNumber">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Nombre del Cliente:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.fullName">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Id. Cliente:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.clientid">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Identificación:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.identificationNumber">
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Estado:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.LoanStatusName">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Forma de Pago:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.quotationPaymentTypeName">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Frecuencia de Pago:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.frequencyName">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Cuotas:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.loanTerm">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Plazo:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.loanTerm">
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Días de Corte:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.LoanDillingDay">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Moneda:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.CurrencyName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 row-eq">
+        <div class="panel panel-info col-eq">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fa fa-money fa-fw"></i>MONTOS Y TASAS
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Solicitado:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture,NumericFormat, Model.AmountRequested))">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Aprobado:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture, NumericFormat, Model.amountApproved))">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Financiado:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture, NumericFormat, Model.financedAmount))">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Desembolsados:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture, NumericFormat, Model.DisbursedAmount))">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Saldo Actual:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture,NumericFormat, Model.OutstandingBalance))">
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Interés Anual:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture,NumericFormat, Model.RateAnnual))">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Interés Mensual:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture,NumericFormat,Model.RateMonth))">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Comisión Anual:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture,NumericFormat, Model.RateCommissionAnnual))">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Comisión Mensual:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture,NumericFormat, Model.RateCommissionAnnual))">
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Mora Anual:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture,NumericFormat, Model.RateLatenAnnual))">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Mora Mensual:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@(string.Format(System.Globalization.CultureInfo.InvariantCulture,NumericFormat,Model.RateLateMonth))">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 row-eq">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row-eq mb20">
+            <div class="panel panel-success col-eq">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-calendar fa-fw"></i>Fechas
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Solicitud:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@( string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, Model.qoutationDate.GetValueOrDefault()))">
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Aprobación:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@( string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, Model.ApprovedDate.GetValueOrDefault()))">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Desembolso:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@( string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, Model.disbursementDate.GetValueOrDefault()))">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Vencimiento:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@( string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, Model.expirationDate.GetValueOrDefault()))">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Último Corte:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@( string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, Model.ClosedDate.GetValueOrDefault()))">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Próximo Corte:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@( string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, Model.LastClosedDate.GetValueOrDefault()))">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Última Cuota:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@( string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, Model.LastQuotaDate.GetValueOrDefault()))">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Último Devengo Cuota:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@( string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, Model.lastPaidDate.GetValueOrDefault()))">
+                            </div>
+                        </div>
+                    </div><!--row-->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row-eq">
+            <div class="panel panel-success col-eq">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-users fa-fw"></i>Otros
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Ejecutivo:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.fullNameExecutive">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="CompanyID">Promotor:</label>
+                                <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value="@Model.fullNamePromoter">
+                            </div>
+                        </div>
+                    </div><!--row-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--row-->

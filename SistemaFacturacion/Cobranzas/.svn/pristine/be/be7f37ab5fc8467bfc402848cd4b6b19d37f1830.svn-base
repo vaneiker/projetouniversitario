@@ -1,0 +1,106 @@
+﻿@model KSI.Cobranza.Web.Models.ViewModels.CasesDetailViewModels
+@{
+    var webGridCasesAttachedFiles = new WebGrid(source: Model.attachedFiles, ajaxUpdateContainerId: "dvAttachedFiles", canPage: true);
+    var webGridCasesAttachedCalls = new WebGrid(source: Model.attachedCalls, ajaxUpdateContainerId: "dvAttachedCalls", canPage: true);
+}
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 row-eq">
+    <div class="panel panel-info col-eq">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <i class="fa fa-file-text-o fa-fw"></i>Nota
+            </h3>
+        </div>
+        <div class="panel-body" style="overflow: auto; height: 520px;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <table>
+                            <tbody>
+                                @foreach (var item in Model.Notes)
+                                {
+                                    <tr>
+                                        <td style="width: 843px;">
+                                            @Html.Raw(item)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>                  
+                    </div>
+                </div>
+            </div><!--row-->
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 row-eq">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row-eq mb20">
+        <div class="row col-eq">
+            <div class="panel panel-info col-eq">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-paperclip fa-fw"></i>Archivos Adjuntos
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="table-responsive">
+                                <div id="dvAttachedFiles">
+                                    @webGridCasesAttachedFiles.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                                             headerStyle: "header-table",
+                                                      htmlAttributes: new { @id = "gvAttachedFiles" },
+                                                                                columns: webGridCasesAttachedFiles.Columns(
+                                                                                         webGridCasesAttachedFiles.Column("CaseNumber", "# Archivo"),
+                                                                                         webGridCasesAttachedFiles.Column("Duration", "Nombre Archivo"),
+                                                                                         webGridCasesAttachedFiles.Column(header: "Descarga",
+                                                                                         format: @<text><input id="btnDownLoad" class="box" name="select" value="Descargar" type="button" />) /></text>,
+                                                                                                                                                                                                     style: "text-center")
+
+                                                                                                                                                                                               )
+                                                                                                            )
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--row-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row-eq">
+        <div class="row col-eq">
+            <div class="panel panel-info col-eq">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-phone fa-fw"></i>Llamadas Adjuntas
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="table-responsive">
+                                <div id="dvAttachedCalls">
+                                    @webGridCasesAttachedCalls.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                                             headerStyle: "header-table",
+                                                      htmlAttributes: new { @id = "gvAttachedCalls" },
+                                                                                                  columns: webGridCasesAttachedCalls.Columns(
+                                                                                                            webGridCasesAttachedFiles.Column(header: "Reproducción",
+                                                                                                  format: @<text>
+                                                                                                                <audio style="width: 238px;float: left;" src="/Audio/Horse_1.wav" controls="controls" type="audio/mpeg"></audio>
+
+                                                                                                </text>, style: "text-center"),
+                                                                                                                                     webGridCasesAttachedCalls.Column("PhoneNumber", "# Telefono"),
+                                                                                                                                     webGridCasesAttachedCalls.Column("Duration", "Duración")
+                                                                                                                                     )
+                                                                                                            )
+
+                                </div>
+                            </div>
+                        </div><!--row-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

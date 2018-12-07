@@ -1,0 +1,24 @@
+﻿
+@model KSI.Cobranza.Web.Models.ViewModels.CardDomitiliationViewModel
+@{
+    var webGrid = new WebGrid(source: Model.AffiliateCards, ajaxUpdateContainerId: "dvGridCardList", ajaxUpdateCallback: "InitCardList();", canPage: true, rowsPerPage:10);
+}
+
+<div id="dvGridCardList">
+    @webGrid.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                     headerStyle: "header-table",
+                     mode: WebGridPagerModes.All,
+                     htmlAttributes: new { @id = "gvAffiliateCards" },
+                                    columns: webGrid.Columns(
+                                                                      webGrid.Column("CardHolder", "Afiliada"),
+                                                                      webGrid.Column("LastFourDigits", "No. Tarjeta"),
+                                                                      webGrid.Column("CardTypeDesc", "Tipo Tarjeta"),
+                                                                      webGrid.Column("ExpirationDate", "Fecha de Vencimiento"),
+                                                                      webGrid.Column("StatusDesc", "Estatus"),
+                                                                         webGrid.Column(null, null,
+                                                              format: @<text><input id="key" type="hidden" value="@item._dataRequest" ) /></text>,
+                                                                                  style: "text-center")
+
+                                                                              )
+                                                                           )
+</div>

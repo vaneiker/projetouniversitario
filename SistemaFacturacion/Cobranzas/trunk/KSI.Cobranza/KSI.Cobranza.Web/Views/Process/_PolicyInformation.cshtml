@@ -1,0 +1,130 @@
+﻿@model KSI.Cobranza.Web.Models.ViewModels.PolicyInformationViewModels
+
+@using Newtonsoft.Json;
+@{
+    var DateFormat = "{0:dd/MM/yyyy}";
+    var NumericFormat = "{0:0,0.00}";
+}
+<div class="row  row-eq">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb20">
+        <div class="panel panel-info col-eq">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Tipo Póliza:</label>
+                            @*<input class="form-control" id="PolicyType" type="text" value="@Model.PolicyType.Description" disabled="">*@
+                            <input class="form-control" id="PolicyType" type="text" disabled="">
+                        </div>
+                        @*<div class="form-group">
+                                <input class="form-control" id="disabledInput" type="text" value="@Model.FirstName" disabled="">
+                            </div>*@
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Aseguradora:</label>
+                            <input class="form-control" id="Aseguradora" type="text" value="" disabled="">
+                        </div>
+                        @*<div class="form-group">
+                                <input class="form-control" id="disabledInput" type="text" value="@Model.FirstName" disabled="">
+                            </div>*@
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">No. Póliza:</label>
+                            <input class="form-control" id="PolicyNo" type="text" value="" disabled="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Monto de la garant&iacute;a:</label>
+                            <input class="form-control" id="PolicyAmount" type="text" value="" disabled="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <fieldset disabled="">
+                            <div class="form-group">
+                                <label for="CompanyID">Estado:</label>
+                                @*<select class="form-control">
+                                        <option value="">Seleccione un...</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 1</option>
+                                        <option value="3">Opción 1</option>
+                                    </select>*@
+                                <input class="form-control" id="PolicyEstado" type="text" value="" disabled="">
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Descripción:</label>
+                            <input class="form-control" id="PolicyDescripcion" type="text" value="" disabled="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CommissionTableName">Fecha de Póliza:</label>
+                            <input class="form-control" id="PolicyDate" type="text" value="" disabled="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CommissionTableName">Fecha Vencimiento:</label>
+                            <input class="form-control" id="EffectiveDate" type="text" value="" disabled="">
+                        </div>
+                    </div>
+                </div><!--row-->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row-eq">
+        <div class="panel panel-info col-eq">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fa fa-file-o fa-fw"></i>ENDOSOS
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped car">
+                                <thead>
+                                    <tr class="header-table">
+                                        <th>Número</th>
+                                        <th>Monto de la garant&iacute;a</th>
+                                        <th>Fecha Endoso</th>
+                                        <th>Fecha Inicio</th>
+                                        <th>Fecha Vencimiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in @Model.Endoses)
+                                    {
+                                        <tr class="myrow" data-json="@JsonConvert.SerializeObject(@item)">
+                                            <td>@item.endorseNo</td>
+                                            <td>@(string.Format(System.Globalization.CultureInfo.InvariantCulture, NumericFormat, @item.endorseAmount))</td>
+                                            <td>@(string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, @item.endorseDate))</td>
+                                            <td>@(string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, @item.endorseInicialDate))</td> 
+                                            <td>@(string.Format(System.Globalization.CultureInfo.InvariantCulture, DateFormat, @item.endorseEffectiveDate))</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><!--row-->
+            </div>
+        </div>
+    </div>
+</div><!--row-->

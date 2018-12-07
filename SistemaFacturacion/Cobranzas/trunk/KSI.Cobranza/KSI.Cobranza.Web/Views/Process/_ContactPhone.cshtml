@@ -1,0 +1,49 @@
+﻿@model IEnumerable<KSI.Cobranza.Web.Models.ViewModels.Phone>
+@{
+    var webGridPhones = new WebGrid(source: Model, ajaxUpdateContainerId: "dvGridPhones", canPage: true, rowsPerPage: 5);
+}
+<div class="panel panel-success col-eq">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-phone fa-fw"></i>Teléfono
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <div id="dvGridPhones">
+                        @webGridPhones.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                                             headerStyle: "header-table",
+                                             htmlAttributes: new { @id = "gvPhones" },
+                                                       mode: WebGridPagerModes.All,
+                                                      columns: webGridPhones.Columns(
+                                                                              webGridPhones.Column("Type", "Tipo"),
+                                                                              webGridPhones.Column("Number", "Teléfono"),
+                                                                              webGridPhones.Column("Country", "Pais"),
+                                                                              webGridPhones.Column(header: "Principal",
+                                                                              format: @<text><input id="select" class="box" name="select" type="checkbox" onclick='CheckPrimary(@item.CustomerId,@item.contactPhoneId)' @(item.IsPrimary ? "checked='checked'" : "") /></text>,
+                 style: "text-center")
+              )
+              )
+
+                    </div>
+                </div>
+            </div>
+        </div><!--row-->
+        <div class="row mb20">
+            <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12"></div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button class="btn btn-success btn-block" type="button" data-toggle="modal" id="AddNewPhone" onclick="GetPhoneView($('#CustomerId').val())">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

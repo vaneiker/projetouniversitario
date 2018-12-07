@@ -1,0 +1,53 @@
+﻿@model  KSI.Cobranza.Web.Models.ViewModels.PhoneCallViewModels 
+@{
+    var webGridPhoneCalls = new WebGrid(source: Model.phoneCallList, ajaxUpdateContainerId: "dvPhoneCalls", canPage: true);
+}
+<div class="col-lg-12">
+    <div class="panel panel-service">
+        <div class="panel-heading">
+            LLAMADA TELEFÓNICA
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="ComponentID">Fecha de Llamada:</label>
+                        <select name="ComponentID" id="ComponentID" class="form-control">
+                            <option value="">Seleccione un...</option>
+                            <option value="1">-</option>
+                            <option value="2">-</option>
+                            <option value="3">-</option>
+                        </select>
+                    </div>
+                </div>
+                @*<audio style="width: 238px;float: left;" src="/Audio/Horse_1.wav" controls="controls" type="audio/mpeg"></audio>*@
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="table-responsive mb20">
+                        <div id="dvPhoneCalls">
+                            @webGridPhoneCalls.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                                              headerStyle: "header-table",
+                                                       htmlAttributes: new { @id = "gvPhoneCalls" },
+                                                                             columns: webGridPhoneCalls.Columns(
+                                                                             webGridPhoneCalls.Column(null,
+                                                                                                   format: @<text>
+                                                                                <input type="checkbox" />
+
+                                                                                                </text>, style: "text-center"),
+                                                                                      webGridPhoneCalls.Column(header: "Reproducción",
+                                                                                                   format: @<text>
+                                                                                        <audio style="width: 238px;float: left;" src="/Audio/Horse_1.wav" controls="controls" type="audio/mpeg"></audio>
+
+                                                                                                </text>, style: "text-center"),
+                                                                                                         webGridPhoneCalls.Column("UserName", "Usuario"),
+                                                                                                         webGridPhoneCalls.Column("CreateDate", "Fecha")
+                                                                                                                           )
+                                                                                                          )
+
+
+                        </div>                       
+                    </div>
+                </div>                  
+            </div><!--row-->
+        </div>
+    </div>
+</div>

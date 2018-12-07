@@ -1,0 +1,137 @@
+﻿@using KSI.Cobranza.Web.Common
+@model KSI.Cobranza.Web.Models.ViewModels.PaymentProcessViewModels
+@{
+    var currentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+    System.Threading.Thread.CurrentThread.CurrentCulture = currentCulture;
+    System.Threading.Thread.CurrentThread.CurrentUICulture = currentCulture;
+    currentCulture.NumberFormat.NumberDecimalSeparator = ".";
+    currentCulture.NumberFormat.CurrencyDecimalSeparator = ".";
+    currentCulture.NumberFormat.PercentDecimalSeparator = ".";
+    var decimalFormat = "{0:0,0.00}";
+}
+
+<div id="dvContainerPaymentProcess">
+    @using (Ajax.BeginForm("SetPaymentProcess", "Process",
+                                            new AjaxOptions
+                                            {
+                                                HttpMethod = "POST",
+                                                UpdateTargetId = "frmPaymentProcess",
+                                                InsertionMode = InsertionMode.Replace,
+                                                //OnSuccess = "",
+                                                OnComplete = "CloseModalProcessPayment(" + Model.AccountId + ")",
+                                                //OnBegin = "ClearMask(this)"
+                                            }, new
+                                            {
+                                                @id = "frmPaymentProcess"
+                                            }))
+    {
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="CardTypeId">Tipo de Tarjeta:</label>
+                    @Html.DropDownListFor(o => o.CardTypeId, Model.CardTypes.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="CompanyID">Numero de Tarjeta:</label>
+                    @Html.TextBoxFor(o => o.CardNumber, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="CardHolder">Tarjetahabiente:</label>
+                    @Html.TextBoxFor(o => o.CardHolder, new { @id = "txtCardNumber", @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label>Año / Mes Expiración:</label>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @Html.DropDownListFor(o => o.CardExpirationYear, Model.Years.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "--", new { @id = "cboYears", @class = "form-control" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.MyDropDownListFor(o => o.CardExpirationMonth, new List<SelectListItem>(0), "--", new { @id = "cboMonths", @class = "form-control" }, false)
+                            @Html.Hidden("hdnMotnSelected", (object)Model.CardExpirationMonth)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group has-success">
+                    <label for="CVV">CVV:</label>
+                    @Html.TextBoxFor(o => o.CVV, new { @id = "txtCVV", @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group has-success">
+                    <label for="AmountReceivable">Cuota:</label>
+                    <input type="text" id="txtshare" class="form-control" style="text-align:right" disabled="disabled" value="@string.Format(System.Globalization.CultureInfo.InvariantCulture,"{0:0,0.00}", Model.share)" />
+                    @Html.Hidden("share", string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0.00}", Model.share))
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group has-success">
+                    <label for="Balance">Balance:</label>
+                    <input type="text" id="txtBalance" class="form-control" style="text-align:right" disabled="disabled" value="@string.Format(System.Globalization.CultureInfo.InvariantCulture,"{0:0,0.00}", Model.Balance)" />
+                    @Html.Hidden("Balance", string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0.00}", Model.Balance))
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="CommissionTableName">Monto a Cobrar (DOP):</label>
+                    <div class="form-group input-group has-success buscar">
+                        @Html.TextBoxFor(o => o.AmountReceivable, new { @id = "txtAmountReceivable", @class = "form-control", @decimal = "decimal", @style = "text-align:right" })
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <i class="fa fa-refresh"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                <button type="submit" class="btn btn-info btn-block">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    Procesar
+                </button>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                <button type="button" id="btnCancel" class="btn btn-danger btn-block" data-dismiss="modal">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    Cancelar
+                </button>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            </div>
+        </div>
+        <br />
+        @Html.HiddenFor(o => o.AccountId)
+        @Html.HiddenFor(o => o.Account)
+
+        @Html.Hidden("hdnHasError", (object)Model.hasError)
+        @Html.Hidden("hdnreceiptNumberEasybank", (object)Model.receiptNumberEasybank)
+        @Html.Hidden("hdnauthorizationNumber", (object)Model.authorizationNumber)
+        @Html.Hidden("hdnErrorJson", (object)Model.ErrosInJsonFormat)
+        @Html.ValidationSummary(false, "Para continuar por favor complete los campos requeridos.", new { @class = "alert alert-danger" })
+    }
+</div>

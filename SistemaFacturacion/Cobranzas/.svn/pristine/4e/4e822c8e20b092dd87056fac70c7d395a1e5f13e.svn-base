@@ -1,0 +1,193 @@
+﻿@model KSI.Cobranza.Web.Models.ViewModels.CollectionViewModels
+@{
+
+    var a = Model.accountId;
+}
+ <div class="row row-eq">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 row-eq">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb20">
+            <div class="row col-eq">
+                <div class="panel panel-info col-eq">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="fa fa-briefcase fa-fw"></i>Pagos
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive mb20" id="divCollectionsPayments">
+                                    @Html.Partial("_CollectionsPayments",Model.CollectionPaymentViewModels)
+                                </div>
+                            </div>
+                        </div><!--row-->
+
+                        <div class="row mb20">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <button class="btn btn-success btn-block" type="button" onclick="GetPaymentProcessView(@Model.accountId,'@Model.Account')">
+                                            <i class="fa fa-cog" aria-hidden="true"></i>
+                                            Procesar Pago
+                                        </button>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <button class="btn btn-default btn-block">
+                                            <i class="fa fa-undo" aria-hidden="true"></i>
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row col-eq">
+                <div class="panel panel-info col-eq">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="fa fa-file-text-o fa-fw"></i>Información Pago Periódico
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive mb20" id="divCollectionsDomiciliationGrid">
+                                    @Html.Partial("_CollectionsDomiciliationGrid", Model.CardDomitiliationViewModel)
+                                </div>
+                            </div>
+                        </div><!--row-->
+
+                        <div class="row mb20">
+                            <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12"></div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <button class="btn btn-success btn-block" type="button" onclick="GetDomiciliationView('@Model._dataRequest')">
+                                            <i class="fa fa-cog" aria-hidden="true"></i>
+                                            Domiciliar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 row-eq">
+        <div class="panel panel-info col-eq">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fa fa-file-text-o fa-fw"></i>HISTORIAL DE PAGO
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CompanyID">Monto Pagado:</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Data" disabled="" value='@string.Format(System.Globalization.CultureInfo.InvariantCulture,"{0:0,0.00}", Model.PaidTotal)'>
+                        </div>
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CommissionTableName">Deuda Desde:</label>
+                            <div class="form-group input-group buscar">
+                                <input type="text" class="form-control datepicker" id="txtDeudaDesdeCollect">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CommissionTableName">Deuda Hasta:</label>
+                            <div class="form-group input-group buscar">
+                                <input type="text" class="form-control datepicker" id="txtDeudaHastaCollect">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CommissionTableName">Pago Desde:</label>
+                            <div class="form-group input-group buscar">
+                                <input type="text" class="form-control datepicker" id="txtPagoDesteCollect">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="CommissionTableName">Pago Hasta:</label>
+                            <div class="form-group input-group buscar">
+                                <input type="text" class="form-control datepicker"   id="txtPagoHastaCollect">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb20">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <button id="btnNuevo" class="btn btn-success btn-block" onclick="GetCollectionHistoryPayment(@Model.accountId)">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    Buscar
+                                </button>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <button class="btn btn-default btn-block">
+                                    <i class="fa fa-undo" aria-hidden="true"></i>
+                                    Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="table-responsive" id="divCollectionHistoryPaymentGrid">
+                           @Html.Partial("_CollectionsHistoryPaymentGrid",Model.CollectionHistoryPaymentViewModels)
+                        </div>
+                    </div>
+                </div><!--row-->
+            </div>
+        </div>
+    </div>
+</div>
+@Html.HiddenFor(m => m.accountId)
