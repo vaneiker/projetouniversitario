@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LoansModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="SP_GET_MEETING_CASE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Call">
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+    <Parameter Name="CaseNumber" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingStatusId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_MEETING_CASE_FILE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Call">
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingSubTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseNoteId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_MEETING_CASE_NOTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Call">
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingSubTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_MEETING_CASE_NOTE_CALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Call">
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingSubTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseNoteId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_MEETING_CASE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Call">
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingSubTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseId" Type="int" Mode="In" />
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingStatusId" Type="int" Mode="In" />
+    <Parameter Name="ReasonId" Type="int" Mode="In" />
+    <Parameter Name="DepartmentId" Type="int" Mode="In" />
+    <Parameter Name="CategoryId" Type="int" Mode="In" />
+    <Parameter Name="CaseNumber" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingDate" Type="datetime" Mode="In" />
+    <Parameter Name="MeetingShortNote" Type="varchar" Mode="In" />
+    <Parameter Name="CallAssignedId" Type="int" Mode="In" />
+    <Parameter Name="NotifiedToEmail" Type="varchar" Mode="In" />
+    <Parameter Name="Notified" Type="bit" Mode="In" />
+    <Parameter Name="AttemptNo" Type="int" Mode="In" />
+    <Parameter Name="IsActive" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="MeetingClosedDate" Type="datetime" Mode="In" />
+    <Parameter Name="QueueId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_MEETING_CASE_FILE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Call">
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingSubTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseNoteId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseNoteFileId" Type="int" Mode="In" />
+    <Parameter Name="documentTypeGroupId" Type="int" Mode="In" />
+    <Parameter Name="DocumentPath" Type="varchar" Mode="In" />
+    <Parameter Name="documentName" Type="varchar" Mode="In" />
+    <Parameter Name="comments" Type="varchar" Mode="In" />
+    <Parameter Name="isActive" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="SizeFile" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_MEETING_CASE_NOTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Call">
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingSubTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseNoteId" Type="int" Mode="In" />
+    <Parameter Name="PriorityId" Type="int" Mode="In" />
+    <Parameter Name="ServiceChannelId" Type="int" Mode="In" />
+    <Parameter Name="OriginatedById" Type="int" Mode="In" />
+    <Parameter Name="Note" Type="varchar(max)" Mode="In" />
+    <Parameter Name="IsActive" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_MEETING_CASE_NOTE_CALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Call">
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="MeetingTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingSubTypeId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseNoteId" Type="int" Mode="In" />
+    <Parameter Name="MeetingCaseNoteCallId" Type="int" Mode="In" />
+    <Parameter Name="CallDuration" Type="time" Mode="In" />
+    <Parameter Name="CallStart" Type="datetime" Mode="In" />
+    <Parameter Name="CallStop" Type="datetime" Mode="In" />
+    <Parameter Name="DialedNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Extension" Type="varchar" Mode="In" />
+    <Parameter Name="FileName" Type="varchar" Mode="In" />
+    <Parameter Name="FullPathFile" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CallLogId" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CallRexUserId" Type="varchar(max)" Mode="In" />
+    <Parameter Name="UserFirstName" Type="varchar" Mode="In" />
+    <Parameter Name="UserLastName" Type="varchar" Mode="In" />
+    <Parameter Name="IsActive" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="FILL_DROP_DOWN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="DropDownName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_CLIENT_INFORMATIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="clientId" Type="bigint" Mode="In" />
+    <Parameter Name="IdentificationNumber" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_CONTACT_EMAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="clientId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_CONTACT_PHONE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="clientId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_INFORMATIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="clienteName" Type="varchar" Mode="In" />
+    <Parameter Name="identificationNumber" Type="varchar" Mode="In" />
+    <Parameter Name="quotationId" Type="bigint" Mode="In" />
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+    <Parameter Name="collateralReference" Type="varchar" Mode="In" />
+    <Parameter Name="Chassis" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_CONTACT_EMAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="contactEmailId" Type="bigint" Mode="In" />
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="emailType" Type="varchar" Mode="In" />
+    <Parameter Name="comments" Type="varchar" Mode="In" />
+    <Parameter Name="IsPrimary" Type="bit" Mode="In" />
+    <Parameter Name="isActive" Type="bit" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_CONTACT_PHONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Entity">
+    <Parameter Name="contactPhoneId" Type="bigint" Mode="In" />
+    <Parameter Name="relatedContactId" Type="bigint" Mode="In" />
+    <Parameter Name="CountryID" Type="int" Mode="In" />
+    <Parameter Name="AreaCode" Type="varchar" Mode="In" />
+    <Parameter Name="Phone" Type="varchar" Mode="In" />
+    <Parameter Name="PhoneType" Type="varchar" Mode="In" />
+    <Parameter Name="comments" Type="varchar" Mode="In" />
+    <Parameter Name="IsPrimary" Type="bit" Mode="In" />
+    <Parameter Name="isActive" Type="bit" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_CONTACT_DOMICILIATION_CARD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="global">
+    <Parameter Name="clientId" Type="bigint" Mode="In" />
+    <Parameter Name="CardTypeId" Type="int" Mode="In" />
+    <Parameter Name="LastFourDigits" Type="varchar" Mode="In" />
+    <Parameter Name="CardNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ExpirationDate" Type="date" Mode="In" />
+    <Parameter Name="CVV2" Type="varchar" Mode="In" />
+    <Parameter Name="CardHolder" Type="varchar" Mode="In" />
+    <Parameter Name="ExpirationDateMMYYYY" Type="varchar" Mode="In" />
+    <Parameter Name="isActive" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+    <Parameter Name="IsMain" Type="bit" Mode="In" />
+    <Parameter Name="ApplyRange" Type="bit" Mode="In" />
+    <Parameter Name="DateFrom" Type="date" Mode="In" />
+    <Parameter Name="DateTo" Type="date" Mode="In" />
+    <Parameter Name="isActiveLoan" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_CODEBTOR_INFORMATIONS_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_COLLATERAL_INFORMATIONS_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="collateralId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_COLLATERAL_INFORMATIONS_RESUMEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_DOMICILIATION_CARD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+    <Parameter Name="clientId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_ENDORSE_COLLATERAL_INFORMATIONS_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_INFORMATIONS_DETAIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="quotationId" Type="bigint" Mode="In" />
+    <Parameter Name="LoanNumber" Type="int" Mode="In" />
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_PAYMENT_AND_DEBTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="AccountId" Type="bigint" Mode="In" />
+    <Parameter Name="FDateDebt" Type="date" Mode="In" />
+    <Parameter Name="TDateDebt" Type="date" Mode="In" />
+    <Parameter Name="FDatePay" Type="date" Mode="In" />
+    <Parameter Name="TDatePay" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_PAYMENT_PLAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="AccountId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_PAYMENT_PLAN_PROYECTIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="AccountId" Type="bigint" Mode="In" />
+    <Parameter Name="DateStatement" Type="date" Mode="In" />
+    <Parameter Name="IdTipo" Type="int" Mode="In" />
+    <Parameter Name="MontoPago" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOANS_QUOTA_HEADER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Loan">
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_QUEUE_BY_USER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Queue">
+    <Parameter Name="QueueTypeId" Type="int" Mode="In" />
+    <Parameter Name="AssingToId" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_CREDIT_DEBIT_DIRECT_PAYMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Recaudo">
+    <Parameter Name="CreditDebitDirectPaymentId" Type="bigint" Mode="In" />
+    <Parameter Name="accountId" Type="bigint" Mode="In" />
+    <Parameter Name="CardTypeId" Type="int" Mode="In" />
+    <Parameter Name="DirectPaymentStatusId" Type="int" Mode="In" />
+    <Parameter Name="CardNumber" Type="varchar" Mode="In" />
+    <Parameter Name="LastFourDigits" Type="varchar" Mode="In" />
+    <Parameter Name="CardName" Type="varchar" Mode="In" />
+    <Parameter Name="YearExpiration" Type="int" Mode="In" />
+    <Parameter Name="MonthExpiration" Type="int" Mode="In" />
+    <Parameter Name="QuotaAmount" Type="numeric" Mode="In" />
+    <Parameter Name="Balance" Type="numeric" Mode="In" />
+    <Parameter Name="AmountPaid" Type="numeric" Mode="In" />
+    <Parameter Name="DatePaid" Type="datetime" Mode="In" />
+    <Parameter Name="DateProcessedCard" Type="datetime" Mode="In" />
+    <Parameter Name="DateProcessedEasybank" Type="datetime" Mode="In" />
+    <Parameter Name="AuthorizationNumber" Type="varchar" Mode="In" />
+    <Parameter Name="receiptNumberEasybank" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOAN_CORRESPONDENCE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TH">
+    <Parameter Name="AccountId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOAN_TEMPLATE_SENT_RELATED_FILE_TH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TH">
+    <Parameter Name="TemplateId" Type="bigint" Mode="In" />
+    <Parameter Name="AccountId" Type="bigint" Mode="In" />
+    <Parameter Name="TemplateSentId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_LOAN_TEMPLATE_SENT_TH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TH">
+    <Parameter Name="TemplateId" Type="bigint" Mode="In" />
+    <Parameter Name="AccountId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_TEMPLATES_TH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TH">
+    <Parameter Name="TemplateId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_DELETE_TEMPLATE_SEND_RELATED_DOCUMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TH">
+    <Parameter Name="TemplateSentId" Type="bigint" Mode="In" />
+    <Parameter Name="TemplateSentRelatedFileId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_TEMPLATE_SEND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TH">
+    <Parameter Name="TemplateSentId" Type="bigint" Mode="In" />
+    <Parameter Name="TemplateId" Type="smallint" Mode="In" />
+    <Parameter Name="AccountId" Type="bigint" Mode="In" />
+    <Parameter Name="ClienteId" Type="bigint" Mode="In" />
+    <Parameter Name="SendDate" Type="datetime" Mode="In" />
+    <Parameter Name="ClientName" Type="varchar" Mode="In" />
+    <Parameter Name="DocumentPath" Type="varchar" Mode="In" />
+    <Parameter Name="documentName" Type="varchar" Mode="In" />
+    <Parameter Name="emails" Type="varchar" Mode="In" />
+    <Parameter Name="comments" Type="varchar" Mode="In" />
+    <Parameter Name="isActive" Type="bit" Mode="In" />
+    <Parameter Name="IsSendToClient" Type="bit" Mode="In" />
+    <Parameter Name="IsSendToOffice" Type="bit" Mode="In" />
+    <Parameter Name="IsSendToAgent" Type="bit" Mode="In" />
+    <Parameter Name="CaseDepartmentID" Type="int" Mode="In" />
+    <Parameter Name="CaseDate" Type="date" Mode="In" />
+    <Parameter Name="CaseHour" Type="time" Mode="In" />
+    <Parameter Name="CaseComment" Type="varchar" Mode="In" />
+    <Parameter Name="CaseNo" Type="bigint" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_TEMPLATE_SEND_RELATED_DOCUMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TH">
+    <Parameter Name="TemplateSentRelatedFileId" Type="bigint" Mode="In" />
+    <Parameter Name="TemplateSentId" Type="bigint" Mode="In" />
+    <Parameter Name="documentTypeGroupId" Type="int" Mode="In" />
+    <Parameter Name="DocumentPath" Type="varchar" Mode="In" />
+    <Parameter Name="documentName" Type="varchar" Mode="In" />
+    <Parameter Name="comments" Type="varchar" Mode="In" />
+    <Parameter Name="isActive" Type="bit" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="SizeFile" Type="decimal" Mode="In" />
+  </Function>
+  <EntityContainer Name="LoansModelStoreContainer" />
+</Schema>

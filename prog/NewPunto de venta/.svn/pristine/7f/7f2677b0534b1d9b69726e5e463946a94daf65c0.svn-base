@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9327AEB7-F748-4EC9-83C0-44E806F1F12A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STL.POS.WsProxy</RootNamespace>
+    <AssemblyName>STL.POS.WsProxy</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PreProdSRV012|AnyCPU'">
+    <OutputPath>bin\PreProdSRV012\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevSRV012|AnyCPU'">
+    <OutputPath>bin\DevSRV012\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SRV018-4000|AnyCPU'">
+    <OutputPath>bin\SRV018-4000\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\STL.POS.Frontend.Web\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CoreProxy.cs" />
+    <Compile Include="ICoreProxy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\SysflexService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WSSysFlexVehicleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.ActualizaDetailCoberturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AddIntermediaryRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AdditionalCrital.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AdditionalEquipoElectronico.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AdditionalFiador.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AdditionalMaquinaria.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AdditionalObjetoValioso.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AdditionalPiloto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AdditionalTransporteAereoMaritimo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AdditionalTransporteTerrestre.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.Agent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AgentBankAccountType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AgentKey.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AgentManagerKey.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AgentMatch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AgentPaymentType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.AgentSMatchResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.BuscarAcuerdosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.CancelaPolizaFianzaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.CheckChassisOrRegistryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.CheckChassisPlacaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.CheckPolicyActiveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.DeleteCoverageVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.DeletePolizaCoberturaMovInlcusionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.ExactMatch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.ExactMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.FacturacionMovimientoSinGPResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetAcuerdosProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetAcuerdosProductoSVResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetAnoVehiculoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetBunchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetCanMakePolicyMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetCheckAgentExistsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetClienteFromPolizaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetComboConditionsByParametersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetCondicionesMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetCondicionesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetContratoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetCotizacionEndosoCesionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetCoverageDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetCoverageProductResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetCoverageProduct_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetExactMatchBlackListBatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetInvoicesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetIsOverPremiumResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetKredisiPolizasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetMarcaVehiculoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetMatchBankAccountTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetMatchOfficeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetMatchPaymentTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetMaximoReaseguroResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetMinimoDeducibleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetMinimoDeducibleResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetNCFandCreditNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetNCFandDebitNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetNCFandInvoiceNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetNextNCFNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetPolizaCoberturasMovCanceladaProspectoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetPolizaCoberturasMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetPolizaCoberturasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetPolizaPrestamoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetPrimaCoberturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetProductsExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetProductsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetProductVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetRefillsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetRefillsVechileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetReinsuranceByItemVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetSexoEdadProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetSubBunchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetSupervisorRealCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetTotalDepreciationPercentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetVehicleTypesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetVehicleYearsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetVehiculosFromPolizaCanceladaProspectoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.GetVehiculosFromPolizaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.InsertLogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.LoggerResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.MovimientoAutomaticoPolizaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.NCFCreditResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.NCFDebitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.NCFInvoiceResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.Office.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyAcuerdos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyBunch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyBunchSubBunch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyCoverageProduct.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyCoverageSysFlexCoverageDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyEndorsement.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyExclusion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyFacultativePlacementParameter.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyFianza.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyFinancial.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyFinancialPolicyInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.Policyinclusioncontact.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.Policyinclusionvehicle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyinclusionvehicleDetailMov.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyItemReinsurance.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyMaximoReaseguroSubramo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyMinimoDeducibleResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyMinimoDeducibleResult1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyOverPremiumResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyPaymentAgreementMov.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyPolicyCancelProspect.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyPolicyConditions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyPolicyCoverages.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyPolicyInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyPolizaDeclarativasKrediSi.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyPolizasKredisiByIntermediario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyProduct.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyProductSysFlexProductNew.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyProductSysFlexProducts.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationCoverageEmition.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationCoverageEmitionInvoiceResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationDetailresultDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationHeader.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILClient.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotatationAgreementSearchResultRD.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotatationAgreementSearchResultSV.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotationCondition.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotationCoverage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotationCoverageproduct.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotationDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotationHeader.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotationPassTransit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationILQuotationPaymenAgreement.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationInvoiceMovResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationSysFlexCotDet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyQuotationSysFlexCotDetEx.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyRate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyRefills.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicySysFlexChassisPlaca.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicySysflexComboCondicion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicySysFlexGetPrimaCobertura.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicySysflexMarcaVehiculo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicySysFlexMensajeria.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyTotalDepreciationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyVehicleAnoVehiculo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyVehicleSysFlexVehicleYears.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyVehicleTypes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.PolicyVehicleVehicleIdentification.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.QuotationVehicleDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAcuerdoPagoMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAdditionalCritalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAdditionalEquipoElectronicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAdditionalFiadorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAdditionalMaquinariaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAdditionalObjetoValiosoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAdditionalPilotoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAdditionalTransporteAereoMaritimoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAdditionalTransporteTerrestreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAgentManagerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAgentPolicyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetAgentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetClient_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetConditionsFinancedPolicyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetCotizacionDetailFianzaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetFacultativePlacementSysflexMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetFacultativePlacementSysflexResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetInclusionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetMensajeriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetMotionBillingVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetMotionBilling_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetMovimientoPolizaExclusionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetPasstransitVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetPasstransit_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetPaymentAgreementResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetPolizaCoberturaMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetPolizaDeclarativaKredisiResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetPolizaDescuentoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetPolizaFinanciadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetPolizaHeaderMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationCondition_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationCoverageReinsuranceVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationCoverageReinsurance_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationCoverageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationCoverageVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationCoverage_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationDetailExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationDetailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationDetailVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationDetail_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationEmitionFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationEmitionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationHeaderVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationHeader_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationPaymentAgreementVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationPaymentAgreement_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationReinsuranceVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetQuotationReinsurance_ILResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetSourceIdAndOrMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SetVehicleConditionChangeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SPCCotizacionEndosoCesionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.SPCDeleteCotizacionCoberturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.UpdateCondicionMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\STL.POS.WsProxy.SysflexService.UpdateCondicionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService1.wsdl" />
+    <None Include="Service References\SysflexService\SysFlexService11.wsdl" />
+    <None Include="Service References\SysflexService\SysFlexService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService71.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService710.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService711.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService712.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService713.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService714.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService715.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService716.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService717.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService72.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService73.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService74.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService75.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService76.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService77.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService78.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SysflexService\SysFlexService79.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexAcuerdoDePago.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexChassisPlaca.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexCondicion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexCotizacionDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexCotizacionHeader.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexCoverage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexCoverageDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexEmision.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexEmisionFactura.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexEmisionPagos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexLineBusiness.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexMaximoReaseguro.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexMensajeria.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexOfficeMatch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexProducts.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexRates.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexSurcharges.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexVehicleType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\STL.POS.WsProxy.WSSysFlexVehicleService.SysFlexVehicleYears.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSSysFlexVehicleService\WSSysFlexVehicle1.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{593d0c43-f556-4a61-889f-964fe656adc6}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.Data\STL.POS.Data.csproj">
+      <Project>{5ae6ab7f-a100-4dc8-99b3-a82f0537bcb5}</Project>
+      <Name>STL.POS.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SysflexService\" />
+    <WCFMetadataStorage Include="Service References\WSSysFlexVehicleService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSSysFlexVehicleService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSSysFlexVehicleService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSSysFlexVehicleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SysflexService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SysflexService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SysflexService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SysflexService\SysFlexService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SysflexService\SysFlexService11.disco" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,321 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode;
+@model Quotation.PaymentCheckOut
+@{
+
+    var currentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+    System.Threading.Thread.CurrentThread.CurrentCulture = currentCulture;
+    System.Threading.Thread.CurrentThread.CurrentUICulture = currentCulture;
+    currentCulture.NumberFormat.NumberDecimalSeparator = ".";
+    currentCulture.NumberFormat.CurrencyDecimalSeparator = ".";
+    currentCulture.NumberFormat.PercentDecimalSeparator = ".";
+
+    CommonEnums.RequestType RequestType = ViewBag.RequestType;
+    IEnumerable<Generic> _PaymentFreq = ViewBag.PaymentFreq;
+
+    bool wasChecked = false;
+    string amoutWasChecked = "";
+
+    bool isDomiciliation = ViewBag.isDomiciliation == null ? false : ViewBag.isDomiciliation;
+}
+
+<div class="mdl-cell card mdl-cell--12-col ml-0 mr-0 w-100 mdl-shadow--4dp clearfix">
+    <div class="mdl-grid">
+        <div class="mdl-cell card mdl-cell--4-col lb_azul float-left">
+            <div class="card-header  bg-info mdl-color-text--white em1-3"><strong>RESUMEN DE PRIMA</strong></div>
+            <div class="card-body">
+
+
+                @if (RequestType == CommonEnums.RequestType.Inclusion)
+                {
+                    <div class="mdl-cell mdl-cell--12-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                        @Html.EditorFor(model => model.TotalAnnualPrime, new { htmlAttributes = new { @class = "mdl-textfield__input text-box single-line applyCurrency", disabled = "disabled" } })
+                        @Html.LabelFor(model => model.TotalAnnualPrime, "Total prima neta anual", htmlAttributes: new { @class = "mdl-textfield__label" })
+                    </div>
+                }
+
+                <div class="mdl-cell mdl-cell--12-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                    @Html.EditorFor(model => model.TotalPrime, new { htmlAttributes = new { @class = "mdl-textfield__input text-box single-line applyCurrency", disabled = "disabled" } })
+                    @Html.LabelFor(model => model.TotalPrime, RequestType == CommonEnums.RequestType.Emision ? "Total prima neta anual" : "Prima neta a prorrata", htmlAttributes: new { @class = "mdl-textfield__label" })
+                </div>
+
+
+                @if (Model.sumAllDiscount.ToDecimal() > 0)
+                {
+                    <div class="mdl-cell mdl-cell--12-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                        @Html.EditorFor(model => model.sumAllDiscount, new { htmlAttributes = new { @class = "mdl-textfield__input text-box single-line applyCurrency", disabled = "disabled" } })
+                        @Html.LabelFor(model => model.sumAllDiscount, "Descuento", htmlAttributes: new { @class = "mdl-textfield__label" })
+                    </div>
+
+
+                    <div class="mdl-cell mdl-cell--12-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                        @Html.EditorFor(model => model.TotalAmountWithDiscount, new { htmlAttributes = new { @class = "mdl-textfield__input text-box single-line applyCurrency", disabled = "disabled" } })
+                        @Html.LabelFor(model => model.TotalAmountWithDiscount, "Prima con descuento", htmlAttributes: new { @class = "mdl-textfield__label" })
+                    </div>
+                }
+
+                <div class="mdl-cell mdl-cell--12-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                    @Html.EditorFor(model => model.TotalISC, new { htmlAttributes = new { @class = "mdl-textfield__input text-box single-line applyCurrency", disabled = "disabled" } })
+                    @Html.LabelFor(model => model.TotalISC, "Impuesto", htmlAttributes: new { @class = "mdl-textfield__label" })
+                </div>
+
+                <div class="mdl-cell mdl-cell--12-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                    @Html.EditorFor(model => model.TotalAmountWithDiscountAndTax, new { htmlAttributes = new { @class = "mdl-textfield__input text-box single-line applyCurrency", disabled = "disabled" } })
+                    @Html.LabelFor(model => model.TotalAmountWithDiscountAndTax, "Total a pagar", htmlAttributes: new { @class = "mdl-textfield__label" })
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell card mdl-cell--8-col lb_azul float-right opagos">
+            <div class="card-header  bg-info mdl-color-text--white em1-3"><strong>OPCIONES DE PAGO</strong></div>
+            <div class="card-body">
+                <table class="mdl-data-table mdl-js-data-table border-0 no-hover">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric border-0"></th>
+                            <th class="border-0">Pago inicial</th>
+                            <th class="border-0 text-center">Pago siguiente cada uno</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var pf in _PaymentFreq)
+                        {
+                            var objJson = Newtonsoft.Json.JsonConvert.DeserializeObject<Utility.pFrecuency>(pf.Value);
+                            //{ 'Id':'0','Discount':'0.05','Initial':'1.00'}
+                            decimal IdPayFreq = objJson.Id;
+                            decimal DiscountPerc = objJson.Discount;
+                            decimal InitialPerc = objJson.Initial;
+
+
+                            decimal TotalToPay = 0;
+                            decimal Cuotas = 0;
+                            string CuotasText = "";
+
+                            string ischecked = "";
+
+                            //if (isDomiciliation && IdPayFreq == 4.1M && !wasChecked)
+                            //{
+                            //    ischecked = "checked='checked'";
+                            //    wasChecked = true;
+                            //}
+                            //else 
+                            //if (Model.PaymentFrequencyId.ToString() == IdPayFreq.ToString())
+                            if (Model.PaymentFrequencyId_Dom.ToString() == IdPayFreq.ToString())
+                            {
+                                //if (Model.PaymentFrequencyId.ToString() == IdPayFreq.ToString() && isDomiciliation && !wasChecked)
+                                //{
+                                ischecked = "checked='checked'";
+                                wasChecked = true;
+                                //}
+                                //else if (Model.PaymentFrequencyId.ToString() == IdPayFreq.ToString() && isDomiciliation && !wasChecked)
+                                //{
+                                //    ischecked = "checked='checked'";
+                                //    wasChecked = true;
+                                //}
+                            }
+
+                            //Pago Unico
+                            if (IdPayFreq == 0)
+                            {
+                                TotalToPay = Model.TotalAmountWithDiscountAndTax.ToDecimal();
+                                TotalToPay = TotalToPay - (TotalToPay * DiscountPerc);
+                            }
+                            else if (IdPayFreq == 4)
+                            {
+                                TotalToPay = Model.TotalAmountWithDiscountAndTax.ToDecimal() * InitialPerc;//Inicial
+                                Cuotas = (Model.TotalAmountWithDiscountAndTax.ToDecimal() - TotalToPay) / 4;
+
+                                CuotasText = string.Format("4 cuotas de {0}", Cuotas.ToString("N"));
+                            }
+                            else if (IdPayFreq == 4.1M)
+                            {
+                                TotalToPay = Model.TotalAmountWithDiscountAndTax.ToDecimal() * InitialPerc;//Inicial
+                                Cuotas = (Model.TotalAmountWithDiscountAndTax.ToDecimal() - TotalToPay) / 4;
+                                decimal CuotaFinal = Cuotas - (Model.TotalAmountWithDiscountAndTax.ToDecimal() * DiscountPerc);
+
+                                CuotasText = string.Format("3 cuotas de {0} y la ultima de {1}", Cuotas.ToString("N"), CuotaFinal.ToString("N"));
+                            }
+
+                            if (wasChecked && !string.IsNullOrEmpty(ischecked))
+                            {
+                                amoutWasChecked = TotalToPay.ToString("N");
+                            }
+
+                            @*else if (IdPayFreq == 3)
+                                {
+                                    double Principal = (double)DiscountPerc;
+                                    var loanType = "VehicleInsurance";
+                                    var resultGetAmortizationTable = new STL.POS.VirtualOfficeProxy.VirtualOfficeProxy().GetAmortizationTable((double)Model.TotalAmountWithDiscountAndTax.ToDecimal(), 11, loanType, Convert.ToInt32(DiscountPerc), (double)Model.TotalAmountWithDiscountAndTax.ToDecimal());
+
+                                    var financedInitial = (decimal)resultGetAmortizationTable.productCalculatorResult.AmotizationTable.FirstOrDefault(k => k.PeriodNumber == 0).Payment;
+                                    Cuotas = (decimal)resultGetAmortizationTable.productCalculatorResult.AmotizationTable.LastOrDefault().Payment;
+
+                                    TotalToPay = financedInitial;//Inicial
+                                    CuotasText = string.Format("11 cuotas de {0}", Cuotas.ToString("N"), Cuotas.ToString("N"));
+
+                                    <tr>
+                                        <td class="mdl-data-table__cell--non-numeric border-0">
+                                            <label class="pure-material-checkbox">
+                                                <input type="checkbox" id="@Html.Raw(IdPayFreq)" @Html.Raw(ischecked) class="chkPaymentFrequency" value="@(IdPayFreq)">
+                                                <span>@(pf.name)</span>
+                                            </label>
+                                        </td>
+                                        <td class="border-0">
+                                            <input class="mdl-textfield__input text-box single-line chkValue" disabled="disabled" id="" name="" type="text" value="@Html.Raw("RD$" + TotalToPay.ToString("N"))" style="text-align: right;">
+                                        </td>
+                                        <td class="border-0 text-center">
+                                            <span class="text-box single-line" style="text-align: right;">@Html.Raw(CuotasText)</span>
+                                        </td>
+                                    </tr>
+                                }*@
+
+                        if (IdPayFreq != 3)
+                        {
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric border-0">
+                                    <label class="pure-material-checkbox">
+                                        <input type="checkbox" id="@Html.Raw(IdPayFreq)" @Html.Raw(ischecked) class="chkPaymentFrequency" value="@Html.Raw(pf.Value)">
+                                        <span>@(pf.name)</span>
+                                    </label>
+                                </td>
+                                <td class="border-0">
+                                    <input class="mdl-textfield__input text-box single-line chkValue" disabled="disabled" id="" name="" type="text" value="@Html.Raw("RD$" + TotalToPay.ToString("N"))" style="text-align: right;">
+                                </td>
+                                <td class="border-0 text-center">
+                                    <span class="text-box single-line" style="text-align: right;">@Html.Raw(CuotasText)</span>
+                                </td>
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col float-left">
+
+        </div>
+        <div class="mdl-cell mdl-cell--12-col float-left">
+            <div class="input-group">
+                @if (RequestType == CommonEnums.RequestType.Emision)
+                {
+                    <span class="input-group-addon border border-warning bg-warning mdl-color-text--white font-weight-bold">Monto a Pagar</span>
+                }
+                else if (RequestType == CommonEnums.RequestType.Inclusion)
+                {
+                    <span class="input-group-addon border border-warning bg-warning mdl-color-text--white font-weight-bold">Monto de Cuotas a Pagar</span>
+                }
+
+                @if (wasChecked)
+                {
+                    Model.AmountToPayEnteredByUser = amoutWasChecked;
+                }
+
+                @Html.EditorFor(model => model.AmountToPayEnteredByUser, new { htmlAttributes = new { @class = "form-control form-control-lg border border-warning text-center font-weight-bold applyCurrency", disabled = "disabled" } })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="mdl-cell card mdl-cell--12-col w-100 ml-0 lb_azul mdl-shadow--4dp" id="addDriverBox">
+    <div class="card-header bg-info mdl-color-text--white em1-3"><strong>FORMA DE PAGO</strong></div>
+    <div class="card-body">
+        <div class="mdl-cell mt-0 mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+            <div class="mdl-textfield">
+                <div class="col-md-12 float-left pl-0 mt-2">
+                    @Html.DropDownListFor(model => model.PaymentWay, (IEnumerable<SelectListItem>)ViewBag.WayToPay, new { id = "paymentTypeId", @class = "chosen-select-deselect form-control", @data_placeholder = "Forma de Pago" })
+                </div>
+                <div id="divNotifyMessaging" style="display:none;" class="mdl-cell mdl-cell--12-col mdl-textfield ">
+                    <label for="Messaging" class="fl mR"><strong>Notificar a Mensajería?</strong></label>
+                    @Html.CheckBoxFor(model => model.Messaging, new { @class = "fl mT5" })
+                </div>
+            </div>
+        </div>
+        <div id="divTextCard" style="display:none;" class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" id="inpTextCard" type="number" name="InpTextCard" disabled="disabled">
+            <label class="mdl-textfield__label">Se aceptan pagos de tarjetas Visa, Mastercard y American Express..</label>
+        </div>
+    </div>
+</div>
+
+
+
+@if (RequestType == CommonEnums.RequestType.Emision)
+{
+    <div class="mdl-cell--12-col mt-3 clearfix w-100">
+        <div class="alert alert-primary mb-0 float-left border-primary text-center w-100" role="alert">
+            Si paga el monto de prima anual 100% se le otorga un descuento del 5% del valor de su prima anual
+        </div>
+    </div>
+}
+
+<div class="mdl-cell bg-light mdl-cell--12-col w-100 float-left rounded ml-0 mdl-shadow--4dp mt-3 p-3">
+    @Ajax.RawActionLink("<i class='material-icons float-left mt-2'>arrow_back</i><strong class='x-hide d-block float-left ml-2'>Atras</strong>",
+    "DocumentRequired",
+    "Home",
+    null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "dvContainer",
+        OnSuccess = "$('#btnDissmisPayment').hide();"
+    },
+    new { @class = "mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-color-text--white bg-info float-left ml-3" })
+
+
+
+    <a class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-color-text--white bg-info float-right swatch-success" href="#" id="aPagar">
+        <i class='material-icons x-block xl-hide float-left mt-1'>&#xE8CC;</i><i class='material-icons ml-2'>&#xE8A1;</i>
+        <strong class='x-hide d-block float-left mr-2'>PAGAR</strong>
+    </a>
+
+</div>
+
+<footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+    <div class="container">
+        <div class="mdl-mega-footer__top-section">
+            <div class="mdl-cell mdl-cell--3-col float-left">
+                <div class="mdl-mega-footer__left-section float-left">
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col float-left">
+                <div class="mdl-mega-footer__right-section centro">
+                    <ul class="mdl-mega-footer__link-list mdl-color-text--white d-flex justify-content-center x-hide mb-0 mt-2 float-left">
+                        <li><strong>Tel: </strong> (809) 565-5591 &nbsp;•&nbsp;</li>
+                        <li class="mr-3"><strong> Email:</strong> ventas@atlantica.do</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col float-left">
+            </div>
+        </div>
+
+        @*<div class="mdl-mega-footer__top-section">*@
+
+        @*@Ajax.RawActionLink("<i class=\"material-icons mr-3\">&#xE8A1;</i>PAGAR",
+            "_PaymentCheckoutSave",
+            "Home",
+            null,
+            new AjaxOptions
+            {
+            UpdateTargetId = "divCardnetForm",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "Post",
+            OnBegin = "PaymentCheckoutSave(); return false;",
+            OnSuccess = "PaymentCheckoutSave(); return false;",
+
+            },
+            new
+            {
+            @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success"
+            }
+            )*@
+        @*</div>*@
+
+
+    </div>
+</footer>
+
+<script src="~/js/ControllersJs/_PaymentCheckoutJS.js?t=@DateTime.Now.Ticks.ToString()"></script>

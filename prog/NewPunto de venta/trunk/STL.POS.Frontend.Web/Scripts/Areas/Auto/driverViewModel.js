@@ -1,0 +1,940 @@
+﻿function driverViewModel() {
+    ;
+    var self = this;
+
+    //This method helps serialization to get the exact info
+    self.toJSON = function () {
+        var copy = ko.toJS(self);
+        delete copy.toString;
+        delete copy.age;
+        delete copy.validationRules;
+        delete copy.sexes;
+        return copy;
+    };
+
+    self.id = ko.observable(Math.floor((Math.random() * 10000) + 1) * -1);
+
+    self.firstName = ko.observable();
+    self.surname = ko.observable();
+    self.email = ko.observable();
+    self.phoneNumber = ko.observable();
+    self.provinceId = ko.observable();
+    self.municipalityId = ko.observable();
+    self.cityId = ko.observable();
+    self.dateOfBirth = ko.observable();
+    self.principal = ko.observable();
+    //self.sexes = ko.observableArray(['Seleccione', 'Femenino', 'Masculino', 'Empresa']);//ORIGINAL
+
+    self.sexes = ko.observableArray([/*{ id: '', name: 'Seleccione' },*/
+                        { id: 'Femenino', name: 'Femenino' },
+                        { id: 'Masculino', name: 'Masculino' },
+                        { id: 'Empresa', name: 'Empresa' }]),
+
+    self.selectedSex = ko.observable();
+    self.selectedSexText = ko.observable();
+
+    //Aditional information
+    self.address = ko.observable();
+    self.mobile = ko.observable();
+    self.workPhone = ko.observable();
+
+    self.identificationType = ko.observable();
+
+    self.ForeignLicense = ko.observable();
+    self.IdentificationNumberValidDate = ko.observable();
+
+    self.license = ko.observable();
+    self.yearsDriving = ko.observable();
+    self.accidentsLast3Years = ko.observable();
+    self.maritalStatus = ko.observable();
+    self.nationality = ko.observable(129); //Dominican Republic by default
+    self.job = ko.observable();
+    self.company = ko.observable();
+    self.yearsInCompany = ko.observable();
+
+    self.InvoiceTypeId = ko.observable();
+
+    self.whenInvoiceTypeIdIsSpecial = ko.computed(function () {
+
+        if (self.InvoiceTypeId()) {
+            var typeid = self.InvoiceTypeId();
+
+            if (typeid == "5") {
+                var text = "";
+                var s = $("#ShowMessageInvoiceSpecial").val();
+
+                if (s == "N") {
+
+                    $.ajax({
+                        url: '/PoSAuto/GetMessageInvoiceSpecial',
+                        dataType: 'json',
+                        async: false,
+                        success: function (data) {
+                            text = data;
+                        }
+                    });
+
+                    showWarning([text], 'Advertencia Certificación de Régimen Especial');
+
+                    $("#ShowMessageInvoiceSpecial").val("S");
+                }
+            } else {
+                var warningContainer = $('#warningContainer');
+                warningContainer.hide();
+                $("#ShowMessageInvoiceSpecial").val("N");
+            }
+        } else {
+            var warningContainer = $('#warningContainer');
+            warningContainer.hide();
+            $("#ShowMessageInvoiceSpecial").val("N");
+        }
+    });
+
+    //New Fields 28-06-2017
+    self.PostalCode = ko.observable();
+    self.AnnualIncome = ko.observable(0).money();
+
+    self.PepFormularyOptionsId = ko.observable();
+    self.SocialReasonId = ko.observable();
+    self.OwnershipStructureId = ko.observable();
+    self.IdentificationFinalBeneficiaryOptionsId = ko.observable();
+    self.IdentificationFinalBeneficiaryOptionsIdIsAllowed = ko.observable(false);
+
+    self.HomeOwner = ko.observable(false);
+    self.QtyPersonsDepend = ko.observable();
+    self.QtyEmployees = ko.observable();
+    self.Linked = ko.observable('NI');
+    self.segment = ko.observable('010000');
+    self.Fax = ko.observable();
+    self.URL = ko.observable();
+    self.yearList = ko.observableArray();
+    //
+
+    self.showOrNotRNCDropsOptions = ko.computed(function () {
+
+        if (self.identificationType() && self.identificationType() == 'RNC') {
+
+
+            $("#SocialReasonId").removeAttr("disabled");
+            $("#OwnershipStructureId").removeAttr("disabled");
+            self.PepFormularyOptionsId(null);
+
+        } else {
+            self.SocialReasonId(null);
+            self.OwnershipStructureId(null);
+            self.IdentificationFinalBeneficiaryOptionsId(null);
+
+            $("#SocialReasonId").attr("disabled", "disabled");
+            $("#OwnershipStructureId").attr("disabled", "disabled");
+        }
+    });
+
+    self.setSelectedSexWhenIsRNC = ko.computed(function () {
+
+        if (self.identificationType() && self.identificationType() == 'RNC') {
+
+            //var companySex = self.sexes()[3];//Empresa
+            self.selectedSex('Empresa');
+            self.ForeignLicense(2);
+        } else {
+
+            if (self.selectedSex() == "Empresa") {
+                //var companySex = self.sexes()[0];//Femenino
+                self.selectedSex('Femenino');
+            }
+
+        }
+    });
+
+    self.toString = ko.computed(function () {
+        var r = self.firstName() + ' ' + self.surname();
+        var fname = self.firstName();
+        var sname = self.surname();
+        if (sname === undefined || sname === null || sname === "") {
+            sname = "";
+        }
+        return fname + ' ' + sname;
+    });
+    self.age = ko.pureComputed(function () {
+        if (!self.dateOfBirth())
+            return undefined;
+
+        var _birth = $.datepicker.parseDate(getCurrentDateFormat(), self.dateOfBirth());
+        var age = today.getFullYear() - _birth.getFullYear();
+        var m = today.getMonth() - _birth.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < _birth.getDate())) {
+            age--;
+        }
+        return age;
+    }).extend({ notify: 'always' });
+
+    //self.SelectedSexIncorrect = ko.computed(function () {
+
+    //    if (self.identificationType() && self.identificationType() != 'RNC') {
+    //        if (self.selectedSex() && self.selectedSex() == 'Empresa')
+    //        {
+    //            showError(['El sexo Empresa solo debe ser selccionado cuando es  rnc'], 'Sexo');
+    //        }
+    //    }
+
+    //});
+
+   
+
+    self.setMaskRncCeduNew = ko.computed(function () {
+        var pass = "N";
+        if (self.identificationType()) {
+            var value = self.identificationType();
+            switch (value) {
+                case "Cédula":
+                case "Licencia":
+                    pass = "C";
+                    break;
+                case "RNC":
+                    pass = "R";
+                    break;
+            }
+        }
+        $("#cedMask").val(pass);
+        $("#cedMask").trigger('change');
+        return pass;
+    });
+
+
+    self.validationRules = {
+        
+        rules: {
+            firstname: {
+                nameSurname: true,
+                required: true,
+                maxlength: 50
+            },
+            /*surname: {
+                 nameSurname: true,
+                 required: true,
+                 maxlength: 50
+             },*/
+            surnameO: {
+                nameSurname: true,
+                //required: true,
+                required:
+                     function (element) {
+                         return $("#identificationTypeO").val() != 'RNC'; //self.identificationType() != 'RNC';
+                     },
+                maxlength: 50
+            },
+
+            /*email: {
+                required: true,
+                maxlength: 255,
+                emailWithDomain: true
+            },
+            phoneNumber: {
+                required: true,
+                maxlength: 50
+            },
+            cityId: {
+                required: true,
+            },*/
+
+            emailO: {
+                //required: function (element) {
+                //    return $("#AllAreLawProducts").val() == "False";
+                //},
+                maxlength: 255,
+                email: true,
+                //emailWithDomain: true
+            },
+
+            phoneNumberO: {
+                required: function (element) {
+                    return $("#SomePhoneIsValid").val() == "True";
+                },
+                maxlength: 50
+            },
+
+            cityIdO: {
+                required: true,
+            },
+
+            dateOfBirth: {
+                required: function (element) {
+
+                    //var dateOfBirthValidRNC = $("#dateOfBirthValidRNC").val();
+                    var identificationType = $("#identificationType").val();
+                    var identificationTypeO = $("#identificationTypeO").val();
+                    var currentStepIdhdn = $("#currentStepIdhdn").val();
+
+
+                    if (identificationType !== "") {
+
+                        if (identificationType != "RNC") {
+                            return true;
+                        } else if (identificationType == "RNC") {
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
+
+                    }
+                    else if (identificationType === "" && identificationTypeO !== "" && currentStepIdhdn == "1") {
+                        return true;
+                    }
+                    else if (identificationTypeO !== "") {
+
+                        if (identificationTypeO != "RNC") {
+                            return true;
+                        } else if (identificationTypeO == "RNC") {
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
+                    } else {
+                        return true;
+                    }
+
+                    //if (dateOfBirthValidRNC === "") {
+                    //    return true;
+                    //} else {
+                    //    return dateOfBirthValidRNC == 'True';
+                    //}
+                },
+                dateFormat: true
+            },
+
+            address: {
+                required: true,
+                maxlength: 1000
+            },
+
+            InvoiceTypeId: {
+                required: true
+            },
+
+            mobile: {
+                required: function (element) {
+                    return $("#SomePhoneIsValid").val() == "True";
+                },
+                maxlength: 50
+            },
+
+            workPhone: {
+                required: function (element) {
+                    return $("#SomePhoneIsValid").val() == "True";
+                },
+                maxlength: 50
+            },
+
+            /* identificationType: {
+                 required: true
+             },
+             license: {
+                 required: true,
+                 maxlength: 50
+             },*/
+
+            identificationTypeO: {
+                required: true
+            },
+
+            licenseO: {
+                required: true,
+                maxlength: 50,
+                validCedulaLicencia: true,
+                validRNC: true
+            },
+
+            ForeingLicence: {
+                required: function (element) {
+
+                    var identificationType = $("#identificationType").val();
+
+                    if (identificationType !== "") {
+
+                        if (identificationType != "RNC") {
+                            return true;
+                        } else if (identificationType == "RNC") {
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
+
+                    } else {
+                        return true;
+                    }
+                }
+            },
+
+            clientSex: {
+                required: true /*function (element) {
+
+                    var identificationType = $("#identificationType").val();
+
+                    if (identificationType !== "") {
+
+                        if (identificationType != "RNC") {
+                            return true;
+                        } else if (identificationType == "RNC") {
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
+
+                    } else {
+                        return true;
+                    }
+                }*/
+            },
+
+            yearsDriving: {
+                required: true
+            },
+
+            accidentsLast3Years: {
+                required: true
+            },
+
+            maritalStatus: {
+                required: true
+            },
+
+            nationality: {
+                required: true
+            },
+
+            job: {
+                required: function (element) {
+                        var identificationType = $("#identificationTypeO").val();
+                        var text = $("#OwnershipStructureId option:selected").val();
+
+                        if (identificationType == "RNC" && $("#AllAreLawProducts").val() == "False" || text== 4) {
+                            return true;
+
+                        } else if (identificationType != "RNC" && $("#AllAreLawProducts").val() == "False" || text == 4) {
+                            return true;
+                        }
+                        return false;
+                },
+                maxlength: 50
+            },
+
+            company: {
+                required: function (element) {
+                    var identificationType = $("#identificationTypeO").val();
+                    var text = $("#OwnershipStructureId option:selected").val();
+                    if (text == 4) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                maxlength: 50
+            },
+
+            yearsInCompany: {
+                required: true
+            },
+
+            IdentificationNumberValidDateO: {
+                required: function (element) {
+                    return $("#IdentificationNumberValidDateValid").val() == 'True';
+                }
+            },
+
+
+            PostalCode: {
+                //Required: true,
+                maxlength: 50
+            },
+            AnnualIncome: {
+                moneyRequired: function (element) {
+                    var text = $("#OwnershipStructureId option:selected").val();
+                    if (text == 4 || $("#AllAreLawProducts").val() == "False") { //persona fisica o es de full
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            /*Si deciden que estos campos seran requeridos, solo descomentar*/
+            PepFormularyOptionsId: {
+                required: true
+            },
+
+            IdentificationFinalBeneficiaryOptionsId: {
+                required: true
+            },
+
+            SocialReasonId: {
+                required: function (element) {
+
+                    var identificationType = $("#identificationTypeO").val();
+
+                    if (identificationType == "RNC") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            OwnershipStructureId: {
+                required: function (element) {
+                    var identificationType = $("#identificationTypeO").val();
+
+                    if (identificationType == "RNC") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            creditCardTypeId: {
+            required: function (element) {
+                var bolFinanced = $("#hdfIsFinanced").val();
+
+                if (bolFinanced == "S") {
+                    return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            creditCardNumber: {
+                required: function (element) {
+                    var bolFinanced = $("#hdfIsFinanced").val();
+                    if (bolFinanced == "S") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            expirationDateYear: {
+                required: function (element) {
+                    var bolFinanced = $("#hdfIsFinanced").val();
+
+                    if (bolFinanced == "S") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            expirationDateMonth: {
+                required: function (element) {
+                    var bolFinanced = $("#hdfIsFinanced").val();
+
+                    if (bolFinanced == "S") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            cardHolder: {
+                required: function (element) {
+                    var bolFinanced = $("#hdfIsFinanced").val();
+
+                    if (bolFinanced == "S") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            QtyPersonsDepend: {
+                required: function (element) {
+                    var bolFinanced = $("#hdfIsFinanced").val();
+                    var IdentifType = $("#hdfIdentificationType").val();;
+                    if (bolFinanced == "S" && IdentifType != "RNC") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
+            period: {
+                required: function (element) {
+                    var bolFinanced = $("#hdfIsFinanced").val();
+
+                    if (bolFinanced == "S") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+            //chkHomeOwner: {
+            //    required: function (element) {
+            //        var bolFinanced = $("#hdfIsFinanced").val();
+            //        var IdentifType = $("#hdfIdentificationType").val();;
+            //        if (bolFinanced == "S" && IdentifType != "RNC") {
+            //            return true;
+            //        } else {
+            //            return false;
+            //        }
+            //    }
+            //},
+
+        },
+        messages: {
+            firstname: {
+                nameSurname: 'El Primer nombre sólo permite caracteres alfabéticos.',
+                required: 'El Primer Nombre es requerido',
+                maxlength: 'El Primer Nombre no puede tener más de 50 caracteres de longitud'
+            },
+            surname: {
+                nameSurname: 'El Apellido sólo permite caracteres alfabéticos.',
+                required: 'El Apellido es requerido',
+                maxlength: 'El Apellido no puede tener más de 50 caracteres de longitud'
+            },
+
+            surnameO: {
+                nameSurname: 'El Apellido sólo permite caracteres alfabéticos.',
+                required: 'El Apellido es requerido',
+                maxlength: 'El Apellido no puede tener más de 50 caracteres de longitud'
+            },
+
+            clientSex: {
+                required: 'El Sexo es requerido'
+            },
+
+            email: {
+                required: 'El Email es requerido',
+                maxlength: 'El Email no puede tener más de 255 caracteres de longitud',
+                emailWithDomain: 'El Email debe ser una dirección de correo electrónico válida'
+            },
+            phoneNumber: {
+                required: 'El Teléfono es requerido',
+                maxlength: 'El Teléfono no puede tener más de 50 caracteres de longitud'
+            },
+            municipalityId: {
+                required: 'Debe seleccionar un municipio de la lista'
+            },
+            cityId: {
+                required: 'Debe seleccionar una ciudad de la lista'
+            },
+
+
+            emailO: {
+                maxlength: 'El Email no puede tener más de 255 caracteres de longitud',
+                email: 'El Email debe ser una dirección de correo electrónico válida'
+            },
+            phoneNumberO: {
+                required: 'El Teléfono es requerido',
+                maxlength: 'El Teléfono no puede tener más de 50 caracteres de longitud'
+            },
+            cityIdO: {
+                required: 'Debe seleccionar una ciudad de la lista'
+            },
+
+            dateOfBirth: {
+                required: 'La Fecha de Nacimiento es requerida',
+                dateFormat: 'Debe ingresar una Fecha de Nacimiento válida',
+            },
+
+            address: {
+                required: 'La Dirección Casa es requerida',
+                maxlength: 'La Dirección Casa no puede tener más de 1,000 caracteres de longitud'
+            },
+
+            InvoiceTypeId: {
+                required: 'El Tipo de Factura es requerido'
+            },
+
+            mobile: {
+                required: 'El Celular es requerido',
+                maxlength: 'El Celular no puede tener más de 50 caracteres de longitud'
+            },
+            workPhone: {
+                required: 'El Teléfono Trabajo es requerido',
+                maxlength: 'El Teléfono Trabajo no puede tener más de 255 caracteres de longitud'
+            },
+            identificationType: {
+                required: 'El Tipo de Identificación es requerido'
+            },
+            license: {
+                required: 'El Número de Identificación es requerido',
+                maxlength: 'El Número de Identificación no puede tener más de 50 caracteres de longitud'
+            },
+
+            identificationTypeO: {
+                required: 'El Tipo de Identificación es requerido'
+            },
+
+            ForeingLicence: {
+                required: 'La Licencia Extranjera es requerida'
+            },
+
+            licenseO: {
+                required: 'El Número de Identificación es requerido',
+                maxlength: 'El Número de Identificación no puede tener más de 50 caracteres de longitud',
+                validCedulaLicencia: 'La Cedula/Licencia debe ser num&eacute;rica y tener 11 digitos sin guiones(-).',
+                validRNC: 'El RNC debe ser numérico y tener 9 digitos sin guiones(-).'
+            },
+
+            yearsDriving: {
+                required: 'Los Años Conduciendo son requeridos.'
+            },
+            accidentsLast3Years: {
+                required: 'El No. De Accidentes en los últimos 3 Años es requerido.'
+            },
+            maritalStatus: {
+                required: 'El Estado Civil es requerido.'
+            },
+            nationality: {
+                required: 'La Nacionalidad es requerida.'
+            },
+            job: {
+                required: 'La Ocupación es requerida.',
+                maxlength: 'La Ocupación no puede tener más de 50 caracteres de longitud.'
+            },
+            company: {
+                required: 'La Empresa en la que labora es requerida',
+                maxlength: 'La Empresa en la que Labora no puede tener más de 50 caracteres de longitud.'
+            },
+            yearsInCompany: {
+                required: 'Los Años en la empresa son requeridos.'
+            },
+            IdentificationNumberValidDateO: {
+                required: 'La Fecha de Expiración Identificación es requerida.',
+                dateFormat: 'Debe ingresar una Fecha de Expiración Identificación válida.',
+            },
+
+            PostalCode: {
+                maxlength: 'El Codigo Postal no puede tener más de 50 caracteres de longitud.'
+            },
+
+            AnnualIncome: {
+                required: 'El Ingreso Anual es requerido.',
+                //moneyRange: 'El Ingreso Anual es requerido y debe ser un monto válido (mayor a 0).'
+                //min: 'En el Ingreso Anual debe ser mayor a cero (0).'
+            },
+
+            /*Si deciden que estos campos seran requeridos, solo descomentar*/
+            PepFormularyOptionsId: {
+                required: 'El campo Posee calidad de PEP es requerido.',
+            },
+
+            IdentificationFinalBeneficiaryOptionsId: {
+                required: 'El campo Beneficiario Final es requerido.',
+            },
+
+            SocialReasonId: {
+                required: 'La Razón Social es requerida.',
+            },
+
+            OwnershipStructureId: {
+                required: 'El campo Estructura de Titularidad es requerido.',
+            },
+            creditCardTypeId: {
+                required: 'Debe seleccionar el tipo de tarjeta',
+            },
+
+            creditCardNumber: {
+                required: 'Debe colocar el número de tarjeta',
+            },
+
+            expirationDateYear: {
+                required: 'Debe indicar el año de expiración de la tarjeta',
+            },
+            expirationDateMonth: {
+                required: 'Debe indicar el mes de expiración de la tarjeta',
+            },
+
+            cardHolder: {
+                required: 'Debe indicar el Tarjetahabiente o titular de la tarjeta',
+            },
+            QtyPersonsDepend: {
+                required: 'Debe indicar la cantidad de dependientes',
+            },
+            period: {
+                required: 'Debe seleccionar el periodo en meses para financiamiento',
+            },
+
+        }
+    };
+
+    self.clear = function () {
+        self.firstName('');
+        self.surname('');
+        self.email('');
+        self.phoneNumber('');
+        self.provinceId(undefined);
+        self.municipalityId(undefined);
+        self.cityId(null);
+        self.dateOfBirth('');
+        self.principal(false);
+        //self.selectedSex(self.sexes()[0]);
+        self.selectedSex(undefined);
+
+        self.address('');
+
+        self.InvoiceTypeId(null);
+
+        self.mobile('');
+        self.workPhone('');
+
+        self.ForeignLicense(undefined);
+        self.IdentificationNumberValidDate('');
+
+        self.license('');
+        self.yearsDriving(undefined);
+        self.accidentsLast3Years(undefined);
+        self.maritalStatus(undefined);
+        self.nationality(undefined);
+        self.job('');
+        self.company('');
+        self.yearsInCompany(undefined);
+
+        self.PostalCode('')
+        self.AnnualIncome('');
+
+        self.PepFormularyOptionsId(null);
+        self.SocialReasonId(null);
+        self.OwnershipStructureId(null);
+        self.IdentificationFinalBeneficiaryOptionsId(null);
+        self.identificationType(undefined);
+
+        self.HomeOwner(false);
+        self.QtyPersonsDepend(undefined);
+        self.QtyEmployees(undefined);
+        //self.linked('NI');
+        self.segment('010000');
+        self.Fax('');
+        self.URL('');
+        
+    };
+
+
+    self.driverAditionalDataComplete = function () {
+        var completed = self.address() &&
+        self.provinceId() &&
+        self.cityId() &&
+        //self.dateOfBirth() &&
+       //self.phoneNumber() &&
+       //self.mobile() &&
+       //self.workPhone() &&
+        //self.email() &&
+       //self.yearsDriving() != undefined &&
+       //self.accidentsLast3Years() != undefined &&
+       //self.maritalStatus() != undefined &&
+        self.nationality() != undefined
+        //&& self.job() &&
+        //self.company() &&
+        //self.yearsInCompany()  != undefined;
+
+
+        return completed;
+    };
+
+    self.loadModel = function (model) {
+        self.id(model.Id);
+        self.firstName(model.FirstName)
+        self.surname(model.FirstSurname);
+        self.email(model.Email);
+        self.phoneNumber(model.PhoneNumber);
+        self.provinceId(model.City.State_Prov_Id);
+        ;
+        self.municipalityId(model.City.Domesticreg_Id + '-' + model.City.State_Prov_Id + '-' + model.City.Municipio_Id);
+        self.cityId(model.City.Domesticreg_Id + '-' + model.City.State_Prov_Id + '-' + model.City.Municipio_Id + '-' + model.City.City_Id);
+        //self.dateOfBirth($.datepicker.formatDate(getCurrentDateFormat(), moment(model.DateOfBirth).toDate()));
+
+        if (model.DateOfBirth != null) {
+            self.dateOfBirth($.datepicker.formatDate(getCurrentDateFormat(), moment(model.DateOfBirth).toDate()));
+        } else {
+            self.dateOfBirth('');
+        }
+
+        //self.IsFinanced(model.Financed);
+        //self.monthlyPayment(model.MonthlyPayment);
+        self.principal(model.IsPrincipal);
+        self.selectedSex(model.Sex);
+
+        self.address(model.Address);
+
+        self.InvoiceTypeId(model.InvoiceTypeId);
+
+        self.mobile(model.Mobile);
+        self.workPhone(model.WorkPhone);
+
+
+        self.identificationType(model.IdentificationType);
+
+        var realf = model.ForeignLicense == 2 ? 2 : model.ForeignLicense == 1 ? 1 : 2;
+
+        self.ForeignLicense(realf);
+
+        self.license(model.IdentificationNumber);
+
+        if (model.IdentificationNumberValidDate != null) {
+            self.IdentificationNumberValidDate($.datepicker.formatDate(getCurrentDateFormat(), moment(model.IdentificationNumberValidDate).toDate()));
+        } else {
+            self.IdentificationNumberValidDate('');
+        }
+
+        self.yearsDriving(model.YearsDriving);
+        self.accidentsLast3Years(model.AccidentsLast3Years);
+        self.maritalStatus(model.MaritalStatus);
+        if (model.Nationality) {
+            self.nationality(model.Nationality.Global_Country_Id);
+        }
+        self.job(model.Job);
+        self.company(model.Company);
+        self.yearsInCompany(model.YearsInCompany);
+
+
+        self.PostalCode(model.PostalCode);
+        self.AnnualIncome(model.AnnualIncome);
+
+        //Julisy Amador
+        self.HomeOwner(model.Home_Owner);
+        if (model.QtyPersonsDepend != null && model.QtyPersonsDepend > 0)
+            self.QtyPersonsDepend(model.QtyPersonsDepend);
+        else 
+            self.QtyPersonsDepend(0);
+        
+
+        if (model.QtyEmployees != null && model.QtyEmployees > 0)
+            self.QtyEmployees(model.QtyEmployees);
+        else 
+            self.QtyEmployees(0);
+
+        self.Linked(model.Linked);
+        self.segment(model.Segment);
+        self.Fax(model.Fax);
+        self.URL(model.URL);
+
+        if (model.IdentificationType != 'RNC') {
+            if (model.PEPFORMULARYOPTIONS != undefined || model.PEPFORMULARYOPTIONS != null) {
+                self.PepFormularyOptionsId(model.PEPFORMULARYOPTIONS.Id);
+            }
+        }
+
+        if (model.SOCIALREASON != undefined || model.SOCIALREASON != null) {
+            self.SocialReasonId(model.SOCIALREASON.Id);
+        }
+        if (model.OWNERSHIPSTRUCTURE != undefined || model.OWNERSHIPSTRUCTURE != null) {
+            self.OwnershipStructureId(model.OWNERSHIPSTRUCTURE.Id);
+        }
+        if (model.IDENTIFICATIONFINALBENEFICIARYOPTIONS != undefined || model.IDENTIFICATIONFINALBENEFICIARYOPTIONS != null) {
+
+            self.IdentificationFinalBeneficiaryOptionsId(model.IDENTIFICATIONFINALBENEFICIARYOPTIONS.Id);
+        }
+    }
+
+}

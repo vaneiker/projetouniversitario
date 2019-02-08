@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="POS_AUTO_SCHEMA" targetNamespace="POS_AUTO_SCHEMA" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <xs:element name="POS_AUTO">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Transaction" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:long" name="DocumentId" minOccurs="1"/>
+              <!-- Id del template de Thunderhead a utilizar-->
+              <xs:element type="xs:string" name="Fullname" minOccurs="0" maxOccurs="1"/>
+              <!-- Nombre completo de la persona a quien va dirigido el email-->
+              <xs:element type="xs:string" name="Username" minOccurs="0" maxOccurs="1"/>
+              <!-- Nombre de usuario de la cuenta sobre la cual se va a trabajar -->
+              <xs:element type="xs:string" name="UserEmail" minOccurs="0" maxOccurs="1"/>
+              <!-- Email donde enviar las instrucciones -->
+              <xs:element type="xs:anyURI" name="Url" minOccurs="0" maxOccurs="1"/>
+              <!-- Url generada para realizar la operatoria de contraseña-->
+              <xs:element type="xs:string" name="NoPoliza" minOccurs="0" maxOccurs="1"/>
+              <!-- Número de poliza obtenido de sysflex -->
+              <xs:element type="xs:string" name="FechaInicio" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha de vigencia. Inicio de la poliza -->
+              <xs:element type="xs:string" name="FechaVencimiento" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha de vigencia. Final de la poliza -->
+              <xs:element type="xs:string" name="Fianza" minOccurs="0" maxOccurs="1"/>
+              <!-- Fianza -->
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Quotation" minOccurs="0" maxOccurs ="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="PrincipalName" minOccurs="0" maxOccurs="1"/>
+              <!-- Nombre completo del Principal - Cliente que solicita la póliza-->
+              <xs:element type="xs:string" name="PrincipalCountry" minOccurs="0" maxOccurs="1"/>
+              <!-- País del Principal - Cliente que solicita la póliza-->
+              <xs:element type="xs:string" name="QuotationNumber" minOccurs="0" maxOccurs="1"/>
+              <!-- Número de cotización -->
+              <xs:element type="xs:date" name="QuotationDate" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha de Cotizacion -->
+              <xs:element type="xs:string" name="LineOfBusiness" minOccurs="0" maxOccurs="1"/>
+              <!-- Ramo -->
+              <xs:element type="xs:string" name="Product" minOccurs="0" maxOccurs="1"/>
+              <!-- Producto -->
+              <xs:element type="xs:string" name="Plan" minOccurs="0" maxOccurs="1"/>
+              <!-- Plan -->
+              <xs:element type="xs:date" name="StartDate" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha Inicio Vigencia -->
+              <xs:element type="xs:date" name="EndDate" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha Fin Vigencia -->
+              <xs:element type="xs:date" name="ProposalDate" minOccurs="0" maxOccurs="1"/>
+              <!-- Fecha de Propuesta -->
+              <xs:element type="xs:string" name="QuotationPdf" minOccurs="0" maxOccurs="1"></xs:element>
+              <!-- Ruta física del PDF con el reporte de cotización -->
+              <xs:element type="xs:string" name="IdType" minOccurs ="0" maxOccurs ="1"></xs:element>
+              <!-- Tipo de Identificacion -->
+              <xs:element type="xs:string" name="IdNumber" minOccurs ="0" maxOccurs ="1"></xs:element>
+              <!-- Numero de Identificacion-->
+              <xs:element type="xs:string" name="TelephoneNumber" minOccurs ="0" maxOccurs ="1"></xs:element>
+              <!-- Telefono-->
+              <xs:element type="xs:string" name="Email" minOccurs ="0" maxOccurs ="1"></xs:element>
+              <!-- correo electronico-->
+              <xs:element type="xs:int" name="NumberOfPayments" minOccurs ="0" maxOccurs ="1" nillable ="true"></xs:element>
+              <!-- numero cuotas de pago-->
+              <xs:element type="xs:int" name="NumberOfVehicles" minOccurs ="0" maxOccurs ="1"></xs:element>
+              <!-- numero de vehiculos-->
+
+              <xs:element name="Drivers" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Name" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Nombre -->
+                    <xs:element type="xs:string" name="IdType" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Tipo de Identificacion -->
+                    <xs:element type="xs:string" name="IdNumber" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Numero de Identificacion-->
+                    <xs:element type="xs:date" name="BirthDate" minOccurs="0" maxOccurs="1"/>
+                    <!-- Fecha Nacimiento -->
+                    <xs:element type="xs:string" name="Email" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- correo electronico-->
+                    <xs:element type="xs:string" name="TelephoneNumber" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Telefono-->
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <xs:element name="Vehicles" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Brand" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Marca -->
+                    <xs:element type="xs:string" name="Model" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Modelo -->
+                    <xs:element type="xs:int" name="Year" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Año -->
+                    <xs:element type="xs:string" name="VehicleType" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Año -->
+                    <xs:element type="xs:string" name="Plan" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Plan -->
+                    <xs:element type="xs:decimal" name="EnsuredAmount" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Suma asegurada - Daños propios -->
+                    <xs:element type="xs:string" name="Registro" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Registro\Placa -->
+                    <xs:element type="xs:string" name="Chasis" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Chasis -->
+					<xs:element type="xs:decimal" name="VehicleValue" minOccurs ="0" maxOccurs ="1"></xs:element>
+					<!-- Valor del Vehiculo (Precio) -->
+
+                    <xs:element name="ThirdDamagesCoverages" minOccurs="1" maxOccurs="unbounded">
+                      <!-- Coberturas por vehículo -->
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Description" minOccurs ="0" maxOccurs ="1"></xs:element>
+                          <!-- Nombre de la cobertura aplicada. Ej: Daños a la propiedad ajena -->
+                          <xs:element type="xs:decimal" name="Limit" minOccurs="0" maxOccurs="1"></xs:element>
+                          <!-- Monto límite de la cobertura -->
+                          <xs:element type="xs:decimal" name="MinimumDeductible" minOccurs="0" maxOccurs="1"></xs:element>
+                          <!-- Deducible mínimo -->
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:decimal" name="ThirdDamagesPrime" minOccurs="0" maxOccurs="1"></xs:element>
+                    <!-- Monto total de coberturas de daños a terceros -->
+
+                    <xs:element name="SelfDamagesCoverages" minOccurs="0" maxOccurs="unbounded">
+                      <!-- Coberturas daños propios -->
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Description" minOccurs ="0" maxOccurs ="1"></xs:element>
+                          <!-- Nombre de la cobertura aplicada. Ej: Riesgo al conductor -->
+                          <xs:element type="xs:decimal" name="Limit" minOccurs="0" maxOccurs="1"></xs:element>
+                          <!-- Monto límite de la cobertura -->
+                          <xs:element name="Deducible" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                          <!-- Deducible -->
+                          <xs:element type="xs:decimal" name="MinimumDeductible" minOccurs="0" maxOccurs="1"></xs:element>
+                          <!-- Deducible mínimo -->
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:decimal" name="SelfDamagesPrime" minOccurs="0" maxOccurs="1"></xs:element>
+                    <!-- Monto total de coberturas de daños propios -->
+                    
+                    <xs:element name="Additionals" minOccurs="0" maxOccurs="unbounded">
+                      <!-- Suplementos -->
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Description" minOccurs ="0" maxOccurs ="1"></xs:element>
+                          <!-- Nombre del suplemento. Ej: Asistencia Vial Básico -->
+                          <xs:element type="xs:decimal" name="Limit" minOccurs="0" maxOccurs="1"></xs:element>
+                          <!-- Monto del adicionar seleccionado -->
+                          <xs:element type="xs:decimal" name="MinimumDeductible" minOccurs="0" maxOccurs="1"></xs:element>
+                          <!-- Deducible mínimo -->
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:decimal" name="AdditionalsPrime" minOccurs="0" maxOccurs="1"></xs:element>
+                    <!-- Monto total de suplementos -->
+
+                    <xs:element type="xs:decimal" name ="TotalVehiclePrime" minOccurs="0" maxOccurs="1"></xs:element>
+                    <!-- Monto de prima total del vehículo (Terceros + Daños Propios + Suplementos) -->
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <xs:element name="PrimeResume">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:decimal" name="TotalAnualPrime" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Total Prima Anual -->
+                    <xs:element type="xs:decimal" name="Taxes" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Impuestos -->
+                    <xs:element type="xs:decimal" name="Discount" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Descuentos - no está en el doc enviado pero lo envío igual -->
+                    <xs:element type="xs:decimal" name="TotalPayment" minOccurs ="0" maxOccurs ="1"></xs:element>
+                    <!-- Total a pagar-->
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

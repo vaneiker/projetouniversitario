@@ -1,0 +1,33 @@
+﻿<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark-az">
+    <div class="container">
+        <div class="box_logo">
+            <a class="navbar-brand logo" href="/Home/Index">
+                <!--label class="lblsystem">Cotizador</!--label-->
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse mt-3 navbar-collapse" id="navbarCollapse">
+            <ul class="nav pncp nav-pills  nav-fill  flex-column flex-sm-row w-100 nav-justified mt-1">
+                @if (ViewBag.onlyLoggedUsers == true)
+                {
+                    <li class="flex-sm-fill text-sm-center nav-item dropdown">
+                        <select id="AgentList" data-placeholder="Representante" class="chosen-select-deselect form-control">
+                            <option></option>
+                        </select>
+                    </li>
+                }
+                <li class="flex-sm-fill text-sm-center nav-item dropdown">
+                    <select id="filtroHistorico" data-placeholder="Nueva Cotización" class="chosen-select-deselect form-control">                       
+                    </select>
+                </li>
+                <li class="xl-hide text-center mdl-color-text--white"><strong><i class="fa fa-phone fa-2x mr-3"></i> (809) 565-5591</strong></li>
+                <li class="xl-hide text-center mdl-color-text--white"><strong><i class="fa fa-envelope fa-2x mr-3" aria-hidden="true"></i> ventas@atlantica.do</strong></li>
+            </ul>
+            <div class="form-inline mt-2 mt-md-0 ">
+
+            </div>
+        </div>
+    </div>
+</nav>

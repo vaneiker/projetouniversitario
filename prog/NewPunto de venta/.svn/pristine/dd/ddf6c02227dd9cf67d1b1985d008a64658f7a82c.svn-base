@@ -1,0 +1,125 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode
+@{
+
+    var qtyVehicles = ViewBag.totalVehicles;
+    var totalVehiclesCompleted = ViewBag.totalVehiclesCompleted;
+    var applyToDocumentRequired = ViewBag.applyToDocumentRequired == null ? false : ViewBag.applyToDocumentRequired;
+}
+
+<div class="mdl-cell mdl-cell--12-col card w-100 ml-0 mdl-shadow--2dp">
+    <div class="card-header bg-info mdl-color-text--white em1-3">Información Adicional Vehículo</div>
+    <div class="card-body" id="setAditionalVehicleInfoForm">
+        @Html.Hidden("hdnTotalVehicles", qtyVehicles == null ? 1 : (int)qtyVehicles)
+        @Html.Hidden("hdnTotalVehiclesCompleted2", totalVehiclesCompleted == null ? 0 : (int)totalVehiclesCompleted)
+        @Html.Partial("Vehicles")
+    </div>
+
+
+    <div class="mdl-cell--12-col mt-3 clearfix">
+        @if (((CommonEnums.RequestType)ViewBag.RequestType) == CommonEnums.RequestType.Emision)
+        {
+            @Ajax.RawActionLink("<i class='material-icons float-left mt-2'>arrow_back</i><strong class='x-hide d-block float-left ml-2'>Atras</strong>",
+                                 "InfoAddDriver",
+                                 "Home",
+                                 null,
+                                 new AjaxOptions
+                                 {
+                                     UpdateTargetId = "dvContainer",
+                                     InsertionMode = InsertionMode.Replace,
+                                     OnSuccess = "InitializeDriver()"
+                                 },
+                                        new { @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-left ml-3" })
+        }
+        else if (((CommonEnums.RequestType)ViewBag.RequestType) == CommonEnums.RequestType.Inclusion)
+        {
+            @Ajax.RawActionLink(string.Format("<i class='material-icons float-left mt-2'>arrow_back</i><strong class='x-hide d-block float-left ml-2'>Atras</strong>"),
+                                   "Summary",
+                                   "Home", null,
+                                   new AjaxOptions
+                                   {
+                                       UpdateTargetId = "dvContainer",
+                                       InsertionMode = InsertionMode.Replace,
+                                       OnSuccess = "InitializeSummary()"
+                                   },
+                                        new { @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-left ml-3" })
+        }
+
+        @if (applyToDocumentRequired)//Aplica para Documentos Requeridos independientemente del producto
+        {
+            @Ajax.RawActionLink("<strong class='x-hide d-block float-left mr-2'>Continuar</strong> <i class='material-icons x-block xl-hide float-left mt-1'>&#xE8CC;</i><i class='material-icons  ml-2'>arrow_forward</i>",
+                                          "DocumentRequired",
+                                          "Home",
+                                          null,
+                                          new AjaxOptions
+                                          {
+                                              UpdateTargetId = "dvContainer",
+                                              InsertionMode = InsertionMode.Replace,
+                                              OnBegin = "return checkChassisOrPlateLaw()"
+                                          },
+                                          new
+                                          {
+                                              @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-right  swatch-success btnSendToPaymentCheckOut"
+                                          }
+                                          )
+        }
+        else if (ViewBag.isNotLawProduct == false)//es de ley
+        {
+            @Ajax.RawActionLink("<strong class='x-hide d-block float-left mr-2'>Continuar</strong> <i class='material-icons x-block xl-hide float-left mt-1'>&#xE8CC;</i><i class='material-icons  ml-2'>arrow_forward</i>",
+                        "_PaymentCheckout",
+                        "Home",
+                        null,
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "dvContainer",
+                            InsertionMode = InsertionMode.Replace,
+                            OnBegin = "return checkChassisOrPlateLaw()"
+                        },
+                        new
+                        {
+                            @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-right swatch-success btnSendToPaymentCheckOut"
+                        }
+                        )
+        }
+        else
+        {
+            <button id="btnSendToGlobal" type="button" class="mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-right lh22 swatch-success">
+                <strong class='x-hide d-block float-left mr-2'>Continuar</strong>
+                <i class='material-icons x-block xl-hide float-left mt-1'>&#xE8CC;</i><i class='material-icons  ml-2'>arrow_forward</i>
+            </button>
+        }
+    </div>
+</div>
+
+<!--
+<div class="mdl-cell card w-100 ml-0 mdl-cell--12-col mdl-shadow--4dp mt-3 p-3">
+
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white text-capitalize p-0 mb-md-0 float-right ">
+           <i class="material-icons">arrow_forward</i>Continuar con un Agente
+       </button
+</div>
+-->
+
+<footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+    <div class="container">
+
+        <div class="mdl-mega-footer__top-section">
+            <div class="mdl-cell mdl-cell--3-col float-left">
+                
+            </div>
+            <div class="mdl-cell mdl-cell--6-col float-left">
+                <div class="mdl-mega-footer__right-section centro">
+                    <ul class="mdl-mega-footer__link-list mdl-color-text--white d-flex justify-content-center x-hide mb-0 mt-2 float-left">
+                        <li><strong>Tel: </strong> (809) 565-5591 &nbsp;•&nbsp; </li>
+                        <li class="mr-3"><strong> Email:</strong> ventas@atlantica.do</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col float-left">
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="~/js/ControllersJs/InfoAddVehicle.js?t=@DateTime.Now.Ticks.ToString()"></script>
+

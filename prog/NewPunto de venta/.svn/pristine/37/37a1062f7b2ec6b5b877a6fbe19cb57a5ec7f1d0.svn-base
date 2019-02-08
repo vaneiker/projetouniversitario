@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="STL.POS.THProxy.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <applicationSettings>
+    <STL.POS.THProxy.Properties.Settings>
+      <setting name="STL_POS_THProxy_THWebService_JobAPIWebService"
+        serializeAs="String">
+        <value>http://172.16.193.18:8080/thunderhead/services/JobAPIWebWrapped</value>
+      </setting>
+    </STL.POS.THProxy.Properties.Settings>
+  </applicationSettings>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IWCFService" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" messageEncoding="Text">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647" maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647"/>
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://atl-dev02.dev.atlantica.local/ThunderheadWSWrapper/ThunderheadWSWrapper.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IWCFService"
+        contract="NewTHService.IWCFService" name="BasicHttpBinding_IWCFService" />
+    </client>
+  </system.serviceModel>
+</configuration>

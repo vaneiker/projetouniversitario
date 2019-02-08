@@ -1,0 +1,157 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode;
+@{
+//ViewBag.TitlePage = "Cotizar Renovación";
+}
+
+<div class="exc_div">
+    @*@(ViewBag.onlyLoggedUsers ? "disabled=disabled" : "")
+        @(!ViewBag.onlyLoggedUsers? "requerido":"")
+    *@
+
+    @if ((bool)ViewBag.isSearchVisible)
+    {
+    <div class="mdl-cell--12-col bg-light mdl-shadow--4dp w-100 float-left mb-3">
+        <div id="OptionsRadios" class="mdl-cell mt-0 mb-0 mdl-textfield  mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+            <label class="mb-1 mt-0 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col " for="cdl">
+                <input type="radio" id="cdl" class="mdl-radio__button" name="tipoID" value="1" disabled="disabled">
+                <span class="mdl-radio__label">Cédula</span>
+            </label>
+            <label class=" mb-1 mt-0 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="rnc-rd">
+                <input type="radio" id="rnc-rd" class="mdl-radio__button" name="tipoID" value="3" disabled="disabled">
+                <span class="mdl-radio__label">RNC</span>
+            </label>
+            <label class="mb-1 mt-0 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="pass-rd">
+                <input type="radio" id="pass-rd" class="mdl-radio__button" name="tipoID" value="4" disabled="disabled">
+                <span class="mdl-radio__label">Pasaporte</span>
+            </label>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                <input class="mdl-textfield__input" type="text" id="nbID" disabled="disabled">
+                <label class="mdl-textfield__label" for="nbID">Número de Identificación</label>
+                <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="nbID">
+                    <i class="material-icons">&#xE8A6;</i>
+                </label>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-right">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label requerido">
+                <input class="mdl-textfield__input" type="text" id="txtPolicyNo">
+                <label class="mdl-textfield__label" for="txtPolicyNo">Poliza</label>
+                <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="txtPolicyNo">
+                    <i class="material-icons">&#xE8F7;</i>
+                </label>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col float-left mt-0">
+            <hr class="border border-secondary mt-0 clearfix">
+            <button id="btnRenoSearch" class="mdl-textfield mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white text-capitalize float-right mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone p-0 mb-3">
+                <i class="material-icons">search</i>Buscar
+            </button>
+            <button id="btnCancel" class="mdl-button mr-3 mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-danger float-right">
+                <strong class="x-hide">Cancelar</strong>
+            </button>
+        </div>
+    </div>
+    }
+
+    <div class="mdl-cell--12-col bg-light mdl-shadow--4dp w-100 float-left mb-3">
+        <h5 class="p-2 rounded-top bg-primary text-center mdl-color-text--white mt-0 mb-0 d-block float-left"><i class="material-icons float-left mr-2">&#xE8F7;</i>Información del Cliente</h5>
+        <div class="mdl-grid col-12">
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="FullName" readonly="readonly">
+                    <label class="mdl-textfield__label" for="FullName">Nombre</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="Sex" readonly="readonly">
+                    <label class="mdl-textfield__label" for="Sex">Sexo</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="LicenciaExt" readonly="readonly">
+                    <label class="mdl-textfield__label" for="LicenciaExt">Licencia Extranjera</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="Identification" readonly="readonly">
+                    <label class="mdl-textfield__label" for="Identification">Numero de Identificación </label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input dateOfBirth" type="text" id="DateOfBirth" readonly="readonly">
+                    <label class="mdl-textfield__label" for="DateOfBirth">Fecha de Nacimiento</label>
+                    <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="dateNC">
+                        <i class="material-icons">&#xE916;</i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mdl-cell--12-col bg-light mdl-shadow--4dp w-100 float-left mb-3">
+        <h5 class="p-2 rounded-top bg-primary text-center mdl-color-text--white mt-0 mb-0 d-block float-left"><i class="material-icons float-left mr-2">&#xE8F7;</i>Vehículo de la poliza actual</h5>
+        <div class="table-responsive">
+            <table class="table table-striped table-light text-center" id="tblVehiclesReno" style="width:130% !important;max-width: 200% !important; overflow:auto; ">
+                <thead>
+                    <tr class="bg-primary mdl-color-text--white">
+                        <th scope="col">#</th>
+                        @*<th scope="col">Número de Poliza</th>*@
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Chassis</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Plan Actual</th>
+                        <th scope="col">Prima Actual</th>
+                        <th scope="col">Plan Propuesto</th>
+                        <th scope="col">Prima Propuesta</th>
+                        <th scope="col">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div id="selecCoberReno" class=" mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-grid" style="display:none">
+        <h4 class="p-2 bg-info text-center mdl-color-text--white mt-0 w-100">Seleccionar Cobertura</h4>
+        <div class="mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-grid cleanme"></div>
+
+        <div class="mdl-cell--12-col ml-0">
+
+            <!--Flujo normal-->
+            @Ajax.RawActionLink(string.Format("<i class='material-icons float-right mt-2'>arrow_forward</i><strong class='x-hide float-right'>Siguiente &nbsp;</strong>"),
+                                      "Summary",
+                                      "Home", null,
+                                      new AjaxOptions
+                                      {
+                                          UpdateTargetId = "dvContainer",
+                                          InsertionMode = InsertionMode.Replace,
+                                          OnSuccess = "InitializeSummary()",
+                                          OnBegin = "return SaveDataCotizarReno()"
+                                      },
+                                      new
+                                      {
+                                          @id = "lnkSave",
+                                          @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-info float-right bg-info swatch-success"
+                                      })
+        </div>
+    </div>
+
+
+    <input type="hidden" id="hdnTitle" />
+    <input type="hidden" id="hdnEndDate" />
+
+    @Html.Hidden("hdnPolicyNoMain", (object)ViewBag.PolicyNoMain)
+    @Html.Hidden("hdnDriverID", (object)ViewBag.DriverID)
+    @Html.Hidden("hdnToNotExclude")
+</div>

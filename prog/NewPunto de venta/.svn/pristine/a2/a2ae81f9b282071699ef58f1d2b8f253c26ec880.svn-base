@@ -1,0 +1,69 @@
+﻿@model STL.POS.Frontend.Web.Areas.Security.Models.ChangePasswordModel
+@{
+    ViewBag.Title = "ChangePassword";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@Scripts.Render("~/bundles/security/changePassword")
+
+@Html.HiddenFor(model => model.Errors)
+@Html.HiddenFor(model => model.RedirectUrl)
+<div class="col-6">
+    <div class="cont_gnl">
+        <div class="col-12">
+            @using (Html.BeginForm("ChangePassword", "Account", new { Area = "Security" }, FormMethod.Post, new { id = "changePasswordForm" }))
+            {
+                @*@Html.AntiForgeryToken()*@
+                @Html.HiddenFor(model=> model.IsNewUser)
+                @Html.HiddenFor(model => model.ChangePasswordToken)
+                <div class="label_plus_input lTitle">
+                    <span>Cambiar Contrase&ntilde;a</span>
+                </div>
+                if (!Model.IsNewUser && !Model.IsLostPass)
+                {
+                    <div class="label_plus_input par">
+                        <span>Contrase&ntilde;a</span>
+                        @Html.PasswordFor(model => model.Password)
+                    </div>
+                }
+                <div class="label_plus_input par">
+                    <span>Nueva Contrase&ntilde;a</span>
+                    @Html.PasswordFor(model => model.NewPassword)
+                </div>
+
+                <div class="label_plus_input par">
+                    <span>Confirmar Nueva Contrase&ntilde;a</span>
+                    @Html.PasswordFor(model => model.ConfirmNewPassword)
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+                        <input type="submit" class="alignC button embossed button-green" value="Ingresar" />
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div><!--col-6-->
+
+<div class="col-6 mT-media970">
+    <div class="cont_gnl">
+        <div class="col-12">
+            <div class="row pddTB30">
+                <div class="centrodellamadas">
+                    <div class="title">
+                        <img src="../../../images/Icons-CentrodeLlamadas_03.png">
+                        <p class="centro" style="padding-top: 2px;">CENTRO DE LLAMADAS</p>
+                    </div>
+                    <br class="clear">
+                    <ul>
+                        <li id="asist"><a href="http://www.atlantica.do/asistencia-247/">Asistencia</a></li>
+                        <li id="email"><a href="http://www.atlantica.do/envienos-un-email/">Envienos un Email</a></li>
+                        <li id="tel">(809) 565-5591</li>
+                    </ul>
+                </div>
+            </div><!--row-->
+        </div> <!--col-12-->
+    </div>
+</div><!--col-6-->

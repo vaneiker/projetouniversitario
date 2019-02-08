@@ -1,0 +1,23 @@
+﻿@model KSI.Cobranza.Web.Models.ViewModels.SearchViewModels
+@{
+    var webGrid = new WebGrid(source: Model.searchResult, ajaxUpdateContainerId: "dvGrid", ajaxUpdateCallback: "Init();SelectActivePage('gvLoans');", canPage: true, rowsPerPage: 11);
+}
+
+<div id="dvGrid">
+    @webGrid.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                     headerStyle: "header-table",
+                     mode:WebGridPagerModes.All,
+                     htmlAttributes: new { @id = "gvLoans" },
+                                    columns: webGrid.Columns(
+                                                              webGrid.Column("Name", "Nombre"),
+                                                              webGrid.Column("Identification", "Identificación"),
+                                                              webGrid.Column("PhoneNumber", "Teléfono"),
+                                                              webGrid.Column("account", "# Cuenta"),
+                                                              webGrid.Column("LoanNumber", "# Préstamo"),
+                                                              webGrid.Column("RequestNumber", "Solicitud"),
+                                                              webGrid.Column(null, null,
+                                                              format: @<text><input id="key" type="hidden" value="@item._dataRequest" ) /></text>,
+                                                                                  style: "text-center")
+                                                             )
+                                                           )
+</div>

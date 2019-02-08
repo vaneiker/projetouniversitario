@@ -1,0 +1,88 @@
+﻿<div class="resumAcor">
+
+    <ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+        <li class="cbp-ntopen">
+            <h3 class="cbp-nttrigger head">@Globalization.Shared.SideViewPricing.QuotationNumberTitle <!-- ko text: $root.quotation() ? $root.quotation().quotationNumber : '-' --> <!--/ko--></h3>
+            <div class="cbp-ntcontent">
+                <div class="tbl data_G">
+                    <table>
+
+                        <thead>
+                            <tr data-bind="foreach: mainData().resumePricing().columns">
+                                <th data-bind="attr:{align: align, class: className, style: style, colspan: cSpan}, text: item"></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: mainData().resumePricing().items">
+                            <tr data-bind="foreach: $data">
+                                <!--ko if: item() -->
+                                <td data-bind="attr:{align: align, class: className, colspan: cSpan}, text: isNaN(item()) ? item : item.money().formatted"></td>
+                                <!--/ko-->
+                                <!--ko if: !item()-->
+                                <td data-bind="attr:{align: align, class: className, colspan: cSpan}"><a data-bind="attr:{title: action.title, class: action.className}, click: action.funct"></a></td>
+                                <!--/ko-->
+                            </tr>
+                        </tbody>
+                    </table>
+                  
+                    <table>
+                        <thead>
+                            <tr data-bind="foreach: mainData().resumePricing().secondColumns">
+                                <th data-bind="attr:{align: align, class: className, style: style, colspan: cSpan}, text: item"></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: mainData().resumePricing().secondItems">
+                            <tr data-bind="foreach: $data">
+                                <!--ko if: item() -->
+
+                                <!--ko if: formatMoney() == 'F' -->
+                                <td data-bind="attr:{align: align, class: className, colspan: cSpan}, text: isNaN(item()) ? item : item"></td>
+                                <!--/ko-->
+
+                                <!--ko if: formatMoney() == 'T' -->
+                                <td data-bind="attr:{align: align, class: className, colspan: cSpan}, text: isNaN(item()) ? item : item.money().formatted"></td>
+                                <!--/ko-->
+
+                                <!--/ko-->
+
+                                <!--ko if: !item()-->
+                                <td data-bind="attr:{align: align, class: className, colspan: cSpan}"><a data-bind="attr:{title: action.title, class: action.className}, click: $root.disableEditVehicle() ? null : action.funct"></a></td>
+                                <!--/ko-->
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row_A">
+                        <div class="row_B total_tbl bg_grd_vd">
+                            <div class="lb fl">@Globalization.Shared.SideViewPricing.AnnualPrimeAmount:</div>
+                            <div class="monto fr" data-bind="text: mainData().resumePricing().totalPrime.formatted"></div>
+                        </div>
+
+                        <!--ko if: mainData().resumePricing().percentFlotillaDiscount() > 0 -->
+                        <div class="row_B total_tbl bg_grd_vd">
+                            <div class="lb fl">@Globalization.Shared.SideViewPricing.FlotillaDiscount:</div>
+                            <div class="monto fr" data-bind="text: mainData().resumePricing().TotalFlotillaDiscount.formatted"></div>
+                        </div>
+                        <div class="row_B total_tbl bg_grd_vd">
+                            <div class="lb fl">@Globalization.Shared.SideViewPricing.AnnualPrimeAmountDiscount:</div>
+                            <div class="monto fr" data-bind="text: mainData().resumePricing().totalPrimeFlotillaDiscount.formatted"></div>
+                        </div>
+                        <!--/ko-->
+
+                        <div class="taxes">
+                            <div class="fl"><label><strong>@Globalization.Shared.SideViewPricing.TaxesAmount</strong></label></div>
+                            <div class="fr" data-bind="text: mainData().resumePricing().totalIsc.formatted"></div>
+                        </div>
+                        <div class="row_B total_tbl bg_grd_vd">
+                            <div class="lb fl">@Globalization.Shared.SideViewPricing.TotalAmount:</div>
+                            <div class="monto fr" data-bind="text: mainData().resumePricing().total.currencyformatted"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </li>
+    </ul>
+    <!--// .accordion -->
+</div>
+<!--// .resumAcor -->

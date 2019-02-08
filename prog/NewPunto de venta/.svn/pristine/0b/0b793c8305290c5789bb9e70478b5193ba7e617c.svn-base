@@ -1,0 +1,96 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode;
+@model Utility.CotizarRenovacionData
+@{
+    string vehicleDesc = (Model.Marca + " " + Model.Modelo + " " + Model.Ano);
+    string vehicleValue = Model.ValorVehiculo.GetValueOrDefault().ToString("#,0.00", System.Globalization.CultureInfo.InvariantCulture);
+    decimal perc = 0.16M;
+    decimal Realtax = (Model.PrimaBrutaNew.GetValueOrDefault() * perc);
+
+    string tax = Realtax.ToString("#,0.00", System.Globalization.CultureInfo.InvariantCulture);
+    string total = (Model.PrimaBrutaNew.GetValueOrDefault() + Realtax).ToString("#,0.00", System.Globalization.CultureInfo.InvariantCulture);
+}
+<div id="dvparentSectionVehicle_@(Model.Item)" class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card mdl-cell--6-col-tablet mdl-cell--12-col-phone parentSectionVehicle" data-vehiclesysflexid="@Model.Item">
+    <div class="mdl-card__media">
+        <div class="mdl-card__title">
+            <h2 id="vehicleTitle" data-vehiclerandomid="" class="mdl-card__title-text m-auto mdl-color-text--white vehicleTitle">@vehicleDesc</h2>
+            @*<button id="btnEditVehicle" data-vehiclerandomid="" type="button" class="btn float-right ec_btn btn-success btn-sm mr-2 editVehicle"><i class="material-icons">&#xE254;</i></button>
+                <button id="btnDeleteVehicle" data-vehiclerandomid="" type="button" class="btn float-right ec_btn btn-danger btn-sm deleteVehicle"><i class="material-icons">&#xE5CD;</i></button>*@
+        </div>
+    </div>
+    <div class="mdl-card__supporting-text w-100">
+        <form id="frmVehicleInfoBasic2" class="mdl-grid">
+            <!-- Icon List -->
+            <ul class="demo-list-icon mdl-list">
+                <li class="mdl-list__item mdl-card__actions mdl-card--border HideOnLeyMode">
+                    <strong class="mdl-list__item-primary-content">
+                        Valor Asegurado: @vehicleValue
+                    </strong>
+                    <span id="VehicleValue" data-vehiclerandomid="" class="VehicleValue"></span>
+                </li>
+                <li class="mdl-list__item mdl-card__actions mdl-card--border putErrorBorder HideOnLeyMode">
+                    <strong class="mdl-list__item-primary-content mr-5">
+                        Plan:
+                    </strong>
+                    <select id="ddlAllProducts" data-vehiclerandomid="" class="form-control ddlAllProducts" disabled="disabled">
+                        @*<option value="">Seleccione</option>*@
+                        <option selected="selected" value="@Model.TipoPolizaDescripcionNew">@Model.TipoPolizaDescripcionNew</option>
+                    </select>
+                </li>
+                <li class="mdl-list__item mdl-card__actions mdl-card--border putErrorBorder">
+                    <strong class="mdl-list__item-primary-content mr-5">
+                        Cobertura:
+                    </strong>
+                    <select id="Coverages" data-vehiclerandomid="" class="form-control Coverages" disabled="disabled">
+                        <option selected="selected" value="@Model.SubramoNew">@Model.DescripcionSubramoNew</option>
+                    </select>
+                </li>
+                <li class="mdl-list__item mdl-card__actions mdl-card--border putErrorBorder HideOnLeyMode">
+                    <strong class="mdl-list__item-primary-content mr-5">
+                        Deducible:
+                    </strong>
+                    <select id="Deducible" data-vehiclerandomid="" class="form-control Deducible" disabled="disabled">
+                        <option selected="selected" value="@Model.Iddeducible">@Model.Deducible</option>
+                    </select>
+                </li>
+                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                    <strong class="mdl-list__item-primary-content">
+                        Servicios:
+                    </strong>
+                    <span>
+                        <button id="servicesPopUp" disabled="disabled" data-vehiclerandomid="" class="mdl-button mdl-js-button mdl-button--colored bg-success mdl-color-text--white servicesPopUp"><i class="material-icons">add</i></button>
+                    </span>
+                </li>
+
+                @*<li class="mdl-list__item mdl-card__actions mdl-card--border putErrorBorder">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            <input class="mdl-textfield__input qtyVehicles" type="text" id="qtyVehicles" data-vehiclerandomid="" value="">
+                            <label class="mdl-textfield__label" for="qtyVehicles">Cantidad de Vehículos</label>
+                        </div>
+                    </li>*@
+
+                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                    <strong class="mdl-list__item-primary-content">
+                        Prima Neta:
+                    </strong>
+                    <span id="totalPrime" data-vehiclerandomid="" class="totalPrime">$@Model.PrimaBrutaNew.GetValueOrDefault().ToString("#,0.00", System.Globalization.CultureInfo.InvariantCulture)</span>
+                </li>
+
+                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                    <strong class="mdl-list__item-primary-content">
+                        Impuesto:
+                    </strong>
+                    <span id="ISC" data-vehiclerandomid="" class="ISC">$@tax</span>
+                </li>
+                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                    <strong class="mdl-list__item-primary-content">
+                        Prima Total Anual:
+                    </strong>
+                    <span id="totalToPay" data-vehiclerandomid="" class="totalToPay">$@total</span>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+
+    @Html.Hidden("currentDataVehicle", (object)ViewBag.dataVehicle);
+    </div>

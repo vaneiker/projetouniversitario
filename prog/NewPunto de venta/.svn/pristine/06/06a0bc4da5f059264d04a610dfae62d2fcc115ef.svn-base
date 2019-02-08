@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{593D0C43-F556-4A61-889F-964FE656ADC6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entity</RootNamespace>
+    <AssemblyName>Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Cardnet.cs" />
+    <Compile Include="Entities\CountryBusinessLine.cs" />
+    <Compile Include="Entities\Coverage.cs" />
+    <Compile Include="Entities\CoverageExplication.cs" />
+    <Compile Include="Entities\CoverageDetailBrochure.cs" />
+    <Compile Include="Entities\DocumentValidator.cs" />
+    <Compile Include="Entities\Driver.cs" />
+    <Compile Include="Entities\Generic.cs" />
+    <Compile Include="Entities\IdentificationFinalBeneficiary.cs" />
+    <Compile Include="Entities\IdentificationFinalBeneficiaryOptions.cs" />
+    <Compile Include="Entities\IncidenceResponse.cs" />
+    <Compile Include="Entities\LogVisits.cs" />
+    <Compile Include="Entities\MakePos.cs" />
+    <Compile Include="Entities\PepFormulary.cs" />
+    <Compile Include="Entities\PepFormularyOptions.cs" />
+    <Compile Include="Entities\Requeriments.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\ProductLimits.cs" />
+    <Compile Include="Entities\ProductsDataFromSysflex.cs" />
+    <Compile Include="Entities\ProductTypeBrochure.cs" />
+    <Compile Include="Entities\QueueResult.cs" />
+    <Compile Include="Entities\Quotation.cs" />
+    <Compile Include="Entities\Redirect.cs" />
+    <Compile Include="Entities\ServicesTypes.cs" />
+    <Compile Include="Entities\SocialReason.cs" />
+    <Compile Include="Entities\UsageStates.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\VehicleFuelType.cs" />
+    <Compile Include="Entities\VehicleFuelTypeByModel.cs" />
+    <Compile Include="Entities\VehicleModel.cs" />
+    <Compile Include="Entities\RequestChanges.cs" />
+    <Compile Include="Entities\VehicleProduct.cs" />
+    <Compile Include="Entities\VehicleTypes.cs" />
+    <Compile Include="Entities\WSEntities\AgentTreeInfoNewWS.cs" />
+    <Compile Include="Entities\WSEntities\ComboCondicion.cs" />
+    <Compile Include="Entities\WSEntities\CoverageDetailWS.cs" />
+    <Compile Include="Entities\WSEntities\CoverageJsonClass.cs" />
+    <Compile Include="Entities\WSEntities\CoveragesByUsageWS.cs" />
+    <Compile Include="Entities\WSEntities\CoverageWS.cs" />
+    <Compile Include="Entities\WSEntities\DeductibleValues.cs" />
+    <Compile Include="Entities\WSEntities\DeductibleValuesWS.cs" />
+    <Compile Include="Entities\WSEntities\OfficeMatchWS.cs" />
+    <Compile Include="Entities\WSEntities\PolicyCanceladasProspectoVehicleWS.cs" />
+    <Compile Include="Entities\WSEntities\PolicyInclusionVehicleWS.cs" />
+    <Compile Include="Entities\WSEntities\ProductByUsageWS.cs" />
+    <Compile Include="Entities\WSEntities\ProductLimitWS.cs" />
+    <Compile Include="Entities\WSEntities\ProductWS.cs" />
+    <Compile Include="Entities\WSEntities\SendQuotationResultWS.cs" />
+    <Compile Include="Entities\WSEntities\ServiceTypeWS.cs" />
+    <Compile Include="Entities\WSEntities\UsageByProductWS.cs" />
+    <Compile Include="Entities\WSEntities\VehicleTypeWS.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,39 @@
+﻿@model KSI.Cobranza.LogicLayer.ResultLogic<KSI.Cobranza.EntityLayer.Loan.Document>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    WebGrid webGrid = new WebGrid(source: Model.dataResult.ToList(), canPage: true, rowsPerPage: 11);
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Documentos</div>
+                <div class="panel-body">
+                    @webGrid.GetHtml(tableStyle: "table table-striped",
+                        headerStyle: "header-table",
+                        mode: WebGridPagerModes.All,
+                        columns: webGrid.Columns(
+                            webGrid.Column(header: "Acciones", format: 
+                            @<text>
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <a class="btn btn-primary-st" title="Generar" @(!item.IsGeneratedBySystem ? "disabled='disabled'" : "") href="@Url.Action("Generate", "Document", new { @accountId = item.accountId, @IdRequirement = item.IdRequirement })"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                    <a class="btn btn-default" title="Visualizar" @(!item.IsUploadedBySystem ? "disabled='disabled'" : "") href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a class="btn btn-secundary-st" title="Cargar" @(!item.IsUploadedBySystem ? "disabled='disabled'" : "") href="#"><i class="fa fa-upload" aria-hidden="true"></i></a>
+                                </div>
+                            </text>),
+                            webGrid.Column("RequireName", "Documento"),
+                            webGrid.Column("NameKey", "Name Key"),
+                            webGrid.Column(header: "Validado", format: @<text><input type="checkbox" @(item.Validated ? "checked='checked'" : "") /></text>),
+                            webGrid.Column(header: "Valido", format: @<text><input type="checkbox" @(item.IsValid ? "checked='checked'" : "") /></text>)
+                        ))
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,191 @@
+﻿@{
+    var culture = System.Globalization.CultureInfo.CreateSpecificCulture(ViewBag.CurrentLanguage);
+    System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+    System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+}
+<script type="text/html" id="stepCoverage">
+
+    <div class="select_cober" data-bind="with: stepData">
+        <form id="saveVehicleForm">
+            <div class="row_A mB order">
+                <div class="col-9 fl">
+                    <div class="label_plus_input par col-6 fl">
+                        <span>@Globalization.PosAuto.StepVehicleCoverage.InitialDateLabel</span>
+                        <input id="startDate" name="startDate" type="text" data-bind="value: currentStartDateSelected" placeholder="@Globalization.Global.SelectDate" class="datepicker" readonly="readonly" />
+                    </div>
+
+                    <div class="label_plus_input par col-6 fl">
+                        <span>@Globalization.PosAuto.StepVehicleCoverage.FinalDateLabel</span>
+                        <input id="endDate" name="endDate" type="text" data-bind="value: currentEndDateSelected" placeholder="@Globalization.Global.SelectDate" class="datepicker" readonly="readonly" />
+                    </div>
+                </div>
+            </div>
+            <hr class="col-12">
+            <div class="row_A mB order ">
+                <div class="col-9 fl">
+                    <div class="label_plus_input par col-12 fl">
+                        <span>@Globalization.PosAuto.StepVehicleCoverage.VehicleLabel</span>
+                        <input type="text" data-bind="value: currentVehicleToPrimeApply() ? currentVehicleToPrimeApply().toString() : '-'" disabled="disabled" />
+                    </div>
+
+                    <div class="label_plus_input par col-6 fl">
+                        <span>@Globalization.PosAuto.StepVehicleCoverage.VehicleValueLabel</span>
+                        <input type="text" id="vehiclePrice" name="vehiclePrice" class="autoselectable" data-bind="value: currentVehiclePrice.formatted, css: {errorBorder: !currentVehiclePrice()}" />
+                    </div>
+                    <div class="label_plus_input par col-6 fl">
+                        <span>Valor Asegurado</span>
+                        @*<input type="text" class="autoselectable" disabled="disabled" data-bind="value: currentInsuredAmount.formatted" />*@
+                    </div>
+
+                    <div class="label_plus_input par col-6 fl">
+                        <span>@Globalization.PosAuto.StepVehicleCoverage.ProductTypeLabel</span>
+                        <select name="selectedProductType" data-bind="options: currentProductTypeList, optionsText: 'Name', value: currentProductTypeSelected, optionsCaption: '@Globalization.Global.Select', css: { errorBorder: !currentProductTypeSelected() }"></select>
+                    </div>
+
+                    <div class="label_plus_input par col-6 fl">
+                        <span>@Globalization.PosAuto.StepVehicleCoverage.VehicleTypeLabel</span>
+                        <select name="selectedProductUsage" data-bind="options: currentProductUsageList, optionsText: 'Name', value: currentProductUsageSelected, optionsCaption: '@Globalization.Global.Select', css: { errorBorder: !currentProductUsageSelected() }"></select>
+                    </div>
+
+                    <div class="label_plus_input par col-6 fl">
+                        <span>@Globalization.PosAuto.StepVehicleCoverage.CoverageLabel</span>
+                        <select name="selectedProduct" data-bind="options: currentProductList, optionsText: 'Name', value: currentProductSelected, optionsCaption: '@Globalization.Global.Select', css: { errorBorder: !currentProductSelected() }"></select>
+                    </div>
+
+                    <div class="label_plus_input par col-6 fl" data-bind="visible: percentageToInsure() && percentageToInsure().length > 1">
+                        <span>Porcentaje Asegurar</span>
+                        <select data-bind="options:percentageToInsure, optionsValue: 'amount', optionsText:'text', value: percentageToInsureSelected"></select>
+                    </div>
+                </div>
+                <div class="col-3 fl">
+                    <button type="button" class="button button-blue alignC embossed fr" onclick="showReport('../Reports/ATLANTICA_Folleto.pdf', false)">
+                        @Globalization.PosAuto.StepVehicleCoverage.ViewProductsComparativeButtonLabel
+                    </button>
+                </div>
+            </div>
+
+            <ul class="tabs" id="tabsCoberturas" data-ks-tabs>
+                <li class="open"><b class="ps1 psTab fl"></b><a href="#scober">@Globalization.PosAuto.StepVehicleCoverage.SelectCoverageTitle</a></li>
+                <li data-bind="visible: servicesAvailable()"><b class="ps2 psTab fl"></b><a href="#sadic">@Globalization.PosAuto.StepVehicleCoverage.SelectAdditionalTitle</a></li>
+            </ul>
+            <div class="cont_gnl tab_pane_container" id="tabsCoberturasBody">
+                <article id="scober">
+                    <div data-bind="visible: currentProductSelected()">
+                        <div class="row_A grid1">
+                            <div class="box_SP">
+                                <div class="ttl">@Globalization.PosAuto.StepVehicleCoverage.SelectThirdPartyCoverageTitle</div>
+                                <div class="boxCont">
+                                    <div class="tbl data_G bordered prima cober_DT">
+                                        <table>
+                                            <tr class="gradient_azul">
+                                                <!-- ko foreach: currentProductLimitSet()? currentProductLimitSet().ThirdPartyCoverages : [] -->
+                                                <th align="center" class="c1"><span><!-- ko text: Name --><!-- /ko--></span></th>
+                                                <!-- /ko-->
+                                                <th align="center" class="c7"><span class="bg_grd_vd" data-bind="text: primeTextByTerm"></span></th>
+                                            </tr>
+                                            <tr>
+                                                <!-- ko foreach: currentProductLimitSet()? currentProductLimitSet().ThirdPartyCoverages : [] -->
+                                                <td align="center" class="c1"><span data-bind="text: Amount.formatted"></span></td>
+                                                <!-- /ko-->
+                                                <td align="center" class="c7 prima" data-bind="text: currentProductLimitSet()? currentProductLimitSet().TpPrime.formatted : '-'"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div><!--// .boxCont -->
+                            </div><!--// .box_SP -->
+                        </div><!--// .grid1 -->
+
+                        <div class="row_A grid2" data-bind="visible: selfDamagesAvailable()">
+                            <div class="box_SP ">
+                                <div class="ttl">@Globalization.PosAuto.StepVehicleCoverage.SelectSelfDamagesCoverageTitle</div>
+                                <div class="boxCont">
+                                    <div class=" tbl data_G bordered rowPlus cober_DP">
+                                        <table id="selfDamageTbl">
+                                            <tr class="gradient_azul head1">
+                                                <!-- ko foreach: currentProductLimitSet()? currentProductLimitSet().SelfDamagesCoverages : [] -->
+                                                <th align="center" class="c1"><span><!-- ko text: Name --><!-- /ko--></span></th>
+                                                <!-- /ko-->
+                                                <th align="center" class="c8"><span class="bg_grd_vd" data-bind="text: primeTextByTerm"></span></th>
+                                            </tr>
+                                            <tr>
+                                                <!-- ko foreach: currentProductLimitSet()? currentProductLimitSet().SelfDamagesCoverages : [] -->
+                                                <td align="center" class="c1"><span data-bind="text: Amount.formatted"></span></td>
+                                                <!-- /ko-->
+                                                <td rowspan="2" align="center" class="prima c8 backWhite" data-bind="text: currentProductLimitSet()? currentProductLimitSet().SdPrime.formatted : '-'"></td>
+                                            </tr>
+                                        </table>
+                                        <br />
+                                        <div class="label_plus_input par col-6 fl" data-bind="visible: currentProductDeductibles().length > 0">
+                                            <span>@Globalization.PosAuto.StepVehicleCoverage.DeductibleLabel</span>
+                                            <select data-bind="options: currentProductDeductibles, optionsText:'Name', optionsValue:'CoreId', value: selectedDeductible"></select>
+                                        </div>
+                                    </div>
+                                </div><!--// .boxCont -->
+                            </div><!--// .box_SP .col-8-->
+                        </div><!--// .grid2 -->
+                    </div>
+                    <div class=" tbl data_G bordered sAdicio empty" data-bind="visible: currentProductSelected() == null">
+                        <div>
+                            <h3>@Globalization.PosAuto.StepVehicleCoverage.SelectProductForDetailLabel</h3>
+                        </div>
+                    </div>
+                    <!-- ko if: currentProductSelected() -->
+                    <div class="alignR">
+                        <button type="button" class="button button-red embossed" data-bind="click: function() { getPrimes(); }">@Globalization.PosAuto.StepVehicleCoverage.QuoteButtonLabel</button>
+                    </div>
+                    <!-- /ko -->
+
+                </article>
+                <article id="sadic" data-bind="visible: servicesAvailable()">
+                    <div data-bind="visible: currentProductSelected">
+                        <div class="tbl data_G bordered sAdicio">
+                            <table>
+                                <thead>
+                                    <tr class="gradient_azul">
+                                        <th align="center" class="c1"><span>@Globalization.Global.Select</span></th>
+                                        <th align="center" class="c2"><span>@Globalization.PosAuto.StepVehicleCoverage.CoverageLabel</span></th>
+                                        <th align="center" class="c3"><span>@Globalization.PosAuto.StepVehicleCoverage.DetailLabel</span></th>
+                                        <th align="center" class="c5"><span class="bg_grd_vd" data-bind="text: primeTextByTerm"></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: currentProductLimitSet() && currentProductLimitSet().ServicesCoverages ? currentProductLimitSet().ServicesCoverages : []">
+                                    <tr>
+                                        <td align="center" class="c1">
+                                            <input type="checkbox" data-bind="checked: IsSelected" />
+                                        </td>
+                                        <td align="center" class="c2" data-bind="text: Name"></td>
+                                        <td align="center" class="c2"></td>
+                                        <td align="center" class="c3 prima" data-bind="text: Amount.formatted"></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <br />
+                        </div>
+                    </div>
+                    <div class=" tbl data_G bordered sAdicio empty" data-bind="visible: currentProductSelected() == null">
+                        <div>
+                            <h3>@Globalization.PosAuto.StepVehicleCoverage.SelectProductForDetailLabel</h3>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            <div class="row_A mT10 mB pdL10 pdR20">
+                <input type="submit" style="white-space: normal;" class="btn bgreen doble fr" data-bind="value: vehicles().length > 1 ? '@Globalization.PosAuto.StepVehicleCoverage.NextVehicleButtonLabel' : '@Globalization.PosAuto.StepVehicleCoverage.SaveButtonLabel'" />
+            </div>
+        </form>
+        <!-- Boton de Funcion -->
+        <div class="row_A mT10 mB10 pdR20">
+            <a href="#" class="btn backBtn" data-bind="click: function() { parent.prevStep(); }"></a>
+            <button class="btn bgreen fr" data-bind="text: $parent.nextStepButtonTitle, click: function() { buyAfterQuickSteps(true); },visible: quickStepsComplete "></button>
+        </div>
+        <div class="row_A mT10 mB10 pdR20">
+            <button class="btn bgreen fr" data-bind="click: function() { buyAfterQuickSteps(false); },visible: quickStepsComplete" value="Comprar">@Globalization.PosAuto.StepVehicleCoverage.BuyButtonLabel</button>
+        </div>
+        <div class="row_A alignC mT10 mB10 bbFuntion">
+            <a href="#" class="btn backBtn" data-bind="click: function() { parent.prevStep(); }"></a>
+            <button class="btn bgreen fr" data-bind="text: $parent.nextStepButtonTitle, click: function() { buyAfterQuickSteps(true); },visible: quickStepsComplete "></button>
+        </div>
+    </div>
+</script>

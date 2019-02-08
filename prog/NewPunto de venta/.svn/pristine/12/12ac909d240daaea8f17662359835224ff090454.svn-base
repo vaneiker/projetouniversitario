@@ -1,0 +1,217 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Dantelin Castro">
+    <!-- <link rel="icon" href="images/favicon.png"> -->
+    <title>Cotizador</title>
+    <link href="~/Content/css/bootstrap.min.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet">
+    <link href="~/Content/css/dtl.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.css?t=@DateTime.Now.Ticks.ToString()">
+    <link rel="stylesheet" href="~/Content/css/material.min.css?t=@DateTime.Now.Ticks.ToString()">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-light_blue.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css?t=@DateTime.Now.Ticks.ToString()">
+    <link rel="stylesheet" href="~/Content/css/chosen.css?t=@DateTime.Now.Ticks.ToString()">
+    <link rel="stylesheet" href="~/Content/css/block-styles.css?t=@DateTime.Now.Ticks.ToString()">
+    <link href="~/Content/css/Master.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/SecurityCss.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/accordion.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/dataTables.bootstrap4.min.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/chat_dtl.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/style.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" /><!--Nueva hoja de estilo para el cambio de los colores-->    
+
+    <!--Select2-->
+    <link href="~/Content/css/select2.min.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/select2-bootstrap.min.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <!--Select2-->
+    <!--jquery UI Css-->
+    <link href="~/Content/css/jqueryui/jquery-ui.min.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/jqueryui/jquery-ui.structure.min.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/jqueryui/jquery-ui.theme.min.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <link href="~/Content/css/jqueryui/ui.notify.css?t=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    <!--jquery UI Css-->
+
+    <script type="text/javascript" src="~/js/jquery-3.2.1.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/jquery-ui.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/Security/jquery.notify.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+</head>
+<body class="bg new-style pv_dtl">
+    <!--Clase para e nuevo estilo "new-style"-->
+    <div id="st-container" class="">
+        @if (ViewBag.UserOrigin == STL.POS.Frontend.Web.NewVersion.CustomCode.CommonEnums.UserOrigins.VO)
+        {
+            if (ViewBag.onlyLoggedUsers == true)
+            {
+                Html.RenderPartial("_SlideMenuAgent");
+            }
+        }
+        <div class="st-pusher">
+            <div class="">
+                @if (ViewBag.UserOrigin == STL.POS.Frontend.Web.NewVersion.CustomCode.CommonEnums.UserOrigins.VO)
+                {
+                    if (ViewBag.onlyLoggedUsers == true)
+                    {
+                        <div id="st-trigger-effects">
+                            @*<button data-effect="st-effect-2" id="btnLoadProfile" class="show_profile_es"> </button>*@
+                            <button data-effect="st-effect-2" id="btnLoadProfile" class="show_profile_es" onclick="GetUserProfileDataMVC(true);"> </button>
+                        </div>
+                    }
+                }
+                <div id="scroll_2">
+                    <div class="mdl-layout__container pv_auto">
+                        @{Html.RenderPartial("_HeaderNavBar");}
+                        <main id="main" role="main" class="main_cotiza_atl container">
+                            @{Html.RenderPartial("_HeaderOptions");}
+
+                            <!--Contenedor-->
+                            @RenderBody()
+                            <!--Contenedor-->
+                            @{Html.RenderPartial("_ContinueLastStep");}
+
+                        </main>
+                        @{Html.RenderPartial("_Footer");}
+                    </div>
+
+                    <!-- TOOLTIPS -->
+                    <div class="mdl-tooltip mdl-tooltip--top bg-primary" data-mdl-for="infoCB">
+                        <strong class="">Ver Información de Coberturas</strong>
+                    </div>
+                    <!-- <div class="mdl-tooltip mdl-tooltip--top bg-primary" data-mdl-for="chat_btn">
+                      <strong>Iniciar Chat</strong>
+                    </div>
+                    <div class="mdl-tooltip mdl-tooltip--top bg-primary" data-mdl-for="mail_btn">
+                      <strong>Enviar un Correo</strong>
+                    </div> -->
+
+                    <div id="cardnetFormContainer" style="display:none;"></div>
+
+                    @if (TempData["PaymentFromCardnet"] != null)
+                    {
+                        <input type="hidden" id="hdnPaymentStatus" value="@Html.Raw(TempData["PaymentStatus"])" />
+                        <input type="hidden" id="hdnPaymentFromCardnet" value="@Html.Raw(TempData["PaymentFromCardnet"])" />
+                        <input type="hidden" id="hdnPaymentSuccess" value="@Html.Raw(ViewBag.PaymentSuccess)" />
+                        <input type="hidden" id="hdnfailInsentingQuotationOnSysFlexOrVO" value="@Html.Raw(TempData["failInsentingQuotationOnSysFlexOrVO"])" />
+                        <input type="hidden" id="hdnPaymentMessage" value="@Html.Raw(TempData["PaymentMessage"]) " />
+                        <input type="hidden" id="hdnPolicyNumber" value="@Html.Raw(TempData["PolicyNumber"])" />
+                        <input type="hidden" id="hdnAuthorizationCode" value="@Html.Raw(TempData["AuthorizationCode"])" />
+                        <input type="hidden" id="hdnerrorGPToSysflexMessage" value="@Html.Raw(TempData["errorGPToSysflexMessage"])" />
+                        <input type="hidden" id="hdnerrorGPToSysflexMessage2" value="@Html.Raw(TempData["errorGPToSysflexMessage2"])" />
+                        <input type="hidden" id="hdnallowOnlyLoggedUsers" value="@Html.Raw(TempData["allowOnlyLoggedUsers"])" />
+                        <input type="hidden" id="hdnQuotationNumber" value="@Html.Raw(TempData["QuotationNumber"])" />
+                        <input type="hidden" id="hdnAmountPayByClient" value="@Html.Raw(TempData["AmountPayByClient"])" />
+                    }
+                    @*else
+                        {
+                            TempData.Clear();
+                        }*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--============| POPUPS |============-->
+    @{Html.RenderPartial("_AllPopUps");}
+    <!--============| END POPUPS |============-->
+    <!--Hiddens Fields-->
+    <input type="hidden" id="quotationID" value="" />
+    <input type="hidden" id="QuotationNumber" value="@ViewBag.QuotationNumber" />
+    <input type="hidden" id="QuotationCoreNumber" value="" />
+    <input type="hidden" id="Financed" value="" />
+    <input type="hidden" id="lastModelSelected" value="" />
+    <input type="hidden" id="lastMakeSelected" value="" />
+    <input type="hidden" id="LastSelectedVehicleYearsOld" value="" />
+    <input type="hidden" id="lastDeducibleSelected" value="" />
+    <input type="hidden" id="oldAgentSelected" value="" />
+    <input type="hidden" id="newAgentSelected" value="" />
+    <input type="hidden" id="hdnInvalidUsage" value="N" />
+    <input type="hidden" id="hdnChangedSomethingClient" value="N" />
+    <input type="hidden" id="IsCustomer" value="@ViewBag.IsCustomer" />
+    <input type="hidden" id="AllowRedirect" value="true" />
+    <input type="hidden" id="ParameterTotalPrimium" value="0" />
+    <input type="hidden" id="QuotationTotalPrimium" value="0" />
+    <input type="hidden" id="hdnIsInclusion" value="N" />
+    <input type="hidden" id="hdnDefaultCityCode" value="" />
+    <input type="hidden" id="hdnOrigen" value="" />
+    <input type="hidden" id="hdnChatConnectionServices" value="" />
+    <input type="hidden" id="hdnPathOpenfireHostname" value="" />
+    <input type="hidden" id="hdnBoshService" value="" />
+    <input type="hidden" id="hdnDefaultUserChat" value="" />
+    <input type="hidden" id="hdnChatId" value="" />
+    <input type="hidden" id="hdnChatJson" value="" />
+    <input type="hidden" id="hdnDocumentRequiredIDs" value="" />
+    <input type="hidden" id="hdnDocumentRequiredActualPath" value="" />
+    <input type="hidden" id="hdnPolicySendByVO" value="" />
+    <input type="hidden" id="hdnCouponCode" value="" />
+    <input type="hidden" id="hdnCuponDiscount" value="" />
+    <input type="hidden" id="hdnProspectoID" value="" />
+    <input type="hidden" id="hdnRiskLevel" value="" />
+    <input type="hidden" id="hdnAlertRNC" value="" />
+    <input type="hidden" id="hdnOnlyLoggedUsers" value="@Html.Raw(ViewBag.onlyLoggedUsers)" />
+    <input type="hidden" id="hdnAppMode" value="" />
+    <input type="hidden" id="hdnDefaultCupon" value="" />
+    <input type="hidden" id="hdnDefaultClient" value="" />
+    <input type="hidden" id="hdnDefaultClientWasSaved" value="N" />
+    <input type="hidden" id="hdnDefaultClientId" value="" />
+    <input type="hidden" id="hdnCurrentPhoneNumber" value="" />
+    <input type="hidden" id="hdnReferredById" value="" />
+    <!--//Hiddens Fields-->
+
+
+    <script src="~/js/jquery-3.2.1.slim.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/jquery-1.12.4.min.js"></script>
+    <script src="~/js/vendor/popper.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/bootstrap.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/material.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/chosen.jquery.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/jquery-ui.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/Security/jquery.nestedAccordion.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/Security/jquery.nicescroll.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/Security/jquery.notify.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/Security/jquery.countdownTimer.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/datepicker-es.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/jquery.validate.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    @*<script src="~/js/jquery.mask.js?t=@DateTime.Now.Ticks.ToString()"></script>*@
+    @*<script src="~/js/MaskedInput.js?t=@DateTime.Now.Ticks.ToString()"></script>*@
+    <script src="~/js/jquery.inputmask.bundle.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/CustomValidations.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/moment.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/moment-with-locales.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/linq.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/ControllersJs/Custom.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/jquery.qtip.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/ControllersJs/Summary.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/ControllersJs/InfoAddDriver.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/ControllersJs/InfoAddVehicle.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/Utility.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/ControllersJs/QuotationSearch.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/pagination.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/ControllersJs/Inclusion.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/ControllersJs/ProductBrochure.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    @*<script src="~/js/ControllersJs/strophe.js?t=@DateTime.Now.Ticks.ToString()"></script>*@
+    <script src="~/js/ControllersJs/strophe.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <script src="~/js/jquery.dataTables.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/dataTables.bootstrap4.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+
+    <!-- // <script src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+    <!--Select2-->
+    <script src="~/js/select2.min.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <!--Select2-->
+
+    <script src="~/js/ControllersJs/DocumentRequired.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/jquery-input-file-text.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/js/ControllersJs/CotizarRenovacion.js?t=@DateTime.Now.Ticks.ToString()"></script>
+</body>
+</html>

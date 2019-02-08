@@ -1,0 +1,489 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode
+@model Tuple<List<QuotationViewModel.Vehicles>, Dictionary<string, decimal?>, STL.POS.Frontend.Web.NewVersion.CustomCode.CommonEnums.RequestType>
+
+@{
+    bool _isExclusion = ViewBag.IsExclusion;
+    bool _IsVehicleChange = ViewBag.IsVehicleChange;
+
+    string style = "";
+
+    if (ViewBag.hideSection == true)
+    {
+        style = "style=display:none;";
+    }
+}
+
+<div class="mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-shadow--4dp @(!_isExclusion ? "tbl-rs":"")">
+    <div class="mdl-cell mdl-cell--12-col float-left clearfix">
+
+        @if (!_isExclusion && !_IsVehicleChange)
+        {
+            <a id="view_btn" href="#" onclick="ViewQuotation(true)" class="btn btn-outline-info float-right mr-3">
+                <i class="fa fa-eye fa-2x fa-fw" aria-hidden="true"></i>
+                <strong class="x-hide">Ver Cotización Resumida</strong>
+            </a>
+        }
+        <a id="view_btn" href="#" onclick="ViewQuotation(false)" class="btn btn-outline-info float-right mr-3">
+            <i class="fa fa-eye fa-2x fa-fw" aria-hidden="true"></i>
+            <strong class="x-hide">@(_isExclusion || _IsVehicleChange ? "Ver Solicitud Cambios" : "Ver Cotización")</strong>
+        </a>
+        <a id="lnkViewAmortizationTable" href="#" onclick="ViewAmortizationTable()" class="btn btn-outline-info float-right mr-3" style="display:none">
+            <i class="fa fa-eye fa-2x fa-fw" aria-hidden="true"></i>
+            <strong class="x-hide">Ver Tabla de Amortización</strong>
+        </a>
+
+    </div>
+    <div class="mdl-layout mdl-js-layout p-md-3">
+        @if (!_isExclusion && !_IsVehicleChange)
+        {
+            <div class="mdl-layout__header d-block mb-3 bg-primary">
+                <!-- Tabs -->
+                <div class="mdl-layout__tab-bar mdl-js-ripple-effect bg-primary" id="dvVehicleMenu">
+                    @{
+                        var Counter = 0;
+
+                        foreach (var item in Model.Item1)
+                        {
+                            Counter += 1;
+                            var VehicleId = item.Id;
+                            var ProductName = item.SelectedProductName;
+                            var TotalPrime = item.TotalPrime;
+                            var TotalIsc = item.TotalIsc;
+                            var param = Newtonsoft.Json.JsonConvert.SerializeObject(new { VehicleId = VehicleId, ProductName = ProductName, TotalPrime = TotalPrime, TotalIsc = TotalIsc });
+                            <a href="#rs-tab-1" onclick="GetCoverage('@param')" class="mdl-layout__tab @(Counter == 1 ? "is-active" : "")">@(item.VehicleDescription + " (Cant. Veh. " + item.VehicleQuantity + ")") </a>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="mdl-layout__content">
+                <div style="display: none;" id="dvCoverage">
+                    <section class="mdl-layout__tab-panel is-active" id="rs-tab-1">
+                        <div class="page-content summTable">
+                            <table class="table table-responsive-sm  table-sm table-striped" id="ThirDamage">
+                                <thead>
+                                    <tr class="bg-info text-white">
+                                        <th width="70%" align="left"> </th>
+                                        <th width="15%" class="right text-right"><span>Limites</span></th>
+                                        <th width="15%" align="right" class="right text-right">Prima</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <table class="table table-responsive-sm  table-sm table-striped" id="SelfDamage">
+                                <thead>
+                                    <tr class="bg-info text-white">
+                                        <th width="70%" align="left"></th>
+                                        <!-- <th align="left" colspan="3"></th> -->
+                                        <th width="15%" class="right text-right"><span>Limites</span></th>
+                                        <th width="15%" align="right" class="right text-right">Prima</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <table class="table table-responsive-sm  table-sm table-striped" id="Additional">
+                                <thead>
+                                    <tr class="bg-info text-white">
+                                        <!-- <th align="left" colspan="3"></th> -->
+                                        <th width="70%" align="left"></th>
+                                        <th width="15%" class="right text-right"><span>Limites</span></th>
+                                        <th width="15%" align="right" class="right text-right">Prima</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <table class="table table-responsive-sm  table-sm table-striped">
+                                <tr class="bg-info text-white">
+                                    <th width="85%" align="center" class="right text-left"><div>Total Prima Anual:</div></th>
+                                    <td align="right"><strong id="TotalAnnualPrime">0.00</strong></td>
+                                </tr>
+                                <tr class="bg-success text-white" style="display:none;">
+                                    <th align="center"><div>Descuento Flotilla:</div></th>
+                                    <td align="right"><strong id="FlotillaDiscount">0.00</strong></td>
+                                </tr>
+                                <tr class="bg-success text-white" style="display:none;">
+                                    <th align="center"><div>Prima Anual con Descuento:</div></th>
+                                    <td align="right"><strong id="FlotillaDiscount">0.00</strong></td>
+                                </tr>
+                                <tr class="">
+                                    <th align="left">Impuestos:</th>
+                                    <td align="right"><strong id="TotalTax">0.00</strong></td>
+                                </tr>
+                                <tr class="bg-success text-white">
+                                    <th align="center"><div>Total Monto a pagar:</div></th>
+                                    <td align="right"><strong id="TotalAmountPay">0.00</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        @if (ViewBag.isNotLawProduct == true && ViewBag.ShowCheckFinancial == true)
+                        {
+                            <div class="mdl-chip financesec mdl-chip--contact mdl-chip--deletable mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                                <i class="fa fa-credit-card mdl-chip__contact mdl-color--teal mdl-color-text--white" aria-hidden="true"></i>
+                                <span class="mdl-chip__text"><strong> Desea financiar esta póliza?</strong></span>
+                                <div class=" float-right">
+                                    <span class="mdl-chip__action d-block w-100">
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="IsFinanced">
+                                            <input type="checkbox" id="IsFinanced" class="mdl-checkbox__input" />
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div id="tbFinanced" class="bg-light rounded mt-0 mr-0 mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left" style="display:none">
+                                <div class="mt-0 mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                                        @Html.DropDownList("ddlMonth", (IEnumerable<SelectListItem>)ViewBag.PaymentFreqFinanced, new { @class = "mdl-textfield__input" })
+                                        <label class="mdl-textfield__label" for="ddlMonth">Periodo (Meses)</label>
+                                    </div>
+                                </div>
+                                <div class="mt-0 mr-0 mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                                    <div class="mt-0 mdl-cell mdl-cell--6-col mdl-cell--2-col-tablet mdl-cell--2-col-phone float-left"><strong class="mdl-textfield">Monto Cuota</strong></div>
+                                    <div class="mt-0 mr-0 mdl-cell--6-col mdl-cell--2-col-tablet mdl-cell--2-col-phone float-left"><span class="mdl-textfield float-right d-block text-right text-success font-weight-bold" id="QuotAmount">0.00</span></div>
+                                </div>
+                            </div>
+                        }
+                    </section>
+                </div>
+            </div>
+                        }
+                        else if (_isExclusion)
+                        {
+                            <div class="mdl-cell mdl-cell--12-col ">
+                                <div class="card mdl-shadow--2dp mdl-cell mdl-cell--12-col float-left">
+                                    <div class="card-header bg-info mdl-color-text--white text-center font-weight-bold">
+                                        Vehiculos a Excluir:
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-light text-center" id="tblVehiclesEx">
+                                            <thead>
+                                                <tr class="bg-primary mdl-color-text--white">
+                                                    <th scope="col">Marca</th>
+                                                    <th scope="col">Modelo</th>
+                                                    <th scope="col">Año</th>
+                                                    <th scope="col">Chasis</th>
+                                                    <th scope="col">Placa</th>
+                                                    <th scope="col">Color</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{ foreach (var i in Model.Item1)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.Raw(i.VehicleMakeName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.Raw(i.ModelDesc)
+                                                            </td>
+                                                            <td>
+                                                                @Html.Raw(i.Year)
+                                                            </td>
+                                                            <td>
+                                                                @Html.Raw(i.Chassis)
+                                                            </td>
+                                                            <td>
+                                                                @Html.Raw(i.Plate)
+                                                            </td>
+                                                            <td>
+                                                                @Html.Raw(i.Color)
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    }
+                                                    else if (_IsVehicleChange)
+                                                    {
+                                                        <div class="mdl-cell mdl-cell--12-col ">
+                                                            <div class="card mdl-shadow--2dp mdl-cell mdl-cell--12-col float-left">
+                                                                <div class="card-header bg-info mdl-color-text--white text-center font-weight-bold">
+                                                                    Vehiculo a Cambiar Información:
+                                                                </div>
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-striped table-light text-center" id="tblVehiclesEx">
+                                                                        <thead>
+                                                                            <tr class="bg-primary mdl-color-text--white">
+                                                                                <th scope="col">Marca</th>
+                                                                                <th scope="col">Modelo</th>
+                                                                                <th scope="col">Año</th>
+                                                                                <th scope="col">Chasis Anterior</th>
+                                                                                <th scope="col">Chasis Nuevo</th>
+                                                                                <th scope="col">Placa Anterior</th>
+                                                                                <th scope="col">Placa Nueva</th>
+                                                                                <th scope="col">Color Anterior</th>
+                                                                                <th scope="col">Color Nuevo</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @{ foreach (var i in Model.Item1)
+                                                                                {
+                                                                                    List<RequestChanges> dataVehicleRequestChange = Utility.getRequestChanges(ViewBag.Policy_No, null, i.SecuenciaVehicleSysflex.GetValueOrDefault(), true);
+
+                                                                                    string oldPlate = dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == 7) != null ? dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == 7).Old_Value : "";//7 = Placa
+                                                                                    string oldChassis = dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == 6) != null ? dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == 6).Old_Value : "";//6 = Chasis
+                                                                                    string oldColor = dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == 5) != null ? dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == 5).Old_Value : "";//5 = Color
+
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            @Html.Raw(i.VehicleMakeName)
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.Raw(i.ModelDesc)
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.Raw(i.Year)
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.Raw(oldChassis)
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.Raw(i.Chassis)
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.Raw(oldPlate)
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.Raw(i.Plate)
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.Raw(oldColor)
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.Raw(i.Color)
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                                }
+    </div>
+
+    @if (!_isExclusion && !_IsVehicleChange)
+    {
+        <div class="col-md-12 mdl-shadow--4dp p-3 mt-3" @Html.Raw(style)>
+            <table>
+                <tbody>
+                    @{
+                        bool hasDiscount = false;
+                        bool hasDiscountCoupon = false;
+                        decimal? d = 0;
+                        decimal? dc = 0;
+                        if (Model.Item2.TryGetValue("TDF", out d))
+                        {
+                            hasDiscount = d.GetValueOrDefault() > 0;
+                        }
+
+                        if (Model.Item2.TryGetValue("TDC", out dc))
+                        {
+                            hasDiscountCoupon = dc.GetValueOrDefault() > 0;
+                        }
+
+                        decimal? TotalPrimeVehicles = 0;
+                        Model.Item2.TryGetValue("TPV", out TotalPrimeVehicles);
+
+                        decimal? TotalISCVehicle = 0;
+                        Model.Item2.TryGetValue("TIV", out TotalISCVehicle);
+
+                        decimal? TotalDiscountFlotilla = 0;
+                        Model.Item2.TryGetValue("TDF", out TotalDiscountFlotilla);
+
+                        decimal? TotalPrimeVehicleWithDiscount = 0;
+                        Model.Item2.TryGetValue("TPVD", out TotalPrimeVehicleWithDiscount);
+
+                        decimal? newTotalISC = 0;
+                        Model.Item2.TryGetValue("NTI", out newTotalISC);
+
+                        decimal? newTotalPrimeVehicle = 0;
+                        Model.Item2.TryGetValue("NTPV", out newTotalPrimeVehicle);
+
+                        decimal? TotalDiscountCoupon = 0;
+                        Model.Item2.TryGetValue("TDC", out TotalDiscountCoupon);
+                    }
+
+                    <tr class="bg-success text-white bdrB-2-bl">
+                        <th align="center"><div class=" p-3">Monto Prima Anual:</div></th>
+                        <td align="right" colspan="5">
+                            <strong class=" p-3 float-right">@TotalPrimeVehicles.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture)</strong>
+                            <input type="hidden" id="hdnTotalPrime" value="@newTotalPrimeVehicle.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture).Replace(",", "")" />
+                            <input type="hidden" id="hdnQuotId" value="@ViewBag.QuoId.ToString("#0,0", System.Globalization.CultureInfo.InvariantCulture).Replace(",", "")" />
+                            <input type="hidden" id="hdnPeriod" value="@ViewBag.Period" />
+                            <input type="hidden" id="hdnMonthlyPayment" value="@ViewBag.MonthlyPayment" />
+                            <input type="hidden" id="hdnIsFinanced" value="@ViewBag.isFinanced" />
+                        </td>
+                    </tr>
+                    <tr class="bg-success text-white bdrB-2-bl" @Html.Raw(!hasDiscount ? "style='display:none'" : "")>
+                        <th align="center"><div class=" p-3">Descuento Flotilla:</div></th>
+                        <td align="right" colspan="5">
+                            <strong class=" p-3 float-right">@TotalDiscountFlotilla.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture)</strong>
+                        </td>
+                    </tr>
+                    <tr class="bg-success text-white bdrB-2-bl" @Html.Raw(!hasDiscountCoupon ? "style='display:none'" : "")>
+                        <th align="center"><div class=" p-3">Descuento Cupón (@ViewBag.CouponCode):</div></th>
+                        <td align="right" colspan="5">
+                            <strong class=" p-3 float-right">@TotalDiscountCoupon.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture)</strong>
+                        </td>
+                    </tr>
+
+                    <tr class="bg-success text-white bdrB-2-bl" @Html.Raw(!hasDiscount ? "style='display:none'" : "")>
+                        <th align="center"><div class=" p-3">Total Vehículos a Pagar con Descuento(s):</div></th>
+                        <td align="right" colspan="5">
+                            <strong class=" p-3 float-right">@TotalPrimeVehicleWithDiscount.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture)</strong>
+                        </td>
+                    </tr>
+                    <tr class="bg-success text-white bdrB-2-bl">
+                        <th align="center"><div class=" p-3">Impuesto:</div></th>
+                        <td align="right" colspan="5">
+                            <strong class=" p-3 float-right">
+                                @(newTotalISC > 0 ? newTotalISC.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture) : TotalISCVehicle.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture))
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr class="bg-success text-white bdrB-2-bl">
+                        <th align="center"><div class=" p-3">Monto Total a Pagar:</div></th>
+                        <td align="right" colspan="5">
+                            <strong class=" p-3 float-right">
+                                @(TotalPrimeVehicles != newTotalPrimeVehicle ? newTotalPrimeVehicle.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture) : TotalPrimeVehicles.GetValueOrDefault().ToString("#0,0.00", System.Globalization.CultureInfo.InvariantCulture))
+                            </strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+                        }
+
+    <div class="mdl-cell--12-col mt-3 clearfix">
+        @if (Model.Item3 == CommonEnums.RequestType.Emision)
+        {
+            @Ajax.RawActionLink("<i class='material-icons float-left mt-2'>arrow_back</i><strong class='x-hide d-block float-left ml-2'>Atras</strong>",
+                                    "MainForm",
+                                    "Home",
+                                    new { Id = ViewBag.QuoId },
+                                    new AjaxOptions
+                                    {
+                                        UpdateTargetId = "dvContainer",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnSuccess = "InitializeCustom()"
+                                    }, new { @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-left ml-3" })
+        }
+        else if (Model.Item3 == CommonEnums.RequestType.Inclusion)
+        {
+            @Ajax.RawActionLink("<i class='material-icons float-left mt-2'>arrow_back</i><strong class='x-hide d-block float-left ml-2'>Atras</strong>",
+                                    "Inclusion",
+                                    "Inclusion",
+                                    null,
+                                    new AjaxOptions
+                                    {
+                                        UpdateTargetId = "dvContainer",
+                                        InsertionMode = InsertionMode.Replace,
+
+                                        OnBegin = "LoadInclusion(true,'INCLUSIONES')"
+                                    }, new { @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-left ml-3" })
+        }
+        else if (Model.Item3 == CommonEnums.RequestType.Exclusion)
+        {
+            @Ajax.RawActionLink("<i class='material-icons float-left mt-2'>arrow_back</i><strong class='x-hide d-block float-left ml-2'>Atras</strong>",
+                                    "Inclusion",
+                                    "Inclusion",
+                                    null,
+                                    new AjaxOptions
+                                    {
+                                        UpdateTargetId = "dvContainer",
+                                        InsertionMode = InsertionMode.Replace,
+
+                                        OnBegin = "LoadInclusion(true,'EXCLUSIONES')"
+                                    }, new { @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-left ml-3" })
+        }
+        else if (Model.Item3 == CommonEnums.RequestType.Cambios)
+        {
+            @Ajax.RawActionLink("<i class='material-icons float-left mt-2'>arrow_back</i><strong class='x-hide d-block float-left ml-2'>Atras</strong>",
+                                    "Inclusion",
+                                    "Inclusion",
+                                    null,
+                                    new AjaxOptions
+                                    {
+                                        UpdateTargetId = "dvContainer",
+                                        InsertionMode = InsertionMode.Replace,
+
+                                        OnBegin = "LoadInclusion(true,'CAMBIOS')"
+                                    }, new { @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-left ml-3" })
+        }
+
+        @if (Model.Item3 == CommonEnums.RequestType.Emision)
+        {
+            @Ajax.RawActionLink(string.Format("<strong class='x-hide d-block float-left mr-2'>Comprar</strong> <i class='material-icons x-block xl-hide float-left mt-1'>&#xE8CC;</i><i class='material-icons  ml-2'>arrow_forward</i>"),
+                                    "InfoAddDriver",
+                                    "Home",
+                                     null,
+                                     new AjaxOptions
+                                     {
+                                         UpdateTargetId = "dvContainer",
+                                         InsertionMode = InsertionMode.Replace,
+                                         OnSuccess = "InitializeDriver()",
+                                         OnBegin = "return SaveFinanced()"
+                                     },
+                                                new { @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-right swatch-success" })
+        }
+        else if (Model.Item3 == CommonEnums.RequestType.Inclusion)
+        {
+            @Ajax.RawActionLink(string.Format("<strong class='x-hide d-block float-left mr-2'>Comprar</strong> <i class='material-icons x-block xl-hide float-left mt-1'>&#xE8CC;</i><i class='material-icons  ml-2'>arrow_forward</i>"),
+                                    "InfoAddVehicle",
+                                    "Home",
+                                     null,
+                                     new AjaxOptions
+                                     {
+                                         UpdateTargetId = "dvContainer",
+                                         InsertionMode = InsertionMode.Replace,
+                                         OnSuccess = "InitializeVehicle()",
+                                         OnBegin = "return SaveFinanced()"
+                                     },
+                                               new { @class = "mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-right swatch-success" })
+        }
+        else if (Model.Item3 == CommonEnums.RequestType.Exclusion || Model.Item3 == CommonEnums.RequestType.Cambios)
+        {
+            <button id="btnSendGlobalExclusion" type="button" class="mdl-button mdl-button--raised mdl-js-button mb-3 mdl-js-ripple-effect mdl-color-text--white bg-info float-right swatch-success">
+                <strong class='x-hide d-block float-left mr-2'>Continuar</strong> <i class='material-icons x-block xl-hide float-left mt-1'>&#xE8CC;</i><i class='material-icons  ml-2'>arrow_forward</i>
+            </button>
+        }
+
+    </div>
+
+
+</div>
+
+<footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+    <div class="container">
+        <div class="mdl-mega-footer__top-section">
+            <div class="mdl-cell mdl-cell--3-col float-left">
+                <div class="mdl-mega-footer__left-section float-left">
+                    <a id="mail_btn" href="javascript:void(0);" class="btn lite-blue">
+                        <i class="fa fa-envelope fa-2x fa-fw float-left"></i>
+                        <strong class="x-hide mt-1 float-left d-block">Enviarme por Correo</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col float-left">
+                <div class="mdl-mega-footer__right-section centro">
+                    @*<ul class="mdl-mega-footer__link-list mdl-color-text--white text-right x-hide mb-0 mt-2 float-left">
+                            <li class="text-info"><strong>Tel: </strong> (809) 565-5591</li>
+                            <li><strong> Email:</strong> ventas@atlantica.do</li>
+                        </ul>*@
+
+                    <ul class="mdl-mega-footer__link-list mdl-color-text--white d-flex justify-content-center x-hide mb-0 mt-2 float-left">
+                        <li><!-- <i class="fa fa-phone float-left mr-3"></i> --><strong>Tel: </strong> 1-809-200-5591 &nbsp;•&nbsp; </li>
+                        <li class="mr-3"> <!-- <i class="fa fa-envelope float-left mr-3" aria-hidden="true"></i> --> <strong> Email:</strong> ventas@atlantica.do</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col float-left">
+            </div>
+        </div>
+    </div>
+</footer>

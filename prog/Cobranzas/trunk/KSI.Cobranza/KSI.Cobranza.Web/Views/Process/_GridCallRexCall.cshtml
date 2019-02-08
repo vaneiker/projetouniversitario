@@ -1,0 +1,25 @@
+﻿@model  IEnumerable<KSI.Cobranza.Web.Models.ViewModels.PhoneCallViewModels>
+@{
+    var webGridPhoneCalls = new WebGrid(source: Model, ajaxUpdateContainerId: "dvPhoneCalls",ajaxUpdateCallback:"SetGridCalls()", canPage: true, rowsPerPage: 10);
+}
+<div id="dvPhoneCalls">
+    @webGridPhoneCalls.GetHtml(tableStyle: "table table-striped car PhoneMail",
+                                              headerStyle: "header-table",
+                                                       htmlAttributes: new { @id = "gvPhoneCalls" },
+                                                                             columns: webGridPhoneCalls.Columns(
+                                                                             webGridPhoneCalls.Column(null,
+                                                                                                   format: @<text>
+                                                                                <input type="checkbox" style="margin-top: 21px;" data="@item.KeyCall" />
+
+                                                                                                </text>, style: "text-center"),
+                                                                                      webGridPhoneCalls.Column(header: "Reproducción",
+                                                                                                   format: @<text>
+                                                                                        <audio style="width: 238px;float: left;" src="@Url.Action("GetCallRecording", "Process", new { fileName = item.FileName })" controls="controls" type="audio/mpeg"></audio>
+                                                                                                </text>, style: "text-center"),
+                                                    webGridPhoneCalls.Column("FullName", "Usuario"),
+                                                    webGridPhoneCalls.Column("CreateDate", "Fecha")
+                                                                      )
+                                                     )
+
+
+</div>

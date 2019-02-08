@@ -1,0 +1,234 @@
+﻿@using KSI.Cobranza.Web.Common
+@model KSI.Cobranza.Web.Models.ViewModels.MeetingNoteViewModels
+<div id="dvMakeNote">
+    @using (Ajax.BeginForm("SetMeegintNote", "Process",
+                                            new AjaxOptions
+                                            {
+                                                HttpMethod = "POST",
+                                                UpdateTargetId = "frmMakeNote",
+                                                InsertionMode = InsertionMode.Replace,
+                                                OnComplete = "CloseAndRefresh(this)"
+                                            }, new
+                                            {
+                                                @id = "frmMakeNote"
+                                            }))
+    {
+        @Html.HiddenFor(o => o.relatedContactId, new { @id = "hdnrelatedContactId" })
+        @Html.HiddenFor(o => o.accountId, new { @id = "hdnaccountId" })
+        @Html.HiddenFor(o => o.meetingCaseId, new { @id = "hdnmeetingCaseId" })
+        <div class="row">
+            @Html.CheckBoxFor(o => o.ApplyToAttachedFiles, new { @style = "display:none" })
+            @Html.TextBoxFor(o => o.HasAttachedFiles, new { @id = "txtHasAttachedFiles", @style = "display:none" })   
+            @Html.CheckBoxFor(o => o.ApplyToAttachedCall, new { @style = "display:none" })
+            @Html.TextBoxFor(o => o.HasAttachedCall, new { @id = "txtHasAttachedCall", @style = "display:none" })     
+            @Html.HiddenFor(o => o.CallsSelected, new { @id = "hdnCallsSelected" })
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="CommissionTableName">Numero de Préstamo:</label>
+                    @Html.TextBoxFor(o => o.LoanNumber, new { @class = "form-control", @ReadOnly = "ReadOnly", @noclear = "noclear" })
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="ComponentID">Numero de Caso:</label>
+                    @Html.DropDownListFor(o => o.CaseId, Model.Cases.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Agregar Nuevo", new { @class = "form-control", @noclear = "noclear" })
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="ComponentID">Nombre del Cliente:</label>
+                    @Html.TextBoxFor(o => o.CustomerName, new { @class = "form-control", @ReadOnly = "ReadOnly", @noclear = "noclear" })
+                </div>
+            </div>        
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="CommissionTableName">Estatus del Caso:</label>
+                    @Html.MyDropDownListFor(o => o.CasesStatusId,Model.StatusCases.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" }, !Model.IsNewCase)
+                    @Html.CheckBoxFor(o => o.IsNewCase, new { @style = "display:none" })
+                </div>
+            </div>
+        </div><!--row-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        SERVICIO
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">                                
+                                    @Html.LabelFor(o => o.ServiceId) :
+                                    @Html.DropDownListFor(o => o.ServiceId, Model.Services.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                                    @Html.HiddenFor(o => o.ServiceId, new { @id = "hdnServiceId" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="ComponentID">Sub Servicio:</label>
+                                    @Html.MyDropDownListFor(o => o.SubServiceId, Model.SubServices.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" }, false)
+                                    @Html.HiddenFor(o => o.SubServiceId, new { @id = "hdnSubServiceId" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="ComponentID">Canal del Servicio:</label>
+                                    @Html.DropDownListFor(o => o.ChannelServiceId, Model.ChannelServices.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="ComponentID">Categoría:</label>
+                                    @Html.DropDownListFor(o => o.CategoryId, Model.Categories.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="ComponentID">Tipo de Contacto:</label>
+                                    @Html.DropDownListFor(o => o.ContactTypeId, Model.ContactType.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="ComponentID">Razón Contacto:</label>
+                                    @Html.DropDownListFor(o => o.ContactReasonId, Model.ContactReason.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div><!--row-->
+
+                        <div class="row" id="">
+                            <div class="col-lg-12">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        NOTAS
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="ComponentID">Nota:</label>
+                                                    @Html.TextAreaFor(o => o.Note, new { @class = "form-control col-eq", @rows = "3" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="ComponentID">Prioridad:</label>
+                                                    @Html.DropDownListFor(o => o.PriorityId, Model.Priority.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="ComponentID">Queue Asignados:</label>
+                                                    <select name="ComponentID" id="ComponentID" class="form-control">
+                                                        <option value="">Seleccione un...</option>
+                                                        <option value="1">-</option>
+                                                        <option value="2">-</option>
+                                                        <option value="3">-</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div><!--row-->
+                                    </div><!--panel-body-->
+                                </div>
+                            </div>
+                        </div><!--row-->
+
+                        <div class="row" id="dvPhoneCall">
+                        </div><!--row-->
+
+                        <div class="row" id="dvSeguimiento">
+                            <div class="col-lg-12">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        SEGUIMIENTO
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="checkbox ">
+                                                        <label class="textb">
+                                                            @Html.CheckBoxFor(o => o.HasSelectedTracing)Agregar el Seguimiento
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="ComponentID">Tipo de Seguimiento:</label>
+                                                        <select name="ComponentID" id="ComponentID" class="form-control">
+                                                            <option value="">Seleccione un...</option>
+                                                            <option value="1">-</option>
+                                                            <option value="2">-</option>
+                                                            <option value="3">-</option>
+                                                        </select>
+                                                    </div>
+                                                </div>*@
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="ComponentID">Asignar Seguimiento:</label>
+                                                    @Html.DropDownListFor(o => o.DepartmentId, Model.Departments.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" })
+                                                </div>
+                                            </div>   
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="z-index:1051;">
+                                                <div class="form-group" style="z-index:1051;">
+                                                    <label for="ComponentID">Seguimiento Automatico:</label>
+                                                    <div class="form-group input-group buscar" style="z-index:1051;">
+                                                        @Html.TextBoxFor(o => o.Automatictracing, new { @class = "form-control datepicker",@style="z-index:1051" })
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="ComponentID">Tipo de Queue:</label>
+                                                    @Html.MyDropDownListFor(o => o.QueueTypeId, Model.QueueType.Select(x => new SelectListItem { Text = x.Value, Value = x.Key }), "Seleccionar", new { @class = "form-control" }, false)                                                    
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="ComponentID">Comentarios:</label>
+                                                    @Html.TextAreaFor(o => o.Comments, new {@class="form-control col-eq",@rows="3" })                                                                                                        
+                                                </div>
+                                            </div>
+                                        </div><!--row-->
+                                    </div><!--panel-body-->
+                                </div>
+                            </div>
+                        </div><!--row-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row" id="dvEmail">
+</div><!--row-->
+
+<div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    </div>
+
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <button class="btn btn-primary btn-block" type="button" onclick="$('#frmMakeNote').submit()">
+            <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+            Cambiar estado
+        </button>
+    </div>
+</div>

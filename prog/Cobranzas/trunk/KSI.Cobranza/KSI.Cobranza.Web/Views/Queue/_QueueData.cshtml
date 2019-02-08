@@ -1,0 +1,35 @@
+﻿@model IEnumerable<KSI.Cobranza.Web.Models.ViewModels.QueueViewModels>
+
+@{
+    var webGrid = new WebGrid(source: Model, ajaxUpdateContainerId: "dvGrid", ajaxUpdateCallback: "Init()",canPage:true,rowsPerPage:7);
+}
+
+<div id="dvGrid">
+    @webGrid.GetHtml(tableStyle: "table table-striped qcobranzas",
+                     headerStyle: "header-table",
+                     mode: WebGridPagerModes.All,
+                     htmlAttributes: new { @id = "gvLoansQueue" },
+                                    columns: webGrid.Columns(
+                                                              webGrid.Column("Id", "Id"),
+                                                              webGrid.Column("CustomerFullName", "Nombre del Cliente"),
+                                                              webGrid.Column("AmountFinancedF", "Monto financiado"),
+                                                              webGrid.Column("InterestRateF", "Tasa Interés"),
+                                                              webGrid.Column("ExecutiveName", "Ejecutivo"),
+                                                              webGrid.Column("SponsorName", "Promotor"), 
+                                                              webGrid.Column("Term", "Plazo"),
+                                                              webGrid.Column("CreditState", "Estado"),
+                                                              webGrid.Column("Office", "Oficina"),
+                                                              webGrid.Column("Product", "Producto"),
+                                                              webGrid.Column("QueuePosition", "QUEUE"),
+                                                              webGrid.Column("ActionDateF", "Fecha de acción"),
+                                                              webGrid.Column("ReferrerDepartment", "Departamento"),
+                                                              webGrid.Column("AssignTo", "Asignado"),
+                                                              webGrid.Column("KindOfFollowup", "Tipo de Seguimiento"),
+                                                              webGrid.Column("AmountOwedF", "Monto adeudado"),
+                                                              webGrid.Column("COMMENTS", "Comentarios"),
+                                                              webGrid.Column(null, null,
+                                                              format: @<text><input id="key" type="hidden" value="@item._dataRequest" ) /></text>,
+                                                                                  style: "text-center")
+                                                             )
+                                                           )
+</div>                                                       

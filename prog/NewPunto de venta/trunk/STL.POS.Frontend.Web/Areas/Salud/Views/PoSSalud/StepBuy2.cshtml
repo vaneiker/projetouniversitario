@@ -1,0 +1,52 @@
+﻿<script type="text/html" id="stepBuy2">
+    <div class="select_buy2 info_ad_veh" data-bind="with: stepData">
+        <div class="box_SP col-12">
+            <div class="boxCont">
+                <div class="col-6 fl">
+                    <div class="Info_add_Inst">
+                        <div class="boxCont mT10">
+                            <div class="labelBlue">Instrucciones</div>
+                            <p class="mT20">Por favor Diligencie el formulario adjunto para el asegurado principal y envía por</p>
+
+
+                            <div class="content-btn-intructions mT20">
+                                <a href="#" class="btn_instrucciones ico-mail doble mR-1-p">Email:<b> servicios@atlantica.do</b></a>
+                            </div>
+                            <div class="content-btn-intructions mT5">
+                                <a href="#" class="btn_instrucciones ico-cellphone doble mR-1-p">Teléfono:<b> 809-554-5244</b></a>
+                            </div>
+                            <div class="content-btn-intructions mT5">
+                                <a href="#" class="btn_instrucciones ico-fax doble mR-1-p">Fax:<b> 809-554-5244</b></a>
+                            </div>
+                        </div><!--boxCont-->
+
+                    </div>
+                </div><!--col-6-->
+
+                <div class="col-6 fl">
+                    <div class="boxCont instrucionesPDF">
+
+                        <iframe id="reportVidaIframe" src="../Reports/Salud.pdf"></iframe>
+
+                        <div class="btn_funciones cont_gnl fl">
+                            <ul class="">
+                                @*<li><button class="save_icon"></button></li>*@
+                                <li><button class="emailB" data-bind="click: function() { $root.showEmailSender(sendForm); }"></button></li>
+                                <li><button class="print_icon" onclick="pdfPrint('reportVidaIframe')"></button></li>
+                                <li><div><a target="_blank" href="../Reports/Salud.pdf" class="pdf_icon" download="Formulario"></a></div></li>
+                            </ul>
+                        </div>
+
+                    </div><!--boxCont-->
+                </div><!--col-6-->
+            </div><!--boxCont-->
+        </div>
+
+        <!-- Boton de Funcion -->
+        <div class="row_A mT10 mB10 pdR20">
+            <a href="#" class="btn backBtn" data-bind="click: function() { parent.prevStep(); }"></a>
+            <input class="btn bgreen doble fr" data-bind="value: parent.steps()[$root.currentStepId()-1].nextStepButtonTitle(), click: $root.nextStep" />
+        </div>
+
+    </div>
+</script>

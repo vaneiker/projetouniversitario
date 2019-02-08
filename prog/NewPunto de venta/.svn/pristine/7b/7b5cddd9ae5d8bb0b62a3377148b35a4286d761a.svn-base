@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfContact.QuestionnaireHealth">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact.QuestionnaireHealth" nillable="true" type="tns:Contact.QuestionnaireHealth" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContact.QuestionnaireHealth" nillable="true" type="tns:ArrayOfContact.QuestionnaireHealth" />
+  <xs:complexType name="Contact.QuestionnaireHealth">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Action" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CaseSeqNo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CityId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ContactId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ContactRoleTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CorpId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CountryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DomesticregId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HistSeqNo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OfficeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="QuestionnaireId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="QuestionnaireSeq" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RegionId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StateProvId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contact.QuestionnaireHealth" nillable="true" type="tns:Contact.QuestionnaireHealth" />
+</xs:schema>
