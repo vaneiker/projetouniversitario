@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://svc.kwiktagapi.atlantica.do/Bridge.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/STG.DLL.KwikTag.Library" />
+  <xs:import schemaLocation="http://svc.kwiktagapi.atlantica.do/Bridge.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KwikTagSDKLibrary.XmlReturns" />
+  <xs:element name="Tag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/STG.DLL.KwikTag.Library" minOccurs="0" name="tags" nillable="true" type="q1:ArrayOfEstructure.Tags" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/STG.DLL.KwikTag.Library" minOccurs="0" name="parameters" nillable="true" type="q2:Estructure.Parameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TagResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TagResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveImageFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/STG.DLL.KwikTag.Library" minOccurs="0" name="parameters" nillable="true" type="q3:Estructure.Parameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveImageFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KwikTagSDKLibrary.XmlReturns" minOccurs="0" name="RetrieveImageFileResult" nillable="true" type="q4:XferImage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveImageDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/STG.DLL.KwikTag.Library" minOccurs="0" name="parameters" nillable="true" type="q5:Estructure.Parameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveImageDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/KwikTagSDKLibrary.XmlReturns" minOccurs="0" name="RetrieveImageDetailsResult" nillable="true" type="q6:XferDocumentDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NextBarcodeByUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/STG.DLL.KwikTag.Library" minOccurs="0" name="parameters" nillable="true" type="q7:Estructure.Parameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NextBarcodeByUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NextBarcodeByUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IndexFile">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IndexFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IndexFileResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DrawersListByUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/STG.DLL.KwikTag.Library" minOccurs="0" name="parameters" nillable="true" type="q8:Estructure.Parameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DrawersListByUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DrawersListByUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

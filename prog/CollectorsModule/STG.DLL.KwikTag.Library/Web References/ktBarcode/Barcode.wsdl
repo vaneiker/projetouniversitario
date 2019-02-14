@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://kwiktag.com/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://kwiktag.com/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://kwiktag.com/webservices/">
+      <s:element name="RetrieveNext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveNextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveNextResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrievePrevious">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrievePreviousResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrievePreviousResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveECover">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GenerateBarcodeImage" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveECoverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveECoverResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BarcodeType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GenerateBarcodeImage" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveSystemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveDetailsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveECoverPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpectedPageCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomFieldsXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveECoverPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveECoverPageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RetrieveNextSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveNext" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveNextSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveNextResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrievePreviousSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrievePrevious" />
+  </wsdl:message>
+  <wsdl:message name="RetrievePreviousSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrievePreviousResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveECoverSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveECover" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveECoverSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveECoverResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveSystem" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveDetails" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveECoverPageSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveECoverPage" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveECoverPageSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveECoverPageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BarcodeSoap">
+    <wsdl:operation name="RetrieveNext">
+      <wsdl:input message="tns:RetrieveNextSoapIn" />
+      <wsdl:output message="tns:RetrieveNextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrievePrevious">
+      <wsdl:input message="tns:RetrievePreviousSoapIn" />
+      <wsdl:output message="tns:RetrievePreviousSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveECover">
+      <wsdl:input message="tns:RetrieveECoverSoapIn" />
+      <wsdl:output message="tns:RetrieveECoverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveSystem">
+      <wsdl:input message="tns:RetrieveSystemSoapIn" />
+      <wsdl:output message="tns:RetrieveSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDetails">
+      <wsdl:input message="tns:RetrieveDetailsSoapIn" />
+      <wsdl:output message="tns:RetrieveDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveECoverPage">
+      <wsdl:input message="tns:RetrieveECoverPageSoapIn" />
+      <wsdl:output message="tns:RetrieveECoverPageSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BarcodeSoap" type="tns:BarcodeSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RetrieveNext">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveNext" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrievePrevious">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrievePrevious" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveECover">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveECover" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveSystem">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDetails">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveECoverPage">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveECoverPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BarcodeSoap12" type="tns:BarcodeSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RetrieveNext">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveNext" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrievePrevious">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrievePrevious" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveECover">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveECover" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveSystem">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDetails">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveECoverPage">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveECoverPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Barcode">
+    <wsdl:port name="BarcodeSoap" binding="tns:BarcodeSoap">
+      <soap:address location="http://atl-srv41.atlantica.do/KwikTagWS/Barcode.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BarcodeSoap12" binding="tns:BarcodeSoap12">
+      <soap12:address location="http://atl-srv41.atlantica.do/KwikTagWS/Barcode.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

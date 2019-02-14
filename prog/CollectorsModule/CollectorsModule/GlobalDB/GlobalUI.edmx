@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GlobalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Collectors.vwClients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwClients">
+          <Key>
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Name="RowKey" Type="bigint" />
+          <Property Name="Contact_Id" Type="int" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="60" />
+          <Property Name="Lastname" Type="varchar" MaxLength="60" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="Id" Type="varchar" MaxLength="100" />
+          <Property Name="Policy_No" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityContainer Name="GlobalModelStoreContainer">
+          <EntitySet Name="vwClients" EntityType="Self.vwClients" store:Type="Views" store:Schema="Collectors">
+            <DefiningQuery>SELECT 
+    [vwClients].[RowKey] AS [RowKey], 
+    [vwClients].[Contact_Id] AS [Contact_Id], 
+    [vwClients].[First_Name] AS [First_Name], 
+    [vwClients].[Lastname] AS [Lastname], 
+    [vwClients].[Dob] AS [Dob], 
+    [vwClients].[Id] AS [Id], 
+    [vwClients].[Policy_No] AS [Policy_No]
+    FROM [Collectors].[vwClients] AS [vwClients]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GlobalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GlobalUI" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="vwClients" EntityType="GlobalModel.vwClient" />
+        </EntityContainer>
+        <EntityType Name="vwClient">
+          <Key>
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Name="RowKey" Type="Int64" />
+          <Property Name="Contact_Id" Type="Int32" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Policy_No" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GlobalModelStoreContainer" CdmEntityContainer="GlobalUI" >
+          <EntitySetMapping Name="vwClients">
+            <EntityTypeMapping TypeName="GlobalModel.vwClient">
+              <MappingFragment StoreEntitySet="vwClients">
+                <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="RowKey" ColumnName="RowKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

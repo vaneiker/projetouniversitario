@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateTag_svc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfTags" />
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:Parameters" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTags">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tags" nillable="true" type="tns:Tags" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Tags">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Property" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Parameters">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="apiURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="callingID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="drawer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="companyID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="siteName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateTag_svcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTag_svcResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveImageDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:Parameters" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveImageDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveImageDetailsResult" type="tns:XferDocumentDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="XferDocumentDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:XferBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="metadata" type="tns:ArrayOfXFerMetadata" />
+              <s:element minOccurs="0" maxOccurs="1" name="image" type="tns:KwikTag" />
+              <s:element minOccurs="0" maxOccurs="1" name="versions" type="tns:XferDocVersionInfoList" />
+              <s:element minOccurs="0" maxOccurs="1" name="schema" type="tns:XferDocumentTypeSchemaList" />
+              <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Site" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentType" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DrawerName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DocImageId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DrawerId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateScanned" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateIndexed" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasVersions" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Archived" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ScannedPageCount" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateModified" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExpectedPageCount" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DocFilingInstrID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DocImageInstrID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="WaitingForImage" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ArchiveDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="RetentionDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="RetentionEnabled" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RetentionPeriod" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RetentionPeriodTypeId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RetentionDateTypeId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RetentionDateTagId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LockDocument" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="DeleteAfterRetentionPeriod" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExportAfterRetentionPeriodTypeId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OcrLanguageId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FoundIn" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Match" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FileExtension" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Schema" type="tns:XferDocumentTypeSchemaList" />
+              <s:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfXFerMetadata" />
+              <s:element minOccurs="0" maxOccurs="1" name="Image" type="tns:KwikTag" />
+              <s:element minOccurs="0" maxOccurs="1" name="Versions" type="tns:XferDocVersionInfoList" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="XferBase">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="XferDocumentTypeSchemaList">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:XferBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="DrawerId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DrawerName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SiteName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ChildSchemaLists" type="tns:ArrayOfXferDocumentTypeSchemaList" />
+              <s:element minOccurs="0" maxOccurs="1" name="Schemas" type="tns:ArrayOfXFerDocumentTypeSchema" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfXferDocumentTypeSchemaList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="XferDocumentTypeSchemaList" nillable="true" type="tns:XferDocumentTypeSchemaList" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfXFerDocumentTypeSchema">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="XFerDocumentTypeSchema" nillable="true" type="tns:XFerDocumentTypeSchema" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="XFerDocumentTypeSchema">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequiredField" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PicklistName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeyValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PickListItems" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserControl" type="tns:ArrayOfXferInputExtensionV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeAHeadValues" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfXferInputExtensionV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="XferInputExtensionV2" nillable="true" type="tns:XferInputExtensionV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="XferInputExtensionV2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TypeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfXferInputExtensionProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfXferInputExtensionProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="XferInputExtensionProperty" nillable="true" type="tns:XferInputExtensionProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="XferInputExtensionProperty">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExtensionId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KwikTag">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:XferBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Extension" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ImagePath" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfXFerMetadata">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="XFerMetadata" nillable="true" type="tns:XFerMetadata" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="XFerMetadata">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Hidden" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="XferDocVersionInfoList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fileVersions" type="tns:ArrayOfXferDocVersionInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileVersions" type="tns:ArrayOfXferDocVersionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfXferDocVersionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="XferDocVersionInfo" nillable="true" type="tns:XferDocVersionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="XferDocVersionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="image" type="tns:KwikTag" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocImageID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageTag" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScannedPageCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Extension" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StorageId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Archived" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedBy" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateModified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifiedBy" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifiedReason" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocFilingInstrID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocImageInstrID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EncryptedImageRetrievalData" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EncryptionTypeId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="tns:KwikTag" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RetrieveImageFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:Parameters" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveImageFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveImageFileResult" type="tns:KwikTag" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="nextBarcodeByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:Parameters" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="nextBarcodeByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nextBarcodeByUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IndexFile_svc">
+        <s:complexType />
+      </s:element>
+      <s:element name="IndexFile_svcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IndexFile_svcResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateTag_svcSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTag_svc" />
+  </wsdl:message>
+  <wsdl:message name="CreateTag_svcSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTag_svcResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveImageDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveImageDetails" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveImageDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveImageDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveImageFileSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveImageFile" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveImageFileSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveImageFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="nextBarcodeByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:nextBarcodeByUser" />
+  </wsdl:message>
+  <wsdl:message name="nextBarcodeByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:nextBarcodeByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IndexFile_svcSoapIn">
+    <wsdl:part name="parameters" element="tns:IndexFile_svc" />
+  </wsdl:message>
+  <wsdl:message name="IndexFile_svcSoapOut">
+    <wsdl:part name="parameters" element="tns:IndexFile_svcResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ktServiceSoap">
+    <wsdl:operation name="CreateTag_svc">
+      <wsdl:input message="tns:CreateTag_svcSoapIn" />
+      <wsdl:output message="tns:CreateTag_svcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageDetails">
+      <wsdl:input message="tns:RetrieveImageDetailsSoapIn" />
+      <wsdl:output message="tns:RetrieveImageDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageFile">
+      <wsdl:input message="tns:RetrieveImageFileSoapIn" />
+      <wsdl:output message="tns:RetrieveImageFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="nextBarcodeByUser">
+      <wsdl:input message="tns:nextBarcodeByUserSoapIn" />
+      <wsdl:output message="tns:nextBarcodeByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IndexFile_svc">
+      <wsdl:input message="tns:IndexFile_svcSoapIn" />
+      <wsdl:output message="tns:IndexFile_svcSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ktServiceSoap" type="tns:ktServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTag_svc">
+      <soap:operation soapAction="http://tempuri.org/CreateTag_svc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageDetails">
+      <soap:operation soapAction="http://tempuri.org/RetrieveImageDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageFile">
+      <soap:operation soapAction="http://tempuri.org/RetrieveImageFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="nextBarcodeByUser">
+      <soap:operation soapAction="http://tempuri.org/nextBarcodeByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IndexFile_svc">
+      <soap:operation soapAction="http://tempuri.org/IndexFile_svc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ktServiceSoap12" type="tns:ktServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTag_svc">
+      <soap12:operation soapAction="http://tempuri.org/CreateTag_svc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageDetails">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveImageDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageFile">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveImageFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="nextBarcodeByUser">
+      <soap12:operation soapAction="http://tempuri.org/nextBarcodeByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IndexFile_svc">
+      <soap12:operation soapAction="http://tempuri.org/IndexFile_svc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ktService">
+    <wsdl:port name="ktServiceSoap" binding="tns:ktServiceSoap">
+      <soap:address location="http://atl-srv41.atlantica.do/apiKT/ktService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ktServiceSoap12" binding="tns:ktServiceSoap12">
+      <soap12:address location="http://atl-srv41.atlantica.do/apiKT/ktService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

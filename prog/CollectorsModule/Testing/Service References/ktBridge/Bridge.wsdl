@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Bridge" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://svc.kwiktagapi.atlantica.do/Bridge.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://svc.kwiktagapi.atlantica.do/Bridge.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://svc.kwiktagapi.atlantica.do/Bridge.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/STG.DLL.KwikTag.Library" />
+      <xsd:import schemaLocation="http://svc.kwiktagapi.atlantica.do/Bridge.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KwikTagSDKLibrary.XmlReturns" />
+      <xsd:import schemaLocation="http://svc.kwiktagapi.atlantica.do/Bridge.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBridge_Tag_InputMessage">
+    <wsdl:part name="parameters" element="tns:Tag" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_Tag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_RetrieveImageFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveImageFile" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_RetrieveImageFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveImageFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_RetrieveImageDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveImageDetails" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_RetrieveImageDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveImageDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_NextBarcodeByUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:NextBarcodeByUser" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_NextBarcodeByUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NextBarcodeByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_IndexFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:IndexFile" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_IndexFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IndexFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_DrawersListByUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DrawersListByUser" />
+  </wsdl:message>
+  <wsdl:message name="IBridge_DrawersListByUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DrawersListByUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBridge">
+    <wsdl:operation name="Tag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBridge/Tag" message="tns:IBridge_Tag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBridge/TagResponse" message="tns:IBridge_Tag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBridge/RetrieveImageFile" message="tns:IBridge_RetrieveImageFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBridge/RetrieveImageFileResponse" message="tns:IBridge_RetrieveImageFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBridge/RetrieveImageDetails" message="tns:IBridge_RetrieveImageDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBridge/RetrieveImageDetailsResponse" message="tns:IBridge_RetrieveImageDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NextBarcodeByUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBridge/NextBarcodeByUser" message="tns:IBridge_NextBarcodeByUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBridge/NextBarcodeByUserResponse" message="tns:IBridge_NextBarcodeByUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IndexFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBridge/IndexFile" message="tns:IBridge_IndexFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBridge/IndexFileResponse" message="tns:IBridge_IndexFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DrawersListByUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBridge/DrawersListByUser" message="tns:IBridge_DrawersListByUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBridge/DrawersListByUserResponse" message="tns:IBridge_DrawersListByUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBridge" type="tns:IBridge">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Tag">
+      <soap:operation soapAction="http://tempuri.org/IBridge/Tag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageFile">
+      <soap:operation soapAction="http://tempuri.org/IBridge/RetrieveImageFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImageDetails">
+      <soap:operation soapAction="http://tempuri.org/IBridge/RetrieveImageDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NextBarcodeByUser">
+      <soap:operation soapAction="http://tempuri.org/IBridge/NextBarcodeByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IndexFile">
+      <soap:operation soapAction="http://tempuri.org/IBridge/IndexFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DrawersListByUser">
+      <soap:operation soapAction="http://tempuri.org/IBridge/DrawersListByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Bridge">
+    <wsdl:port name="BasicHttpBinding_IBridge" binding="tns:BasicHttpBinding_IBridge">
+      <soap:address location="http://svc.kwiktagapi.atlantica.do/Bridge.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

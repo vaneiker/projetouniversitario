@@ -1,0 +1,157 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='author' content='dcastro-amateo' />
+<title>Módulo de Caja</title>
+<link rel="stylesheet" type="text/css" href="css/dtl.css">
+<link rel="stylesheet" type="text/css" href="css/dtl.css" media="print">
+    <style type="text/css">
+        @page {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div id="Content" class='wrapper  mdl_recaudo_cont recingre'>
+    <div class='row_A box_shw wrapper-fluid '>
+        <div class='main_menu menu2'>
+            <div class='box_logo'><a href='#' class='logo'></a></div>
+            <h3 class='ttl_Top'>Recibo de ingreso</h3>  
+        </div>
+        <div class='row_A '>
+            <div class='row_B blue in_filter'>
+                <div class='box_4'>
+                    <div class='label_plus_input par'> 
+                        <span>Fecha</span>
+                        <input type='text' value='@PayDate'/>
+                    </div>
+                </div>
+                <div class='box_4'>
+                    <div class='label_plus_input par'> 
+                        <span>Hora</span>
+                        <input type='text' value='@Time'/>
+                    </div>
+                </div>
+                <div class='box_4'>
+                    <div class='label_plus_input par'> 
+                        <span>RNC</span>
+                        <input type='text' value='@RNC' />
+                    </div>
+                </div>
+                <div class='box_4'>
+                    <div class='label_plus_input par'> 
+                        <span>Número de recibo</span>
+                        <input type='text' value='@PAYMENTNUMBERLst'>
+                    </div>
+                </div>
+                
+            </div>
+            <div class=' row_B'>
+                <div class='cont_gnl princData'>
+                    <div class='label_plus_input par row_B '> 
+                        <span class='azul_c'>Recibi de</span>
+                        <input type='text' value='@FullName' />
+                    </div>
+                    <div class='label_plus_input par row_B '> 
+                        <span class='azul_c'>La suma de</span>
+                        <input type='text' value='@Amount_desc'/>
+                    </div>
+                    <div class='label_plus_input par row_B '> 
+                        <span class='azul_c'>Por concepto de</span>
+                        <input type='text' value='@PAYMENTCONCEPTLst'/> 
+                    </div>
+                    
+                </div>
+                
+            </div>
+                              
+            <div class=' tbl data_Gpl cont_gnl tbl_recib'>
+            	<table>
+                    <tr class='gradient_azul'>
+                        <th align='center' class='c1'><span>Documento(s)</span></th>
+                        <th align='center' class='c2'><span>Póliza(s)</span></th>
+                        <th align='center' class='c3'><span>Fecha</span></th>
+                        <th align='center' class='c4'><span>Forma de Pago</span></th>
+                        <th align='center' class='c5'><span>Monto pagado</span></th>
+                        <th align='center' class='c6'><span>Balance pendiente</span></th>
+                    </tr>  
+					<remove>
+					<div id='invoiceList'>
+					<tr>
+						<td align='center'><span>@PaymentNumber</span></td>
+						<td align='center'><span>@PolicyNo</span></td>
+						<td align='center'><span>@PayDate</span></td>
+						<td align='center'><span>@PaymentForm</span></td>
+						<td align='center'><span>@AmountR</span></td>
+						<td align='center'><span>@PendingAmountR</span></td>
+					</tr>
+					</div>
+					</remove>					
+                </table>
+                <div class='label_plus_input par total1'> 
+                    <span>Totales</span> 
+                    <div>                   
+                        <input type='text' value='@AmountR'/>
+                        <input type='text' value='@PendingAmountR'/>
+                    </div>
+                </div>
+            </div>
+
+			<div class="row_A firma">
+                <table>
+					<tbody>
+						<tr>
+							<td>
+								<ul class="fir">
+									<li></li>
+									<li>Firma Cliente</li>
+									<li>&nbsp;</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="fir">
+									<li></li>
+									<li>Firma Cajero</li>
+									<li>@Cashier</li>
+								</ul>
+							</td>
+						</tr>
+					</tbody>
+				</table>                      
+            </div>
+            <div class='cont_gnl_fw'>De acuerdo a la ley 146-02 de seguros privados en República Dominicana el balance pendiente debe ser saldado en el tiempo estipulado dentro del contrato, de lo contario será cancelado
+en conformidad con el articulo 78 de la mencionada ley.
+			<br/>
+			<span style="margin-top:5px; float:inherit;">
+			Despues de 5 dias laborales este pago se verá reflejado en su balance. En caso de devolución después de los 30 días de emitido este recibo se estará aplicando una deducción del 16% correspondiente a los Impuestos Incluidos en este Pago.
+            </span>
+            <br />
+            <span style="margin-top:5px; float:inherit;">
+                NOTA: Los pagos de pólizas por un monto mayor o igual a US$15,000.00 o su equivalentes y que no indiquen la forma de pago en que fueron recibidos los fondos de parte del cliente, serán reportados a los efectos de la ley 155-17 contra el lavado de activos y la norma aplicable para el sector seguros.   
+            </span>
+			</div>
+            <span class='dir'>
+                AV. ROBERTO PASTORIZA NO. 315, LOCAL C, PLAZA URIS, ENS. NACO / TEL.: (809) 565-5591 / FAX: (809) 565-4343
+            </span>
+            <span class='copy fl'>ATLÁNTICA SEGUROS, S.A.</span>
+            <span class='copy2 fr'>RECIBO DE INGRESO</span> 
+        </div>  
+    </div>
+ </div>     
+ <script>
+	function rePrint(){
+		var content = document.getElementById("Content"); 
+		content.className = content.className + " water_mark_reimp";
+	}
+	<!-- {0} -->
+	window.onbeforeunload = function() {
+        return;
+    }
+	window.print();
+ </script>
+</body>
+

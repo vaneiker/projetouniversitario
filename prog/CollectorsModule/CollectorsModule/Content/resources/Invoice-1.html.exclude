@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+    <html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <title>Recibo Ingreso</title>
+        <link rel='stylesheet' type='text/css' href='C:/Personal Repository/Repositorio de Proyectos/Atlanvisor/Modulo de cajeras/CollectorsModule/CollectorsModule/CollectorsModule/Content/css/imprimir.css' media='print' />
+        <link rel='stylesheet' type='text/css' href='C:/Personal Repository/Repositorio de Proyectos/Atlanvisor/Modulo de cajeras/CollectorsModule/CollectorsModule/CollectorsModule/Content/css/imprimir.css' />
+         
+    </head>
+
+    <body>
+	<style>
+	body {
+                float: none !important;
+                width: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            body, html {
+                padding: 0;
+                margin: 0;
+            }
+
+            body {
+                color: #000;
+                font: 100%/150% Arial, Helvetica, sans-serif;
+            }
+            /* Reset */
+            *,
+            *:after,
+            *:before {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+
+            .clearfix:before,
+            .clearfix:after {
+                content: ' ';
+                display: table;
+            }
+
+            .clearfix:after {
+                clear: both;
+            }
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            a {
+                text-decoration: none;
+                vertical-align: baseline;
+                background: transparent;
+                color: inherit;
+            }
+
+            a, button {
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+            }
+
+                a:focus {
+                    outline: 0;
+                }
+
+                a:active, a:hover {
+                    outline: 0;
+                    text-decoration: none;
+                }
+
+                a img,
+                img {
+                    outline: none;
+                    border: 0;
+                }
+
+            b, strong {
+                font-weight: bold;
+            }
+
+            h1, h2, h3,
+            h4, h5, h6 {
+                color: #222;
+                padding-left: 1px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-weight: normal;
+            }
+
+            p {
+                font-size: 13px;
+                line-height: 22px;
+                text-align: left;
+                margin: 5px 0;
+                color: #222;
+                font-family: Arial, Helvetica, sans-serif;
+                -webkit-hyphens: auto;
+                -moz-hyphens: auto;
+            }
+
+            .rds5 {
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+                border-radius: 5px;
+            }
+
+            .rds10 {
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+            }
+
+            .bdr {
+                border: 1px solid #ccc;
+            }
+/*
+    */
+
+.rbIngreso .row_A    { width: 100%;float: left;}
+.rbIngreso .row_B  { width: 100%;float: left;margin-bottom: 10px;}
+.rbIngreso .row_P  { width: 100%;float: left;padding: 5px;}
+
+.rbIngreso .box_1  { width: 100%; float: left;padding: 5px;}
+.rbIngreso .box_2  { width: 50%; float: left;padding: 5px;}
+.rbIngreso .box_3  { width: 33.33%; float: left;padding: 5px;}
+.rbIngreso .box_4  { width: 25%; float: left;padding: 5px;}
+.rbIngreso .box_5  { width: 20%; float: left;padding: 5px;}
+.rbIngreso .box_6  { width: 15.66%; float: left;padding: 2px;}
+
+/*=========================================*/
+
+.rbIngreso  { width: 612px;font-size: 8pt;margin: 0 auto;}
+
+
+
+.rbIngreso .logo {text-transform: uppercase;font-size: 12pt;}
+.rbIngreso .head {text-transform: uppercase;font-size: 10pt;}
+
+.rbIngreso .dr,
+.rbIngreso .ley 	{text-transform: uppercase;}
+.rbIngreso .ley 	{line-height: 13px;font-size: 7pt;}
+
+.rbIngreso .l1 { width: 80%;float: left;}
+.rbIngreso .r2 { width: 20%;float: right;}
+.rbIngreso .l1 span.box_2:first-child,
+.rbIngreso .head div.box_3:first-child 	{padding-left: 0px;}
+
+.rbIngreso .contR { border: 1px solid #000;padding: 10px;}
+.rbIngreso .contR2 { border: 1px solid #000;}
+
+.rbIngreso .resultR .box_6 {padding-top: 0;padding-bottom: 0;}
+
+.rbIngreso .resultR .box_6:nth-child(1),
+.rbIngreso .contR2 .box_6:nth-child(1) 	{width: 20%;}
+.rbIngreso .resultR .box_6:nth-child(2),
+.rbIngreso .contR2 .box_6:nth-child(2) 	{width: 14%;}
+
+.rbIngreso .contR span  				{display: block;float: left;}
+.rbIngreso .contR span:nth-child(1) 	{width: 30%;text-transform: uppercase;}
+.rbIngreso .contR span:nth-child(2) 	{width: 70%;}
+.rbIngreso .contR li:last-child 		{margin-top: 30px;float: left;}
+
+.rbIngreso .resultR .box_6:nth-child(5),
+.rbIngreso .resultR .box_6:nth-child(6) 	{text-align: right;}
+
+.rbIngreso .firma hr 		{margin-top: 50px;}
+.rbIngreso .firma span 	{text-align: center;display: block;margin: 0 auto;}
+
+
+  @media print {
+                body {
+                    background-color: #FFFFFF;
+                    background-image: none;
+                    color: #000000;
+                }
+
+                #ad {
+                    display: none;
+                }
+
+                #leftbar {
+                    display: none;
+                }
+
+                #contentarea {
+                    width: 100%;
+                }
+            }
+
+     @page 
+    {
+        size: auto;   /* auto is the initial value */
+        margin: 0mm;  /* this affects the margin in the printer settings */
+    }
+
+    body 
+    {
+        background-color:#FFFFFF; 
+        border: solid 1px black ;
+        margin: 0px;  /* this affects the margin on the content before sending to printer */
+   } 
+	</style>
+    <div class='rbIngreso'>
+        <div class='row_A header'>
+            <ul>
+                <li>
+                    <div class='l1'><div class='logo'>@Company</div></div>
+                    <div class='r2'><span>Fecha:&nbsp;&nbsp;@PayDate</span></div>
+                </li>
+                <li>
+                    <div class='l1'><span class='dr'>@Address</span></div>
+                    <div class='r2'><span>Hora:&nbsp;&nbsp;@Time</span></div>
+                </li>
+                <li>
+                    <div class='l1'>
+                        <span class='box_2'>Tel.&nbsp;&nbsp;&nbsp;809-565-5591</span>
+                        <span class='box_2'>Fax&nbsp;&nbsp;&nbsp;809-565-4343</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class='row_A head'>
+            <div class='box_3'>RNC:@Rnc</div>
+            <div class='box_3'>RECIBO DE INGRESO</div>
+            <div class='box_3'>No. <strong>@PAYMENTNUMBERLst</strong></div>
+        </div>
+        <div class='row_A contR rds10'>
+            <ul>
+                <li><span>RECIBI DE</span><span>@FullName</span></li>
+                <li><span>La suma de</span><span>@Amount_desc</span></li>
+                <li><span>Por concepto de</span><span>Pago de <strong>@PAYMENTNUMBERLst</strong></span></li>
+                <li><span>Intermediario</span><span></span></li>
+            </ul>
+        </div>
+        <div id='invoiceHeaders' class='row_A contR2 rds10'>
+            <div class='box_6'><span>Documento(s)</span></div>
+            <div class='box_6'><span>poliza(s)</span></div>
+            <div class='box_6'><span>Fecha</span></div>
+            <div class='box_6'><span>Forma de Pago</span></div>
+            <div class='box_6'><span>Monto Pagado</span></div>
+            <div class='box_6'><span>Balance Pend.</span></div>
+        </div>
+		<remove>
+        <div id='invoiceList' class='row_A resultR'>
+            <div class='box_6'><span>@PaymentNumber</span></div>
+            <div class='box_6'><span>@PolicyNo</span></div>
+            <div class='box_6'><span>@PayDate</span></div>
+            <div class='box_6'><span>@PaymentForm</span></div>
+            <div class='box_6'><span>@AmountR</span></div>
+            <div class='box_6'><span>@PendingAmountR</span></div>
+        </div>
+		</remove>
+        <div class='row_A resultR'>
+            <div class='box_6'><span>&nbsp;</span></div>
+            <div class='box_6'><span>&nbsp;</span></div>
+            <div class='box_6'><span>&nbsp;</span></div>
+            <div class='box_6'><span><strong>Totales</strong></span></div>
+            <div class='box_6'><span><strong>@AmountR</strong></span></div>
+            <div class='box_6'><span>@PendingAmountR</span></div>
+        </div>
+
+        <div class='row_A firma'>
+            <div class='box_3'>&nbsp;</div>
+            <div class='box_3'>&nbsp;</div>
+            <div class='box_3'>
+                <hr />
+                <span>@Cashier</span>
+                <span>CAJERO</span>
+            </div>
+        </div>
+        <div class='row_A'>
+            <span class='ley'>
+                De acuerdo a la ley 146-02 ley de seguros privados en R.D. Los mismos deben ser saldados antes de los 45 dias, de lo contrario quedan cancelados de conformidad con el ART. 45 de la referida ley
+            </span>
+        </div>
+      
+    </div>
+</body>
+</html>

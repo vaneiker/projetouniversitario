@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://kwiktag.com/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://kwiktag.com/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://kwiktag.com/webservices/">
+      <s:element name="Archive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DrawerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AlwaysArchive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArchiveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArchiveResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Index">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DrawerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RetrievalTagsXML" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpectedPageCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="VeritagEmailAddressList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VeritagFromEmailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GMTOffset" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifySubject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyBody" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AttachLink" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="AttachImage" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyEmailAddressList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyEmailCCList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyFromEmailAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AddToExisting" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="OverwriteExisting" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImageFileType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AutoRotate" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="RotateDegrees" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Deskew" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IndexResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IndexResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveVersionList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DrawerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveVersionListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveVersionListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchSystemFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchSystemFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchSystemFieldsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveAllFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DrawerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveAllFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveAllFieldsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveMergedVersionImage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnImageType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveMergedVersionImageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveMergedVersionImageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveImage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DrawerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveImageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveImageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchBySystemFieldDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DateType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="GMTOffset" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchBySystemFieldDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchBySystemFieldDateRangeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="GMTOffset" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchDateRangeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchCustomFieldsWithReturnField">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UseSoundex" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchCustomFieldsWithReturnFieldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchCustomFieldsWithReturnFieldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Search">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="GMTOffset" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveEncryptedImageParameters">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveEncryptedImageParametersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveEncryptedImageParametersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveDocumentImageUrl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveDocumentImageUrlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveDocumentImageUrlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateImageExternalRetrievalUrl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalImageRetrievalUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateImageExternalRetrievalUrlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateImageExternalRetrievalUrlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchKGS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DrawerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GMTOffset" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DateType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SortBy" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SortAscending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="PhonicSearch" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FuzzySearchWeight" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="HighlightXml" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="MaxFilesToRetrieve" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TimeoutSeconds" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchKGSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchKGSResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ArchiveSoapIn">
+    <wsdl:part name="parameters" element="tns:Archive" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveSoapOut">
+    <wsdl:part name="parameters" element="tns:ArchiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IndexSoapIn">
+    <wsdl:part name="parameters" element="tns:Index" />
+  </wsdl:message>
+  <wsdl:message name="IndexSoapOut">
+    <wsdl:part name="parameters" element="tns:IndexResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveVersionListSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveVersionList" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveVersionListSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveVersionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchSystemFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchSystemFields" />
+  </wsdl:message>
+  <wsdl:message name="SearchSystemFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchSystemFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveAllFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveAllFields" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveAllFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveAllFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMergedVersionImageSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveMergedVersionImage" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMergedVersionImageSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveMergedVersionImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveImageSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveImage" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveImageSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchBySystemFieldDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchBySystemFieldDateRange" />
+  </wsdl:message>
+  <wsdl:message name="SearchBySystemFieldDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchBySystemFieldDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchDateRange" />
+  </wsdl:message>
+  <wsdl:message name="SearchDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchCustomFieldsWithReturnFieldSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchCustomFieldsWithReturnField" />
+  </wsdl:message>
+  <wsdl:message name="SearchCustomFieldsWithReturnFieldSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchCustomFieldsWithReturnFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapIn">
+    <wsdl:part name="parameters" element="tns:Search" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveEncryptedImageParametersSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveEncryptedImageParameters" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveEncryptedImageParametersSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveEncryptedImageParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveDocumentImageUrlSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentImageUrl" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveDocumentImageUrlSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveDocumentImageUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateImageExternalRetrievalUrlSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateImageExternalRetrievalUrl" />
+  </wsdl:message>
+  <wsdl:message name="UpdateImageExternalRetrievalUrlSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateImageExternalRetrievalUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchKGSSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchKGS" />
+  </wsdl:message>
+  <wsdl:message name="SearchKGSSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchKGSResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteVersion" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteVersionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DocumentSoap">
+    <wsdl:operation name="Archive">
+      <wsdl:input message="tns:ArchiveSoapIn" />
+      <wsdl:output message="tns:ArchiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Index">
+      <wsdl:input message="tns:IndexSoapIn" />
+      <wsdl:output message="tns:IndexSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveVersionList">
+      <wsdl:input message="tns:RetrieveVersionListSoapIn" />
+      <wsdl:output message="tns:RetrieveVersionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchSystemFields">
+      <wsdl:input message="tns:SearchSystemFieldsSoapIn" />
+      <wsdl:output message="tns:SearchSystemFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllFields">
+      <wsdl:input message="tns:RetrieveAllFieldsSoapIn" />
+      <wsdl:output message="tns:RetrieveAllFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMergedVersionImage">
+      <wsdl:input message="tns:RetrieveMergedVersionImageSoapIn" />
+      <wsdl:output message="tns:RetrieveMergedVersionImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImage">
+      <wsdl:input message="tns:RetrieveImageSoapIn" />
+      <wsdl:output message="tns:RetrieveImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBySystemFieldDateRange">
+      <wsdl:input message="tns:SearchBySystemFieldDateRangeSoapIn" />
+      <wsdl:output message="tns:SearchBySystemFieldDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchDateRange">
+      <wsdl:input message="tns:SearchDateRangeSoapIn" />
+      <wsdl:output message="tns:SearchDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchCustomFieldsWithReturnField">
+      <wsdl:input message="tns:SearchCustomFieldsWithReturnFieldSoapIn" />
+      <wsdl:output message="tns:SearchCustomFieldsWithReturnFieldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <wsdl:input message="tns:SearchSoapIn" />
+      <wsdl:output message="tns:SearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveEncryptedImageParameters">
+      <wsdl:input message="tns:RetrieveEncryptedImageParametersSoapIn" />
+      <wsdl:output message="tns:RetrieveEncryptedImageParametersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentImageUrl">
+      <wsdl:input message="tns:RetrieveDocumentImageUrlSoapIn" />
+      <wsdl:output message="tns:RetrieveDocumentImageUrlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateImageExternalRetrievalUrl">
+      <wsdl:input message="tns:UpdateImageExternalRetrievalUrlSoapIn" />
+      <wsdl:output message="tns:UpdateImageExternalRetrievalUrlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchKGS">
+      <wsdl:input message="tns:SearchKGSSoapIn" />
+      <wsdl:output message="tns:SearchKGSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVersion">
+      <wsdl:input message="tns:DeleteVersionSoapIn" />
+      <wsdl:output message="tns:DeleteVersionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentSoap" type="tns:DocumentSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Archive">
+      <soap:operation soapAction="http://kwiktag.com/webservices/Archive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Index">
+      <soap:operation soapAction="http://kwiktag.com/webservices/Index" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveVersionList">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveVersionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchSystemFields">
+      <soap:operation soapAction="http://kwiktag.com/webservices/SearchSystemFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllFields">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveAllFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMergedVersionImage">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveMergedVersionImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImage">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBySystemFieldDateRange">
+      <soap:operation soapAction="http://kwiktag.com/webservices/SearchBySystemFieldDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDateRange">
+      <soap:operation soapAction="http://kwiktag.com/webservices/SearchDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchCustomFieldsWithReturnField">
+      <soap:operation soapAction="http://kwiktag.com/webservices/SearchCustomFieldsWithReturnField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap:operation soapAction="http://kwiktag.com/webservices/Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveEncryptedImageParameters">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveEncryptedImageParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentImageUrl">
+      <soap:operation soapAction="http://kwiktag.com/webservices/RetrieveDocumentImageUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateImageExternalRetrievalUrl">
+      <soap:operation soapAction="http://kwiktag.com/webservices/UpdateImageExternalRetrievalUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchKGS">
+      <soap:operation soapAction="http://kwiktag.com/webservices/SearchKGS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVersion">
+      <soap:operation soapAction="http://kwiktag.com/webservices/DeleteVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DocumentSoap12" type="tns:DocumentSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Archive">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/Archive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Index">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/Index" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveVersionList">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveVersionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchSystemFields">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/SearchSystemFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAllFields">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveAllFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMergedVersionImage">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveMergedVersionImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveImage">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBySystemFieldDateRange">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/SearchBySystemFieldDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDateRange">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/SearchDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchCustomFieldsWithReturnField">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/SearchCustomFieldsWithReturnField" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/Search" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveEncryptedImageParameters">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveEncryptedImageParameters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDocumentImageUrl">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/RetrieveDocumentImageUrl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateImageExternalRetrievalUrl">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/UpdateImageExternalRetrievalUrl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchKGS">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/SearchKGS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVersion">
+      <soap12:operation soapAction="http://kwiktag.com/webservices/DeleteVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Document">
+    <wsdl:port name="DocumentSoap" binding="tns:DocumentSoap">
+      <soap:address location="http://atl-srv41.atlantica.do/KwikTagWS/Document.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DocumentSoap12" binding="tns:DocumentSoap12">
+      <soap12:address location="http://atl-srv41.atlantica.do/KwikTagWS/Document.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

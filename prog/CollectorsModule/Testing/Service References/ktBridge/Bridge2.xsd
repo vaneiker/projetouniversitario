@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KwikTagSDKLibrary.XmlReturns" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KwikTagSDKLibrary.XmlReturns" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://svc.kwiktagapi.atlantica.do/Bridge.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="XferImage">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:XferBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Image" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="XferImage" nillable="true" type="tns:XferImage" />
+  <xs:complexType name="XferBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="XferBase" nillable="true" type="tns:XferBase" />
+  <xs:complexType name="XferDocumentDetails">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:XferBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ArchiveDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Archived" type="xs:int" />
+          <xs:element minOccurs="0" name="Barcode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DateIndexed" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateModified" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DateScanned" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DeleteAfterRetentionPeriod" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DocFilingInstrID" type="xs:int" />
+          <xs:element minOccurs="0" name="DocImageId" type="xs:int" />
+          <xs:element minOccurs="0" name="DocImageInstrID" type="xs:int" />
+          <xs:element minOccurs="0" name="DocName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DocumentType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DrawerId" type="xs:int" />
+          <xs:element minOccurs="0" name="DrawerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ExpectedPageCount" type="xs:int" />
+          <xs:element minOccurs="0" name="ExportAfterRetentionPeriodTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="FileExtension" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FoundIn" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HasAssociatedDocs" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HasVersions" type="xs:int" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Image" nillable="true" type="tns:XferImage" />
+          <xs:element minOccurs="0" name="LockDocument" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Match" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MetaData" nillable="true" type="tns:ArrayOfXFerMetadata" />
+          <xs:element minOccurs="0" name="OcrLanguageId" type="xs:int" />
+          <xs:element minOccurs="0" name="RetentionDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="RetentionDateTagId" type="xs:int" />
+          <xs:element minOccurs="0" name="RetentionDateTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="RetentionEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RetentionPeriod" type="xs:int" />
+          <xs:element minOccurs="0" name="RetentionPeriodTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="ScannedPageCount" type="xs:int" />
+          <xs:element minOccurs="0" name="Schema" nillable="true" type="tns:XferDocumentTypeSchemaList" />
+          <xs:element minOccurs="0" name="Site" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Source" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserId" type="xs:int" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Versions" nillable="true" type="tns:XferDocVersionInfoList" />
+          <xs:element minOccurs="0" name="WaitingForImage" type="xs:int" />
+          <xs:element minOccurs="0" name="image" nillable="true" type="tns:XferImage" />
+          <xs:element minOccurs="0" name="metadata" nillable="true" type="tns:ArrayOfXFerMetadata" />
+          <xs:element minOccurs="0" name="schema" nillable="true" type="tns:XferDocumentTypeSchemaList" />
+          <xs:element minOccurs="0" name="versions" nillable="true" type="tns:XferDocVersionInfoList" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="XferDocumentDetails" nillable="true" type="tns:XferDocumentDetails" />
+  <xs:complexType name="ArrayOfXFerMetadata">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="XFerMetadata" nillable="true" type="tns:XFerMetadata" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfXFerMetadata" nillable="true" type="tns:ArrayOfXFerMetadata" />
+  <xs:complexType name="XFerMetadata">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DataType" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="Hidden" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="XFerMetadata" nillable="true" type="tns:XFerMetadata" />
+  <xs:complexType name="XferDocumentTypeSchemaList">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:XferBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChildSchemaLists" nillable="true" type="tns:ArrayOfXferDocumentTypeSchemaList" />
+          <xs:element minOccurs="0" name="DrawerId" type="xs:int" />
+          <xs:element minOccurs="0" name="DrawerName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Schemas" nillable="true" type="tns:ArrayOfXFerDocumentTypeSchema" />
+          <xs:element minOccurs="0" name="SiteName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="XferDocumentTypeSchemaList" nillable="true" type="tns:XferDocumentTypeSchemaList" />
+  <xs:complexType name="ArrayOfXferDocumentTypeSchemaList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="XferDocumentTypeSchemaList" nillable="true" type="tns:XferDocumentTypeSchemaList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfXferDocumentTypeSchemaList" nillable="true" type="tns:ArrayOfXferDocumentTypeSchemaList" />
+  <xs:complexType name="ArrayOfXFerDocumentTypeSchema">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="XFerDocumentTypeSchema" nillable="true" type="tns:XFerDocumentTypeSchema" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfXFerDocumentTypeSchema" nillable="true" type="tns:ArrayOfXFerDocumentTypeSchema" />
+  <xs:complexType name="XFerDocumentTypeSchema">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DataType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KeyValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Length" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PickListItems" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="PicklistName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequiredField" type="xs:boolean" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TypeAHeadValues" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="UserControl" nillable="true" type="tns:ArrayOfXferInputExtensionV2" />
+      <xs:element minOccurs="0" name="ViewOrder" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="XFerDocumentTypeSchema" nillable="true" type="tns:XFerDocumentTypeSchema" />
+  <xs:complexType name="ArrayOfXferInputExtensionV2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="XferInputExtensionV2" nillable="true" type="tns:XferInputExtensionV2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfXferInputExtensionV2" nillable="true" type="tns:ArrayOfXferInputExtensionV2" />
+  <xs:complexType name="XferInputExtensionV2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Properties" nillable="true" type="tns:ArrayOfXferInputExtensionProperty" />
+      <xs:element minOccurs="0" name="TypeId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="XferInputExtensionV2" nillable="true" type="tns:XferInputExtensionV2" />
+  <xs:complexType name="ArrayOfXferInputExtensionProperty">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="XferInputExtensionProperty" nillable="true" type="tns:XferInputExtensionProperty" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfXferInputExtensionProperty" nillable="true" type="tns:ArrayOfXferInputExtensionProperty" />
+  <xs:complexType name="XferInputExtensionProperty">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DataType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExtensionId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="XferInputExtensionProperty" nillable="true" type="tns:XferInputExtensionProperty" />
+  <xs:complexType name="XferDocVersionInfoList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileVersions" nillable="true" type="tns:ArrayOfXferDocVersionInfo" />
+      <xs:element minOccurs="0" name="fileVersions" nillable="true" type="tns:ArrayOfXferDocVersionInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="XferDocVersionInfoList" nillable="true" type="tns:XferDocVersionInfoList" />
+  <xs:complexType name="ArrayOfXferDocVersionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="XferDocVersionInfo" nillable="true" type="tns:XferDocVersionInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfXferDocVersionInfo" nillable="true" type="tns:ArrayOfXferDocVersionInfo" />
+  <xs:complexType name="XferDocVersionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Archived" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateModified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DocFilingInstrID" type="xs:int" />
+      <xs:element minOccurs="0" name="DocImageID" type="xs:int" />
+      <xs:element minOccurs="0" name="DocImageInstrID" type="xs:int" />
+      <xs:element minOccurs="0" name="EncryptedImageRetrievalData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EncryptionTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileSize" type="xs:int" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="tns:XferImage" />
+      <xs:element minOccurs="0" name="ImageTag" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedReason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScannedPageCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SourceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="xs:int" />
+      <xs:element minOccurs="0" name="StorageId" type="xs:int" />
+      <xs:element minOccurs="0" name="Version" type="xs:int" />
+      <xs:element minOccurs="0" name="image" nillable="true" type="tns:XferImage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="XferDocVersionInfo" nillable="true" type="tns:XferDocVersionInfo" />
+</xs:schema>

@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CM.master.cs" Inherits="CollectorsModule.Master.CM" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlantica Seguros | Módulo de Caja</title>
+    <link rel="stylesheet" type="text/css" href="../Content/css/kickstart.min.css">
+    <link rel="stylesheet" type="text/css" href="../Content/css/reset.css">
+    <link href="../Content/css/dtl.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../Content/css/font-awesome.css">
+    <script src="../Scripts/jquery-2.2.0.min.js"></script>
+    <link href="../Scripts/jquery-ui.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Content/css/tooltipster.css" />
+	<script type="text/javascript" src="../Scripts/prettify.js"></script>
+	<script type="text/javascript" src="../Scripts/jquery.tooltipster.js"></script>
+
+    <asp:ContentPlaceHolder ID="ContentHeader" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        #ContentSection_ucClientSearch_gvClients_DXFREditorcol2_DDD_PW-1 
+        {
+            width:25% !important;
+        }
+        .dxgvHeader 
+        {
+            text-align: center !important;
+
+        }
+        #ContentSection_ucSetPoliciesPayments_gvDOPPolicies_tcfooter7, #ContentSection_ucSetPoliciesPayments_gvUSDPolicies_tcfooter7
+        {
+            background: #58AA00;
+            color: white;
+        }
+        #ContentSection_ucSetPoliciesPayments_gvDOPPolicies_tcfooter8, #ContentSection_ucSetPoliciesPayments_gvUSDPolicies_tcfooter8
+        {
+            text-align:right !important;
+        }
+        .dxgvSelectedRow 
+        {
+            color: #0089FF !important;
+            background-color: #E6FFCC !important;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/Scripts/Init_104.js" />
+            </Scripts>
+        </asp:ScriptManager>
+        <div class="wrapper wrapper-fluid box_shw">
+            <asp:Button runat="server" ID="btnLogout" OnClick="btnLogout_Click" UseSubmitBehavior="false" CssClass="btn_out" Text="Salir" />
+        </div>
+        <div id="parentContainerCollectors" class="contenedor cajera_md">
+            <!---<+----cabecera-->
+            <div class="cabecera">
+        	    <div class="logo_atl"></div>
+                <span class="ttl_cj">Módulo de Caja</span>
+                <div class="fr btns_top_mr sz320">
+                    <asp:HyperLink runat="server" CssClass="btn_rosa fr" ID="btnPaymentHistoryPolicy" NavigateUrl="~/Pages/PaymentHistory.aspx" Target="_self">
+                        Historial de Pagos Procesados
+                    </asp:HyperLink>
+                    <asp:HyperLink runat="server" CssClass="btn_rosa bg_azl alignC fr mR" ID="hlkProcessPayment" NavigateUrl="~/Pages/ProcessPayments.aspx" Target="_self">
+                        Procesar Pago Póliza
+                    </asp:HyperLink>
+                     <asp:HyperLink runat="server" CssClass="btn_rosa bg_green alignC fr mR" ID="hlkDailyCash" NavigateUrl="~/Pages/DailyCash.aspx" Target="_self">
+                        Cuadre <br />de Caja
+                    </asp:HyperLink>
+                </div>
+            </div>
+            <!---cabecera---+>/-->
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                <asp:ContentPlaceHolder ID="ContentSection" runat="server">
+        
+                </asp:ContentPlaceHolder>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </form>
+</body>
+</html>

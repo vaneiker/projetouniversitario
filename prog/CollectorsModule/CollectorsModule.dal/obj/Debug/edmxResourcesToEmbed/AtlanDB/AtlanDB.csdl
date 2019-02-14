@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ATLANModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ATLANEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ST_BUSINESS_LINE" EntityType="ATLANModel.ST_BUSINESS_LINE" />
+    <EntitySet Name="ST_OFFICE_CODES" EntityType="ATLANModel.ST_OFFICE_CODES" />
+    <EntitySet Name="ST_PRODUCT_TYPES" EntityType="ATLANModel.ST_PRODUCT_TYPES" />
+    <EntitySet Name="ST_PRODUCTS" EntityType="ATLANModel.ST_PRODUCTS" />
+    <EntitySet Name="VW_ST_PMT_HISTORY" EntityType="ATLANModel.VW_ST_PMT_HISTORY" />
+    <EntitySet Name="VW_ST_PRODUCTS_DESCRIPTIONS" EntityType="ATLANModel.VW_ST_PRODUCTS_DESCRIPTIONS" />
+    <EntitySet Name="ST_CLIENT_POLICY_INFO" EntityType="ATLANModel.ST_CLIENT_POLICY_INFO" />
+    <EntitySet Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT" EntityType="ATLANModel.VW_ST_PMT_PAYMENTS_BY_BARCODE_KT" />
+    <FunctionImport Name="USP_SET_KTAG_BY_PAYMENT" ReturnType="Collection(Decimal)">
+      <Parameter Name="GP_PAYMENT_NUMBER" Mode="In" Type="String" />
+      <Parameter Name="KT_BARCODE" Mode="In" Type="String" />
+      <Parameter Name="ADDITIONAL_INFO" Mode="In" Type="String" />
+      <Parameter Name="BATCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_SET_COLLECTORS_ERRORS_LOG">
+      <Parameter Name="parameters" Mode="In" Type="String" />
+      <Parameter Name="Error_Logged" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_GET_POLICY_HAS_RECENT_PAYMENTS" ReturnType="Collection(Decimal)">
+      <Parameter Name="Policy" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="ST_USERS" EntityType="ATLANModel.ST_USERS" />
+    <EntitySet Name="VW_GET_BANKS_INFORMATION" EntityType="ATLANModel.VW_GET_BANKS_INFORMATION" />
+    <EntitySet Name="ST_CHECKBOOKS" EntityType="ATLANModel.ST_CHECKBOOKS" />
+    <FunctionImport Name="SP_GET_DAILY_CASH_DETAILS" ReturnType="Collection(ATLANModel.SP_GET_DAILY_CASH_DETAILS_Result)">
+      <Parameter Name="Collector" Mode="In" Type="String" />
+      <Parameter Name="PaymentDate" Mode="In" Type="DateTime" />
+      <Parameter Name="PaymentType" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentDateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="ST_BUSINESS_LINE">
+    <Key>
+      <PropertyRef Name="BusinessLine_Id" />
+    </Key>
+    <Property Name="BusinessLine_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BusinessLine_Code" Type="Int32" Nullable="false" />
+    <Property Name="BusinessLine_NameKey" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="BusinessLine_Status" Type="Int32" Nullable="false" />
+    <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ST_OFFICE_CODES">
+    <Key>
+      <PropertyRef Name="Office_Id" />
+    </Key>
+    <Property Name="Office_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Office_Code" Type="Int32" Nullable="false" />
+    <Property Name="Office_NameKey" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Office_Status" Type="Int32" Nullable="false" />
+    <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ST_PRODUCT_TYPES">
+    <Key>
+      <PropertyRef Name="ProductType_Id" />
+    </Key>
+    <Property Name="ProductType_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductType_Code" Type="Int32" Nullable="false" />
+    <Property Name="ProductType_NameKey" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="ProductType_Status" Type="Int32" Nullable="false" />
+    <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ST_PRODUCTS">
+    <Key>
+      <PropertyRef Name="Product_Id" />
+    </Key>
+    <Property Name="Product_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Code" Type="Int32" Nullable="false" />
+    <Property Name="Product_NameKey" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Product_Status" Type="Int32" Nullable="false" />
+    <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="VW_ST_PMT_HISTORY">
+    <Key>
+      <PropertyRef Name="SOURCE_SYSTEM" />
+      <PropertyRef Name="GP_PAYMENT_NUMBER" />
+    </Key>
+    <Property Name="POLICY_NUMBER" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="LINE_OF_BUSINESS" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Name="CUSTNAME" Type="String" MaxLength="65" FixedLength="true" Unicode="false" />
+    <Property Name="CURRENCY_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PAYMENT_AMOUNT" Type="Decimal" Precision="19" Scale="5" />
+    <Property Name="PAYMENT_DATE" Type="DateTime" Precision="3" />
+    <Property Name="PAYMENT_HOUR" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="PAYMENT_TYPE" Type="Int32" />
+    <Property Name="ACCOUNT_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="GP_PAYMENT_NUMBER" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="OFFICE_NUMBER" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Name="RECEIVED_BY" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="SOURCE_SYSTEM" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="KT_BARCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GP_STATUS" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_ST_PRODUCTS_DESCRIPTIONS">
+    <Key>
+      <PropertyRef Name="CODE" />
+    </Key>
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="123" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ST_CLIENT_POLICY_INFO">
+    <Key>
+      <PropertyRef Name="CUSTNAME" />
+      <PropertyRef Name="CLIENT_ID" />
+      <PropertyRef Name="POLICY_NUMBER" />
+      <PropertyRef Name="LINE_OF_BUSINESS" />
+      <PropertyRef Name="POLICY_STATUS" />
+      <PropertyRef Name="PLAN_TYPE" />
+      <PropertyRef Name="CURRENCY_ID" />
+      <PropertyRef Name="OFFICE_NUMBER" />
+      <PropertyRef Name="INTEGRATIONID" />
+    </Key>
+    <Property Name="CUSTNAME" Type="String" Nullable="false" MaxLength="65" FixedLength="true" Unicode="false" />
+    <Property Name="CLIENT_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="POLICY_NUMBER" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="LINE_OF_BUSINESS" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Name="POLICY_STATUS" Type="String" Nullable="false" MaxLength="21" FixedLength="true" Unicode="false" />
+    <Property Name="PLAN_TYPE" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Name="EXPIRATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CURRENCY_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_BALANCE" Type="Decimal" Precision="19" Scale="5" />
+    <Property Name="OFFICE_NUMBER" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Name="INTEGRATIONID" Type="String" Nullable="false" MaxLength="31" FixedLength="true" Unicode="false" />
+    <Property Name="DATE_OF_BIRTH" Type="DateTime" Precision="3" />
+    <Property Name="CORE_CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SUPERVISOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT">
+    <Key>
+      <PropertyRef Name="GP_PAYMENT_NUMBER" />
+      <PropertyRef Name="KT_BARCODE" />
+      <PropertyRef Name="ADDITIONAL_INFO" />
+      <PropertyRef Name="CREATE_DATE" />
+    </Key>
+    <Property Name="GP_PAYMENT_NUMBER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="KT_BARCODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADDITIONAL_INFO" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BATCH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ST_USERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERCODE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="KT_USER" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LEVEL" Type="Int32" Nullable="false" />
+    <Property Name="STATUS" Type="Int32" Nullable="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OFFICE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BANKNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CHECKBOOKID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_GET_BANKS_INFORMATION">
+    <Key>
+      <PropertyRef Name="DEX_ROW_ID" />
+      <PropertyRef Name="BANKID" />
+    </Key>
+    <Property Name="DEX_ROW_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BANKID" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="BANKNAME" Type="String" MaxLength="31" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ST_CHECKBOOKS">
+    <Key>
+      <PropertyRef Name="Checkbook_Id" />
+    </Key>
+    <Property Name="Checkbook_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Checkbook_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Account" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Name_Desc" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Currency_ISO" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Checkbook_Status" Type="Int32" Nullable="false" />
+    <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <ComplexType Name="SP_GET_DAILY_CASH_DETAILS_Result">
+    <Property Type="String" Name="GP_PAYMENT_NUMBER" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="POLICY_NUMBER" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="CUSTNAME" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="PAYMENT_TYPE" Nullable="false" MaxLength="18" />
+    <Property Type="DateTime" Name="PAYMENT_DATETIME" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PAYMENT_DATE" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="PAYMENT_HOUR" Nullable="true" MaxLength="11" />
+    <Property Type="Decimal" Name="PAYMENT_AMOUNT" Nullable="true" Precision="21" Scale="5" />
+    <Property Type="String" Name="CHECKBOOK_ID" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="GP_STATUS" Nullable="true" MaxLength="8" />
+  </ComplexType>
+</Schema>

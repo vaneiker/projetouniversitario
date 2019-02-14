@@ -1,0 +1,1419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GlobalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ST_BANK_ACCOUNT_TYPE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Bank_Account_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Bank_Account_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Bnk_Accnt_Type_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Bnk_Accnt_Type_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_BUSINESS_LINE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Bl_Type_Id" />
+            <PropertyRef Name="Bl_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Bl_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Bl_Id" Type="int" Nullable="false" />
+          <Property Name="Bl_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Bl_Status" Type="int" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+        </EntityType>
+        <EntityType Name="ST_CARD_TYPE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Card_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Card_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Card_Type_Desc" Type="varchar" MaxLength="60" />
+          <Property Name="Credit" Type="bit" />
+          <Property Name="Card_Type_Status" Type="bit" />
+          <Property Name="Create_Date" Type="datetime" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="Hostname" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ST_CURRENCY">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Currency_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Currency_Id" Type="int" Nullable="false" />
+          <Property Name="Currency_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Currency_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_PRODUCT">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Bl_Type_Id" />
+            <PropertyRef Name="Bl_Id" />
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Bl_Type_Id" Type="int" Nullable="false" />
+          <Property Name="Bl_Id" Type="int" Nullable="false" />
+          <Property Name="Product_Id" Type="int" Nullable="false" />
+          <Property Name="Product_Type_Id" Type="int" />
+          <Property Name="Quotation_Limit_Id" Type="int" />
+          <Property Name="Product_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Name_Key" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Policy_Code_Name" Type="varchar" MaxLength="3" />
+          <Property Name="CommRate" Type="varchar" MaxLength="5" />
+          <Property Name="Quotation_Currency_Id" Type="int" Nullable="false" />
+          <Property Name="Sale_Currency_Id" Type="int" Nullable="false" />
+          <Property Name="Assig_Curr_Sale" Type="int" Nullable="false" />
+          <Property Name="Product_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="Modifiable" Type="bit" Nullable="false" />
+          <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Source_ID" Type="varchar" MaxLength="150" />
+          <Property Name="ROW_ID" Type="uniqueidentifier" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Collectors.VW_COLLECTORS_POLICIES_BY_CONTACTID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_COLLECTORS_POLICIES_BY_CONTACTID">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Domesticreg_Id" />
+            <PropertyRef Name="State_Prov_Id" />
+            <PropertyRef Name="City_Id" />
+            <PropertyRef Name="Office_Id" />
+            <PropertyRef Name="Case_Seq_No" />
+            <PropertyRef Name="Hist_Seq_No" />
+            <PropertyRef Name="Policy_No" />
+            <PropertyRef Name="Bl_Desc" />
+            <PropertyRef Name="TotalDueAmount" />
+            <PropertyRef Name="PaidAmount" />
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+          <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+          <Property Name="Office_Id" Type="int" Nullable="false" />
+          <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+          <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+          <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Bussiness_Line_Id" Type="int" />
+          <Property Name="Bussiness_Line_Type" Type="int" />
+          <Property Name="Bl_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Product_Desc" Type="varchar" MaxLength="60" />
+          <Property Name="Product_Id" Type="int" />
+          <Property Name="Currency_Id" Type="int" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="PendingAmount" Type="numeric" Precision="19" Scale="4" />
+          <Property Name="TotalDueAmount" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PaidAmount" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Annual_Premium" Type="numeric" Precision="14" Scale="4" />
+          <Property Name="Expiration_Date" Type="datetime" />
+          <Property Name="Policy_Status_Desc" Type="varchar" MaxLength="60" />
+          <Property Name="Full_Name" Type="varchar" MaxLength="240" />
+          <Property Name="Contact_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Collectors.VW_GET_PAYMENT_HISTORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_GET_PAYMENT_HISTORY">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Domesticreg_Id" />
+            <PropertyRef Name="State_Prov_Id" />
+            <PropertyRef Name="City_Id" />
+            <PropertyRef Name="Office_Id" />
+            <PropertyRef Name="Case_Seq_No" />
+            <PropertyRef Name="Hist_Seq_No" />
+            <PropertyRef Name="Payment_Id" />
+            <PropertyRef Name="Policy_No" />
+            <PropertyRef Name="Currency_Desc" />
+            <PropertyRef Name="Office_Desc" />
+            <PropertyRef Name="Payment_Status_Id" />
+            <PropertyRef Name="Payment_Status_Desc" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Domesticreg_Id" Type="int" Nullable="false" />
+          <Property Name="State_Prov_Id" Type="int" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+          <Property Name="Office_Id" Type="int" Nullable="false" />
+          <Property Name="Case_Seq_No" Type="int" Nullable="false" />
+          <Property Name="Hist_Seq_No" Type="int" Nullable="false" />
+          <Property Name="Payment_Id" Type="int" Nullable="false" />
+          <Property Name="PaymentDet_Id" Type="int" />
+          <Property Name="Policy_No" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Bl_Desc" Type="varchar" MaxLength="60" />
+          <Property Name="Currency_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Office_Desc" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="513" />
+          <Property Name="Due_Date" Type="date" />
+          <Property Name="Due_Amount" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="Paid_Date" Type="date" />
+          <Property Name="Paid_Amount" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="Usd_Credit_Amount" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="Transaction_Date" Type="datetime" />
+          <Property Name="Other_Description" Type="varchar" MaxLength="500" />
+          <Property Name="Order_Id" Type="varchar" MaxLength="32" />
+          <Property Name="Payment_Source_Type_Desc" Type="varchar" MaxLength="60" />
+          <Property Name="Full_Name" Type="varchar" MaxLength="240" />
+          <Property Name="Payment_Status_Id" Type="int" Nullable="false" />
+          <Property Name="Payment_Status_Desc" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Payment_Detail_Status_Id" Type="int" />
+          <Property Name="Payment_Detail_Status_Desc" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Collectors.vwClients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwClients">
+          <Key>
+            
+            <PropertyRef Name="RowKey" />
+          </Key>
+          <Property Name="RowKey" Type="bigint" Nullable="false" />
+          <Property Name="Contact_Id" Type="int" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="60" />
+          <Property Name="Lastname" Type="varchar" MaxLength="60" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="Id" Type="varchar" MaxLength="100" />
+          <Property Name="Policy_No" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Global.VW_GET_TRANSLATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_GET_TRANSLATE">
+          <Key>
+            <PropertyRef Name="Language_Id" />
+            <PropertyRef Name="Literal_Id" />
+            <PropertyRef Name="Literal_Desc" />
+            <PropertyRef Name="Destiny_Language_Id" />
+            <PropertyRef Name="Translated_Literal" />
+          </Key>
+          <Property Name="Language_Id" Type="int" Nullable="false" />
+          <Property Name="Literal_Id" Type="int" Nullable="false" />
+          <Property Name="Literal_Desc" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Destiny_Language_Id" Type="int" Nullable="false" />
+          <Property Name="Translated_Literal" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Security.VWSecurityUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VWSecurityUsers">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="StatusID" />
+            <PropertyRef Name="UserLogin" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="50" />
+          <Property Name="StatusID" Type="bit" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="256" />
+          <Property Name="LastName" Type="varchar" MaxLength="256" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="513" />
+        </EntityType>
+        <Association Name="FK_PROD_BUSSLN">
+          <End Role="ST_BUSINESS_LINE" Type="Self.ST_BUSINESS_LINE" Multiplicity="1" />
+          <End Role="ST_PRODUCT" Type="Self.ST_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_BUSINESS_LINE">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Region_Id" />
+              <PropertyRef Name="Country_Id" />
+              <PropertyRef Name="Bl_Type_Id" />
+              <PropertyRef Name="Bl_Id" />
+            </Principal>
+            <Dependent Role="ST_PRODUCT">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Region_Id" />
+              <PropertyRef Name="Country_Id" />
+              <PropertyRef Name="Bl_Type_Id" />
+              <PropertyRef Name="Bl_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SPC_GET_PAYMENT_HISTORY_WITH_FILTERS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+          <Parameter Name="Corp_Id" Type="int" Mode="In" />
+          <Parameter Name="Region_Id" Type="int" Mode="In" />
+          <Parameter Name="Country_Id" Type="int" Mode="In" />
+          <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+          <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+          <Parameter Name="City_Id" Type="int" Mode="In" />
+          <Parameter Name="Office_Id" Type="int" Mode="In" />
+          <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+          <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+          <Parameter Name="FromTransaction_Date" Type="datetime" Mode="In" />
+          <Parameter Name="ToTransaction_Date" Type="datetime" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Policy_No" Type="varchar" Mode="In" />
+          <Parameter Name="Office_Desc" Type="varchar" Mode="In" />
+          <Parameter Name="Bl_Desc" Type="varchar" Mode="In" />
+          <Parameter Name="Currency_Desc" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_PM_PROVIDER_LOG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+          <Parameter Name="Order_Id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_PM_PROVIDER_PARAMETER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+          <Parameter Name="Provider_Id" Type="int" Mode="In" />
+          <Parameter Name="Transaction_Type_Catalog_Id" Type="int" Mode="In" />
+          <Parameter Name="Provider_Transaction_Type_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+          <Parameter Name="Order_Id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERT_PM_PROVIDER_LOG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+          <Parameter Name="Log_Type_Id" Type="int" Mode="In" />
+          <Parameter Name="Corp_Id" Type="int" Mode="In" />
+          <Parameter Name="Company_Id" Type="int" Mode="In" />
+          <Parameter Name="Project_Id" Type="int" Mode="In" />
+          <Parameter Name="Order_Id" Type="varchar" Mode="In" />
+          <Parameter Name="Log_Desc" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_PM_PAYMENTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+          <Parameter Name="Corp_Id" Type="int" Mode="In" />
+          <Parameter Name="Region_Id" Type="int" Mode="In" />
+          <Parameter Name="Country_Id" Type="int" Mode="In" />
+          <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+          <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+          <Parameter Name="City_Id" Type="int" Mode="In" />
+          <Parameter Name="Office_Id" Type="int" Mode="In" />
+          <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+          <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+          <Parameter Name="Payment_Id" Type="int" Mode="In" />
+          <Parameter Name="Due_Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Periodic_Premium_Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Base_Premium" Type="numeric" Mode="In" />
+          <Parameter Name="Exceptional_premium" Type="numeric" Mode="In" />
+          <Parameter Name="Exceptional_premium2" Type="numeric" Mode="In" />
+          <Parameter Name="Base_Commision" Type="numeric" Mode="In" />
+          <Parameter Name="Base_Commision2" Type="numeric" Mode="In" />
+          <Parameter Name="Exceptional_Commisions" Type="numeric" Mode="In" />
+          <Parameter Name="Exceptional2_Commisions" Type="numeric" Mode="In" />
+          <Parameter Name="Due_Date" Type="date" Mode="In" />
+          <Parameter Name="Paid_Date" Type="date" Mode="In" />
+          <Parameter Name="Paid_Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Payment_Status_Id" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_PM_PAYMENTS_DETAILS_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+          <Parameter Name="Corp_Id" Type="int" Mode="In" />
+          <Parameter Name="Region_Id" Type="int" Mode="In" />
+          <Parameter Name="Country_Id" Type="int" Mode="In" />
+          <Parameter Name="Domesticreg_Id" Type="int" Mode="In" />
+          <Parameter Name="State_Prov_Id" Type="int" Mode="In" />
+          <Parameter Name="City_Id" Type="int" Mode="In" />
+          <Parameter Name="Office_Id" Type="int" Mode="In" />
+          <Parameter Name="Case_Seq_No" Type="int" Mode="In" />
+          <Parameter Name="Hist_Seq_No" Type="int" Mode="In" />
+          <Parameter Name="Payment_Id" Type="int" Mode="In" />
+          <Parameter Name="Relationship_To_Owner_Or_Insured" Type="int" Mode="In" />
+          <Parameter Name="PaymentDet_Id" Type="int" Mode="In" />
+          <Parameter Name="Receipt_Type_Id" Type="int" Mode="In" />
+          <Parameter Name="Payment_Source_Type_Id" Type="int" Mode="In" />
+          <Parameter Name="Payment_Source_Id" Type="int" Mode="In" />
+          <Parameter Name="Account_Type_Id" Type="int" Mode="In" />
+          <Parameter Name="Payment_Control_Id" Type="int" Mode="In" />
+          <Parameter Name="Payment_Detail_Source_Id" Type="varchar" Mode="In" />
+          <Parameter Name="Currency_Id" Type="int" Mode="In" />
+          <Parameter Name="Doc_Type_Id" Type="int" Mode="In" />
+          <Parameter Name="Doc_Category_Id" Type="int" Mode="In" />
+          <Parameter Name="Document_Id" Type="int" Mode="In" />
+          <Parameter Name="Origin_Credit_Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Origin_Debit_Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Usd_Credit_Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Usd_Debit_Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Rate" Type="numeric" Mode="In" />
+          <Parameter Name="Transaction_Date" Type="datetime" Mode="In" />
+          <Parameter Name="Due_Date" Type="date" Mode="In" />
+          <Parameter Name="Posted_Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Posted_Date" Type="datetime" Mode="In" />
+          <Parameter Name="Receipt_Date" Type="datetime" Mode="In" />
+          <Parameter Name="Transaction_Description" Type="varchar" Mode="In" />
+          <Parameter Name="Transaction_Reference" Type="varchar" Mode="In" />
+          <Parameter Name="EFT_Date" Type="date" Mode="In" />
+          <Parameter Name="EFT_ABA_Number" Type="varchar" Mode="In" />
+          <Parameter Name="EFT_Account_Number" Type="varchar" Mode="In" />
+          <Parameter Name="EFT_Account_Holder" Type="varchar" Mode="In" />
+          <Parameter Name="EFT_Account_Holder_Source" Type="varchar" Mode="In" />
+          <Parameter Name="Other_Description" Type="varchar" Mode="In" />
+          <Parameter Name="Result_Code" Type="varchar" Mode="In" />
+          <Parameter Name="Order_Id" Type="varchar" Mode="In" />
+          <Parameter Name="Payment_Status_Id" Type="int" Mode="In" />
+          <Parameter Name="Payment_Status" Type="bit" Mode="In" />
+          <Parameter Name="Seq_No" Type="int" Mode="In" />
+          <Parameter Name="Type_Id" Type="int" Mode="In" />
+          <Parameter Name="Effective_Date" Type="date" Mode="In" />
+          <Parameter Name="Expire_Date" Type="date" Mode="In" />
+          <Parameter Name="Number" Type="varchar" Mode="In" />
+          <Parameter Name="Control_Digit" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_PM_PROVIDER_TRANSACTION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+          <Parameter Name="Provider_Id" Type="int" Mode="In" />
+          <Parameter Name="Transaction_Key_Id" Type="bigint" Mode="In" />
+          <Parameter Name="Transaction_Type_Catalog_Id" Type="int" Mode="In" />
+          <Parameter Name="Provider_Transaction_Type_Id" Type="int" Mode="In" />
+          <Parameter Name="Transaction_Id" Type="varchar" Mode="In" />
+          <Parameter Name="Transaction_Date" Type="datetime" Mode="In" />
+          <Parameter Name="Credit_Card_Number" Type="varchar" Mode="In" />
+          <Parameter Name="Credit_Card_Expiration_Date" Type="varchar" Mode="In" />
+          <Parameter Name="Amount" Type="numeric" Mode="In" />
+          <Parameter Name="Tax" Type="numeric" Mode="In" />
+          <Parameter Name="Response_Code" Type="varchar" Mode="In" />
+          <Parameter Name="Authorization_Code" Type="varchar" Mode="In" />
+          <Parameter Name="Retrieval_Reference_Number" Type="varchar" Mode="In" />
+          <Parameter Name="Order_Id" Type="varchar" Mode="In" />
+          <Parameter Name="Transaction_Extra_Data" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Payments">
+          <Parameter Name="Provider_Id" Type="int" Mode="In" />
+          <Parameter Name="Transaction_Type_Catalog_Id" Type="int" Mode="In" />
+          <Parameter Name="Provider_Transaction_Type_Id" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="GlobalModelStoreContainer">
+          <EntitySet Name="ST_BANK_ACCOUNT_TYPE" EntityType="Self.ST_BANK_ACCOUNT_TYPE" Schema="Global" store:Type="Tables" />
+          <EntitySet Name="ST_BUSINESS_LINE" EntityType="Self.ST_BUSINESS_LINE" Schema="Global" store:Type="Tables" />
+          <EntitySet Name="ST_CARD_TYPE" EntityType="Self.ST_CARD_TYPE" Schema="Global" store:Type="Tables" />
+          <EntitySet Name="ST_CURRENCY" EntityType="Self.ST_CURRENCY" Schema="Global" store:Type="Tables" />
+          <EntitySet Name="ST_PRODUCT" EntityType="Self.ST_PRODUCT" Schema="Global" store:Type="Tables" />
+          <EntitySet Name="VW_COLLECTORS_POLICIES_BY_CONTACTID" EntityType="Self.VW_COLLECTORS_POLICIES_BY_CONTACTID" store:Type="Views" store:Schema="Collectors">
+            <DefiningQuery>SELECT 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Corp_Id] AS [Corp_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Region_Id] AS [Region_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Country_Id] AS [Country_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[State_Prov_Id] AS [State_Prov_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[City_Id] AS [City_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Office_Id] AS [Office_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Case_Seq_No] AS [Case_Seq_No], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Policy_No] AS [Policy_No], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Bussiness_Line_Id] AS [Bussiness_Line_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Bussiness_Line_Type] AS [Bussiness_Line_Type], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Bl_Desc] AS [Bl_Desc], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Product_Desc] AS [Product_Desc], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Product_Id] AS [Product_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Currency_Id] AS [Currency_Id], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[DueDate] AS [DueDate], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[PendingAmount] AS [PendingAmount], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[TotalDueAmount] AS [TotalDueAmount], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[PaidAmount] AS [PaidAmount], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Annual_Premium] AS [Annual_Premium], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Expiration_Date] AS [Expiration_Date], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Policy_Status_Desc] AS [Policy_Status_Desc], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Full_Name] AS [Full_Name], 
+    [VW_COLLECTORS_POLICIES_BY_CONTACTID].[Contact_Id] AS [Contact_Id]
+    FROM [Collectors].[VW_COLLECTORS_POLICIES_BY_CONTACTID] AS [VW_COLLECTORS_POLICIES_BY_CONTACTID]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GET_PAYMENT_HISTORY" EntityType="Self.VW_GET_PAYMENT_HISTORY" store:Type="Views" store:Schema="Collectors">
+            <DefiningQuery>SELECT 
+    [VW_GET_PAYMENT_HISTORY].[Corp_Id] AS [Corp_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Region_Id] AS [Region_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Country_Id] AS [Country_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Domesticreg_Id] AS [Domesticreg_Id], 
+    [VW_GET_PAYMENT_HISTORY].[State_Prov_Id] AS [State_Prov_Id], 
+    [VW_GET_PAYMENT_HISTORY].[City_Id] AS [City_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Office_Id] AS [Office_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Case_Seq_No] AS [Case_Seq_No], 
+    [VW_GET_PAYMENT_HISTORY].[Hist_Seq_No] AS [Hist_Seq_No], 
+    [VW_GET_PAYMENT_HISTORY].[Payment_Id] AS [Payment_Id], 
+    [VW_GET_PAYMENT_HISTORY].[PaymentDet_Id] AS [PaymentDet_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Policy_No] AS [Policy_No], 
+    [VW_GET_PAYMENT_HISTORY].[Bl_Desc] AS [Bl_Desc], 
+    [VW_GET_PAYMENT_HISTORY].[Currency_Desc] AS [Currency_Desc], 
+    [VW_GET_PAYMENT_HISTORY].[Office_Desc] AS [Office_Desc], 
+    [VW_GET_PAYMENT_HISTORY].[UserName] AS [UserName], 
+    [VW_GET_PAYMENT_HISTORY].[Due_Date] AS [Due_Date], 
+    [VW_GET_PAYMENT_HISTORY].[Due_Amount] AS [Due_Amount], 
+    [VW_GET_PAYMENT_HISTORY].[Paid_Date] AS [Paid_Date], 
+    [VW_GET_PAYMENT_HISTORY].[Paid_Amount] AS [Paid_Amount], 
+    [VW_GET_PAYMENT_HISTORY].[Usd_Credit_Amount] AS [Usd_Credit_Amount], 
+    [VW_GET_PAYMENT_HISTORY].[Transaction_Date] AS [Transaction_Date], 
+    [VW_GET_PAYMENT_HISTORY].[Other_Description] AS [Other_Description], 
+    [VW_GET_PAYMENT_HISTORY].[Order_Id] AS [Order_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Payment_Source_Type_Desc] AS [Payment_Source_Type_Desc], 
+    [VW_GET_PAYMENT_HISTORY].[Full_Name] AS [Full_Name], 
+    [VW_GET_PAYMENT_HISTORY].[Payment_Status_Id] AS [Payment_Status_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Payment_Status_Desc] AS [Payment_Status_Desc], 
+    [VW_GET_PAYMENT_HISTORY].[Payment_Detail_Status_Id] AS [Payment_Detail_Status_Id], 
+    [VW_GET_PAYMENT_HISTORY].[Payment_Detail_Status_Desc] AS [Payment_Detail_Status_Desc]
+    FROM [Collectors].[VW_GET_PAYMENT_HISTORY] AS [VW_GET_PAYMENT_HISTORY]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwClients" EntityType="Self.vwClients" store:Type="Views" store:Schema="Collectors">
+            <DefiningQuery>SELECT 
+    [vwClients].[RowKey] AS [RowKey], 
+    [vwClients].[Contact_Id] AS [Contact_Id], 
+    [vwClients].[First_Name] AS [First_Name], 
+    [vwClients].[Lastname] AS [Lastname], 
+    [vwClients].[Dob] AS [Dob], 
+    [vwClients].[Id] AS [Id], 
+    [vwClients].[Policy_No] AS [Policy_No]
+    FROM [Collectors].[vwClients] AS [vwClients]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GET_TRANSLATE" EntityType="Self.VW_GET_TRANSLATE" store:Type="Views" store:Schema="Global">
+            <DefiningQuery>SELECT 
+    [VW_GET_TRANSLATE].[Language_Id] AS [Language_Id], 
+    [VW_GET_TRANSLATE].[Literal_Id] AS [Literal_Id], 
+    [VW_GET_TRANSLATE].[Literal_Desc] AS [Literal_Desc], 
+    [VW_GET_TRANSLATE].[Destiny_Language_Id] AS [Destiny_Language_Id], 
+    [VW_GET_TRANSLATE].[Translated_Literal] AS [Translated_Literal]
+    FROM [Global].[VW_GET_TRANSLATE] AS [VW_GET_TRANSLATE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VWSecurityUsers" EntityType="Self.VWSecurityUsers" store:Type="Views" store:Schema="Security">
+            <DefiningQuery>SELECT 
+    [VWSecurityUsers].[UserID] AS [UserID], 
+    [VWSecurityUsers].[UserCode] AS [UserCode], 
+    [VWSecurityUsers].[StatusID] AS [StatusID], 
+    [VWSecurityUsers].[FirstName] AS [FirstName], 
+    [VWSecurityUsers].[LastName] AS [LastName], 
+    [VWSecurityUsers].[UserLogin] AS [UserLogin], 
+    [VWSecurityUsers].[Email] AS [Email], 
+    [VWSecurityUsers].[FullName] AS [FullName]
+    FROM [Security].[VWSecurityUsers] AS [VWSecurityUsers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PROD_BUSSLN" Association="Self.FK_PROD_BUSSLN">
+            <End Role="ST_BUSINESS_LINE" EntitySet="ST_BUSINESS_LINE" />
+            <End Role="ST_PRODUCT" EntitySet="ST_PRODUCT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GlobalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GlobalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ST_BANK_ACCOUNT_TYPE" EntityType="GlobalModel.ST_BANK_ACCOUNT_TYPE" />
+          <FunctionImport Name="SPC_GET_PAYMENT_HISTORY_WITH_FILTERS" ReturnType="Collection(GlobalModel.SPC_GET_PAYMENT_HISTORY_WITH_FILTERS_Result)">
+            <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+            <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+            <Parameter Name="City_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+            <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+            <Parameter Name="FromTransaction_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="ToTransaction_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Policy_No" Mode="In" Type="String" />
+            <Parameter Name="Office_Desc" Mode="In" Type="String" />
+            <Parameter Name="Bl_Desc" Mode="In" Type="String" />
+            <Parameter Name="Currency_Desc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY" ReturnType="Collection(GlobalModel.SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY_Result)">
+            <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Transaction_Type_Catalog_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Provider_Transaction_Type_Id" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_PM_PROVIDER_PARAMETER" ReturnType="Collection(GlobalModel.SP_GET_PM_PROVIDER_PARAMETER_Result)">
+            <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Transaction_Type_Catalog_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Provider_Transaction_Type_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_PM_PROVIDER_TRANSACTION" ReturnType="Collection(GlobalModel.SP_SET_PM_PROVIDER_TRANSACTION_Result)">
+            <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Transaction_Key_Id" Mode="In" Type="Int64" />
+            <Parameter Name="Transaction_Type_Catalog_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Provider_Transaction_Type_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Transaction_Id" Mode="In" Type="String" />
+            <Parameter Name="Transaction_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Credit_Card_Number" Mode="In" Type="String" />
+            <Parameter Name="Credit_Card_Expiration_Date" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Tax" Mode="In" Type="Decimal" />
+            <Parameter Name="Response_Code" Mode="In" Type="String" />
+            <Parameter Name="Authorization_Code" Mode="In" Type="String" />
+            <Parameter Name="Retrieval_Reference_Number" Mode="In" Type="String" />
+            <Parameter Name="Order_Id" Mode="In" Type="String" />
+            <Parameter Name="Transaction_Extra_Data" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_PM_PROVIDER_LOG" ReturnType="Collection(GlobalModel.SP_GET_PM_PROVIDER_LOG_Result)">
+          <Parameter Name="Order_Id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERT_PM_PROVIDER_LOG" ReturnType="Collection(Int32)">
+            <Parameter Name="Log_Type_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Company_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Project_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Order_Id" Mode="In" Type="String" />
+            <Parameter Name="Log_Desc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID" ReturnType="Collection(GlobalModel.SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID_Result)">
+          <Parameter Name="Order_Id" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="vwClients" EntityType="GlobalModel.vwClient" />
+          <EntitySet Name="ST_CARD_TYPE" EntityType="GlobalModel.ST_CARD_TYPE" />
+          <FunctionImport Name="SP_SET_PM_PAYMENTS" ReturnType="Collection(GlobalModel.SP_SET_PM_PAYMENTS_Result)">
+            <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+            <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+            <Parameter Name="City_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+            <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Due_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Periodic_Premium_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Base_Premium" Mode="In" Type="Decimal" />
+            <Parameter Name="Exceptional_premium" Mode="In" Type="Decimal" />
+            <Parameter Name="Exceptional_premium2" Mode="In" Type="Decimal" />
+            <Parameter Name="Base_Commision" Mode="In" Type="Decimal" />
+            <Parameter Name="Base_Commision2" Mode="In" Type="Decimal" />
+            <Parameter Name="Exceptional_Commisions" Mode="In" Type="Decimal" />
+            <Parameter Name="Exceptional2_Commisions" Mode="In" Type="Decimal" />
+            <Parameter Name="Due_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Paid_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Paid_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Payment_Status_Id" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_PM_PAYMENTS_DETAILS_ALL" ReturnType="Collection(GlobalModel.SP_SET_PM_PAYMENTS_DETAILS_ALL_Result)">
+            <Parameter Name="Corp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Region_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Domesticreg_Id" Mode="In" Type="Int32" />
+            <Parameter Name="State_Prov_Id" Mode="In" Type="Int32" />
+            <Parameter Name="City_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Office_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Case_Seq_No" Mode="In" Type="Int32" />
+            <Parameter Name="Hist_Seq_No" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Relationship_To_Owner_Or_Insured" Mode="In" Type="Int32" />
+            <Parameter Name="PaymentDet_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Receipt_Type_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Source_Type_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Source_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Account_Type_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Control_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Detail_Source_Id" Mode="In" Type="String" />
+            <Parameter Name="Currency_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Doc_Type_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Doc_Category_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Document_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Origin_Credit_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Origin_Debit_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Usd_Credit_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Usd_Debit_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Rate" Mode="In" Type="Decimal" />
+            <Parameter Name="Transaction_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Due_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Posted_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Posted_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Receipt_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Transaction_Description" Mode="In" Type="String" />
+            <Parameter Name="Transaction_Reference" Mode="In" Type="String" />
+            <Parameter Name="EFT_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="EFT_ABA_Number" Mode="In" Type="String" />
+            <Parameter Name="EFT_Account_Number" Mode="In" Type="String" />
+            <Parameter Name="EFT_Account_Holder" Mode="In" Type="String" />
+            <Parameter Name="EFT_Account_Holder_Source" Mode="In" Type="String" />
+            <Parameter Name="Other_Description" Mode="In" Type="String" />
+            <Parameter Name="Result_Code" Mode="In" Type="String" />
+            <Parameter Name="Order_Id" Mode="In" Type="String" />
+            <Parameter Name="Payment_Status_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Payment_Status" Mode="In" Type="Boolean" />
+            <Parameter Name="Seq_No" Mode="In" Type="Int32" />
+            <Parameter Name="Type_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Effective_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Expire_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Number" Mode="In" Type="String" />
+            <Parameter Name="Control_Digit" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="ST_CURRENCY" EntityType="GlobalModel.ST_CURRENCY" />
+          <EntitySet Name="ST_BUSINESS_LINE" EntityType="GlobalModel.ST_BUSINESS_LINE" />
+          <EntitySet Name="ST_PRODUCT" EntityType="GlobalModel.ST_PRODUCT" />
+          <AssociationSet Name="FK_PROD_BUSSLN" Association="GlobalModel.FK_PROD_BUSSLN">
+            <End Role="ST_BUSINESS_LINE" EntitySet="ST_BUSINESS_LINE" />
+            <End Role="ST_PRODUCT" EntitySet="ST_PRODUCT" />
+          </AssociationSet>
+          <EntitySet Name="VW_COLLECTORS_POLICIES_BY_CONTACTID" EntityType="GlobalModel.VW_COLLECTORS_POLICIES_BY_CONTACTID" />
+          <EntitySet Name="VW_GET_TRANSLATE" EntityType="GlobalModel.VW_GET_TRANSLATE" />
+          <EntitySet Name="VW_GET_PAYMENT_HISTORY" EntityType="GlobalModel.VW_GET_PAYMENT_HISTORY" />
+          <EntitySet Name="VWSecurityUsers" EntityType="GlobalModel.VWSecurityUser" />
+        </EntityContainer>
+        <EntityType Name="ST_BANK_ACCOUNT_TYPE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Bank_Account_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bank_Account_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bnk_Accnt_Type_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Bnk_Accnt_Type_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SPC_GET_PAYMENT_HISTORY_WITH_FILTERS_Result">
+          <Property Type="Int32" Name="Corp_Id" Nullable="false" />
+          <Property Type="Int32" Name="Region_Id" Nullable="false" />
+          <Property Type="Int32" Name="Country_Id" Nullable="false" />
+          <Property Type="Int32" Name="Domesticreg_Id" Nullable="false" />
+          <Property Type="Int32" Name="State_Prov_Id" Nullable="false" />
+          <Property Type="Int32" Name="City_Id" Nullable="false" />
+          <Property Type="Int32" Name="Office_Id" Nullable="false" />
+          <Property Type="Int32" Name="Case_Seq_No" Nullable="false" />
+          <Property Type="Int32" Name="Hist_Seq_No" Nullable="false" />
+          <Property Type="Int32" Name="Payment_Id" Nullable="false" />
+          <Property Type="Int32" Name="PaymentDet_Id" Nullable="true" />
+          <Property Type="String" Name="Policy_No" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="Bl_Desc" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Currency_Desc" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="Office_Desc" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="513" />
+          <Property Type="DateTime" Name="Due_Date" Nullable="true" />
+          <Property Type="Decimal" Name="Due_Amount" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="DateTime" Name="Paid_Date" Nullable="true" />
+          <Property Type="Decimal" Name="Paid_Amount" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="Decimal" Name="Usd_Credit_Amount" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="DateTime" Name="Transaction_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Other_Description" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Order_Id" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="Payment_Source_Type_Desc" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="Payment_Status_Id" Nullable="false" />
+          <Property Type="String" Name="Payment_Status_Desc" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="Payment_Detail_Status_Id" Nullable="true" />
+          <Property Type="String" Name="Payment_Detail_Status_Desc" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY_Result">
+          <Property Type="Int32" Name="Provider_Id" Nullable="true" />
+          <Property Type="Int32" Name="Transaction_Key_Id" Nullable="true" />
+          <Property Type="String" Name="Order_Id" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="Transaction_Id" Nullable="true" MaxLength="6" />
+          <Property Type="DateTime" Name="Transaction_Date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Transaction_Type_Catalog_Id" Nullable="true" />
+          <Property Type="Int32" Name="Provider_Transaction_Type_Id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_PM_PROVIDER_PARAMETER_Result">
+          <Property Type="Int32" Name="Provider_Id" Nullable="false" />
+          <Property Type="Int32" Name="Transaction_Type_Catalog_Id" Nullable="false" />
+          <Property Type="Int32" Name="Provider_Transaction_Type_Id" Nullable="false" />
+          <Property Type="Int32" Name="Parameter_Id" Nullable="false" />
+          <Property Type="Int32" Name="Parameter_Type_Value_Id" Nullable="false" />
+          <Property Type="String" Name="Parameter_Name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Parameter_Value" Nullable="true" />
+          <Property Type="String" Name="Parameter_Type_Value_Desc" Nullable="false" MaxLength="150" />
+          <Property Type="Decimal" Name="Order_By" Nullable="false" Precision="5" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_PM_PROVIDER_TRANSACTION_Result">
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Provider_Id" Nullable="true" />
+          <Property Type="Int32" Name="Transaction_Key_Id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_PM_PROVIDER_LOG_Result">
+          <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+          <Property Type="Int32" Name="Company_Id" Nullable="true" />
+          <Property Type="Int32" Name="Project_Id" Nullable="true" />
+          <Property Type="String" Name="Order_Id" Nullable="false" MaxLength="32" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID_Result">
+          <Property Type="Int32" Name="Provider_Id" Nullable="false" />
+          <Property Type="Int64" Name="Transaction_Key_Id" Nullable="false" />
+          <Property Type="Int32" Name="Transaction_Type_Catalog_Id" Nullable="true" />
+          <Property Type="Int32" Name="Provider_Transaction_Type_Id" Nullable="true" />
+          <Property Type="String" Name="Transaction_Id" Nullable="false" MaxLength="6" />
+          <Property Type="DateTime" Name="Transaction_Date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Credit_Card_Number" Nullable="true" MaxLength="16" />
+          <Property Type="String" Name="Credit_Card_Expiration_Date" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="Amount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Tax" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Response_Code" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="Authorization_Code" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="Retrieval_Reference_Number" Nullable="true" MaxLength="19" />
+          <Property Type="String" Name="Order_Id" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="Transaction_Extra_Data" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="vwClient">
+          <Key>
+            <PropertyRef Name="RowKey" />
+          </Key>
+          <Property Name="RowKey" Type="Int64" Nullable="false" />
+          <Property Name="Contact_Id" Type="Int32" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Policy_No" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ST_CARD_TYPE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Card_Type_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Card_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Card_Type_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Credit" Type="Boolean" />
+          <Property Name="Card_Type_Status" Type="Boolean" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="Hostname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SP_SET_PM_PAYMENTS_Result">
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+          <Property Type="Int32" Name="Region_Id" Nullable="true" />
+          <Property Type="Int32" Name="Country_Id" Nullable="true" />
+          <Property Type="Int32" Name="Domesticreg_Id" Nullable="true" />
+          <Property Type="Int32" Name="State_Prov_Id" Nullable="true" />
+          <Property Type="Int32" Name="City_Id" Nullable="true" />
+          <Property Type="Int32" Name="Office_Id" Nullable="true" />
+          <Property Type="Int32" Name="Case_Seq_No" Nullable="true" />
+          <Property Type="Int32" Name="Hist_Seq_No" Nullable="true" />
+          <Property Type="Int32" Name="Payment_Id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_PM_PAYMENTS_DETAILS_ALL_Result">
+          <Property Type="Int32" Name="Corp_Id" Nullable="true" />
+          <Property Type="Int32" Name="Region_Id" Nullable="true" />
+          <Property Type="Int32" Name="Country_Id" Nullable="true" />
+          <Property Type="Int32" Name="Domesticreg_Id" Nullable="true" />
+          <Property Type="Int32" Name="State_Prov_Id" Nullable="true" />
+          <Property Type="Int32" Name="City_Id" Nullable="true" />
+          <Property Type="Int32" Name="Office_Id" Nullable="true" />
+          <Property Type="Int32" Name="Case_Seq_No" Nullable="true" />
+          <Property Type="Int32" Name="Hist_Seq_No" Nullable="true" />
+          <Property Type="Int32" Name="Payment_Id" Nullable="true" />
+          <Property Type="Int32" Name="PaymentDet_Id" Nullable="true" />
+          <Property Type="Int32" Name="Seq_No" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="ST_CURRENCY">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Currency_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Currency_Id" Type="Int32" Nullable="false" />
+          <Property Name="Currency_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Currency_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ST_BUSINESS_LINE">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Bl_Type_Id" />
+            <PropertyRef Name="Bl_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bl_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bl_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bl_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Bl_Status" Type="Int32" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <NavigationProperty Name="ST_PRODUCT" Relationship="GlobalModel.FK_PROD_BUSSLN" FromRole="ST_BUSINESS_LINE" ToRole="ST_PRODUCT" />
+        </EntityType>
+        <EntityType Name="ST_PRODUCT">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Bl_Type_Id" />
+            <PropertyRef Name="Bl_Id" />
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bl_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bl_Id" Type="Int32" Nullable="false" />
+          <Property Name="Product_Id" Type="Int32" Nullable="false" />
+          <Property Name="Product_Type_Id" Type="Int32" />
+          <Property Name="Quotation_Limit_Id" Type="Int32" />
+          <Property Name="Product_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Name_Key" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Policy_Code_Name" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CommRate" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Quotation_Currency_Id" Type="Int32" Nullable="false" />
+          <Property Name="Sale_Currency_Id" Type="Int32" Nullable="false" />
+          <Property Name="Assig_Curr_Sale" Type="Int32" Nullable="false" />
+          <Property Name="Product_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="Modifiable" Type="Boolean" Nullable="false" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Source_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ROW_ID" Type="Guid" />
+          <NavigationProperty Name="ST_BUSINESS_LINE" Relationship="GlobalModel.FK_PROD_BUSSLN" FromRole="ST_PRODUCT" ToRole="ST_BUSINESS_LINE" />
+        </EntityType>
+        <Association Name="FK_PROD_BUSSLN">
+          <End Type="GlobalModel.ST_BUSINESS_LINE" Role="ST_BUSINESS_LINE" Multiplicity="1" />
+          <End Type="GlobalModel.ST_PRODUCT" Role="ST_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ST_BUSINESS_LINE">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Region_Id" />
+              <PropertyRef Name="Country_Id" />
+              <PropertyRef Name="Bl_Type_Id" />
+              <PropertyRef Name="Bl_Id" />
+            </Principal>
+            <Dependent Role="ST_PRODUCT">
+              <PropertyRef Name="Corp_Id" />
+              <PropertyRef Name="Region_Id" />
+              <PropertyRef Name="Country_Id" />
+              <PropertyRef Name="Bl_Type_Id" />
+              <PropertyRef Name="Bl_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VW_COLLECTORS_POLICIES_BY_CONTACTID">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Domesticreg_Id" />
+            <PropertyRef Name="State_Prov_Id" />
+            <PropertyRef Name="City_Id" />
+            <PropertyRef Name="Office_Id" />
+            <PropertyRef Name="Case_Seq_No" />
+            <PropertyRef Name="Hist_Seq_No" />
+            <PropertyRef Name="Policy_No" />
+            <PropertyRef Name="Bl_Desc" />
+            <PropertyRef Name="TotalDueAmount" />
+            <PropertyRef Name="PaidAmount" />
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+          <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <Property Name="Office_Id" Type="Int32" Nullable="false" />
+          <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+          <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+          <Property Name="Policy_No" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Bussiness_Line_Id" Type="Int32" />
+          <Property Name="Bussiness_Line_Type" Type="Int32" />
+          <Property Name="Bl_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Product_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Product_Id" Type="Int32" />
+          <Property Name="Currency_Id" Type="Int32" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="PendingAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalDueAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PaidAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Annual_Premium" Type="Decimal" Precision="14" Scale="4" />
+          <Property Name="Expiration_Date" Type="DateTime" Precision="3" />
+          <Property Name="Policy_Status_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Full_Name" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_GET_TRANSLATE">
+          <Key>
+            <PropertyRef Name="Language_Id" />
+            <PropertyRef Name="Literal_Id" />
+            <PropertyRef Name="Literal_Desc" />
+            <PropertyRef Name="Destiny_Language_Id" />
+            <PropertyRef Name="Translated_Literal" />
+          </Key>
+          <Property Name="Language_Id" Type="Int32" Nullable="false" />
+          <Property Name="Literal_Id" Type="Int32" Nullable="false" />
+          <Property Name="Literal_Desc" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Destiny_Language_Id" Type="Int32" Nullable="false" />
+          <Property Name="Translated_Literal" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_GET_PAYMENT_HISTORY">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Region_Id" />
+            <PropertyRef Name="Country_Id" />
+            <PropertyRef Name="Domesticreg_Id" />
+            <PropertyRef Name="State_Prov_Id" />
+            <PropertyRef Name="City_Id" />
+            <PropertyRef Name="Office_Id" />
+            <PropertyRef Name="Case_Seq_No" />
+            <PropertyRef Name="Hist_Seq_No" />
+            <PropertyRef Name="Payment_Id" />
+            <PropertyRef Name="Policy_No" />
+            <PropertyRef Name="Currency_Desc" />
+            <PropertyRef Name="Office_Desc" />
+            <PropertyRef Name="Payment_Status_Id" />
+            <PropertyRef Name="Payment_Status_Desc" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Domesticreg_Id" Type="Int32" Nullable="false" />
+          <Property Name="State_Prov_Id" Type="Int32" Nullable="false" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <Property Name="Office_Id" Type="Int32" Nullable="false" />
+          <Property Name="Case_Seq_No" Type="Int32" Nullable="false" />
+          <Property Name="Hist_Seq_No" Type="Int32" Nullable="false" />
+          <Property Name="Payment_Id" Type="Int32" Nullable="false" />
+          <Property Name="PaymentDet_Id" Type="Int32" />
+          <Property Name="Policy_No" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Bl_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Currency_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Office_Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="513" FixedLength="false" Unicode="false" />
+          <Property Name="Due_Date" Type="DateTime" Precision="0" />
+          <Property Name="Due_Amount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Paid_Date" Type="DateTime" Precision="0" />
+          <Property Name="Paid_Amount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Usd_Credit_Amount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Transaction_Date" Type="DateTime" Precision="3" />
+          <Property Name="Other_Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Order_Id" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_Source_Type_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Full_Name" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_Status_Id" Type="Int32" Nullable="false" />
+          <Property Name="Payment_Status_Desc" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_Detail_Status_Id" Type="Int32" />
+          <Property Name="Payment_Detail_Status_Desc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VWSecurityUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="StatusID" />
+            <PropertyRef Name="UserLogin" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StatusID" Type="Boolean" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="513" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GlobalModelStoreContainer" CdmEntityContainer="GlobalEntities">
+          <EntitySetMapping Name="ST_BANK_ACCOUNT_TYPE">
+            <EntityTypeMapping TypeName="GlobalModel.ST_BANK_ACCOUNT_TYPE">
+              <MappingFragment StoreEntitySet="ST_BANK_ACCOUNT_TYPE">
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Bnk_Accnt_Type_Status" ColumnName="Bnk_Accnt_Type_Status" />
+                <ScalarProperty Name="Bnk_Accnt_Type_Desc" ColumnName="Bnk_Accnt_Type_Desc" />
+                <ScalarProperty Name="Bank_Account_Type_Id" ColumnName="Bank_Account_Type_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPC_GET_PAYMENT_HISTORY_WITH_FILTERS" FunctionName="GlobalModel.Store.SPC_GET_PAYMENT_HISTORY_WITH_FILTERS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SPC_GET_PAYMENT_HISTORY_WITH_FILTERS_Result">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+                <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+                <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+                <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+                <ScalarProperty Name="PaymentDet_Id" ColumnName="PaymentDet_Id" />
+                <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+                <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+                <ScalarProperty Name="Currency_Desc" ColumnName="Currency_Desc" />
+                <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Due_Date" ColumnName="Due_Date" />
+                <ScalarProperty Name="Due_Amount" ColumnName="Due_Amount" />
+                <ScalarProperty Name="Paid_Date" ColumnName="Paid_Date" />
+                <ScalarProperty Name="Paid_Amount" ColumnName="Paid_Amount" />
+                <ScalarProperty Name="Usd_Credit_Amount" ColumnName="Usd_Credit_Amount" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="Other_Description" ColumnName="Other_Description" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Payment_Source_Type_Desc" ColumnName="Payment_Source_Type_Desc" />
+                <ScalarProperty Name="Payment_Status_Id" ColumnName="Payment_Status_Id" />
+                <ScalarProperty Name="Payment_Status_Desc" ColumnName="Payment_Status_Desc" />
+                <ScalarProperty Name="Payment_Detail_Status_Id" ColumnName="Payment_Detail_Status_Id" />
+                <ScalarProperty Name="Payment_Detail_Status_Desc" ColumnName="Payment_Detail_Status_Desc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY" FunctionName="GlobalModel.Store.SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY_Result">
+                <ScalarProperty Name="Provider_Id" ColumnName="Provider_Id" />
+                <ScalarProperty Name="Transaction_Key_Id" ColumnName="Transaction_Key_Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Transaction_Id" ColumnName="Transaction_Id" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="Transaction_Type_Catalog_Id" ColumnName="Transaction_Type_Catalog_Id" />
+                <ScalarProperty Name="Provider_Transaction_Type_Id" ColumnName="Provider_Transaction_Type_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_PM_PROVIDER_PARAMETER" FunctionName="GlobalModel.Store.SP_GET_PM_PROVIDER_PARAMETER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_GET_PM_PROVIDER_PARAMETER_Result">
+                <ScalarProperty Name="Provider_Id" ColumnName="Provider_Id" />
+                <ScalarProperty Name="Transaction_Type_Catalog_Id" ColumnName="Transaction_Type_Catalog_Id" />
+                <ScalarProperty Name="Provider_Transaction_Type_Id" ColumnName="Provider_Transaction_Type_Id" />
+                <ScalarProperty Name="Parameter_Id" ColumnName="Parameter_Id" />
+                <ScalarProperty Name="Parameter_Type_Value_Id" ColumnName="Parameter_Type_Value_Id" />
+                <ScalarProperty Name="Parameter_Name" ColumnName="Parameter_Name" />
+                <ScalarProperty Name="Parameter_Value" ColumnName="Parameter_Value" />
+                <ScalarProperty Name="Parameter_Type_Value_Desc" ColumnName="Parameter_Type_Value_Desc" />
+                <ScalarProperty Name="Order_By" ColumnName="Order_By" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_PM_PROVIDER_TRANSACTION" FunctionName="GlobalModel.Store.SP_SET_PM_PROVIDER_TRANSACTION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_SET_PM_PROVIDER_TRANSACTION_Result">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Provider_Id" ColumnName="Provider_Id" />
+                <ScalarProperty Name="Transaction_Key_Id" ColumnName="Transaction_Key_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_PM_PROVIDER_LOG" FunctionName="GlobalModel.Store.SP_GET_PM_PROVIDER_LOG">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_GET_PM_PROVIDER_LOG_Result">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+                <ScalarProperty Name="Project_Id" ColumnName="Project_Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_INSERT_PM_PROVIDER_LOG" FunctionName="GlobalModel.Store.SP_INSERT_PM_PROVIDER_LOG" />
+          <FunctionImportMapping FunctionImportName="SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID" FunctionName="GlobalModel.Store.SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID_Result">
+                <ScalarProperty Name="Provider_Id" ColumnName="Provider_Id" />
+                <ScalarProperty Name="Transaction_Key_Id" ColumnName="Transaction_Key_Id" />
+                <ScalarProperty Name="Transaction_Type_Catalog_Id" ColumnName="Transaction_Type_Catalog_Id" />
+                <ScalarProperty Name="Provider_Transaction_Type_Id" ColumnName="Provider_Transaction_Type_Id" />
+                <ScalarProperty Name="Transaction_Id" ColumnName="Transaction_Id" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="Credit_Card_Number" ColumnName="Credit_Card_Number" />
+                <ScalarProperty Name="Credit_Card_Expiration_Date" ColumnName="Credit_Card_Expiration_Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Response_Code" ColumnName="Response_Code" />
+                <ScalarProperty Name="Authorization_Code" ColumnName="Authorization_Code" />
+                <ScalarProperty Name="Retrieval_Reference_Number" ColumnName="Retrieval_Reference_Number" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Transaction_Extra_Data" ColumnName="Transaction_Extra_Data" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="vwClients">
+            <EntityTypeMapping TypeName="GlobalModel.vwClient">
+              <MappingFragment StoreEntitySet="vwClients">
+                <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="RowKey" ColumnName="RowKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_CARD_TYPE">
+            <EntityTypeMapping TypeName="GlobalModel.ST_CARD_TYPE">
+              <MappingFragment StoreEntitySet="ST_CARD_TYPE">
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Card_Type_Status" ColumnName="Card_Type_Status" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Card_Type_Desc" ColumnName="Card_Type_Desc" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Card_Type_Id" ColumnName="Card_Type_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_PM_PAYMENTS" FunctionName="GlobalModel.Store.SP_SET_PM_PAYMENTS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_SET_PM_PAYMENTS_Result">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+                <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+                <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+                <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_PM_PAYMENTS_DETAILS_ALL" FunctionName="GlobalModel.Store.SP_SET_PM_PAYMENTS_DETAILS_ALL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_SET_PM_PAYMENTS_DETAILS_ALL_Result">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+                <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+                <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+                <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+                <ScalarProperty Name="PaymentDet_Id" ColumnName="PaymentDet_Id" />
+                <ScalarProperty Name="Seq_No" ColumnName="Seq_No" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="ST_CURRENCY">
+            <EntityTypeMapping TypeName="GlobalModel.ST_CURRENCY">
+              <MappingFragment StoreEntitySet="ST_CURRENCY">
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Currency_Status" ColumnName="Currency_Status" />
+                <ScalarProperty Name="Currency_Desc" ColumnName="Currency_Desc" />
+                <ScalarProperty Name="Currency_Id" ColumnName="Currency_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_BUSINESS_LINE">
+            <EntityTypeMapping TypeName="GlobalModel.ST_BUSINESS_LINE">
+              <MappingFragment StoreEntitySet="ST_BUSINESS_LINE">
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Bl_Status" ColumnName="Bl_Status" />
+                <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+                <ScalarProperty Name="Bl_Id" ColumnName="Bl_Id" />
+                <ScalarProperty Name="Bl_Type_Id" ColumnName="Bl_Type_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_PRODUCT">
+            <EntityTypeMapping TypeName="GlobalModel.ST_PRODUCT">
+              <MappingFragment StoreEntitySet="ST_PRODUCT">
+                <ScalarProperty Name="ROW_ID" ColumnName="ROW_ID" />
+                <ScalarProperty Name="Source_ID" ColumnName="Source_ID" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="Modifiable" ColumnName="Modifiable" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Product_Status" ColumnName="Product_Status" />
+                <ScalarProperty Name="Assig_Curr_Sale" ColumnName="Assig_Curr_Sale" />
+                <ScalarProperty Name="Sale_Currency_Id" ColumnName="Sale_Currency_Id" />
+                <ScalarProperty Name="Quotation_Currency_Id" ColumnName="Quotation_Currency_Id" />
+                <ScalarProperty Name="CommRate" ColumnName="CommRate" />
+                <ScalarProperty Name="Policy_Code_Name" ColumnName="Policy_Code_Name" />
+                <ScalarProperty Name="Name_Key" ColumnName="Name_Key" />
+                <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+                <ScalarProperty Name="Quotation_Limit_Id" ColumnName="Quotation_Limit_Id" />
+                <ScalarProperty Name="Product_Type_Id" ColumnName="Product_Type_Id" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Bl_Id" ColumnName="Bl_Id" />
+                <ScalarProperty Name="Bl_Type_Id" ColumnName="Bl_Type_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_COLLECTORS_POLICIES_BY_CONTACTID">
+            <EntityTypeMapping TypeName="GlobalModel.VW_COLLECTORS_POLICIES_BY_CONTACTID">
+              <MappingFragment StoreEntitySet="VW_COLLECTORS_POLICIES_BY_CONTACTID">
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Policy_Status_Desc" ColumnName="Policy_Status_Desc" />
+                <ScalarProperty Name="Expiration_Date" ColumnName="Expiration_Date" />
+                <ScalarProperty Name="Annual_Premium" ColumnName="Annual_Premium" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="TotalDueAmount" ColumnName="TotalDueAmount" />
+                <ScalarProperty Name="PendingAmount" ColumnName="PendingAmount" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Currency_Id" ColumnName="Currency_Id" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+                <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+                <ScalarProperty Name="Bussiness_Line_Type" ColumnName="Bussiness_Line_Type" />
+                <ScalarProperty Name="Bussiness_Line_Id" ColumnName="Bussiness_Line_Id" />
+                <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+                <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+                <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+                <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+                <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GET_TRANSLATE">
+            <EntityTypeMapping TypeName="GlobalModel.VW_GET_TRANSLATE">
+              <MappingFragment StoreEntitySet="VW_GET_TRANSLATE">
+                <ScalarProperty Name="Translated_Literal" ColumnName="Translated_Literal" />
+                <ScalarProperty Name="Destiny_Language_Id" ColumnName="Destiny_Language_Id" />
+                <ScalarProperty Name="Literal_Desc" ColumnName="Literal_Desc" />
+                <ScalarProperty Name="Literal_Id" ColumnName="Literal_Id" />
+                <ScalarProperty Name="Language_Id" ColumnName="Language_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GET_PAYMENT_HISTORY">
+            <EntityTypeMapping TypeName="GlobalModel.VW_GET_PAYMENT_HISTORY">
+              <MappingFragment StoreEntitySet="VW_GET_PAYMENT_HISTORY">
+                <ScalarProperty Name="Payment_Detail_Status_Desc" ColumnName="Payment_Detail_Status_Desc" />
+                <ScalarProperty Name="Payment_Detail_Status_Id" ColumnName="Payment_Detail_Status_Id" />
+                <ScalarProperty Name="Payment_Status_Desc" ColumnName="Payment_Status_Desc" />
+                <ScalarProperty Name="Payment_Status_Id" ColumnName="Payment_Status_Id" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Payment_Source_Type_Desc" ColumnName="Payment_Source_Type_Desc" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Other_Description" ColumnName="Other_Description" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="Usd_Credit_Amount" ColumnName="Usd_Credit_Amount" />
+                <ScalarProperty Name="Paid_Amount" ColumnName="Paid_Amount" />
+                <ScalarProperty Name="Paid_Date" ColumnName="Paid_Date" />
+                <ScalarProperty Name="Due_Amount" ColumnName="Due_Amount" />
+                <ScalarProperty Name="Due_Date" ColumnName="Due_Date" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+                <ScalarProperty Name="Currency_Desc" ColumnName="Currency_Desc" />
+                <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+                <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+                <ScalarProperty Name="PaymentDet_Id" ColumnName="PaymentDet_Id" />
+                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+                <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+                <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+                <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+                <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VWSecurityUsers">
+            <EntityTypeMapping TypeName="GlobalModel.VWSecurityUser">
+              <MappingFragment StoreEntitySet="VWSecurityUsers">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

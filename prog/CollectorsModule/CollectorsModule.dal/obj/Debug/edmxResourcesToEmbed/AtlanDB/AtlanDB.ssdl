@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ATLANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ST_BUSINESS_LINE">
+    <Key>
+      <PropertyRef Name="BusinessLine_Id" />
+    </Key>
+    <Property Name="BusinessLine_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessLine_Code" Type="int" Nullable="false" />
+    <Property Name="BusinessLine_NameKey" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="BusinessLine_Status" Type="int" Nullable="false" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_CHECKBOOKS">
+    <Key>
+      <PropertyRef Name="Checkbook_Id" />
+    </Key>
+    <Property Name="Checkbook_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Checkbook_Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Bank_Account" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Bank_Name_Desc" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Currency_ISO" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Checkbook_Status" Type="int" Nullable="false" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_OFFICE_CODES">
+    <Key>
+      <PropertyRef Name="Office_Id" />
+    </Key>
+    <Property Name="Office_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Office_Code" Type="int" Nullable="false" />
+    <Property Name="Office_NameKey" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Office_Status" Type="int" Nullable="false" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_PRODUCT_TYPES">
+    <Key>
+      <PropertyRef Name="ProductType_Id" />
+    </Key>
+    <Property Name="ProductType_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductType_Code" Type="int" Nullable="false" />
+    <Property Name="ProductType_NameKey" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="ProductType_Status" Type="int" Nullable="false" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_PRODUCTS">
+    <Key>
+      <PropertyRef Name="Product_Id" />
+    </Key>
+    <Property Name="Product_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_Code" Type="int" Nullable="false" />
+    <Property Name="Product_NameKey" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Product_Status" Type="int" Nullable="false" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_USERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERCODE" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="KT_USER" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LEVEL" Type="int" Nullable="false" />
+    <Property Name="STATUS" Type="int" Nullable="false" />
+    <Property Name="CREATE_DATE" Type="datetime" Nullable="false" />
+    <Property Name="OFFICE" Type="varchar" MaxLength="50" />
+    <Property Name="BANKNAME" Type="varchar" MaxLength="50" />
+    <Property Name="CHECKBOOKID" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.Collectors.VW_GET_BANKS_INFORMATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_GET_BANKS_INFORMATION">
+    <Key>
+      <PropertyRef Name="DEX_ROW_ID" />
+      <PropertyRef Name="BANKID" />
+    </Key>
+    <Property Name="DEX_ROW_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BANKID" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="BANKNAME" Type="varchar" MaxLength="31" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.Collectors.VW_ST_PMT_HISTORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_ST_PMT_HISTORY">
+    <Key>
+      <PropertyRef Name="SOURCE_SYSTEM" />
+      <PropertyRef Name="GP_PAYMENT_NUMBER" />
+    </Key>
+    <Property Name="POLICY_NUMBER" Type="char" MaxLength="15" />
+    <Property Name="LINE_OF_BUSINESS" Type="char" MaxLength="7" />
+    <Property Name="CUSTNAME" Type="char" MaxLength="65" />
+    <Property Name="CURRENCY_ID" Type="varchar" MaxLength="15" />
+    <Property Name="PAYMENT_AMOUNT" Type="numeric" Precision="19" Scale="5" />
+    <Property Name="PAYMENT_DATE" Type="datetime" />
+    <Property Name="PAYMENT_HOUR" Type="varchar" MaxLength="11" />
+    <Property Name="PAYMENT_TYPE" Type="int" />
+    <Property Name="ACCOUNT_NUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="GP_PAYMENT_NUMBER" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="OFFICE_NUMBER" Type="char" MaxLength="7" />
+    <Property Name="RECEIVED_BY" Type="char" MaxLength="50" />
+    <Property Name="SOURCE_SYSTEM" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="KT_BARCODE" Type="varchar" MaxLength="50" />
+    <Property Name="GP_STATUS" Type="char" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.Collectors.VW_ST_PMT_PAYMENTS_BY_BARCODE_KT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT">
+    <Key>
+      <PropertyRef Name="GP_PAYMENT_NUMBER" />
+      <PropertyRef Name="KT_BARCODE" />
+      <PropertyRef Name="ADDITIONAL_INFO" />
+      <PropertyRef Name="CREATE_DATE" />
+    </Key>
+    <Property Name="GP_PAYMENT_NUMBER" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="KT_BARCODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ADDITIONAL_INFO" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="CREATE_DATE" Type="datetime" Nullable="false" />
+    <Property Name="BATCH" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.Collectors.VW_ST_PRODUCTS_DESCRIPTIONS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_ST_PRODUCTS_DESCRIPTIONS">
+    <Key>
+      <PropertyRef Name="CODE" />
+    </Key>
+    <Property Name="CODE" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="123" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.dbo.ST_CLIENT_POLICY_INFO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ST_CLIENT_POLICY_INFO">
+    <Key>
+      <PropertyRef Name="CUSTNAME" />
+      <PropertyRef Name="CLIENT_ID" />
+      <PropertyRef Name="POLICY_NUMBER" />
+      <PropertyRef Name="LINE_OF_BUSINESS" />
+      <PropertyRef Name="POLICY_STATUS" />
+      <PropertyRef Name="PLAN_TYPE" />
+      <PropertyRef Name="CURRENCY_ID" />
+      <PropertyRef Name="OFFICE_NUMBER" />
+      <PropertyRef Name="INTEGRATIONID" />
+    </Key>
+    <Property Name="CUSTNAME" Type="char" MaxLength="65" Nullable="false" />
+    <Property Name="CLIENT_ID" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="POLICY_NUMBER" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="LINE_OF_BUSINESS" Type="char" MaxLength="7" Nullable="false" />
+    <Property Name="POLICY_STATUS" Type="char" MaxLength="21" Nullable="false" />
+    <Property Name="PLAN_TYPE" Type="char" MaxLength="7" Nullable="false" />
+    <Property Name="EXPIRATION_DATE" Type="datetime" />
+    <Property Name="CURRENCY_ID" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="CUSTOMER_BALANCE" Type="numeric" Precision="19" Scale="5" />
+    <Property Name="OFFICE_NUMBER" Type="char" MaxLength="7" Nullable="false" />
+    <Property Name="INTEGRATIONID" Type="char" MaxLength="31" Nullable="false" />
+    <Property Name="DATE_OF_BIRTH" Type="datetime" />
+    <Property Name="CORE_CREATION_DATE" Type="datetime" />
+    <Property Name="AGENT" Type="nvarchar" MaxLength="50" />
+    <Property Name="SUPERVISOR" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="SP_GET_DAILY_CASH_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+    <Parameter Name="Collector" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
+    <Parameter Name="PaymentType" Type="int" Mode="In" />
+    <Parameter Name="PaymentDateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="USP_GET_POLICY_HAS_RECENT_PAYMENTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+    <Parameter Name="Policy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_SET_COLLECTORS_ERRORS_LOG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+    <Parameter Name="parameters" Type="varchar" Mode="In" />
+    <Parameter Name="Error_Logged" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_SET_KTAG_BY_PAYMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+    <Parameter Name="GP_PAYMENT_NUMBER" Type="varchar" Mode="In" />
+    <Parameter Name="KT_BARCODE" Type="varchar" Mode="In" />
+    <Parameter Name="ADDITIONAL_INFO" Type="varchar" Mode="In" />
+    <Parameter Name="BATCH" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ATLANModelStoreContainer">
+    <EntitySet Name="ST_BUSINESS_LINE" EntityType="Self.ST_BUSINESS_LINE" Schema="Collectors" store:Type="Tables" />
+    <EntitySet Name="ST_CHECKBOOKS" EntityType="Self.ST_CHECKBOOKS" Schema="Collectors" store:Type="Tables" />
+    <EntitySet Name="ST_OFFICE_CODES" EntityType="Self.ST_OFFICE_CODES" Schema="Collectors" store:Type="Tables" />
+    <EntitySet Name="ST_PRODUCT_TYPES" EntityType="Self.ST_PRODUCT_TYPES" Schema="Collectors" store:Type="Tables" />
+    <EntitySet Name="ST_PRODUCTS" EntityType="Self.ST_PRODUCTS" Schema="Collectors" store:Type="Tables" />
+    <EntitySet Name="ST_USERS" EntityType="Self.ST_USERS" Schema="Collectors" store:Type="Tables" />
+    <EntitySet Name="VW_GET_BANKS_INFORMATION" EntityType="Self.VW_GET_BANKS_INFORMATION" store:Type="Views" store:Schema="Collectors">
+      <DefiningQuery>SELECT 
+    [VW_GET_BANKS_INFORMATION].[DEX_ROW_ID] AS [DEX_ROW_ID], 
+    [VW_GET_BANKS_INFORMATION].[BANKID] AS [BANKID], 
+    [VW_GET_BANKS_INFORMATION].[BANKNAME] AS [BANKNAME]
+    FROM [Collectors].[VW_GET_BANKS_INFORMATION] AS [VW_GET_BANKS_INFORMATION]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_ST_PMT_HISTORY" EntityType="Self.VW_ST_PMT_HISTORY" store:Type="Views" store:Schema="Collectors">
+      <DefiningQuery>SELECT 
+    [VW_ST_PMT_HISTORY].[POLICY_NUMBER] AS [POLICY_NUMBER], 
+    [VW_ST_PMT_HISTORY].[LINE_OF_BUSINESS] AS [LINE_OF_BUSINESS], 
+    [VW_ST_PMT_HISTORY].[CUSTNAME] AS [CUSTNAME], 
+    [VW_ST_PMT_HISTORY].[CURRENCY_ID] AS [CURRENCY_ID], 
+    [VW_ST_PMT_HISTORY].[PAYMENT_AMOUNT] AS [PAYMENT_AMOUNT], 
+    [VW_ST_PMT_HISTORY].[PAYMENT_DATE] AS [PAYMENT_DATE], 
+    [VW_ST_PMT_HISTORY].[PAYMENT_HOUR] AS [PAYMENT_HOUR], 
+    [VW_ST_PMT_HISTORY].[PAYMENT_TYPE] AS [PAYMENT_TYPE], 
+    [VW_ST_PMT_HISTORY].[ACCOUNT_NUMBER] AS [ACCOUNT_NUMBER], 
+    [VW_ST_PMT_HISTORY].[GP_PAYMENT_NUMBER] AS [GP_PAYMENT_NUMBER], 
+    [VW_ST_PMT_HISTORY].[OFFICE_NUMBER] AS [OFFICE_NUMBER], 
+    [VW_ST_PMT_HISTORY].[RECEIVED_BY] AS [RECEIVED_BY], 
+    [VW_ST_PMT_HISTORY].[SOURCE_SYSTEM] AS [SOURCE_SYSTEM], 
+    [VW_ST_PMT_HISTORY].[KT_BARCODE] AS [KT_BARCODE], 
+    [VW_ST_PMT_HISTORY].[GP_STATUS] AS [GP_STATUS]
+    FROM [Collectors].[VW_ST_PMT_HISTORY] AS [VW_ST_PMT_HISTORY]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT" EntityType="Self.VW_ST_PMT_PAYMENTS_BY_BARCODE_KT" store:Type="Views" store:Schema="Collectors">
+      <DefiningQuery>SELECT 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[GP_PAYMENT_NUMBER] AS [GP_PAYMENT_NUMBER], 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[KT_BARCODE] AS [KT_BARCODE], 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[ADDITIONAL_INFO] AS [ADDITIONAL_INFO], 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[CREATE_DATE] AS [CREATE_DATE], 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[BATCH] AS [BATCH]
+    FROM [Collectors].[VW_ST_PMT_PAYMENTS_BY_BARCODE_KT] AS [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_ST_PRODUCTS_DESCRIPTIONS" EntityType="Self.VW_ST_PRODUCTS_DESCRIPTIONS" store:Type="Views" store:Schema="Collectors">
+      <DefiningQuery>SELECT 
+    [VW_ST_PRODUCTS_DESCRIPTIONS].[CODE] AS [CODE], 
+    [VW_ST_PRODUCTS_DESCRIPTIONS].[DESCRIPTION] AS [DESCRIPTION]
+    FROM [Collectors].[VW_ST_PRODUCTS_DESCRIPTIONS] AS [VW_ST_PRODUCTS_DESCRIPTIONS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ST_CLIENT_POLICY_INFO" EntityType="Self.ST_CLIENT_POLICY_INFO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ST_CLIENT_POLICY_INFO].[CUSTNAME] AS [CUSTNAME], 
+    [ST_CLIENT_POLICY_INFO].[CLIENT_ID] AS [CLIENT_ID], 
+    [ST_CLIENT_POLICY_INFO].[POLICY_NUMBER] AS [POLICY_NUMBER], 
+    [ST_CLIENT_POLICY_INFO].[LINE_OF_BUSINESS] AS [LINE_OF_BUSINESS], 
+    [ST_CLIENT_POLICY_INFO].[POLICY_STATUS] AS [POLICY_STATUS], 
+    [ST_CLIENT_POLICY_INFO].[PLAN_TYPE] AS [PLAN_TYPE], 
+    [ST_CLIENT_POLICY_INFO].[EXPIRATION_DATE] AS [EXPIRATION_DATE], 
+    [ST_CLIENT_POLICY_INFO].[CURRENCY_ID] AS [CURRENCY_ID], 
+    [ST_CLIENT_POLICY_INFO].[CUSTOMER_BALANCE] AS [CUSTOMER_BALANCE], 
+    [ST_CLIENT_POLICY_INFO].[OFFICE_NUMBER] AS [OFFICE_NUMBER], 
+    [ST_CLIENT_POLICY_INFO].[INTEGRATIONID] AS [INTEGRATIONID], 
+    [ST_CLIENT_POLICY_INFO].[DATE_OF_BIRTH] AS [DATE_OF_BIRTH], 
+    [ST_CLIENT_POLICY_INFO].[CORE_CREATION_DATE] AS [CORE_CREATION_DATE], 
+    [ST_CLIENT_POLICY_INFO].[AGENT] AS [AGENT], 
+    [ST_CLIENT_POLICY_INFO].[SUPERVISOR] AS [SUPERVISOR]
+    FROM [dbo].[ST_CLIENT_POLICY_INFO] AS [ST_CLIENT_POLICY_INFO]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

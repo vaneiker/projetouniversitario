@@ -1,0 +1,724 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BA378991-3FF9-4216-9BB2-D7FFC0E648D4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CollectorsModule</RootNamespace>
+    <AssemblyName>CollectorsModule</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v14.2.Core, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v14.2, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v14.2.Web, Version=14.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 14.2\Components\Bin\Framework\DevExpress.XtraReports.v14.2.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.8\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Core">
+      <HintPath>..\packages\STF.1.0.115\lib\net451\Statetrust.Framework.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Dal">
+      <HintPath>..\packages\STF.1.0.115\lib\net451\Statetrust.Framework.Dal.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Bll">
+      <HintPath>..\packages\STF.1.0.115\lib\net451\Statetrust.Framework.Security.Bll.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Core">
+      <HintPath>..\packages\STF.1.0.115\lib\net451\Statetrust.Framework.Security.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Dal">
+      <HintPath>..\packages\STF.1.0.115\lib\net451\Statetrust.Framework.Security.Dal.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Web">
+      <HintPath>..\packages\STF.1.0.115\lib\net451\Statetrust.Framework.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\accordion.css" />
+    <Content Include="Content\css\ajax-loader.gif" />
+    <Content Include="Content\css\amr.css" />
+    <Content Include="Content\css\component.css" />
+    <Content Include="Content\css\dtl.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\fonts\slick.svg" />
+    <Content Include="Content\css\imprimir.css" />
+    <Content Include="Content\css\kickstart.min.css" />
+    <Content Include="Content\css\menu.css" />
+    <Content Include="Content\css\reset.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\tooltipster.css" />
+    <Content Include="Content\fonts\bpicons\bpicons.svg" />
+    <Content Include="Content\fonts\bpicons\license.txt" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\fontawesome.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\icomoon\icomoon.svg" />
+    <Content Include="Content\fonts\icomoon_arrows\icomoon.dev.svg" />
+    <Content Include="Content\fonts\icomoon_arrows\icomoon.svg" />
+    <Content Include="Content\images\agente-icon.png" />
+    <Content Include="Content\images\AjaxLoader.gif" />
+    <Content Include="Content\images\alert_ico.png" />
+    <Content Include="Content\images\arrow_d.png" />
+    <Content Include="Content\images\ATLANTICA-SEGUROS_LOGO.png" />
+    <Content Include="Content\images\backg-logo-At-1002.png" />
+    <Content Include="Content\images\backg-logo-At-320.png" />
+    <Content Include="Content\images\backg-logo-At-720.png" />
+    <Content Include="Content\images\backg-logo-At.jpg" />
+    <Content Include="Content\images\backg-logo-At.png" />
+    <Content Include="Content\images\backg-logo-At320.png" />
+    <Content Include="Content\images\bg-top-menu.png" />
+    <Content Include="Content\images\bg.png" />
+    <Content Include="Content\images\bg_callcenter_top.png" />
+    <Content Include="Content\images\bg_callcenter_top_02.png" />
+    <Content Include="Content\images\bg_content.png" />
+    <Content Include="Content\images\bg_footer.png" />
+    <Content Include="Content\images\bg_login.png" />
+    <Content Include="Content\images\boton-02.png" />
+    <Content Include="Content\images\boton.png" />
+    <Content Include="Content\images\boton2_r1_c1.png" />
+    <Content Include="Content\images\boton2_r1_c1_v.png" />
+    <Content Include="Content\images\boton2_r1_c3.png" />
+    <Content Include="Content\images\boton2_r1_c3_v.png" />
+    <Content Include="Content\images\boton2_r1_c5.png" />
+    <Content Include="Content\images\boton2_r1_c5_v.png" />
+    <Content Include="Content\images\btn-green-3.png" />
+    <Content Include="Content\images\btn-green.png" />
+    <Content Include="Content\images\btn_comprar-2.png" />
+    <Content Include="Content\images\btn_comprar.png" />
+    <Content Include="Content\images\btn_Pahora.png" />
+    <Content Include="Content\images\bullet.png" />
+    <Content Include="Content\images\calendar_icon-OLD.png" />
+    <Content Include="Content\images\calendar_icon.png" />
+    <Content Include="Content\images\candado.png" />
+    <Content Include="Content\images\candado2.png" />
+    <Content Include="Content\images\candado_dis.png" />
+    <Content Include="Content\images\carro-azul-01.png" />
+    <Content Include="Content\images\casa.PNG" />
+    <Content Include="Content\images\ced.png" />
+    <Content Include="Content\images\celular.png" />
+    <Content Include="Content\images\Checkmark gradient green.png" />
+    <Content Include="Content\images\Checkmark.png" />
+    <Content Include="Content\images\collapse.png" />
+    <Content Include="Content\images\contract.png" />
+    <Content Include="Content\images\cotejo.PNG" />
+    <Content Include="Content\images\cotizar2.PNG" />
+    <Content Include="Content\images\delete_icon.png" />
+    <Content Include="Content\images\docRq.PNG" />
+    <Content Include="Content\images\DXR.png" />
+    <Content Include="Content\images\edit_icon.png" />
+    <Content Include="Content\images\edit_paper.png" />
+    <Content Include="Content\images\email.png" />
+    <Content Include="Content\images\empleos-icon.png" />
+    <Content Include="Content\images\EN.png" />
+    <Content Include="Content\images\ES.png" />
+    <Content Include="Content\images\excell.png" />
+    <Content Include="Content\images\expand-01-01-01.png" />
+    <Content Include="Content\images\eye.png" />
+    <Content Include="Content\images\eye_no.png" />
+    <Content Include="Content\images\flecha_azul.PNG" />
+    <Content Include="Content\images\flecha_verde.PNG" />
+    <Content Include="Content\images\gradient_rojo.png" />
+    <Content Include="Content\images\Icons-CentrodeLlamadas_03.png" />
+    <Content Include="Content\images\Icons-CentrodeLlamadas_06.png" />
+    <Content Include="Content\images\Icons-CentrodeLlamadas_09.png" />
+    <Content Include="Content\images\Icons-CentrodeLlamadas_11.png" />
+    <Content Include="Content\images\icon_car.png" />
+    <Content Include="Content\images\icon_exit_clean.PNG" />
+    <Content Include="Content\images\ico_formas_plantillas\accident.png" />
+    <Content Include="Content\images\ico_formas_plantillas\add_user.png" />
+    <Content Include="Content\images\ico_formas_plantillas\back.png" />
+    <Content Include="Content\images\ico_formas_plantillas\check_p.png" />
+    <Content Include="Content\images\ico_formas_plantillas\credit_card.png" />
+    <Content Include="Content\images\ico_formas_plantillas\ico_apagos.png" />
+    <Content Include="Content\images\ico_formas_plantillas\money_paper.png" />
+    <Content Include="Content\images\ico_formas_plantillas\paper.png" />
+    <Content Include="Content\images\ico_formas_plantillas\paper_and_pen.png" />
+    <Content Include="Content\images\ico_formas_plantillas\paper_delete.png" />
+    <Content Include="Content\images\ico_formas_plantillas\personal_changes.png" />
+    <Content Include="Content\images\ico_formas_plantillas\reload.png" />
+    <Content Include="Content\images\ico_formas_plantillas\shaking_hands.png" />
+    <Content Include="Content\images\ico_formas_plantillas\t.png" />
+    <Content Include="Content\images\infografia.png" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\logo-02.png" />
+    <Content Include="Content\images\logo-03.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo_.png" />
+    <Content Include="Content\images\lupa_icon.png" />
+    <Content Include="Content\images\mail.png" />
+    <Content Include="Content\images\mail_i.png" />
+    <Content Include="Content\images\maletin.PNG" />
+    <Content Include="Content\images\pagination_background.png" />
+    <Content Include="Content\images\Paper Bin.PNG" />
+    <Content Include="Content\images\pasaporte.jpg" />
+    <Content Include="Content\images\pasos_elements.png" />
+    <Content Include="Content\images\pasos_elements00.png" />
+    <Content Include="Content\images\pass_ico.png" />
+    <Content Include="Content\images\Pay.png" />
+    <Content Include="Content\images\pdf_icon.png" />
+    <Content Include="Content\images\Pencil.PNG" />
+    <Content Include="Content\images\phone.png" />
+    <Content Include="Content\images\pic_vd.png" />
+    <Content Include="Content\images\plus.png" />
+    <Content Include="Content\images\Print.png" />
+    <Content Include="Content\images\radio.png" />
+    <Content Include="Content\images\radio_dis.png" />
+    <Content Include="Content\images\save.png" />
+    <Content Include="Content\images\security_Login.png" />
+    <Content Include="Content\images\step_activo.png" />
+    <Content Include="Content\images\step_des.png" />
+    <Content Include="Content\images\STG-logo.png" />
+    <Content Include="Content\images\top_menu\auto.PNG" />
+    <Content Include="Content\images\top_menu\bg-active.png" />
+    <Content Include="Content\images\top_menu\bg-top-menu.png" />
+    <Content Include="Content\images\top_menu\cotizar.PNG" />
+    <Content Include="Content\images\top_menu\ico-admin.png" />
+    <Content Include="Content\images\top_menu\ico-agent.png" />
+    <Content Include="Content\images\top_menu\ico-assignments.png" />
+    <Content Include="Content\images\top_menu\ico-auto.png" />
+    <Content Include="Content\images\top_menu\ico-commissions.png" />
+    <Content Include="Content\images\top_menu\ico-cotizar.png" />
+    <Content Include="Content\images\top_menu\ico-dashboard.png" />
+    <Content Include="Content\images\top_menu\ico-lcomerciales.png" />
+    <Content Include="Content\images\top_menu\ico-lespeciales.png" />
+    <Content Include="Content\images\top_menu\ico-payouts.png" />
+    <Content Include="Content\images\top_menu\ico-propiedad.png" />
+    <Content Include="Content\images\top_menu\ico-reports.png" />
+    <Content Include="Content\images\top_menu\ico-salud.png" />
+    <Content Include="Content\images\top_menu\ico-servicios.png" />
+    <Content Include="Content\images\top_menu\ico-vida.png" />
+    <Content Include="Content\images\top_menu\lcomerciales.PNG" />
+    <Content Include="Content\images\top_menu\logo-02.png" />
+    <Content Include="Content\images\top_menu\propiedad.PNG" />
+    <Content Include="Content\images\top_menu\Salud.PNG" />
+    <Content Include="Content\images\top_menu\tuagente.PNG" />
+    <Content Include="Content\images\top_menu\viaje.PNG" />
+    <Content Include="Content\images\top_menu\vida.PNG" />
+    <Content Include="Content\images\user.png" />
+    <Content Include="Content\images\usu_ico.png" />
+    <Content Include="Content\images\water_mark_reimp.png" />
+    <Content Include="Content\images\world.png" />
+    <Content Include="Content\resources\css\dtl.css" />
+    <Content Include="Content\resources\images\bg-top-menu.png" />
+    <Content Include="Content\resources\images\logo-02.png" />
+    <Content Include="Content\resources\images\water_mark_reimp.png" />
+    <Content Include="Content\resources\Invoice.html" />
+    <Content Include="Controls\css\dtl.css" />
+    <Content Include="Controls\images\bg-top-menu.png" />
+    <Content Include="Controls\images\logo-02.png" />
+    <Content Include="Controls\images\water_mark_reimp.png" />
+    <Content Include="Controls\oInvoice.ashx" />
+    <Content Include="Controls\ucClientSearch.ascx" />
+    <Content Include="Controls\ucPaymentConfirmation.ascx" />
+    <Content Include="Controls\ucPaymentMethod.ascx" />
+    <Content Include="Controls\ucSetPoliciesPayments.ascx" />
+    <Content Include="Global.asax" />
+    <Content Include="KeepAlive.aspx" />
+    <Content Include="Pages\DailyCash.aspx" />
+    <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\PaymentHistory.aspx" />
+    <Content Include="Pages\ProcessPayments.aspx" />
+    <Content Include="Content\css\fonts\slick.eot" />
+    <Content Include="Content\css\fonts\slick.ttf" />
+    <Content Include="Content\css\fonts\slick.woff" />
+    <Content Include="Content\fonts\bpicons\bpicons.eot" />
+    <Content Include="Content\fonts\bpicons\bpicons.ttf" />
+    <Content Include="Content\fonts\bpicons\bpicons.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\fontawesome.ttf" />
+    <Content Include="Content\fonts\fontawesome.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\icomoon\.DS_Store" />
+    <Content Include="Content\fonts\icomoon\icomoon.eot" />
+    <Content Include="Content\fonts\icomoon\icomoon.ttf" />
+    <Content Include="Content\fonts\icomoon\icomoon.woff" />
+    <Content Include="Content\images\_notes\arrow_d.png.mno" />
+    <Content Include="Content\images\_notes\bg.png.mno" />
+    <Content Include="Content\images\_notes\boton-02.png.mno" />
+    <Content Include="Content\images\_notes\boton.png.mno" />
+    <Content Include="Content\images\_notes\candado2.png.mno" />
+    <Content Include="Content\images\_notes\candado_dis.png.mno" />
+    <Content Include="Content\images\_notes\close.png.mno" />
+    <Content Include="Content\images\_notes\logo.png.mno" />
+    <Content Include="Content\images\_notes\mail_i.png.mno" />
+    <Content Include="Content\images\_notes\radio.png.mno" />
+    <Content Include="Content\images\_notes\radio_dis.png.mno" />
+    <Content Include="Content\images\_notes\step_activo.png.mno" />
+    <Content Include="Content\images\_notes\step_des.png.mno" />
+    <Content Include="Controls\vwDocument.ashx" />
+    <Content Include="Content\fonts\fontawesome.eot" />
+    <Content Include="Content\fonts\icomoon_arrows\.DS_Store" />
+    <Content Include="Content\fonts\icomoon_arrows\icomoon.eot" />
+    <Content Include="Content\fonts\icomoon_arrows\icomoon.ttf" />
+    <Content Include="Content\fonts\icomoon_arrows\icomoon.woff" />
+    <Content Include="Content\images\ico_formas_plantillas\ico_apagos.2png" />
+    <Content Include="Content\images\Icons-CentrodeLlamadas_03.psd" />
+    <Content Include="Content\resources\Invoice-1.html.exclude" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Pages\SessionExpire.aspx" />
+    <Content Include="Scripts\adjustDevExpress-ie.js" />
+    <Content Include="Scripts\global.js" />
+    <Content Include="Scripts\images\ui-icons_444444_256x240.png" />
+    <Content Include="Scripts\images\ui-icons_555555_256x240.png" />
+    <Content Include="Scripts\images\ui-icons_777620_256x240.png" />
+    <Content Include="Scripts\images\ui-icons_777777_256x240.png" />
+    <Content Include="Scripts\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Scripts\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\Init_104.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery-ui.min.css" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.cbpNTAccordion.min.js" />
+    <Content Include="Scripts\jquery.tooltipster.js" />
+    <Content Include="Scripts\kickstart.min.js" />
+    <Content Include="Scripts\modernizr.custom.js" />
+    <Content Include="Scripts\prettify.js" />
+    <Content Include="Scripts\scripts.js" />
+    <Content Include="Service References\GPPaymentsvc\CollectorsModule.GPPaymentsvc.GPPaymentResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Reports\Default.pdf" />
+    <Content Include="Reports\RPTDailyCash.rdl" />
+    <None Include="Service References\GPPaymentsvc\configuration91.svcinfo" />
+    <None Include="Service References\GPPaymentsvc\configuration.svcinfo" />
+    <None Include="Service References\GPPaymentsvc\GPPayments1.wsdl" />
+    <None Include="Service References\GPPaymentsvc\GPPayments3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GPPaymentsvc\GPPayments31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GPPaymentsvc\GPPayments32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GPPaymentsvc\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\GPPaymentsvc\GPPayments1.disco" />
+    <None Include="Service References\svcKwikTag\Bridge.disco" />
+    <Content Include="Service References\svcKwikTag\CollectorsModule.svcKwikTag.XferDocumentDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\svcKwikTag\CollectorsModule.svcKwikTag.XferImage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\svcKwikTag\configuration91.svcinfo" />
+    <None Include="Service References\svcKwikTag\configuration.svcinfo" />
+    <None Include="Service References\svcKwikTag\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Services\Interface.svc" />
+    <Content Include="STFConvertImageBase64.aspx" />
+    <None Include="Service References\svcKwikTag\Bridge.wsdl" />
+    <None Include="Service References\svcKwikTag\Bridge.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\svcKwikTag\Bridge1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\svcKwikTag\Bridge2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\svcKwikTag\Bridge3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\svcKwikTag\Bridge4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\apiKT\ktService.disco" />
+    <None Include="Web References\apiKT\ktService.wsdl" />
+    <Content Include="Web References\apiKT\KwikTag.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\apiKT\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web References\apiKT\XferDocumentDetails.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\GPPayments\GPPaymentResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\GPPayments\GPPayments.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commons\Kwiktag.cs" />
+    <Compile Include="Commons\ResponseHelper.cs" />
+    <Compile Include="Commons\Utils.cs" />
+    <Compile Include="Controls\oInvoice.ashx.cs">
+      <DependentUpon>oInvoice.ashx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ucClientSearch.ascx.cs">
+      <DependentUpon>ucClientSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucClientSearch.ascx.designer.cs">
+      <DependentUpon>ucClientSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucPaymentConfirmation.ascx.cs">
+      <DependentUpon>ucPaymentConfirmation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucPaymentConfirmation.ascx.designer.cs">
+      <DependentUpon>ucPaymentConfirmation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucPaymentMethod.ascx.cs">
+      <DependentUpon>ucPaymentMethod.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucPaymentMethod.ascx.designer.cs">
+      <DependentUpon>ucPaymentMethod.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucSetPoliciesPayments.ascx.cs">
+      <DependentUpon>ucSetPoliciesPayments.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucSetPoliciesPayments.ascx.designer.cs">
+      <DependentUpon>ucSetPoliciesPayments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\vwDocument.ashx.cs">
+      <DependentUpon>vwDocument.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="KeepAlive.aspx.cs">
+      <DependentUpon>KeepAlive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KeepAlive.aspx.designer.cs">
+      <DependentUpon>KeepAlive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CM.Master.cs">
+      <DependentUpon>CM.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\CM.Master.designer.cs">
+      <DependentUpon>CM.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DailyCash.aspx.cs">
+      <DependentUpon>DailyCash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DailyCash.aspx.designer.cs">
+      <DependentUpon>DailyCash.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PaymentHistory.aspx.cs">
+      <DependentUpon>PaymentHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PaymentHistory.aspx.designer.cs">
+      <DependentUpon>PaymentHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProcessPayments.aspx.cs">
+      <DependentUpon>ProcessPayments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ProcessPayments.aspx.designer.cs">
+      <DependentUpon>ProcessPayments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SessionExpire.aspx.cs">
+      <DependentUpon>SessionExpire.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SessionExpire.aspx.designer.cs">
+      <DependentUpon>SessionExpire.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\GPPaymentsvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\svcKwikTag\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IInterface.cs" />
+    <Compile Include="Services\Interface.svc.cs">
+      <DependentUpon>Interface.svc</DependentUpon>
+    </Compile>
+    <Compile Include="STFConvertImageBase64.aspx.cs">
+      <DependentUpon>STFConvertImageBase64.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STFConvertImageBase64.aspx.designer.cs">
+      <DependentUpon>STFConvertImageBase64.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\apiKT\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\GPPayments\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="xrptDailyCash.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xrptDailyCash.Designer.cs">
+      <DependentUpon>xrptDailyCash.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Master\CM.Master" />
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\CollectorsModule.pubxml" />
+    <None Include="Web References\GPPayments\GPPayments.wsdl" />
+    <None Include="Web References\GPPayments\GPPayments.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\GPPayments\GPPayments0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\GPPayments\GPPayments1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\GPPayments\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Properties\DataSources\" />
+    <Folder Include="Reports\TempFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="xrptDailyCash.resx">
+      <DependentUpon>xrptDailyCash.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CollectorsModule.bll\CollectorsModule.bll.csproj">
+      <Project>{4bbb14ba-3ff5-49bb-86b7-b361a5baab48}</Project>
+      <Name>CollectorsModule.bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CollectorsModule.dal\CollectorsModule.dal.csproj">
+      <Project>{610580bd-749f-43f5-82b3-19efe48372bb}</Project>
+      <Name>CollectorsModule.dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CollectorsModule.ell\CollectorsModule.ell.csproj">
+      <Project>{29128b0d-243e-46ed-9c29-13cd08079fca}</Project>
+      <Name>CollectorsModule.ell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://172.16.199.35/CSToGP/GPPayments.svc">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\GPPayments\</RelPath>
+      <UpdateFromURL>http://172.16.199.35/CSToGP/GPPayments.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CollectorsModule_GPPayments_GPPayments</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://atl-srv41.atlantica.do/apiKT/ktService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\apiKT\</RelPath>
+      <UpdateFromURL>http://atl-srv41.atlantica.do/apiKT/ktService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CollectorsModule_apiKT_ktService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GPPaymentsvc\" />
+    <WCFMetadataStorage Include="Service References\svcKwikTag\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12638</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12638/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GlobalModelStoreContainer" CdmEntityContainer="GlobalEntities">
+    <EntitySetMapping Name="ST_BANK_ACCOUNT_TYPE">
+      <EntityTypeMapping TypeName="GlobalModel.ST_BANK_ACCOUNT_TYPE">
+        <MappingFragment StoreEntitySet="ST_BANK_ACCOUNT_TYPE">
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+          <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+          <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Bnk_Accnt_Type_Status" ColumnName="Bnk_Accnt_Type_Status" />
+          <ScalarProperty Name="Bnk_Accnt_Type_Desc" ColumnName="Bnk_Accnt_Type_Desc" />
+          <ScalarProperty Name="Bank_Account_Type_Id" ColumnName="Bank_Account_Type_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SPC_GET_PAYMENT_HISTORY_WITH_FILTERS" FunctionName="GlobalModel.Store.SPC_GET_PAYMENT_HISTORY_WITH_FILTERS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SPC_GET_PAYMENT_HISTORY_WITH_FILTERS_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+          <ScalarProperty Name="PaymentDet_Id" ColumnName="PaymentDet_Id" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+          <ScalarProperty Name="Currency_Desc" ColumnName="Currency_Desc" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Due_Date" ColumnName="Due_Date" />
+          <ScalarProperty Name="Due_Amount" ColumnName="Due_Amount" />
+          <ScalarProperty Name="Paid_Date" ColumnName="Paid_Date" />
+          <ScalarProperty Name="Paid_Amount" ColumnName="Paid_Amount" />
+          <ScalarProperty Name="Usd_Credit_Amount" ColumnName="Usd_Credit_Amount" />
+          <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+          <ScalarProperty Name="Other_Description" ColumnName="Other_Description" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="Payment_Source_Type_Desc" ColumnName="Payment_Source_Type_Desc" />
+          <ScalarProperty Name="Payment_Status_Id" ColumnName="Payment_Status_Id" />
+          <ScalarProperty Name="Payment_Status_Desc" ColumnName="Payment_Status_Desc" />
+          <ScalarProperty Name="Payment_Detail_Status_Id" ColumnName="Payment_Detail_Status_Id" />
+          <ScalarProperty Name="Payment_Detail_Status_Desc" ColumnName="Payment_Detail_Status_Desc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY" FunctionName="GlobalModel.Store.SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_SET_PM_PROVIDER_TRANSACTION_INFO_KEY_Result">
+          <ScalarProperty Name="Provider_Id" ColumnName="Provider_Id" />
+          <ScalarProperty Name="Transaction_Key_Id" ColumnName="Transaction_Key_Id" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="Transaction_Id" ColumnName="Transaction_Id" />
+          <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+          <ScalarProperty Name="Transaction_Type_Catalog_Id" ColumnName="Transaction_Type_Catalog_Id" />
+          <ScalarProperty Name="Provider_Transaction_Type_Id" ColumnName="Provider_Transaction_Type_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_PM_PROVIDER_PARAMETER" FunctionName="GlobalModel.Store.SP_GET_PM_PROVIDER_PARAMETER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_GET_PM_PROVIDER_PARAMETER_Result">
+          <ScalarProperty Name="Provider_Id" ColumnName="Provider_Id" />
+          <ScalarProperty Name="Transaction_Type_Catalog_Id" ColumnName="Transaction_Type_Catalog_Id" />
+          <ScalarProperty Name="Provider_Transaction_Type_Id" ColumnName="Provider_Transaction_Type_Id" />
+          <ScalarProperty Name="Parameter_Id" ColumnName="Parameter_Id" />
+          <ScalarProperty Name="Parameter_Type_Value_Id" ColumnName="Parameter_Type_Value_Id" />
+          <ScalarProperty Name="Parameter_Name" ColumnName="Parameter_Name" />
+          <ScalarProperty Name="Parameter_Value" ColumnName="Parameter_Value" />
+          <ScalarProperty Name="Parameter_Type_Value_Desc" ColumnName="Parameter_Type_Value_Desc" />
+          <ScalarProperty Name="Order_By" ColumnName="Order_By" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_PM_PROVIDER_TRANSACTION" FunctionName="GlobalModel.Store.SP_SET_PM_PROVIDER_TRANSACTION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_SET_PM_PROVIDER_TRANSACTION_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Provider_Id" ColumnName="Provider_Id" />
+          <ScalarProperty Name="Transaction_Key_Id" ColumnName="Transaction_Key_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_PM_PROVIDER_LOG" FunctionName="GlobalModel.Store.SP_GET_PM_PROVIDER_LOG">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_GET_PM_PROVIDER_LOG_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+          <ScalarProperty Name="Project_Id" ColumnName="Project_Id" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_INSERT_PM_PROVIDER_LOG" FunctionName="GlobalModel.Store.SP_INSERT_PM_PROVIDER_LOG" />
+    <FunctionImportMapping FunctionImportName="SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID" FunctionName="GlobalModel.Store.SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_GET_PM_PROVIDER_TRANSACTION_BY_ORDERID_Result">
+          <ScalarProperty Name="Provider_Id" ColumnName="Provider_Id" />
+          <ScalarProperty Name="Transaction_Key_Id" ColumnName="Transaction_Key_Id" />
+          <ScalarProperty Name="Transaction_Type_Catalog_Id" ColumnName="Transaction_Type_Catalog_Id" />
+          <ScalarProperty Name="Provider_Transaction_Type_Id" ColumnName="Provider_Transaction_Type_Id" />
+          <ScalarProperty Name="Transaction_Id" ColumnName="Transaction_Id" />
+          <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+          <ScalarProperty Name="Credit_Card_Number" ColumnName="Credit_Card_Number" />
+          <ScalarProperty Name="Credit_Card_Expiration_Date" ColumnName="Credit_Card_Expiration_Date" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Response_Code" ColumnName="Response_Code" />
+          <ScalarProperty Name="Authorization_Code" ColumnName="Authorization_Code" />
+          <ScalarProperty Name="Retrieval_Reference_Number" ColumnName="Retrieval_Reference_Number" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="Transaction_Extra_Data" ColumnName="Transaction_Extra_Data" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="vwClients">
+      <EntityTypeMapping TypeName="GlobalModel.vwClient">
+        <MappingFragment StoreEntitySet="vwClients">
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+          <ScalarProperty Name="RowKey" ColumnName="RowKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ST_CARD_TYPE">
+      <EntityTypeMapping TypeName="GlobalModel.ST_CARD_TYPE">
+        <MappingFragment StoreEntitySet="ST_CARD_TYPE">
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+          <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+          <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Card_Type_Status" ColumnName="Card_Type_Status" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Card_Type_Desc" ColumnName="Card_Type_Desc" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Card_Type_Id" ColumnName="Card_Type_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_PM_PAYMENTS" FunctionName="GlobalModel.Store.SP_SET_PM_PAYMENTS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_SET_PM_PAYMENTS_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_PM_PAYMENTS_DETAILS_ALL" FunctionName="GlobalModel.Store.SP_SET_PM_PAYMENTS_DETAILS_ALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_SET_PM_PAYMENTS_DETAILS_ALL_Result">
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+          <ScalarProperty Name="PaymentDet_Id" ColumnName="PaymentDet_Id" />
+          <ScalarProperty Name="Seq_No" ColumnName="Seq_No" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ST_CURRENCY">
+      <EntityTypeMapping TypeName="GlobalModel.ST_CURRENCY">
+        <MappingFragment StoreEntitySet="ST_CURRENCY">
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+          <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+          <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Currency_Status" ColumnName="Currency_Status" />
+          <ScalarProperty Name="Currency_Desc" ColumnName="Currency_Desc" />
+          <ScalarProperty Name="Currency_Id" ColumnName="Currency_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ST_BUSINESS_LINE">
+      <EntityTypeMapping TypeName="GlobalModel.ST_BUSINESS_LINE">
+        <MappingFragment StoreEntitySet="ST_BUSINESS_LINE">
+          <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+          <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+          <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Bl_Status" ColumnName="Bl_Status" />
+          <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+          <ScalarProperty Name="Bl_Id" ColumnName="Bl_Id" />
+          <ScalarProperty Name="Bl_Type_Id" ColumnName="Bl_Type_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ST_PRODUCT">
+      <EntityTypeMapping TypeName="GlobalModel.ST_PRODUCT">
+        <MappingFragment StoreEntitySet="ST_PRODUCT">
+          <ScalarProperty Name="ROW_ID" ColumnName="ROW_ID" />
+          <ScalarProperty Name="Source_ID" ColumnName="Source_ID" />
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Modifiable" ColumnName="Modifiable" />
+          <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+          <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+          <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Product_Status" ColumnName="Product_Status" />
+          <ScalarProperty Name="Assig_Curr_Sale" ColumnName="Assig_Curr_Sale" />
+          <ScalarProperty Name="Sale_Currency_Id" ColumnName="Sale_Currency_Id" />
+          <ScalarProperty Name="Quotation_Currency_Id" ColumnName="Quotation_Currency_Id" />
+          <ScalarProperty Name="CommRate" ColumnName="CommRate" />
+          <ScalarProperty Name="Policy_Code_Name" ColumnName="Policy_Code_Name" />
+          <ScalarProperty Name="Name_Key" ColumnName="Name_Key" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="Quotation_Limit_Id" ColumnName="Quotation_Limit_Id" />
+          <ScalarProperty Name="Product_Type_Id" ColumnName="Product_Type_Id" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Bl_Id" ColumnName="Bl_Id" />
+          <ScalarProperty Name="Bl_Type_Id" ColumnName="Bl_Type_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_COLLECTORS_POLICIES_BY_CONTACTID">
+      <EntityTypeMapping TypeName="GlobalModel.VW_COLLECTORS_POLICIES_BY_CONTACTID">
+        <MappingFragment StoreEntitySet="VW_COLLECTORS_POLICIES_BY_CONTACTID">
+          <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="Policy_Status_Desc" ColumnName="Policy_Status_Desc" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration_Date" />
+          <ScalarProperty Name="Annual_Premium" ColumnName="Annual_Premium" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="TotalDueAmount" ColumnName="TotalDueAmount" />
+          <ScalarProperty Name="PendingAmount" ColumnName="PendingAmount" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Currency_Id" ColumnName="Currency_Id" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Product_Desc" ColumnName="Product_Desc" />
+          <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+          <ScalarProperty Name="Bussiness_Line_Type" ColumnName="Bussiness_Line_Type" />
+          <ScalarProperty Name="Bussiness_Line_Id" ColumnName="Bussiness_Line_Id" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_GET_TRANSLATE">
+      <EntityTypeMapping TypeName="GlobalModel.VW_GET_TRANSLATE">
+        <MappingFragment StoreEntitySet="VW_GET_TRANSLATE">
+          <ScalarProperty Name="Translated_Literal" ColumnName="Translated_Literal" />
+          <ScalarProperty Name="Destiny_Language_Id" ColumnName="Destiny_Language_Id" />
+          <ScalarProperty Name="Literal_Desc" ColumnName="Literal_Desc" />
+          <ScalarProperty Name="Literal_Id" ColumnName="Literal_Id" />
+          <ScalarProperty Name="Language_Id" ColumnName="Language_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_GET_PAYMENT_HISTORY">
+      <EntityTypeMapping TypeName="GlobalModel.VW_GET_PAYMENT_HISTORY">
+        <MappingFragment StoreEntitySet="VW_GET_PAYMENT_HISTORY">
+          <ScalarProperty Name="Payment_Detail_Status_Desc" ColumnName="Payment_Detail_Status_Desc" />
+          <ScalarProperty Name="Payment_Detail_Status_Id" ColumnName="Payment_Detail_Status_Id" />
+          <ScalarProperty Name="Payment_Status_Desc" ColumnName="Payment_Status_Desc" />
+          <ScalarProperty Name="Payment_Status_Id" ColumnName="Payment_Status_Id" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="Payment_Source_Type_Desc" ColumnName="Payment_Source_Type_Desc" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="Other_Description" ColumnName="Other_Description" />
+          <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+          <ScalarProperty Name="Usd_Credit_Amount" ColumnName="Usd_Credit_Amount" />
+          <ScalarProperty Name="Paid_Amount" ColumnName="Paid_Amount" />
+          <ScalarProperty Name="Paid_Date" ColumnName="Paid_Date" />
+          <ScalarProperty Name="Due_Amount" ColumnName="Due_Amount" />
+          <ScalarProperty Name="Due_Date" ColumnName="Due_Date" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Office_Desc" ColumnName="Office_Desc" />
+          <ScalarProperty Name="Currency_Desc" ColumnName="Currency_Desc" />
+          <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+          <ScalarProperty Name="Policy_No" ColumnName="Policy_No" />
+          <ScalarProperty Name="PaymentDet_Id" ColumnName="PaymentDet_Id" />
+          <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+          <ScalarProperty Name="Hist_Seq_No" ColumnName="Hist_Seq_No" />
+          <ScalarProperty Name="Case_Seq_No" ColumnName="Case_Seq_No" />
+          <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="State_Prov_Id" ColumnName="State_Prov_Id" />
+          <ScalarProperty Name="Domesticreg_Id" ColumnName="Domesticreg_Id" />
+          <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+          <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VWSecurityUsers">
+      <EntityTypeMapping TypeName="GlobalModel.VWSecurityUser">
+        <MappingFragment StoreEntitySet="VWSecurityUsers">
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ATLANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ST_BUSINESS_LINE">
+          <Key>
+            <PropertyRef Name="BusinessLine_Id" />
+          </Key>
+          <Property Name="BusinessLine_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessLine_Code" Type="int" Nullable="false" />
+          <Property Name="BusinessLine_NameKey" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="BusinessLine_Status" Type="int" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_CHECKBOOKS">
+          <Key>
+            <PropertyRef Name="Checkbook_Id" />
+          </Key>
+          <Property Name="Checkbook_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Checkbook_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bank_Account" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bank_Name_Desc" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Currency_ISO" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Checkbook_Status" Type="int" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_OFFICE_CODES">
+          <Key>
+            <PropertyRef Name="Office_Id" />
+          </Key>
+          <Property Name="Office_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Office_Code" Type="int" Nullable="false" />
+          <Property Name="Office_NameKey" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Office_Status" Type="int" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_PRODUCT_TYPES">
+          <Key>
+            <PropertyRef Name="ProductType_Id" />
+          </Key>
+          <Property Name="ProductType_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductType_Code" Type="int" Nullable="false" />
+          <Property Name="ProductType_NameKey" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="ProductType_Status" Type="int" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_PRODUCTS">
+          <Key>
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Product_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Code" Type="int" Nullable="false" />
+          <Property Name="Product_NameKey" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Product_Status" Type="int" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_USERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERCODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="KT_USER" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LEVEL" Type="int" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="datetime" Nullable="false" />
+          <Property Name="OFFICE" Type="varchar" MaxLength="50" />
+          <Property Name="BANKNAME" Type="varchar" MaxLength="50" />
+          <Property Name="CHECKBOOKID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.Collectors.VW_GET_BANKS_INFORMATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_GET_BANKS_INFORMATION">
+          <Key>
+            <PropertyRef Name="DEX_ROW_ID" />
+            <PropertyRef Name="BANKID" />
+          </Key>
+          <Property Name="DEX_ROW_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BANKID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="BANKNAME" Type="varchar" MaxLength="31" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.Collectors.VW_ST_PMT_HISTORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_ST_PMT_HISTORY">
+          <Key>
+            <PropertyRef Name="SOURCE_SYSTEM" />
+            <PropertyRef Name="GP_PAYMENT_NUMBER" />
+          </Key>
+          <Property Name="POLICY_NUMBER" Type="char" MaxLength="15" />
+          <Property Name="LINE_OF_BUSINESS" Type="char" MaxLength="7" />
+          <Property Name="CUSTNAME" Type="char" MaxLength="65" />
+          <Property Name="CURRENCY_ID" Type="varchar" MaxLength="15" />
+          <Property Name="PAYMENT_AMOUNT" Type="numeric" Precision="19" Scale="5" />
+          <Property Name="PAYMENT_DATE" Type="datetime" />
+          <Property Name="PAYMENT_HOUR" Type="varchar" MaxLength="11" />
+          <Property Name="PAYMENT_TYPE" Type="int" />
+          <Property Name="ACCOUNT_NUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="GP_PAYMENT_NUMBER" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="OFFICE_NUMBER" Type="char" MaxLength="7" />
+          <Property Name="RECEIVED_BY" Type="char" MaxLength="50" />
+          <Property Name="SOURCE_SYSTEM" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="KT_BARCODE" Type="varchar" MaxLength="50" />
+          <Property Name="GP_STATUS" Type="char" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.Collectors.VW_ST_PMT_PAYMENTS_BY_BARCODE_KT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT">
+          <Key>
+            <PropertyRef Name="GP_PAYMENT_NUMBER" />
+            <PropertyRef Name="KT_BARCODE" />
+            <PropertyRef Name="ADDITIONAL_INFO" />
+            <PropertyRef Name="CREATE_DATE" />
+          </Key>
+          <Property Name="GP_PAYMENT_NUMBER" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="KT_BARCODE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ADDITIONAL_INFO" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="datetime" Nullable="false" />
+          <Property Name="BATCH" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.Collectors.VW_ST_PRODUCTS_DESCRIPTIONS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_ST_PRODUCTS_DESCRIPTIONS">
+          <Key>
+            <PropertyRef Name="CODE" />
+          </Key>
+          <Property Name="CODE" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="123" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ATLAN.dbo.ST_CLIENT_POLICY_INFO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ST_CLIENT_POLICY_INFO">
+          <Key>
+            <PropertyRef Name="CUSTNAME" />
+            <PropertyRef Name="CLIENT_ID" />
+            <PropertyRef Name="POLICY_NUMBER" />
+            <PropertyRef Name="LINE_OF_BUSINESS" />
+            <PropertyRef Name="POLICY_STATUS" />
+            <PropertyRef Name="PLAN_TYPE" />
+            <PropertyRef Name="CURRENCY_ID" />
+            <PropertyRef Name="OFFICE_NUMBER" />
+            <PropertyRef Name="INTEGRATIONID" />
+          </Key>
+          <Property Name="CUSTNAME" Type="char" MaxLength="65" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="POLICY_NUMBER" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="LINE_OF_BUSINESS" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="POLICY_STATUS" Type="char" MaxLength="21" Nullable="false" />
+          <Property Name="PLAN_TYPE" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="EXPIRATION_DATE" Type="datetime" />
+          <Property Name="CURRENCY_ID" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CUSTOMER_BALANCE" Type="numeric" Precision="19" Scale="5" />
+          <Property Name="OFFICE_NUMBER" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="INTEGRATIONID" Type="char" MaxLength="31" Nullable="false" />
+          <Property Name="DATE_OF_BIRTH" Type="datetime" />
+          <Property Name="CORE_CREATION_DATE" Type="datetime" />
+          <Property Name="AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="SUPERVISOR" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="SP_GET_DAILY_CASH_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+          <Parameter Name="Collector" Type="varchar" Mode="In" />
+          <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
+          <Parameter Name="PaymentType" Type="int" Mode="In" />
+          <Parameter Name="PaymentDateTo" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="USP_GET_POLICY_HAS_RECENT_PAYMENTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+          <Parameter Name="Policy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_SET_COLLECTORS_ERRORS_LOG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+          <Parameter Name="parameters" Type="varchar" Mode="In" />
+          <Parameter Name="Error_Logged" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_SET_KTAG_BY_PAYMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Collectors">
+          <Parameter Name="GP_PAYMENT_NUMBER" Type="varchar" Mode="In" />
+          <Parameter Name="KT_BARCODE" Type="varchar" Mode="In" />
+          <Parameter Name="ADDITIONAL_INFO" Type="varchar" Mode="In" />
+          <Parameter Name="BATCH" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ATLANModelStoreContainer">
+          <EntitySet Name="ST_BUSINESS_LINE" EntityType="Self.ST_BUSINESS_LINE" Schema="Collectors" store:Type="Tables" />
+          <EntitySet Name="ST_CHECKBOOKS" EntityType="Self.ST_CHECKBOOKS" Schema="Collectors" store:Type="Tables" />
+          <EntitySet Name="ST_OFFICE_CODES" EntityType="Self.ST_OFFICE_CODES" Schema="Collectors" store:Type="Tables" />
+          <EntitySet Name="ST_PRODUCT_TYPES" EntityType="Self.ST_PRODUCT_TYPES" Schema="Collectors" store:Type="Tables" />
+          <EntitySet Name="ST_PRODUCTS" EntityType="Self.ST_PRODUCTS" Schema="Collectors" store:Type="Tables" />
+          <EntitySet Name="ST_USERS" EntityType="Self.ST_USERS" Schema="Collectors" store:Type="Tables" />
+          <EntitySet Name="VW_GET_BANKS_INFORMATION" EntityType="Self.VW_GET_BANKS_INFORMATION" store:Type="Views" store:Schema="Collectors">
+            <DefiningQuery>SELECT 
+    [VW_GET_BANKS_INFORMATION].[DEX_ROW_ID] AS [DEX_ROW_ID], 
+    [VW_GET_BANKS_INFORMATION].[BANKID] AS [BANKID], 
+    [VW_GET_BANKS_INFORMATION].[BANKNAME] AS [BANKNAME]
+    FROM [Collectors].[VW_GET_BANKS_INFORMATION] AS [VW_GET_BANKS_INFORMATION]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_ST_PMT_HISTORY" EntityType="Self.VW_ST_PMT_HISTORY" store:Type="Views" store:Schema="Collectors">
+            <DefiningQuery>SELECT 
+    [VW_ST_PMT_HISTORY].[POLICY_NUMBER] AS [POLICY_NUMBER], 
+    [VW_ST_PMT_HISTORY].[LINE_OF_BUSINESS] AS [LINE_OF_BUSINESS], 
+    [VW_ST_PMT_HISTORY].[CUSTNAME] AS [CUSTNAME], 
+    [VW_ST_PMT_HISTORY].[CURRENCY_ID] AS [CURRENCY_ID], 
+    [VW_ST_PMT_HISTORY].[PAYMENT_AMOUNT] AS [PAYMENT_AMOUNT], 
+    [VW_ST_PMT_HISTORY].[PAYMENT_DATE] AS [PAYMENT_DATE], 
+    [VW_ST_PMT_HISTORY].[PAYMENT_HOUR] AS [PAYMENT_HOUR], 
+    [VW_ST_PMT_HISTORY].[PAYMENT_TYPE] AS [PAYMENT_TYPE], 
+    [VW_ST_PMT_HISTORY].[ACCOUNT_NUMBER] AS [ACCOUNT_NUMBER], 
+    [VW_ST_PMT_HISTORY].[GP_PAYMENT_NUMBER] AS [GP_PAYMENT_NUMBER], 
+    [VW_ST_PMT_HISTORY].[OFFICE_NUMBER] AS [OFFICE_NUMBER], 
+    [VW_ST_PMT_HISTORY].[RECEIVED_BY] AS [RECEIVED_BY], 
+    [VW_ST_PMT_HISTORY].[SOURCE_SYSTEM] AS [SOURCE_SYSTEM], 
+    [VW_ST_PMT_HISTORY].[KT_BARCODE] AS [KT_BARCODE], 
+    [VW_ST_PMT_HISTORY].[GP_STATUS] AS [GP_STATUS]
+    FROM [Collectors].[VW_ST_PMT_HISTORY] AS [VW_ST_PMT_HISTORY]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT" EntityType="Self.VW_ST_PMT_PAYMENTS_BY_BARCODE_KT" store:Type="Views" store:Schema="Collectors">
+            <DefiningQuery>SELECT 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[GP_PAYMENT_NUMBER] AS [GP_PAYMENT_NUMBER], 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[KT_BARCODE] AS [KT_BARCODE], 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[ADDITIONAL_INFO] AS [ADDITIONAL_INFO], 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[CREATE_DATE] AS [CREATE_DATE], 
+    [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT].[BATCH] AS [BATCH]
+    FROM [Collectors].[VW_ST_PMT_PAYMENTS_BY_BARCODE_KT] AS [VW_ST_PMT_PAYMENTS_BY_BARCODE_KT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_ST_PRODUCTS_DESCRIPTIONS" EntityType="Self.VW_ST_PRODUCTS_DESCRIPTIONS" store:Type="Views" store:Schema="Collectors">
+            <DefiningQuery>SELECT 
+    [VW_ST_PRODUCTS_DESCRIPTIONS].[CODE] AS [CODE], 
+    [VW_ST_PRODUCTS_DESCRIPTIONS].[DESCRIPTION] AS [DESCRIPTION]
+    FROM [Collectors].[VW_ST_PRODUCTS_DESCRIPTIONS] AS [VW_ST_PRODUCTS_DESCRIPTIONS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ST_CLIENT_POLICY_INFO" EntityType="Self.ST_CLIENT_POLICY_INFO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ST_CLIENT_POLICY_INFO].[CUSTNAME] AS [CUSTNAME], 
+    [ST_CLIENT_POLICY_INFO].[CLIENT_ID] AS [CLIENT_ID], 
+    [ST_CLIENT_POLICY_INFO].[POLICY_NUMBER] AS [POLICY_NUMBER], 
+    [ST_CLIENT_POLICY_INFO].[LINE_OF_BUSINESS] AS [LINE_OF_BUSINESS], 
+    [ST_CLIENT_POLICY_INFO].[POLICY_STATUS] AS [POLICY_STATUS], 
+    [ST_CLIENT_POLICY_INFO].[PLAN_TYPE] AS [PLAN_TYPE], 
+    [ST_CLIENT_POLICY_INFO].[EXPIRATION_DATE] AS [EXPIRATION_DATE], 
+    [ST_CLIENT_POLICY_INFO].[CURRENCY_ID] AS [CURRENCY_ID], 
+    [ST_CLIENT_POLICY_INFO].[CUSTOMER_BALANCE] AS [CUSTOMER_BALANCE], 
+    [ST_CLIENT_POLICY_INFO].[OFFICE_NUMBER] AS [OFFICE_NUMBER], 
+    [ST_CLIENT_POLICY_INFO].[INTEGRATIONID] AS [INTEGRATIONID], 
+    [ST_CLIENT_POLICY_INFO].[DATE_OF_BIRTH] AS [DATE_OF_BIRTH], 
+    [ST_CLIENT_POLICY_INFO].[CORE_CREATION_DATE] AS [CORE_CREATION_DATE], 
+    [ST_CLIENT_POLICY_INFO].[AGENT] AS [AGENT], 
+    [ST_CLIENT_POLICY_INFO].[SUPERVISOR] AS [SUPERVISOR]
+    FROM [dbo].[ST_CLIENT_POLICY_INFO] AS [ST_CLIENT_POLICY_INFO]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ATLANModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ATLANEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ST_BUSINESS_LINE" EntityType="ATLANModel.ST_BUSINESS_LINE" />
+          <EntitySet Name="ST_OFFICE_CODES" EntityType="ATLANModel.ST_OFFICE_CODES" />
+          <EntitySet Name="ST_PRODUCT_TYPES" EntityType="ATLANModel.ST_PRODUCT_TYPES" />
+          <EntitySet Name="ST_PRODUCTS" EntityType="ATLANModel.ST_PRODUCTS" />
+          <EntitySet Name="VW_ST_PMT_HISTORY" EntityType="ATLANModel.VW_ST_PMT_HISTORY" />
+          <EntitySet Name="VW_ST_PRODUCTS_DESCRIPTIONS" EntityType="ATLANModel.VW_ST_PRODUCTS_DESCRIPTIONS" />
+          <EntitySet Name="ST_CLIENT_POLICY_INFO" EntityType="ATLANModel.ST_CLIENT_POLICY_INFO" />
+          <EntitySet Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT" EntityType="ATLANModel.VW_ST_PMT_PAYMENTS_BY_BARCODE_KT" />
+          <FunctionImport Name="USP_SET_KTAG_BY_PAYMENT" ReturnType="Collection(Decimal)">
+            <Parameter Name="GP_PAYMENT_NUMBER" Mode="In" Type="String" />
+            <Parameter Name="KT_BARCODE" Mode="In" Type="String" />
+            <Parameter Name="ADDITIONAL_INFO" Mode="In" Type="String" />
+            <Parameter Name="BATCH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_SET_COLLECTORS_ERRORS_LOG">
+            <Parameter Name="parameters" Mode="In" Type="String" />
+            <Parameter Name="Error_Logged" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GET_POLICY_HAS_RECENT_PAYMENTS" ReturnType="Collection(Decimal)">
+          <Parameter Name="Policy" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="ST_USERS" EntityType="ATLANModel.ST_USERS" />
+          <EntitySet Name="VW_GET_BANKS_INFORMATION" EntityType="ATLANModel.VW_GET_BANKS_INFORMATION" />
+          <EntitySet Name="ST_CHECKBOOKS" EntityType="ATLANModel.ST_CHECKBOOKS" />
+          <FunctionImport Name="SP_GET_DAILY_CASH_DETAILS" ReturnType="Collection(ATLANModel.SP_GET_DAILY_CASH_DETAILS_Result)">
+            <Parameter Name="Collector" Mode="In" Type="String" />
+            <Parameter Name="PaymentDate" Mode="In" Type="DateTime" />
+            <Parameter Name="PaymentType" Mode="In" Type="Int32" />
+            <Parameter Name="PaymentDateTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="ST_BUSINESS_LINE">
+          <Key>
+            <PropertyRef Name="BusinessLine_Id" />
+          </Key>
+          <Property Name="BusinessLine_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessLine_Code" Type="Int32" Nullable="false" />
+          <Property Name="BusinessLine_NameKey" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessLine_Status" Type="Int32" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ST_OFFICE_CODES">
+          <Key>
+            <PropertyRef Name="Office_Id" />
+          </Key>
+          <Property Name="Office_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Office_Code" Type="Int32" Nullable="false" />
+          <Property Name="Office_NameKey" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Office_Status" Type="Int32" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ST_PRODUCT_TYPES">
+          <Key>
+            <PropertyRef Name="ProductType_Id" />
+          </Key>
+          <Property Name="ProductType_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductType_Code" Type="Int32" Nullable="false" />
+          <Property Name="ProductType_NameKey" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ProductType_Status" Type="Int32" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ST_PRODUCTS">
+          <Key>
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Product_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Code" Type="Int32" Nullable="false" />
+          <Property Name="Product_NameKey" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Product_Status" Type="Int32" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VW_ST_PMT_HISTORY">
+          <Key>
+            <PropertyRef Name="SOURCE_SYSTEM" />
+            <PropertyRef Name="GP_PAYMENT_NUMBER" />
+          </Key>
+          <Property Name="POLICY_NUMBER" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="LINE_OF_BUSINESS" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="CUSTNAME" Type="String" MaxLength="65" FixedLength="true" Unicode="false" />
+          <Property Name="CURRENCY_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PAYMENT_AMOUNT" Type="Decimal" Precision="19" Scale="5" />
+          <Property Name="PAYMENT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PAYMENT_HOUR" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="PAYMENT_TYPE" Type="Int32" />
+          <Property Name="ACCOUNT_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GP_PAYMENT_NUMBER" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="OFFICE_NUMBER" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="RECEIVED_BY" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="SOURCE_SYSTEM" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KT_BARCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GP_STATUS" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_ST_PRODUCTS_DESCRIPTIONS">
+          <Key>
+            <PropertyRef Name="CODE" />
+          </Key>
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="123" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ST_CLIENT_POLICY_INFO">
+          <Key>
+            <PropertyRef Name="CUSTNAME" />
+            <PropertyRef Name="CLIENT_ID" />
+            <PropertyRef Name="POLICY_NUMBER" />
+            <PropertyRef Name="LINE_OF_BUSINESS" />
+            <PropertyRef Name="POLICY_STATUS" />
+            <PropertyRef Name="PLAN_TYPE" />
+            <PropertyRef Name="CURRENCY_ID" />
+            <PropertyRef Name="OFFICE_NUMBER" />
+            <PropertyRef Name="INTEGRATIONID" />
+          </Key>
+          <Property Name="CUSTNAME" Type="String" Nullable="false" MaxLength="65" FixedLength="true" Unicode="false" />
+          <Property Name="CLIENT_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="POLICY_NUMBER" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="LINE_OF_BUSINESS" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="POLICY_STATUS" Type="String" Nullable="false" MaxLength="21" FixedLength="true" Unicode="false" />
+          <Property Name="PLAN_TYPE" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="EXPIRATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CURRENCY_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_BALANCE" Type="Decimal" Precision="19" Scale="5" />
+          <Property Name="OFFICE_NUMBER" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="INTEGRATIONID" Type="String" Nullable="false" MaxLength="31" FixedLength="true" Unicode="false" />
+          <Property Name="DATE_OF_BIRTH" Type="DateTime" Precision="3" />
+          <Property Name="CORE_CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SUPERVISOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT">
+          <Key>
+            <PropertyRef Name="GP_PAYMENT_NUMBER" />
+            <PropertyRef Name="KT_BARCODE" />
+            <PropertyRef Name="ADDITIONAL_INFO" />
+            <PropertyRef Name="CREATE_DATE" />
+          </Key>
+          <Property Name="GP_PAYMENT_NUMBER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KT_BARCODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADDITIONAL_INFO" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BATCH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ST_USERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERCODE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KT_USER" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LEVEL" Type="Int32" Nullable="false" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OFFICE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BANKNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CHECKBOOKID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_GET_BANKS_INFORMATION">
+          <Key>
+            <PropertyRef Name="DEX_ROW_ID" />
+            <PropertyRef Name="BANKID" />
+          </Key>
+          <Property Name="DEX_ROW_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BANKID" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="BANKNAME" Type="String" MaxLength="31" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ST_CHECKBOOKS">
+          <Key>
+            <PropertyRef Name="Checkbook_Id" />
+          </Key>
+          <Property Name="Checkbook_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Checkbook_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Account" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Name_Desc" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Currency_ISO" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Checkbook_Status" Type="Int32" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <ComplexType Name="SP_GET_DAILY_CASH_DETAILS_Result">
+          <Property Type="String" Name="GP_PAYMENT_NUMBER" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="POLICY_NUMBER" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="CUSTNAME" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="PAYMENT_TYPE" Nullable="false" MaxLength="18" />
+          <Property Type="DateTime" Name="PAYMENT_DATETIME" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PAYMENT_DATE" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="PAYMENT_HOUR" Nullable="true" MaxLength="11" />
+          <Property Type="Decimal" Name="PAYMENT_AMOUNT" Nullable="true" Precision="21" Scale="5" />
+          <Property Type="String" Name="CHECKBOOK_ID" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="GP_STATUS" Nullable="true" MaxLength="8" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ATLANModelStoreContainer" CdmEntityContainer="ATLANEntities">
+          <EntitySetMapping Name="ST_BUSINESS_LINE">
+            <EntityTypeMapping TypeName="ATLANModel.ST_BUSINESS_LINE">
+              <MappingFragment StoreEntitySet="ST_BUSINESS_LINE">
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="BusinessLine_Status" ColumnName="BusinessLine_Status" />
+                <ScalarProperty Name="BusinessLine_NameKey" ColumnName="BusinessLine_NameKey" />
+                <ScalarProperty Name="BusinessLine_Code" ColumnName="BusinessLine_Code" />
+                <ScalarProperty Name="BusinessLine_Id" ColumnName="BusinessLine_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_OFFICE_CODES">
+            <EntityTypeMapping TypeName="ATLANModel.ST_OFFICE_CODES">
+              <MappingFragment StoreEntitySet="ST_OFFICE_CODES">
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Office_Status" ColumnName="Office_Status" />
+                <ScalarProperty Name="Office_NameKey" ColumnName="Office_NameKey" />
+                <ScalarProperty Name="Office_Code" ColumnName="Office_Code" />
+                <ScalarProperty Name="Office_Id" ColumnName="Office_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_PRODUCT_TYPES">
+            <EntityTypeMapping TypeName="ATLANModel.ST_PRODUCT_TYPES">
+              <MappingFragment StoreEntitySet="ST_PRODUCT_TYPES">
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="ProductType_Status" ColumnName="ProductType_Status" />
+                <ScalarProperty Name="ProductType_NameKey" ColumnName="ProductType_NameKey" />
+                <ScalarProperty Name="ProductType_Code" ColumnName="ProductType_Code" />
+                <ScalarProperty Name="ProductType_Id" ColumnName="ProductType_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_PRODUCTS">
+            <EntityTypeMapping TypeName="ATLANModel.ST_PRODUCTS">
+              <MappingFragment StoreEntitySet="ST_PRODUCTS">
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Product_Status" ColumnName="Product_Status" />
+                <ScalarProperty Name="Product_NameKey" ColumnName="Product_NameKey" />
+                <ScalarProperty Name="Product_Code" ColumnName="Product_Code" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_ST_PMT_HISTORY">
+            <EntityTypeMapping TypeName="ATLANModel.VW_ST_PMT_HISTORY">
+              <MappingFragment StoreEntitySet="VW_ST_PMT_HISTORY">
+                <ScalarProperty Name="GP_STATUS" ColumnName="GP_STATUS" />
+                <ScalarProperty Name="KT_BARCODE" ColumnName="KT_BARCODE" />
+                <ScalarProperty Name="SOURCE_SYSTEM" ColumnName="SOURCE_SYSTEM" />
+                <ScalarProperty Name="RECEIVED_BY" ColumnName="RECEIVED_BY" />
+                <ScalarProperty Name="OFFICE_NUMBER" ColumnName="OFFICE_NUMBER" />
+                <ScalarProperty Name="GP_PAYMENT_NUMBER" ColumnName="GP_PAYMENT_NUMBER" />
+                <ScalarProperty Name="ACCOUNT_NUMBER" ColumnName="ACCOUNT_NUMBER" />
+                <ScalarProperty Name="PAYMENT_TYPE" ColumnName="PAYMENT_TYPE" />
+                <ScalarProperty Name="PAYMENT_HOUR" ColumnName="PAYMENT_HOUR" />
+                <ScalarProperty Name="PAYMENT_DATE" ColumnName="PAYMENT_DATE" />
+                <ScalarProperty Name="PAYMENT_AMOUNT" ColumnName="PAYMENT_AMOUNT" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+                <ScalarProperty Name="CUSTNAME" ColumnName="CUSTNAME" />
+                <ScalarProperty Name="LINE_OF_BUSINESS" ColumnName="LINE_OF_BUSINESS" />
+                <ScalarProperty Name="POLICY_NUMBER" ColumnName="POLICY_NUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_ST_PRODUCTS_DESCRIPTIONS">
+            <EntityTypeMapping TypeName="ATLANModel.VW_ST_PRODUCTS_DESCRIPTIONS">
+              <MappingFragment StoreEntitySet="VW_ST_PRODUCTS_DESCRIPTIONS">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_CLIENT_POLICY_INFO">
+            <EntityTypeMapping TypeName="ATLANModel.ST_CLIENT_POLICY_INFO">
+              <MappingFragment StoreEntitySet="ST_CLIENT_POLICY_INFO">
+                <ScalarProperty Name="SUPERVISOR" ColumnName="SUPERVISOR" />
+                <ScalarProperty Name="AGENT" ColumnName="AGENT" />
+                <ScalarProperty Name="CORE_CREATION_DATE" ColumnName="CORE_CREATION_DATE" />
+                <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+                <ScalarProperty Name="INTEGRATIONID" ColumnName="INTEGRATIONID" />
+                <ScalarProperty Name="OFFICE_NUMBER" ColumnName="OFFICE_NUMBER" />
+                <ScalarProperty Name="CUSTOMER_BALANCE" ColumnName="CUSTOMER_BALANCE" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+                <ScalarProperty Name="EXPIRATION_DATE" ColumnName="EXPIRATION_DATE" />
+                <ScalarProperty Name="PLAN_TYPE" ColumnName="PLAN_TYPE" />
+                <ScalarProperty Name="POLICY_STATUS" ColumnName="POLICY_STATUS" />
+                <ScalarProperty Name="LINE_OF_BUSINESS" ColumnName="LINE_OF_BUSINESS" />
+                <ScalarProperty Name="POLICY_NUMBER" ColumnName="POLICY_NUMBER" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="CUSTNAME" ColumnName="CUSTNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT">
+            <EntityTypeMapping TypeName="ATLANModel.VW_ST_PMT_PAYMENTS_BY_BARCODE_KT">
+              <MappingFragment StoreEntitySet="VW_ST_PMT_PAYMENTS_BY_BARCODE_KT">
+                <ScalarProperty Name="BATCH" ColumnName="BATCH" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="ADDITIONAL_INFO" ColumnName="ADDITIONAL_INFO" />
+                <ScalarProperty Name="KT_BARCODE" ColumnName="KT_BARCODE" />
+                <ScalarProperty Name="GP_PAYMENT_NUMBER" ColumnName="GP_PAYMENT_NUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_SET_KTAG_BY_PAYMENT" FunctionName="ATLANModel.Store.USP_SET_KTAG_BY_PAYMENT" />
+          <FunctionImportMapping FunctionImportName="USP_SET_COLLECTORS_ERRORS_LOG" FunctionName="ATLANModel.Store.USP_SET_COLLECTORS_ERRORS_LOG" />
+          <FunctionImportMapping FunctionImportName="USP_GET_POLICY_HAS_RECENT_PAYMENTS" FunctionName="ATLANModel.Store.USP_GET_POLICY_HAS_RECENT_PAYMENTS" />
+          <EntitySetMapping Name="ST_USERS">
+            <EntityTypeMapping TypeName="ATLANModel.ST_USERS">
+              <MappingFragment StoreEntitySet="ST_USERS">
+                <ScalarProperty Name="CHECKBOOKID" ColumnName="CHECKBOOKID" />
+                <ScalarProperty Name="BANKNAME" ColumnName="BANKNAME" />
+                <ScalarProperty Name="OFFICE" ColumnName="OFFICE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+                <ScalarProperty Name="KT_USER" ColumnName="KT_USER" />
+                <ScalarProperty Name="USERCODE" ColumnName="USERCODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_GET_BANKS_INFORMATION">
+            <EntityTypeMapping TypeName="ATLANModel.VW_GET_BANKS_INFORMATION">
+              <MappingFragment StoreEntitySet="VW_GET_BANKS_INFORMATION">
+                <ScalarProperty Name="BANKNAME" ColumnName="BANKNAME" />
+                <ScalarProperty Name="BANKID" ColumnName="BANKID" />
+                <ScalarProperty Name="DEX_ROW_ID" ColumnName="DEX_ROW_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_CHECKBOOKS">
+            <EntityTypeMapping TypeName="ATLANModel.ST_CHECKBOOKS">
+              <MappingFragment StoreEntitySet="ST_CHECKBOOKS">
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Checkbook_Status" ColumnName="Checkbook_Status" />
+                <ScalarProperty Name="Currency_ISO" ColumnName="Currency_ISO" />
+                <ScalarProperty Name="Bank_Name_Desc" ColumnName="Bank_Name_Desc" />
+                <ScalarProperty Name="Bank_Account" ColumnName="Bank_Account" />
+                <ScalarProperty Name="Checkbook_Name" ColumnName="Checkbook_Name" />
+                <ScalarProperty Name="Checkbook_Id" ColumnName="Checkbook_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_DAILY_CASH_DETAILS" FunctionName="ATLANModel.Store.SP_GET_DAILY_CASH_DETAILS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ATLANModel.SP_GET_DAILY_CASH_DETAILS_Result">
+                <ScalarProperty Name="GP_PAYMENT_NUMBER" ColumnName="GP_PAYMENT_NUMBER" />
+                <ScalarProperty Name="POLICY_NUMBER" ColumnName="POLICY_NUMBER" />
+                <ScalarProperty Name="CUSTNAME" ColumnName="CUSTNAME" />
+                <ScalarProperty Name="PAYMENT_TYPE" ColumnName="PAYMENT_TYPE" />
+                <ScalarProperty Name="PAYMENT_DATETIME" ColumnName="PAYMENT_DATETIME" />
+                <ScalarProperty Name="PAYMENT_DATE" ColumnName="PAYMENT_DATE" />
+                <ScalarProperty Name="PAYMENT_HOUR" ColumnName="PAYMENT_HOUR" />
+                <ScalarProperty Name="PAYMENT_AMOUNT" ColumnName="PAYMENT_AMOUNT" />
+                <ScalarProperty Name="CHECKBOOK_ID" ColumnName="CHECKBOOK_ID" />
+                <ScalarProperty Name="GP_STATUS" ColumnName="GP_STATUS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
