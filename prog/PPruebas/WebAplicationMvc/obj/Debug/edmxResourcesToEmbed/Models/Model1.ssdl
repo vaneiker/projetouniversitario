@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GlobalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EN_AGENT_GP_COMMISSION">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Agent_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Agent_Id" Type="int" Nullable="false" />
+    <Property Name="No_Commission" Type="bit" Nullable="false" />
+    <Property Name="Take_Vendor_Id" Type="bit" Nullable="false" />
+    <Property Name="Vendor_Id" Type="varchar" MaxLength="50" />
+    <Property Name="Agent_Status" Type="bit" Nullable="false" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+    <Property Name="Modi_Date" Type="datetime" />
+    <Property Name="Create_UsrId" Type="int" Nullable="false" />
+    <Property Name="Modi_UsrId" Type="int" />
+    <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="GlobalModelStoreContainer">
+    <EntitySet Name="EN_AGENT_GP_COMMISSION" EntityType="Self.EN_AGENT_GP_COMMISSION" Schema="Entity" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GlobalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EN_AGENT_GP_COMMISSION">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Agent_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+    <Property Name="Agent_Id" Type="Int32" Nullable="false" />
+    <Property Name="No_Commission" Type="Boolean" Nullable="false" />
+    <Property Name="Take_Vendor_Id" Type="Boolean" Nullable="false" />
+    <Property Name="Vendor_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Agent_Status" Type="Boolean" Nullable="false" />
+    <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+    <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+    <Property Name="Modi_UsrId" Type="Int32" />
+    <Property Name="Hostname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="GlobalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EN_AGENT_GP_COMMISSION" EntityType="Self.EN_AGENT_GP_COMMISSION" />
+    <EntitySet Name="EN_AGENT" EntityType="GlobalModel.EN_AGENT" />
+    <EntitySet Name="VIEW_GET_VENDOR" EntityType="GlobalModel.VIEW_GET_VENDOR" />
+  </EntityContainer>
+  <EntityType Name="EN_AGENT">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Agent_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+    <Property Name="Agent_Id" Type="Int32" Nullable="false" />
+    <Property Name="Agent_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Identity_Type_Id" Type="Int32" />
+    <Property Name="Agent_Sub_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Agent_Code" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Name_Id" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="First_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Middle_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="First_Lastname" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Second_Lastname" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Full_Name" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="Nickname" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Dob" Type="DateTime" Precision="0" />
+    <Property Name="Payment_Type_Id" Type="Int32" />
+    <Property Name="Aba_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bank_Account_Type_Id" Type="Int32" />
+    <Property Name="Bank_Account_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Allocation" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Allocation_Type_Id" Type="Int32" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Marital_Stat_Id" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Residence_Country_Id" Type="Int32" />
+    <Property Name="Birth_Country_Id" Type="Int32" />
+    <Property Name="Citizenship_Country_Id" Type="Int32" />
+    <Property Name="Directory_Id" Type="Int32" Nullable="false" />
+    <Property Name="Agent_Status_Id" Type="Int32" Nullable="false" />
+    <Property Name="Active_Date" Type="DateTime" Precision="3" />
+    <Property Name="Inactive_Date" Type="DateTime" Precision="3" />
+    <Property Name="Referenced_By" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Practice_Sports" Type="Boolean" />
+    <Property Name="Sports_practiced" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="History_Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Ubicacion" Type="Int32" />
+    <Property Name="Commission_Behavior_Id" Type="Int32" />
+    <Property Name="Id_Expiration_Date" Type="DateTime" Precision="0" />
+    <Property Name="Automatic_Cancellation_Days" Type="Int32" />
+    <Property Name="Expedient_Id" Type="Int32" />
+    <Property Name="Penalty_Qty" Type="Int32" />
+    <Property Name="Penalty_Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+    <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+    <Property Name="Modi_UsrId" Type="Int32" />
+    <Property Name="Hostname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Source_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Kco_Unique_Id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VIEW_GET_VENDOR">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Agent_Id" />
+      <PropertyRef Name="No_Commission" />
+      <PropertyRef Name="Take_Vendor_Id" />
+      <PropertyRef Name="Agent_Status" />
+      <PropertyRef Name="Create_Date" />
+      <PropertyRef Name="Create_UsrId" />
+      <PropertyRef Name="Hostname" />
+    </Key>
+    <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+    <Property Name="Agent_Id" Type="Int32" Nullable="false" />
+    <Property Name="No_Commission" Type="Boolean" Nullable="false" />
+    <Property Name="Take_Vendor_Id" Type="Boolean" Nullable="false" />
+    <Property Name="Vendor_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Agent_Status" Type="Boolean" Nullable="false" />
+    <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+    <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+    <Property Name="Modi_UsrId" Type="Int32" />
+    <Property Name="Hostname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Full_Name" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

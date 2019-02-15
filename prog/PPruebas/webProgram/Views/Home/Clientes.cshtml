@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>Clientes</h2>
+<div id="app">
+    {{ info }}
+</div>
+
+<script src="~/JavaScripsFromEnd/Vue/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                info: null
+            }
+        },
+        mounted() {
+            axios
+                .get('/Home/GetClientesList')
+                .then(response => (this.info = response))
+        }
+    })
+</script>

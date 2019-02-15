@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+    
+}
+<div>
+    <strong>@ViewBag.Path</strong>
+</div>
+<script src="~/JavaScripsFromEnd/Vue/vue.js"></script>
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+
+
+<div id="aplicacion">
+    <form v-on:submit.prevent="agregarArticulo">
+        <p>
+            Ingrese código:<input type="number" v-model="codigo" class="form-control">
+        </p>
+        <p>
+            Ingrese descripción:<input type="text" v-model="descripcion" class="form-control">
+        </p>
+        <p>
+            Ingrese precio:<input type="text" v-model="precio" class="form-control">
+        </p>
+        <p><input type="submit" value="Agregar" class="btn btn-primary"></p>
+    </form>
+    <br />
+    @*<table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody v-for="articulo in articulos">
+            <tr>
+                <td>{{articulo.codigo}}</td>
+                <td>{{articulo.descripcion}}</td>
+                <td>{{articulo.precio}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>*@
+    </div>
+    <table class="table table-striped">
+        <caption><strong>Datos</strong></caption>
+        <tr>
+            <th>Dato 1</th>
+            <th>Dato 2</th>
+            <th>Dato 3</th>
+        </tr>
+        <tr>
+            <td>SqlServer</td>
+            <td>Asp.net</td>
+            <td>Java</td>
+        </tr>
+    </table>
+
+<div id="AppOcultar">
+    <p>
+        Cedula <input type="checkbox" class="form-check-input" v-model="cedula">
+        Pasaporte <input type="checkbox" class="form-check-input" v-model="pasaporte">
+        Cedula <input type="checkbox" class="form-check-input" v-model="licencia">
+        Pasaporte <input type="checkbox" class="form-check-input" v-model="rnc">
+
+    </p>
+    <input type="text" class="form-control" v-if="cedula" placeholder="Digite la Cedula" /><br />
+    <input type="text" class="form-control" v-if="pasaporte" placeholder="Digite la Pasaporte" /><br />
+    <input type="text" class="form-control" v-if="licencia" placeholder="Digite la Licencia" /><br />
+    <input type="text" class="form-control" v-if="rnc" placeholder="Digite la Rnc" />
+</div>
+
+<script>
+    var app1 = new Vue({
+        el: '#AppOcultar',
+        data: {
+            cedula: false,
+            pasaporte: false,
+            licencia: false,
+            rnc: false
+
+        }
+    })
+
+    var app = new Vue({
+        el: '#aplicacion',
+        data: {
+            codigo: '',
+            descripcion: '',
+            precio: '',
+            articulos: [{
+                codigo: 1,
+                descripcion: 'papas',
+                precio: 34
+            }]
+        },
+        methods: {
+            agregarArticulo: function () {
+                this.articulos.push({
+                    codigo: this.codigo,
+                    descripcion: this.descripcion,
+                    precio: this.precio
+                });
+                this.codigo = '';
+                this.descripcion = '';
+                this.precio = '';
+            }
+        }
+    })
+</script>

@@ -1,0 +1,52 @@
+﻿@model List<Entity.Global_Entity.VendorEntity>
+@{
+
+    ViewBag.Title = "ListadoVendor";
+}
+
+<h2>ListadoVendor</h2>
+<ol class="breadcrumb">
+     
+    <li class="active">
+
+        @*<div class="btn-group" role="group" aria-label="Third group">
+            <input type="text" class="form-control" />
+            <button type="button" class="btn btn-primary">Buscar</button>
+        </div>*@
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" aria-describedby="button-addon2">Buscar</button>
+            </div>
+        </div>
+    </li>
+</ol>
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre Completo</th>
+            <th>AgentId</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Full_Name</td>
+                <td>@a.AgentId</td>
+                <td>@a.AgentStatus</td>
+                <td>@a.VendorId</td>
+                <td>
+                    @Html.ActionLink("Edit", "Obtener", new { id = a.AgentId , @class = "btn btn-primary btn-large" })|
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <td>
+            </tr>
+        }
+
+    </tbody>
+</table>

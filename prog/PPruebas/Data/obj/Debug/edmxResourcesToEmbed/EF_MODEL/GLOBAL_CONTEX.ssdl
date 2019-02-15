@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GlobalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EN_AGENT">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Agent_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Agent_Id" Type="int" Nullable="false" />
+    <Property Name="Agent_Type_Id" Type="int" Nullable="false" />
+    <Property Name="Identity_Type_Id" Type="int" />
+    <Property Name="Agent_Sub_Type_Id" Type="int" Nullable="false" />
+    <Property Name="ID" Type="varchar" MaxLength="100" />
+    <Property Name="Agent_Code" Type="varchar" MaxLength="60" />
+    <Property Name="Name_Id" Type="varchar" MaxLength="60" />
+    <Property Name="First_Name" Type="varchar" MaxLength="60" />
+    <Property Name="Middle_Name" Type="varchar" MaxLength="60" />
+    <Property Name="First_Lastname" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Second_Lastname" Type="varchar" MaxLength="60" />
+    <Property Name="Full_Name" Type="varchar" MaxLength="240" />
+    <Property Name="Nickname" Type="varchar" MaxLength="60" />
+    <Property Name="Dob" Type="date" />
+    <Property Name="Payment_Type_Id" Type="int" />
+    <Property Name="Aba_Number" Type="varchar" MaxLength="50" />
+    <Property Name="Bank_Account_Type_Id" Type="int" />
+    <Property Name="Bank_Account_Number" Type="varchar" MaxLength="50" />
+    <Property Name="Allocation" Type="numeric" Precision="18" Scale="4" />
+    <Property Name="Allocation_Type_Id" Type="int" />
+    <Property Name="Gender" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="Marital_Stat_Id" Type="int" />
+    <Property Name="Title" Type="varchar" MaxLength="60" />
+    <Property Name="Residence_Country_Id" Type="int" />
+    <Property Name="Birth_Country_Id" Type="int" />
+    <Property Name="Citizenship_Country_Id" Type="int" />
+    <Property Name="Directory_Id" Type="int" Nullable="false" />
+    <Property Name="Agent_Status_Id" Type="int" Nullable="false" />
+    <Property Name="Active_Date" Type="datetime" />
+    <Property Name="Inactive_Date" Type="datetime" />
+    <Property Name="Referenced_By" Type="varchar" MaxLength="500" />
+    <Property Name="Practice_Sports" Type="bit" />
+    <Property Name="Sports_practiced" Type="varchar(max)" />
+    <Property Name="Contact_Notes" Type="varchar(max)" />
+    <Property Name="History_Notes" Type="varchar(max)" />
+    <Property Name="Ubicacion" Type="int" />
+    <Property Name="Commission_Behavior_Id" Type="int" />
+    <Property Name="Id_Expiration_Date" Type="date" />
+    <Property Name="Automatic_Cancellation_Days" Type="int" />
+    <Property Name="Expedient_Id" Type="int" />
+    <Property Name="Penalty_Qty" Type="int" />
+    <Property Name="Penalty_Amount" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+    <Property Name="Modi_Date" Type="datetime" />
+    <Property Name="Create_UsrId" Type="int" Nullable="false" />
+    <Property Name="Modi_UsrId" Type="int" />
+    <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Source_ID" Type="varchar" MaxLength="150" />
+    <Property Name="Kco_Unique_Id" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="EN_AGENT_GP_COMMISSION">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Agent_Id" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Agent_Id" Type="int" Nullable="false" />
+    <Property Name="No_Commission" Type="bit" Nullable="false" />
+    <Property Name="Take_Vendor_Id" Type="bit" Nullable="false" />
+    <Property Name="Vendor_Id" Type="varchar" MaxLength="50" />
+    <Property Name="Agent_Status" Type="bit" Nullable="false" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+    <Property Name="Modi_Date" Type="datetime" />
+    <Property Name="Create_UsrId" Type="int" Nullable="false" />
+    <Property Name="Modi_UsrId" Type="int" />
+    <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Global.Entity.VIEW_GET_VENDOR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VIEW_GET_VENDOR">
+    <Key>
+      <PropertyRef Name="Corp_Id" />
+      <PropertyRef Name="Agent_Id" />
+      <PropertyRef Name="No_Commission" />
+      <PropertyRef Name="Take_Vendor_Id" />
+      <PropertyRef Name="Agent_Status" />
+      <PropertyRef Name="Create_Date" />
+      <PropertyRef Name="Create_UsrId" />
+      <PropertyRef Name="Hostname" />
+    </Key>
+    <Property Name="Corp_Id" Type="int" Nullable="false" />
+    <Property Name="Agent_Id" Type="int" Nullable="false" />
+    <Property Name="No_Commission" Type="bit" Nullable="false" />
+    <Property Name="Take_Vendor_Id" Type="bit" Nullable="false" />
+    <Property Name="Vendor_Id" Type="varchar" MaxLength="50" />
+    <Property Name="Agent_Status" Type="bit" Nullable="false" />
+    <Property Name="Create_Date" Type="datetime" Nullable="false" />
+    <Property Name="Modi_Date" Type="datetime" />
+    <Property Name="Create_UsrId" Type="int" Nullable="false" />
+    <Property Name="Modi_UsrId" Type="int" />
+    <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Full_Name" Type="varchar" MaxLength="240" />
+  </EntityType>
+  <EntityContainer Name="GlobalModelStoreContainer">
+    <EntitySet Name="EN_AGENT" EntityType="Self.EN_AGENT" Schema="Entity" store:Type="Tables" />
+    <EntitySet Name="EN_AGENT_GP_COMMISSION" EntityType="Self.EN_AGENT_GP_COMMISSION" Schema="Entity" store:Type="Tables" />
+    <EntitySet Name="VIEW_GET_VENDOR" EntityType="Self.VIEW_GET_VENDOR" store:Type="Views" store:Schema="Entity">
+      <DefiningQuery>SELECT 
+    [VIEW_GET_VENDOR].[Corp_Id] AS [Corp_Id], 
+    [VIEW_GET_VENDOR].[Agent_Id] AS [Agent_Id], 
+    [VIEW_GET_VENDOR].[No_Commission] AS [No_Commission], 
+    [VIEW_GET_VENDOR].[Take_Vendor_Id] AS [Take_Vendor_Id], 
+    [VIEW_GET_VENDOR].[Vendor_Id] AS [Vendor_Id], 
+    [VIEW_GET_VENDOR].[Agent_Status] AS [Agent_Status], 
+    [VIEW_GET_VENDOR].[Create_Date] AS [Create_Date], 
+    [VIEW_GET_VENDOR].[Modi_Date] AS [Modi_Date], 
+    [VIEW_GET_VENDOR].[Create_UsrId] AS [Create_UsrId], 
+    [VIEW_GET_VENDOR].[Modi_UsrId] AS [Modi_UsrId], 
+    [VIEW_GET_VENDOR].[Hostname] AS [Hostname], 
+    [VIEW_GET_VENDOR].[Full_Name] AS [Full_Name]
+    FROM [Entity].[VIEW_GET_VENDOR] AS [VIEW_GET_VENDOR]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GlobalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EN_AGENT_GP_COMMISSION">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Agent_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Agent_Id" Type="int" Nullable="false" />
+          <Property Name="No_Commission" Type="bit" Nullable="false" />
+          <Property Name="Take_Vendor_Id" Type="bit" Nullable="false" />
+          <Property Name="Vendor_Id" Type="varchar" MaxLength="50" />
+          <Property Name="Agent_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GlobalModelStoreContainer">
+          <EntitySet Name="EN_AGENT_GP_COMMISSION" EntityType="Self.EN_AGENT_GP_COMMISSION" Schema="Entity" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GlobalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EN_AGENT_GP_COMMISSION">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Agent_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Agent_Id" Type="Int32" Nullable="false" />
+          <Property Name="No_Commission" Type="Boolean" Nullable="false" />
+          <Property Name="Take_Vendor_Id" Type="Boolean" Nullable="false" />
+          <Property Name="Vendor_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Agent_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="Hostname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GlobalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EN_AGENT_GP_COMMISSION" EntityType="Self.EN_AGENT_GP_COMMISSION" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GlobalModelStoreContainer" CdmEntityContainer="GlobalEntities">
+          <EntitySetMapping Name="EN_AGENT_GP_COMMISSION">
+            <EntityTypeMapping TypeName="GlobalModel.EN_AGENT_GP_COMMISSION">
+              <MappingFragment StoreEntitySet="EN_AGENT_GP_COMMISSION">
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+                <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+                <ScalarProperty Name="No_Commission" ColumnName="No_Commission" />
+                <ScalarProperty Name="Take_Vendor_Id" ColumnName="Take_Vendor_Id" />
+                <ScalarProperty Name="Vendor_Id" ColumnName="Vendor_Id" />
+                <ScalarProperty Name="Agent_Status" ColumnName="Agent_Status" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
