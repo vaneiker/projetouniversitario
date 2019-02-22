@@ -1,0 +1,53 @@
+﻿@model IPagedList<StateTrustGlobal.ViewModels.SPCBuscaTipoCapacidadModelo>
+@using StateTrustGlobal.Helpers
+@using PagedList;
+@using PagedList.Mvc;
+<div class="col-md-4" style="align-content:center">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Marcas Registradas
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+
+                    <thead>
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().DescIdioma)
+
+                            </th>
+                            
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DescIdioma)
+                            </td>
+
+                           
+                            <td>
+                            <td>
+                                <input type="checkbox" class="checkthis" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+       
+
+            </div>
+
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+

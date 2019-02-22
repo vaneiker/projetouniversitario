@@ -1,0 +1,75 @@
+﻿@model StateTrustGlobal.ViewModels.Paises_VM
+@{
+    ViewBag.Title = "CreateModel";
+  
+}
+
+<h2>Crear Localidad</h2>
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@{ Html.RenderPartial("_Alerts"); }
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@using (Html.BeginForm("CreateProvincias", "Ciudades", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+   
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Hidden("Nombre_Pais")
+        @Html.Hidden("Nombre_Provincia")
+
+        <div class="form-group">
+            @Html.Label("", "Paises", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Paises", null, "<--Seleccione Pais-->", htmlAttributes: new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+    
+            <div class="form-group">
+                @Html.Label("Provincia", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("Nombre_Prov", null, null, new { @class = "form-control", @placeholder = "Colocar Nombre Provincia", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Ciudad", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("Nombre_Ciudad", null, null, new { @class = "form-control", @placeholder = "Colocar Nombre Ciudad", @required = "required" })
+                </div>
+            </div>
+
+        <div class="form-group">
+            @Html.Label("Sector", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Nombre_Sector", null, null, new { @class = "form-control", @placeholder = "Colocar Nombre Sector", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Ubicación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Nombre_Ubicacion", null, null, new { @class = "form-control", @placeholder = "Colocar Nombre Ubicación", @required = "required" })
+            </div>
+        </div>
+      
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                @Html.ActionLink("Volver Atras", "AllMantenimientos", null, new { @class = "btn btn-info" })
+            </div>
+
+        </div>
+    </div>
+}
+
+ 
+<script type="text/javascript">
+    $("#Paises").change(function () {
+        $("#Nombre_Pais").val(($('option:selected', $(this)).text()));
+    });
+</script>
+ 

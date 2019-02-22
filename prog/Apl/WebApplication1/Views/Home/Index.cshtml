@@ -1,0 +1,17 @@
+﻿<script>
+    function onEditOfficeProfileSuccess(content) {
+        if ($('#OfficeProfileValSummary').length == 0) //No validation control found so OK
+        {
+            ClearOfficeProfileControls();
+        }
+        GetOfficeProfiles();
+    }
+</script>
+
+@using (Ajax.BeginForm("EditCustomerProfile", null,
+   new AjaxOptions { UpdateTargetId = "CustomerForm", OnSuccess = "onEditCustomerProfileSuccess" },
+   new { id = "EditCustomerProfileForm" }))
+{
+      
+
+}

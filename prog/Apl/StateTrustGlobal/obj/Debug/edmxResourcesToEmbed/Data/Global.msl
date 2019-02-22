@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GlobalModelStoreContainer" CdmEntityContainer="STFGlobalEntities">
+    <FunctionImportMapping FunctionImportName="SP_GET_ST_ENDORSEMENT" FunctionName="GlobalModel.Store.SP_GET_ST_ENDORSEMENT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_GET_ST_ENDORSEMENT_Result">
+          <ScalarProperty Name="Endorsement_Id" ColumnName="Endorsement_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Rnc" ColumnName="Rnc" />
+          <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+          <ScalarProperty Name="Contact_Tel" ColumnName="Contact_Tel" />
+          <ScalarProperty Name="Contact_Adress" ColumnName="Contact_Adress" />
+          <ScalarProperty Name="Endorsement_Status" ColumnName="Endorsement_Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_ST_ENDORSEMENT" FunctionName="GlobalModel.Store.SP_SET_ST_ENDORSEMENT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_SET_ST_ENDORSEMENT_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Endorsement_Id" ColumnName="Endorsement_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Rnc" ColumnName="Rnc" />
+          <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+          <ScalarProperty Name="Contact_Tel" ColumnName="Contact_Tel" />
+          <ScalarProperty Name="Contact_Adress" ColumnName="Contact_Adress" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="EN_AGENT_GP_COMMISSION">
+      <EntityTypeMapping TypeName="GlobalModel.EN_AGENT_GP_COMMISSION">
+        <MappingFragment StoreEntitySet="EN_AGENT_GP_COMMISSION">
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+          <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+          <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Agent_Status" ColumnName="Agent_Status" />
+          <ScalarProperty Name="Vendor_Id" ColumnName="Vendor_Id" />
+          <ScalarProperty Name="Take_Vendor_Id" ColumnName="Take_Vendor_Id" />
+          <ScalarProperty Name="No_Commission" ColumnName="No_Commission" />
+          <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_LIST_VENDOR_ACTIVE" FunctionName="GlobalModel.Store.SP_GET_LIST_VENDOR_ACTIVE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_GET_LIST_VENDOR_ACTIVE_Result">
+          <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+          <ScalarProperty Name="Agent_Code" ColumnName="Agent_Code" />
+          <ScalarProperty Name="Vendor_Id" ColumnName="Vendor_Id" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="EN_AGENT">
+      <EntityTypeMapping TypeName="GlobalModel.EN_AGENT">
+        <MappingFragment StoreEntitySet="EN_AGENT">
+          <ScalarProperty Name="Kco_Unique_Id" ColumnName="Kco_Unique_Id" />
+          <ScalarProperty Name="Source_ID" ColumnName="Source_ID" />
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+          <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+          <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Penalty_Amount" ColumnName="Penalty_Amount" />
+          <ScalarProperty Name="Penalty_Qty" ColumnName="Penalty_Qty" />
+          <ScalarProperty Name="Expedient_Id" ColumnName="Expedient_Id" />
+          <ScalarProperty Name="Automatic_Cancellation_Days" ColumnName="Automatic_Cancellation_Days" />
+          <ScalarProperty Name="Id_Expiration_Date" ColumnName="Id_Expiration_Date" />
+          <ScalarProperty Name="Commission_Behavior_Id" ColumnName="Commission_Behavior_Id" />
+          <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+          <ScalarProperty Name="History_Notes" ColumnName="History_Notes" />
+          <ScalarProperty Name="Contact_Notes" ColumnName="Contact_Notes" />
+          <ScalarProperty Name="Sports_practiced" ColumnName="Sports_practiced" />
+          <ScalarProperty Name="Practice_Sports" ColumnName="Practice_Sports" />
+          <ScalarProperty Name="Referenced_By" ColumnName="Referenced_By" />
+          <ScalarProperty Name="Inactive_Date" ColumnName="Inactive_Date" />
+          <ScalarProperty Name="Active_Date" ColumnName="Active_Date" />
+          <ScalarProperty Name="Agent_Status_Id" ColumnName="Agent_Status_Id" />
+          <ScalarProperty Name="Directory_Id" ColumnName="Directory_Id" />
+          <ScalarProperty Name="Citizenship_Country_Id" ColumnName="Citizenship_Country_Id" />
+          <ScalarProperty Name="Birth_Country_Id" ColumnName="Birth_Country_Id" />
+          <ScalarProperty Name="Residence_Country_Id" ColumnName="Residence_Country_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Marital_Stat_Id" ColumnName="Marital_Stat_Id" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Allocation_Type_Id" ColumnName="Allocation_Type_Id" />
+          <ScalarProperty Name="Allocation" ColumnName="Allocation" />
+          <ScalarProperty Name="Bank_Account_Number" ColumnName="Bank_Account_Number" />
+          <ScalarProperty Name="Bank_Account_Type_Id" ColumnName="Bank_Account_Type_Id" />
+          <ScalarProperty Name="Aba_Number" ColumnName="Aba_Number" />
+          <ScalarProperty Name="Payment_Type_Id" ColumnName="Payment_Type_Id" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="Second_Lastname" ColumnName="Second_Lastname" />
+          <ScalarProperty Name="First_Lastname" ColumnName="First_Lastname" />
+          <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Name_Id" ColumnName="Name_Id" />
+          <ScalarProperty Name="Agent_Code" ColumnName="Agent_Code" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Agent_Sub_Type_Id" ColumnName="Agent_Sub_Type_Id" />
+          <ScalarProperty Name="Identity_Type_Id" ColumnName="Identity_Type_Id" />
+          <ScalarProperty Name="Agent_Type_Id" ColumnName="Agent_Type_Id" />
+          <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EN_AGENT_UNIQUE_MATCH">
+      <EntityTypeMapping TypeName="GlobalModel.EN_AGENT_UNIQUE_MATCH">
+        <MappingFragment StoreEntitySet="EN_AGENT_UNIQUE_MATCH">
+          <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+          <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+          <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+          <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Match_Dob_Date" ColumnName="Match_Dob_Date" />
+          <ScalarProperty Name="Last_Number_Id" ColumnName="Last_Number_Id" />
+          <ScalarProperty Name="Unique_Agent_Id" ColumnName="Unique_Agent_Id" />
+          <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+          <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_AGENT_UNIQUE_AGENT_ID" FunctionName="GlobalModel.Store.SP_GET_AGENT_UNIQUE_AGENT_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GlobalModel.SP_GET_AGENT_UNIQUE_AGENT_ID_Result">
+          <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+          <ScalarProperty Name="Agent_Code" ColumnName="Agent_Code" />
+          <ScalarProperty Name="Unique_Agent_Id" ColumnName="Unique_Agent_Id" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

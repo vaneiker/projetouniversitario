@@ -1,0 +1,46 @@
+﻿@model StateTrustGlobal.ViewModels.
+@using StateTrustGlobal.Helpers
+@using PagedList;
+@using PagedList.Mvc;
+
+@using (Html.BeginForm("Index", "ReporteGastos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Adjust this to be sm/md/lg, whatever fits best for you -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Intermediario</label>
+                    <div class="col-md-7">
+                        @Html.TextBox("Codigo", Session["codigoIntermediario"], null, new
+                   {
+                       @class = "form-control col-sm-2 input-validation-error form-control",
+                       style = "width:60px",
+                       @disabled = "disabled",
+                       required = "required"
+                   })
+                        @Html.TextBox("NombreInt", Session["NombreIntermediario"], null, new
+                   {
+                       @class = "form-control col-sm-6",
+                       style = "width:500px",
+                       @disabled = "disabled"
+                   })
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar Registro" id="Index" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+ 

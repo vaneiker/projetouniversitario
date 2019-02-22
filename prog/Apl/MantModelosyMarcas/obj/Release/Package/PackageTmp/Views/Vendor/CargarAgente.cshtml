@@ -1,0 +1,149 @@
+﻿ @model StateTrustGlobal.ViewModels.Vendor
+@using StateTrustGlobal.Helpers
+@using PagedList;
+@using PagedList.Mvc;
+
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ 
+
+@using (Html.BeginForm("SaveVendor", "Vendor", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="container">
+            <br />
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    @ViewBag.Operacion
+                </div>
+                <div class="panel-body">
+                    <div class="container">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Agent_Code, new { @class = "col-md-2 control-label" })
+                            <div class='input-group date col-sm-3'>
+                                @Html.TextBoxFor(m => m.Agent_Code, new { @class = "form-control", @disabled = "disabled", @id = "AgentCode" })
+                                @Html.ValidationMessageFor(m => m.Agent_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Full_Name, new { @class = "col-md-2 control-label" })
+                            <div class='input-group date col-sm-3'>
+                                @Html.TextBoxFor(m => m.Full_Name, new { @class = "form-control", @disabled = "disabled", @id = "FullName" })
+                                @Html.ValidationMessageFor(m => m.Full_Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Agent_Id, new { @class = "col-md-2 control-label" })
+                            <div class='input-group date col-sm-3'>
+                                @Html.TextBoxFor(m => m.Agent_Id, new { @class = "form-control", @disabled = "disabled", @id = "AgentId" })
+                                @Html.ValidationMessageFor(m => m.Agent_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Unique_Agent_Id, new { @class = "col-md-2 control-label" })
+                            <div class='input-group date col-sm-3'>
+                                @Html.TextBoxFor(m => m.Unique_Agent_Id, new { @class = "form-control", @disabled = "disabled", @id = "UniqueAgentId" })
+                                @Html.ValidationMessageFor(m => m.Unique_Agent_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                                          
+                        <div class="form-group">
+                            <span> @Html.Label("Fecha Nacimiento", htmlAttributes: new { @class = "control-label col-md-2",@for="date" })</span>
+                            <div class='input-group date col-sm-3' id='datetimepicker1'>
+                                @Html.EditorFor(model => model.Dob, new { htmlAttributes = new { @class = "form-control", @id = "DobId", @name = "date" }})                                
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <button class="btn btn-success btn-sm datos-endosatario" id="btnGuardar" type="button" onclick="Add()">
+                                    <i class="glyphicon glyphicon-saved"></i><span>&nbsp;&nbsp;Guardar</span>
+                                </button>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 text-right datos-endosatario">
+                                <button class="btn btn-danger btn-sm" id="btnCancelar" type="button" onclick="Volver()">
+                                    <i class="glyphicon glyphicon-ban-circle"></i><span>&nbsp;&nbsp;Cancelar</span>
+                                </button>
+                            </div>
+                        </div>
+                             
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+}
+
+<script type="text/javascript" src="http://www.datejs.com/build/date.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script>
+    //Vuelve a la acción del listado
+    function Volver() {
+        var url = "/Vendor/MantenimientoAgente"
+        location.href = url;
+    }
+    //Limpia los campos Afectados
+    function clearForm() {
+        $('#AgentId').val("");
+        $('#UniqueAgentId').val("");
+        $('#AgentCode').val("");
+        $('#FullName').val("");
+        $('#DobId').val("");
+
+    };
+    //valida que los campos este llenos
+    function validate() {
+        var fecha = $("#DobId").val();
+        if (fecha == " " || fecha == null || fecha == "") {
+            $('#DobId').css('border-color', 'Red');
+           
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    };
+    //Validar si los Campos estan como requeridos
+    $("#DobId").keypress(function () {
+        $('#DobId').removeAttr('style');
+      
+    });
+    //Modifica la fecha nacimiento
+    function Add() {
+        var res = validate();
+            if (res == false) {
+            alert("Favor de Digitar la Infromación");
+        }
+            else {
+
+                var d = $('#DobId').val();
+                var dout = Date.parse(d);
+                var fecha = (dout.toString('M-d-yyyy'));                
+                
+            var empObj = {    
+                Dob: fecha, 
+                Agent_Id: parseInt($('#AgentId').val())
+            };
+            $.ajax({
+                url: "/Vendor/EditarAgent",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+                    alert("Datos guardados correctamente!!!");
+                    clearForm();
+                    Volver();
+                },
+                error: function (errormessage) {
+
+                }
+            });
+        }
+
+    }
+</script>

@@ -1,0 +1,195 @@
+﻿@model StateTrustGlobal.ViewModels.Paises_VM
+@{
+    ViewBag.Title = "CreateModel";
+    Layout = null;
+}
+
+<h2>Localidades</h2>
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@{ Html.RenderPartial("_Alerts"); }
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("CreateUbicaciones", "Localidades", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Hidden("Nombre_Pais")
+        @Html.Hidden("Nombre_Provincia")
+        @Html.Hidden("Nombre_Zona")
+        @Html.Hidden("CodZona")
+        
+
+        <div class="form-group">
+            @Html.Label("", "Pais", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Paises", null, "<--Seleccione Pais--->", htmlAttributes: new { @class = "form-control", @required = "required" })
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Provincia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Provincias", Enumerable.Empty<SelectListItem>(), "", htmlAttributes: new { @class = "form-control", @required = "required" })
+                
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Ciudades", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Ciudad", Enumerable.Empty<SelectListItem>(), "", htmlAttributes: new { @class = "form-control", @required = "required" })
+                
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Sector", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Sector", Enumerable.Empty<SelectListItem>(), "", htmlAttributes: new { @class = "form-control", @required = "required" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("", "Zonas", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Zonas", null, "<--Seleccione Zona-->", htmlAttributes: new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-inline">
+            <div class="form-group">
+                @Html.Label("Ubicación", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("Nombre_Ubicacion", null, null, new { @class = "form-control", @placeholder = "Colocar Nombre Ubicación", @required = "required" })
+                </div>
+            </div>
+        </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                    @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+                </div>
+
+            </div>
+            <div id="wait" style="display:none;width:200px;height:200px;position:absolute;top:50%;left:50%;padding:2px;"><img src='~/images/loading5.gif' width="64" height="64" /></div>
+
+        </div>
+}
+ 
+<script>
+                    $(document).ready(function () {
+                        //Dropdownlist Selectedchange event
+                        $("#Paises").change(function () {
+                            $("#Provincias").empty();
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("Llenar_Provincias_x_Ciudades", "Localidades")',
+                                dataType: 'json',
+                                data: { Global_Country_Id: $("#Paises").val() },
+                                success: function (Datos) {
+                                    $.each(Datos, function (i, Datos) {
+
+                                        $("#Provincias").append('<option  value="'
+
+                                            + Datos.State_Prov_Id + '">'
+                                            + Datos.State_Prov_Desc +
+
+                                            '</option>');
+                                    });
+
+                                },
+                                error: function (ex) {
+                                   // alert('Failed to retrieve states.' + ex.responseText);
+                                }
+                            });
+                            return false;
+                        })
+                    });
+</script>
+<script type="text/javascript">
+    $("#Paises").change(function () {
+        $("#Nombre_Pais").val(($('option:selected', $(this)).text()));
+    });
+</script>
+<script>
+                    $(document).ready(function () {
+                        //Dropdownlist Selectedchange event
+                        $("#Provincias").change(function () {
+                            $("#Ciudad").empty();
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("Llenar_Ciudades_x_Provincias", "Localidades")',
+                                dataType: 'json',
+                                data: { CodProvincia: $("#Provincias").val() },
+                                success: function (Datos) {
+                                    $.each(Datos, function (i, Datos) {
+                                        $("#Ciudad").append('<option value=" '
+                                            + Datos.City_Id + '">'
+                                            + Datos.City_Desc + '</option>');
+                                    });
+                                },
+                                error: function (ex) {
+                                    //alert('Failed to retrieve states.' + ex.responseText);
+                                }
+                            });
+                            return false;
+                        })
+                    });
+</script>
+<script type="text/javascript">
+    $("#Provincias").change(function () {
+        $("#Nombre_Provincia").val(($('option:selected', $(this)).text()));
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $(document).ajaxStart(function () {
+            $("#wait").css("display", "block");
+        });
+        $(document).ajaxComplete(function () {
+            $("#wait").css("display", "none");
+        });
+        $("button").click(function () {
+            $("#txt").load("demo_ajax_load.asp");
+        });
+    });
+</script>
+<script>
+                    $(document).ready(function () {
+                        //Dropdownlist Selectedchange event
+                        $("#Ciudad").change(function () {
+                            $("#Sector").empty();
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("Llenar_Sectores_x_Municipios", "Localidades")',
+                                dataType: 'json',
+                                data: { CodProvincia: $("#Ciudad").val() },
+                                success: function (Datos) {
+                                    $.each(Datos, function (i, Datos) {
+                                        $("#Sector").append('<option value=" '
+                                            + Datos.Codigo + '">'
+                                            + Datos.Descripcion + '</option>');
+                                    });
+                                },
+                                error: function (ex) {
+                                    //alert('Failed to retrieve states.' + ex.responseText);
+                                }
+                            });
+                            return false;
+                        })
+                    });
+</script>
+<script type="text/javascript">
+    $("#Sector").change(function () {
+        $("#Nombre_Zona").val(($('option:selected', $(this)).text()));
+    });
+</script>
+ <script type="text/javascript">
+     var sel = document.getElementById('Zonas');
+</script>

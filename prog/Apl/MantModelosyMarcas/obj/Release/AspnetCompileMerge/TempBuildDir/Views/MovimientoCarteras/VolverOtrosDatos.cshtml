@@ -1,0 +1,107 @@
+﻿@model StateTrustGlobal.ViewModels.MovimientoCartera
+@using StateTrustGlobal.Helpers
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("VolverOtros_Datos", "MovimientoCarteras", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- Adjust this to be sm/md/lg, whatever fits best for you-->
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DateOut, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DateOut, new { htmlAttributes = new { @class = "form-control", id = "datepicker" } })
+                        @Html.ValidationMessageFor(model => model.DateOut, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DateIn, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DateIn, new { htmlAttributes = new { @class = "form-control", id = "datepicker1" } })
+                        @Html.ValidationMessageFor(model => model.DateIn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.New_Supervisor_Agent_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.New_Supervisor_Agent_Id, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.New_Supervisor_Agent_Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.New_Supervisor_Agent_Code, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.New_Supervisor_Agent_Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DateOut, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar Registro"  class="btn btn-success" />
+                @Html.ActionLink("Volver Atras", "Index", new { }, new { @class = "btn btn-info" })
+            </div>
+        </div>
+    </div>
+}
+<hr />
+<script src="~/Scripts/js/datepicker/jquery-ui.js"></script>
+
+<!--DATE PICKER /opcional / pueden usar el scrip que quieran-->
+<link href="~/Content/DateTime/css/normalize.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/DateTime/css/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/DtaTme/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/DtaTme/js/jquery-ui-1.8.18.custom.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#datepicker').datepicker({
+            inline: true,
+            //nextText: '&rarr;',
+            //prevText: '&larr;',
+            showOtherMonths: true,
+            //dateFormat: 'dd MM yy',
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            //showOn: "button",
+            //buttonImage: "img/calendar-blue.png",
+            //buttonImageOnly: true,
+        });
+    });
+    $(function () {
+        $('#datepicker1').datepicker({
+            inline: true,
+            //nextText: '&rarr;',
+            //prevText: '&larr;',
+            showOtherMonths: true,
+            //dateFormat: 'dd MM yy',
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            //showOn: "button",
+            //buttonImage: "img/calendar-blue.png",
+            //buttonImageOnly: true,
+        });
+    });
+</script>
+@*<script>
+        $(function () {
+            $("#datepicker, #datepicker1, #datepicker2, #datepicker3, #datepicker4, #datepicker5").datepicker();
+        });
+    </script>*@

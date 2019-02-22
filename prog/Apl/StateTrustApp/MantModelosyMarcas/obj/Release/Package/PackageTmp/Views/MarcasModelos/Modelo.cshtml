@@ -1,0 +1,81 @@
+﻿@model StateTrustGlobal.ViewModels.Modelos
+@{
+    ViewBag.Title = "CreateModel";
+    Layout = null;
+}
+
+<h2>Introducir Marca y Modelo</h2>
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@{ Html.RenderPartial("_Alerts"); }
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@using (Html.BeginForm("Modelo", "MarcasModelos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      
+            <div class="form-group">
+                @Html.LabelFor(model => model.Make_Desc, htmlAttributes: new { @class = "control-label col-md-4" })
+                @Html.TextBox("Make_Desc", ViewBag.CurrentFilter as string, null, new { @class = "form-control", @placeholder = " ", @required = "required" })
+                @Html.ValidationMessageFor(model => model.Make_Desc, "", new { @class = "text-danger" })
+            
+            </div>
+      
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombreModelo, htmlAttributes: new { @class = "control-label col-md-4" })
+                @Html.TextBox("NombreModelo", ViewBag.CurrentFilter as string, null, new { @class = "form-control", @placeholder = " ", @required = "required" })
+                @Html.ValidationMessageFor(model => model.NombreModelo, "", new { @class = "text-danger" })
+                
+            </div>
+       
+            <div class="form-group">
+                @Html.LabelFor(model => model.Vehicle_Type_Id, "Tipo Vehículo", htmlAttributes: new { @class = "control-label col-md-4" })
+                @Html.DropDownList("TipoVehiculos", null, "<---Seleccione Tipo Vehículo--->", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.Vehicle_Type_Id, "", new { @class = "text-danger" })
+            
+            </div>
+        <div class="form-group">
+            @Html.Label("Capacidad Vehiculo", htmlAttributes: new { @class = "control-label col-md-6" })
+            @Html.DropDownList("Capacidad", null, "<---Seleccione Capacidad--->", new { @class = "form-control" })
+            @*@Html.ValidationMessageFor(model => model.tRoles.RolesID, "", new { @class = "text-danger" })*@
+       
+        </div>
+        <div class="form-group">
+            @Html.Label("Version Vehiculo", htmlAttributes: new { @class = "control-label col-md-6" })
+            @Html.DropDownList("VersionVeh", null, "<---Seleccione Version Vehiculo--->", htmlAttributes: new { @class = "form-control", @required = "required" })
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+           
+        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descripcion, "Tipo Recargo", htmlAttributes: new { @class = "control-label col-md-6" })
+                @Html.DropDownList("CategoriaVehiculos", null, "<---Seleccione Tipo Recargo--->", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+            @*<div class="form-group">
+                <label class="control-label col-md-2">Estatus</label>
+                <div class="col-md-10">
+                    <select id="Pos_Flag" name="Pos_Flag" class="form-control" required="required">
+                        <option value="">Seleccionar Estatus</option>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                    @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+                </div>
+
+            </div>
+        </div>
+}
+ 
