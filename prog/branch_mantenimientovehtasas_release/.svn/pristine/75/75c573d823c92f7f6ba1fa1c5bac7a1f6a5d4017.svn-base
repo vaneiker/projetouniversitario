@@ -1,0 +1,356 @@
+﻿@model StateTrustGlobal.ViewModels.ModelosViews
+@using StateTrustGlobal.Helpers
+@{
+    ViewBag.Title = "CreateModel";
+}
+
+<h2>Crear Modelo</h2>
+<div id="overlay">
+    <img src="~/images/loading5.gif" alt="Loading" /><br />
+</div>
+@using (Html.BeginForm("ModelEdit", "MarcasModelos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Modelos.Model_Id)
+        @Html.Hidden("capacidad1")
+        @*@Html.HiddenFor(model => model.Model_desc)*@
+        <!-- Adjust this to be sm/md/lg, whatever fits best for you --> 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Modelos.NombreModelo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Modelos.NombreModelo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Modelos.NombreModelo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Modelos.Pos_flag, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.RadioButtonFor(model => model.Modelos.Pos_flag, "true")  Activo
+                    &nbsp; &nbsp; &nbsp;
+                    @Html.RadioButtonFor(model => model.Modelos.Pos_flag, "false") Inactivo
+                </div>
+            </div>
+        </div>
+        @* TIPO DE VEHICULO *@
+        <div class="left">
+            <div class="col-md-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Tipo Vehiculos
+                    </div>
+                    <div id="" style="overflow: scroll; overflow-x: hidden; height: 300px; width: 250px">
+                        <div class="panel-body">
+                            <div class=" table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="cbkTipoVehtbl">
+                                    <thead>
+                                        <tr>
+
+                                            <th class=" col-check">
+                                                <input type="checkbox" id="cbkTipoVeh" onclick="test()" />
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TipoVehiculos[0].DescIdioma)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.TipoVehiculos.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @if (Model.Tipo_Vehiculos.ToString().Contains(@Model.TipoVehiculos[i].DescIdioma) == true)
+                                                    {
+                                                        <input type="checkbox" id="cbkTipoVehiculo_@Html.DisplayFor(modelItem => Model.TipoVehiculos[i].IdListaHeader)"
+                                                               name="cbkTipoVehiculo_@Html.DisplayFor(modelItem => Model.TipoVehiculos[i].IdListaHeader)"
+                                                               data-descripcion="@Html.DisplayFor(modelItem => Model.TipoVehiculos[i].IdListaHeader)" checked="checked" onclick="document.form.submit();" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="checkbox" id="cbkTipoVehiculo_@Html.DisplayFor(modelItem => Model.TipoVehiculos[i].IdListaHeader)"
+                                                               name="cbkTipoVehiculo_@Html.DisplayFor(modelItem => Model.TipoVehiculos[i].IdListaHeader)"
+                                                               data-descripcion="@Html.DisplayFor(modelItem => Model.TipoVehiculos[i].IdListaHeader)" />
+                                                    }
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => Model.TipoVehiculos[i].DescIdioma)
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* CAPACIDAD VEHICULO *@
+        <div class="left">
+            <div class=" col-md-2">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        Capacidad Vehiculos
+                    </div>
+                    <div id="" style="overflow: scroll; overflow-x: hidden; height: 300px; width: 250px">
+                        <div class="panel-body">
+                            <div class=" table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="cbkCapacidadVehiculotbl">
+                                    <thead>
+                                        <tr>
+
+                                            <th class=" col-check">
+                                                <input type="checkbox" id="cbkCapacidadVehiculo" onclick="test()" />
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.CapacidadTipoVehiculo[0].DescCapacidad)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.CapacidadTipoVehiculo.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @if (Model.Capacidad.ToString().Contains(@Model.CapacidadTipoVehiculo[i].DescCapacidad) == true)
+                                                    {
+                                                        <input type="checkbox" id="cbkCapacidadVehiculo_@Html.DisplayFor(modelItem => Model.CapacidadTipoVehiculo[i].IdCapacidad)"
+                                                           name="cbkCapacidadVehiculo_@Html.DisplayFor(modelItem => Model.CapacidadTipoVehiculo[i].IdCapacidad)"
+                                                           data-descripcion="@Html.DisplayFor(modelItem => Model.CapacidadTipoVehiculo[i].IdCapacidad)" checked="checked" />
+                                                    }
+                                                    else
+                                                    {
+                                                       <input type="checkbox" id="cbkCapacidadVehiculo_@Html.DisplayFor(modelItem => Model.CapacidadTipoVehiculo[i].IdCapacidad)"
+                                                           name="cbkCapacidadVehiculo_@Html.DisplayFor(modelItem => Model.CapacidadTipoVehiculo[i].IdCapacidad)"
+                                                           data-descripcion="@Html.DisplayFor(modelItem => Model.CapacidadTipoVehiculo[i].IdCapacidad)"  />
+                                                    }
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => Model.CapacidadTipoVehiculo[i].DescCapacidad)
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @* VERSION VEHICULOS *@
+        <div class="left">
+            <div class="col-md-2">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        Version Vehiculos
+                    </div>
+                    <div id="" style="overflow: scroll; overflow-x: hidden; height: 300px; width: 250px">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="cbkVersionVehiculotbl">
+                                    <thead>
+                                        <tr>
+
+                                            <th class="col-check"><input type="checkbox" id="cbkVersionVehiculos" onclick="test()" /></th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.VersionVehiculos[0].DescIdioma)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.VersionVehiculos.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>
+                                               
+                                                  
+                                                    @if (Model.Versiones.ToString().Contains(@Model.VersionVehiculos[i].DescIdioma)== true){
+                                                     <input type="checkbox" id="cbkVersionVehiculo_@Html.DisplayFor(modelItem => Model.VersionVehiculos[i].IdListaHeader)"
+                                                           name="cbkVersionVehiculo_@Html.DisplayFor(modelItem => Model.VersionVehiculos[i].IdListaHeader)"
+                                                           data-descripcion="@Html.DisplayFor(modelItem => Model.VersionVehiculos[i].IdListaHeader)" value="@Model.VersionVehiculos[i].IdListaHeader"  checked="checked"/>
+                                                    } else
+                                                    { 
+                                                            <input type="checkbox" id="cbkVersionVehiculo_@Html.DisplayFor(modelItem => Model.VersionVehiculos[i].IdListaHeader)"
+                                                           name="cbkVersionVehiculo_@Html.DisplayFor(modelItem => Model.VersionVehiculos[i].IdListaHeader)"
+                                                           data-descripcion="@Html.DisplayFor(modelItem => Model.VersionVehiculos[i].IdListaHeader)" />
+                                                    }
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => Model.VersionVehiculos[i].DescIdioma)
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* CATEGORIA VEHICULOS *@
+       <div class="left">
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Categoria Vehiculos
+                    </div>
+                    <div id="" style="overflow: scroll; overflow-x: hidden; height: 300px; width: 250px">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="cbkCategoriaVehiculotbl">
+                                    <thead>
+                                        <tr>
+
+                                            <th class="col-check"><input type="checkbox" id="cbkCategoriaVehiculo" onclick="test()" /></th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.CategoriaVehiculos[0].Descripcion)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.CategoriaVehiculos.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>
+
+                                                    @if (Model.Recargo.ToString().Contains(@Model.CategoriaVehiculos[i].Descripcion) == true)
+                                                    {
+                                                          <input type="checkbox" id="cbkCategoriaVehiculo_@Html.DisplayFor(modelItem => Model.CategoriaVehiculos[i].Codigo)"
+                                                           name="cbkCategoriaVehiculo_@Html.DisplayFor(modelItem => Model.CategoriaVehiculos[i].Codigo)"
+                                                           data-descripcion="@Html.DisplayFor(modelItem => Model.CategoriaVehiculos[i].Codigo)"  checked="checked" />
+                                                    }
+                                                    else
+                                                    {
+                                                           <input type="checkbox" id="cbkCategoriaVehiculo_@Html.DisplayFor(modelItem => Model.CategoriaVehiculos[i].Codigo)"
+                                                           name="cbkCategoriaVehiculo_@Html.DisplayFor(modelItem => Model.CategoriaVehiculos[i].Codigo)"
+                                                           data-descripcion="@Html.DisplayFor(modelItem => Model.CategoriaVehiculos[i].Codigo)"  />
+                                                    }                                                  
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => Model.CategoriaVehiculos[i].Descripcion)
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+            </div>
+
+        </div>
+    </div>
+}
+@*@using (Html.BeginForm("ModelEdit", "MarcasModelos",FormMethod.Post))
+{ 
+ <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Guardar" class="btn btn-success" />
+        @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+    </div>
+
+</div>
+}*@
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+@*cbkVersionVehiculos*@
+
+<script>
+    $(document).ready(function () {
+        $('.btn-filter').on('click', function () {
+            var $target = $(this).data('target');
+            if ($target != 'all') {
+                $('.table tbody tr').css('display', 'none');
+                $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+            } else {
+                $('.table tbody tr').css('display', 'none').fadeIn('slow');
+            }
+        });
+        /*TIPO VEHICULO*/
+        $('#cbkTipoVeh').on('click', function () {
+            if ($("#cbkTipoVehtbl #cbkTipoVeh").is(':checked')) {
+                $("#cbkTipoVehtbl input[type=checkbox]").each(function () {
+                    $(this).prop("checked", true);
+                });
+
+            } else {
+                $("#cbkTipoVehtbl input[type=checkbox]").each(function () {
+                    $(this).prop("checked", false);
+                });
+            }
+        });
+        /*CAPACIDAD VEHICULO*/
+        $('#cbkCapacidadVehiculo').on('click', function () {
+            if ($("#cbkCapacidadVehiculotbl #cbkCapacidadVehiculo").is(':checked')) {
+                $("#cbkCapacidadVehiculotbl input[type=checkbox]").each(function () {
+                    $(this).prop("checked", true);
+                });
+
+            } else {
+                $("#cbkCapacidadVehiculotbl input[type=checkbox]").each(function () {
+                    $(this).prop("checked", false);
+                });
+            }
+        });
+        /*VERSION VEHICULO*/
+        $('#cbkVersionVehiculos').on('click', function () {
+            if ($("#cbkVersionVehiculotbl #cbkVersionVehiculos").is(':checked')) {
+                $("#cbkVersionVehiculotbl input[type=checkbox]").each(function () {
+                    $(this).prop("checked", true);
+                });
+
+            } else {
+                $("#cbkVersionVehiculotbl input[type=checkbox]").each(function () {
+                    $(this).prop("checked", false);
+                });
+            }
+        });
+        /*CATEGORIA VEHICULO*/
+        $('#cbkCategoriaVehiculo').on('click', function () {
+            if ($("#cbkCategoriaVehiculotbl #cbkCategoriaVehiculo").is(':checked')) {
+                $("#cbkCategoriaVehiculotbl input[type=checkbox]").each(function () {
+                    $(this).prop("checked", true);
+                });
+
+            } else {
+                $("#cbkCategoriaVehiculotbl input[type=checkbox]").each(function () {
+                    $(this).prop("checked", false);
+                });
+            }
+        });
+    });
+</script>
+
+}

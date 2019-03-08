@@ -1,0 +1,49 @@
+﻿@model StateTrustGlobal.ViewModels.Marcas
+
+@{
+    ViewBag.Title = "CreateMake";
+}
+
+<h2>Introducir Marca</h2>
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@{ Html.RenderPartial("_Alerts"); }
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+<br />
+@using (Html.BeginForm("CreateMake", "MarcasModelos", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+      <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.Make_Desc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.Make_Desc, new { htmlAttributes = new { @class = "form-control"} })*@
+                @Html.TextBox("Make_Desc", ViewBag.CurrentFilter as string, null, new { @class = "form-control", @placeholder = "Colocar Nombre Marca", @required = "required" })
+                @*@Html.ValidationMessageFor(model => model.Make_Desc, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pos_Flag, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.RadioButton("Pos_Flag", "true")  Activo
+                    @Html.RadioButton("Pos_Flag", "false") Inactivo
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+            </div>
+
+        </div>
+    </div>
+}
+ 

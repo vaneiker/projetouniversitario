@@ -1,0 +1,78 @@
+﻿using StateTrustGlobal.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using StateTrustGlobal.ViewModels;
+using Newtonsoft.Json;
+
+    namespace MantModelosyMarcas.Controllers
+    {
+    public class VendorController : Controller
+    {
+        DataAccess DataAccess = new DataAccess();
+        
+        public ActionResult Index()
+        {
+            {
+                ViewBag.CurrentPage = "Vendor";
+
+                try
+                {
+                    var model = DataAccess.GetListVendor();
+                    return View(model);
+                }
+                catch (Exception)
+                {
+                  
+                    return RedirectToAction("Index");
+                    throw;
+
+            }
+        }
+    }
+
+
+        public ActionResult MantenimientoVendor(string data)
+            {
+                var save = "Nuevo";
+                var edit = "Editar";
+
+                if (data == null)
+                {
+                    ViewBag.Operacion = save;
+                    return View();
+                }
+                var url = HttpUtility.UrlDecode(data.Replace("+", "").Replace("/", ""));
+                //var desc = Tools.Encode(url);
+                var Record = JsonConvert.DeserializeObject<Vendor>(url);
+                ViewBag.Operacion = edit;
+                return View(Record);
+            }
+                     
+                
+ 
+        public ActionResult SaveVendor(Vendor vendor)
+        {
+
+            var data = DataAccess.Add_Vendor_edit(vendor);
+            if (data == 1)
+            {
+                //return Redirect("Vendor/MantenimientoVendor");
+                return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
+            } 
+            else
+            {
+                return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
+                //return Redirect("Vendor/Index");
+            }
+
+          
+            
+
+
+        }
+     
+    }
+    }

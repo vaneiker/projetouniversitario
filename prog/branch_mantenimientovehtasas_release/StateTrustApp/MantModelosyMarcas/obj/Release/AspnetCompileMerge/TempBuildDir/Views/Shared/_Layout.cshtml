@@ -1,0 +1,175 @@
+﻿@using StateTrustGlobal.Helpers
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/atlantica.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>Atlantica</title>
+    <meta name="author" content="dcastro" />
+        @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @Styles.Render("~/Content/accordion")
+    @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        .form-inline .form-group input {
+            width: 600px;
+        }
+        #overlay {
+            background: #ffffff;
+            color: #666666;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 5000;
+            top: 0;
+            left: 0;
+            float: left;
+            text-align: center;
+            padding-top: 25%;
+        }
+    </style>
+    <!-- ESTILOS CSS -->
+    <link href="~/Content/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/dtl.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/fonts/style2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/exampleCSS.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <!-- SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="~/Scripts/js/modernizr.custom.js"></script>
+    <script src="~/Scripts/js/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/js/global.js" type="text/javascript">
+        var ddlAnoDesde = $('#ddlAnoDesde');
+    </script>
+    <script src="~/Scripts/js/jquery.nicescroll.min.js"></script>
+    <script>
+        jQuery(window).load(function () {
+            jQuery('#overlay').fadeOut();
+        });
+    </script>
+</head>
+
+<body>
+        <form id="form1">
+      
+            <div id="st-container" class="st-container" style="overflow-y: auto;">
+                <div id="menu-2">
+                    @Html.Raw(ViewBag.htmlProfilePage) <!-- ESTE VIEWBAG SE CREA DEL LADO DE LA SEGURIDAD, ES OBLIGATORIO INVOCARLO Y PONERLO EN EL ORDEN QUE ESTA PUESTO -->
+                    <!--SI se desea agregar un accodeon nuevo con opciones de menu se debe hacer de la siguiente manera, siguiendo estrictamente esta configuracion. -->
+                    <!-- Agregando opciones al menu de Perfil -->
+            
+                    <!-- Agregando opciones al menu de Perfil -->
+                </div>
+
+                <div class="st-pusher">
+                    <div class="st-content">
+                        <!--boton abre y cierra el canvas-->
+                        <div id="st-trigger-effects">
+                            <button data-effect="st-effect-2" id="btnLoadProfile" class="show_profile" onclick="GetUserProfileDataMVC(true);"> </button>
+                        </div>
+                        <div id="scroll_2">
+                            <div class="main clearfix">
+                                <div class="contenido_derecha">
+                                    <!--wrapper de las columnas-->
+                                    <div class="grid grid-pad">
+                                        <div id="divBody" class="">
+
+                                            <div class="main_menu clearfix">
+
+                                                <div id="menu" class="nav back">
+                                                    <ul>
+                                                        <li style="width:30%;"><span class="logos"></span> </li>
+
+                                                        <li><a href="/MarcasModelos/Index" class="active" id="opc1"><span class="icon dashboard"></span><span>Marcas y Modelos</span></a></li>
+                                                        <li><a href="/TasaIntermediario/Index" class="" id="opc2"><span class="icon dashboard"></span><span>Tasa Intermediario </span></a></li>
+                                                        <li><a href="/MovimientoCarteras/Index" class="" id="opc3"><span class="icon dashboard"></span><span>Movimiento Cartera </span></a></li>
+                                                        @*<li><a href="#" class="" id="opc3"><span class="icon dashboard"></span><span>Tasa por Modelo</span></a></li>*@
+                                                        <li><a href="/Localidades/Provincies" class="" id="opc4"><span class="icon dashboard"></span><span>Localidades</span> </a></li>
+                                                    </ul>
+                                                    <input type="hidden" id="tabActivo" value=@ViewBag.CurrentPage />
+                                                </div>
+                                                <!--menu class nav-->
+                                            </div>
+
+
+                                            <!--AQUI VA EL CONTENIDO DE LA PAGINA, PUEDE SER EL RENDERBODY() POR EJEMPLO.-->
+                                            @RenderBody()
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Agregado por StateTrust -->
+            <!-- /st-container -->
+            <!-- /st-container -->
+            <!--SIDE BAR PERFIL ANIMACION-->
+            <script src="~/Scripts/js/classie.js"></script>
+            <script src="~/Scripts/js/sidebarEffects.js"></script>
+
+            <!--MENU SUPERIOR-->
+            <script type="text/javascript">
+                //  afecta menu para pantallas mas pequenas
+                var menuElements = document.getElementById('menu');
+                menuElements.insertAdjacentHTML('afterBegin', '<button type="button" id="menutoggle" class="navtoogle" aria-hidden="true"><i aria-hidden="true" class="icon-menu"> </i> Menu</button>');
+
+                //  Toggle the class on click to show / hide the menu
+                document.getElementById('menutoggle').onclick = function () {
+                    changeClass(this, 'navtoogle active', 'navtoogle');
+                }
+                document.onclick = function (e) {
+                    var mobileButton = document.getElementById('menutoggle'),
+                            buttonStyle = mobileButton.currentStyle ? mobileButton.currentStyle.display : getComputedStyle(mobileButton, null).display;
+
+                    if (buttonStyle === 'block' && e.target !== mobileButton && new RegExp(' ' + 'active' + ' ').test(' ' + mobileButton.className + ' ')) {
+                        changeClass(mobileButton, 'navtoogle active', 'navtoogle');
+                    }
+                }
+            </script>
+
+     
+            <!--SCROLL PERSONALIZADO QUE SALE EN EL PERFIL DEL AGENTE-->
+            <script src="~/Scripts/js/jquery.nicescroll.min.js"></script>
+
+            <script>
+                $(document).ready(function () {
+                    var nice = $("").niceScroll();  // The document page (body)
+                    $("#div1").html($("#div1").html() + ' ' + nice.version);
+                    $("#scroll_1").niceScroll({ cursorborder: "", cursorcolor: "#8D8D8E", boxzoom: false }); // First scrollable DIV
+
+
+                });
+            </script>
+            <!-- Tabs -->
+            <!--ACORDEON TABULADO-->
+            <!--[if !lt IE 6]><!-->
+            <script type="text/javascript" src="~/Scripts/js/ga.js"></script>
+            <script type="text/javascript" src="~/Scripts/js/jquery.nestedAccordion.js"></script>
+            <script type="text/javascript">
+
+                $("html").addClass("js");
+                $.fn.accordion.defaults.container = false;
+                $(function () {
+                    $("#acordeon_agent_profile, #acc1, #acc2, #acc3, #acc4, #acc5, #acc6").accordion({ initShow: "#current" });
+
+                });
+                //--><!]]>
+
+            </script>
+            <!--<![endif]-->
+
+
+        </form>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+    z
+     
+    </body>
+</html>

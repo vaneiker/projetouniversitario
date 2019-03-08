@@ -1,0 +1,47 @@
+﻿@model StateTrustGlobal.ViewModels.Marcas
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<h2>Modificando la Marca</h2>
+
+@using (Html.BeginForm("Edit", "MarcasModelos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Make_Id)
+        <div class="form-inline">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Make_Desc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.Make_Desc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })*@
+                    @Html.TextBox("Make_Desc", ViewBag.CurrentFilter as string, null, new { @class = "form-control col-md-10", @placeholder = "Colocar Nombre Modelo", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.Make_Desc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Make_Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.RadioButton("Make_Status", "A")  Activo
+                        &nbsp; &nbsp; &nbsp;
+                        @Html.RadioButton("Make_Status", "I") Inactivo
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                    @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+                </div>
+
+            </div>
+        </div>
+}

@@ -1,0 +1,119 @@
+﻿@model StateTrustGlobal.ViewModels.Modelos
+@{
+    ViewBag.Title = "CreateModel";
+}
+
+<h2>Introducir Modelo</h2>
+
+@using (Html.BeginForm("ModelEdit", "MarcasModelos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Model_Id)
+        @Html.Hidden("capacidad1")
+        @*@Html.HiddenFor(model => model.Model_desc)*@
+        <!-- Adjust this to be sm/md/lg, whatever fits best for you --> 
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreModelo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreModelo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NombreModelo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Vehicle_Type_Id, "Tipo Vehículo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TipoVehiculos", null, "", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.Vehicle_Type_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Capacidad Vehiculo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Capacidad", null, "", htmlAttributes: new { @class = "form-control", @required = "required"})
+                @*@Html.ValidationMessageFor(model => model.tRoles.RolesID, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Version Vehiculo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("VersionVeh", null, "<---Seleccione Version Vehiculo--->", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, "Tipo Recargo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoriaVehiculos", null, "", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pos_flag, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.RadioButton("Pos_flag", "true")  Activo
+                    &nbsp; &nbsp; &nbsp;
+                    @Html.RadioButton("Pos_flag", "false") Inactivo
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+            </div>
+
+        </div>
+    </div>
+}
+@*@using (Html.BeginForm("ModelEdit", "MarcasModelos",FormMethod.Post))
+{ 
+ <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Guardar" class="btn btn-success" />
+        @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+    </div>
+
+</div>
+}*@
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+                    $(document).ready(function () {
+                        //Dropdownlist Selectedchange event
+                        $("#TipoVehiculos").change(function () {
+                            $("#Capacidad").empty();
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("Mostrar_Capacidad_TipoVehiculo", "MarcasModelos")',
+                                dataType: 'json',
+                                data: { IDTipoVehiculos: $("#TipoVehiculos").val() },
+                                success: function (Datos) {
+                                    $.each(Datos, function (i, Datos) {
+
+                                        $("#Capacidad").append('<option value="'
+                                            + Datos.IdTipoVehiculo + '">'
+                                            + Datos.DescCapacidad + '</option>');
+                                    });
+                                },
+                                error: function (ex) {
+                                    alert('Failed to retrieve states.' + ex.responseText);
+                                }
+                            });
+                            return false;
+                        })
+                    });
+    </script>
+
+<script type="text/javascript">
+    $("#Capacidad").change(function () {
+        $("#capacidad1").val(($('option:selected', $(this)).text()));
+    });
+</script>
+
+}

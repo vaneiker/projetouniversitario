@@ -1,0 +1,107 @@
+/*Todo JavaScript*/
+
+/*=================================================
+script que detecta el browser para actualizacion
+===================================================*/
+        $(document).ready(function () {
+
+            var $buoop = { vs: { i: 10, f: 25, o: 17, s: 6, n: 9 } };
+            
+
+            $buoop.ol = window.onload;
+            window.onload = function () {
+                try { if ($buoop.ol) $buoop.ol(); } catch (e) { }
+                var e = document.createElement("script");
+                e.setAttribute("type", "text/javascript");
+                e.setAttribute("src", "../Scripts/js/update.js");
+                document.body.appendChild(e);
+            }
+            //$("#p").click(function() {
+            //    //alert("autos");
+            //    $("#TabActivo").val("autos");
+            //    localStorage["TabActivo"] = $("#tabActivo").val();
+            //    //alert($("#TabActivo").val());
+            //});
+            //$("#p2").click(function () {
+            //   // $("#TabActivo").val("autos");
+            //    alert(localStorage["TabActivo"]);
+            //});
+           // $("#TabActivo").prop('value', '<%=Session["TabActivo"].ToString() %>')
+            var sess = $("#tabActivo").val();
+            switch (sess)
+            {
+                case "autos":
+                    TabActivo("opc1");
+                    break;
+                case "TasaIntermediario":
+                    TabActivo("opc2");
+                    break;
+                case "MovimientoCarteras":
+                    TabActivo("opc3");
+                    break;
+                case "Localidades":
+                    TabActivo("opc4")
+                    break;
+
+            }
+            
+        });
+
+        function Confirmar(msj) {
+            if (confirm(msj)) {
+                
+            }
+            else {
+                return false;
+            }
+        }
+        	
+/*===================================
+		FUNCION MOSTRAR Y OCULTAR
+===================================*/
+
+        function muestra_oculta(id) {
+            if (document.getElementById) { //se obtiene el id
+                var el = document.getElementById(id); //se define la variable "el" igual a nuestro div
+                el.style.display = (el.style.display == 'none') ? 'block' : 'none'; //damos un atributo display:none que oculta el div
+            }
+        }
+        window.onload = function () {/*hace que se cargue la función lo que predetermina que div estará oculto hasta llamar a la función nuevamente*/
+            muestra_oculta('p_of_p'); /* "contenido_a_mostrar" es el nombre que le dimos al DIV */
+            muestra_oculta('m_office');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
+        }
+
+    //<!--FIN MOSTRAR Y OCULTAR-->
+	
+	//  The function to change the class
+        var changeClass = function (r, className1, className2) {
+            var regex = new RegExp("(?:^|\\s+)" + className1 + "(?:\\s+|$)");
+            if (regex.test(r.className)) {
+                r.className = r.className.replace(regex, ' ' + className2 + ' ');
+            }
+            else {
+                r.className = r.className.replace(new RegExp("(?:^|\\s+)" + className2 + "(?:\\s+|$)"), ' ' + className1 + ' ');
+            }
+            return r.className;
+        };
+
+        function asginarTab(tab) {
+            $("#tabActivo").val(tab);
+            //TabActivo(tab);
+        }
+
+        function TabActivo(tab) {
+            if ($("#tabActivo").val() != "") {
+
+                $("#opc1").removeClass("active");
+                $("#opc2").removeClass("active");
+                $("#opc3").removeClass("active");
+                $("#opc4").removeClass("active");
+                $("#opc5").removeClass("active");
+                $("#opc6").removeClass("active");
+
+                var tabAct = "#" + tab;
+                $(tabAct).addClass("active");
+            }
+        }
+        

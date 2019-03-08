@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GlobalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EN_AGENT_GP_COMMISSION">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Agent_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="int" Nullable="false" />
+          <Property Name="Agent_Id" Type="int" Nullable="false" />
+          <Property Name="No_Commission" Type="bit" Nullable="false" />
+          <Property Name="Take_Vendor_Id" Type="bit" Nullable="false" />
+          <Property Name="Vendor_Id" Type="varchar" MaxLength="50" />
+          <Property Name="Agent_Status" Type="bit" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Modi_Date" Type="datetime" />
+          <Property Name="Create_UsrId" Type="int" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="int" />
+          <Property Name="Hostname" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Function Name="SP_GET_LIST_VENDOR_ACTIVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GET_ST_ENDORSEMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Global">
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Rnc" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_ST_ENDORSEMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Global">
+          <Parameter Name="Endorsement_Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Rnc" Type="varchar" Mode="In" />
+          <Parameter Name="Contact_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Contact_Tel" Type="varchar" Mode="In" />
+          <Parameter Name="Contact_Adress" Type="varchar" Mode="In" />
+          <Parameter Name="Create_UsrId" Type="int" Mode="In" />
+          <Parameter Name="Endorsement_Status" Type="int" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="GlobalModelStoreContainer">
+          <EntitySet Name="EN_AGENT_GP_COMMISSION" EntityType="Self.EN_AGENT_GP_COMMISSION" Schema="Entity" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GlobalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="STFGlobalEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="SP_GET_ST_ENDORSEMENT" ReturnType="Collection(GlobalModel.SP_GET_ST_ENDORSEMENT_Result)">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Rnc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_ST_ENDORSEMENT" ReturnType="Collection(GlobalModel.SP_SET_ST_ENDORSEMENT_Result)">
+            <Parameter Name="Endorsement_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Rnc" Mode="In" Type="String" />
+            <Parameter Name="Contact_Name" Mode="In" Type="String" />
+            <Parameter Name="Contact_Tel" Mode="In" Type="String" />
+            <Parameter Name="Contact_Adress" Mode="In" Type="String" />
+            <Parameter Name="Create_UsrId" Mode="In" Type="Int32" />
+            <Parameter Name="Endorsement_Status" Mode="In" Type="Int32" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="EN_AGENT_GP_COMMISSION" EntityType="GlobalModel.EN_AGENT_GP_COMMISSION" />
+          <FunctionImport Name="SP_GET_LIST_VENDOR_ACTIVE" ReturnType="Collection(GlobalModel.SP_GET_LIST_VENDOR_ACTIVE_Result)" />
+        </EntityContainer>
+        <ComplexType Name="SP_GET_ST_ENDORSEMENT_Result">
+          <Property Type="Int32" Name="Endorsement_Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Rnc" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Contact_Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Contact_Tel" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Contact_Adress" Nullable="true" MaxLength="250" />
+          <Property Type="Boolean" Name="Endorsement_Status" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_ST_ENDORSEMENT_Result">
+          <Property Type="String" Name="Action" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="Endorsement_Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Rnc" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="Contact_Name" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Contact_Tel" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="Contact_Adress" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <EntityType Name="EN_AGENT_GP_COMMISSION">
+          <Key>
+            <PropertyRef Name="Corp_Id" />
+            <PropertyRef Name="Agent_Id" />
+          </Key>
+          <Property Name="Corp_Id" Type="Int32" Nullable="false" />
+          <Property Name="Agent_Id" Type="Int32" Nullable="false" />
+          <Property Name="No_Commission" Type="Boolean" Nullable="false" />
+          <Property Name="Take_Vendor_Id" Type="Boolean" Nullable="false" />
+          <Property Name="Vendor_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Agent_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modi_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_UsrId" Type="Int32" Nullable="false" />
+          <Property Name="Modi_UsrId" Type="Int32" />
+          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SP_GET_LIST_VENDOR_ACTIVE_Result">
+          <Property Type="Int32" Name="Agent_Id" Nullable="false" />
+          <Property Type="String" Name="Agent_Code" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Vendor_Id" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="240" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GlobalModelStoreContainer" CdmEntityContainer="STFGlobalEntities" >
+          <FunctionImportMapping FunctionImportName="SP_GET_ST_ENDORSEMENT" FunctionName="GlobalModel.Store.SP_GET_ST_ENDORSEMENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_GET_ST_ENDORSEMENT_Result">
+                <ScalarProperty Name="Endorsement_Id" ColumnName="Endorsement_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rnc" ColumnName="Rnc" />
+                <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+                <ScalarProperty Name="Contact_Tel" ColumnName="Contact_Tel" />
+                <ScalarProperty Name="Contact_Adress" ColumnName="Contact_Adress" />
+                <ScalarProperty Name="Endorsement_Status" ColumnName="Endorsement_Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_ST_ENDORSEMENT" FunctionName="GlobalModel.Store.SP_SET_ST_ENDORSEMENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_SET_ST_ENDORSEMENT_Result">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Endorsement_Id" ColumnName="Endorsement_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rnc" ColumnName="Rnc" />
+                <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+                <ScalarProperty Name="Contact_Tel" ColumnName="Contact_Tel" />
+                <ScalarProperty Name="Contact_Adress" ColumnName="Contact_Adress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="EN_AGENT_GP_COMMISSION">
+            <EntityTypeMapping TypeName="GlobalModel.EN_AGENT_GP_COMMISSION">
+              <MappingFragment StoreEntitySet="EN_AGENT_GP_COMMISSION">
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="Modi_UsrId" ColumnName="Modi_UsrId" />
+                <ScalarProperty Name="Create_UsrId" ColumnName="Create_UsrId" />
+                <ScalarProperty Name="Modi_Date" ColumnName="Modi_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Agent_Status" ColumnName="Agent_Status" />
+                <ScalarProperty Name="Vendor_Id" ColumnName="Vendor_Id" />
+                <ScalarProperty Name="Take_Vendor_Id" ColumnName="Take_Vendor_Id" />
+                <ScalarProperty Name="No_Commission" ColumnName="No_Commission" />
+                <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+                <ScalarProperty Name="Corp_Id" ColumnName="Corp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_LIST_VENDOR_ACTIVE" FunctionName="GlobalModel.Store.SP_GET_LIST_VENDOR_ACTIVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GlobalModel.SP_GET_LIST_VENDOR_ACTIVE_Result">
+                <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+                <ScalarProperty Name="Agent_Code" ColumnName="Agent_Code" />
+                <ScalarProperty Name="Vendor_Id" ColumnName="Vendor_Id" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

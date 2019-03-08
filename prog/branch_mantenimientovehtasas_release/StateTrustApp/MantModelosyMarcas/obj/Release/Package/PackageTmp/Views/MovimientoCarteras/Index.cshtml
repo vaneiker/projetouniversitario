@@ -1,0 +1,134 @@
+﻿@model StateTrustGlobal.ViewModels.MovimientoCartera
+@using StateTrustGlobal.Helpers
+@{
+    ViewBag.Title = "MoveAgentesCartera";
+}
+
+<h2>Movimiento de Carteras</h2>
+<br /><br />
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@{ Html.RenderPartial("_Alerts"); }
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+  <!-- Select2 -->
+
+<link href="~/Content/DateTime/css/normalize.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/DateTime/css/datepicker.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<div id="overlay">
+    <img src="~/images/loading5.gif" alt="Loading" /><br />
+</div>
+@Html.AntiForgeryToken()
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+ 
+    @using (Html.BeginForm("Index", "MovimientoCarteras", FormMethod.Post))
+{
+    <div class="form-horizontal">
+   
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-md-12">
+            <!-- Adjust this to be sm/md/lg, whatever fits best for you-->
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateOut, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateOut, new { htmlAttributes = new { @class = "form-control", id = "datepicker", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.DateOut, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateIn, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateIn, new { htmlAttributes = new { @class = "form-control", id = "datepicker1", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.DateIn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.New_Supervisor_Agent_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("New_Supervisor_Agent_Id", null,"", htmlAttributes: new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Agentes", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control select2" multiple="multiple" data-placeholder="Seleccione Agente" style="width: 100%; " name="Agentes" >
+                        @foreach (var item in ViewBag.Agentes)
+                        {
+                            
+                            <option value="@item.Agent_id" data-descripcion="Agent_id_@item.Agent_id" data-descr="Agent_id_@item.Agent_Code"> @item.Name </option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+     
+        <input type="submit" value="Guardar" class="btn btn-success" />
+    </div>
+}
+
+<!--DATE PICKER /opcional / pueden usar el scrip que quieran-->
+<script src="~/Scripts/DtaTme/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/DtaTme/js/jquery-ui-1.8.18.custom.min.js"></script>
+<script src="../../plugins/select2/select2.full.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>
+ <script src="~/Scripts/js/datepicker/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#datepicker').datepicker({
+            inline: true,
+            //nextText: '&rarr;',
+            //prevText: '&larr;',
+            showOtherMonths: true,
+            //dateFormat: 'dd MM yy',
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            //showOn: "button",
+            //buttonImage: "img/calendar-blue.png",
+            //buttonImageOnly: true,
+        });
+    });
+    $(function () {
+        $('#datepicker1').datepicker({
+            inline: true,
+            //nextText: '&rarr;',
+            //prevText: '&larr;',
+            showOtherMonths: true,
+            //dateFormat: 'dd MM yy',
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            //showOn: "button",
+            //buttonImage: "img/calendar-blue.png",
+            //buttonImageOnly: true,
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var n = $("#DateOut").val();
+        var m = $("#DateIn").val();
+
+        if (parseInt(n) > parseInt(m)) {
+            alert("Alert!");
+        }
+    });
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

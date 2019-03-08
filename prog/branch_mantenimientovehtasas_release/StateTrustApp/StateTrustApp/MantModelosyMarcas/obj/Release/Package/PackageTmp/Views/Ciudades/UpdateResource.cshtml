@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "UpdateResource";
+}
+
+<h2>UpdateResource</h2>
+
+<img id="loading" src="../../Content/progress.gif" alt="Updating ..." style="display: none;" />
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            $('#btnUpdate').click(
+                function () {
+                    $('#loading').show();
+                    $.get('<%= Url.Action("UpdateResource") %>', {},
+                        function (data) {
+                            $('#result').html(data);
+                            $('#loading').hide();
+                        });
+                }
+            );
+        }
+    );
+</script>

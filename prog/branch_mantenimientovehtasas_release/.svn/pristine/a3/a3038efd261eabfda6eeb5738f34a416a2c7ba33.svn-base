@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E87D087D-C421-4229-970C-663004F56CE2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StateTrustGlobal</RootNamespace>
+    <AssemblyName>StateTrustGlobal</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alerts\Alert.cs" />
+    <Compile Include="Alerts\AlertStyles.cs" />
+    <Compile Include="Data\Conexiones.cs" />
+    <Compile Include="Data\DataAccess.cs" />
+    <Compile Include="Data\EN_AGENT_GP_COMMISSION.cs">
+      <DependentUpon>Global.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Global.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Global.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Global.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SendEmail.cs" />
+    <Compile Include="Data\SP_GET_LIST_VENDOR_ACTIVE_Result.cs">
+      <DependentUpon>Global.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SP_GET_ST_ENDORSEMENT_Result.cs">
+      <DependentUpon>Global.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SP_SET_ST_ENDORSEMENT_Result.cs">
+      <DependentUpon>Global.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\LoggerHelper.cs" />
+    <Compile Include="Helpers\MyHelpers.cs" />
+    <Compile Include="ViewModels\ALL_LOCATION.cs" />
+    <Compile Include="ViewModels\CheckModel.cs" />
+    <Compile Include="ViewModels\Endorsement.cs" />
+    <Compile Include="ViewModels\IgnoreValidacion.cs" />
+    <Compile Include="ViewModels\ModelosViews.cs" />
+    <Compile Include="ViewModels\Municipios.cs" />
+    <Compile Include="ViewModels\Sector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Agentes.cs" />
+    <Compile Include="ViewModels\AttachedFiles.cs" />
+    <Compile Include="ViewModels\CapacidadTipoVehiculo.cs" />
+    <Compile Include="ViewModels\CategoriaVehiculos.cs" />
+    <Compile Include="ViewModels\Ciudades.cs" />
+    <Compile Include="ViewModels\ClsMailManager.cs" />
+    <Compile Include="ViewModels\DatosSysflex.cs" />
+    <Compile Include="ViewModels\Estatus.cs" />
+    <Compile Include="ViewModels\IdVehiculo.cs" />
+    <Compile Include="ViewModels\Localidades_SysFlex.cs" />
+    <Compile Include="ViewModels\MailManager.cs" />
+    <Compile Include="ViewModels\Marcas.cs" />
+    <Compile Include="ViewModels\Modelos.cs" />
+    <Compile Include="ViewModels\MovimientoCartera.cs" />
+    <Compile Include="ViewModels\Oficinas.cs" />
+    <Compile Include="ViewModels\DdlGenericos.cs" />
+    <Compile Include="ViewModels\Pais.cs" />
+    <Compile Include="ViewModels\Paises_VM.cs" />
+    <Compile Include="ViewModels\Provincias.cs" />
+    <Compile Include="ViewModels\SPCBuscaTipoCapacidadModelo.cs" />
+    <Compile Include="ViewModels\ST_VEHICLE_MAKE.cs" />
+    <Compile Include="ViewModels\TasaIntermediario.cs" />
+    <Compile Include="ViewModels\TipodeVehiculo.cs" />
+    <Compile Include="ViewModels\Vendor.cs" />
+    <Compile Include="ViewModels\VersionViewModel.cs" />
+    <Compile Include="ViewModels\Zonas.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Data\Global.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Global.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Data\Global.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Global.edmx</DependentUpon>
+      <LastGenOutput>Global.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Data\Global.edmx.diagram">
+      <DependentUpon>Global.edmx</DependentUpon>
+    </None>
+    <None Include="Data\Global.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Global.edmx</DependentUpon>
+      <LastGenOutput>Global.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GlobalLogger\GlobalLogger.csproj">
+      <Project>{ba692d84-c660-4e34-b33d-b3a1737e1e2b}</Project>
+      <Name>GlobalLogger</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,54 @@
+﻿@model IPagedList<StateTrustGlobal.ViewModels.Modelos>
+@using StateTrustGlobal.Helpers
+@using PagedList;
+@using PagedList.Mvc;
+<div class="modal-body">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.First().Model_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.First().Model_desc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.First().Model_desc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.First().Vehicle_Type_Id, "Tipo Vehículo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("TipoVehiculos", null, "<---Seleccione Tipo Vehículo--->", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.First().Vehicle_Type_Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.First().Descripcion, "Tipo Recargo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CategoriaVehiculos", null, "<---Seleccione Tipo Recargo--->", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.First().Descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Estatus</label>
+                <div class="col-md-10">
+                    <select id="Pos_Flag" name="Pos_Flag" class="form-control">
+                        <option value="">Seleccionar Estatus</option>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                    @Html.ActionLink("Volver Atras", "Index", null, new { @class = "btn btn-info" })
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

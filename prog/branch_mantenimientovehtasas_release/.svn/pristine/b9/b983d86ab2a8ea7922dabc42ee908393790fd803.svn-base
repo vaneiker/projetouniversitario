@@ -1,0 +1,131 @@
+﻿@model IEnumerable<StateTrustGlobal.ViewModels.Agentes>
+@using StateTrustGlobal.Helpers
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Intermediarios";
+}
+<br />
+<br />
+<div id="dialog-alert" style="display: none">
+    <p>
+        @TempData["msg"]!
+    </p>
+</div>
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@{ Html.RenderPartial("_Alerts"); }
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+<h2>Agentes</h2>
+ <div id="overlay">
+    <img src="~/images/loading5.gif" alt="Loading" /><br />
+</div>
+ <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"></h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Datos Registrados
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Agent_id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Agent_id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span>", "Edit", "MostrarAgentes", "MovimientoCarteras",
+                                         routeValues: new { id = item.Agent_id }, htmlAttributes: new { data_modal = "", @class = "btn btn-warning" })
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <!-- jQuery -->
+        @*<script src="~/vendor/jquery/jquery.min.js"></script>*@
+        <!-- DataTables JavaScript -->
+        <script src="~/vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="~/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="~/vendor/datatables-responsive/dataTables.responsive.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="~/dist/js/sb-admin-2.js"></script>
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
+ <script>
+                $(document).ready(function () {
+                    var url = "";
+                    $("#dialog-alert").dialog({
+                        autoOpen: false,
+                        resizable: false,
+                        height: 170,
+                        width: 350,
+                        show: { effect: 'drop', direction: "up" },
+                        modal: true,
+                        draggable: true,
+                        open: function (event, ui) {
+                            $(".ui-dialog-titlebar-close").hide();
+                        },
+                        buttons: {
+                            "OK": function () {
+                                $(this).dialog("close");
+
+                            }
+                        }
+                    });
+
+                    if ('@TempData["msg"]' != "") {
+                        $("#dialog-alert").dialog('open');
+                    }
+                    
+                });
+</script>
+    }

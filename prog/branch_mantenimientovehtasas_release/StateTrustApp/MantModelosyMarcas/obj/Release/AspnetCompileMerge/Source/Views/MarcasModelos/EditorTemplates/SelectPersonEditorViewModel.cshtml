@@ -1,0 +1,17 @@
+﻿@model StateTrustGlobal.ViewModels.SPCBuscaTipoCapacidadModelo
+<tr>
+    <td style="text-align:center">
+        @Html.CheckBoxFor(model => model.IsChecked)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.DescIdioma)
+    </td>
+    <td>
+        @Html.HiddenFor(model => model.IdListaHeader)
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IdListaHeader }) 
+      
+    </td>
+</tr>

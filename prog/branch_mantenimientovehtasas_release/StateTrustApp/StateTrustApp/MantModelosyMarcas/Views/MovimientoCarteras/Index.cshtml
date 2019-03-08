@@ -1,0 +1,57 @@
+﻿@model StateTrustGlobal.ViewModels.MovimientoCartera
+@using StateTrustGlobal.Helpers
+@{
+    ViewBag.Title = "MoveAgentesCartera";
+}
+
+<h2>MoveAgentesCartera</h2>
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@{ Html.RenderPartial("_Alerts"); }
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+  <!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<div id="overlay">
+    <img src="~/images/loading5.gif" alt="Loading" /><br />
+</div>
+@Html.AntiForgeryToken()
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+ 
+    @using (Html.BeginForm("Index", "MovimientoCarteras", FormMethod.Post))
+{
+    <div class="form-horizontal">
+   
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <select class="form-control select2" multiple="multiple" data-placeholder="Seleccione Agente" style="width: 100%; " name="Agentes">
+                    @foreach (var item in ViewBag.Agentes)
+                    {
+                        <option value="@item.Agent_id" data-descripcion="Agent_id_@item.Agent_id" data-descr="Agent_id_@item.Agent_Code"> @item.Name </option>
+                    }
+                </select>
+            </div>
+        </div>
+
+
+        <input type="submit" value="Guardar" class="btn btn-success" />
+    </div>
+}
+<script src="../../plugins/select2/select2.full.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+</script>
+ 
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

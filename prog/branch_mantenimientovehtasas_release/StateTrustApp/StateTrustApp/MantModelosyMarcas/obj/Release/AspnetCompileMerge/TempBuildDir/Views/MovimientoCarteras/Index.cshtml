@@ -1,0 +1,95 @@
+﻿@model StateTrustGlobal.ViewModels.MovimientoCartera
+@using StateTrustGlobal.Helpers
+@{
+    ViewBag.Title = "MoveAgentesCartera";
+}
+
+<h2>MoveAgentesCartera</h2>
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+@{ Html.RenderPartial("_Alerts"); }
+@* ###################################################### *@
+@* ######### VISTA PARCIAL DE LAS ALERTAS################ *@
+@* ###################################################### *@
+
+@Html.AntiForgeryToken()
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<div id="divEmp">
+
+
+    @using (Ajax.BeginForm("Index", "TasaIntermediario", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divEmp" }))
+    {
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Adjust this to be sm/md/lg, whatever fits best for you -->
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2">Buscar Agentes</label>
+                            @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-search'></span>", " ", "MostrarAgentes", "MovimientoCarteras",
+                            routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-danger" })
+                            @Html.ValidationMessageFor(model => model.Agent_id_M, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>Agentes</h3>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name_M)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Agent_id_M)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Agent_Code_M)
+                                </th>
+
+                                <th></th>
+                            </tr>
+                            <tbody>
+                                @for (int i = 0; i < Model.ListAgentes.Count; i++)
+                        {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => Model.ListAgentes[i].Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => Model.ListAgentes[i].Agent_id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => Model.ListAgentes[i].Agent_Code)
+                                        </td>
+
+                                        <td>
+                                            <div class="pull-right">
+                                                @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-trash'></span>", "Delete", "Delete", "ReporteGastos",
+                                         routeValues: new { id = Model.ListAgentes[i].Agent_id }, htmlAttributes: new { data_modal = "", @class = "lnkDelete btn btn-danger" })
+                                            </div>
+                                        </td>
+                                    </tr>
+                        }
+                            </tbody>
+                        </table>
+
+                    </div>
+                    @Html.ActionLink("Continuar", "OtrosDatos", new { }, new { @class = "btn btn-info" })
+
+                </div>
+
+            </div>
+        </div>
+     }
+</div>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

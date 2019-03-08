@@ -1,0 +1,286 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using StateTrustGlobal.ViewModels
+@using StateTrustGlobal.Helpers
+@model  dynamic
+
+@using Newtonsoft.Json;
+
+<style type="text/css">
+    .table-hover > tbody > tr:hover {
+        background-color: #5bc0de !important;
+        color: white !important;
+        font-weight: bold;
+    }
+
+    .display-block {
+        display: block !important;
+    }
+
+    .top-checkbox {
+        margin-top: 2%;
+    }
+
+    /************/
+    /* CHECKBOX */
+    /************/
+    /* Base for label styling */
+    [type="checkbox"]:not(:checked),
+    [type="checkbox"]:checked {
+        position: absolute;
+        left: -9999px;
+    }
+
+        [type="checkbox"]:not(:checked) + label,
+        [type="checkbox"]:checked + label {
+            position: relative;
+            padding-left: 1.95em;
+            cursor: pointer;
+        }
+
+            /* checkbox aspect */
+            [type="checkbox"]:not(:checked) + label:before,
+            [type="checkbox"]:checked + label:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 1.25em;
+                height: 1.25em;
+                border: 2px solid #ccc;
+                background: #fff;
+                border-radius: 4px;
+                box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+            }
+            /* checked mark aspect */
+            [type="checkbox"]:not(:checked) + label:after,
+            [type="checkbox"]:checked + label:after {
+                content: '✔';
+                position: absolute;
+                top: .1em;
+                left: .1em;
+                font-size: 1.3em;
+                line-height: 0.8;
+                color: #09ad7e;
+                transition: all .2s;
+            }
+            /* checked mark aspect changes */
+            [type="checkbox"]:not(:checked) + label:after {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            [type="checkbox"]:checked + label:after {
+                opacity: 1;
+                transform: scale(1);
+            }
+    /* disabled checkbox */
+    [type="checkbox"]:disabled:not(:checked) + label:before,
+    [type="checkbox"]:disabled:checked + label:before {
+        box-shadow: none;
+        border-color: #bbb;
+        background-color: #ddd;
+    }
+
+    [type="checkbox"]:disabled:checked + label:after {
+        color: #999;
+    }
+
+    [type="checkbox"]:disabled + label {
+        color: #aaa;
+    }
+    /* accessibility */
+    [type="checkbox"]:checked:focus + label:before,
+    [type="checkbox"]:not(:checked):focus + label:before {
+        border: 2px dotted blue;
+    }
+</style>
+
+<link href="~/Content/animate.css" rel="stylesheet" />
+<script src="~/Scripts/js/jquery-1.11.3.min.js"></script>
+<script src="~/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="~/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script src="~/Scripts/pages/endosatarios.js"></script>
+
+
+<div ng-app="endosatariosApp">
+    <div ng-controller="endosatariosCtrl" ng-init="getData()" class="col-lg-12 col-md-12 col-sm-12 endosatarios">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">@ViewBag.CurrentPage</h3>
+            </div>
+            <div class="panel-body">
+                <input type="hidden" id="endosatario-endorsementId" value="0" />
+                <input type="hidden" id="Ind_Nuevo" value="0" />@*Este hidden es para mantener un idicador de si es un  registro nuevo o edicion*@
+                <div class="table-responsive div-endosatarios">
+                    <div id="divListado">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-right">
+                            <button class="btn btn-info btn-sm" id="btnNuevo" type="button">
+                                <i class="glyphicon glyphicon-plus-sign"></i><span>&nbsp;&nbsp;Nuevo Endosatario</span>
+                            </button>
+                        </div>
+                        <table class="table table-hover table-bordered table-responsive table-striped table-endosatarios">
+                            <thead>
+                                <tr>
+                                    <th data-orderable="false">Nombre</th>
+                                    <th class="text-center col-rnc" data-orderable="false">RNC</th>
+                                    <th data-orderable="false">Contacto</th>
+                                    <th class="text-center col-telefono" data-orderable="false">Tel&eacute;fono</th>
+                                    <th class="text-center col-estado">Estado</th>
+                                    <th class="text-center col-editar" data-orderable="false">Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Endorsement.Get.Result endorsement in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => endorsement.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => endorsement.Rnc)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => endorsement.ContactName)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => endorsement.ContactTel)
+                                        </td>
+                                        <td>
+                                            @if (endorsement.EndorsementStatus)
+                                            {
+                                                <div>Activo</div>
+                                             } else {
+                                            <div>Inactivo</div>
+                                            } 
+                                        </td>
+                                        <td class="text-center">
+
+                                            @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-pencil'></span>",
+                                                                     string.Empty,
+                                                                     "#",
+                                                                     string.Empty,
+                                                                     routeValues: null,
+                                                                     htmlAttributes: new
+                                                                     {
+                                                                         data_model = "",
+                                                                         @class = "btn btn-warning",
+                                                                         id = "lnkEdit",
+                                                                         data_Json =  JsonConvert.SerializeObject(endorsement)
+                                                                     })
+                                            
+                                            
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="divCrearEditar" style="display: none;">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="input-group display-block">
+                                <label for="nombre-endosatario">Endosatario</label>
+                               <!---txtNombre---> <input type="text" class="form-control" id="nombre-endosatario" placeholder="Nombre de Endosatario" ng-model="Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="input-group display-block">
+                                <label for="rnc-endosatario">RNC</label>
+                                <!---txtRNC--->  <input type="text" class="form-control" id="rnc-endosatario" placeholder="RNC de Endosatario" ng-model="Rnc" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="input-group display-block">
+                                <label for="direccion-endosatario">Direcci&oacute;n</label>
+                                <input type="text" class="form-control" id="direccion-endosatario" placeholder="Dirección del endosatario" ng-model="Direccion" />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-md-1 col-sm-1">
+                            <label>Estado</label>
+                            <div class="top-checkbox">
+                                <!---ChekActivo---><input checked="checked" id="estado-endosatario" type="checkbox" ng-model="EndorsementStatus" />
+                                <label id="label-estado-endosatario" for="estado-endosatario">Activo</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <br />
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Contacto</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <div class="input-group display-block">
+                                                <label for="nombre-contacto">Nombre</label>
+                                                <!---txtNombreConta---> <input type="text" class="form-control" id="nombre-contacto" placeholder="Nombre de Contacto" ng-model="ContactName" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <div class="input-group display-block">
+                                                <label for="telefono-contacto">Tel&eacute;fono</label>
+                                                <!---txtTel---> <input type="text" class="form-control" id="telefono-contacto" placeholder="Teléfono de Contacto" ng-model="ContactTel" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <div class="input-group display-block">
+                                                <label for="email-contacto">Email</label>
+                                                <!---txtEmail---><input type="text" class="form-control" id="email-contacto" placeholder="Correo Electrónico de Contacto" ng-model="ContactAdress" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <button class="btn btn-success btn-sm datos-endosatario" id="btnGuardar" type="button" ng-click="InsertData()">
+                                    <i class="glyphicon glyphicon-saved"></i><span>&nbsp;&nbsp;Guardar</span>
+                                </button>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 text-right datos-endosatario">
+                                <button class="btn btn-danger btn-sm" id="btnCancelar" type="button">
+                                    <i class="glyphicon glyphicon-ban-circle"></i><span>&nbsp;&nbsp;Cancelar</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(document).on('click', '#lnkEdit', function (e) {
+            debugger;
+            var isChecked = false;
+            e.preventDefault();
+            var datos = $(this).attr('data-json');
+            if (datos.length <= 0) {
+                return;
+            }
+            var row = JSON.parse(datos);
+   
+            transition($('#divCrearEditar'), $('#divListado'));
+            $('#nombre-endosatario').val(row.Name);
+            $('#rnc-endosatario').val(row.Rnc);
+            $("#nombre-contacto").val(row.ContactName);
+            $("#telefono-contacto").val(row.ContactTel);
+            $("#email-contacto").val(row.ContactAdress);
+            $('#estado-endosatario').checked = row.EndorsementStatus;
+            $('#endosatario-endorsementId').val(row.EndorsementId);
+            $('#direccion-endosatario').val(row.Direccion);
+
+            $('#Ind_Nuevo').val(0)
+        })
+    });
+</script>

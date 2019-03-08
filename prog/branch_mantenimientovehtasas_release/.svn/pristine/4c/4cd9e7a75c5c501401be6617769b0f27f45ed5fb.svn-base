@@ -1,0 +1,145 @@
+﻿@model StateTrustGlobal.ViewModels.Vendor
+@using StateTrustGlobal.Helpers
+@using PagedList;
+@using PagedList.Mvc;
+
+ 
+@using (Html.BeginForm("SaveVendor", "Vendor", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="container">                
+            <br />
+            <br />
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                   @ViewBag.Operacion
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Agent_Code, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Agent_Code, new { @class = "form-control", @disabled = "disabled",@id="AgentCode" })
+                            @Html.ValidationMessageFor(m => m.Agent_Code, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Full_Name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Full_Name, new { @class = "form-control", @disabled = "disabled", @id="FullName" })
+                            @Html.ValidationMessageFor(m => m.Full_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Agent_Id, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Agent_Id, new { @class = "form-control", @id = "AgentId" })
+                            @Html.ValidationMessageFor(m => m.Agent_Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Vendor_Id, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Vendor_Id, new { @class = "form-control", @id = "VendorId" })
+                            @Html.ValidationMessageFor(m => m.Vendor_Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <br />             
+                    <div class="form-group">
+                   
+                        <div class="col-md-4 mb-3">
+                            <button class="btn btn-primary" type="button" onclick="Add()">@ViewBag.Operacion</button>
+                          
+                            <input class="btn btn-success" type="button" onclick="Volver()" value="Volver" />
+                        </div>
+                </div>
+                    <br />
+                    <br /> 
+            </div>
+        </div>
+    </div>
+    </div>
+
+}
+
+<script>
+    function Volver() {
+        var url = "/Vendor/Index"
+        location.href = url;
+    }
+
+    function clearForm() {
+         $('#AgentId').val("");
+         $('#VendorId').val("");
+         $('#AgentCode').val("");
+         $('#FullName').val("");
+
+    }
+    function validate() {
+        var a = parseInt($('#AgentId').val());
+        var b = $('#VendorId').val();
+
+        if (b == "" || b == null || a==null || a==isNaN ) {
+            $('#AgentId').css('border-color', 'Red');
+            $('#VendorId').css('border-color', 'Red');
+
+            return false;
+        } 
+        else 
+        {
+            return true;
+        }
+           
+    };
+    //Validar si los Campos estan como requeridos
+
+
+    $("#AgentId").keypress(function () {
+        $('#AgentId').removeAttr('style');
+        $('#VendorId').removeAttr('style');
+    });
+
+    $("#VendorId").keypress(function () {
+        $('#AgentId').removeAttr('style');
+        $('#VendorId').removeAttr('style');
+    });
+   
+    function Add() {
+        
+        var res = validate();
+        if (res == false) {
+            alert("Favor de Digitar la Infromación");
+
+        }
+        else {
+            var empObj = {
+                Agent_Id: parseInt($('#AgentId').val()),
+                Vendor_Id: $('#VendorId').val(),
+
+            };
+            $.ajax({
+                url: "/Vendor/SaveVendor",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    Volver();
+                    clearForm();
+                },
+                error: function (errormessage) {
+
+                }
+            });
+        }
+       
+    }
+
+</script>

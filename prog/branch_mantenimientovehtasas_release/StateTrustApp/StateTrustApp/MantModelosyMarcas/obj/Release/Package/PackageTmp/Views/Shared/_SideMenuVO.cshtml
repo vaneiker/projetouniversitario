@@ -1,0 +1,76 @@
+﻿<!-- Agregado por StateTrust -->
+
+    <div id="menu-2" style="display: none;">
+        @Html.Raw(ViewBag.htmlProfilePage)
+
+        <li class="trigger shown dash dynamicli">
+            <a href="#" id="test" class="trigger">
+                <span></span>
+                <h4>Menu</h4>
+            </a>
+            <ul style="display: none;">
+                <li>
+                    <h2 class="sub_div_menu">New Business</h2>
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "AddNewClient.aspx", appname = "NewBusiness" })" class="btn_izquierda trigger">
+                        Add New Client
+                    </a>
+
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "CasesInProcess.aspx", appname = "NewBusiness" })" class="btn_izquierda trigger">
+                        Cases in Process
+                    </a>
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "ReadyToReview.aspx", appname = "NewBusiness" })" class="btn_izquierda trigger">
+                        Ready to Review
+                    </a>
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "SubmittedPolicies.aspx", appname = "NewBusiness" })" class="btn_izquierda trigger">
+                        Submitted Policies
+                    </a>
+
+                    <h2 class="sub_div_menu">Contact Management</h2>
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "Contact.aspx", appname = "NewBusiness" })" class="btn_izquierda trigger">
+                        Contacts List
+                    </a>
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "Contact.aspx", appname = "NewBusiness", action = "newcontact" })" class="btn_izquierda trigger">
+                        Add New Contact
+                    </a>
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "Contact.aspx", appname = "NewBusiness", tab = "illustration" })" class="btn_izquierda trigger">
+                        New Illustration
+                    </a>
+
+
+                    <h2 class="sub_div_menu">Reporting</h2>
+                    @*<asp:LinkButton CssClass="btn_izquierda" runat="server" ID="lnkIllustration" path="Illustrations.aspx" appname="NewBusiness">Illustrations</asp:LinkButton>*@
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "Illustrations.aspx", appname = "NewBusiness" })" class="btn_izquierda trigger">
+                        Illustrations
+                    </a>
+
+                    <a class="btn_izquierda trigger" href="reports.html">Reports</a>
+
+                    <!--NECESITO SABER SI ES ADMINISTRADOR PARA MOSTRARLE O LA OPCION AGENTE-->
+                    <h2 id="h2AdminAgent" class="sub_div_menu">Admin Agent</h2>
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", appname = "VirtualOffice", path = "NAdminNewAgent.aspx" })" class="btn_izquierda trigger">
+                        New Agent
+                    </a>
+
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", appname = "VirtualOffice", path = "AdminListAgent.aspx" })" class="btn_izquierda trigger">
+                        Agent List
+                    </a>
+
+                    @*<asp:LinkButton CssClass="btn_izquierda" runat="server" ID="lnkAdminNewAgent" action="NewAgent" appname="NewAgent" OnClick="lnkAdminNewAgent_Click">New Agent</asp:LinkButton>
+                        <asp:LinkButton CssClass="btn_izquierda" runat="server" ID="lnkAdminListAgent" action="AgentList" appname="AgentList" OnClick="lnkAdminListAgent_Click">Agent List</asp:LinkButton>*@
+
+                </li>
+            </ul>
+        </li>
+        <!-- Agregando opciones al menu de Perfil -->
+    </div>
+
+<!-- Agregado por StateTrust -->
