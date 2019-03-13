@@ -19,5 +19,11 @@ namespace Singleton
 
             return new List<string> { "Carlos" };
         }
+
+        public IEnumerable<string> Getcontact3()
+        {
+
+            return new List<string> { "Carlos" };
+        }
     }
 }
