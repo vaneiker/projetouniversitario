@@ -1,0 +1,98 @@
+USE SysFlexSeguros_Recovered
+---PROCESO DE CREAR UN SUPERVISOR Y/o agente por primera vez
+
+select * from CXC_Vendedor where Codigo = 15573
+select * from CXC_Supervisor where Codigo = 15553
+
+select * from  Global.Entity.EN_AGENT where agent_id in
+ (35023
+ ,33063)
+
+
+ update  Global.Entity.EN_AGENT set First_Name='',Full_Name='',First_Lastname='' where Agent_Id=35023
+
+
+
+  SELECT * FROM DBO.CXC_Vendedor WHERE RNC='540379920'
+ 
+
+ 
+
+
+SELECT 'RECORD ID VENDEDOR', *  FROM SysFlexSeguros_Recovered.[GlobalDelta].[CXC_Vendedor_Record_Id] where codigo=15573 
+SELECT 'RECORD ID SUPERVISOR', *  FROM SysFlexSeguros_Recovered.[GlobalDelta].[CXC_Supervisor_Record_Id] where codigo = 15553
+
+SELECT * FROM SysFlexSeguros_Recovered.[GlobalDelta].[Agent_Source_Id]
+--GENERAR UN REGISTRO NUEVO AQUI Y SABER CUAL GUID INSERTE
+
+ /*
+--GENERANDO EL GUID QUE SERIA EL SOURCEID
+declare @gid UNIQUEIDENTIFIER 
+set  @gid = (select NEWID())
+SELECT @gid
+SELECT * FROM [SysFlexSeguros_Recovered].[GlobalDelta].[Agent_Source_Id] where Source_Id=@gid
+ */
+
+INSERT INTO [GlobalDelta].[Agent_Source_Id]
+           ([Source_Id]
+           ,[CreateDate]
+           ,[HostName])
+     VALUES
+           ('A412C586-ED16-450F-916E-C1E5EE6FDDB0' --<Source_Id, uniqueidentifier,>
+           ,getdate() --<CreateDate, datetime,>
+           ,HOST_NAME() --<HostName, varchar(150),>
+		   )
+
+--INSERTAR EL SOURCE ID GENERADO EN ESTA TABLA E INSERTAR LOS RECORD ID EN SUS RESPECTIVOS TABLE_ID
+/*
+Table_Id
+1 -- SUPERVISOR
+2 -- VENDEDOR
+*/
+SELECT * FROM [GlobalDelta].[Supervisor_Vendedor_Agent_Source_Id_Link] WHERE Source_Id='A412C586-ED16-450F-916E-C1E5EE6FDDB0'
+
+--SUPERVISOR
+INSERT INTO [GlobalDelta].[Supervisor_Vendedor_Agent_Source_Id_Link]
+           ([Source_Id]
+           ,[Record_Id]
+           ,[Table_Id]
+           ,[Main_Code]
+           ,[CreateDate]
+           ,[HostName])
+     VALUES
+           ('A412C586-ED16-450F-916E-C1E5EE6FDDB0'--<Source_Id, uniqueidentifier,>
+           ,'EA85BA5B-7D8B-4156-96BD-DA2E3FFC6D69'--<Record_Id, uniqueidentifier,>
+           ,1--<Table_Id, int,>
+           ,0--<Main_Code, bit,>
+           ,GETDATE()--<CreateDate, datetime,>
+           ,HOST_NAME()--<HostName, varchar(150),>
+		   )
+
+--VENDEDOR
+INSERT INTO [GlobalDelta].[Supervisor_Vendedor_Agent_Source_Id_Link]
+           ([Source_Id]
+           ,[Record_Id]
+           ,[Table_Id]
+           ,[Main_Code]
+           ,[CreateDate]
+           ,[HostName])
+     VALUES
+           ('A412C586-ED16-450F-916E-C1E5EE6FDDB0'--<Source_Id, uniqueidentifier,>
+           ,'F5B26562-878D-443C-A50D-32E831FF9D8E'--<Record_Id, uniqueidentifier,>
+           ,2--<Table_Id, int,>
+           ,1--<Main_Code, bit,>
+           ,GETDATE()--<CreateDate, datetime,>
+           ,HOST_NAME()--<HostName, varchar(150),>
+		   )
+
+
+
+---OFICINA COMPLETA QUE SIRVE DE EJEMPLO---
+SELECT * FROM SysFlexSeguros_Recovered.[GlobalDelta].[Agent_Source_Id] where Source_Id='A412C586-ED16-450F-916E-C1E5EE6FDDB0'--BAVARO
+
+SELECT * FROM [GlobalDelta].[Supervisor_Vendedor_Agent_Source_Id_Link] WHERE Source_Id='A412C586-ED16-450F-916E-C1E5EE6FDDB0'--BAVARO
+--COJO EL CODIGO DE OTRA OFICINA QUE ESTE BIEN y BUSCO SU SOURCE ID EN ESTA TABLA
+--SOURCE ID DE BAVARO 48610303-B467-4B02-93DB-10C16D34647C
+
+SELECT *  FROM SysFlexSeguros_Recovered.[GlobalDelta].[CXC_Vendedor_Record_Id] where Record_Id='CE6A5F86-63F5-4D86-86C8-F336126F908E'
+SELECT *  FROM SysFlexSeguros_Recovered.[GlobalDelta].[CXC_Supervisor_Record_Id] where Record_Id='00DD152B-553D-49B7-B251-0A958774281D'
