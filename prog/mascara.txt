@@ -1,0 +1,17 @@
+$("#telefone")
+    .mask("1(999) 999-9999")
+    .focusout(function (event) {
+        var target, phone, element;
+        target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+        phone = target.value.replace(/\D/g, '');
+        element = $(target);
+        element.unmask();
+        if (phone.length > 10) {
+            element.mask("1(999) 999-9999");
+        } else {
+            element.mask("1(999) 999-9999");
+        }
+    });
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
