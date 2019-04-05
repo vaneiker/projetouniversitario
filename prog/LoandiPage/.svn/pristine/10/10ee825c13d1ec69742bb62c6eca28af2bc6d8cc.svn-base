@@ -1,0 +1,77 @@
+﻿<!--Customer Callback-->
+<div class="modal fade" id="ppCustomerCallback" tabindex="-1" role="dialog" aria-labelledby="ppCustomerCallback" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>Favor completar las siguientes informaciones</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="closeCustomerCallback" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="w-100 m-auto">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" pattern="[A-Z,a-z, ]*" type="text" id="FirstNamesCallBack" name="FirstNamesCallBack">
+                            <label class="mdl-textfield__label" for="FirstNamesCallBack">Nombres</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" pattern="[A-Z,a-z, ]*" type="text" id="LastNamesCallBack" name="LastNamesCallBack">
+                            <label class="mdl-textfield__label" for="LastNamesCallBack">Apellidos</label>
+                        </div>
+                        @*<div class="mdl-cell mdl-cell--2-col mdl-cell--4 w-100">*@
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield">
+                            <select id="PhoneType" data-placeholder="Tipo de teléfono" class="chosen-select-deselect form-control"></select>
+                        </div>
+                        @*</div>*@
+                        <div class="mdl-grid p-0">
+                            <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input disabled" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="CountryCodeCallback" name="CountryCodeCallback">
+                                    <label class="mdl-textfield__label" for="CountryCodeCallback">+1</label>
+                                    <span class="mdl-textfield__error">Número inválido!</span>
+                                </div>
+                            </div>
+                            <div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    @*<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cArea">*@
+                                    <input class="mdl-textfield__input disabled" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="CityCodeCallback" name="CityCodeCallback">
+                                    <label class="mdl-textfield__label" for="CityCodeCallback">809</label>
+                                    <span class="mdl-textfield__error">Codigo area incorrecto!</span>
+                                </div>
+                            </div>
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    @*<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cdNumb">*@
+                                    <input class="mdl-textfield__input disabled" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="NumToCall" name="NumToCall">
+                                    <label class="mdl-textfield__label" for="NumToCall">9999999</label>
+                                    <span class="mdl-textfield__error">Teléfono Incorrecto!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" type="text" id="EmailCallback" name="EmailCallback">
+                            <label class="mdl-textfield__label" for="EmailCallback">Correo Electrónico</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" type="text" id="MessageCallback" name="MessageCallback">
+                            <label class="mdl-textfield__label" for="MessageCallback">Comentario</label>
+                        </div>
+
+                        <input type="hidden" id="hdnBl" value="" />
+
+                        <button id="SendCallback" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success w-100 mb-3">
+                            <strong class="x-hide">Enviar</strong>
+                            <i class="material-icons">arrow_forward</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Customer Callback-->

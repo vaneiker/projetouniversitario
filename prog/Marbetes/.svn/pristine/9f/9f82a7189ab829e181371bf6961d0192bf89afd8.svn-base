@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Untitled Page</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Styles/sinorcaish-screen.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/CustomStyles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- ======== Header ======== -->
+        <div id="header">
+          <div class="left">
+              <asp:HyperLink runat="server" ID="lnkHome" NavigateUrl="~/Default.aspx">PDF Forms</asp:HyperLink>
+          </div>
+          <div class="right">
+            <%=DateTime.Now.ToShortDateString()%>
+          </div>
+          <div class="subheader">
+            <em>Wasn't the Internet supposed to herald a paperless society?</em>
+          </div>
+        </div>
+
+        <!-- ======== Left Sidebar ======== -->
+        <div id="sidebar">
+          <div>
+              <ul>
+                <li><a href="Default.aspx">Home</a></li>
+                <li><a href="ListFormFields.aspx">List PDF Form Fields</a></li>
+                <li><a href="CreateW9.aspx">Create Form W-9</a></li>
+              </ul>
+          </div>
+        </div>
+
+        <!-- ======== Main Content ======== -->
+        <div id="main">
+            <asp:ContentPlaceHolder id="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        
+        <!-- ======== Footer ======== -->
+
+        <div id="footer">
+            ASP.NET application designed by <a href="http://www.4guysfromrolla.com/ScottMitchell.shtml">Scott Mitchell</a>.
+            Website design by <a href="mailto:J.Zaitseff@zap.org.au">John Zaitseff</a>, and available 
+            at <a href="http://www.opendesigns.org/preview/?template=1700">OpenDesigns.org</a>.
+        </div>
+        <br /><br />
+        <div class="announcement">
+            Part of iTextSharp's popularity stems from the fact that it's open source. However, it's important to keep in mind that starting with version 5.0, iTextSharp is released under the <a href="http://itextpdf.com/terms-of-use/agpl.php">GNU Affero General Public License (AGPL) version 3</a>. This license requires that any application that uses iTextSharp must also be released under the same license and that you must make your application's source code freely available (like iTextSharp's is). You can optionally <a href="http://itextpdf.com/terms-of-use/index.php">buy a license</a> to be released from the AGPL. While version 5.0 (and beyond) is released under the more restrictive AGPL, previous versions were released under the <a href="http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License">GNU Lesser General Public License (LGPL)</a>, which allows the use of iTextSharp within an application without requiring that the application also be released under the LGPL. In other words, using by using version 4.0 or earlier, you can use iTextSharp in your web application without having to buy a license and without having to release your web application's source code.
+        </div>
+    </form>
+</body>
+</html>

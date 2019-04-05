@@ -1,0 +1,65 @@
+
+/*
+* CSS: Personalizado el CHAT
+* Description: Chat implementado por esta compañia.
+* Autor CSS: Dantelin Castro
+* Date: 22/02/2018
+*/
+
+ul 									{ text-decoration: none; margin: 0px; list-style: none; padding: 0px; }
+
+/*=====|CONTENIDO|=====*/
+
+div#chat_dtl 						{ max-width: 370px; min-width: 300px;width: 100%; position: absolute; bottom: 56px; right: 2em; }
+#chat_dtl.border-primary 			{ border-color: #113a55 !important; }
+
+/*=====|HEADER|=====*/
+
+.logo_chat 							{ background: #113a55 url(../images/logo_icon.png) no-repeat center center; background-size: 57%; width: 80px; height: 80px; position: absolute; left: -36px; top: -40px; }
+.bt_close 							{ width: 40px; height: 40px; position: absolute; right: 17px; top: 17px; }
+.agent-name 						{ color: #fff; font-size: 17px; line-height: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dtl-agent-profile 					{ width: 80%; border-radius: 8px; padding: 8px 20px 0px 10px; height: 50px; -webkit-box-sizing: border-box; box-sizing: border-box; white-space: nowrap; overflow: hidden; }
+.avatar-container 					{ display: inline-block; vertical-align: middle; white-space: nowrap; float: left; padding-right: 10px; }
+.agent-avatar 						{ border: 2px solid #17a2b8; position: relative; display: inline-block; border-radius: 100%; overflow: hidden; }
+.agent-avatar .avatar 				{ width: 36px; height: 36px; line-height: 32px; font-size: 16px; }
+.dtl-agent-profile .agent-avatar .avatar img { width: 36px; height: 36px; }
+.agent-avatar .avatar img 			{ width: 32px; height: 32px; }
+.dtl-profile-body 					{ display: block; vertical-align: middle; padding-left: 10px; }
+.dtl-profile-body .name 			{ color: #fff; font-size: 17px; line-height: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dtl-profile-body .response-delay 	{ color: hsla(0,0%,100%,.8); font-size: 13px; line-height: 1.3em; overflow: hidden; text-overflow: ellipsis; }
+
+/*=====|BODY|=====*/
+
+.dtl-conversation-body 				{ overflow-y: scroll;max-height: 230px; }
+.dtl-conversation-body-wrapper 		{ overflow: hidden; }
+.dtl-conversation-parts 			{ padding: 0.6em; width: 100%; float: left; }
+li.conversation-parts 				{ padding-bottom: 10px; }
+.dtl-comment-container 				{ position: relative; max-width: 75%; }
+.admin-cv .dtl-comment-container 	{ float: left; padding-left: 45px; }
+.user-cv .dtl-comment-container 	{ float: right; padding-right: 45px; }
+.comment-avatar 					{ position: absolute; bottom: 10px; }
+.admin-cv .comment-avatar 			{ left: 0; }
+.user-cv .comment-avatar 			{ right: 0; }
+li.conversation-part.user-cv,
+li.conversation-part.admin-cv 		{ width: 100%; float: left; margin-bottom: 10px; }
+.agent-avatar-container 			{ width: 35px; height: 35px; position: relative; float: left; }
+.avatar-small 						{ width: 35px; height: 35px; line-height: 20px; top: 0; left: 0; z-index: 1; border-radius: 50%; position: absolute; border: 2px solid #fff; background-color: #2c1e73; color: #fff; text-align: center; font-size: 17.5px; font-weight: 700; }
+.dtl-comment 						{ color: #263238; background-color: #f4f7f9; padding: 17px 20px; border-radius: 6px; position: relative; }
+.dtl-block-paragraph 				{ overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; font-size: 14px; line-height: 1.4; margin: 0 0 10px; }
+
+/*=====|FOOTER|=====*/
+
+#chat_dtl .dtl-conversation-footer 	{ border-radius: 0 0 6px 6px; }
+.dtl-composer 						{ min-height: 55px; max-height: 200px; }
+.dtl-composer textarea 				{ float: left; color: #565867; background-color: #f4f7f9; resize: none; border: none; -webkit-transition: background-color .2s ease, -webkit-box-shadow .2s ease; transition: background-color .2s ease, -webkit-box-shadow .2s ease; transition: background-color .2s ease, box-shadow .2s ease; transition: background-color .2s ease, box-shadow .2s ease, -webkit-box-shadow .2s ease; }
+.dtl-composer-buttons 				{ float: right; }
+.dtl-composer-button 				{ width: 44px; height: 44px; float: right; display: inline-block; cursor: pointer; opacity: .8; -webkit-transition: opacity .2s ease; transition: opacity .2s ease; }
+.dtl-composer-button i 				{ display: block; width: 30px; height: 18px; }
+
+/*=====|MEDIA QUERY|=====*/
+
+@media (max-width: 576px) {
+
+	div#chat_dtl { right: 2px; }
+	.logo_chat { left: 36%; top: -63px; }
+}

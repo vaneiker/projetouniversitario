@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysflexSeguros" Class="SysflexContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ATL-DEV05.atlantica.do;Initial Catalog=SysflexSeguros;User ID=Developer05" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SysflexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.P_PolizaImpresionMarbetes" Member="P_PolizaImpresionMarbetes">
+    <Type Name="P_PolizaImpresionMarbete">
+      <Column Name="Compania" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DiasImpresion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_DATA_MARBETE" Member="VW_DATA_MARBETEs">
+    <Type Name="VW_DATA_MARBETE">
+      <Column Name="poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="fechainiciovigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fechafinvigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nombrecliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="SECUENCIA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TipoVehiculo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Ano" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Chassis" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Registro" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Uso" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Cilindro" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Pasajeros" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="EndosoSeccion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Observacion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Fianza" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="CasaConductor" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Grua" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Asistencia" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="EsFull" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

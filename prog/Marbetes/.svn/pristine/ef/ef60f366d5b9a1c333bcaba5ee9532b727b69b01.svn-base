@@ -1,0 +1,1530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 10.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="10.0">
+ <Targets>
+  <Target Name="C:\Users\kmartin\AppData\Local\Temp\tmp82C6.tmp.cadir\bin\App_Code.dll">
+   <Modules>
+    <Module Name="app_code.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="DataAccess" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'DataAccess' should be declared inside a namespace.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#AddLog(UserInfo)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="DataAccess.cs" Line="86">Modify 'DataAccess.AddLog(UserInfo)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="DataAccess.cs" Line="75">Because the behavior of 'string.ToUpper()' could vary based on the current user's locale settings, replace this call in 'DataAccess.AddLog(UserInfo)' with a call to 'string.ToUpper(CultureInfo)'. If the result of 'string.ToUpper(CultureInfo)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="DataAccess.cs" Line="75">In externally visible method 'DataAccess.AddLog(UserInfo)', validate parameter 'user' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Marbete" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'Marbete' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="Marbete" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Marbete' in type name 'Marbete'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="P_PolizaImpresionMarbete" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'P_PolizaImpresionMarbete' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="Impresion" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Impresion' in type name 'P_PolizaImpresionMarbete'.</Issue>
+          </Message>
+          <Message Id="Marbete" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Marbete' in type name 'P_PolizaImpresionMarbete'.</Issue>
+          </Message>
+          <Message Id="Poliza" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Poliza' in type name 'P_PolizaImpresionMarbete'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#Compania" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Compania" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="133">Correct the spelling of 'Compania' in member name 'P_PolizaImpresionMarbete.Compania' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Cotizacion" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Cotizacion" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="153">Correct the spelling of 'Cotizacion' in member name 'P_PolizaImpresionMarbete.Cotizacion' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DiasImpresion" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Impresion" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="253">Correct the spelling of 'Impresion' in member name 'P_PolizaImpresionMarbete.DiasImpresion' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Fecha" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Fecha" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="193">Correct the spelling of 'Fecha' in member name 'P_PolizaImpresionMarbete.Fecha' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Poliza" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Poliza" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="213">Correct the spelling of 'Poliza' in member name 'P_PolizaImpresionMarbete.Poliza' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Secuencia" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Secuencia" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="173">Correct the spelling of 'Secuencia' in member name 'P_PolizaImpresionMarbete.Secuencia' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Usuario" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Usuario" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="233">Correct the spelling of 'Usuario' in member name 'P_PolizaImpresionMarbete.Usuario' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="PDFCheckBoxFieldType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'PDFCheckBoxFieldType' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'PDF' in type name 'PDFCheckBoxFieldType' by changing it to 'Pdf'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="PDFFieldType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'PDFFieldType' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'PDF' in type name 'PDFFieldType' by changing it to 'Pdf'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#GetPDFFieldType(System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFFieldType.cs" Line="9">Correct the casing of 'PDF' in member name 'PDFFieldType.GetPDFFieldType(int)' by changing it to 'Pdf'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Type" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="PropertyNamesShouldNotMatchGetMethods" Category="Microsoft.Naming" CheckId="CA1721" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="BaseType" Certainty="95" Level="Error">The property name 'PDFFieldType.Type' is confusing given the existence of inherited method 'object.GetType()'. Rename or remove this property.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="PDFHelper" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'PDFHelper' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'PDF' in type name 'PDFHelper' by changing it to 'Pdf'.</Issue>
+          </Message>
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="CSharp2_0" Certainty="90" Level="Error">Because type 'PDFHelper' contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#GeneratePDF(System.String,System.Collections.Generic.Dictionary`2&lt;System.String,System.String&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="40">In method 'PDFHelper.GeneratePDF(string, Dictionary&lt;string, string&gt;)', call System.IDisposable.Dispose on object 'output' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="38">Correct the casing of 'PDF' in member name 'PDFHelper.GeneratePDF(string, Dictionary&lt;string, string&gt;)' by changing it to 'Pdf'.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="45">In externally visible method 'PDFHelper.GeneratePDF(string, Dictionary&lt;string, string&gt;)', validate parameter 'formFieldMap' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetExportValue(iTextSharp.text.pdf.AcroFields+Item)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="61">In externally visible method 'PDFHelper.GetExportValue(AcroFields.Item)', validate parameter 'item' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetFormFieldNamesArray(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="24">Change 'List&lt;Dictionary&lt;string, string&gt;&gt;' in 'PDFHelper.GetFormFieldNamesArray(string)' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="24">Consider a design where 'PDFHelper.GetFormFieldNamesArray(string)' doesn't nest generic type 'List&lt;Dictionary&lt;string, string&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ReturnPDF(System.Byte[])" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="89">Correct the casing of 'PDF' in member name 'PDFHelper.ReturnPDF(byte[])' by changing it to 'Pdf'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ReturnPDF(System.Byte[],System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="94">In member 'PDFHelper.ReturnPDF(byte[], string)', the discrete term 'Filename' in parameter name 'attachmentFilename' should be expressed as a compound word, 'FileName'.</Issue>
+            </Message>
+            <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="PDFHelper.cs" Line="94">Correct the casing of 'PDF' in member name 'PDFHelper.ReturnPDF(byte[], string)' by changing it to 'Pdf'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="PDFOtherFieldType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'PDFOtherFieldType' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'PDF' in type name 'PDFOtherFieldType' by changing it to 'Pdf'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="PDFTextFieldType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'PDFTextFieldType' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'PDF' in type name 'PDFTextFieldType' by changing it to 'Pdf'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="SysflexContextDataContext" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'SysflexContextDataContext' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="Sysflex" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Sysflex' in type name 'SysflexContextDataContext'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#P_PolizaImpresionMarbetes" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Impresion" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="70">Correct the spelling of 'Impresion' in member name 'SysflexContextDataContext.P_PolizaImpresionMarbetes' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="Marbetes" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="70">Correct the spelling of 'Marbetes' in member name 'SysflexContextDataContext.P_PolizaImpresionMarbetes' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="Poliza" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="70">Correct the spelling of 'Poliza' in member name 'SysflexContextDataContext.P_PolizaImpresionMarbetes' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#VW_DATA_MARBETEs" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DATA" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="78">Correct the casing of 'DATA' in member name 'SysflexContextDataContext.VW_DATA_MARBETEs' by changing it to 'Data'.</Issue>
+            </Message>
+            <Message Id="MARBETEs" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="78">Correct the casing of 'MARBETEs' in member name 'SysflexContextDataContext.VW_DATA_MARBETEs' by changing it to 'Marbetes'.</Issue>
+            </Message>
+            <Message Id="MARBETEs" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="78">Correct the spelling of 'MARBETEs' in member name 'SysflexContextDataContext.VW_DATA_MARBETEs' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="UserInfo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'UserInfo' should be declared inside a namespace.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="Utils" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'Utils' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="Utils" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Utils' in type name 'Utils'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#CreateLog(System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="85">Object 'logfile' can be disposed more than once in method 'Utils.CreateLog(string, string)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 85</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefaultValue(System.Nullable`1&lt;System.Boolean&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ovalue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="305">In method 'Utils.DefaultValue(this bool?)', correct the spelling of 'ovalue' in parameter name 'ovalue' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefaultValue(System.Nullable`1&lt;System.DateTime&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ovalue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="290">In method 'Utils.DefaultValue(this DateTime?)', correct the spelling of 'ovalue' in parameter name 'ovalue' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefaultValue(System.Nullable`1&lt;System.Decimal&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ovalue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="286">In method 'Utils.DefaultValue(this decimal?)', correct the spelling of 'ovalue' in parameter name 'ovalue' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefaultValue(System.Nullable`1&lt;System.Int32&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ovalue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="301">In method 'Utils.DefaultValue(this int?)', correct the spelling of 'ovalue' in parameter name 'ovalue' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefaultValue(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ovalue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="309">In method 'Utils.DefaultValue(this string)', correct the spelling of 'ovalue' in parameter name 'ovalue' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#FileToByteArray(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="194">In method 'Utils.FileToByteArray(string)', call System.IDisposable.Dispose on object '_FileStream' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="207">Object '_FileStream' can be disposed more than once in method 'Utils.FileToByteArray(string)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 207, 208</Issue>
+            </Message>
+            <Message Id="System.Console.WriteLine(System.String,System.Object)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="213">Method 'Utils.FileToByteArray(string)' passes a literal string as parameter 'format' of a call to 'Console.WriteLine(string, object)'. Retrieve the following string(s) from a resource table instead: "Exception caught in process: {0}".</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="210">Modify 'Utils.FileToByteArray(string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="File" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="187">In member 'Utils.FileToByteArray(string)', correct the casing of 'File' in parameter name '_FileName' by changing it to 'file'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#FirstCharToUpper(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="146">Because the behavior of 'string.ToUpper()' could vary based on the current user's locale settings, replace this call in 'Utils.FirstCharToUpper(this string)' with a call to 'string.ToUpper(CultureInfo)'. If the result of 'string.ToUpper(CultureInfo)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetBytesFromFile(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="35">Object 'fs' can be disposed more than once in method 'Utils.GetBytesFromFile(string)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 35</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetFileInfo(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="51">Object 'fs' can be disposed more than once in method 'Utils.GetFileInfo(string)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 51</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetSerialId()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="20">Because the behavior of 'string.ToUpper()' could vary based on the current user's locale settings, replace this call in 'Utils.GetSerialId()' with a call to 'string.ToUpper(CultureInfo)'. If the result of 'string.ToUpper(CultureInfo)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="19">Change 'Utils.GetSerialId()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#IsAnyNullOrEmpty(System.Object[])" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="arreglo" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="99">In method 'Utils.IsAnyNullOrEmpty(params object[])', correct the spelling of 'arreglo' in parameter name 'arreglo' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="102">In externally visible method 'Utils.IsAnyNullOrEmpty(params object[])', validate parameter 'arreglo' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#IsAnyNullOrEmpty(System.String[])" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="arreglo" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="120">In method 'Utils.IsAnyNullOrEmpty(params string[])', correct the spelling of 'arreglo' in parameter name 'arreglo' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="123">In externally visible method 'Utils.IsAnyNullOrEmpty(params string[])', validate parameter 'arreglo' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#NullOrText(System.Web.UI.WebControls.TextBox)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="textbox" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="139">In member 'Utils.NullOrText(this TextBox)', the discrete term 'textbox' in parameter name 'textbox' should be expressed as a compound word, 'textBox'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="140">In externally visible method 'Utils.NullOrText(this TextBox)', validate parameter 'textbox' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RemoveMonth(System.Nullable`1&lt;System.DateTime&gt;,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Months" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="294">In member 'Utils.RemoveMonth(this DateTime?, int)', correct the casing of 'Months' in parameter name 'Months' by changing it to 'months'.</Issue>
+            </Message>
+            <Message Id="ovalue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="294">In method 'Utils.RemoveMonth(this DateTime?, int)', correct the spelling of 'ovalue' in parameter name 'ovalue' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SaveFile(System.String,System.Byte[])" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="63">Object 'file' can be disposed more than once in method 'Utils.SaveFile(string, byte[])'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 63</Issue>
+            </Message>
+            <Message Id="bytes" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="LanguageIndependentMemberParameter" Certainty="75" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="58">In member 'Utils.SaveFile(string, byte[])', consider replacing the data type identifier 'Bytes' in parameter name 'fileBytes' with a more generic term, such as 'value'.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="61">In externally visible method 'Utils.SaveFile(string, byte[])', validate parameter 'fileBytes' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToBool(System.Object)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="269">Modify 'Utils.ToBool(this object)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="bool" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="LanguageSpecificMember" Certainty="75" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="264">Consider replacing the language-specific data type identifier 'Bool' in member name 'Utils.ToBool(this object)' with either a language-independent equivalent or a more generic term, such as 'value'.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToBoolean(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="267">Because the behavior of 'Convert.ToBoolean(object)' could vary based on the current user's locale settings, replace this call in 'Utils.ToBool(this object)' with a call to 'Convert.ToBoolean(object, IFormatProvider)'. If the result of 'Convert.ToBoolean(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToChar(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="176">Modify 'Utils.ToChar(this string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToDate(System.Object)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="247">Modify 'Utils.ToDate(this object)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToDateTime(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="245">Because the behavior of 'Convert.ToDateTime(object)' could vary based on the current user's locale settings, replace this call in 'Utils.ToDate(this object)' with a call to 'Convert.ToDateTime(object, IFormatProvider)'. If the result of 'Convert.ToDateTime(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToDate(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="258">Modify 'Utils.ToDate(this string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToDateTime(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="256">Because the behavior of 'Convert.ToDateTime(string)' could vary based on the current user's locale settings, replace this call in 'Utils.ToDate(this string)' with a call to 'Convert.ToDateTime(string, IFormatProvider)'. If the result of 'Convert.ToDateTime(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToDecimal(System.Object)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="280">Modify 'Utils.ToDecimal(this object)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToDecimal(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="278">Because the behavior of 'Convert.ToDecimal(object)' could vary based on the current user's locale settings, replace this call in 'Utils.ToDecimal(this object)' with a call to 'Convert.ToDecimal(object, IFormatProvider)'. If the result of 'Convert.ToDecimal(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToFloat(System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="318">Modify 'Utils.ToFloat(this int)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ovalue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="313">In method 'Utils.ToFloat(this int)', correct the spelling of 'ovalue' in parameter name 'ovalue' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="float" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="LanguageSpecificMember" Certainty="75" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="313">Consider replacing the language-specific data type identifier 'Float' in member name 'Utils.ToFloat(this int)' with either a language-independent equivalent or a more generic term, such as 'value'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToInt(System.Object)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="154">Modify 'Utils.ToInt(this object)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="int" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="LanguageSpecificMember" Certainty="75" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="149">Consider replacing the language-specific data type identifier 'Int' in member name 'Utils.ToInt(this object)' with either a language-independent equivalent or a more generic term, such as 'value'.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="152">Because the behavior of 'Convert.ToInt32(object)' could vary based on the current user's locale settings, replace this call in 'Utils.ToInt(this object)' with a call to 'Convert.ToInt32(object, IFormatProvider)'. If the result of 'Convert.ToInt32(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToNDate(System.Object)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="236">Modify 'Utils.ToNDate(this object)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToDateTime(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="234">Because the behavior of 'Convert.ToDateTime(object)' could vary based on the current user's locale settings, replace this call in 'Utils.ToNDate(this object)' with a call to 'Convert.ToDateTime(object, IFormatProvider)'. If the result of 'Convert.ToDateTime(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToShort(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="165">Modify 'Utils.ToShort(this string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="short" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="LanguageSpecificMember" Certainty="75" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="160">Consider replacing the language-specific data type identifier 'Short' in member name 'Utils.ToShort(this string)' with either a language-independent equivalent or a more generic term, such as 'value'.</Issue>
+            </Message>
+            <Message Id="System.Int16.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="Utils.cs" Line="163">Because the behavior of 'short.Parse(string)' could vary based on the current user's locale settings, replace this call in 'Utils.ToShort(this string)' with a call to 'short.Parse(string, IFormatProvider)'. If the result of 'short.Parse(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="VW_DATA_MARBETE" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'VW_DATA_MARBETE' should be declared inside a namespace.</Issue>
+          </Message>
+          <Message Id="DATA" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'DATA' in type name 'VW_DATA_MARBETE' by changing it to 'Data'.</Issue>
+          </Message>
+          <Message Id="MARBETE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'MARBETE' in type name 'VW_DATA_MARBETE' by changing it to 'Marbete'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#Ano" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Ano" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="490">Correct the spelling of 'Ano' in member name 'VW_DATA_MARBETE.Ano' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Asistencia" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Asistencia" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="682">Correct the spelling of 'Asistencia' in member name 'VW_DATA_MARBETE.Asistencia' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Cilindro" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Cilindro" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="570">Correct the spelling of 'Cilindro' in member name 'VW_DATA_MARBETE.Cilindro' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#cotizacion" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="cotizacion" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="362">Correct the casing of 'cotizacion' in member name 'VW_DATA_MARBETE.cotizacion' by changing it to 'Cotizacion'.</Issue>
+            </Message>
+            <Message Id="cotizacion" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="362">Correct the spelling of 'cotizacion' in member name 'VW_DATA_MARBETE.cotizacion' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#EndosoSeccion" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Endoso" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="602">Correct the spelling of 'Endoso' in member name 'VW_DATA_MARBETE.EndosoSeccion' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="Seccion" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="602">Correct the spelling of 'Seccion' in member name 'VW_DATA_MARBETE.EndosoSeccion' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#fechafinvigencia" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="fechafinvigencia" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="394">Correct the casing of 'fechafinvigencia' in member name 'VW_DATA_MARBETE.fechafinvigencia' by changing it to 'Fechafinvigencia'.</Issue>
+            </Message>
+            <Message Id="fechafinvigencia" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="394">Correct the spelling of 'fechafinvigencia' in member name 'VW_DATA_MARBETE.fechafinvigencia' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#fechainiciovigencia" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="fechainiciovigencia" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="378">Correct the casing of 'fechainiciovigencia' in member name 'VW_DATA_MARBETE.fechainiciovigencia' by changing it to 'Fechainiciovigencia'.</Issue>
+            </Message>
+            <Message Id="fechainiciovigencia" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="378">Correct the spelling of 'fechainiciovigencia' in member name 'VW_DATA_MARBETE.fechainiciovigencia' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Fianza" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Fianza" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="634">Correct the spelling of 'Fianza' in member name 'VW_DATA_MARBETE.Fianza' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Grua" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grua" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="666">Correct the spelling of 'Grua' in member name 'VW_DATA_MARBETE.Grua' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Marca" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Marca" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="458">Correct the spelling of 'Marca' in member name 'VW_DATA_MARBETE.Marca' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Modelo" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Modelo" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="474">Correct the spelling of 'Modelo' in member name 'VW_DATA_MARBETE.Modelo' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#nombrecliente" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="nombrecliente" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="410">Correct the casing of 'nombrecliente' in member name 'VW_DATA_MARBETE.nombrecliente' by changing it to 'Nombrecliente'.</Issue>
+            </Message>
+            <Message Id="nombrecliente" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="410">Correct the spelling of 'nombrecliente' in member name 'VW_DATA_MARBETE.nombrecliente' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Observacion" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Observacion" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="618">Correct the spelling of 'Observacion' in member name 'VW_DATA_MARBETE.Observacion' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Pasajeros" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Pasajeros" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="586">Correct the spelling of 'Pasajeros' in member name 'VW_DATA_MARBETE.Pasajeros' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#poliza" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="poliza" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="346">Correct the casing of 'poliza' in member name 'VW_DATA_MARBETE.poliza' by changing it to 'Poliza'.</Issue>
+            </Message>
+            <Message Id="poliza" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="346">Correct the spelling of 'poliza' in member name 'VW_DATA_MARBETE.poliza' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Registro" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Registro" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="538">Correct the spelling of 'Registro' in member name 'VW_DATA_MARBETE.Registro' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SECUENCIA" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="SECUENCIA" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="426">Correct the casing of 'SECUENCIA' in member name 'VW_DATA_MARBETE.SECUENCIA' by changing it to 'Secuencia'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TipoVehiculo" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Tipo" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="442">Correct the spelling of 'Tipo' in member name 'VW_DATA_MARBETE.TipoVehiculo' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="Vehiculo" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="442">Correct the spelling of 'Vehiculo' in member name 'VW_DATA_MARBETE.TipoVehiculo' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Uso" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Uso" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument\App_Code" File="SysflexContext.designer.cs" Line="554">Correct the spelling of 'Uso' in member name 'VW_DATA_MARBETE.Uso' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\kmartin\AppData\Local\Temp\tmp82C6.tmp.cadir\bin\App_Web_4pp2od5y.dll">
+   <Modules>
+    <Module Name="app_web_4pp2od5y.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="CreateW9" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnGeneratePDF" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'btn' in member name 'CreateW9.btnGeneratePDF' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnGeneratePDF_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="CreateW9.aspx.cs" Line="12">Correct the casing of 'PDF' in member name 'CreateW9.btnGeneratePDF_Click(object, EventArgs)' by changing it to 'Pdf'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="CreateW9.aspx.cs" Line="12">Correct the casing of 'btn' in member name 'CreateW9.btnGeneratePDF_Click(object, EventArgs)' by changing it to 'Btn'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="CreateW9.aspx.cs" Line="12">Correct the spelling of 'btn' in member name 'CreateW9.btnGeneratePDF_Click(object, EventArgs)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="CreateW9.aspx.cs" Line="24">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'CreateW9.btnGeneratePDF_Click(object, EventArgs)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="CreateW9.aspx.cs" Line="23">Because the behavior of 'string.Format(string, object)' could vary based on the current user's locale settings, replace this call in 'CreateW9.btnGeneratePDF_Click(object, EventArgs)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#chkExemptPayee" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="chk" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'chk' in member name 'CreateW9.chkExemptPayee' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#rblTaxClassification" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="rbl" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'rbl' in member name 'CreateW9.rblTaxClassification' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ListFormFields" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnGeneratePDF" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'btn' in member name 'ListFormFields.btnGeneratePDF' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnGeneratePDF_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="ListFormFields.aspx.cs" Line="52">Correct the casing of 'PDF' in member name 'ListFormFields.btnGeneratePDF_Click(object, EventArgs)' by changing it to 'Pdf'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="ListFormFields.aspx.cs" Line="52">Correct the casing of 'btn' in member name 'ListFormFields.btnGeneratePDF_Click(object, EventArgs)' by changing it to 'Btn'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="ListFormFields.aspx.cs" Line="52">Correct the spelling of 'btn' in member name 'ListFormFields.btnGeneratePDF_Click(object, EventArgs)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnShowFields" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'btn' in member name 'ListFormFields.btnShowFields' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnShowFields_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="ListFormFields.aspx.cs" Line="25">Correct the casing of 'btn' in member name 'ListFormFields.btnShowFields_Click(object, EventArgs)' by changing it to 'Btn'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="ListFormFields.aspx.cs" Line="25">Correct the spelling of 'btn' in member name 'ListFormFields.btnShowFields_Click(object, EventArgs)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="ListFormFields.aspx.cs" Line="42">Because the behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings, replace this call in 'ListFormFields.btnShowFields_Click(object, EventArgs)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="ListFormFields.aspx.cs" Line="37">Because the behavior of 'string.Format(string, object, object, object)' could vary based on the current user's locale settings, replace this call in 'ListFormFields.btnShowFields_Click(object, EventArgs)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ddlPDFs" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="PDFs" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'PDFs' in member name 'ListFormFields.ddlPDFs' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="ddl" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'ddl' in member name 'ListFormFields.ddlPDFs' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\kmartin\AppData\Local\Temp\tmp82C6.tmp.cadir\bin\App_Web_bmfcaymg.dll">
+   <Modules>
+    <Module Name="app_web_bmfcaymg.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="MarbeteWeb" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Marbete" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Marbete' in type name 'MarbeteWeb'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#btnClear" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'btn' in member name 'MarbeteWeb.btnClear' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnClear_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="160">Correct the casing of 'btn' in member name 'MarbeteWeb.btnClear_Click(object, EventArgs)' by changing it to 'Btn'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="160">Correct the spelling of 'btn' in member name 'MarbeteWeb.btnClear_Click(object, EventArgs)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnFillPDF" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'btn' in member name 'MarbeteWeb.btnFillPDF' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnFillPDF_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="MarbeteWeb.ShowMessages(System.Web.UI.Page,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="146">Method 'MarbeteWeb.btnFillPDF_Click(object, EventArgs)' passes a literal string as parameter 'Message' of a call to 'MarbeteWeb.ShowMessages(Page, string)'. Retrieve the following string(s) from a resource table instead: "Debe agregar al menos una poliza!!".</Issue>
+            </Message>
+            <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="140">Correct the casing of 'PDF' in member name 'MarbeteWeb.btnFillPDF_Click(object, EventArgs)' by changing it to 'Pdf'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="140">Correct the casing of 'btn' in member name 'MarbeteWeb.btnFillPDF_Click(object, EventArgs)' by changing it to 'Btn'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="140">Correct the spelling of 'btn' in member name 'MarbeteWeb.btnFillPDF_Click(object, EventArgs)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="Debe" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="146">Correct the spelling of the unrecognized token 'Debe' in the literal '"Debe agregar al menos una poliza!!"'.</Issue>
+            </Message>
+            <Message Id="agregar" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="146">Correct the spelling of the unrecognized token 'agregar' in the literal '"Debe agregar al menos una poliza!!"'.</Issue>
+            </Message>
+            <Message Id="menos" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="146">Correct the spelling of the unrecognized token 'menos' in the literal '"Debe agregar al menos una poliza!!"'.</Issue>
+            </Message>
+            <Message Id="poliza" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="146">Correct the spelling of the unrecognized token 'poliza' in the literal '"Debe agregar al menos una poliza!!"'.</Issue>
+            </Message>
+            <Message Id="una" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="146">Correct the spelling of the unrecognized token 'una' in the literal '"Debe agregar al menos una poliza!!"'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnLoadProfile" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'btn' in member name 'MarbeteWeb.btnLoadProfile' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnLogin" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'btn' in member name 'MarbeteWeb.btnLogin' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error">Replace the term 'Login' in member name 'MarbeteWeb.btnLogin' with the preferred alternate 'LogOn'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnLogin_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="btn" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="133">Correct the casing of 'btn' in member name 'MarbeteWeb.btnLogin_Click(object, EventArgs)' by changing it to 'Btn'.</Issue>
+            </Message>
+            <Message Id="btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="133">Correct the spelling of 'btn' in member name 'MarbeteWeb.btnLogin_Click(object, EventArgs)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="133">Replace the term 'Login' in member name 'MarbeteWeb.btnLogin_Click(object, EventArgs)' with the preferred alternate 'LogOn'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#cb90Days" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="cb" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'cb' in member name 'MarbeteWeb.cb90Days' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ddlPolicies" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ddl" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'ddl' in member name 'MarbeteWeb.ddlPolicies' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Fill(System.String[])" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Web.UI.WebControls.Button.set_Text(System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="363">Method 'MarbeteWeb.Fill(string[])' passes a literal string as parameter 'value' of a call to 'Button.Text.set(string)'. Retrieve the following string(s) from a resource table instead: "Generando...".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="404">Method 'MarbeteWeb.Fill(string[])' passes a literal string as parameter 'value' of a call to 'Button.Text.set(string)'. Retrieve the following string(s) from a resource table instead: "Llenar PDF".</Issue>
+            </Message>
+            <Message Id="Generando" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="363">Correct the spelling of the unrecognized token 'Generando' in the literal '"Generando..."'.</Issue>
+            </Message>
+            <Message Id="Llenar" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="404">Correct the spelling of the unrecognized token 'Llenar' in the literal '"Llenar PDF"'.</Issue>
+            </Message>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="364">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="376">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="378">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="379">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="380">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="381">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="382">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="383">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="384">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="385">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="386">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="387">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="388">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="389">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="390">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="391">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[])' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Fill(System.String[],MarbeteWeb+Sections)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="AvoidExcessiveComplexity" Category="Microsoft.Maintainability" CheckId="CA1502" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="90" Level="CriticalWarning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="174">'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' has a cyclomatic complexity of 56. Rewrite or refactor the method to reduce complexity to 25.</Issue>
+            </Message>
+            <Message TypeName="AvoidUnmaintainableCode" Category="Microsoft.Maintainability" CheckId="CA1505" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="Method" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="174">'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' has a maintainability index of 17. Rewrite or refactor the method to increase its maintainability index (MI). An MI below 10 indicates poor maintainability, an MI between 10 and 20 indicates moderate maintainability, and an MI above 20 indicates good maintainability.</Issue>
+            </Message>
+            <Message TypeName="DefaultParametersShouldNotBeUsed" Category="Microsoft.Design" CheckId="CA1026" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Certainty="75" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="174">Replace method 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with an overload that supplies all default arguments.</Issue>
+            </Message>
+            <Message Id="System.Web.UI.WebControls.Button.set_Text(System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="182">Method 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' passes a literal string as parameter 'value' of a call to 'Button.Text.set(string)'. Retrieve the following string(s) from a resource table instead: "Generando...".</Issue>
+            </Message>
+            <Message Id="Generando" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="182">Correct the spelling of the unrecognized token 'Generando' in the literal '"Generando..."'.</Issue>
+            </Message>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="183">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="317">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="318">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="319">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="320">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="321">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="322">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="323">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="324">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="325">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="326">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="327">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="328">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="329">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="330">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Fill(string[], MarbeteWeb.Sections)' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GeneratePDF(System.String,System.Collections.Generic.Dictionary`2&lt;System.String,System.String&gt;,System.Boolean)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DefaultParametersShouldNotBeUsed" Category="Microsoft.Design" CheckId="CA1026" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Certainty="75" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="409">Replace method 'MarbeteWeb.GeneratePDF(string, Dictionary&lt;string, string&gt;, bool)' with an overload that supplies all default arguments.</Issue>
+            </Message>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="411">In method 'MarbeteWeb.GeneratePDF(string, Dictionary&lt;string, string&gt;, bool)', call System.IDisposable.Dispose on object 'output' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message Id="PDF" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="409">Correct the casing of 'PDF' in member name 'MarbeteWeb.GeneratePDF(string, Dictionary&lt;string, string&gt;, bool)' by changing it to 'Pdf'.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="415">In externally visible method 'MarbeteWeb.GeneratePDF(string, Dictionary&lt;string, string&gt;, bool)', validate parameter 'formFieldMap' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetLastIndex()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="489">'MarbeteWeb.GetLastIndex()' appears to have no upstream public or protected callers.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#iframePDF" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="iframe" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'iframe' in member name 'MarbeteWeb.iframePDF' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#isAdvancedFill" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="is" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="95">Correct the casing of 'is' in member name 'MarbeteWeb.isAdvancedFill' by changing it to 'Is'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#lblPrinter" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="lbl" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'lbl' in member name 'MarbeteWeb.lblPrinter' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ltlUserName" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ltl" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'ltl' in member name 'MarbeteWeb.ltlUserName' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Merge(System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="524">In method 'MarbeteWeb.Merge(string)', call System.IDisposable.Dispose on object 'new FileStream(outFile, FileMode.Create)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mybody" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="mybody" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'mybody' in member name 'MarbeteWeb.mybody' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetLog(VW_DATA_MARBETE)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="467">Modify 'MarbeteWeb.SetLog(VW_DATA_MARBETE)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetValues()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Web.UI.WebControls.Label.set_Text(System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="439">Method 'MarbeteWeb.SetValues()' passes a literal string as parameter 'value' of a call to 'Label.Text.set(string)'. Retrieve the following string(s) from a resource table instead: "Su printer configurado es: , LexMark, Sharp".</Issue>
+            </Message>
+            <Message Id="configurado" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="439">Correct the spelling of the unrecognized token 'configurado' in the literal '"Su printer configurado es: "'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowMessages(System.Web.UI.Page,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Message" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="428">In member 'MarbeteWeb.ShowMessages(Page, string)', correct the casing of 'Message' in parameter name 'Message' by changing it to 'message'.</Issue>
+            </Message>
+            <Message Id="Page" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="428">In member 'MarbeteWeb.ShowMessages(Page, string)', correct the casing of 'Page' in parameter name 'Page' by changing it to 'page'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="429">In externally visible method 'MarbeteWeb.ShowMessages(Page, string)', validate parameter 'Page' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#upMarbete" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Marbete" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Marbete' in member name 'MarbeteWeb.upMarbete' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Userid" Kind="Property" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Accessors>
+            <Accessor Name="#get_Userid()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+             <Messages>
+              <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+               <Issue Certainty="75" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="85">'MarbeteWeb.Userid.get()' appears to have no upstream public or protected callers.</Issue>
+              </Message>
+              <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+               <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="MarbeteWeb.aspx.cs" Line="88">Because the behavior of 'int.Parse(string)' could vary based on the current user's locale settings, replace this call in 'MarbeteWeb.Userid.get()' with a call to 'int.Parse(string, IFormatProvider)'. If the result of 'int.Parse(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="MarbeteWeb+Printer" Kind="Enum" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+           <Issue Name="NotFlagsNoZeroValue" Certainty="95" Level="CriticalError">Add a member to 'MarbeteWeb.Printer' that has a value of zero with a suggested name of 'None'.</Issue>
+          </Message>
+          <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Error">Do not nest type 'MarbeteWeb.Printer'. Alternatively, change its accessibility so that it is not externally visible.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="MarbeteWeb+Sections" Kind="Enum" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Error">Do not nest type 'MarbeteWeb.Sections'. Alternatively, change its accessibility so that it is not externally visible.</Issue>
+          </Message>
+          <Message TypeName="OnlyFlagsEnumsShouldHavePluralNames" Category="Microsoft.Naming" CheckId="CA1717" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Certainty="75" Level="Error">If the name 'MarbeteWeb.Sections' is plural, change it to its singular form.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="MasterPageMarbete" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Marbete" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Marbete' in type name 'MasterPageMarbete'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#ltlUserName" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ltl" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'ltl' in member name 'MasterPageMarbete.ltlUserName' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SecurityLogin" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="95" Level="Error">Replace the term 'Login' in type name 'SecurityLogin' with the preferred alternate 'LogOn'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#Page_PreInit(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="NonBreaking">
+             <Issue Name="IsNullOrEmpty" Certainty="95" Level="Warning" Path="c:\BackUpArchivos\Proyectos\FillDocument\FillDocument\FillDocument" File="SecurityLogin.aspx.cs" Line="38">Replace the call to 'string.operator !=(string, string)' in 'SecurityLogin.Page_PreInit(object, EventArgs)' with a call to 'String.IsNullOrEmpty'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Site" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#lnkHome" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="lnk" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-05-10 14:58:36Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'lnk' in member name 'Site.lnkHome' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="AvoidExcessiveComplexity" Category="Microsoft.Maintainability" CheckId="CA1502">
+   <Name>Avoid excessive complexity</Name>
+   <Description>Method implementations that are exceedingly complex increase the challenge of understanding and maintaining code.</Description>
+   <Resolution Name="Default">{0} has a cyclomatic complexity of {1}. Rewrite or refactor the method to reduce complexity to {2}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182212(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="maintainabilityrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+   <Name>Avoid uncalled private code</Name>
+   <Description>There is uncalled code that is not externally visible and is not a known runtime entry point. If this violation fires in error, please send a problem report to the Visual Studio Code Analysis team.</Description>
+   <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182264(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidUnmaintainableCode" Category="Microsoft.Maintainability" CheckId="CA1505">
+   <Name>Avoid unmaintainable code</Name>
+   <Description>Types and methods with a high degree of class coupling, cyclomatic complexity and/or program length can be difficult to maintain.</Description>
+   <Resolution Name="Method">{0} has a maintainability index of {1}. Rewrite or refactor the method to increase its maintainability index (MI). An MI below {2} indicates poor maintainability, an MI between {2} and {3} indicates moderate maintainability, and an MI above {3} indicates good maintainability.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb386043(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="maintainabilityrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
+   <Name>Compound words should be cased correctly</Name>
+   <Description>Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as 'StopWatch' or 'PopUp'. These terms are recognized in the dictionary and should be cased as 'Stopwatch' and 'Popup'.</Description>
+   <Resolution Name="MemberParameterShouldBeCompoundWord">In member {0}, the discrete term '{1}' in parameter name {2} should be expressed as a compound word, '{3}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264474(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="80">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050">
+   <Name>Declare types in namespaces</Name>
+   <Description>A type should be defined inside a namespace to avoid duplication.</Description>
+   <Resolution Name="Default">{0} should be declared inside a namespace.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182134(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="DefaultParametersShouldNotBeUsed" Category="Microsoft.Design" CheckId="CA1026">
+   <Name>Default parameters should not be used</Name>
+   <Description>Some programming languages do not support default parameters. Replace default parameters with method overloads that supply the default argument.</Description>
+   <Resolution Name="Default">Replace method {0} with an overload that supplies all default arguments.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182135(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Error</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>Dispose objects before losing scope</Name>
+   <Description>If a disposable object is not explicitly disposed before all references to it are out of scope, the object will be disposed at some indeterminate time when the garbage collector runs the finalizer of the object. Because an exceptional event might occur that will prevent the finalizer of the object from running, the object should be explicitly disposed instead.</Description>
+   <Resolution Name="NonExceptionEdge">In method {0}, call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>Do not dispose objects multiple times</Name>
+   <Description>A correctly implemented Dispose method can be called multiple times without throwing an exception. However, this is not guaranteed and to avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.</Description>
+   <Resolution Name="Default">Object {0} can be disposed more than once in method {1}. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 207, 208</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303">
+   <Name>Do not pass literals as localized parameters</Name>
+   <Description>Literal strings that are embedded in source code are difficult to localize. Avoid passing literal strings as arguments in circumstances where a localized string is generally expected.</Description>
+   <Resolution Name="KnownValue">Method {0} passes a literal string as parameter '{1}' of a call to {2}. Retrieve the following string(s) from a resource table instead: {3}.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182187(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+   <Name>Do not catch general exception types</Name>
+   <Description>You should not catch Exception or SystemException. Catching generic exception types can hide run-time problems from the library user, and can complicate debugging. You should catch only those exceptions that you can handle gracefully.</Description>
+   <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182137(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002">
+   <Name>Do not expose generic lists</Name>
+   <Description>Do not expose List&lt;T&gt; in object models. Use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt; instead. List&lt;T&gt; is meant to be used from implementation, not in object model API. List&lt;T&gt; is optimized for performance at the cost of long term versioning. For example, if you return List&lt;T&gt; to the client code, you will not ever be able to receive notifications when client code modifies the collection.</Description>
+   <Resolution Name="Default">Change {0} in {1} to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182142(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
+   <Name>Do not nest generic types in member signatures</Name>
+   <Description>Avoid API that require users to instantiate a generic type with another generic type as type argument. The syntax gets too complex.</Description>
+   <Resolution Name="Default">Consider a design where {0} doesn't nest generic type {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182144(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008">
+   <Name>Enums should have zero value</Name>
+   <Description>An enum should generally have a zero value. If the enum is not decorated with the Flags attribute, it should have a member with a value of zero that represents the empty state. Optionally, this value is named 'None'. For a Flags-attributed enum, a zero-valued member is optional and, if it exists, should always be named 'None'. This value should indicate that no values have been set in the enum. Using a zero-valued member for other purposes is contrary to the use of the Flags attribute in that the bitwise AND and OR operators are useless with the member.</Description>
+   <Resolution Name="NotFlagsNoZeroValue">Add a member to {0} that has a value of zero with a suggested name of 'None'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182149(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+   <Name>Identifiers should be cased correctly</Name>
+   <Description>Type, namespace, and member identifiers are Pascal-cased. Parameter identifiers are camel-cased. Two letter acronyms within these identifiers should be upper-cased, for example, use System.IO instead of System.Io. Acronyms of three or more letters should be Pascal-cased, for example, use System.Xml instead of System.XML. The pascal-casing convention capitalizes the first letter of each word, as in BackColor. The camel-casing convention formats the first letter of the first word in lowercase and capitalizes the first letter of all subsequent words, as in backgroundColor. Although it may be common practice for some two letter acronyms to not be fully capitalized, violations of this rule should not be excluded for this reason. For example, 'DbConnection', is common but incorrect; use DBConnection. A violation of this rule might be required for compatibility with existing, non-managed symbol schemes. In general, however, these symbols should not be visible outside the assembly that uses them.</Description>
+   <Resolution Name="Member">Correct the casing of '{0}' in member name {1} by changing it to '{2}'.</Resolution>
+   <Resolution Name="MemberParameter">In member {0}, correct the casing of '{1}' in parameter name {2} by changing it to '{3}'.</Resolution>
+   <Resolution Name="Type">Correct the casing of '{0}' in type name {1} by changing it to '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182240(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="85">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+   <Name>Identifiers should be spelled correctly</Name>
+   <Description>The individual words that make up an identifier should not be abbreviated and should be spelled correctly. If this rule generates a false positive on a term that should be recognized, add the word to the FxCop custom dictionary.</Description>
+   <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264492(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720">
+   <Name>Identifiers should not contain type names</Name>
+   <Description>Avoid using language-specific types name in parameters and members and data type identifiers in parameters. Types names might not be intuitive for all developers. It is recommended that you select a generic name, such as 'value', instead. If this is not sufficient, be sure to use the type name as it is defined in the .NET Framework Library and avoid language-specific type names completely. Some examples of C#-specific type names are 'float' (use 'Single' if a generic name is not sufficient), and 'ulong' (use 'UInt64' if a generic name is not sufficient).</Description>
+   <Resolution Name="LanguageIndependentMemberParameter">In member {0}, consider replacing the data type identifier '{1}' in parameter name {2} with a more generic term, such as 'value'.</Resolution>
+   <Resolution Name="LanguageSpecificMember">Consider replacing the language-specific data type identifier '{0}' in member name {1} with either a language-independent equivalent or a more generic term, such as 'value'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb531486(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204">
+   <Name>Literals should be spelled correctly</Name>
+   <Description>This rule parses the literal string into words, tokenizing compound words, and checks the spelling of each word/token.</Description>
+   <Resolution Name="Default">Correct the spelling of the unrecognized token '{0}' in the literal '{1}'.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/bb264488(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034">
+   <Name>Nested types should not be visible</Name>
+   <Description>Do not use public, protected or protected internal (Protected Friend) nested types as a way of grouping types. Use namespaces for this purpose. There are very limited scenarios where nested types are the best design. Also, nested type member accessibility is not clearly understood by all audiences. Enumerators are exempt from this rule.</Description>
+   <Resolution Name="Default">Do not nest type {0}. Alternatively, change its accessibility so that it is not externally visible.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182162(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="OnlyFlagsEnumsShouldHavePluralNames" Category="Microsoft.Naming" CheckId="CA1717">
+   <Name>Only FlagsAttribute enums should have plural names</Name>
+   <Description>Plural names indicate that the values of the enumeration can be combined. For example, an enumeration named 'Day' indicates a single day, and an enumeration named 'Days' indicates multiple days. Enumeration values should be combined using the bit-wise OR operator only if the Flags attribute is present on the enumeration.</Description>
+   <Resolution Name="Default">If the name {0} is plural, change it to its singular form.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264487(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="PropertyNamesShouldNotMatchGetMethods" Category="Microsoft.Naming" CheckId="CA1721">
+   <Name>Property names should not match get methods</Name>
+   <Description>A Get method was found with the same name as a property. Get methods and properties should have names that clearly distinguish their function. See the design guidelines for information regarding choosing properties over methods.</Description>
+   <Resolution Name="BaseType">The property name {0} is confusing given the existence of inherited method {1}. Rename or remove this property.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182253(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304">
+   <Name>Specify CultureInfo</Name>
+   <Description>If an overload exists that takes a CultureInfo argument, it should always be called in favor of an overload that does not. The CultureInfo type contains culture-specific information required for performing numeric and string operations, such as casing, formatting, and string comparisons. In scenarios where conversion and parsing behavior should never change between cultures, specify CultureInfo.InvariantCulture, otherwise, specify CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182189(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+   <Name>Specify IFormatProvider</Name>
+   <Description>If an overload exists that takes an IFormatProvider argument, it should always be called in favor of an overload that does not. Some methods in the runtime convert a value to or from a string representation and take a string parameter that contains one or more characters, called format specifiers, which indicate how the value is to be converted. If the meaning of the format specifier varies by culture, a formatting object supplies the actual characters used in the string representation. In scenarios where sorting and comparison behavior should never change between cultures, specify CultureInfo.InvariantCulture, otherwise, specify CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="IFormatProviderAlternate">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be based on input from the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify {4}.</Resolution>
+   <Resolution Name="IFormatProviderAlternateString">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182190(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053">
+   <Name>Static holder types should not have constructors</Name>
+   <Description>Instances of types that define only static members do not need to be created. Many compilers will automatically add a public default constructor if no constructor is specified. To prevent this, adding an empty private constructor may be required.</Description>
+   <Resolution Name="CSharp2_0">Because type {0} contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182169(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820">
+   <Name>Test for empty strings using string length</Name>
+   <Description>To test for empty strings, check if String.Length is equal to zero. Constructs such as "".Equals(someString) and String.Empty.Equals(someString) are less efficient than testing the string length. Replace these with checks for someString.Length == 0.</Description>
+   <Resolution Name="IsNullOrEmpty">Replace the call to {0} in {1} with a call to 'String.IsNullOrEmpty'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182279(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726">
+   <Name>Use preferred terms</Name>
+   <Description>Use preferred terms over deprecated alternates.</Description>
+   <Resolution Name="Member">Replace the term '{0}' in member name {1} with the preferred alternate '{2}'.</Resolution>
+   <Resolution Name="Type">Replace the term '{0}' in type name {1} with the preferred alternate '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182258(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
+   <Name>Use properties where appropriate</Name>
+   <Description>Properties should be used instead of Get/Set methods in most situations. Methods are preferable to properties in the following situations: the operation is a conversion, is expensive or has an observable side-effect; the order of execution is important; calling the member twice in succession creates different results; a member is static but returns a mutable value; or the member returns an array.</Description>
+   <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182181(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062">
+   <Name>Validate arguments of public methods</Name>
+   <Description>All reference arguments passed to externally visible methods should be checked against null (Nothing in VB). If appropriate, throw a System.ArgumentNullException when the argument is null.</Description>
+   <Resolution Name="Default">In externally visible method {0}, validate parameter '{1}' before using it.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182182(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+ <Exceptions>
+  <Exception Keyword="CA0060" Kind="Engine" TreatAsWarning="True">
+   <Type>Microsoft.FxCop.Sdk.FxCopException</Type>
+   <ExceptionMessage>The indirectly-referenced assembly 'JCWeb, Version=1.0.0.0, Culture=neutral' could not be found. This assembly is not required for analysis, however, analysis results could be incomplete. This assembly was referenced by: C:\Users\kmartin\AppData\Local\Temp\tmp82C6.tmp.cadir\bin\Statetrust.Framework.Security.Core.dll.</ExceptionMessage>
+  </Exception>
+  <Exception Keyword="CA0001" Kind="Rule" TypeName="TypesMustBeAtLeastAsCriticalAsBaseTypesFxCopRule" Category="Microsoft.Security" CheckId="CA2146" Target="SecurityLogin">
+   <Type>Microsoft.FxCop.Sdk.InvalidMetadataException</Type>
+   <ExceptionMessage>The following error was encountered while reading module 'Statetrust.Framework.Web': Could not resolve type reference: [mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]System.Runtime.CompilerServices.ExtensionAttribute.</ExceptionMessage>
+   <StackTrace>   at Microsoft.FxCop.Sdk.Reader.HandleError(ModuleNode mod, String errorMessage)
+   at Microsoft.FxCop.Sdk.Reader.GetDummyTypeNode(Identifier namesp, Identifier name, ModuleNode declaringModule, TypeNode declaringType, Boolean expectStruct)
+   at Microsoft.FxCop.Sdk.Reader.GetTypeFromRef(Int32 i, Boolean expectStruct)
+   at Microsoft.FxCop.Sdk.Reader.GetTypeFromRef(Int32 i)
+   at Microsoft.FxCop.Sdk.Reader.GetMemberFromRef(Int32 i, TypeNodeCollection&amp; varArgTypes, Int32 numGenericArgs)
+   at Microsoft.FxCop.Sdk.Reader.GetConstructorDefOrRef(Int32 codedIndex, TypeNodeCollection&amp; varArgTypes)
+   at Microsoft.FxCop.Sdk.Reader.GetCustomAttribute(Int32 i)
+   at Microsoft.FxCop.Sdk.Reader.GetCustomAttributesFor(Int32 parentIndex)
+   at Microsoft.FxCop.Sdk.Reader.GetCustomAttributesFor(ModuleNode module)
+   at Microsoft.FxCop.Sdk.ModuleNode.get_Attributes()
+   at Microsoft.FxCop.Sdk.ModuleNode.GetAttributes(TypeNode attributeType, Int32 maxCount)
+   at Microsoft.FxCop.Sdk.ModuleNode.GetAttribute(TypeNode attributeType)
+   at Microsoft.FxCop.Rules.SecurityTransparency.CciAssemblySecurity.GetAttribute(TypeNode attributeType)
+   at Microsoft.FxCop.Rules.SecurityTransparency.CciCustomAttributeInformation.GetTokenSecurityDescriptor(ICciCustomAttributeProvider target)
+   at Microsoft.FxCop.Rules.SecurityTransparency.CciAssemblySecurity.get_AssemblyAttributes()
+   at Microsoft.Security.AssemblySecurityDescriptor`1.ComputeTransparencyInformation(IAssemblyInformation`1 assemblyInformation)
+   at Microsoft.Security.AssemblySecurityDescriptor`1..ctor(IAssemblyInformation`1 assemblyInformation)
+   at Microsoft.Security.AssemblySecurityDescriptor`1.&lt;&gt;c__DisplayClass2.&lt;GetSecurityDescriptor&gt;b__0(TAssembly )
+   at Microsoft.Security.Cache`2.GetOrCreate(TKey key, Func`2 creationCallback)
+   at Microsoft.Security.AssemblySecurityDescriptor`1.GetSecurityDescriptor(IAssemblyInformation`1 assemblyInformation, ISecurityDescriptorCache`2 cache)
+   at Microsoft.FxCop.Rules.SecurityTransparency.CciTypeSecurity.get_ContainingAssemblySecurityDescriptor()
+   at Microsoft.Security.TypeSecurityDescriptor`1.ComputeTransparencyInformation(ITypeInformation`1 typeInformation)
+   at Microsoft.Security.TypeSecurityDescriptor`1..ctor(ITypeInformation`1 typeInformation)
+   at Microsoft.Security.TypeSecurityDescriptor`1.&lt;&gt;c__DisplayClass2.&lt;GetSecurityDescriptor&gt;b__0(TType )
+   at Microsoft.Security.Cache`2.GetOrCreate(TKey key, Func`2 creationCallback)
+   at Microsoft.Security.TypeSecurityDescriptor`1.GetSecurityDescriptor(ITypeInformation`1 typeInformation, ISecurityDescriptorCache`2 cache)
+   at Microsoft.FxCop.Rules.SecurityTransparency.TransparencyFxCopRule.GetSecurityDescriptor(ITypeDefinition type)
+   at Microsoft.Security.TransparencyRules.TypesMustBeAtLeastAsCriticalAsBaseTypes.CheckInheritance(ITypeDefinition baseType, ITypeDefinition derivedType, ITypeSecurityDescriptor derivedTypeSecurity)
+   at Microsoft.Security.TransparencyRules.TypesMustBeAtLeastAsCriticalAsBaseTypes.CheckType(ITypeDefinition type, ITypeSecurityDescriptor typeSecurityDescriptor)
+   at Microsoft.Security.TransparencyRules.TransparencyRule.CheckType(ITypeDefinition type)
+   at Microsoft.FxCop.Rules.SecurityTransparency.TransparencyFxCopRule.Check(TypeNode type)
+   at Microsoft.FxCop.Engines.Introspection.AnalysisVisitor.CheckType(TypeNode type, TargetType target)</StackTrace>
+  </Exception>
+ </Exceptions>
+</FxCopReport>
