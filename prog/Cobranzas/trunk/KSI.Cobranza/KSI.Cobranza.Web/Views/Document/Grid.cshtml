@@ -1,0 +1,31 @@
+﻿@model KSI.Cobranza.LogicLayer.Implementation.Dispatcher.DocumentMovement
+
+@{
+    WebGrid webGrid = new WebGrid(source: Model.DocumentEntityModels.ToList(), ajaxUpdateContainerId: "gvDocumentContainer", ajaxUpdateCallback: "SelectActivePage('gvDocument');", canPage: false, rowsPerPage: 11);
+}
+<div style="overflow-y:auto; height: 580px;">
+    @webGrid.GetHtml(tableStyle: "table table-striped", headerStyle: "header-table", mode: WebGridPagerModes.All, htmlAttributes: new { @id = "gvDocument" },
+        columns: webGrid.Columns(webGrid.Column(header: "Acciones", format:
+        @<text>
+            <div class="btn-group" role="group" aria-label="..." style="width: 130px;">
+                @if (Model.AllowedGeneration)
+                {
+                    <button type="button" class="btn btn-primary-st" title="Generar" @(!item.IsGeneratedBySystem ? "disabled='disabled'" : "") onclick="LoadDocumentViewerForGenerationFromThunderHead(@item.QueueId, @item.IdRequirement)"><i class="fa fa-cogs" aria-hidden="true"></i></button>
+                }
+                @if (Model.AllowedLoad)
+                {
+                    <button type="button" class="btn btn-default" title="Cargar" @(!item.IsUploadedBySystem ? "disabled='disabled'" : "") data-toggle="modal" data-target="#FileUploadModal" onclick="CleanUploadForm(); SetFileUploadFormFields(@item.QueueId, @item.IdRequirement, '@item.RequirementName');"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-secundary-st" title="Visualizar" @(!item.IsUploadedBySystem || string.IsNullOrWhiteSpace(item.DocumentName) ? "disabled='disabled'" : "") onclick="LoadDocumentViewerForGenerationFromOnbase(@item.QueueId, @item.IdRequirement)"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                }
+                @if (Model.AllowedValidation)
+                {
+                    <button type="button" class="btn btn-info" title="Validar" @(!item.IsUploadedBySystem || string.IsNullOrWhiteSpace(item.DocumentName) ? "disabled='disabled'" : "") onclick="LoadDocumentViewerForGenerationFromOnbaseAndValidation(@item.QueueId, @item.IdRequirement);"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+                }
+            </div>
+        </text>),
+        webGrid.Column("RequirementName", "Documento"),
+        webGrid.Column("NameKey", "Name Key"),
+        webGrid.Column(header: "Validado", format: @<text><input readonly="readonly" type="checkbox" @(item.Validated ? "checked='checked'" : "") /></text>),
+        webGrid.Column(header: "Valido", format: @<text><input readonly="readonly" type="checkbox" @(item.IsValid ? "checked='checked'" : "") /></text>)
+    ))
+</div>

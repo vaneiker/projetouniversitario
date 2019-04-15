@@ -1,0 +1,107 @@
+﻿@model KSI.Cobranza.LogicLayer.Implementation.Dispatcher.DocumentMovement
+<script src="~/Scripts/JsDocument.js"></script>
+<script src="~/Scripts/jquery.form.js"></script>
+
+<script>Dispatcher.InitializeMovement(@Model.QueueId, @Model.MovementEntityModel.IdMovement, "@Model.MovementEntityModel.ActionTitle");</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--
+        // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- // >>
+        G R I D     
+        -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-list"></i> Documentos a generar
+                    </h3>
+                </div>
+                <div class="panel-body" id="gvDocumentContainer">
+                </div>
+            </div>
+        </div>
+
+        <!--
+        // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- // >>
+        V I S O R
+        -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-file-text"></i> 
+                        Vista previa 
+                        <button class="btn btn-danger" id="BtnRemoveDocumentViewer" title="Cerrar" style="float:right;" onclick="CleanDocumentContainers();">
+                            <i class="fa fa-window-close" style="font-size: 20px;"></i>
+                        </button>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div id="DocumentInformationFormContainer">
+                        <!-- C O N T E N E D O R  D E  F O R M U L A R I O S  D E  D O C U M E N T O S -->
+                    </div>
+                    <div class="embed-responsive embed-responsive-4by3" id="DocumentViewerContainer">
+                        <!--  V I S O R  D E  D O C U M E N T O S -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+        // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- // >>
+        C A R G A
+        -->
+        <div class="modal fade" id="FileUploadModal" tabindex="-1" role="dialog" aria-labelledby="FileUploadModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    @using (Ajax.BeginForm("AsynFileUpload", new { @Controller = "Document" }, new AjaxOptions() { HttpMethod = "post" }, new { @enctype = "multipart/form-data", @id = "FileUploadForm" }))
+                    {
+                    <div class="modal-header">
+                        <button type="button" class="close" onclick="CloseUpModal();"><span aria-hidden="true">&times;</span></button>
+                        <h5 class="modal-title" id="FileUploadModalLabel"><span id="RequirementNameField"></span></h5>
+                    </div>
+                    <div class="modal-body">
+                        @Html.AntiForgeryToken()
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <input type="file" name="files" id="Upload_Files" accept=".pdf,.PDF"/>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="progress"><div class="progress-bar">0%</div></div>
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="CloseUpModal();"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</button>
+                        <button type="submit" class="btn btn-primary-st"><i class="fa fa-upload" aria-hidden="true"></i> Cargar</button>
+                    </div>
+
+                    <!--
+                    Hiddens    
+                    -->
+                    <input type="hidden" name="QueueId" id="Document_Upload_QueueId" value="0" />
+                    <input type="hidden" name="IdRequirement" id="Document_Upload_IdRequirement" value="0" />
+                    <input type="hidden" name="MovementEntityModel.IdMovement" id="Document_Upload_IdMovement" value="@Model.MovementEntityModel.IdMovement" />
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--
+Hiddens
+-->
+<input type="hidden" id="Document_Launcher_QueueId" value="@Model.QueueId" />
+<input type="hidden" id="Document_Launcher_AllowedGeneration" value="@Html.Raw(Model.AllowedGeneration)" />
+<input type="hidden" id="Document_Launcher_AllowedLoad" value="@Html.Raw(Model.AllowedLoad)"/>
+<input type="hidden" id="Document_Launcher_AllowedValidation" value="@Html.Raw(Model.AllowedValidation)" />
+

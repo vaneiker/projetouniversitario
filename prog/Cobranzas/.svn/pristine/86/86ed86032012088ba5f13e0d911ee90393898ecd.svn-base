@@ -1,0 +1,13 @@
+﻿@model List<KSI.Cobranza.EntityLayer.StatusByStatus>
+
+@foreach (var Item in Model)
+{
+    <button type="button" class="btn btn-lg @Item.ButtonCssClass" onclick="Dispatcher.ChangeEstatus(@Item.QueueTypeId)">
+        <i class="fa @Item.IconCssClass" aria-hidden="true"></i>
+        @Item.ButtonLegend
+    </button>
+}
+
+<button type="button" class="btn btn-lg btn-danger" onclick="Dispatcher.CloseMovementContainer();">
+    <i class="fa fa-window-close" style="font-size: 23px;"></i>
+</button>

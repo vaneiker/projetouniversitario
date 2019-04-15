@@ -1,0 +1,14 @@
+﻿@model List< KSI.Cobranza.EntityLayer.MovementsExecution>
+
+@{
+    WebGrid webGrid = new WebGrid(source: Model, ajaxUpdateContainerId: "gvMovementsExecutionContainer", ajaxUpdateCallback: "SelectActivePage('gvMovementsExecution');", canPage: true, rowsPerPage: 11);
+}
+
+@webGrid.GetHtml(tableStyle: "table table-striped", headerStyle: "header-table", mode: WebGridPagerModes.All, htmlAttributes: new { @id = "gvMovementsExecution" },
+    columns: webGrid.Columns(
+    webGrid.Column("QueueTypeName", "Estatus"),
+    webGrid.Column("MovementName", "Movimiento"),
+    webGrid.Column("ExecutionStateName", "Estado de ejecución"),
+    webGrid.Column("ExecutionDate", "Fecha y hora de ejecución"),
+    webGrid.Column("UserIdWhoExecutedIt", "Usuario que ejecutó")
+))

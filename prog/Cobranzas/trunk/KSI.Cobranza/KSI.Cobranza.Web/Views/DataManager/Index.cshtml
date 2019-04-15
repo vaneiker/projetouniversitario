@@ -1,0 +1,95 @@
+﻿@model KSI.Cobranza.LogicLayer.Implementation.Dispatcher.CrudFormMovement
+
+<script>Dispatcher.InitializeMovement(@Model.QueueId, @Model.MovementEntityModel.IdMovement, "@Model.MovementEntityModel.ActionTitle");</script>
+<script src="~/Scripts/JsDataManager.js"></script>
+
+@using (Ajax.BeginForm("Save", new { Controller = "DataManager" }, new AjaxOptions { HttpMethod = "POST" }, new { @class = "", @id = "DataManager_Crud_Form" }))
+{
+    for (var i = 0; i < Model.DataFieldsGroups.Count(); i++)
+    {
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="@Model.DataFieldsGroups[i].cssClassIcon fa"></i> @Model.DataFieldsGroups[i].HtmlTitle
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    @for (var j = 0; j < Model.DataFieldsGroups[i].DataFields.Count(); j++)
+                    {
+                        if (Model.DataFieldsGroups[i].DataFields[j].IsVisibleCrud)
+                        {
+
+                            <div class="@Model.DataFieldsGroups[i].DataFields[j].cssClass"
+                                 id="ContainerControl_@Html.Raw(Model.DataFieldsGroups[i].DataFields[j].IdFieldGroup)_@Html.Raw(Model.DataFieldsGroups[i].DataFields[j].IdField)">
+
+                                <div class="form-group">
+
+                                    <label for="">
+                                        @Model.DataFieldsGroups[i].DataFields[j].FieldName
+                                    </label>
+
+                                    @switch (Model.DataFieldsGroups[i].DataFields[j].IdFieldType)
+                                    {
+                                        case 1:
+                                            @Html.TextBoxFor(x => x.DataFieldsGroups[i].DataFields[j].DatoStr, Model.GetSettings(Model.DataFieldsGroups[i].DataFields[j]));
+                                            @Html.ValidationMessageFor(x => x.DataFieldsGroups[i].DataFields[j].DatoStr, "", new { @class = "text-danger" })
+                                            break;
+                                        case 3:
+                                            @Html.TextBoxFor(x => x.DataFieldsGroups[i].DataFields[j].DatoInt, Model.GetSettings(Model.DataFieldsGroups[i].DataFields[j]))
+                                            @Html.ValidationMessageFor(x => x.DataFieldsGroups[i].DataFields[j].DatoInt, "", new { @class = "text-danger" })
+                                            break;
+                                        case 4:
+                                            @Html.TextBoxFor(x => x.DataFieldsGroups[i].DataFields[j].DatoDat, Model.GetSettingsForDateTime(Model.DataFieldsGroups[i].DataFields[j]));
+                                            @Html.ValidationMessageFor(x => x.DataFieldsGroups[i].DataFields[j].DatoStr, "", new { @class = "text-danger" })
+                                            break;
+                                        case 2:
+                                            @Html.TextBoxFor(x => x.DataFieldsGroups[i].DataFields[j].DatoNum, Model.GetSettingsForDecimal(Model.DataFieldsGroups[i].DataFields[j]));
+                                            @Html.ValidationMessageFor(x => x.DataFieldsGroups[i].DataFields[j].DatoNum, "", new { @class = "text-danger" })
+                                            break;
+                                        case 5:
+
+                                            break;
+                                        case 6:
+                                            @Html.RadioButtonFor(x => x.DataFieldsGroups[i].DataFields[j].DatoBit, "true", Model.GetSettings(Model.DataFieldsGroups[i].DataFields[j]))
+                                            <span>SI</span>
+                                            @Html.RadioButtonFor(x => x.DataFieldsGroups[i].DataFields[j].DatoBit, "false", Model.GetSettings(Model.DataFieldsGroups[i].DataFields[j]))
+                                            <span>NO</span>
+                                            break;
+                                        default:
+                                            @Html.TextBoxFor(x => x.DataFieldsGroups[i].DataFields[j].DatoStr, Model.GetSettings(Model.DataFieldsGroups[i].DataFields[j]))
+                                            @Html.ValidationMessageFor(x => x.DataFieldsGroups[i].DataFields[j].DatoStr, "", new { @class = "text-danger" })
+                                            break;
+                                    }
+                                </div>
+                            </div>
+                                @Html.HiddenFor(x => x.DataFieldsGroups[i].DataFields[j].QueueId)
+                                @Html.HiddenFor(x => x.DataFieldsGroups[i].DataFields[j].IdField)
+                                @Html.HiddenFor(x => x.DataFieldsGroups[i].DataFields[j].Sequence)
+                                @*Html.HiddenFor(x => x.DataFieldsGroups[i].DataFields[j].CatalogHeader.Id)*@
+                                @Html.HiddenFor(x => x.DataFieldsGroups[i].DataFields[j].FieldName)
+                                @Html.HiddenFor(x => x.DataFieldsGroups[i].DataFields[j].IsVisibleCrud)
+                        }
+
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                    <button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @Html.HiddenFor(x => x.QueueId)
+    @Html.HiddenFor(x => x.MovementEntityModel.IdMovement)
+    @Html.HiddenFor(x => x.UserId)
+}

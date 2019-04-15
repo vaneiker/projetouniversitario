@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{182C389F-F482-40F7-AB8A-2F6598F65069}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KSI.Cobranza.LogicLayer</RootNamespace>
+    <AssemblyName>KSI.Cobranza.LogicLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Jass.Utilities">
+      <HintPath>..\packages\QueueFramework.1.0.0.0\Jass.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseResultLogic.cs" />
+    <Compile Include="Implementation\ContactEmailManager.cs" />
+    <Compile Include="Implementation\DataManager.cs" />
+    <Compile Include="Implementation\Dispatcher\Base\MovementBusinessModel.cs" />
+    <Compile Include="Implementation\Dispatcher\Base\ValidationBusinessModel.cs" />
+    <Compile Include="Implementation\Dispatcher\Common\DispatcherUtilities.cs" />
+    <Compile Include="Implementation\Dispatcher\Movement\ChangeOfStatusMovement.cs" />
+    <Compile Include="Implementation\Dispatcher\Movement\CrudMovement.cs" />
+    <Compile Include="Implementation\Dispatcher\Movement\DataEntryMovement.cs" />
+    <Compile Include="Implementation\Dispatcher\Movement\DocumentMovement.cs" />
+    <Compile Include="Implementation\Dispatcher\Movement\DocumentLoadingMovement.cs" />
+    <Compile Include="Implementation\Dispatcher\Movement\DocumentValidationMovement.cs" />
+    <Compile Include="Implementation\Dispatcher\Movement\EmptyMovement.cs" />
+    <Compile Include="Implementation\Dispatcher\Validation\DocumentValidation.cs" />
+    <Compile Include="Implementation\Dispatcher\Validation\EmptyValidation.cs" />
+    <Compile Include="Implementation\DocumentManager.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Common\UtilityForDocuments.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Entity\IndexFileTxt.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Entity\JudgmentAdjudicationNoticeXml.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Entity\PledgeRequirementRequestXml.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Entity\PublicAuctionSaleNoticeXml.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Entity\VehicleCheckXml.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Provider\BreakdownXmlProvider.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Entity\BreakdownXml.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Entity\PaymentIntimacionXml.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Entity\SaleNoticeXml.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Provider\DocumentsInventoryXmlProvider.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Provider\JudgmentAdjudicationNoticeXmlProvider.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Provider\PledgeRequirementRequestXmlProvider.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Provider\PublicAuctionSaleNoticeXmlProvider.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Provider\SaleNoticeXmlProvider.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Base\XmlProvider.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Provider\VehicleCheckXmlProvider.cs" />
+    <Compile Include="Implementation\LoanManager.cs" />
+    <Compile Include="Implementation\ContactPhoneManager.cs" />
+    <Compile Include="Implementation\CustomerManager.cs" />
+    <Compile Include="Implementation\BaseManager.cs" />
+    <Compile Include="Implementation\DocumentsXmlProvider\Provider\PaymentIntimacionXmlProvider.cs" />
+    <Compile Include="Implementation\DispatcherManager.cs" />
+    <Compile Include="Interface\IBaseLogic.cs" />
+    <Compile Include="Interface\IDocumentsXmlProvider.cs" />
+    <Compile Include="Interface\IMovementBusinessModel.cs" />
+    <Compile Include="Interface\IValidationRuleBusinessModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Result.cs" />
+    <Compile Include="ResultLogic.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KSI.Cobranza.DataLayer\KSI.Cobranza.DataLayer.csproj">
+      <Project>{80da9ad7-ab34-4bd3-8896-9eeb949aa57a}</Project>
+      <Name>KSI.Cobranza.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KSI.Cobranza.EntityLayer\KSI.Cobranza.EntityLayer.csproj">
+      <Project>{a3fbf884-d827-48ce-ac1f-e0e2228c51b3}</Project>
+      <Name>KSI.Cobranza.EntityLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementation\DataManager\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

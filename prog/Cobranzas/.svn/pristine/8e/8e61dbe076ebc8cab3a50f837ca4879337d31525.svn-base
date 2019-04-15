@@ -1,0 +1,51 @@
+﻿using KSI.Cobranza.EntityLayer;
+using KSI.Cobranza.LogicLayer.Interface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KSI.Cobranza.LogicLayer.Interface
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public interface IDocumentsXmlProvider
+    {
+        /// <summary>
+        /// vbarrera | 08 Feb 2019
+        /// Identificador de la plantilla de ThunderHead
+        /// </summary>
+        string DocumentId { get; set; }
+
+        /// <summary>
+        /// vbarrera | 14 Feb 2019
+        /// LLave primaria del queue.
+        /// </summary>
+        long QueueId { get; set; }
+
+        /// <summary>
+        /// vbarrera | 8 Feb 2019
+        /// La finalidad de este metodo es recibir un proveedor de datos
+        /// que esta clase utilizara para obtener la informacion para el archivo xml 
+        /// </summary>
+        /// <param name="dataManager"></param>
+        void SetDataManager(IBaseLogic<Loan> dataManager);
+
+        /// <summary>
+        /// vbarrera | 26 Mar 2019
+        /// La finalidad de este metodo es recibir un proveedor de datos
+        /// que esta clase utilizara para obtener la informacion para el archivo xml 
+        /// </summary>
+        /// <param name="dataFieldGroup"></param>
+        void SetDataManager(List<DataFieldGroup> dataFieldsGroups);
+
+        /// <summary>
+        /// vbarrera |08 Feb 2019
+        /// Invoque este metodo para obtener el binario del documetno xml respectivo
+        /// </summary>
+        /// <returns></returns>
+        byte[] GetXml();
+    }
+}

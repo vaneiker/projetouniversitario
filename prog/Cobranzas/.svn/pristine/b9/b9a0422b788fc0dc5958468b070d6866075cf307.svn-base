@@ -1,0 +1,419 @@
+﻿using KSI.Cobranza.LogicLayer.Implementation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Jass.Utilities;
+using KSI.Cobranza.LogicLayer;
+using KSI.Cobranza.EntityLayer;
+using KSI.Cobranza.LogicLayer.Interface;
+using System.IO;
+using KSI.Cobranza.LogicLayer.Implementation.Dispatcher;
+using System.Text;
+using KSI.Cobranza.LogicLayer.Implementation.DocumentsXmlProvider;
+
+namespace KSI.Cobranza.Web.Controllers
+{
+    public class DocumentController : BaseController
+    {
+        #region Fields
+
+        /// <summary>
+        /// vbarrera | 8 Feb 2019
+        /// Le concede a este controlador acceso a la data
+        /// </summary>
+        DocumentManager _dataManager = new DocumentManager();
+
+        #endregion
+
+        #region Private functions
+        /// <summary>
+        /// vbarrera | 12 Feb 2019
+        /// Genera un documento proveniente de ThunderHead
+        /// </summary>
+        /// <returns></returns>
+        private byte[] GenerateFromThunderHead(long QueueId, ResultLogic<Document> documentResult)
+        {
+            if (string.IsNullOrWhiteSpace(documentResult.SingleResult?.ModelNameForDownload))
+                throw new Exception("[Document].[ModelNameForDownload] can not be null");
+
+            CrudFormMovement crudFormMovement = new CrudFormMovement() {
+                QueueId = QueueId, MovementEntityModel = new Movement() { IdMovement = 5 } };
+
+            IDocumentsXmlProvider xmlProvider
+                = documentResult.SingleResult.ModelNameForDownload.GetInstance() as IDocumentsXmlProvider;
+
+            crudFormMovement.Initialize();
+
+            xmlProvider.DocumentId = documentResult.SingleResult.DocumentId;
+            xmlProvider.QueueId = documentResult.SingleResult.QueueId;
+
+            xmlProvider.SetDataManager(new LoanManager());
+            xmlProvider.SetDataManager(crudFormMovement.DataFieldsGroups);
+
+            ThunderheadWrap.THAPIWeb.ExternalJobRequestAPI request
+                = new ThunderheadWrap.THAPIWeb.ExternalJobRequestAPI();
+            ThunderheadWrap.THAPIWeb.JobAPIWebService api
+                = new ThunderheadWrap.THAPIWeb.JobAPIWebService();
+            Infrastructure.Helpers.THSecurityAssertion sercurityAssertion
+                = new Infrastructure.Helpers.THSecurityAssertion(
+                    System.Configuration.ConfigurationManager.AppSettings["UserName"],
+                    System.Configuration.ConfigurationManager.AppSettings["Password"]);
+
+            api.Url = System.Configuration.ConfigurationManager.AppSettings["UrlServiceTH"];
+
+            request.batchConfigResID = int.Parse(System.Configuration.ConfigurationManager.AppSettings["batchConfigResID"]);
+            request.batchName = System.Configuration.ConfigurationManager.AppSettings["batchName"];
+            request.projectID = int.Parse(System.Configuration.ConfigurationManager.AppSettings["projectID"]);
+            request.batchCollect = int.Parse(System.Configuration.ConfigurationManager.AppSettings["batchCollect"]);
+            request.finOption = int.Parse(System.Configuration.ConfigurationManager.AppSettings["finOption"]);
+            request.jobType = int.Parse(System.Configuration.ConfigurationManager.AppSettings["jobType"]);
+            request.transactionData = xmlProvider.GetXml();
+
+            api.SetPolicy(new Microsoft.Web.Services3.Design.Policy(sercurityAssertion));
+            ThunderheadWrap.THAPIWeb.PackageAPI result
+                = api.executePreview(request);
+
+            return result.masterChannels[0].data;
+        }
+        #endregion
+
+        /// <summary>
+        /// vbarrera | 08 Feb 2019
+        /// Invoca la página principal de documentos
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public ActionResult Index(long QueueId, int IdMovement)
+        {
+            return PartialView(new EmptyMovement() {
+                QueueId = QueueId, MovementEntityModel = new Movement() { IdMovement = IdMovement } });
+        }
+
+        /// <summary>
+        /// vbarrera | 26 Feb 2019
+        /// Invoca la vista parcial que contiene el grid de documentos
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Grid(DocumentMovement Movement)
+        {
+            ResultLogic<Document> documentDataResult 
+                = _dataManager.Get(Movement.QueueId);
+
+            if (documentDataResult.result.HasError)
+                throw new Exception(documentDataResult.result.ErrorDescription);
+
+            Movement.DocumentEntityModels 
+                = documentDataResult.dataResult.ToList();
+
+            return PartialView(Movement);
+        }
+
+        /// <summary>
+        /// vbarrera | 08 Feb 2019
+        /// Genera y fuerza la descarga de un documento proveniente de ThunderHead
+        /// </summary>
+        /// <param name="accountId">Id de prestamo</param>
+        /// <param name="IdRequirement">Id de documento</param>
+        /// <returns>Dispara una descarga en el navegador</returns>
+        public ActionResult GenerateFromThunderHeadAndDownload(long QueueId, int IdRequirement)
+        {
+            ResultLogic<Document> documentDataResult
+                = _dataManager.Get(IdRequirement, null);
+
+            byte[] Document 
+                = GenerateFromThunderHead(QueueId, documentDataResult);
+
+            System.IO.MemoryStream memoryStream = new System.IO.MemoryStream(Document, 0,
+                Document.Length, true, true);
+
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", string.Format(
+                "attachment;filename={0}.pdf", documentDataResult.SingleResult.RequirementName));
+            Response.Buffer = true;
+            Response.OutputStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length);
+            Response.OutputStream.Flush();
+            Response.End();
+
+            return new FileStreamResult(Response.OutputStream, "application/pdf");
+        }
+
+        /// <summary>
+        /// vbarrera | 08 Feb 2019
+        /// Genera y muestra un documento proveniente de ThunderHead
+        /// </summary>
+        /// <param name="QueueId">Id de queue</param>
+        /// <param name="IdRequirement">Id de documento</param>
+        /// <returns>Un objeto de tipo FileContentResult</returns>
+        public ActionResult GenerateFromThunderHeadAndVisualize(long QueueId, int IdRequirement)
+        {
+            return File(GenerateFromThunderHead(QueueId, _dataManager.Get(IdRequirement, null)), "application/pdf");
+        }
+
+        /// <summary>
+        /// vbarrera | 26 Feb 2019
+        /// Genera y muestra un documento proveniente de Onbase
+        /// </summary>
+        /// <param name="QueueId">Id de queue</param>
+        /// <param name="IdRequirement">Id de documento</param>
+        /// <returns>Un objeto de tipo FileContentResult</returns>
+        public ActionResult GenerateFromOnbaseAndVisualize(long QueueId, int IdRequirement)
+        {
+            byte[] binaryDocument = null;
+
+            ResultLogic<Document> documentDataResult
+                =  _dataManager.Get(IdRequirement, QueueId);
+
+            if (documentDataResult.result.HasError)
+                throw new Exception(documentDataResult.result.ErrorDescription);
+            /**
+             * vbarrera | 25 Mar 2019
+             * // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- // >>
+             * Si el documento aun existe en el directorio de OnBase
+             * significa que la rutina que recoge los documentos aun no ha corrido.
+             * Para no detener el flujo de la aplicación se muestra el documento desde el directorio de OnBase
+             */
+            if (System.IO.File.Exists(documentDataResult.SingleResult?.Path))
+            {
+                using (FileStream file = new FileStream(documentDataResult.SingleResult?.Path,
+                    FileMode.Open, FileAccess.Read))
+                {
+                    binaryDocument = new byte[file.Length];
+                    file.Read(binaryDocument, 0, (int)file.Length);
+                }
+            }
+            else
+            {
+                string docId = string.Format("{0}_{1}", QueueId, IdRequirement);
+                /**
+                 * vbarrera | 25 Mar 2019
+                 * // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- // >>
+                 * Si el compildor entra aqui significa que la rutina que recoge los documentos de OnBase
+                 * ya se lo llevo, por lo tanto, se obtiene el documento desde el servicio de OnBase
+                 */
+                Onbase_Operaciones.HylandOutBoundContractClient onbaseOperaciones_client 
+                    = new Onbase_Operaciones.HylandOutBoundContractClient();
+
+                Onbase_Document.HylandOutBoundContractClient onbaseDocument_client 
+                    = new Onbase_Document.HylandOutBoundContractClient();
+
+                Onbase_Operaciones.CustomQueryDispColResponsegetDocument onbaseOperaciones_response
+                    = onbaseOperaciones_client.getDocument(new Onbase_Operaciones.OBCustomQuerygetDocument() {
+                        Keywords = new Onbase_Operaciones.CustomQueryKeywordsgetDocument() { DOCID = docId }
+                    });
+
+                if (onbaseOperaciones_response.DocumentResults.Count() == 0)
+                    throw new Exception(string.Format("DOCID {0} not found on OnBase", docId));
+
+                Onbase_Document.DocumentBytesOutput onbaseDocument_response
+                    = onbaseDocument_client.Get_document_data(new Onbase_Document.DocumentBytesInput
+                    {
+                        documentHandle = onbaseOperaciones_response.DocumentResults[0].documentHandle
+                    });
+
+                binaryDocument = Convert.FromBase64String(onbaseDocument_response.Base64FileStream);
+            }
+
+            return File(binaryDocument, "application/pdf");
+        }
+
+        /// <summary>
+        /// vbarrera | 26 Feb 2019
+        /// Sube un documento de manera asincrona
+        /// ademas guarda los datos de dicho documento
+        /// </summary>
+        /// <param name="documentMovement">
+        /// Clase diseñada para recibir el archivo, el QueueId y el IdRequirement
+        /// </param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AsynFileUpload(DocumentLoadingMovement documentMovement)
+        {
+            Result result = null;
+            int count = 0;
+
+            try
+            {
+                documentMovement.UserId = Usuario.UserID;
+                string docId = string.Format("{0}_{1}", 
+                    documentMovement.QueueId, documentMovement.IdRequirement);
+
+                if (documentMovement.files != null)
+                {
+                    LoanManager loanManger = new LoanManager();
+
+                    ResultLogic<Document> documentDataResult =
+                        _dataManager.Get(documentMovement.IdRequirement);
+                    ResultLogic<Loan.LoanInfo> loanDataResult =
+                        loanManger.GetLoanInfo(documentMovement.QueueId);
+
+                    if (documentDataResult.result.HasError)
+                        throw new Exception(documentDataResult.result.ErrorDescription);
+                    if (loanDataResult.result.HasError)
+                        throw new Exception(loanDataResult.result.ErrorDescription);
+
+                    foreach (var file in documentMovement.files)
+                    {
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            Guid guid = Guid.NewGuid();
+
+                            string indexFileName = string.Format("{0}_{1}.txt", docId, guid);
+                            string documentFileName = string.Format("{0}_{1}{2}", docId, guid, 
+                                Path.GetExtension(file.FileName));
+
+                            string path
+                                = System.Configuration.ConfigurationManager.AppSettings["OnbaseDirectoryServer"];
+
+                            if (!Directory.Exists(path))
+                                Directory.CreateDirectory(path);
+
+                            string documentFullPath
+                                = Path.Combine(path, documentFileName);
+                            string indexFullPath
+                                = Path.Combine(path, indexFileName);
+
+                            Document document = new Document()
+                            {
+                                QueueId = documentMovement.QueueId,
+                                IdRequirement = documentMovement.IdRequirement,
+                                Sequence = 1,
+                                RequirementName = documentFileName,
+                                Extension = Path.GetExtension(documentFullPath),
+                                Path = documentFullPath,
+                                CreateDate = DateTime.Now,
+                                CreateUsr = Usuario.UserID,
+                                ModiDate = DateTime.Now,
+                                ModiUsr = Usuario.UserID,
+                                Active = true
+                            };
+
+                            result = _dataManager.Add(document);
+
+                            if (!result.HasError)
+                            {
+                                var culture = new System.Globalization.CultureInfo("es-DO");
+                                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+                                System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+
+                                IndexFileTxt index
+                                    = new IndexFileTxt()
+                                    {
+                                        DocTypeName = documentDataResult.SingleResult?.NameKey,
+                                        DOCID = docId,
+                                        DocDate = DateTime.Now.ConvertToString("dd/MMM/yyyy"),
+                                        Nombre_de_Cliente = loanDataResult.SingleResult?.Client_name,
+                                        Numero_de_Prestamo = loanDataResult.SingleResult?.accountId.ToString(),
+                                        FechaAutorizacion = loanDataResult.SingleResult?.Loan_startDate.ConvertToString("dd/MMM/yyyy"),
+                                        FechaFinal = loanDataResult.SingleResult?.Loan_expirationDate.ConvertToString("dd/MMM/yyyy"),
+                                        tipoIdentificacion = loanDataResult.SingleResult?.identificationTypeName,
+                                        Identificacion = loanDataResult.SingleResult?.IdentificationNumber,
+                                        Full_Path = documentFullPath
+                                    };
+
+                                file.SaveAs(document.Path);
+
+                                System.IO.File.WriteAllBytes(indexFullPath, Encoding.UTF8.GetBytes(index.GetString()));
+                            }
+
+                            count++;
+                        }
+                    }
+                }
+
+                documentMovement.Run();
+
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult {
+                    Data = string.Format("Message: {0}, InnerException: {1}, StackTrace: {2}", 
+                    ex.Message ?? "N/A", 
+                    ex.InnerException?.Message ?? "N/A", 
+                    ex.StackTrace ?? "N/A")
+                };
+            }
+
+            return new JsonResult {
+                Data = !(result?.HasError ?? false) ? 
+                count.ToString() + " archivo(s) subido(s)" :
+                result.ErrorDescription };
+        }
+
+        /// <summary>
+        /// vbarrera | 11 Mar 2019
+        /// Invoca la vista parcial que contiene
+        /// el formulario de validacion
+        /// </summary>
+        /// <param name="QueueId"></param>
+        /// <param name="IdRequiremen"></param>
+        /// <returns></returns>
+        public ActionResult ValidationForm(long QueueId, int IdRequirement)
+        {
+            ResultLogic<Document> documentDataResult 
+                = _dataManager.Get(IdRequirement, QueueId);
+
+            if (documentDataResult.result.HasError)
+                throw new Exception(documentDataResult.result.ErrorDescription);
+
+            return PartialView(documentDataResult.SingleResult);
+        }
+
+        /// <summary>
+        /// vbarrera | 11 Mar 2019
+        /// Guarda la informacion del formulario de validación
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SaveDocumentValidationInformation(
+            DocumentValidationMovement movement)
+         {
+            Response response = new Response();
+
+            ResultLogic<Document> documentDataResult 
+                = _dataManager.Get(movement.IdRequirement, movement.QueueId);
+
+            if (documentDataResult.result.HasError)
+                throw new Exception(documentDataResult.result.ErrorDescription);
+
+            movement.UserId
+                = Usuario.UserID;
+            documentDataResult.SingleResult.ModiUsr 
+                = Usuario.UserID;
+            documentDataResult.SingleResult.IsValid 
+                = movement.IsValid;
+            documentDataResult.SingleResult.ModiDate 
+                = DateTime.Now;
+            documentDataResult.SingleResult.Validated 
+                = true;
+            documentDataResult.SingleResult.CreateDate
+                = DateTime.Now;
+            documentDataResult.SingleResult.Observation 
+                = movement.Observation;
+            documentDataResult.SingleResult.IdShortAnswer 
+                = movement.IdShortAnswer;
+
+            Result result 
+                = _dataManager.Edit(documentDataResult.SingleResult);
+
+            if (result.HasError)
+                response.Message = result.ErrorDescription;
+            else
+            {
+                try
+                {
+                    movement.Run();
+                    response.State = true;
+                }
+                catch (Exception ex)
+                    { response.Message = ex.Message; }
+            }
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

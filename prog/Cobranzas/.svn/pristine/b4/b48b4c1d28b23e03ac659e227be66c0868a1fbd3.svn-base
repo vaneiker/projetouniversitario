@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://statetrust.com/ksioperacionesdocs" elementFormDefault="qualified" targetNamespace="http://statetrust.com/ksioperacionesdocs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="getDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CustomQueryData" nillable="true" type="tns:OBCustomQuerygetDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="OBCustomQuerygetDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Keywords" nillable="true" type="tns:CustomQueryKeywordsgetDocument" />
+      <xs:element minOccurs="0" name="DocumentDates" nillable="true" type="tns:CustomQueryDateRangegetDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OBCustomQuerygetDocument" nillable="true" type="tns:OBCustomQuerygetDocument" />
+  <xs:complexType name="CustomQueryKeywordsgetDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NombredeCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodeContrato" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodePoliza" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodePrestamo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodeCotizacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechadeVigencia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechadeExpiracion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Autor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Origen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodeFactura" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contratos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FormularioPO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DOCID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodeCheque" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroIdentificacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipodeIdentificacion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomQueryKeywordsgetDocument" nillable="true" type="tns:CustomQueryKeywordsgetDocument" />
+  <xs:complexType name="CustomQueryDateRangegetDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FromDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ToDate" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomQueryDateRangegetDocument" nillable="true" type="tns:CustomQueryDateRangegetDocument" />
+  <xs:element name="getDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getDocumentResult" nillable="true" type="tns:CustomQueryDispColResponsegetDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CustomQueryDispColResponsegetDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocumentResults" nillable="true" type="tns:ArrayOfDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomQueryDispColResponsegetDocument" nillable="true" type="tns:CustomQueryDispColResponsegetDocument" />
+  <xs:complexType name="ArrayOfDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Document" nillable="true" type="tns:Document" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDocument" nillable="true" type="tns:ArrayOfDocument" />
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentHandle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="docTypeNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="docTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dateStored" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="docDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="docStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayColumns" nillable="true" type="tns:DisplayColumns" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Document" nillable="true" type="tns:Document" />
+  <xs:complexType name="DisplayColumns">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocumentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentHandle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombredeCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroIdentificacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipodeIdentificacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodePoliza" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FormularioPO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contratos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DOCID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Autor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Origen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodePrestamo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechadeVigencia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechadeExpiracion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodeCotizacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodeContrato" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodeFactura" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipodeRecibo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumerodeCheque" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DisplayColumns" nillable="true" type="tns:DisplayColumns" />
+</xs:schema>

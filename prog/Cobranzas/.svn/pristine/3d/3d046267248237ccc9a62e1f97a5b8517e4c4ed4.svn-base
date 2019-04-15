@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cobranzas - kredisi</title>
+    <!--CSS-->         
+    @Styles.Render("~/Content/css")
+    <!--SCRIPTS -->
+    @Scripts.Render("~/bundles/scripts")    
+</head>
+<body class="m-r-0 autoScroll">
+    <div id="dialogo">
+    </div>
+    <div id="st-container" class="st-container">
+        <div class="st-pusher">
+            <div id="st-content" class="st-content">
+                <div class="modal fade" id="myModal20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    <i class="fa" aria-hidden="true"></i>
+                                    NOTAS
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <header class="main_menu menu2">
+                    <div class="st-logo">
+                        <a id="st-logo" href="#" title="KrediSi">
+                            <img src="/images/logo2.png" alt="KrediSi" class="img-responsive"><!--<img src="../images/logo2.png" width="416" height="218" />-->
+                        </a>
+                    </div>
+                    <div class="st-menu cobranza">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                    <ul class="nav navbar-nav itemmenu">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <span class="icon mainteince"></span>
+                                                <span class="txt_lb">
+                                                    Administración
+                                                </span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="/admin/CompanySetup">
+                                                        Administrar Queue cobranzas
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <span class="icon cobranzas"></span>
+                                                <span class="txt_lb">
+                                                    Cobranzas
+                                                </span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Queue", "Index", "Queue")
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" onclick="GotoSearch()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <span class="icon busqueda"></span>
+                                                <span class="txt_lb">
+                                                    Busqueda
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>
+                                            <a href="#" onclick="GotoLogout()" data-toggle="modal" data-target="#logoutModal">
+                                                <span class="icon logout"></span>
+                                                <span class="txt_lb">
+                                                    logout
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="clear"></div>
+                </header>
+                <div class="clear"></div>
+                <div class="stcontent-body">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    @Scripts.Render("~/bundles/scriptsExt")
+    @Html.Partial("_modalPopup")
+    <!---->
+    @Html.Hidden("HideVaribleURL", (object)ViewBag.HideVaribleURL)
+</body>
+</html>

@@ -1,0 +1,355 @@
+﻿@model KSI.Cobranza.LogicLayer.Implementation.Dispatcher.DataEntryMovement
+
+<script src="~/Scripts/JsDataEntry.js"></script>
+<script>Dispatcher.InitializeMovement(@Model.QueueId, @Model.MovementEntityModel.IdMovement, "@Model.MovementEntityModel.ActionTitle");</script>
+
+<div class="row">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-credit-card" aria-hidden="true"></i> Intimación de pago</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Localidad de la notificación</label>
+                        <input type="text" class="form-control" placeholder="Localidad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Traslado del alguacil</label>
+                        <input type="text" class="form-control" placeholder="Traslado">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Tribunal donde fue inscrito el contrato de prestamo</label>
+                        <input type="text" class="form-control" placeholder="Tribunal">
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Cantidad de páginas de todo el paquete de documentos</label>
+                        <input type="text" class="form-control" placeholder="Cantidad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Cantidad de páginas que tienen sus anexos</label>
+                        <input type="text" class="form-control" placeholder="Cantidad">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-window-restore" aria-hidden="true"></i> Desgloce</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Tribunal donde se conocera la venta</label>
+                        <input type="text" class="form-control" placeholder="Tribunal">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fecha de la última audiencia</label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Número de sentencia</label>
+                        <input type="text" class="form-control" placeholder="Número">
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Localidad donde se solicita el desglose</label>
+                        <input type="text" class="form-control" placeholder="Localidad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Nombre de abogado que lleva el proceso</label>
+                        <input type="text" class="form-control" placeholder="Abogado">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-sticky-note" aria-hidden="true"></i> Notif. aviso venta al deudor</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Localidad de la notificación</label>
+                        <input type="text" class="form-control" placeholder="Localidad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Traslados del alguacil</label>
+                        <input type="text" class="form-control" placeholder="Traslados">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fechas de publicaciones en periódico</label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Nombre del periódico</label>
+                        <input type="text" class="form-control" placeholder="Periodico">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Fecha del día de la venta</label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Tribunal donde se conocera la venta</label>
+                        <input type="text" class="form-control" placeholder="Tribunal">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Dirección del tribunal donde se conocera la venta</label>
+                        <input type="text" class="form-control" placeholder="Direccion">
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="form-group">
+                                <label for="">Día de la venta</label>
+
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""><b>L</b>unes</label>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""><b>M</b>artes</label>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""><b>M</b>iércoles</label>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""><b>J</b>ueves</label>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""><b>V</b>iernes</label>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""><b>S</b>ábado</label>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""><b>D</b>omingo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bell" aria-hidden="true"></i> Aviso venta subasta pública</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Fecha de la audiencia</label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Tribunal donde se conocera la venta</label>
+                        <input type="text" class="form-control" placeholder="Tribunal">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Dirección del tribunal donde se conecera la venta</label>
+                        <input type="text" class="form-control" placeholder="Dirección">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fecha de notificación de pago</label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Nombre del alguacil</label>
+                        <input type="text" class="form-control" placeholder="Alguacil">
+                    </div>
+                    
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Demarcación a la que pertenece el alguacil</label>
+                        <input type="text" class="form-control" placeholder="Demarcación">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Monto de la puja inicial</label>
+                        <input type="text" class="form-control" placeholder="Monto">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fecha de la solicitud</label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Nombre de abogado que lleva el proceso</label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-car" aria-hidden="true"></i> Sol. Comprobación de vehículo</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Tribunal </label>
+                        <input type="text" class="form-control" placeholder="Tribunal">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fecha del contrato </label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Libro en el que fue inscrito el contrato </label>
+                        <input type="text" class="form-control" placeholder="Libro">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Número de acto de intimación de pago </label>
+                        <input type="text" class="form-control" placeholder="Número de acto">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fecha de la notificación del mandamiento de pago </label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Nombre del alguacil que realizo la notificación </label>
+                        <input type="text" class="form-control" placeholder="Alguacil">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Demarcación a la que pertenece el alguacil </label>
+                        <input type="text" class="form-control" placeholder="Demarcación">
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="form-group">
+                        <label for="">Fecha de entrega o incautación del vehículo </label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fecha de recepción de fijación de audiencia </label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fecha de la audiencia de venta </label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Localidad donde se solicita la comprobación del vehículo </label>
+                        <input type="text" class="form-control" placeholder="Localidad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Fecha de la solicitud </label>
+                        <input type="text" class="form-control" placeholder="Fecha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Nombre del abogado que lleva el proceso </label>
+                        <input type="text" class="form-control" placeholder="Abogado">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button type="button" class="btn btn-danger btn-lg" style="width: 300px;" onclick="Save(@Model.QueueId, @Model.MovementEntityModel.IdMovement)"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
