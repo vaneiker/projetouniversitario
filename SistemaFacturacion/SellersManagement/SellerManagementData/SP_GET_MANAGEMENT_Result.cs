@@ -21,5 +21,6 @@ namespace SellerManagementData
         public int ManagementResultsIdSelected { get; set; }
         public int ManagementTypeIdSelected { get; set; }
         public int Management_Id { get; set; }
+        public Nullable<bool> ShowToSupervisor { get; set; }
     }
 }

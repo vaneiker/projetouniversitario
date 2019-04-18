@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://devsysflexagentservice.statetrustlife.com/AgentService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Sysflex.Agent.Service_New" />
+  <xs:element name="GetAgentDataForC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="agentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentDataForCResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Sysflex.Agent.Service_New" minOccurs="0" name="GetAgentDataForCResult" nillable="true" type="q1:AgentModel_C" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setAgentDataOnSysFlex">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="agentId" type="xs:int" />
+        <xs:element minOccurs="0" name="nameUser" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setAgentDataOnSysFlexResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="setAgentDataOnSysFlexResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

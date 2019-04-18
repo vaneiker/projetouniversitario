@@ -27,56 +27,59 @@ namespace SellersManagement.Controllers
             var newController = "Home";
             var newAction = "Index";
 
-                if (WebConfigurationManager.AppSettings["ApplySecurity"].ToString() == "false")
+            if (WebConfigurationManager.AppSettings["ApplySecurity"].ToString() == "false")
+            {
+                var userId = 0;
+                string userLogin = "PTECNOLOGIA";//mamercedes --> outiiz/77lQ= || defaultuser || PTECNOLOGIA --> UjAsEkU/BxXlACKm4mdWkg== || 
+                if (!Login(userLogin, "outiiz/77lQ=", ref userId))
                 {
+                    return RedirectToAction(action, controller);
+                }
+
+                SetLoginInformation();
+                
+                setOthersValues(ref newController, ref newAction);
+
+                deleteCookie();
+
+                if (!string.IsNullOrEmpty(newAction) && !string.IsNullOrEmpty(newController))
+                {
+                    return RedirectToAction(newAction, new { Controller = newController/*, Area = "Auto"*/ });
+                }
+
+            }
+            else
+            {
+                if (Request.QueryString.Count > 0)
+                {
+                    var secToken = Request.QueryString[0];
                     var userId = 0;
-                    string userLogin = "anperez";//mamercedes --> outiiz/77lQ= || defaultuser || PTECNOLOGIA --> UjAsEkU/BxXlACKm4mdWkg== || 
-                    if (!Login(userLogin, "outiiz/77lQ=", ref userId))
-                    {
+                    var applicationId = 0;
+                    var username = string.Empty;
+                    var loginName = string.Empty;
+                    var email = string.Empty;
+
+                    if (!Login(secToken, ref userId, ref applicationId))
                         return RedirectToAction(action, controller);
-                    }
 
                     SetLoginInformation();
-                
+
 
                     setOthersValues(ref newController, ref newAction);
+
+                    deleteCookie();
 
                     if (!string.IsNullOrEmpty(newAction) && !string.IsNullOrEmpty(newController))
                     {
                         return RedirectToAction(newAction, new { Controller = newController/*, Area = "Auto"*/ });
                     }
-
                 }
                 else
                 {
-                    if (Request.QueryString.Count > 0)
-                    {
-                        var secToken = Request.QueryString[0];
-                        var userId = 0;
-                        var applicationId = 0;
-                        var username = string.Empty;
-                        var loginName = string.Empty;
-                        var email = string.Empty;
-
-                        if (!Login(secToken, ref userId, ref applicationId))
-                            return RedirectToAction(action, controller);
-
-                        SetLoginInformation();
-
-                                               
-                        setOthersValues(ref newController, ref newAction);
-
-                        if (!string.IsNullOrEmpty(newAction) && !string.IsNullOrEmpty(newController))
-                        {
-                            return RedirectToAction(newAction, new { Controller = newController/*, Area = "Auto"*/ });
-                        }
-                    }
-                    else
-                    {
-                        return Redirect(WebConfigurationManager.AppSettings["SecurityLogin"].ToString());
-                    }
+                    return Redirect(WebConfigurationManager.AppSettings["SecurityLogin"].ToString());
                 }
-            
+            }
+
 
             //return RedirectToAction(action, new { currentUserName = Usuario.UserLogin, Controller = controller });
             return RedirectToAction(action, new { Controller = controller });
@@ -113,6 +116,19 @@ namespace SellersManagement.Controllers
                     ActionJson = additionalInfo.Action
                 };
             }
+        }
+
+
+        private void deleteCookie()
+        {
+
+            if (Request.Cookies["WasloadData"] != null)
+            {
+                var c = new HttpCookie("WasloadData");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+
         }
 
     }

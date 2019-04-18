@@ -28,7 +28,42 @@ namespace SellersManagement.Logic
             return
                 managementRepository.GetManagement(parameters);
         }
-       
 
+        public IEnumerable<AgentData> GetDataAgent(AgentData.parameters parameters)
+        {
+            return
+                managementRepository.GetDataAgent(parameters);
+        }
+
+        public IEnumerable<ProspectData> GetDataProspect(ProspectData.parameters parameters)
+        {
+            return
+                managementRepository.GetDataProspect(parameters);
+        }
+
+
+        public IEnumerable<Generic> SetDataProspect(ProspectData.parameters parameters)
+        {
+            return
+                managementRepository.SetDataProspect(parameters);
+        }
+
+        public IEnumerable<Generic> GetStatisticHeader()
+        {
+            return
+                managementRepository.GetStatisticHeader();
+        }
+
+        public IEnumerable<AgentStatisticData> GetAgentStatisticData(Nullable<int> AgentCode, string nameId = "")
+        {
+            return
+                managementRepository.GetAgentStatisticData(AgentCode, nameId);
+        }
+
+        public IEnumerable<AgentData> GetDataAgentAndManagement(AgentData.parameters parameters)
+        {
+            return
+                managementRepository.GetDataAgentAndManagements(parameters);
+        }
     }
 }

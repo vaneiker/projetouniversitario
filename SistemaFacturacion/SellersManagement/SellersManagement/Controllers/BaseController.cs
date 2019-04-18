@@ -16,7 +16,7 @@ namespace SellersManagement.Controllers
         //public CultureInfo culturelanguaje = CultureInfo.CreateSpecificCulture("es-DO");
         //public SessionList datos;
         //private string key = "SessionData";
-        
+
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
             var languageId = "es-DO";
@@ -29,7 +29,7 @@ namespace SellersManagement.Controllers
             var currentCulture = CultureInfo.CreateSpecificCulture(languageId);
             Thread.CurrentThread.CurrentCulture = currentCulture;
             Thread.CurrentThread.CurrentUICulture = currentCulture;
-            
+
             //ViewBag.CurrentLanguage = languageId;
 
             //var usuario = GetCurrentUsuario();
@@ -80,12 +80,28 @@ namespace SellersManagement.Controllers
                 return Usuario;
         }
 
+        protected bool isExecutivesATLRol()
+        {
+            var Usuario = GetCurrentUsuario();
+            var UsuarioRoles = Usuario.rolesByUser;
+            return UsuarioRoles.Any(o => o.Rol_Name.Contains("ExecutivesATL"));
+        }
+
         protected AgentServiceReference.AgentServiceClient oAgentServices
         {
             get
             {
                 return
                     new AgentServiceReference.AgentServiceClient();
+            }
+        }
+
+        protected SysflexAgentServiceReference.AgentServiceClient oSysflexAgentServices
+        {
+            get
+            {
+                return
+                    new SysflexAgentServiceReference.AgentServiceClient();
             }
         }
 
@@ -105,6 +121,39 @@ namespace SellersManagement.Controllers
             }
         }
 
-        
+
+        protected void createCookie() {
+
+            if (Request.Cookies["WasloadData"] == null)
+            {
+                var c = new HttpCookie("WasloadData");
+                c.Expires = DateTime.Now.AddDays(1);
+                c.Path = "/";
+                Response.Cookies.Add(c);
+            }
+        }
+
+        public int GetLastPage(int totalRow, int rowPerPage)
+        {
+            int LastPage = 0;
+            try
+            {
+                string dataCalculated = (totalRow / (decimal)rowPerPage).ToString(); // rowPerPage = Cantidad de registros por pagina;
+                var pageCalculated = (totalRow / rowPerPage);
+
+
+                //si tiene un punto es que la operacion tiene una pagina que se perderia y le sumo 1+ para que contemple el ult. registro
+                if (dataCalculated.Contains("."))
+                    LastPage = Convert.ToInt32(pageCalculated) + 1;
+                else
+                    LastPage = Convert.ToInt32(pageCalculated);
+            }
+            catch (Exception)
+            {
+                LastPage = 0;
+            }
+
+            return LastPage;
+        }
     }
 }

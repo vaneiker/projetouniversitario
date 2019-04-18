@@ -8,6 +8,24 @@
         <Function Name="SP_FILL_DROPDOWN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DropDownType" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_GET_AGENT_AND_MANAGEMENT_INFORMATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AgentId" Type="int" Mode="In" />
+          <Parameter Name="AgentCode" Type="varchar" Mode="In" />
+          <Parameter Name="BL" Type="int" Mode="In" />
+          <Parameter Name="NameId" Type="varchar" Mode="In" />
+          <Parameter Name="isExecutiveRol" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_AGENT_INFORMATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AgentId" Type="int" Mode="In" />
+          <Parameter Name="AgentCode" Type="varchar" Mode="In" />
+          <Parameter Name="BL" Type="int" Mode="In" />
+          <Parameter Name="NameId" Type="varchar" Mode="In" />
+          <Parameter Name="isExecutiveRol" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_AGENT_STATISTIC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AgentCode" Type="int" Mode="In" />
+          <Parameter Name="NameId" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SP_GET_MANAGEMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ManagementId" Type="int" Mode="In" />
           <Parameter Name="ManagementSupervisorCode" Type="int" Mode="In" />
@@ -19,6 +37,10 @@
         <Function Name="SP_GET_MANAGEMENT_TYPES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ManagementTypeId" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GET_PROSPECT_INFROMATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProspectCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_STATISTIC_TABLE_HEADER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_SET_MANAGEMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ManagementId" Type="int" Mode="In" />
           <Parameter Name="ManagementSupervisorCode" Type="int" Mode="In" />
@@ -27,6 +49,17 @@
           <Parameter Name="ManagementResultsId" Type="int" Mode="In" />
           <Parameter Name="Comment" Type="varchar(max)" Mode="In" />
           <Parameter Name="SuggestedImprovement" Type="varchar(max)" Mode="In" />
+          <Parameter Name="CreateUserId" Type="int" Mode="In" />
+          <Parameter Name="ManagedBy" Type="int" Mode="In" />
+          <Parameter Name="ShowToSupervisor" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_PROSPECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProspectId" Type="int" Mode="In" />
+          <Parameter Name="ProspectCode" Type="varchar" Mode="In" />
+          <Parameter Name="ProspectFullName" Type="varchar" Mode="In" />
+          <Parameter Name="ProspectChannel" Type="varchar" Mode="In" />
+          <Parameter Name="ProspectOffices" Type="varchar" Mode="In" />
+          <Parameter Name="ProspectPhones" Type="varchar" Mode="In" />
           <Parameter Name="CreateUserId" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="SellersManagementModelStoreContainer" />
@@ -44,6 +77,31 @@
           <FunctionImport Name="SP_GET_MANAGEMENT_TYPES" ReturnType="Collection(SellersManagementModel.SP_GET_MANAGEMENT_TYPES_Result)">
           <Parameter Name="ManagementTypeId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_GET_MANAGEMENT" ReturnType="Collection(SellersManagementModel.SP_GET_MANAGEMENT_Result)">
+            <Parameter Name="ManagementId" Mode="In" Type="Int32" />
+            <Parameter Name="ManagementSupervisorCode" Mode="In" Type="Int32" />
+            <Parameter Name="ManagementSellerCode" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_AGENT_INFORMATION" ReturnType="Collection(SellersManagementModel.SP_GET_AGENT_INFORMATION_Result)">
+            <Parameter Name="AgentId" Mode="In" Type="Int32" />
+            <Parameter Name="AgentCode" Mode="In" Type="String" />
+            <Parameter Name="BL" Mode="In" Type="Int32" />
+            <Parameter Name="NameId" Mode="In" Type="String" />
+            <Parameter Name="isExecutiveRol" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_PROSPECT_INFROMATION" ReturnType="Collection(SellersManagementModel.SP_GET_PROSPECT_INFROMATION_Result)">
+          <Parameter Name="ProspectCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_PROSPECT" ReturnType="Collection(SellersManagementModel.SP_SET_PROSPECT_Result)">
+            <Parameter Name="ProspectId" Mode="In" Type="Int32" />
+            <Parameter Name="ProspectCode" Mode="In" Type="String" />
+            <Parameter Name="ProspectFullName" Mode="In" Type="String" />
+            <Parameter Name="ProspectChannel" Mode="In" Type="String" />
+            <Parameter Name="ProspectOffices" Mode="In" Type="String" />
+            <Parameter Name="ProspectPhones" Mode="In" Type="String" />
+            <Parameter Name="CreateUserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_STATISTIC_TABLE_HEADER" ReturnType="Collection(SellersManagementModel.SP_GET_STATISTIC_TABLE_HEADER_Result)" />
           <FunctionImport Name="SP_SET_MANAGEMENT" ReturnType="Collection(SellersManagementModel.SP_SET_MANAGEMENT_Result)">
             <Parameter Name="ManagementId" Mode="In" Type="Int32" />
             <Parameter Name="ManagementSupervisorCode" Mode="In" Type="Int32" />
@@ -53,11 +111,19 @@
             <Parameter Name="Comment" Mode="In" Type="String" />
             <Parameter Name="SuggestedImprovement" Mode="In" Type="String" />
             <Parameter Name="CreateUserId" Mode="In" Type="Int32" />
+            <Parameter Name="ManagedBy" Mode="In" Type="Int32" />
+            <Parameter Name="ShowToSupervisor" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="SP_GET_MANAGEMENT" ReturnType="Collection(SellersManagementModel.SP_GET_MANAGEMENT_Result)">
-            <Parameter Name="ManagementId" Mode="In" Type="Int32" />
-            <Parameter Name="ManagementSupervisorCode" Mode="In" Type="Int32" />
-            <Parameter Name="ManagementSellerCode" Mode="In" Type="Int32" />
+          <FunctionImport Name="SP_GET_AGENT_STATISTIC" ReturnType="Collection(SellersManagementModel.SP_GET_AGENT_STATISTIC_Result)">
+            <Parameter Name="AgentCode" Mode="In" Type="Int32" />
+            <Parameter Name="NameId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_AGENT_AND_MANAGEMENT_INFORMATION" ReturnType="Collection(SellersManagementModel.SP_GET_AGENT_AND_MANAGEMENT_INFORMATION_Result)">
+            <Parameter Name="AgentId" Mode="In" Type="Int32" />
+            <Parameter Name="AgentCode" Mode="In" Type="String" />
+            <Parameter Name="BL" Mode="In" Type="Int32" />
+            <Parameter Name="NameId" Mode="In" Type="String" />
+            <Parameter Name="isExecutiveRol" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_FILL_DROPDOWN_Result">
@@ -72,10 +138,6 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="300" />
         </ComplexType>
-        <ComplexType Name="SP_SET_MANAGEMENT_Result">
-          <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="Id" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="SP_GET_MANAGEMENT_Result">
           <Property Type="Int32" Name="Management_Supervisor_Code" Nullable="false" />
           <Property Type="Int32" Name="Management_Seller_Code" Nullable="false" />
@@ -85,6 +147,85 @@
           <Property Type="Int32" Name="ManagementResultsIdSelected" Nullable="false" />
           <Property Type="Int32" Name="ManagementTypeIdSelected" Nullable="false" />
           <Property Type="Int32" Name="Management_Id" Nullable="false" />
+          <Property Type="Boolean" Name="ShowToSupervisor" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_AGENT_INFORMATION_Result">
+          <Property Type="Int32" Name="Agent_Id" Nullable="false" />
+          <Property Type="String" Name="Agent_Code" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Name_Id" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Source_ID" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="240" />
+          <Property Type="String" Name="Office" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Channel" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="Bl_Id" Nullable="false" />
+          <Property Type="String" Name="Bl_Desc" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="Phones" Nullable="true" />
+          <Property Type="Int32" Name="Supervisor_AgentId" Nullable="false" />
+          <Property Type="String" Name="Supervisor_Name" Nullable="true" MaxLength="240" />
+          <Property Type="String" Name="Supervisor_AgentCode" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_PROSPECT_INFROMATION_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ProspectCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ProspectFullName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ProspectChannel" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProspectOffices" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProspectPhones" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_PROSPECT_Result">
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_STATISTIC_TABLE_HEADER_Result">
+          <Property Type="String" Name="StatisticYear" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="MonthName" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_MANAGEMENT_Result">
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_AGENT_STATISTIC_Result">
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="12" />
+          <Property Type="Decimal" Name="YearToDayMonto" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="MonthToDayMonto" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum1" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum2" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum3" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum4" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum5" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum6" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum7" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum8" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum9" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum10" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum11" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum12" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="sum13" Nullable="false" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_AGENT_AND_MANAGEMENT_INFORMATION_Result">
+          <Property Type="Int32" Name="Agent_Id" Nullable="true" />
+          <Property Type="String" Name="Agent_Code" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Name_Id" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Source_ID" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="240" />
+          <Property Type="String" Name="Office" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Channel" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="Bl_Id" Nullable="true" />
+          <Property Type="String" Name="Bl_Desc" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Phones" Nullable="true" />
+          <Property Type="Int32" Name="Supervisor_AgentId" Nullable="true" />
+          <Property Type="String" Name="Supervisor_Name" Nullable="true" MaxLength="240" />
+          <Property Type="String" Name="Supervisor_AgentCode" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="Management_Supervisor_Code" Nullable="true" />
+          <Property Type="String" Name="Management_Seller_Code" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Comment" Nullable="true" />
+          <Property Type="String" Name="Suggested_Improvement" Nullable="true" />
+          <Property Type="DateTime" Name="Management_Date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ManagementResultsIdSelected" Nullable="true" />
+          <Property Type="Int32" Name="ManagementTypeIdSelected" Nullable="true" />
+          <Property Type="Boolean" Name="ShowToSupervisor" Nullable="true" />
+          <Property Type="Int32" Name="Management_Id" Nullable="true" />
+          <Property Type="Boolean" Name="isProspect" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -116,14 +257,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_SET_MANAGEMENT" FunctionName="SellersManagementModel.Store.SP_SET_MANAGEMENT">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SellersManagementModel.SP_SET_MANAGEMENT_Result">
-                <ScalarProperty Name="Action" ColumnName="Action" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GET_MANAGEMENT" FunctionName="SellersManagementModel.Store.SP_GET_MANAGEMENT">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SellersManagementModel.SP_GET_MANAGEMENT_Result">
@@ -135,6 +268,113 @@
                 <ScalarProperty Name="ManagementResultsIdSelected" ColumnName="ManagementResultsIdSelected" />
                 <ScalarProperty Name="ManagementTypeIdSelected" ColumnName="ManagementTypeIdSelected" />
                 <ScalarProperty Name="Management_Id" ColumnName="Management_Id" />
+                <ScalarProperty Name="ShowToSupervisor" ColumnName="ShowToSupervisor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_AGENT_INFORMATION" FunctionName="SellersManagementModel.Store.SP_GET_AGENT_INFORMATION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellersManagementModel.SP_GET_AGENT_INFORMATION_Result">
+                <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+                <ScalarProperty Name="Agent_Code" ColumnName="Agent_Code" />
+                <ScalarProperty Name="Name_Id" ColumnName="Name_Id" />
+                <ScalarProperty Name="Source_ID" ColumnName="Source_ID" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="Bl_Id" ColumnName="Bl_Id" />
+                <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+                <ScalarProperty Name="Phones" ColumnName="Phones" />
+                <ScalarProperty Name="Supervisor_AgentId" ColumnName="Supervisor_AgentId" />
+                <ScalarProperty Name="Supervisor_Name" ColumnName="Supervisor_Name" />
+                <ScalarProperty Name="Supervisor_AgentCode" ColumnName="Supervisor_AgentCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_PROSPECT_INFROMATION" FunctionName="SellersManagementModel.Store.SP_GET_PROSPECT_INFROMATION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellersManagementModel.SP_GET_PROSPECT_INFROMATION_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProspectCode" ColumnName="ProspectCode" />
+                <ScalarProperty Name="ProspectFullName" ColumnName="ProspectFullName" />
+                <ScalarProperty Name="ProspectChannel" ColumnName="ProspectChannel" />
+                <ScalarProperty Name="ProspectOffices" ColumnName="ProspectOffices" />
+                <ScalarProperty Name="ProspectPhones" ColumnName="ProspectPhones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_PROSPECT" FunctionName="SellersManagementModel.Store.SP_SET_PROSPECT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellersManagementModel.SP_SET_PROSPECT_Result">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_STATISTIC_TABLE_HEADER" FunctionName="SellersManagementModel.Store.SP_GET_STATISTIC_TABLE_HEADER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellersManagementModel.SP_GET_STATISTIC_TABLE_HEADER_Result">
+                <ScalarProperty Name="StatisticYear" ColumnName="StatisticYear" />
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_MANAGEMENT" FunctionName="SellersManagementModel.Store.SP_SET_MANAGEMENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellersManagementModel.SP_SET_MANAGEMENT_Result">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_AGENT_STATISTIC" FunctionName="SellersManagementModel.Store.SP_GET_AGENT_STATISTIC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellersManagementModel.SP_GET_AGENT_STATISTIC_Result">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="YearToDayMonto" ColumnName="YearToDayMonto" />
+                <ScalarProperty Name="MonthToDayMonto" ColumnName="MonthToDayMonto" />
+                <ScalarProperty Name="sum1" ColumnName="sum1" />
+                <ScalarProperty Name="sum2" ColumnName="sum2" />
+                <ScalarProperty Name="sum3" ColumnName="sum3" />
+                <ScalarProperty Name="sum4" ColumnName="sum4" />
+                <ScalarProperty Name="sum5" ColumnName="sum5" />
+                <ScalarProperty Name="sum6" ColumnName="sum6" />
+                <ScalarProperty Name="sum7" ColumnName="sum7" />
+                <ScalarProperty Name="sum8" ColumnName="sum8" />
+                <ScalarProperty Name="sum9" ColumnName="sum9" />
+                <ScalarProperty Name="sum10" ColumnName="sum10" />
+                <ScalarProperty Name="sum11" ColumnName="sum11" />
+                <ScalarProperty Name="sum12" ColumnName="sum12" />
+                <ScalarProperty Name="sum13" ColumnName="sum13" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_AGENT_AND_MANAGEMENT_INFORMATION" FunctionName="SellersManagementModel.Store.SP_GET_AGENT_AND_MANAGEMENT_INFORMATION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SellersManagementModel.SP_GET_AGENT_AND_MANAGEMENT_INFORMATION_Result">
+                <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
+                <ScalarProperty Name="Agent_Code" ColumnName="Agent_Code" />
+                <ScalarProperty Name="Name_Id" ColumnName="Name_Id" />
+                <ScalarProperty Name="Source_ID" ColumnName="Source_ID" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="Bl_Id" ColumnName="Bl_Id" />
+                <ScalarProperty Name="Bl_Desc" ColumnName="Bl_Desc" />
+                <ScalarProperty Name="Phones" ColumnName="Phones" />
+                <ScalarProperty Name="Supervisor_AgentId" ColumnName="Supervisor_AgentId" />
+                <ScalarProperty Name="Supervisor_Name" ColumnName="Supervisor_Name" />
+                <ScalarProperty Name="Supervisor_AgentCode" ColumnName="Supervisor_AgentCode" />
+                <ScalarProperty Name="Management_Supervisor_Code" ColumnName="Management_Supervisor_Code" />
+                <ScalarProperty Name="Management_Seller_Code" ColumnName="Management_Seller_Code" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Suggested_Improvement" ColumnName="Suggested_Improvement" />
+                <ScalarProperty Name="Management_Date" ColumnName="Management_Date" />
+                <ScalarProperty Name="ManagementResultsIdSelected" ColumnName="ManagementResultsIdSelected" />
+                <ScalarProperty Name="ManagementTypeIdSelected" ColumnName="ManagementTypeIdSelected" />
+                <ScalarProperty Name="ShowToSupervisor" ColumnName="ShowToSupervisor" />
+                <ScalarProperty Name="Management_Id" ColumnName="Management_Id" />
+                <ScalarProperty Name="isProspect" ColumnName="isProspect" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

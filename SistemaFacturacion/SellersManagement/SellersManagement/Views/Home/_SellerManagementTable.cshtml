@@ -1,0 +1,103 @@
+﻿@model List<SellersManagement.Models.AgentInfomation>
+
+<div class="table-responsive mdl-cell mdl-cell--12-col float-left mt-3 row">
+
+    <table id="tableManagements" class="table table-striped table-light text-center float-left w-100" cellspacing="0" style="width:100%!important; min-width:1700px;">
+        <thead>
+            <tr class="bg-info mdl-color-text--white  header-table">
+                <th width="10%" scope="col" style="min-width:124px;">Acción</th>
+                <th width="3%" scope="col">Código</th>
+                <th width="13%" scope="col">Vendedor</th>
+                <th width="13%" scope="col">Canal</th>
+                <th width="10%" scope="col">Oficina</th>
+                <th width="10%" scope="col">Teléfono(s)</th>
+                <th width="10%" scope="col">Supervisor</th>
+                <th width="10%" scope="col">Fecha</th>
+                <th width="7%" scope="col">Tipo</th>
+                <th width="15%" scope="col">Resultado</th>
+                @*<th width="20%" scope="col">Comentario</th>
+                    <th width="10%" scope="col">Mejora Sugerida - que le duele</th>*@
+            </tr>
+            <tr id="filter">
+                <th></th>
+                <th>@Html.DropDownList("SellerCode", (SelectList)ViewBag.SellerCodes, "", new { @class = "dropdown form-control", @data_placeholder = "Código" })</th>
+                <th>@Html.DropDownList("SellerName", (SelectList)ViewBag.SellerNames, "", new { @class = "dropdown form-control", @data_placeholder = "Vendedor" })</th>
+                <th>@Html.DropDownList("SellerChannels", (SelectList)ViewBag.SellerChannels, "", new { @class = "dropdown form-control", @data_placeholder = "Canal" })</th>
+                <th>@Html.DropDownList("SellerOffices", (SelectList)ViewBag.SellerOffices, "", new { @class = "dropdown form-control", @data_placeholder = "Oficina" })</th>
+                <th>@Html.DropDownList("SellerPhones", (SelectList)ViewBag.Phones, "", new { @class = "dropdown form-control", @data_placeholder = "Teléfono(s)" })</th>
+                <th>@Html.DropDownList("SellerSupervisor", (SelectList)ViewBag.Supervisors, "", new { @class = "dropdown form-control", @data_placeholder = "Supervisor" })</th>
+                <th>@Html.DropDownList("SellerDate", (SelectList)ViewBag.SellerDate, "", new { @class = "dropdown form-control", @data_placeholder = "Fecha" })</th>
+                <th>@Html.DropDownList("SellerTypeManagement", (SelectList)ViewBag.SellerTypeManagement, "", new { @class = "dropdown form-control", @data_placeholder = "Tipo" })</th>
+                <th>@Html.DropDownList("SellerResultManagement", (SelectList)ViewBag.SellerResultManagement, "", new { @class = "dropdown form-control", @data_placeholder = "Resultado" })</th>
+                @*<th>@Html.DropDownList("SellerComment", (SelectList)ViewBag.SellerComment, "", new { @class = "dropdown form-control", @data_placeholder = "Comentario" })</th>
+                    <th>@Html.DropDownList("SellerSuggestedImprovement", (SelectList)ViewBag.SellerSuggestedImprovement, "", new { @class = "dropdown form-control", @data_placeholder = "Mejora Sugerida" })</th>*@
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var row in Model)
+            {
+                <tr class="myRow" data-json="@row.DataJson">
+
+                    <td class="select-filter">
+                        <p>
+                            <span id="myRow">
+                                <a data-json="@row.DataJson" href="#" class="btn btn-success" id="linkCode_New">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                    Nuevo
+                                </a>
+                            </span>
+
+                            @if (row.showDetailManagement)
+                            {
+                                <a href="@Url.Action("AgentInfoDetail", "Agent", new { smID = row.SellerManagementId })" class="btn btn-info">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    Ver
+                                </a>
+                            }
+                        </p>
+                    </td>
+
+                    <td class="select-filter" style="text-align:center">
+                        @*<span id="myRow">
+                                <a data-json="@row.DataJson" href="#" id="linkCode">@row.AgentCode</a>
+                            </span>*@
+                        @row.AgentCode
+                    </td>
+                    <td class="select-filter" style="text-align:left"> @row.FullName</td>
+                    <td class="select-filter" style="text-align:left"> @row.AgentChannel</td>
+                    <td class="select-filter" style="text-align:left"> @row.AgentOffices</td>
+                    <td class="select-filter" style="text-align:left"> @row.Phones</td>
+                    <td class="select-filter" style="text-align:left"> @row.Supervisor</td>
+                    <td class="select-filter" style="text-align:left"> @row.ManagementDate</td>
+                    <td class="select-filter" style="text-align:left"> @row.TypeManagement</td>
+                    <td class="select-filter" style="text-align:left"> @row.ResultManagement</td>
+                    @*<td class="select-filter" style="text-align:left"> @row.Comment</td>
+                        <td class="select-filter" style="text-align:left"> @row.SuggestedImprovement</td>*@
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    //$(document).ready(function () {
+
+    //    $(document).on('click', '#linkCode', function () {
+    //        $('#myRow, .myRow').trigger('dblclick');
+    //    });
+
+    //    $(document).on('dblclick', '#myRow, .myRow', function () {
+    //        var datos = $(this).attr('data-json');
+    //        if (datos.length <= 0) {
+    //            return;
+    //        }
+    //        var row = JSON.parse(datos);
+    //        window.history.replaceState({}, document.title, "/Agent/AddNewAgentInfo?agentCode=" + row.AgentCode);
+    //        globalWasReload = true;
+    //        window.location.reload();
+    //    });
+    //})
+</script>

@@ -30,13 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -70,6 +72,15 @@
     <Compile Include="SP_FILL_DROPDOWN_Result.cs">
       <DependentUpon>SellersManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GET_AGENT_AND_MANAGEMENT_INFORMATION_Result.cs">
+      <DependentUpon>SellersManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GET_AGENT_INFORMATION_Result.cs">
+      <DependentUpon>SellersManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GET_AGENT_STATISTIC_Result.cs">
+      <DependentUpon>SellersManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GET_MANAGEMENT_Result.cs">
       <DependentUpon>SellersManagementModel.tt</DependentUpon>
     </Compile>
@@ -79,7 +90,16 @@
     <Compile Include="SP_GET_MANAGEMENT_TYPES_Result.cs">
       <DependentUpon>SellersManagementModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GET_PROSPECT_INFROMATION_Result.cs">
+      <DependentUpon>SellersManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GET_STATISTIC_TABLE_HEADER_Result.cs">
+      <DependentUpon>SellersManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SET_MANAGEMENT_Result.cs">
+      <DependentUpon>SellersManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SET_PROSPECT_Result.cs">
       <DependentUpon>SellersManagementModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

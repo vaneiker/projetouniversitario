@@ -11,11 +11,10 @@ namespace SellerManagementData
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Objects;
-    using System.Data.Objects.DataClasses;
     using System.Linq;
-    
+
     public partial class SellersManagementEntities : DbContext
     {
         public SellersManagementEntities()
@@ -56,7 +55,96 @@ namespace SellerManagementData
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GET_MANAGEMENT_TYPES_Result>("SP_GET_MANAGEMENT_TYPES", managementTypeIdParameter);
         }
     
-        public virtual ObjectResult<SP_SET_MANAGEMENT_Result> SP_SET_MANAGEMENT(Nullable<int> managementId, Nullable<int> managementSupervisorCode, Nullable<int> managementSellerCode, Nullable<int> managementTypeId, Nullable<int> managementResultsId, string comment, string suggestedImprovement, Nullable<int> createUserId)
+        public virtual ObjectResult<SP_GET_MANAGEMENT_Result> SP_GET_MANAGEMENT(Nullable<int> managementId, Nullable<int> managementSupervisorCode, Nullable<int> managementSellerCode)
+        {
+            var managementIdParameter = managementId.HasValue ?
+                new ObjectParameter("ManagementId", managementId) :
+                new ObjectParameter("ManagementId", typeof(int));
+    
+            var managementSupervisorCodeParameter = managementSupervisorCode.HasValue ?
+                new ObjectParameter("ManagementSupervisorCode", managementSupervisorCode) :
+                new ObjectParameter("ManagementSupervisorCode", typeof(int));
+    
+            var managementSellerCodeParameter = managementSellerCode.HasValue ?
+                new ObjectParameter("ManagementSellerCode", managementSellerCode) :
+                new ObjectParameter("ManagementSellerCode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GET_MANAGEMENT_Result>("SP_GET_MANAGEMENT", managementIdParameter, managementSupervisorCodeParameter, managementSellerCodeParameter);
+        }
+    
+        public virtual ObjectResult<SP_GET_AGENT_INFORMATION_Result> SP_GET_AGENT_INFORMATION(Nullable<int> agentId, string agentCode, Nullable<int> bL, string nameId, Nullable<bool> isExecutiveRol)
+        {
+            var agentIdParameter = agentId.HasValue ?
+                new ObjectParameter("AgentId", agentId) :
+                new ObjectParameter("AgentId", typeof(int));
+    
+            var agentCodeParameter = agentCode != null ?
+                new ObjectParameter("AgentCode", agentCode) :
+                new ObjectParameter("AgentCode", typeof(string));
+    
+            var bLParameter = bL.HasValue ?
+                new ObjectParameter("BL", bL) :
+                new ObjectParameter("BL", typeof(int));
+    
+            var nameIdParameter = nameId != null ?
+                new ObjectParameter("NameId", nameId) :
+                new ObjectParameter("NameId", typeof(string));
+    
+            var isExecutiveRolParameter = isExecutiveRol.HasValue ?
+                new ObjectParameter("isExecutiveRol", isExecutiveRol) :
+                new ObjectParameter("isExecutiveRol", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GET_AGENT_INFORMATION_Result>("SP_GET_AGENT_INFORMATION", agentIdParameter, agentCodeParameter, bLParameter, nameIdParameter, isExecutiveRolParameter);
+        }
+    
+        public virtual ObjectResult<SP_GET_PROSPECT_INFROMATION_Result> SP_GET_PROSPECT_INFROMATION(string prospectCode)
+        {
+            var prospectCodeParameter = prospectCode != null ?
+                new ObjectParameter("ProspectCode", prospectCode) :
+                new ObjectParameter("ProspectCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GET_PROSPECT_INFROMATION_Result>("SP_GET_PROSPECT_INFROMATION", prospectCodeParameter);
+        }
+    
+        public virtual ObjectResult<SP_SET_PROSPECT_Result> SP_SET_PROSPECT(Nullable<int> prospectId, string prospectCode, string prospectFullName, string prospectChannel, string prospectOffices, string prospectPhones, Nullable<int> createUserId)
+        {
+            var prospectIdParameter = prospectId.HasValue ?
+                new ObjectParameter("ProspectId", prospectId) :
+                new ObjectParameter("ProspectId", typeof(int));
+    
+            var prospectCodeParameter = prospectCode != null ?
+                new ObjectParameter("ProspectCode", prospectCode) :
+                new ObjectParameter("ProspectCode", typeof(string));
+    
+            var prospectFullNameParameter = prospectFullName != null ?
+                new ObjectParameter("ProspectFullName", prospectFullName) :
+                new ObjectParameter("ProspectFullName", typeof(string));
+    
+            var prospectChannelParameter = prospectChannel != null ?
+                new ObjectParameter("ProspectChannel", prospectChannel) :
+                new ObjectParameter("ProspectChannel", typeof(string));
+    
+            var prospectOfficesParameter = prospectOffices != null ?
+                new ObjectParameter("ProspectOffices", prospectOffices) :
+                new ObjectParameter("ProspectOffices", typeof(string));
+    
+            var prospectPhonesParameter = prospectPhones != null ?
+                new ObjectParameter("ProspectPhones", prospectPhones) :
+                new ObjectParameter("ProspectPhones", typeof(string));
+    
+            var createUserIdParameter = createUserId.HasValue ?
+                new ObjectParameter("CreateUserId", createUserId) :
+                new ObjectParameter("CreateUserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SET_PROSPECT_Result>("SP_SET_PROSPECT", prospectIdParameter, prospectCodeParameter, prospectFullNameParameter, prospectChannelParameter, prospectOfficesParameter, prospectPhonesParameter, createUserIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GET_STATISTIC_TABLE_HEADER_Result> SP_GET_STATISTIC_TABLE_HEADER()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GET_STATISTIC_TABLE_HEADER_Result>("SP_GET_STATISTIC_TABLE_HEADER");
+        }
+    
+        public virtual ObjectResult<SP_SET_MANAGEMENT_Result> SP_SET_MANAGEMENT(Nullable<int> managementId, Nullable<int> managementSupervisorCode, Nullable<int> managementSellerCode, Nullable<int> managementTypeId, Nullable<int> managementResultsId, string comment, string suggestedImprovement, Nullable<int> createUserId, Nullable<int> managedBy, Nullable<bool> showToSupervisor)
         {
             var managementIdParameter = managementId.HasValue ?
                 new ObjectParameter("ManagementId", managementId) :
@@ -90,24 +178,53 @@ namespace SellerManagementData
                 new ObjectParameter("CreateUserId", createUserId) :
                 new ObjectParameter("CreateUserId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SET_MANAGEMENT_Result>("SP_SET_MANAGEMENT", managementIdParameter, managementSupervisorCodeParameter, managementSellerCodeParameter, managementTypeIdParameter, managementResultsIdParameter, commentParameter, suggestedImprovementParameter, createUserIdParameter);
+            var managedByParameter = managedBy.HasValue ?
+                new ObjectParameter("ManagedBy", managedBy) :
+                new ObjectParameter("ManagedBy", typeof(int));
+    
+            var showToSupervisorParameter = showToSupervisor.HasValue ?
+                new ObjectParameter("ShowToSupervisor", showToSupervisor) :
+                new ObjectParameter("ShowToSupervisor", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SET_MANAGEMENT_Result>("SP_SET_MANAGEMENT", managementIdParameter, managementSupervisorCodeParameter, managementSellerCodeParameter, managementTypeIdParameter, managementResultsIdParameter, commentParameter, suggestedImprovementParameter, createUserIdParameter, managedByParameter, showToSupervisorParameter);
         }
     
-        public virtual ObjectResult<SP_GET_MANAGEMENT_Result> SP_GET_MANAGEMENT(Nullable<int> managementId, Nullable<int> managementSupervisorCode, Nullable<int> managementSellerCode)
+        public virtual ObjectResult<SP_GET_AGENT_STATISTIC_Result> SP_GET_AGENT_STATISTIC(Nullable<int> agentCode, string nameId)
         {
-            var managementIdParameter = managementId.HasValue ?
-                new ObjectParameter("ManagementId", managementId) :
-                new ObjectParameter("ManagementId", typeof(int));
+            var agentCodeParameter = agentCode.HasValue ?
+                new ObjectParameter("AgentCode", agentCode) :
+                new ObjectParameter("AgentCode", typeof(int));
     
-            var managementSupervisorCodeParameter = managementSupervisorCode.HasValue ?
-                new ObjectParameter("ManagementSupervisorCode", managementSupervisorCode) :
-                new ObjectParameter("ManagementSupervisorCode", typeof(int));
+            var nameIdParameter = nameId != null ?
+                new ObjectParameter("NameId", nameId) :
+                new ObjectParameter("NameId", typeof(string));
     
-            var managementSellerCodeParameter = managementSellerCode.HasValue ?
-                new ObjectParameter("ManagementSellerCode", managementSellerCode) :
-                new ObjectParameter("ManagementSellerCode", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GET_AGENT_STATISTIC_Result>("SP_GET_AGENT_STATISTIC", agentCodeParameter, nameIdParameter);
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GET_MANAGEMENT_Result>("SP_GET_MANAGEMENT", managementIdParameter, managementSupervisorCodeParameter, managementSellerCodeParameter);
+        public virtual ObjectResult<SP_GET_AGENT_AND_MANAGEMENT_INFORMATION_Result> SP_GET_AGENT_AND_MANAGEMENT_INFORMATION(Nullable<int> agentId, string agentCode, Nullable<int> bL, string nameId, Nullable<bool> isExecutiveRol)
+        {
+            var agentIdParameter = agentId.HasValue ?
+                new ObjectParameter("AgentId", agentId) :
+                new ObjectParameter("AgentId", typeof(int));
+    
+            var agentCodeParameter = agentCode != null ?
+                new ObjectParameter("AgentCode", agentCode) :
+                new ObjectParameter("AgentCode", typeof(string));
+    
+            var bLParameter = bL.HasValue ?
+                new ObjectParameter("BL", bL) :
+                new ObjectParameter("BL", typeof(int));
+    
+            var nameIdParameter = nameId != null ?
+                new ObjectParameter("NameId", nameId) :
+                new ObjectParameter("NameId", typeof(string));
+    
+            var isExecutiveRolParameter = isExecutiveRol.HasValue ?
+                new ObjectParameter("isExecutiveRol", isExecutiveRol) :
+                new ObjectParameter("isExecutiveRol", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GET_AGENT_AND_MANAGEMENT_INFORMATION_Result>("SP_GET_AGENT_AND_MANAGEMENT_INFORMATION", agentIdParameter, agentCodeParameter, bLParameter, nameIdParameter, isExecutiveRolParameter);
         }
     }
 }

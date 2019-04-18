@@ -16,7 +16,15 @@ namespace SellersManagement.Entities
         public System.DateTime ManagementDate { get; set; }
         public int ManagementResultsIdSelected { get; set; }
         public int ManagementTypeIdSelected { get; set; }
-
+        public Nullable<bool> ShowToSupervisor { get; set; }
+        public Nullable<int> Management_Supervisor_Code { get; set; }
+        public string Management_Seller_Code { get; set; }
+        
+        public string Suggested_Improvement { get; set; }
+        public Nullable<System.DateTime> Management_Date { get; set; }
+             
+        public Nullable<int> Management_Id { get; set; }
+        public Nullable<bool> isProspect { get; set; }
 
         public class parameters
         {
@@ -28,6 +36,8 @@ namespace SellersManagement.Entities
             public string comment { get; set; }
             public string suggestedImprovement { get; set; }
             public Nullable<int> createUserId { get; set; }
+            public Nullable<int> ManagedBy { get; set; }
+            public Nullable<bool> ShowToSupervisor { get; set; }
         }
     }
 }

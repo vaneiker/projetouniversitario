@@ -1,0 +1,111 @@
+﻿@model SellersManagement.Models.AgentInfomation
+@{
+    ViewBag.Title = "Detalle Gestión";
+}
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    Detalle Gestión
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <div class="accordion-body">
+
+                    <h1>Detalle Gestión</h1>
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Código</label>
+                                    <input type="text" class="form-control " id="txtAgentCode" readonly="readonly" value="@Model.AgentCode">
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Vendedor</label>
+                                    <input type="text" class="form-control " id="txtAgentName" readonly="readonly" value="@Model.FullName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Canal</label>
+                                    <input type="text" class="form-control " id="txtAgentChannel" readonly="readonly" value="@Model.AgentChannel">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Oficina</label>
+                                    <input type="text" class="form-control " id="txtAgentOffice" readonly="readonly" value="@Model.AgentOffices">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Teléfono(s)</label>
+                                    <input type="text" class="form-control " id="txtAgentPhone" readonly="readonly" value="@Model.Phones">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Tipo</label>
+                                    <input type="text" class="form-control " id="txtAgenTypeManagement" readonly="readonly" value="@Model.TypeManagement">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Resultado</label>
+                                    <input type="text" class="form-control" id="txtAgenResultManagement" readonly="readonly" value="@Model.ResultManagement">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Comentario</label>
+                                    <textarea class="form-control " rows="5" cols="3" id="txtCommentManagement" readonly="readonly">@Html.Raw(Model.Comment)</textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Mejora Sugerida - que le duele</label>
+                                    <textarea class="form-control" rows="5" cols="3" id="txtSuggestedImprovementManagement" readonly="readonly">@Html.Raw(Model.SuggestedImprovement)</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        @*
+                        <div class="form-row">
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="form-row">
+                        </div>
+                        <div class="form-row">
+                        </div>
+                        <div class="form-row">
+                        </div>
+                        *@
+                    </form>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-primary btnSave">Guardar</button>*@
+                        <a href="@Url.Action("Index","Home")" class="btn btn-secundary-st" id="btnCancel">
+                            Volver
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-top: 37px">
+</div>

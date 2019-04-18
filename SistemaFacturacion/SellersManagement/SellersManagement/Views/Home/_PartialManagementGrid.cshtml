@@ -1,0 +1,57 @@
+﻿@model SellersManagement.Models.ViewModels.ManagementGridViewModel
+
+
+@Html.Hidden("hdnHasError", Model.HasError)
+@Html.Hidden("hdnMessageError", Model.MessageError)
+
+@{
+    var gridManagements = new WebGrid(source: Model.Managements, defaultSort: "name", ajaxUpdateContainerId: "dvManagementGrid", ajaxUpdateCallback: "SetManagementGridPagination();", canPage: true, rowsPerPage: 10, canSort: false);
+}
+<div class="table-responsive">
+    @Html.Hidden("hdnDataColumns", Model.ColumnsNameJson)
+
+    <div id="dvManagementGrid" style="width:100%!important; min-width:1700px;">
+        @gridManagements.GetHtml(
+            displayHeader: true,
+            tableStyle: "table table-striped table-light text-center float-left w-100",
+            headerStyle: "webgrid-header",
+            alternatingRowStyle: "webgrid-alternating-row",
+            selectedRowStyle: "select",
+            rowStyle: "webgrid-row-style",
+            htmlAttributes: new { id = "managementsGrid" },
+            fillEmptyRows: false,
+            mode: WebGridPagerModes.All,
+            columns: gridManagements.Columns(
+                gridManagements.Column(
+                    header: "",
+                    style: "WebGridCheckAndBtn",
+                    format: @<text>
+                                <div class="btn-group" role="group" aria-label="...">
+                                    @*<span id="myRow">
+                                    </span>*@
+                                    <a data-json="@item.DataJson" href="#" class="btn btn-primary-st" id="linkCode_New">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                        Nuevo
+                                    </a>
+                                    <a style='@((item.showDetailManagement ? "display:inline-block" : "display : none"))' href="@Url.Action("AgentInfoDetail", "Agent", new { smID = @item.SellerManagementId })" class="btn btn-info">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        Ver
+                                    </a>
+                                </div>
+                            </text>
+                ),
+                gridManagements.Column("AgentCode", "Código", style: "text-center select-filter"),
+                gridManagements.Column("FullName", "Vendedor", style: "text-left"),
+                gridManagements.Column("AgentChannel", "Canal", style: "text-left"),
+                gridManagements.Column("AgentOffices", "Oficina", style: "text-left"),
+                gridManagements.Column("Phones", "Teléfono(s)", style: "text-left"),
+                gridManagements.Column("Supervisor", "Supervisor", style: "text-left"),
+                gridManagements.Column("ManagementDate", "Fecha", style: "text-left"),
+                gridManagements.Column("TypeManagement", "Tipo", style: "text-left"),
+                gridManagements.Column("ResultManagement", "Resultado", style: "text-left"),
+                gridManagements.Column(header: "", format: @<text>@Html.Hidden("hdnCurrentPage", Model.CurrentPage)@Html.Hidden("hdnLastPage", Model.LastPage)</text>, style: "text-center")
+            )
+        )
+    </div>
+</div>
+

@@ -1,0 +1,174 @@
+﻿@{
+    ViewBag.Title = "Nuevo Registro";
+
+    string readOnly = "readonly=\"readonly\"";
+    string isAProspect = "false";
+    string textProspect = "";
+
+    if (ViewBag.isAProspect == true)
+    {
+        readOnly = "";
+        isAProspect = "true";
+        textProspect = "N/A";
+
+    }
+}
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Nuevo Registro
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <div class="accordion-body">
+
+                    <h1>Nuevo Registro</h1>
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Código</label>
+                                    <input type="text" class="form-control toclean" id="txtAgentCode" readonly="readonly" value="@ViewBag.AgentCode">
+                                    @*<small id="txtAgentCodeHelp" class="form-text text-muted">Presione la tecla de "Enter/Intro" luego de escribir el Código.</small>*@
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Vendedor</label>
+                                    <input type="text" class="form-control toclean" id="txtAgentName" @Html.Raw(readOnly) value="@ViewBag.AgentName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Canal</label>
+
+                                    @if (isAProspect == "true")
+                                    {
+                                        <input type="text" class="form-control toclean" id="txtAgentChannel" readonly="readonly" value="N/A">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control toclean" id="txtAgentChannel" @Html.Raw(readOnly) value="@ViewBag.AgentChannel">
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Oficina</label>
+                                    @if (isAProspect == "true")
+                                    {
+                                        <input type="text" class="form-control toclean" id="txtAgentOffice" readonly="readonly" value="N/A">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control toclean" id="txtAgentOffice" @Html.Raw(readOnly) value="@ViewBag.AgentOffice">
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Teléfono(s)</label>
+                                    <input type="text" class="form-control toclean" id="txtAgentPhone" @Html.Raw(readOnly) value="@ViewBag.AgentPhone">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Tipo</label>
+                                    @Html.DropDownList("dropAgenTypeManagement", (SelectList)ViewBag.ActivitiTypes, "Seleccionar", new { @class = "dropdown form-control tocleanDrop" })
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Resultado</label>
+                                    @Html.DropDownList("dropAgenResultManagement", (SelectList)ViewBag.Results, "Seleccionar", new { @class = "dropdown form-control tocleanDrop" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Comentario</label>
+                                    <textarea class="form-control toclean" rows="3" cols="3" id="txtCommentManagement"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Mejora Sugerida - que le duele</label>
+                                    <textarea class="form-control toclean" rows="3" cols="3" id="txtSuggestedImprovementManagement"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                @if (ViewBag.showCheckSuper == true)
+                                {
+                                    <div class="form-group">
+                                        <label for="">¿Mostrar Gestión al Supervisor?</label>
+                                        <input type="checkbox" checked="checked" id="showGestion" class="checkbox-inline toclean" value="" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        @*
+                        <div class="form-row">
+                        </div>
+                        <div class="row"></div>
+                        <div class="form-row">
+                        </div>
+                        <div class="row"></div>
+                        <div class="form-row">
+                        </div>
+                        <div class="row"></div>
+                        <div class="form-row">
+                        </div>
+                        *@
+                        <input type="hidden" id="hdnisAProspect" value="@isAProspect" />
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary-st btnSave">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            Guardar
+                        </button>
+                        <button type="button" class="btn btn-secundary-st" data-dismiss="modal" id="btnCancel">
+                            Cancelar
+                        </button>
+                    </div>
+                    @if (ViewBag.showStatistic == true)
+                    {
+                        <fieldset>
+                            Estadística
+                            <div class="alertas" id="rowHeaderYear">
+                                <div style="width:160px; float:left"></div>
+                            </div>
+                            <div>
+                                <table class="table table-striped table-light text-center float-left w-100" cellspacing="0" id="AgentStatistic">
+                                    <thead></thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </fieldset>
+                    }
+                    <input type="hidden" value="@ViewBag.SupervisorCode" id="SupervisorCode" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-top: 37px">
+</div>
+<script>
+    $(document).ready(function () {
+        getStatisticHeader();
+        searchAgentStatisticData();
+    });
+</script>
