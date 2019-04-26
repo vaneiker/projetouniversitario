@@ -1,0 +1,85 @@
+@using  AppContest.FrontEnd
+<div class="jumbotron">
+    <h1><span id="titleAtl">Atlantica Seguros</span></h1>
+    <div class="container">
+        <div class="row">
+            <table>
+                <tr>
+                    <td>
+                        <a href="https://www.atlantica.do/" class="btn btn-primary btn-lg">Participa y gana &raquo;</a>
+
+                        @Ajax.RawActionLink("Generar","_GeneralRandomPolicy","Home",null,new AjaxOptions()
+                        {
+                            UpdateTargetId = "generalAleatorio", // <-- DOM element ID to update
+                            InsertionMode = InsertionMode.Replace, // <-- Replace the content of DOM element
+                            HttpMethod = "GET" // <-- HTTP method
+                        }, htmlAttributes: new { @class = "btn btn-success btn-lg" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+namespace AppContest.FrontEnd
+{
+    public static class Healper
+    {
+
+        public static MvcHtmlString RawActionLink(this AjaxHelper ajaxHelper, string linkText, string actionName, string controllerName, object routeValues, AjaxOptions ajaxOptions, object htmlAttributes)
+        {
+            var repID = Guid.NewGuid().ToString();
+            var lnk = ajaxHelper.ActionLink(repID, actionName, controllerName, routeValues, ajaxOptions, htmlAttributes);
+            return MvcHtmlString.Create(lnk.ToString().Replace(repID, linkText));
+        } 
+    }
+}
+</div>
+
+USE [POS_SITE]
+GO
+
+/****** Object:  View [POS].[WIEW_GET_POLICY_NO_RANDOM]    Script Date: 4/26/2019 5:07:30 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO 
+
+ALTER  VIEW [POS].[WIEW_GET_POLICY_NO_RANDOM]
+
+AS
+
+SELECT * FROM POS.CONTEST
+GO
+
+
+USE [POS_SITE]
+GO
+
+/****** Object:  Table [POS].[CONTEST]    Script Date: 4/26/2019 5:07:42 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [POS].[CONTEST](
+	[Poliza] [varchar](20) NOT NULL,
+	[NombreCliente] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Poliza] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+
