@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="width:90%; margin:0 auto">
+    @*Area de Busqueda *@
+
+    <div style="background-color:#f5f5f5; padding:20px;">
+        <h2>Panel de Busqueda</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td> Ship Name </td>
+                    <td><input type="text" id="txtBuscarShipName" class="form-control" /></td>
+                    <td> Ship Name </td>
+                    <td>
+                        <select id="ddCompani" class="form-control" style="width:200px;">
+                            <option value="">Seleccionar</option>
+                            <option value="DHL">DHL</option>
+                            <option value="FedEx">FedEx</option>
+                            <option value="UPS">UPS</option>
+                            <option value="USPS">USPS</option>
+                            <option value="Personal">Personal</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="button" id="btnBuscarShipName" class="btn btn-success" value="Search" />
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <table id="mitable" class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Carrier Name</th>
+                    <th>Account Number</th>
+                    <th>Shipment Number</th>
+                    <th>Shipment Date</th>
+                    <th>Ship Package Type</th>
+                    <th>Operator</th>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#mitabla').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "orderMulti": false,
+                "dom": '<"top"i>rt<"buttom"lp><"clear">',
+                "ajax": {
+                    "url": "/ShipLogs/LoadData",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "CarrierName", "name": "CarrierName", "autoWidth": true },
+                    { "data": "AccountNumber", "name": "AccountNumber", "autoWidth": true },
+                    { "data": "ShipmentNumber", "name": "ShipmentNumber", "autoWidth": true },
+                    { "data": "ShipmentDate", "name": "ShipmentDate", "autoWidth": true },
+                    { "data": "ShipPackageType", "name": "ShipPackageType", "autoWidth": true },
+                    { "data": "Operator", "name": "Operator", "autoWidth": true },
+                    { "data": "Sender", "name": "Sender", "autoWidth": true },
+                    { "data": "Receiver", "name": "Receiver", "autoWidth": true },
+                ]
+            });
+
+            oTable = $('#mitabla').DataTable();
+            $('#btnBuscarShipName').click(function () {
+
+                oTable.columns(0).search($('#txtBuscarShipName').val().trim());
+                oTable.columns(1).search($('#ddCompani').val().trim());
+
+                oTable.draw();
+            });
+
+
+        });
+    </script>
+</div>
