@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ShipLogs.Entity.Entity.ShipmentViewModel>
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/dataTables.min.css" rel="stylesheet" />
+@{
+
+    Layout = null;
+}
+<div style="width:90%; margin:0 auto">
+    @*Area de Busqueda *@
+
+    <div style="background-color:#f5f5f5; padding:20px;">
+        <h2>Panel de Busqueda</h2>
+        <table>
+            <tr>
+                <th>
+                    @Html.DropDownList("ShipmentNumber", (SelectList)ViewBag.ShipmentNumber, "", new { @class = "dropdown form-control", @data_placeholder = "Shipment Number" })
+                </th>
+                <th>
+                    @Html.DropDownList("CarrierName", (SelectList)ViewBag.CarrierName, "", new { @class = "dropdown form-control", @data_placeholder = "Carrier Name" })
+                </th>
+                <th>
+                    @Html.DropDownList("Operat", (SelectList)ViewBag.Operat, "", new { @class = "dropdown form-control", @data_placeholder = "Operatos" })
+                </th>
+                <th>
+                    @Html.DropDownList("Incoming", (SelectList)ViewBag.Incoming, "", new { @class = "dropdown form-control", @data_placeholder = "Incoming" })
+                </th>
+                <th>
+                    <input type="button" id="btnBuscarShipName" class="btn btn-success" value="Search" />
+                </th>
+            </tr>
+        </table>
+    </div>
+    <table id="ShipdataTables" class="table table-striped table-light text-center float-left w-100" cellspacing="0" style="width:100%!important; min-width:1000px;">
+        <thead>
+            <tr>
+                <th>Carrier Name</th>
+                <th>Shipment Number</th>
+                <th>Shipment Date</th>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Log Type</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.CarrierName</td>
+                    <td>@x.ShipmentNumber</td>
+                    <td>@x.ShipmentDate</td>
+                    <td>@x.Sender</td>
+                    <td>@x.Receiver</td>
+                    <td>@x.Incoming</td>
+                    <td>
+                        <input type="button" id="txtSearch" value="Edit" onclick="CargarShipLogsjs('@HttpUtility.UrlEncode(Url.Encode(Tools.Encode(Newtonsoft.Json.JsonConvert.SerializeObject(x.ShipUniqueID))))')" class="btn btn-warning" title="Edit" />
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <div>
+
+    </div>
+
+
+ 
+    <script src="~/Scripts/Table/jquery.js"></script>
+    <script src="~/Scripts/Table/dataTables.min.js"></script>
+
+    <script>
+        function CargarShipLogsjs(id) {
+            var url = "/ShipLogs/CargarShipLogs?data=" + id;
+            location.href = url;
+        }
+
+        $(document).ready(function () {
+
+            $(document).ready(function () {
+                $('#ShipdataTables').DataTable();
+            });
+        }
+    </script>
+</div>

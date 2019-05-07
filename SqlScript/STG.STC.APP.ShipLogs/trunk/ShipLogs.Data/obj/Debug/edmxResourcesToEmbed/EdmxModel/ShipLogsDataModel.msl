@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShipLogsModelStoreContainer" CdmEntityContainer="ShipLogs_Entities">
+    <EntitySetMapping Name="AssigneToPersonals">
+      <EntityTypeMapping TypeName="ShipLogsModel.AssigneToPersonal">
+        <MappingFragment StoreEntitySet="AssigneToPersonal">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameAssigne" ColumnName="NameAssigne" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carriers">
+      <EntityTypeMapping TypeName="ShipLogsModel.Carrier">
+        <MappingFragment StoreEntitySet="Carriers">
+          <ScalarProperty Name="CarrierUniqueID" ColumnName="CarrierUniqueID" />
+          <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dtproperties">
+      <EntityTypeMapping TypeName="ShipLogsModel.dtproperty">
+        <MappingFragment StoreEntitySet="dtproperties">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="objectid" ColumnName="objectid" />
+          <ScalarProperty Name="property" ColumnName="property" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="uvalue" ColumnName="uvalue" />
+          <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+          <ScalarProperty Name="version" ColumnName="version" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipmentDetails">
+      <EntityTypeMapping TypeName="ShipLogsModel.ShipmentDetail">
+        <MappingFragment StoreEntitySet="ShipmentDetails">
+          <ScalarProperty Name="DetailUniqueID" ColumnName="DetailUniqueID" />
+          <ScalarProperty Name="ShipUniqueID" ColumnName="ShipUniqueID" />
+          <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+          <ScalarProperty Name="ItemDetail" ColumnName="ItemDetail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipments">
+      <EntityTypeMapping TypeName="ShipLogsModel.Shipment">
+        <MappingFragment StoreEntitySet="Shipments">
+          <ScalarProperty Name="ShipUniqueID" ColumnName="ShipUniqueID" />
+          <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="ShipmentNumber" ColumnName="ShipmentNumber" />
+          <ScalarProperty Name="ShipmentDate" ColumnName="ShipmentDate" />
+          <ScalarProperty Name="ShipmentWeight" ColumnName="ShipmentWeight" />
+          <ScalarProperty Name="ShipmentQTY" ColumnName="ShipmentQTY" />
+          <ScalarProperty Name="ShipPackageType" ColumnName="ShipPackageType" />
+          <ScalarProperty Name="Operator" ColumnName="Operator" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+          <ScalarProperty Name="ReceiverAttn" ColumnName="ReceiverAttn" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverCity" ColumnName="ReceiverCity" />
+          <ScalarProperty Name="ReceiverState" ColumnName="ReceiverState" />
+          <ScalarProperty Name="ReceiverZipCode" ColumnName="ReceiverZipCode" />
+          <ScalarProperty Name="ReceiverCountry" ColumnName="ReceiverCountry" />
+          <ScalarProperty Name="ReceiverPhoneNumber" ColumnName="ReceiverPhoneNumber" />
+          <ScalarProperty Name="ShipmentComments" ColumnName="ShipmentComments" />
+          <ScalarProperty Name="Transit" ColumnName="Transit" />
+          <ScalarProperty Name="Incoming" ColumnName="Incoming" />
+          <ScalarProperty Name="CommissionChecks" ColumnName="CommissionChecks" />
+          <ScalarProperty Name="Materials" ColumnName="Materials" />
+          <ScalarProperty Name="OtherContents" ColumnName="OtherContents" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AddressBooks">
+      <EntityTypeMapping TypeName="ShipLogsModel.AddressBook">
+        <MappingFragment StoreEntitySet="AddressBook">
+          <ScalarProperty Name="UniqueAddressID" ColumnName="UniqueAddressID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ATTN" ColumnName="ATTN" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="MaxWeeklyShipments" ColumnName="MaxWeeklyShipments" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAtWorkstation" ColumnName="CreatedAtWorkstation" />
+          <ScalarProperty Name="CreatedByUser" ColumnName="CreatedByUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAtWorkstation" ColumnName="ModifiedAtWorkstation" />
+          <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipmentFiles">
+      <EntityTypeMapping TypeName="ShipLogsModel.ShipmentFile">
+        <MappingFragment StoreEntitySet="ShipmentFiles">
+          <ScalarProperty Name="ShipUniqueID" ColumnName="ShipUniqueID" />
+          <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="ShipmentNumber" ColumnName="ShipmentNumber" />
+          <ScalarProperty Name="ShipmentDate" ColumnName="ShipmentDate" />
+          <ScalarProperty Name="ReceiverCompany" ColumnName="ReceiverCompany" />
+          <ScalarProperty Name="ReceiverDepartment" ColumnName="ReceiverDepartment" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverCity" ColumnName="ReceiverCity" />
+          <ScalarProperty Name="ReceiverState" ColumnName="ReceiverState" />
+          <ScalarProperty Name="ReceiverZipCode" ColumnName="ReceiverZipCode" />
+          <ScalarProperty Name="ReceiverCountry" ColumnName="ReceiverCountry" />
+          <ScalarProperty Name="ReceiverPhoneNumber" ColumnName="ReceiverPhoneNumber" />
+          <ScalarProperty Name="ReceiverAttentionTo" ColumnName="ReceiverAttentionTo" />
+          <ScalarProperty Name="BillToAccountNumber" ColumnName="BillToAccountNumber" />
+          <ScalarProperty Name="PackageWeight" ColumnName="PackageWeight" />
+          <ScalarProperty Name="PackageDescription" ColumnName="PackageDescription" />
+          <ScalarProperty Name="CustomsValue" ColumnName="CustomsValue" />
+          <ScalarProperty Name="PieceCount" ColumnName="PieceCount" />
+          <ScalarProperty Name="ServiceDescription" ColumnName="ServiceDescription" />
+          <ScalarProperty Name="EstFreightChgs" ColumnName="EstFreightChgs" />
+          <ScalarProperty Name="EstOtherChgs" ColumnName="EstOtherChgs" />
+          <ScalarProperty Name="EstTotalChgs" ColumnName="EstTotalChgs" />
+          <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_FILL_DROPDOWN" FunctionName="ShipLogsModel.Store.SP_FILL_DROPDOWN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShipLogsModel.SP_FILL_DROPDOWN_Result">
+          <ScalarProperty Name="IdAlf" ColumnName="IdAlf" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FROM_Shipment" FunctionName="ShipLogsModel.Store.SP_FROM_Shipment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShipLogsModel.SP_FROM_Shipment_Result">
+          <ScalarProperty Name="ShipUniqueID" ColumnName="ShipUniqueID" />
+          <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="ShipmentNumber" ColumnName="ShipmentNumber" />
+          <ScalarProperty Name="ShipmentDate" ColumnName="ShipmentDate" />
+          <ScalarProperty Name="ShipmentWeight" ColumnName="ShipmentWeight" />
+          <ScalarProperty Name="ShipmentQTY" ColumnName="ShipmentQTY" />
+          <ScalarProperty Name="ShipPackageType" ColumnName="ShipPackageType" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+          <ScalarProperty Name="ReceiverAttn" ColumnName="ReceiverAttn" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverCity" ColumnName="ReceiverCity" />
+          <ScalarProperty Name="ReceiverState" ColumnName="ReceiverState" />
+          <ScalarProperty Name="ReceiverZipCode" ColumnName="ReceiverZipCode" />
+          <ScalarProperty Name="ReceiverCountry" ColumnName="ReceiverCountry" />
+          <ScalarProperty Name="ReceiverPhoneNumber" ColumnName="ReceiverPhoneNumber" />
+          <ScalarProperty Name="ShipmentComments" ColumnName="ShipmentComments" />
+          <ScalarProperty Name="Transit" ColumnName="Transit" />
+          <ScalarProperty Name="Incoming" ColumnName="Incoming" />
+          <ScalarProperty Name="CommissionChecks" ColumnName="CommissionChecks" />
+          <ScalarProperty Name="Materials" ColumnName="Materials" />
+          <ScalarProperty Name="OtherContents" ColumnName="OtherContents" />
+          <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+          <ScalarProperty Name="ItemDetail" ColumnName="ItemDetail" />
+          <ScalarProperty Name="DetailUniqueID" ColumnName="DetailUniqueID" />
+          <ScalarProperty Name="Operat" ColumnName="Operat" />
+          <ScalarProperty Name="ShipUniqueID1" ColumnName="ShipUniqueID1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_SHIPMENT_DETAIL_SAVE" FunctionName="ShipLogsModel.Store.SP_SET_SHIPMENT_DETAIL_SAVE" />
+    <FunctionImportMapping FunctionImportName="SP_SET_SHIPMENT_DETAIL_UPDATE" FunctionName="ShipLogsModel.Store.SP_SET_SHIPMENT_DETAIL_UPDATE" />
+    <FunctionImportMapping FunctionImportName="SP_SET_SHIPMENTS_UPDATE_INSERT" FunctionName="ShipLogsModel.Store.SP_SET_SHIPMENTS_UPDATE_INSERT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShipLogsModel.SP_SET_SHIPMENTS_UPDATE_INSERT_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="IdAlf" ColumnName="IdAlf" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ShipmentErrorsFile" FunctionName="ShipLogsModel.Store.sp_ShipmentErrorsFile" />
+    <FunctionImportMapping FunctionImportName="sp_ShipmentMatch" FunctionName="ShipLogsModel.Store.sp_ShipmentMatch" />
+    <FunctionImportMapping FunctionImportName="sp_ShipmentMatchTotal" FunctionName="ShipLogsModel.Store.sp_ShipmentMatchTotal" />
+    <FunctionImportMapping FunctionImportName="sp_ShipmentMismatch" FunctionName="ShipLogsModel.Store.sp_ShipmentMismatch" />
+    <FunctionImportMapping FunctionImportName="sp_ShipmentMismatchTotal" FunctionName="ShipLogsModel.Store.sp_ShipmentMismatchTotal" />
+    <FunctionImportMapping FunctionImportName="sp_ShipmentOfficeSender" FunctionName="ShipLogsModel.Store.sp_ShipmentOfficeSender">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShipLogsModel.sp_ShipmentOfficeSender_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MaxWeeklyShipments" ColumnName="MaxWeeklyShipments" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ShipmentQuantityGreaterThan" FunctionName="ShipLogsModel.Store.sp_ShipmentQuantityGreaterThan">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShipLogsModel.sp_ShipmentQuantityGreaterThan_Result">
+          <ScalarProperty Name="ShipmentNumber" ColumnName="ShipmentNumber" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+          <ScalarProperty Name="ShipmentWeight" ColumnName="ShipmentWeight" />
+          <ScalarProperty Name="PackageWeight" ColumnName="PackageWeight" />
+          <ScalarProperty Name="ShipmentQTY" ColumnName="ShipmentQTY" />
+          <ScalarProperty Name="PieceCount" ColumnName="PieceCount" />
+          <ScalarProperty Name="ReceiverCompany" ColumnName="ReceiverCompany" />
+          <ScalarProperty Name="ShipPackageType" ColumnName="ShipPackageType" />
+          <ScalarProperty Name="ShipmentDate" ColumnName="ShipmentDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ShipmentSaveFile" FunctionName="ShipLogsModel.Store.sp_ShipmentSaveFile" />
+    <FunctionImportMapping FunctionImportName="sp_ShipmentTotalShipments" FunctionName="ShipLogsModel.Store.sp_ShipmentTotalShipments" />
+  </EntityContainerMapping>
+</Mapping>

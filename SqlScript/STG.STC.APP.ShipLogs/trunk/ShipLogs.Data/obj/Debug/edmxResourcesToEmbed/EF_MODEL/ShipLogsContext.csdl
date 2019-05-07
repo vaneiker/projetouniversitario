@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShipLogsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Carrier">
+    <Key>
+      <PropertyRef Name="CarrierName" />
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="CarrierUniqueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarrierName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="dtproperty">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="objectid" Type="Int32" />
+    <Property Name="property" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="uvalue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="lvalue" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="version" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShipmentDetail">
+    <Key>
+      <PropertyRef Name="DetailUniqueID" />
+    </Key>
+    <Property Name="DetailUniqueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShipUniqueID" Type="Int32" />
+    <Property Name="AssignedTo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ItemDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Shipment" Relationship="Self.FK_ShipmentDetails_Shipments" FromRole="ShipmentDetails" ToRole="Shipments" />
+  </EntityType>
+  <EntityType Name="Shipment">
+    <Key>
+      <PropertyRef Name="ShipUniqueID" />
+    </Key>
+    <Property Name="ShipUniqueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarrierName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="AccountNumber" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Name="ShipmentNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ShipmentDate" Type="DateTime" Precision="3" />
+    <Property Name="ShipmentWeight" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ShipmentQTY" Type="Int32" />
+    <Property Name="ShipPackageType" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Operator" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="Sender" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ReceiverAttn" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ReceiverAddress" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+    <Property Name="ReceiverCity" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="ReceiverState" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="ReceiverZipCode" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ReceiverCountry" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ReceiverPhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ShipmentComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Transit" Type="Boolean" />
+    <Property Name="Incoming" Type="Boolean" />
+    <Property Name="CommissionChecks" Type="Boolean" />
+    <Property Name="Materials" Type="Boolean" />
+    <Property Name="OtherContents" Type="Boolean" />
+    <NavigationProperty Name="ShipmentDetails" Relationship="Self.FK_ShipmentDetails_Shipments" FromRole="Shipments" ToRole="ShipmentDetails" />
+  </EntityType>
+  <EntityType Name="AddressBook">
+    <Key>
+      <PropertyRef Name="UniqueAddressID" />
+    </Key>
+    <Property Name="UniqueAddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ATTN" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="MaxWeeklyShipments" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedAtWorkstation" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="CreatedByUser" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedAtWorkstation" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="ModifiedByUser" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ShipmentFile">
+    <Key>
+      <PropertyRef Name="ShipUniqueID" />
+    </Key>
+    <Property Name="ShipUniqueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarrierName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="LoginID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShipmentNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ShipmentDate" Type="DateTime" Precision="3" />
+    <Property Name="ReceiverCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiverAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiverCity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiverState" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiverZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiverCountry" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiverPhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiverAttentionTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BillToAccountNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="PackageWeight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PackageDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomsValue" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="PieceCount" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EstFreightChgs" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="EstOtherChgs" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="EstTotalChgs" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SentBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_ShipmentDetails_Shipments">
+    <End Role="Shipments" Type="Self.Shipment" Multiplicity="0..1" />
+    <End Role="ShipmentDetails" Type="Self.ShipmentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipments">
+        <PropertyRef Name="ShipUniqueID" />
+      </Principal>
+      <Dependent Role="ShipmentDetails">
+        <PropertyRef Name="ShipUniqueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShipLogsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Carriers" EntityType="Self.Carrier" />
+    <EntitySet Name="dtproperties" EntityType="Self.dtproperty" />
+    <EntitySet Name="ShipmentDetails" EntityType="Self.ShipmentDetail" />
+    <EntitySet Name="Shipments" EntityType="Self.Shipment" />
+    <EntitySet Name="AddressBooks" EntityType="Self.AddressBook" />
+    <EntitySet Name="ShipmentFiles" EntityType="Self.ShipmentFile" />
+    <AssociationSet Name="FK_ShipmentDetails_Shipments" Association="Self.FK_ShipmentDetails_Shipments">
+      <End Role="Shipments" EntitySet="Shipments" />
+      <End Role="ShipmentDetails" EntitySet="ShipmentDetails" />
+    </AssociationSet>
+    <FunctionImport Name="dt_addtosourcecontrol" ReturnType="Collection(String)">
+      <Parameter Name="vchSourceSafeINI" Mode="In" Type="String" />
+      <Parameter Name="vchProjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_addtosourcecontrol_u" ReturnType="Collection(String)">
+      <Parameter Name="vchSourceSafeINI" Mode="In" Type="String" />
+      <Parameter Name="vchProjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_adduserobject" />
+    <FunctionImport Name="dt_adduserobject_vcs">
+      <Parameter Name="vchProperty" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_checkinobject">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+      <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+      <Parameter Name="txStream1" Mode="In" Type="String" />
+      <Parameter Name="txStream2" Mode="In" Type="String" />
+      <Parameter Name="txStream3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_checkinobject_u">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+      <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+      <Parameter Name="txStream1" Mode="In" Type="String" />
+      <Parameter Name="txStream2" Mode="In" Type="String" />
+      <Parameter Name="txStream3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_checkoutobject">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+      <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_checkoutobject_u">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+      <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_displayoaerror">
+      <Parameter Name="iObject" Mode="In" Type="Int32" />
+      <Parameter Name="iresult" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_displayoaerror_u">
+      <Parameter Name="iObject" Mode="In" Type="Int32" />
+      <Parameter Name="iresult" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_droppropertiesbyid">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_dropuserobjectbyid">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_generateansiname">
+      <Parameter Name="name" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getobjwithprop" ReturnType="Collection(Int32)">
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="value" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getobjwithprop_u" ReturnType="Collection(Int32)">
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="uvalue" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getpropertiesbyid" ReturnType="Collection(ShipLogsModel.dt_getpropertiesbyid_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getpropertiesbyid_u" ReturnType="Collection(ShipLogsModel.dt_getpropertiesbyid_u_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getpropertiesbyid_vcs">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="value" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getpropertiesbyid_vcs_u">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="value" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_isundersourcecontrol">
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iWhoToo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_isundersourcecontrol_u">
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iWhoToo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_removefromsourcecontrol" />
+    <FunctionImport Name="dt_setpropertybyid">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="value" Mode="In" Type="String" />
+      <Parameter Name="lvalue" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="dt_setpropertybyid_u">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="uvalue" Mode="In" Type="String" />
+      <Parameter Name="lvalue" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="dt_validateloginparams">
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_validateloginparams_u">
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_vcsenabled" />
+    <FunctionImport Name="dt_verstamp006" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="dt_verstamp007" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="dt_whocheckedout" ReturnType="Collection(String)">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_whocheckedout_u" ReturnType="Collection(String)">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ShipmentErrorsFile">
+      <Parameter Name="carrierCompany" Mode="In" Type="String" />
+      <Parameter Name="office" Mode="In" Type="String" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ShipmentMatch">
+      <Parameter Name="carrierCompany" Mode="In" Type="String" />
+      <Parameter Name="office" Mode="In" Type="String" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ShipmentMatchTotal">
+      <Parameter Name="carrierCompany" Mode="In" Type="String" />
+      <Parameter Name="office" Mode="In" Type="String" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ShipmentMismatch">
+      <Parameter Name="carrierCompany" Mode="In" Type="String" />
+      <Parameter Name="office" Mode="In" Type="String" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ShipmentMismatchTotal">
+      <Parameter Name="carrierCompany" Mode="In" Type="String" />
+      <Parameter Name="office" Mode="In" Type="String" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ShipmentOfficeSender" ReturnType="Collection(ShipLogsModel.sp_ShipmentOfficeSender_Result)" />
+    <FunctionImport Name="sp_ShipmentQuantityGreaterThan" ReturnType="Collection(ShipLogsModel.sp_ShipmentQuantityGreaterThan_Result)">
+      <Parameter Name="carrierCompany" Mode="In" Type="String" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ShipmentSaveFile">
+      <Parameter Name="CarrierName" Mode="In" Type="String" />
+      <Parameter Name="AccountNumber" Mode="In" Type="String" />
+      <Parameter Name="LoginID" Mode="In" Type="String" />
+      <Parameter Name="ShipmentNumber" Mode="In" Type="String" />
+      <Parameter Name="ShipmentDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ReceiverCompany" Mode="In" Type="String" />
+      <Parameter Name="ReceiverDepartment" Mode="In" Type="String" />
+      <Parameter Name="ReceiverAddress" Mode="In" Type="String" />
+      <Parameter Name="ReceiverCity" Mode="In" Type="String" />
+      <Parameter Name="ReceiverState" Mode="In" Type="String" />
+      <Parameter Name="ReceiverZipCode" Mode="In" Type="String" />
+      <Parameter Name="ReceiverCountry" Mode="In" Type="String" />
+      <Parameter Name="ReceiverPhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="ReceiverAttentionTo" Mode="In" Type="String" />
+      <Parameter Name="BillToAccountNumber" Mode="In" Type="String" />
+      <Parameter Name="PackageWeight" Mode="In" Type="String" />
+      <Parameter Name="PackageDescription" Mode="In" Type="String" />
+      <Parameter Name="CustomsValue" Mode="In" Type="String" />
+      <Parameter Name="PieceCount" Mode="In" Type="String" />
+      <Parameter Name="ServiceDescription" Mode="In" Type="String" />
+      <Parameter Name="EstFreightChgs" Mode="In" Type="String" />
+      <Parameter Name="EstOtherChgs" Mode="In" Type="String" />
+      <Parameter Name="EstTotalChgs" Mode="In" Type="String" />
+      <Parameter Name="SentBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ShipmentTotalShipments">
+      <Parameter Name="carrierCompany" Mode="In" Type="String" />
+      <Parameter Name="office" Mode="In" Type="String" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="AssigneToPersonals" EntityType="ShipLogsModel.AssigneToPersonal" />
+    <FunctionImport Name="SP_FILL_DROPDOWN" ReturnType="Collection(ShipLogsModel.SP_FILL_DROPDOWN_Result)">
+      <Parameter Name="DropDownType" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="dt_getpropertiesbyid_Result">
+    <Property Type="String" Name="property" Nullable="false" MaxLength="64" />
+    <Property Type="Int32" Name="version" Nullable="false" />
+    <Property Type="String" Name="value" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="lvalue" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="dt_getpropertiesbyid_u_Result">
+    <Property Type="String" Name="property" Nullable="false" MaxLength="64" />
+    <Property Type="Int32" Name="version" Nullable="false" />
+    <Property Type="String" Name="uvalue" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="lvalue" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="sp_ShipmentOfficeSender_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="MaxWeeklyShipments" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_ShipmentQuantityGreaterThan_Result">
+    <Property Type="String" Name="ShipmentNumber" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Sender" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SentBy" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="ShipmentWeight" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="PackageWeight" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="ShipmentQTY" Nullable="true" />
+    <Property Type="String" Name="PieceCount" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="ReceiverCompany" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ShipPackageType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ShipmentDate" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <EntityType Name="AssigneToPersonal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameAssigne" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="SP_FILL_DROPDOWN_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShipLogsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ShipLogs.dbo.AddressBook' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AddressBook">
+    <Key>
+      <PropertyRef Name="UniqueAddressID" />
+    </Key>
+    <Property Name="UniqueAddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="ATTN" Type="nchar" MaxLength="50" />
+    <Property Name="Address" Type="text" />
+    <Property Name="City" Type="nchar" MaxLength="40" />
+    <Property Name="State" Type="nchar" MaxLength="40" />
+    <Property Name="ZipCode" Type="nchar" MaxLength="20" />
+    <Property Name="Country" Type="nchar" MaxLength="20" />
+    <Property Name="PhoneNumber" Type="nchar" MaxLength="20" />
+    <Property Name="MaxWeeklyShipments" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedAtWorkstation" Type="nchar" MaxLength="30" />
+    <Property Name="CreatedByUser" Type="nchar" MaxLength="30" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedAtWorkstation" Type="nchar" MaxLength="30" />
+    <Property Name="ModifiedByUser" Type="nchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="AssigneToPersonal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameAssigne" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Carriers">
+    <Key>
+      <PropertyRef Name="CarrierName" />
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="CarrierUniqueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarrierName" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="AccountNumber" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Comments" Type="text" />
+  </EntityType>
+  <EntityType Name="dtproperties">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="objectid" Type="int" />
+    <Property Name="property" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="value" Type="varchar" MaxLength="255" />
+    <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
+    <Property Name="lvalue" Type="image" />
+    <Property Name="version" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShipmentDetails">
+    <Key>
+      <PropertyRef Name="DetailUniqueID" />
+    </Key>
+    <Property Name="DetailUniqueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShipUniqueID" Type="int" />
+    <Property Name="AssignedTo" Type="nchar" MaxLength="20" />
+    <Property Name="ItemDetail" Type="text" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ShipmentFiles">
+    <Key>
+      <PropertyRef Name="ShipUniqueID" />
+    </Key>
+    <Property Name="ShipUniqueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarrierName" Type="varchar" MaxLength="20" />
+    <Property Name="AccountNumber" Type="varchar" MaxLength="15" />
+    <Property Name="LoginID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ShipmentNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="ShipmentDate" Type="datetime" />
+    <Property Name="ReceiverCompany" Type="varchar" MaxLength="50" />
+    <Property Name="ReceiverDepartment" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReceiverAddress" Type="nvarchar" MaxLength="150" />
+    <Property Name="ReceiverCity" Type="nvarchar" MaxLength="30" />
+    <Property Name="ReceiverState" Type="nvarchar" MaxLength="30" />
+    <Property Name="ReceiverZipCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ReceiverCountry" Type="nvarchar" MaxLength="30" />
+    <Property Name="ReceiverPhoneNumber" Type="nvarchar" MaxLength="10" />
+    <Property Name="ReceiverAttentionTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="BillToAccountNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="PackageWeight" Type="nvarchar" MaxLength="10" />
+    <Property Name="PackageDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomsValue" Type="nvarchar" MaxLength="5" />
+    <Property Name="PieceCount" Type="nvarchar" MaxLength="5" />
+    <Property Name="ServiceDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="EstFreightChgs" Type="nvarchar" MaxLength="10" />
+    <Property Name="EstOtherChgs" Type="nvarchar" MaxLength="10" />
+    <Property Name="EstTotalChgs" Type="nvarchar" MaxLength="10" />
+    <Property Name="SentBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Shipments">
+    <Key>
+      <PropertyRef Name="ShipUniqueID" />
+    </Key>
+    <Property Name="ShipUniqueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarrierName" Type="nchar" MaxLength="20" />
+    <Property Name="AccountNumber" Type="nchar" MaxLength="12" />
+    <Property Name="ShipmentNumber" Type="nchar" MaxLength="20" />
+    <Property Name="ShipmentDate" Type="datetime" />
+    <Property Name="ShipmentWeight" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="ShipmentQTY" Type="int" />
+    <Property Name="ShipPackageType" Type="nchar" MaxLength="20" />
+    <Property Name="Operator" Type="nchar" MaxLength="16" />
+    <Property Name="Sender" Type="nchar" MaxLength="50" />
+    <Property Name="Receiver" Type="nchar" MaxLength="50" />
+    <Property Name="ReceiverAttn" Type="nchar" MaxLength="50" />
+    <Property Name="ReceiverAddress" Type="nchar" MaxLength="150" />
+    <Property Name="ReceiverCity" Type="nchar" MaxLength="40" />
+    <Property Name="ReceiverState" Type="nchar" MaxLength="40" />
+    <Property Name="ReceiverZipCode" Type="nchar" MaxLength="20" />
+    <Property Name="ReceiverCountry" Type="nchar" MaxLength="20" />
+    <Property Name="ReceiverPhoneNumber" Type="nchar" MaxLength="20" />
+    <Property Name="ShipmentComments" Type="text" />
+    <Property Name="Transit" Type="bit" />
+    <Property Name="Incoming" Type="bit" />
+    <Property Name="CommissionChecks" Type="bit" />
+    <Property Name="Materials" Type="bit" />
+    <Property Name="OtherContents" Type="bit" />
+  </EntityType>
+  <Association Name="FK_ShipmentDetails_Shipments">
+    <End Role="Shipments" Type="Self.Shipments" Multiplicity="0..1" />
+    <End Role="ShipmentDetails" Type="Self.ShipmentDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipments">
+        <PropertyRef Name="ShipUniqueID" />
+      </Principal>
+      <Dependent Role="ShipmentDetails">
+        <PropertyRef Name="ShipUniqueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_FILL_DROPDOWN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DropDownType" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_FROM_Shipment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShipmentNumberParameter" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_SHIPMENT_DETAIL_SAVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
+    <Parameter Name="AssignedTo" Type="nchar" Mode="In" />
+    <Parameter Name="ItemDetail" Type="text" Mode="In" />
+    <Parameter Name="operation" Type="varchar" Mode="In" />
+    <Parameter Name="DetailUniqueID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_SHIPMENT_DETAIL_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
+    <Parameter Name="AssignedTo" Type="nchar" Mode="In" />
+    <Parameter Name="ItemDetail" Type="text" Mode="In" />
+    <Parameter Name="operation" Type="varchar" Mode="In" />
+    <Parameter Name="DetailUniqueID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_SHIPMENTS_UPDATE_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
+    <Parameter Name="CarrierName" Type="nchar" Mode="In" />
+    <Parameter Name="AccountNumber" Type="nchar" Mode="In" />
+    <Parameter Name="ShipmentNumber" Type="nchar" Mode="In" />
+    <Parameter Name="ShipmentDate" Type="datetime" Mode="In" />
+    <Parameter Name="ShipmentWeight" Type="numeric" Mode="In" />
+    <Parameter Name="ShipmentQTY" Type="int" Mode="In" />
+    <Parameter Name="ShipPackageType" Type="nchar" Mode="In" />
+    <Parameter Name="Operator" Type="nchar" Mode="In" />
+    <Parameter Name="Sender" Type="nchar" Mode="In" />
+    <Parameter Name="Receiver" Type="nchar" Mode="In" />
+    <Parameter Name="ReceiverAttn" Type="nchar" Mode="In" />
+    <Parameter Name="ReceiverAddress" Type="nchar" Mode="In" />
+    <Parameter Name="ReceiverCity" Type="nchar" Mode="In" />
+    <Parameter Name="ReceiverState" Type="nchar" Mode="In" />
+    <Parameter Name="ReceiverZipCode" Type="nchar" Mode="In" />
+    <Parameter Name="ReceiverCountry" Type="nchar" Mode="In" />
+    <Parameter Name="ReceiverPhoneNumber" Type="nchar" Mode="In" />
+    <Parameter Name="ShipmentComments" Type="text" Mode="In" />
+    <Parameter Name="Transit" Type="bit" Mode="In" />
+    <Parameter Name="Incoming" Type="bit" Mode="In" />
+    <Parameter Name="CommissionChecks" Type="bit" Mode="In" />
+    <Parameter Name="Materials" Type="bit" Mode="In" />
+    <Parameter Name="OtherContents" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_ShipmentErrorsFile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="carrierCompany" Type="varchar" Mode="In" />
+    <Parameter Name="office" Type="varchar" Mode="In" />
+    <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="dateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ShipmentMatch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="carrierCompany" Type="varchar" Mode="In" />
+    <Parameter Name="office" Type="varchar" Mode="In" />
+    <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="dateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ShipmentMatchTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="carrierCompany" Type="varchar" Mode="In" />
+    <Parameter Name="office" Type="varchar" Mode="In" />
+    <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="dateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ShipmentMismatch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="carrierCompany" Type="varchar" Mode="In" />
+    <Parameter Name="office" Type="varchar" Mode="In" />
+    <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="dateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ShipmentMismatchTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="carrierCompany" Type="varchar" Mode="In" />
+    <Parameter Name="office" Type="varchar" Mode="In" />
+    <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="dateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ShipmentOfficeSender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ShipmentQuantityGreaterThan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="carrierCompany" Type="varchar" Mode="In" />
+    <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="dateTo" Type="datetime" Mode="In" />
+    <Parameter Name="quantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ShipmentSaveFile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CarrierName" Type="varchar" Mode="In" />
+    <Parameter Name="AccountNumber" Type="varchar" Mode="In" />
+    <Parameter Name="LoginID" Type="varchar" Mode="In" />
+    <Parameter Name="ShipmentNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ShipmentDate" Type="datetime" Mode="In" />
+    <Parameter Name="ReceiverCompany" Type="varchar" Mode="In" />
+    <Parameter Name="ReceiverDepartment" Type="varchar" Mode="In" />
+    <Parameter Name="ReceiverAddress" Type="varchar" Mode="In" />
+    <Parameter Name="ReceiverCity" Type="varchar" Mode="In" />
+    <Parameter Name="ReceiverState" Type="varchar" Mode="In" />
+    <Parameter Name="ReceiverZipCode" Type="varchar" Mode="In" />
+    <Parameter Name="ReceiverCountry" Type="varchar" Mode="In" />
+    <Parameter Name="ReceiverPhoneNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ReceiverAttentionTo" Type="varchar" Mode="In" />
+    <Parameter Name="BillToAccountNumber" Type="varchar" Mode="In" />
+    <Parameter Name="PackageWeight" Type="varchar" Mode="In" />
+    <Parameter Name="PackageDescription" Type="varchar" Mode="In" />
+    <Parameter Name="CustomsValue" Type="varchar" Mode="In" />
+    <Parameter Name="PieceCount" Type="varchar" Mode="In" />
+    <Parameter Name="ServiceDescription" Type="varchar" Mode="In" />
+    <Parameter Name="EstFreightChgs" Type="varchar" Mode="In" />
+    <Parameter Name="EstOtherChgs" Type="varchar" Mode="In" />
+    <Parameter Name="EstTotalChgs" Type="varchar" Mode="In" />
+    <Parameter Name="SentBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ShipmentTotalShipments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="carrierCompany" Type="varchar" Mode="In" />
+    <Parameter Name="office" Type="varchar" Mode="In" />
+    <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="dateTo" Type="datetime" Mode="In" />
+    <Parameter Name="quantity" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="ShipLogsModelStoreContainer">
+    <EntitySet Name="AssigneToPersonal" EntityType="Self.AssigneToPersonal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Carriers" EntityType="Self.Carriers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dtproperties" EntityType="Self.dtproperties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipmentDetails" EntityType="Self.ShipmentDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shipments" EntityType="Self.Shipments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AddressBook" EntityType="Self.AddressBook" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AddressBook].[UniqueAddressID] AS [UniqueAddressID], 
+    [AddressBook].[Name] AS [Name], 
+    [AddressBook].[ATTN] AS [ATTN], 
+    [AddressBook].[Address] AS [Address], 
+    [AddressBook].[City] AS [City], 
+    [AddressBook].[State] AS [State], 
+    [AddressBook].[ZipCode] AS [ZipCode], 
+    [AddressBook].[Country] AS [Country], 
+    [AddressBook].[PhoneNumber] AS [PhoneNumber], 
+    [AddressBook].[MaxWeeklyShipments] AS [MaxWeeklyShipments], 
+    [AddressBook].[CreatedDate] AS [CreatedDate], 
+    [AddressBook].[CreatedAtWorkstation] AS [CreatedAtWorkstation], 
+    [AddressBook].[CreatedByUser] AS [CreatedByUser], 
+    [AddressBook].[ModifiedDate] AS [ModifiedDate], 
+    [AddressBook].[ModifiedAtWorkstation] AS [ModifiedAtWorkstation], 
+    [AddressBook].[ModifiedByUser] AS [ModifiedByUser]
+    FROM [dbo].[AddressBook] AS [AddressBook]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ShipmentFiles" EntityType="Self.ShipmentFiles" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ShipmentFiles].[ShipUniqueID] AS [ShipUniqueID], 
+    [ShipmentFiles].[CarrierName] AS [CarrierName], 
+    [ShipmentFiles].[AccountNumber] AS [AccountNumber], 
+    [ShipmentFiles].[LoginID] AS [LoginID], 
+    [ShipmentFiles].[ShipmentNumber] AS [ShipmentNumber], 
+    [ShipmentFiles].[ShipmentDate] AS [ShipmentDate], 
+    [ShipmentFiles].[ReceiverCompany] AS [ReceiverCompany], 
+    [ShipmentFiles].[ReceiverDepartment] AS [ReceiverDepartment], 
+    [ShipmentFiles].[ReceiverAddress] AS [ReceiverAddress], 
+    [ShipmentFiles].[ReceiverCity] AS [ReceiverCity], 
+    [ShipmentFiles].[ReceiverState] AS [ReceiverState], 
+    [ShipmentFiles].[ReceiverZipCode] AS [ReceiverZipCode], 
+    [ShipmentFiles].[ReceiverCountry] AS [ReceiverCountry], 
+    [ShipmentFiles].[ReceiverPhoneNumber] AS [ReceiverPhoneNumber], 
+    [ShipmentFiles].[ReceiverAttentionTo] AS [ReceiverAttentionTo], 
+    [ShipmentFiles].[BillToAccountNumber] AS [BillToAccountNumber], 
+    [ShipmentFiles].[PackageWeight] AS [PackageWeight], 
+    [ShipmentFiles].[PackageDescription] AS [PackageDescription], 
+    [ShipmentFiles].[CustomsValue] AS [CustomsValue], 
+    [ShipmentFiles].[PieceCount] AS [PieceCount], 
+    [ShipmentFiles].[ServiceDescription] AS [ServiceDescription], 
+    [ShipmentFiles].[EstFreightChgs] AS [EstFreightChgs], 
+    [ShipmentFiles].[EstOtherChgs] AS [EstOtherChgs], 
+    [ShipmentFiles].[EstTotalChgs] AS [EstTotalChgs], 
+    [ShipmentFiles].[SentBy] AS [SentBy]
+    FROM [dbo].[ShipmentFiles] AS [ShipmentFiles]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ShipmentDetails_Shipments" Association="Self.FK_ShipmentDetails_Shipments">
+      <End Role="Shipments" EntitySet="Shipments" />
+      <End Role="ShipmentDetails" EntitySet="ShipmentDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

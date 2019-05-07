@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ShipLogs.Data.EF_MODEL;
+
+namespace ShipLogs.Data
+{
+   public class ShioLogsManagerDataContext
+    {
+        private ShipLogsEntities _ShioLogsManagerDataContext;
+
+        public  ShipLogsEntities shioLogsManagerDataContext
+        {
+            get
+            {
+                return _ShioLogsManagerDataContext ?? new ShipLogsEntities();
+            }
+        }
+        public ShioLogsManagerDataContext(string ConnStr = "")
+        {
+
+        } 
+
+    }
+}
