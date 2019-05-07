@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Declarative_InvoicesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Declarative_InvoicesEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SP_GET_QUEUE" ReturnType="Collection(Declarative_InvoicesModel.SP_GET_QUEUE_Result)">
+      <Parameter Name="Policy" Mode="In" Type="String" />
+      <Parameter Name="DateBilling" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_INVOICE_DETAIL_DATA" ReturnType="Collection(Declarative_InvoicesModel.SP_SET_INVOICE_DETAIL_DATA_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Invoice_Detail_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Item" Mode="In" Type="Int32" />
+      <Parameter Name="Client_Name" Mode="In" Type="String" />
+      <Parameter Name="Make_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Make_Name" Mode="In" Type="String" />
+      <Parameter Name="Model_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Model_Name" Mode="In" Type="String" />
+      <Parameter Name="Year" Mode="In" Type="Int32" />
+      <Parameter Name="Chassis" Mode="In" Type="String" />
+      <Parameter Name="Plate" Mode="In" Type="String" />
+      <Parameter Name="Date_Process" Mode="In" Type="DateTime" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_INVOICE_HEADER_DATA" ReturnType="Collection(Declarative_InvoicesModel.SP_SET_INVOICE_HEADER_DATA_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="CoreQuotNumber" Mode="In" Type="Int64" />
+      <Parameter Name="SecuenciaMov" Mode="In" Type="Int32" />
+      <Parameter Name="Invoice_Number" Mode="In" Type="String" />
+      <Parameter Name="Invoice_Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="Invoicing_Period" Mode="In" Type="DateTime" />
+      <Parameter Name="Last_Exclusion" Mode="In" Type="DateTime" />
+      <Parameter Name="Last_Inclusion" Mode="In" Type="DateTime" />
+      <Parameter Name="User_Id" Mode="In" Type="Int32" />
+      <Parameter Name="initial_Date" Mode="In" Type="DateTime" />
+      <Parameter Name="End_Date" Mode="In" Type="DateTime" />
+      <Parameter Name="PolicyInfoId" Mode="In" Type="Int32" />
+      <Parameter Name="PeriodPolicyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_PERIOD_INVOICED">
+      <Parameter Name="PolicyInfoId" Mode="In" Type="Int32" />
+      <Parameter Name="PeriodId" Mode="In" Type="Int32" />
+      <Parameter Name="ProcessDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_PERIODS" ReturnType="Collection(Declarative_InvoicesModel.SP_GET_PERIODS_Result)">
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_HISTORIC" ReturnType="Collection(Declarative_InvoicesModel.SP_GET_HISTORIC_Result)">
+      <Parameter Name="Policy" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_GET_QUEUE_Result">
+    <Property Type="String" Name="Poliza" Nullable="false" MaxLength="20" />
+    <Property Type="Int64" Name="Cotizacion" Nullable="false" />
+    <Property Type="String" Name="Asegurado" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="PeriodoFacturacion" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="ItemsActivos" Nullable="false" />
+    <Property Type="DateTime" Name="FechaFacturacion" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="MontoUltFactura" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="FechaUltFactura" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UltExclusion" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UltInclusion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="PeriodoInicio" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="PeriodoFin" Nullable="false" Precision="23" />
+    <Property Type="String" Name="EstatusPeriodo" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="PeriodId" Nullable="false" />
+    <Property Type="Int32" Name="PeriodPolicyId" Nullable="false" />
+    <Property Type="String" Name="Intermediario" Nullable="false" MaxLength="303" />
+  </ComplexType>
+  <ComplexType Name="SP_SET_INVOICE_DETAIL_DATA_Result">
+    <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_SET_INVOICE_HEADER_DATA_Result">
+    <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_PERIODS_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Period_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="Billing_Date" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_HISTORIC_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Poliza" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Asegurado" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="PeriodoFacturacion" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="PeriodoFechaFin" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="FechaFacturacion" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ItemsFacturados" Nullable="false" />
+    <Property Type="Decimal" Name="MontoUltFactura" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="FechaUltFactura" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UltExclusion" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UltInclusion" Nullable="true" Precision="23" />
+    <Property Type="Int64" Name="Cotizacion" Nullable="false" />
+    <Property Type="DateTime" Name="PeriodoInicio" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="PeriodoFin" Nullable="false" Precision="23" />
+    <Property Type="String" Name="EstatusPeriodo" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="PeriodId" Nullable="false" />
+    <Property Type="String" Name="Invoice_Number" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

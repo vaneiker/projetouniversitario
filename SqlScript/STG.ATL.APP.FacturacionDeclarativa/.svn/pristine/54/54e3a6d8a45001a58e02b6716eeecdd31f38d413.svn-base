@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | Atlantica Seguros</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/SecurityCss.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+</head>
+<body>
+    @*<div id="loading">
+            <div class="imgloading">
+                <img src="~/Content/images/loading.gif" alt="Loading" class="img-fluid" />
+            </div>
+        </div>*@
+    <div id="st-container" class="st-container">
+        @Html.Partial("_SlideMenuAgent")
+        <div class="st-pusher">
+            <div class="">
+                <!--boton abre y cierra el canvas-->
+                <div id="st-trigger-effects">
+                    <button data-effect="st-effect-2" id="btnLoadProfile" class="show_profile_es" onclick="GetUserProfileDataMVC(true);"> </button>
+                </div>
+                @*<div id="scroll_2">*@
+                <header>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <a href="/" title="Atlantica Seguros" class="logo">
+                                <img src="~/Content/images/logo.svg" class="img-fluid" />
+                                <span class="letter">
+                                    Facturación Declarativa
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
+                            <nav class="navbar navbar-expand-lg navbar-light">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Queue/Index">
+                                                <span class="icon queue"></span>
+                                                <span class="txt_lb">
+                                                    Queue
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Queue/History">
+                                                <span class="icon history-icon"></span>
+                                                <span class="txt_lb">
+                                                    Historico
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Queue/Search">
+                                                <span class="icon search"></span>
+                                                <span class="txt_lb">
+                                                    Consultar
+                                                </span>
+                                            </a>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="icon mainteince"></span>
+                                                <span class="txt_lb">
+                                                    Mantenimiento
+                                                </span>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="#">
+                                                    Mantenimiento 1
+                                                </a>
+                                                <a class="dropdown-item" href="#">
+                                                    Mantenimiento 2
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">
+                                                    Mantenimiento 3
+                                                </a>
+                                            </div>
+                                        </li>
+                                        -->
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+                <div id="content" class="st-container-body">
+                    @RenderBody()
+                </div>
+                @*</div>*@
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_PopUps")
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TitleModal">
+                        <i class="fas fa-search"></i>
+                        Busqueda
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @*<script src="~/Scripts/jquery-ui.js"></script>*@
+    <script src="~/Scripts/Security/jquery.countdownTimer.min.js"></script>
+    <script src="~/Scripts/Security/jquery.nestedAccordion.js"></script>
+    <script src="~/Scripts/Security/jquery.nicescroll.min.js"></script>
+    <script src="~/Scripts/Security/jquery.notify.min.js"></script>
+
+    <script src="~/Scripts/datepicker-es.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/moment-with-locales.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="~/Scripts/Utility.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    <script src="~/Scripts/ControllerJs/Custom.js?t=@DateTime.Now.Ticks.ToString()"></script>
+    @*<script src="~/Scripts/ControllerJs/Policy.js?t=@DateTime.Now.Ticks.ToString()"></script>*@
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

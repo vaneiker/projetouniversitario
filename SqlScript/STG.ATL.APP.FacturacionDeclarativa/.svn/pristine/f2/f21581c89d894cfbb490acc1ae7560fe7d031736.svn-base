@@ -1,0 +1,178 @@
+﻿@using Declarative.Invoicing.CustomCode;
+@model List<Declarative.Invoicing.Entities.Queue>
+@{
+    ViewBag.Title = "Queue";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-database"></i>
+                    Queue
+                </button>
+            </h2>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Póliza</label>
+                            <div>
+                                <input id="txtQueuePolicy" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Periodo facturación</label>
+                            <div>
+                                @*<input id="txtQueueDate" type="text" class="form-control form-control-sm mydatepicker" />*@
+                                @Html.DropDownList("ddlQueueDate", (SelectList)ViewBag.allPeriods, "Seleccionar", new { @class = "form-control form-control-sm" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Asegurado</label>
+                            <div>
+                                <input id="txtQueueInsured" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Intermediario</label>
+                            <div>
+                                <input id="txtQueueAgent" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                            <button class="btn btn-primary-st btn-sm mt-bottom">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>*@
+                </div>
+                <div class="table-responsive">
+                    <table id="tblQueue" class="table table-striped2" style="border-collapse: collapse !important;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Póliza</th>
+                                <th>Asegurado</th>
+                                <th>Intermediario</th>
+                                <th>Periodo facturación</th>
+                                @*<th>Items activos</th>*@
+                                <th>Fecha de facturación</th>
+                                @*<th>Monto última factura</th>
+                                <th>Fecha última factura</th>
+                                <th>Última exclusión</th>
+                                <th>Última inclusión</th>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var q in Model)
+                            {
+                                <tr>
+                                    <td class="text-center" width="260px">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+
+                                            <a href="javascript:void(0);" class="btn btn-primary-st btn-sm btnPolicyDetail" data-plno="@Utility.Encode(q.poliza)" data-pdata="@(Utility.Encode(q.periodoInicio.Date + "|" + q.periodoFin.Date +
+                                                                       "|" + q.periodoFacturacion + "|" + q.id + "|" + q.periodId + "|" + q.periodPolicyId))" title="Ver poliza">
+                                                <i class="fas fa-eye"></i>
+                                                Ver Poliza
+                                            </a>
+
+                                            @*<a href="@Url.Action("Index", "Policy", new { Policy = Utility.Encode(q.poliza), Period = Utility.Encode(q.periodoInicio.Date + "|" + q.periodoFin.Date + "|" + q.periodoFacturacion + "|" + q.id + "|" + q.periodId) })" class="btn btn-primary-st btn-sm btnPolicyDetail" title="Ver poliza">
+                                                <i class="fas fa-eye"></i>
+                                                Ver Poliza
+                                                </a>*@
+
+
+                                            <a href="javascript:void(0);" class="btn btn-secundary-st btn-sm btnInvoices" title="Facturas" data-plno="@Utility.Encode(q.poliza)">
+                                                <i class="fas fa-file-alt"></i>
+                                                Facturas
+                                            </a>
+                                            <a href="javascript:void(0);" class="btn btn-info btn-sm btnAllPolicyItems" title="Items" data-plno="@Utility.Encode(q.poliza)">
+                                                <i class="fas fa-car"></i>
+                                                Items
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td width="10%" class="text-center">@Html.Raw(q.poliza)</td>
+                                    <td width="30%" class="text-center">@Html.Raw(q.asegurado)</td>
+                                    <td class="text-center">@Html.Raw(q.intermediario)</td>
+                                    <td class="text-center">@Html.Raw(q.periodoFacturacion)</td>
+                                    @*<td class="text-center">@Html.Raw(q.itemsActivos)</td>*@
+                                    <td class="text-center">@Html.Raw(q.fechaFacturacion.GetValueOrDefault().ToString("dd") + " de cada mes")</td>
+                                    @*<td class="text-left" width="10%">@Html.Raw("RD$ " + q.montoUltFactura.GetValueOrDefault().ToString("#,0.00", System.Globalization.CultureInfo.InvariantCulture))</td>
+                                    <td class="text-center">
+                                        @if (q.fechaUltFactura.HasValue)
+                                        {
+                                            @Html.Raw(q.fechaUltFactura.GetValueOrDefault().ToString("dd/MM/yyyy"));
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("-");
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (q.ultExclusion.HasValue)
+                                        {
+                                            @Html.Raw(q.ultExclusion.GetValueOrDefault().ToString("dd/MM/yyyy"));
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("-");
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (q.ultInclusion.HasValue)
+                                        {
+                                            @Html.Raw(q.ultInclusion.GetValueOrDefault().ToString("dd/MM/yyyy"));
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("-");
+                                        }
+                                    </td>*@
+                                </tr>
+                            }
+                            @*<tr>
+                                    <td class="text-center" width="260px">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="/Policy/Index/1" class="btn btn-primary-st btn-sm" title="Ver poliza">
+                                                <i class="fas fa-eye"></i>
+                                                Ver Poliza
+                                            </a>
+                                            <a href="#" class="btn btn-secundary-st btn-sm" title="Facturas" data-toggle="modal" data-target="#invoices_modal">
+                                                <i class="fas fa-file-alt"></i>
+                                                Facturas
+                                            </a>
+                                            <a href="#" class="btn btn-info btn-sm" title="Items" data-toggle="modal" data-target="#items_modal">
+                                                <i class="fas fa-car"></i>
+                                                Items
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td width="10%">01-114-114898</td>
+                                    <td width="30%">LC CORREDORES DE SEGUROS</td>
+                                    <td class="text-center">03/12</td>
+                                    <td class="text-center">10</td>
+                                    <td>18 de cada mes</td>
+                                    <td class="text-center">RD$ 45,000.0000</td>
+                                    <td class="text-center">18/02/2019</td>
+                                    <td class="text-center">10/02/2019</td>
+                                    <td class="text-center">12/02/2019</td>
+                                </tr>*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Declarative_InvoicesModelStoreContainer" CdmEntityContainer="Declarative_InvoicesEntities">
+    <FunctionImportMapping FunctionImportName="SP_GET_QUEUE" FunctionName="Declarative_InvoicesModel.Store.SP_GET_QUEUE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_GET_QUEUE_Result">
+          <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+          <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+          <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
+          <ScalarProperty Name="PeriodoFacturacion" ColumnName="PeriodoFacturacion" />
+          <ScalarProperty Name="ItemsActivos" ColumnName="ItemsActivos" />
+          <ScalarProperty Name="FechaFacturacion" ColumnName="FechaFacturacion" />
+          <ScalarProperty Name="MontoUltFactura" ColumnName="MontoUltFactura" />
+          <ScalarProperty Name="FechaUltFactura" ColumnName="FechaUltFactura" />
+          <ScalarProperty Name="UltExclusion" ColumnName="UltExclusion" />
+          <ScalarProperty Name="UltInclusion" ColumnName="UltInclusion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PeriodoInicio" ColumnName="PeriodoInicio" />
+          <ScalarProperty Name="PeriodoFin" ColumnName="PeriodoFin" />
+          <ScalarProperty Name="EstatusPeriodo" ColumnName="EstatusPeriodo" />
+          <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+          <ScalarProperty Name="PeriodPolicyId" ColumnName="PeriodPolicyId" />
+          <ScalarProperty Name="Intermediario" ColumnName="Intermediario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_INVOICE_DETAIL_DATA" FunctionName="Declarative_InvoicesModel.Store.SP_SET_INVOICE_DETAIL_DATA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_SET_INVOICE_DETAIL_DATA_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_INVOICE_HEADER_DATA" FunctionName="Declarative_InvoicesModel.Store.SP_SET_INVOICE_HEADER_DATA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_SET_INVOICE_HEADER_DATA_Result">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SET_PERIOD_INVOICED" FunctionName="Declarative_InvoicesModel.Store.SP_SET_PERIOD_INVOICED" />
+    <FunctionImportMapping FunctionImportName="SP_GET_PERIODS" FunctionName="Declarative_InvoicesModel.Store.SP_GET_PERIODS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_GET_PERIODS_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Period_Name" ColumnName="Period_Name" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Billing_Date" ColumnName="Billing_Date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_HISTORIC" FunctionName="Declarative_InvoicesModel.Store.SP_GET_HISTORIC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_GET_HISTORIC_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+          <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
+          <ScalarProperty Name="PeriodoFacturacion" ColumnName="PeriodoFacturacion" />
+          <ScalarProperty Name="PeriodoFechaFin" ColumnName="PeriodoFechaFin" />
+          <ScalarProperty Name="FechaFacturacion" ColumnName="FechaFacturacion" />
+          <ScalarProperty Name="ItemsFacturados" ColumnName="ItemsFacturados" />
+          <ScalarProperty Name="MontoUltFactura" ColumnName="MontoUltFactura" />
+          <ScalarProperty Name="FechaUltFactura" ColumnName="FechaUltFactura" />
+          <ScalarProperty Name="UltExclusion" ColumnName="UltExclusion" />
+          <ScalarProperty Name="UltInclusion" ColumnName="UltInclusion" />
+          <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+          <ScalarProperty Name="PeriodoInicio" ColumnName="PeriodoInicio" />
+          <ScalarProperty Name="PeriodoFin" ColumnName="PeriodoFin" />
+          <ScalarProperty Name="EstatusPeriodo" ColumnName="EstatusPeriodo" />
+          <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+          <ScalarProperty Name="Invoice_Number" ColumnName="Invoice_Number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

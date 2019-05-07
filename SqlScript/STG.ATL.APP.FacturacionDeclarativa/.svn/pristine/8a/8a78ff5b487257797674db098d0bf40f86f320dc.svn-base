@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Declarative_InvoicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="SP_GET_HISTORIC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Policy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_PERIODS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_QUEUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Policy" Type="varchar" Mode="In" />
+          <Parameter Name="DateBilling" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_INVOICE_DETAIL_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Invoice_Detail_Id" Type="int" Mode="In" />
+          <Parameter Name="Item" Type="int" Mode="In" />
+          <Parameter Name="Client_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Make_Id" Type="int" Mode="In" />
+          <Parameter Name="Make_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Model_Id" Type="int" Mode="In" />
+          <Parameter Name="Model_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Year" Type="int" Mode="In" />
+          <Parameter Name="Chassis" Type="varchar" Mode="In" />
+          <Parameter Name="Plate" Type="varchar" Mode="In" />
+          <Parameter Name="Date_Process" Type="datetime" Mode="In" />
+          <Parameter Name="Amount" Type="decimal" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_INVOICE_HEADER_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="CoreQuotNumber" Type="bigint" Mode="In" />
+          <Parameter Name="SecuenciaMov" Type="int" Mode="In" />
+          <Parameter Name="Invoice_Number" Type="varchar" Mode="In" />
+          <Parameter Name="Invoice_Amount" Type="decimal" Mode="In" />
+          <Parameter Name="Invoicing_Period" Type="datetime" Mode="In" />
+          <Parameter Name="Last_Exclusion" Type="datetime" Mode="In" />
+          <Parameter Name="Last_Inclusion" Type="datetime" Mode="In" />
+          <Parameter Name="User_Id" Type="int" Mode="In" />
+          <Parameter Name="initial_Date" Type="datetime" Mode="In" />
+          <Parameter Name="End_Date" Type="datetime" Mode="In" />
+          <Parameter Name="PolicyInfoId" Type="int" Mode="In" />
+          <Parameter Name="PeriodPolicyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SET_PERIOD_INVOICED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PolicyInfoId" Type="int" Mode="In" />
+          <Parameter Name="PeriodId" Type="int" Mode="In" />
+          <Parameter Name="ProcessDate" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="Declarative_InvoicesModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Declarative_InvoicesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Declarative_InvoicesEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="SP_GET_QUEUE" ReturnType="Collection(Declarative_InvoicesModel.SP_GET_QUEUE_Result)">
+            <Parameter Name="Policy" Mode="In" Type="String" />
+            <Parameter Name="DateBilling" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_INVOICE_DETAIL_DATA" ReturnType="Collection(Declarative_InvoicesModel.SP_SET_INVOICE_DETAIL_DATA_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Invoice_Detail_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Item" Mode="In" Type="Int32" />
+            <Parameter Name="Client_Name" Mode="In" Type="String" />
+            <Parameter Name="Make_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Make_Name" Mode="In" Type="String" />
+            <Parameter Name="Model_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Model_Name" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+            <Parameter Name="Chassis" Mode="In" Type="String" />
+            <Parameter Name="Plate" Mode="In" Type="String" />
+            <Parameter Name="Date_Process" Mode="In" Type="DateTime" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_INVOICE_HEADER_DATA" ReturnType="Collection(Declarative_InvoicesModel.SP_SET_INVOICE_HEADER_DATA_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="CoreQuotNumber" Mode="In" Type="Int64" />
+            <Parameter Name="SecuenciaMov" Mode="In" Type="Int32" />
+            <Parameter Name="Invoice_Number" Mode="In" Type="String" />
+            <Parameter Name="Invoice_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="Invoicing_Period" Mode="In" Type="DateTime" />
+            <Parameter Name="Last_Exclusion" Mode="In" Type="DateTime" />
+            <Parameter Name="Last_Inclusion" Mode="In" Type="DateTime" />
+            <Parameter Name="User_Id" Mode="In" Type="Int32" />
+            <Parameter Name="initial_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="End_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="PolicyInfoId" Mode="In" Type="Int32" />
+            <Parameter Name="PeriodPolicyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SET_PERIOD_INVOICED">
+            <Parameter Name="PolicyInfoId" Mode="In" Type="Int32" />
+            <Parameter Name="PeriodId" Mode="In" Type="Int32" />
+            <Parameter Name="ProcessDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_PERIODS" ReturnType="Collection(Declarative_InvoicesModel.SP_GET_PERIODS_Result)">
+          <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_HISTORIC" ReturnType="Collection(Declarative_InvoicesModel.SP_GET_HISTORIC_Result)">
+          <Parameter Name="Policy" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_GET_QUEUE_Result">
+          <Property Type="String" Name="Poliza" Nullable="false" MaxLength="20" />
+          <Property Type="Int64" Name="Cotizacion" Nullable="false" />
+          <Property Type="String" Name="Asegurado" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PeriodoFacturacion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="ItemsActivos" Nullable="false" />
+          <Property Type="DateTime" Name="FechaFacturacion" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="MontoUltFactura" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaUltFactura" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UltExclusion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UltInclusion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="DateTime" Name="PeriodoInicio" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="PeriodoFin" Nullable="false" Precision="23" />
+          <Property Type="String" Name="EstatusPeriodo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="PeriodId" Nullable="false" />
+          <Property Type="Int32" Name="PeriodPolicyId" Nullable="false" />
+          <Property Type="String" Name="Intermediario" Nullable="false" MaxLength="303" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_INVOICE_DETAIL_DATA_Result">
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_SET_INVOICE_HEADER_DATA_Result">
+          <Property Type="String" Name="Action" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_PERIODS_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Period_Name" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="Billing_Date" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_HISTORIC_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Poliza" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Asegurado" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PeriodoFacturacion" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="PeriodoFechaFin" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="FechaFacturacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="ItemsFacturados" Nullable="false" />
+          <Property Type="Decimal" Name="MontoUltFactura" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaUltFactura" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UltExclusion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UltInclusion" Nullable="true" Precision="23" />
+          <Property Type="Int64" Name="Cotizacion" Nullable="false" />
+          <Property Type="DateTime" Name="PeriodoInicio" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="PeriodoFin" Nullable="false" Precision="23" />
+          <Property Type="String" Name="EstatusPeriodo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="PeriodId" Nullable="false" />
+          <Property Type="String" Name="Invoice_Number" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Declarative_InvoicesModelStoreContainer" CdmEntityContainer="Declarative_InvoicesEntities" >
+          <FunctionImportMapping FunctionImportName="SP_GET_QUEUE" FunctionName="Declarative_InvoicesModel.Store.SP_GET_QUEUE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_GET_QUEUE_Result">
+                <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+                <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+                <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
+                <ScalarProperty Name="PeriodoFacturacion" ColumnName="PeriodoFacturacion" />
+                <ScalarProperty Name="ItemsActivos" ColumnName="ItemsActivos" />
+                <ScalarProperty Name="FechaFacturacion" ColumnName="FechaFacturacion" />
+                <ScalarProperty Name="MontoUltFactura" ColumnName="MontoUltFactura" />
+                <ScalarProperty Name="FechaUltFactura" ColumnName="FechaUltFactura" />
+                <ScalarProperty Name="UltExclusion" ColumnName="UltExclusion" />
+                <ScalarProperty Name="UltInclusion" ColumnName="UltInclusion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PeriodoInicio" ColumnName="PeriodoInicio" />
+                <ScalarProperty Name="PeriodoFin" ColumnName="PeriodoFin" />
+                <ScalarProperty Name="EstatusPeriodo" ColumnName="EstatusPeriodo" />
+                <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+                <ScalarProperty Name="PeriodPolicyId" ColumnName="PeriodPolicyId" />
+                <ScalarProperty Name="Intermediario" ColumnName="Intermediario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_INVOICE_DETAIL_DATA" FunctionName="Declarative_InvoicesModel.Store.SP_SET_INVOICE_DETAIL_DATA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_SET_INVOICE_DETAIL_DATA_Result">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_INVOICE_HEADER_DATA" FunctionName="Declarative_InvoicesModel.Store.SP_SET_INVOICE_HEADER_DATA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_SET_INVOICE_HEADER_DATA_Result">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SET_PERIOD_INVOICED" FunctionName="Declarative_InvoicesModel.Store.SP_SET_PERIOD_INVOICED" />
+          <FunctionImportMapping FunctionImportName="SP_GET_PERIODS" FunctionName="Declarative_InvoicesModel.Store.SP_GET_PERIODS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_GET_PERIODS_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Period_Name" ColumnName="Period_Name" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Billing_Date" ColumnName="Billing_Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_HISTORIC" FunctionName="Declarative_InvoicesModel.Store.SP_GET_HISTORIC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Declarative_InvoicesModel.SP_GET_HISTORIC_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+                <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
+                <ScalarProperty Name="PeriodoFacturacion" ColumnName="PeriodoFacturacion" />
+                <ScalarProperty Name="PeriodoFechaFin" ColumnName="PeriodoFechaFin" />
+                <ScalarProperty Name="FechaFacturacion" ColumnName="FechaFacturacion" />
+                <ScalarProperty Name="ItemsFacturados" ColumnName="ItemsFacturados" />
+                <ScalarProperty Name="MontoUltFactura" ColumnName="MontoUltFactura" />
+                <ScalarProperty Name="FechaUltFactura" ColumnName="FechaUltFactura" />
+                <ScalarProperty Name="UltExclusion" ColumnName="UltExclusion" />
+                <ScalarProperty Name="UltInclusion" ColumnName="UltInclusion" />
+                <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+                <ScalarProperty Name="PeriodoInicio" ColumnName="PeriodoInicio" />
+                <ScalarProperty Name="PeriodoFin" ColumnName="PeriodoFin" />
+                <ScalarProperty Name="EstatusPeriodo" ColumnName="EstatusPeriodo" />
+                <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+                <ScalarProperty Name="Invoice_Number" ColumnName="Invoice_Number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

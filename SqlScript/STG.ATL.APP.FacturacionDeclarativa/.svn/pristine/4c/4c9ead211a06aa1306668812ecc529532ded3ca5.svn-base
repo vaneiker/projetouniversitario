@@ -1,0 +1,118 @@
+﻿@using Declarative.Invoicing.CustomCode;
+@model  List<Declarative.Invoicing.Entities.Queue.Historic>
+
+@{
+    ViewBag.Title = "Historico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string p = Request.Form["txtHistoricPolicy"];
+    string fm = Request.Form["txtFfrom"];
+    string ft = Request.Form["txtFto"];
+}
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-history"></i>
+                    Historico
+                </button>
+            </h2>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                @using (Html.BeginForm("HistorySearch", "Queue", FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Póliza</label>
+                                <div>
+                                    <input id="txtHistoricPolicy" name="txtHistoricPolicy" type="text"  class="form-control form-control-sm" value="@(!string.IsNullOrEmpty(p)?p:"")" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Periodo facturación</label>
+                                <div>                                    
+                                    @Html.DropDownList("ddlQueueDateHistoric", (SelectList)ViewBag.allPeriods, "Seleccionar", new { @class = "form-control form-control-sm" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fecha desde</label>
+                                <div>
+                                    <input id="txtFfrom" name="txtFfrom" type="text" autocomplete="off" class="form-control form-control-sm mydatepickerAllDate" value="@(!string.IsNullOrEmpty(fm)?fm:"")" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fecha hasta</label>
+                                <div>
+                                    <input id="txtFto" name="txtFto" type="text" autocomplete="off" class="form-control form-control-sm mydatepickerAllDate" value="@(!string.IsNullOrEmpty(ft)?ft:"")" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                            <button id="btnFromTo" type="submit" class="btn btn-primary-st btn-sm mt-bottom">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+
+                            <a href="@Url.Action("History", "Queue")" class="btn btn-secundary-st btn-sm mt-bottom">
+                                Limpiar
+                            </a>
+                        </div>
+                    </div>
+                }
+                <div class="table-responsive">
+                    <table id="tblHistoric" class="table table-striped2" style="border-collapse: collapse !important;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Póliza</th>
+                                <th>Asegurado</th>
+                                <th>Mes facturado</th>
+                                <th>Año facturado</th>
+                                <th>Items facturados</th>
+                                <th>Fecha de facturación</th>
+                                <th>Monto facturado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var i in Model)
+                            {
+                                var montName = i.periodoFechaFin.ToString("MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("es"));
+                                var year = i.periodoFechaFin.Year;
+
+                                <tr>
+                                    <td class="text-center" width="260px">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="javascript:void(0);" class="btn btn-primary-st btn-sm btnSeeInvoiceHistoricPdf" title="Ver Factura" data-invoicenumber="@Html.Raw(i.invoiceNumber)" data-plno="@Utility.Encode(i.poliza)">
+                                                <i class="fas fa-file-alt"></i>
+                                                Ver factura
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td width="10%">@Html.Raw(i.poliza)</td>
+                                    <td width="30%">@Html.Raw(i.asegurado)</td>
+                                    <td class="text-center">@Html.Raw(montName)</td>
+                                    <td class="text-center">@Html.Raw(year)</td>
+                                    <td class="text-center">@Html.Raw(i.itemsFacturados)</td>
+                                    <td class="text-center">@Html.Raw(i.fechaFacturacion.ToString("dd/MMM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("es")))</td>
+                                    <td class="text-center">@Html.Raw("RD$ " + i.montoUltFactura.ToString("#,0.00", System.Globalization.CultureInfo.InvariantCulture))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

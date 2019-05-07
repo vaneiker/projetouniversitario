@@ -1,0 +1,65 @@
+﻿@model Declarative.Invoicing.Models.DeclarativeInvoicingViewModel
+@{
+    ViewBag.Title = "Detalle Póliza";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (ViewBag.showLayout != null && ViewBag.showLayout == true)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = null;
+    }
+
+    var tpl = new Tuple<Declarative.Invoicing.Models.DeclarativeInvoicingViewModel.PolicyInfo, List<Declarative.Invoicing.Models.DeclarativeInvoicingViewModel.VehiclesFromPolicy>>
+(Model._policyInfo, Model._vehicles);
+
+}
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-file-contract"></i>
+                    Poliza
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                        @*@Html.Partial("_PolicyInfo", Model._policyInfo)*@
+                        @Html.Partial("_PolicyInfo", tpl)
+
+                        @Html.Partial("_InvoicingInfo", Model._invoicingHistoric)
+                    </div>
+                    <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
+                        @Html.Partial("_VehiclesFromPolicy", Model._vehicles)
+                        <br />
+                        @Html.Partial("_InvoicingResume", Model._invoicingResume)
+
+                        <div class="card">
+                            <div class="card-header text-right">
+                                <button id="btnSendInvoicing" class="btn btn-primary-st btn-sm">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                    Emitir factura
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Hidden("hdnPolicyData", Model._billingInformation)
+
+
+</div>
+<script src="~/Scripts/ControllerJs/Policy.js?t=@DateTime.Now.Ticks.ToString()"></script>

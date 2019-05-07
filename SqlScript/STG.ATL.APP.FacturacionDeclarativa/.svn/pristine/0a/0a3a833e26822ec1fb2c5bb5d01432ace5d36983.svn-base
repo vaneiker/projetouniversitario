@@ -1,0 +1,297 @@
+﻿@model  List<Declarative.Invoicing.Models.DeclarativeInvoicingViewModel.VehiclesFromPolicy>
+@{
+    string nFormat = "#,0.00";
+
+    DateTime? PeriodStart = (ViewBag.PeriodStart == null) ? null : ViewBag.PeriodStart;
+    DateTime? PeriodEnd = (ViewBag.PeriodEnd == null) ? null : ViewBag.PeriodEnd;
+
+    var allActives = Model.Where(x => x.EstatusItem == "ACTIVO").ToList();
+    
+    var allExclude = Model.Where(x => x.EstatusItem == "EXCLUIDO" 
+    && x.FechaExlusion.GetValueOrDefault().Date.Month == PeriodStart.GetValueOrDefault().Month
+    && x.FechaExlusion.GetValueOrDefault().Date.Year == PeriodStart.GetValueOrDefault().Year).ToList();
+
+    var allIncludePeriod = Model.Where(x => x.EstatusItem == "ACTIVO"
+    && x.FechaInclusion.GetValueOrDefault().Date.Month == PeriodStart.GetValueOrDefault().Month
+    && x.FechaInclusion.GetValueOrDefault().Date.Year == PeriodStart.GetValueOrDefault().Year).ToList();
+    
+    int countActive = allActives.Count();
+    int countExclude = allExclude.Count();
+    int countIncludePeriod = allIncludePeriod.Count();
+}
+
+<div class="accordion" id="accordion">
+    <div class="card">
+        <div class="card-header" id="heading_01">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_01" aria-expanded="true" aria-controls="collapse_01">
+                    <i class="fas fa-car-side"></i>
+                    Items activos (@Html.Raw(countActive))
+                </button>
+            </h2>
+        </div>
+        <div id="collapse_01" class="collapse show" aria-labelledby="heading_01" data-parent="#accordion">
+            <div class="card-body">
+                <h5>
+                    <i class="fas fa-car"></i>
+                    Items activos
+                </h5>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Cliente</label>
+                            <div>
+                                <input id="txtActiveClient" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Chasis</label>
+                            <div>
+                                <input id="txtActiveChasis" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <button id="bntSearchActives" class="btn btn-primary-st btn-sm mt-bottom">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>*@
+                </div>
+                <div class="table-responsive">
+                    <table id="tblActiveVh" class="table table-striped2" style="border-collapse: collapse !important;">
+                        <thead>
+                            <tr>
+                                <th>Num Item</th>
+                                <th>Cliente</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Año</th>
+                                <th>Chasis</th>
+                                <th>Placa</th>
+                                <th>Fecha adición</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (allActives.Count() > 0)
+                            {
+                                foreach (var v in allActives)
+                                {
+                                    <tr>
+                                        <td class="text-center">@Html.Raw(v.Item)</td>
+                                        <td>
+                                            @Html.Raw(v.Cliente)
+                                        </td>
+                                        <td>@Html.Raw(v.Marca)</td>
+                                        <td>@Html.Raw(v.Modelo)</td>
+                                        <td>@Html.Raw(v.Ano)</td>
+                                        <td>@Html.Raw(v.chasis)</td>
+                                        <td>@Html.Raw(v.placa)</td>
+                                        <td>@Html.Raw(v.FechaInclusion.GetValueOrDefault().ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture))</td>
+                                        <td width="13%">@Html.Raw("RD$ " + v.Prima.GetValueOrDefault().ToString(nFormat, System.Globalization.CultureInfo.InvariantCulture))</td>
+                                    </tr>
+                                }
+                            }
+                            @*else
+                                {
+                                    <tr>
+                                        <td class="text-center" colspan="9">
+                                            No hay items
+                                        </td>
+                                    </tr>
+                                }*@
+                            @*<tr>
+                                    <td class="text-center">1</td>
+                                    <td>
+                                        Victor Antonio Granados
+                                    </td>
+                                    <td class="text-center">Toyota</td>
+                                    <td class="text-center">Corolla</td>
+                                    <td class="text-center">2012</td>
+                                    <td>JDP110048-5</td>
+                                    <td>A10259-5</td>
+                                    <td>05/02/2019</td>
+                                    <td>RD$ 5,500.00</td>
+                                </tr>*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-header" id="heading_02">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_02" aria-expanded="true" aria-controls="collapse_02">
+                    <i class="fas fa-car-side"></i>
+                    Items excluidos en el periodo (@Html.Raw(countExclude))
+                </button>
+            </h2>
+        </div>
+        <div id="collapse_02" class="collapse" aria-labelledby="heading_02" data-parent="#accordion">
+            <div class="card-body">
+                <h5>
+                    <i class="fas fa-car"></i>
+                    Items excluidos
+                </h5>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Cliente</label>
+                            <div>
+                                <input id="txtExcludeClient" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Chasis</label>
+                            <div>
+                                <input id="txtExcludeChasis" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <button class="btn btn-primary-st btn-sm mt-bottom">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>*@
+                </div>
+                <div class="table-responsive">
+                    <table id="tblExcludeVh" class="table table-striped2" style="border-collapse: collapse !important;">
+                        <thead>
+                            <tr>
+                                <th>Num Item</th>
+                                <th>Cliente</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Año</th>
+                                <th>Chasis</th>
+                                <th>Placa</th>
+                                <th>Fecha exclusión</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (allExclude.Count() > 0)
+                            {
+                                foreach (var v in allExclude)
+                                {
+                                    <tr>
+                                        <td class="text-center">@Html.Raw(v.Item)</td>
+                                        <td>
+                                            @Html.Raw(v.Cliente)
+                                        </td>
+                                        <td>@Html.Raw(v.Marca)</td>
+                                        <td>@Html.Raw(v.Modelo)</td>
+                                        <td>@Html.Raw(v.Ano)</td>
+                                        <td>@Html.Raw(v.chasis)</td>
+                                        <td>@Html.Raw(v.placa)</td>
+                                        <td>@Html.Raw(v.FechaExlusion.GetValueOrDefault().ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture))</td>
+                                        <td width="13%">@Html.Raw("RD$ " + v.Prima.GetValueOrDefault().ToString(nFormat, System.Globalization.CultureInfo.InvariantCulture))</td>
+                                    </tr>
+                                }
+                            }
+                            @*else
+                                {
+                                    <tr>
+                                        <td class="text-center" colspan="9">
+                                            No hay items
+                                        </td>
+                                    </tr>
+                                }*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-header" id="heading_03">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_03" aria-expanded="true" aria-controls="collapse_03">
+                    <i class="fas fa-car-side"></i>
+                    Items incluidos en el periodo (@Html.Raw(countIncludePeriod))
+                </button>
+            </h2>
+        </div>
+        <div id="collapse_03" class="collapse" aria-labelledby="heading_03" data-parent="#accordion">
+            <div class="card-body">
+                <h5>
+                    <i class="fas fa-car"></i>
+                    Items incluidos
+                </h5>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Cliente</label>
+                            <div>
+                                <input id="txtIncludeClient" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Chasis</label>
+                            <div>
+                                <input id="txtIncludeChasis" type="text" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <button class="btn btn-primary-st btn-sm mt-bottom">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>*@
+                </div>
+                <div class="table-responsive">
+                    <table id="tblIncludeVh" class="table table-striped2" style="border-collapse: collapse !important;">
+                        <thead>
+                            <tr>
+                                <th>Num Item</th>
+                                <th>Cliente</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Año</th>
+                                <th>Chasis</th>
+                                <th>Placa</th>
+                                <th>Fecha adición</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (allIncludePeriod.Count() > 0)
+                            {
+                                foreach (var v in allIncludePeriod)
+                                {
+                                    <tr>
+                                        <td class="text-center">@Html.Raw(v.Item)</td>
+                                        <td>
+                                            @Html.Raw(v.Cliente)
+                                        </td>
+                                        <td>@Html.Raw(v.Marca)</td>
+                                        <td>@Html.Raw(v.Modelo)</td>
+                                        <td>@Html.Raw(v.Ano)</td>
+                                        <td>@Html.Raw(v.chasis)</td>
+                                        <td>@Html.Raw(v.placa)</td>
+                                        <td>@Html.Raw(v.FechaInclusion.GetValueOrDefault().ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture))</td>
+                                        <td width="13%">@Html.Raw("RD$ " + v.Prima.GetValueOrDefault().ToString(nFormat, System.Globalization.CultureInfo.InvariantCulture))</td>
+                                    </tr>
+                                }
+                            }
+                            @*else
+                                {
+                                    <tr>
+                                        <td class="text-center" colspan="9">
+                                            No hay items
+                                        </td>
+                                    </tr>
+                                }*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

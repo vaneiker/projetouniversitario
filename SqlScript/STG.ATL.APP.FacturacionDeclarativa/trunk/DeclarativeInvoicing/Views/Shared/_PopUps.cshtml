@@ -1,0 +1,241 @@
+﻿<div class="modal fade" id="invoices_modal" tabindex="-1" role="dialog" aria-labelledby="invoices_modal" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    Facturas
+                </h5>
+                <button id="btnCloseModalTblInvoices" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Póliza</label>
+                            <div>
+                                <input id="txtPolicyInv" type="text" class="form-control form-control-sm" readonly="readonly" value="01-114-114898" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Asegurado</label>
+                            <div>
+                                <input id="txtInsuredInv" type="text" class="form-control form-control-sm" readonly="readonly" value="LC CORREDORES DE SEGUROS" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Inicio de vigencia</label>
+                            <div>
+                                <input id="txtVigencyStartInv" class="form-control form-control-sm" type="text" value="17/04/2019" readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fin  de vigencia</label>
+                            <div>
+                                <input id="txtVigencyEndInv" class="form-control form-control-sm" type="text" value="17/04/2020" readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table id="tblInvoices" class="table table-striped2" style="border-collapse: collapse !important;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Número Factura</th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Items Facturados</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblBodyPolicyInvoices">
+                            @*<tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-info btn-sm">
+                                            <i class="fas fa-eye"></i> Ver factura
+                                        </button>
+                                    </td>
+                                    <td class="text-center">256</td>
+                                    <td>22/01/2019</td>
+                                    <td>RD$ 85,000.0000</td>
+                                    <td class="text-center">
+                                        8
+                                    </td>
+                                </tr>*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="items_modal" tabindex="-1" role="dialog" aria-labelledby="items_modal" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-car-side"></i>
+                    Items
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Póliza</label>
+                            <div>
+                                <input id="txtPolicy" type="text" class="form-control form-control-sm" readonly="readonly" value="01-114-114898" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Asegurado</label>
+                            <div>
+                                <input id="txtInsured" type="text" class="form-control form-control-sm" readonly="readonly" value="LC CORREDORES DE SEGUROS" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Inicio de vigencia</label>
+                            <div>
+                                <input id="txtVigencyStart" class="form-control form-control-sm" type="text" value="17/04/2019" readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fin  de vigencia</label>
+                            <div>
+                                <input id="txtVigencyEnd" class="form-control form-control-sm" type="text" value="17/04/2020" readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table id="tblPolicyItems" class="table table-striped2" style="border-collapse: collapse !important;">
+                        <thead>
+                            <tr>
+                                <th>Num Item</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Año</th>
+                                <th>Chasis</th>
+                                <th>Placa</th>
+                                <th>ESTADO</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblBodyPolicyItems">
+                            @*<tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">Toyota</td>
+                                    <td class="text-center">Corolla</td>
+                                    <td class="text-center">2012</td>
+                                    <td>JDP110048-5</td>
+                                    <td>A10259-5</td>
+                                    <td class="text-center">
+                                        <strong class="text-success">
+                                            ACTIVO
+                                        </strong>
+                                    </td>
+                                </tr>*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---ERROR--->
+<div class="modal fade" id="ppError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notification" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #dc3545 !important">
+                <h5 class="modal-title" id="TitleModal">
+                    <i class="fas fa-ban"></i>
+                    <strong id="errorTitle">Se han producido los siguientes errores:</strong>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-8 m-auto text-center">
+                    <ul id="errorListContainer"></ul>
+                </div>
+                <div class="col-12 modal-footer ">
+                    <button type="button" data-dismiss="modal" class="btn btn-danger cursor">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---ERROR--->
+
+<!---EXITO--->
+<div class="modal fade" id="ppSucess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notification" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #28a745 !important">
+                <h5 class="modal-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong id="sucessTitle">Exito</strong>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-8 m-auto text-center">
+                    <ul id="sucessListContainer"></ul>
+                </div>
+                <div class="col-12 modal-footer ">
+                    <button type="button" data-dismiss="modal" id="btnSucessOk" class="btn btn-success cursor">Ok</button>
+                    <button type="button" id="RedirectToOtherApp" data-dismiss="modal" class="btn btn-info cursor RedirectToOtherApp" data-path="Illustrations.aspx" data-appname="NewBusiness">Ir a la Bandeja de Auto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---EXITO--->
+
+<!---PREGUNTA--->
+<div class="modal fade" id="ppQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notification" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #17a2b8 !important">
+                <h5 class="modal-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong id="questionTitle">Pregunta</strong>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-8 m-auto text-center">
+                    <p id="questionContainer"></p>
+                </div>
+                <div class="col-12 modal-footer ">
+                    <button type="button" data-dismiss="modal" id="btnQuestionOk" class="btn btn-info cursor">Ok</button>
+                    <button type="button" data-dismiss="modal" id="btnQuestionCancel" class="btn btn-danger cursor">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---PREGUNTA--->

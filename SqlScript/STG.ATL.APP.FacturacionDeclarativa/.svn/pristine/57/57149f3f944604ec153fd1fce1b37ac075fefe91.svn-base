@@ -1,0 +1,93 @@
+﻿@*@model Declarative.Invoicing.Models.DeclarativeInvoicingViewModel.PolicyInfo*@
+@model Tuple<Declarative.Invoicing.Models.DeclarativeInvoicingViewModel.PolicyInfo, List<Declarative.Invoicing.Models.DeclarativeInvoicingViewModel.VehiclesFromPolicy>>
+@{
+    var productData = Model.Item2.Where(x => x.EstatusItem == "ACTIVO").ToList();
+
+    var groups = productData
+          .GroupBy(n => n.DescripcionSubramo)
+          .Select(n => new
+          {
+              Subramo = n.Key,
+              qty = n.Count()
+          })
+          .OrderBy(n => n.Subramo);
+
+    var policynoe = Declarative.Invoicing.CustomCode.Utility.Encode(Model.Item1.Policy);
+}
+<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label>Póliza</label>
+            <div>
+                <input type="text" class="form-control form-control-sm" readonly="readonly" value="@Html.Raw(Model.Item1.Policy)" />
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label>Asegurado</label>
+            <div>
+                <input type="text" class="form-control form-control-sm" readonly="readonly" value="@Html.Raw(Model.Item1.Insured)" />
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label>Inicio de vigencia</label>
+            <div>
+                <input class="form-control form-control-sm" type="text" value="@Html.Raw(Model.Item1.StartDate)" readonly="readonly">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label>Fin  de vigencia</label>
+            <div>
+                <input class="form-control form-control-sm" type="text" value="@Html.Raw(Model.Item1.EndDate)" readonly="readonly">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label>Suma asegurada</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">RD$</span>
+                </div>
+                <input class="form-control form-group-sm text-right" type="text" value="@Html.Raw(Model.Item1.InsuredAmount)" readonly="readonly">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+        <table class="table table-striped2">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (groups.Count() > 0)
+                {
+                    foreach (var item in groups)
+                    {
+                        <tr>
+                            <td class="text-center">@Html.Raw(item.Subramo)</td>
+                            <td class="text-center">@Html.Raw(item.qty)</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td class="text-center" colspan="2">
+                            No hay items
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Hidden("hdnPolicyNoEncr", policynoe)

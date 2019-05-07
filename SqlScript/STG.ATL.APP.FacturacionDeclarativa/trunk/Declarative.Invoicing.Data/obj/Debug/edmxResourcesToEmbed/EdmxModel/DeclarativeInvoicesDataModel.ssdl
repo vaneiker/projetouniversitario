@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Declarative_InvoicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="SP_GET_HISTORIC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Policy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_PERIODS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_QUEUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Policy" Type="varchar" Mode="In" />
+    <Parameter Name="DateBilling" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_INVOICE_DETAIL_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Invoice_Detail_Id" Type="int" Mode="In" />
+    <Parameter Name="Item" Type="int" Mode="In" />
+    <Parameter Name="Client_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Make_Id" Type="int" Mode="In" />
+    <Parameter Name="Make_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Model_Id" Type="int" Mode="In" />
+    <Parameter Name="Model_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Chassis" Type="varchar" Mode="In" />
+    <Parameter Name="Plate" Type="varchar" Mode="In" />
+    <Parameter Name="Date_Process" Type="datetime" Mode="In" />
+    <Parameter Name="Amount" Type="decimal" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_INVOICE_HEADER_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="CoreQuotNumber" Type="bigint" Mode="In" />
+    <Parameter Name="SecuenciaMov" Type="int" Mode="In" />
+    <Parameter Name="Invoice_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Invoice_Amount" Type="decimal" Mode="In" />
+    <Parameter Name="Invoicing_Period" Type="datetime" Mode="In" />
+    <Parameter Name="Last_Exclusion" Type="datetime" Mode="In" />
+    <Parameter Name="Last_Inclusion" Type="datetime" Mode="In" />
+    <Parameter Name="User_Id" Type="int" Mode="In" />
+    <Parameter Name="initial_Date" Type="datetime" Mode="In" />
+    <Parameter Name="End_Date" Type="datetime" Mode="In" />
+    <Parameter Name="PolicyInfoId" Type="int" Mode="In" />
+    <Parameter Name="PeriodPolicyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SET_PERIOD_INVOICED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PolicyInfoId" Type="int" Mode="In" />
+    <Parameter Name="PeriodId" Type="int" Mode="In" />
+    <Parameter Name="ProcessDate" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="Declarative_InvoicesModelStoreContainer" />
+</Schema>
