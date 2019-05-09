@@ -22,6 +22,9 @@ namespace ShipLogs.Logic.LogicBL
 
         public virtual Generic Set_Shimet_Logic(ShipmentEntity parameters)
         {
+            //var modelconv = new ShipmentEntity();
+            //modelconv.Incoming = parameters.Incoming;
+
             var Result = shioLogsRepocitory.Set_Shimet(parameters);
 
             return Result.FirstOrDefault();
@@ -54,7 +57,7 @@ namespace ShipLogs.Logic.LogicBL
         }
 
 
-        public virtual IEnumerable<ShipmentViewModel> Method_Outgoing(string param)
+        public virtual ShipmentEntity Method_Outgoing(string param)
         {
            
            var obj= int.Parse(param);

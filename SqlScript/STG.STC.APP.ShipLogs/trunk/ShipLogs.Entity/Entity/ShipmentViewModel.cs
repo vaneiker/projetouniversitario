@@ -29,7 +29,8 @@ namespace ShipLogs.Entity.Entity
         public string ReceiverPhoneNumber { get; set; }
         public string ShipmentComments { get; set; }
         public Nullable<bool> Transit { get; set; }
-        public string Incoming { get; set; }
+        public bool? Incoming { get; set; }
+        public string IncomingLiteral { get; set; }
         public Nullable<bool> CommissionChecks { get; set; }
         public Nullable<bool> Materials { get; set; }
         public Nullable<bool> OtherContents { get; set; }
