@@ -1,0 +1,189 @@
+﻿@model ShipLogs.Entity.Entity.ShipmentEntity
+@{
+    ViewBag.Title = "CargarShipLogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var IsIncoming = Model.Incoming;
+    var materials= Model.Materials;
+}
+
+@using (Ajax.BeginForm("SaveShipManten", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "Contenedor",
+    LoadingElementId = "loading",
+    OnComplete = "OnSuccess",
+    OnFailure = "OnFailure",
+
+}))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ShipUniqueID, new { htmlAttributes = new { @class = "form-control" } })
+    <div class="form-row">
+        <h4>Shipment Details</h4>
+
+        @*Inicio del Formulario*@
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.CarrierName, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+            @Html.EditorFor(model => model.CarrierName, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(model => model.CarrierName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.ShipmentNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.ShipmentNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipmentNumber, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.ShipmentDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.ShipmentDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipmentDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.ShipmentWeight, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.ShipmentWeight, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipmentWeight, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.ShipmentQTY, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.ShipmentQTY, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipmentQTY, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-4 mT-2">
+            <div class="form-check fl mR-1">
+                <input class="form-check-input" type="radio" name="ShiptmentType" id="incomingShipment" @(IsIncoming.GetValueOrDefault() ? "checked" : "")>
+
+                <label class="form-check-label" for="incomingShipment">
+                    Incoming Shipment
+                </label>
+            </div>
+            <div class="form-check fl">
+                <input class="form-check-input" type="radio" name="ShiptmentType" id="OutgoingShipment" @(!IsIncoming.GetValueOrDefault() ? "checked" : "")>
+
+                <label class="form-check-label" for="outgoingShipment">
+                    Outgoing Shipment
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.ShipPackageType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.ShipPackageType, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipPackageType, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Operator, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Operator, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Operator, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-8">
+            <h4>Sender Information</h4>
+            @Html.LabelFor(model => model.Sender, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Sender, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Sender, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-4">
+            <h4 class="mB-2">Shipment Contains</h4>
+            <div class="form-check fl mR-1">
+                <input class="form-check-input" type="radio" id="incomingShipment" @(Model.Materials.GetValueOrDefault() ? "checked" : "")>
+                <label class="form-check-label" for="incomingShipment">
+                    Materials
+                </label>
+            </div>
+            <div class="form-check fl mR-1">
+                <input class="form-check-input" type="radio" id="incomingShipment" @(Model.CommissionChecks.GetValueOrDefault() ? "checked" : "")>
+                <label class="form-check-label" for="incomingShipment">
+                    Commission Checks
+                </label>
+            </div>
+            <div class="form-check fl mR-1">
+                <input class="form-check-input" type="radio" id="incomingShipment" @(Model.OtherContents.GetValueOrDefault() ? "checked" : "")>
+                <label class="form-check-label" for="incomingShipment">
+                    Other
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <h4>Receiver Information</h4>
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Receiver, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Receiver, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Receiver, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.ReceiverAttn, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.ReceiverAttn, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReceiverAttn, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-8">
+            @Html.LabelFor(model => model.ReceiverAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.ReceiverAddress, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReceiverAddress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.ReceiverCity, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.ReceiverCity, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ReceiverCity, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.ReceiverState, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.ReceiverState, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ReceiverState, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.ReceiverZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.ReceiverZipCode, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ReceiverZipCode, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.ReceiverCountry, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.ReceiverCountry, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ReceiverCountry, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.ReceiverPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.ReceiverPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ReceiverPhoneNumber, "", new { @class = "text-danger" })
+    </div>
+
+    <!--==== COMMENT AND STATUS ====-->
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="true">Comments</a>
+        </li> 
+    </ul>
+    <div class="tab-content" id="myTabContent1">
+        <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+
+            @Html.TextAreaFor(model => model.ShipmentComments, new { @class = "form-control", @id = "exampleFormControlTextarea1" })
+            @Html.ValidationMessageFor(model => model.ShipmentComments, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--==== AND COMMENT STATUS  ====-->
+
+    <div class="form-group mT-2">
+        @Html.ActionLink("Shipping History", "ShipLogSearch", "ShipLogs", null, new { @class = "btn btn-primary" })
+        <button type="submit" class="btn btn-primary">Add New</button>
+        <button type="submit" class="btn btn-primary">Delete</button>
+        <button type="submit" class="btn btn-primary">Address Book</button>
+
+        @Html.ActionLink("Close", "Menu", "Home", null, new { @class = "btn btn-danger fr" })
+
+    </div>
+}
