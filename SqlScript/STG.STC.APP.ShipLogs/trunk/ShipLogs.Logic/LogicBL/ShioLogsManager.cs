@@ -18,12 +18,19 @@ namespace ShipLogs.Logic.LogicBL
             shioLogsRepocitory = new ShioLogsRepocitory();
         }
 
-       
+        public virtual List<CarrierEntity> GetCarrierLogic(string name)
+        {
+            var result = shioLogsRepocitory.GetCarrier(name);
+            return result;
+        }
 
         public virtual Generic Set_Shimet_Logic(ShipmentEntity parameters)
         {
-            //var modelconv = new ShipmentEntity();
-            //modelconv.Incoming = parameters.Incoming;
+            if (!parameters.ShipUniqueID.HasValue)
+            {
+                parameters.ShipUniqueID = 0;
+            }
+            parameters.Transit =false;
 
             var Result = shioLogsRepocitory.Set_Shimet(parameters);
 
@@ -59,8 +66,8 @@ namespace ShipLogs.Logic.LogicBL
 
         public virtual ShipmentEntity Method_Outgoing(string param)
         {
-           
-           var obj= int.Parse(param);
+
+            var obj = int.Parse(param);
 
             var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Outgoing(obj);
             return dataList;
@@ -69,13 +76,13 @@ namespace ShipLogs.Logic.LogicBL
         {
             var obj = new ShipmentViewModel();
             obj.ShipUniqueID = int.Parse(param);
-             
+
             var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Incoming(obj);
             return dataList;
         }
-        public virtual IEnumerable<ShipmentViewModel> IsIncomingVerificationLog(string param)
+        public virtual ShipmentEntity IsIncomingVerificationLog(string param)
         {
-            var obj = new ShipmentViewModel();
+            var obj = new ShipmentEntity();
             obj.ShipUniqueID = int.Parse(param);
             var dataList = shioLogsRepocitory.IsIncomingVerification(obj);
             return dataList;

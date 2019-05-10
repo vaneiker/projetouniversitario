@@ -11,12 +11,14 @@ namespace ShipLogs.Data.EdmxModel
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Carrier
     {
         public int CarrierUniqueID { get; set; }
         public string CarrierName { get; set; }
         public string AccountNumber { get; set; }
         public string Comments { get; set; }
+        public bool CarrierStatus { get; set; }
+
     }
 }

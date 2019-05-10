@@ -5,3 +5,11 @@
     }
 
 });
+
+
+var validate= new Vue({
+    el:'#validateRadio',
+    data: {
+        checkedNames: []
+    }
+});

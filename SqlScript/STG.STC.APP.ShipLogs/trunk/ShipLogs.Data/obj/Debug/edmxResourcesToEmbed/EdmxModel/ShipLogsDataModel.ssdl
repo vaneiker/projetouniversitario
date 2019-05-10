@@ -40,6 +40,7 @@ warning 6002: The table/view 'ShipLogs.dbo.AddressBook' does not have a primary 
     <Property Name="CarrierName" Type="nchar" MaxLength="20" Nullable="false" />
     <Property Name="AccountNumber" Type="nchar" MaxLength="20" Nullable="false" />
     <Property Name="Comments" Type="text" />
+    <Property Name="CarrierStatus" Type="bit" />
   </EntityType>
   <EntityType Name="dtproperties">
     <Key>
@@ -100,24 +101,24 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
       <PropertyRef Name="ShipUniqueID" />
     </Key>
     <Property Name="ShipUniqueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CarrierName" Type="nchar" MaxLength="20" />
-    <Property Name="AccountNumber" Type="nchar" MaxLength="12" />
-    <Property Name="ShipmentNumber" Type="nchar" MaxLength="20" />
+    <Property Name="CarrierName" Type="varchar" MaxLength="25" />
+    <Property Name="AccountNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ShipmentNumber" Type="varchar" MaxLength="50" />
     <Property Name="ShipmentDate" Type="datetime" />
     <Property Name="ShipmentWeight" Type="numeric" Precision="18" Scale="0" />
     <Property Name="ShipmentQTY" Type="int" />
-    <Property Name="ShipPackageType" Type="nchar" MaxLength="20" />
-    <Property Name="Operator" Type="nchar" MaxLength="16" />
-    <Property Name="Sender" Type="nchar" MaxLength="50" />
-    <Property Name="Receiver" Type="nchar" MaxLength="50" />
-    <Property Name="ReceiverAttn" Type="nchar" MaxLength="50" />
-    <Property Name="ReceiverAddress" Type="nchar" MaxLength="150" />
-    <Property Name="ReceiverCity" Type="nchar" MaxLength="40" />
-    <Property Name="ReceiverState" Type="nchar" MaxLength="40" />
-    <Property Name="ReceiverZipCode" Type="nchar" MaxLength="20" />
-    <Property Name="ReceiverCountry" Type="nchar" MaxLength="20" />
-    <Property Name="ReceiverPhoneNumber" Type="nchar" MaxLength="20" />
-    <Property Name="ShipmentComments" Type="text" />
+    <Property Name="ShipPackageType" Type="varchar" MaxLength="50" />
+    <Property Name="Operator" Type="varchar" MaxLength="50" />
+    <Property Name="Sender" Type="varchar" MaxLength="50" />
+    <Property Name="Receiver" Type="varchar" MaxLength="50" />
+    <Property Name="ReceiverAttn" Type="varchar" MaxLength="50" />
+    <Property Name="ReceiverAddress" Type="varchar" MaxLength="150" />
+    <Property Name="ReceiverCity" Type="varchar" MaxLength="50" />
+    <Property Name="ReceiverState" Type="varchar" MaxLength="50" />
+    <Property Name="ReceiverZipCode" Type="varchar" MaxLength="50" />
+    <Property Name="ReceiverCountry" Type="varchar" MaxLength="50" />
+    <Property Name="ReceiverPhoneNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ShipmentComments" Type="varchar(max)" />
     <Property Name="Transit" Type="bit" />
     <Property Name="Incoming" Type="bit" />
     <Property Name="CommissionChecks" Type="bit" />
@@ -146,14 +147,12 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
     <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
     <Parameter Name="AssignedTo" Type="nchar" Mode="In" />
     <Parameter Name="ItemDetail" Type="text" Mode="In" />
-    <Parameter Name="operation" Type="varchar" Mode="In" />
     <Parameter Name="DetailUniqueID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_SET_SHIPMENT_DETAIL_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
     <Parameter Name="AssignedTo" Type="nchar" Mode="In" />
     <Parameter Name="ItemDetail" Type="text" Mode="In" />
-    <Parameter Name="operation" Type="varchar" Mode="In" />
     <Parameter Name="DetailUniqueID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_SET_SHIPMENTS_UPDATE_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

@@ -17,6 +17,7 @@
     <Property Name="CarrierName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CarrierStatus" Type="Boolean" />
   </EntityType>
   <EntityType Name="dtproperty">
     <Key>
@@ -46,23 +47,23 @@
       <PropertyRef Name="ShipUniqueID" />
     </Key>
     <Property Name="ShipUniqueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CarrierName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-    <Property Name="AccountNumber" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
-    <Property Name="ShipmentNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="CarrierName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShipmentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ShipmentDate" Type="DateTime" Precision="3" />
     <Property Name="ShipmentWeight" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="ShipmentQTY" Type="Int32" />
-    <Property Name="ShipPackageType" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-    <Property Name="Operator" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
-    <Property Name="Sender" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="ReceiverAttn" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="ReceiverAddress" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
-    <Property Name="ReceiverCity" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-    <Property Name="ReceiverState" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-    <Property Name="ReceiverZipCode" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-    <Property Name="ReceiverCountry" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-    <Property Name="ReceiverPhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ShipPackageType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Operator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverAttn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReceiverPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ShipmentComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Transit" Type="Boolean" />
     <Property Name="Incoming" Type="Boolean" />
@@ -156,14 +157,12 @@
       <Parameter Name="ShipUniqueID" Mode="In" Type="Int32" />
       <Parameter Name="AssignedTo" Mode="In" Type="String" />
       <Parameter Name="ItemDetail" Mode="In" Type="String" />
-      <Parameter Name="operation" Mode="In" Type="String" />
       <Parameter Name="DetailUniqueID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_SET_SHIPMENT_DETAIL_UPDATE">
       <Parameter Name="ShipUniqueID" Mode="In" Type="Int32" />
       <Parameter Name="AssignedTo" Mode="In" Type="String" />
       <Parameter Name="ItemDetail" Mode="In" Type="String" />
-      <Parameter Name="operation" Mode="In" Type="String" />
       <Parameter Name="DetailUniqueID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_SET_SHIPMENTS_UPDATE_INSERT" ReturnType="Collection(ShipLogsModel.SP_SET_SHIPMENTS_UPDATE_INSERT_Result)">

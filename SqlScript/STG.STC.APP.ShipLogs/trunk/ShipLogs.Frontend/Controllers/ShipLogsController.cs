@@ -26,12 +26,13 @@ namespace ShipLogs.Frontend.Controllers
         }
         public ActionResult CargarShipLogs(string data)
         {
-            bool? isType = false;
+           
+
             var result = new ShipmentEntity();
             //var url = HttpUtility.UrlDecode(data.Replace("+", " ").Replace("/", ""));
             if (string.IsNullOrWhiteSpace(data))
             {
-                Redirect("/ShipLogs/ShipLogSearch");
+                //Redirect("");
             }
             else
             {
@@ -39,14 +40,8 @@ namespace ShipLogs.Frontend.Controllers
                 var dec = Tools.Decode(url);
 
                 //valido que tipo de logtype es
-                var validalogtype = LogicManager.IsIncomingVerificationLog(dec);
-
-                foreach (var v in validalogtype)
-                {
-                    isType = v.Incoming;
-                }
-
-                if (isType.GetValueOrDefault())
+                var validalogtype = LogicManager.IsIncomingVerificationLog(dec); 
+                if (validalogtype.Incoming)
                 {
                     //Obtengo el detalle de Incoming
                     var detail = LogicManager.Method_Incoming(dec);
@@ -54,13 +49,20 @@ namespace ShipLogs.Frontend.Controllers
                 else
                 {
                     //Obtengo el solo el Outgoing
-                    result = LogicManager.Method_Outgoing(dec); 
+                    result = LogicManager.Method_Outgoing(dec);
+                    
                 }
 
             }
             return View(result);
         }
 
+        public JsonResult GetCurrier(string searchString)
+        {
+            var data = LogicManager.GetCarrierLogic(searchString);
+
+            return Json(data,JsonRequestBehavior.AllowGet);
+        }
 
 
         [HttpPost]
@@ -70,7 +72,7 @@ namespace ShipLogs.Frontend.Controllers
 
 
 
-            if (!objModel.Incoming.GetValueOrDefault())
+            if (!objModel.Incoming)
             {
                 var resp = LogicManager.Set_Shimet_Logic(objModel);
                 showMessageString = new

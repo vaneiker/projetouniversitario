@@ -45,6 +45,7 @@ warning 6002: The table/view 'ShipLogs.dbo.AddressBook' does not have a primary 
           <Property Name="CarrierName" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="AccountNumber" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Comments" Type="text" />
+          <Property Name="CarrierStatus" Type="bit" />
         </EntityType>
         <EntityType Name="dtproperties">
           <Key>
@@ -105,24 +106,24 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
             <PropertyRef Name="ShipUniqueID" />
           </Key>
           <Property Name="ShipUniqueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CarrierName" Type="nchar" MaxLength="20" />
-          <Property Name="AccountNumber" Type="nchar" MaxLength="12" />
-          <Property Name="ShipmentNumber" Type="nchar" MaxLength="20" />
+          <Property Name="CarrierName" Type="varchar" MaxLength="25" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ShipmentNumber" Type="varchar" MaxLength="50" />
           <Property Name="ShipmentDate" Type="datetime" />
           <Property Name="ShipmentWeight" Type="numeric" Precision="18" Scale="0" />
           <Property Name="ShipmentQTY" Type="int" />
-          <Property Name="ShipPackageType" Type="nchar" MaxLength="20" />
-          <Property Name="Operator" Type="nchar" MaxLength="16" />
-          <Property Name="Sender" Type="nchar" MaxLength="50" />
-          <Property Name="Receiver" Type="nchar" MaxLength="50" />
-          <Property Name="ReceiverAttn" Type="nchar" MaxLength="50" />
-          <Property Name="ReceiverAddress" Type="nchar" MaxLength="150" />
-          <Property Name="ReceiverCity" Type="nchar" MaxLength="40" />
-          <Property Name="ReceiverState" Type="nchar" MaxLength="40" />
-          <Property Name="ReceiverZipCode" Type="nchar" MaxLength="20" />
-          <Property Name="ReceiverCountry" Type="nchar" MaxLength="20" />
-          <Property Name="ReceiverPhoneNumber" Type="nchar" MaxLength="20" />
-          <Property Name="ShipmentComments" Type="text" />
+          <Property Name="ShipPackageType" Type="varchar" MaxLength="50" />
+          <Property Name="Operator" Type="varchar" MaxLength="50" />
+          <Property Name="Sender" Type="varchar" MaxLength="50" />
+          <Property Name="Receiver" Type="varchar" MaxLength="50" />
+          <Property Name="ReceiverAttn" Type="varchar" MaxLength="50" />
+          <Property Name="ReceiverAddress" Type="varchar" MaxLength="150" />
+          <Property Name="ReceiverCity" Type="varchar" MaxLength="50" />
+          <Property Name="ReceiverState" Type="varchar" MaxLength="50" />
+          <Property Name="ReceiverZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="ReceiverCountry" Type="varchar" MaxLength="50" />
+          <Property Name="ReceiverPhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ShipmentComments" Type="varchar(max)" />
           <Property Name="Transit" Type="bit" />
           <Property Name="Incoming" Type="bit" />
           <Property Name="CommissionChecks" Type="bit" />
@@ -151,14 +152,12 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
           <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
           <Parameter Name="AssignedTo" Type="nchar" Mode="In" />
           <Parameter Name="ItemDetail" Type="text" Mode="In" />
-          <Parameter Name="operation" Type="varchar" Mode="In" />
           <Parameter Name="DetailUniqueID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_SET_SHIPMENT_DETAIL_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
           <Parameter Name="AssignedTo" Type="nchar" Mode="In" />
           <Parameter Name="ItemDetail" Type="text" Mode="In" />
-          <Parameter Name="operation" Type="varchar" Mode="In" />
           <Parameter Name="DetailUniqueID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_SET_SHIPMENTS_UPDATE_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -338,6 +337,7 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
           <Property Name="CarrierName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CarrierStatus" Type="Boolean" />
         </EntityType>
         <EntityType Name="dtproperty">
           <Key>
@@ -367,23 +367,23 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
             <PropertyRef Name="ShipUniqueID" />
           </Key>
           <Property Name="ShipUniqueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CarrierName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="AccountNumber" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
-          <Property Name="ShipmentNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="CarrierName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShipmentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ShipmentDate" Type="DateTime" Precision="3" />
           <Property Name="ShipmentWeight" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="ShipmentQTY" Type="Int32" />
-          <Property Name="ShipPackageType" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Operator" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
-          <Property Name="Sender" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="ReceiverAttn" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="ReceiverAddress" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
-          <Property Name="ReceiverCity" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="ReceiverState" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="ReceiverZipCode" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="ReceiverCountry" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="ReceiverPhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="ShipPackageType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Operator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverAttn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ShipmentComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Transit" Type="Boolean" />
           <Property Name="Incoming" Type="Boolean" />
@@ -477,14 +477,12 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
             <Parameter Name="ShipUniqueID" Mode="In" Type="Int32" />
             <Parameter Name="AssignedTo" Mode="In" Type="String" />
             <Parameter Name="ItemDetail" Mode="In" Type="String" />
-            <Parameter Name="operation" Mode="In" Type="String" />
             <Parameter Name="DetailUniqueID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_SET_SHIPMENT_DETAIL_UPDATE">
             <Parameter Name="ShipUniqueID" Mode="In" Type="Int32" />
             <Parameter Name="AssignedTo" Mode="In" Type="String" />
             <Parameter Name="ItemDetail" Mode="In" Type="String" />
-            <Parameter Name="operation" Mode="In" Type="String" />
             <Parameter Name="DetailUniqueID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_SET_SHIPMENTS_UPDATE_INSERT" ReturnType="Collection(ShipLogsModel.SP_SET_SHIPMENTS_UPDATE_INSERT_Result)">
@@ -658,6 +656,7 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
           <EntitySetMapping Name="Carriers">
             <EntityTypeMapping TypeName="ShipLogsModel.Carrier">
               <MappingFragment StoreEntitySet="Carriers">
+                <ScalarProperty Name="CarrierStatus" ColumnName="CarrierStatus" />
                 <ScalarProperty Name="CarrierUniqueID" ColumnName="CarrierUniqueID" />
                 <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
                 <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />

@@ -11,11 +11,11 @@ namespace ShipLogs.Entity.Entity
     {
         public int? ShipUniqueID { get; set; }
 
-        [Display(Name = "Carrier Name")]
+        [Display(Name = "Carrier")]
         [Required]
         public string CarrierName { get; set; }
         public string AccountNumber { get; set; }
-        [Display(Name = "Shipment Number")]
+        [Display(Name = "Shipment")]
         [Required]
         public string ShipmentNumber { get; set; }
 
@@ -38,10 +38,10 @@ namespace ShipLogs.Entity.Entity
         public string ReceiverPhoneNumber { get; set; }
         public string ShipmentComments { get; set; }
         public bool? Transit { get; set; } 
-        public bool? Incoming { get; set; }
-        public bool? CommissionChecks { get; set; }
-        public bool? Materials { get; set; }
-        public bool? OtherContents { get; set; }
+        public bool Incoming { get; set; }
+        public bool CommissionChecks { get; set; }
+        public bool Materials { get; set; }
+        public bool OtherContents { get; set; }
         public List<ShipmentDetailEntity> ListShipmentDetail { get; set; }
         public class ShipmentDetailEntity
         {

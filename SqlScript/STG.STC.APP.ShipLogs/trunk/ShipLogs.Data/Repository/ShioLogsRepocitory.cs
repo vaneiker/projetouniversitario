@@ -132,7 +132,7 @@ namespace ShipLogs.Data.Repository
                 return RetornarValue.ToArray();
             }
         }
-   public virtual ShipmentEntity GET_Obtain_Shimet_Outgoing(int param)
+        public virtual ShipmentEntity GET_Obtain_Shimet_Outgoing(int param)
         {
             using (var dbo = new ShipLogs_Entities())
             {
@@ -141,14 +141,28 @@ namespace ShipLogs.Data.Repository
                 return RetornarValue.FirstOrDefault();
             }
         }
-        public virtual IEnumerable<ShipmentViewModel> IsIncomingVerification (ShipmentViewModel param)
+        public virtual ShipmentEntity IsIncomingVerification(ShipmentEntity param)
         {
             using (var dbo = new ShipLogs_Entities())
             {
-                IEnumerable<ShipmentViewModel> RetornarValue = dbo.Database.SqlQuery<ShipmentViewModel>("EXEC [DBO].[SP_GET_CHECK_LOGTYPE] @param",
+                IEnumerable<ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntity>("EXEC [DBO].[SP_GET_CHECK_LOGTYPE] @param",
                     new SqlParameter("@param", param.ShipUniqueID)).ToList();
-                return RetornarValue.ToArray();
+                return RetornarValue.FirstOrDefault();
             }
+        }
+
+        public virtual List<CarrierEntity> GetCarrier(string name)
+        {
+            var result = new List<CarrierEntity>();
+            using (var dbo = new ShipLogs_Entities())
+            {
+                result = dbo.Carriers.Where(x => x.CarrierName.Contains(name) && x.CarrierStatus == true).Select(x => new CarrierEntity
+                {
+                    CarrierName = x.CarrierName.ToUpper().TrimEnd().TrimEnd()
+
+                }).ToList();
+            }
+            return result;
         }
 
     }
