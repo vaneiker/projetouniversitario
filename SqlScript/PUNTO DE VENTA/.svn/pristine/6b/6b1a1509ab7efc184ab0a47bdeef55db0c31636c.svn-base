@@ -1,0 +1,353 @@
+﻿using Entity.Entities;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace STL.POS.Frontend.Web.NewVersion.Controllers
+{
+    public partial class InclusionController : BaseController
+    {
+        public JsonResult CreateQuotationByExclusion(string EndDate, string AgentCode, string DataCustomer, string policyNoMain)
+        {
+            return
+                CreateQuotationByInclusion(EndDate, AgentCode, DataCustomer, policyNoMain);
+        }
+
+        public JsonResult SaveVehicleExclusion(string jsondataVehicle, string StartDate,string EndDate, string AgentCode, string DataCustomer, string policyNoMain)
+        {
+            object quotationResult = new object();
+            try
+            {
+                //Insertando COtizacion
+                quotationResult = CreateQuotationByInclusion(EndDate, AgentCode, DataCustomer, policyNoMain, StartDate="");
+                //
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            var dvehicle = Newtonsoft.Json.JsonConvert.DeserializeObject<List<dynamic>>(jsondataVehicle);
+
+            var principalFullName = "";
+            var principalIdentificationNumber = "";
+            var totalVehiclesPrime = 0;
+            var DriverExist = false;
+            var DriverId = 0;
+
+            var dataDriver = oQuotationManager.GetQuotationDrivers(base.QuotationId);
+            if (dataDriver.Any())
+            {
+                var oDriver = dataDriver.FirstOrDefault(r => r.IsPrincipal);
+
+                principalFullName = string.Concat(oDriver.FirstName, " ", oDriver.FirstSurname);
+                principalIdentificationNumber = oDriver.IdentificationNumber;
+                DriverId = oDriver.Id;
+                DriverExist = true;
+            }
+
+            decimal? PercentByQtyVehicle = dvehicle.Select(x => (decimal)x.PercentByQtyVehicle).Cast<decimal>().FirstOrDefault();
+            decimal? TotalByQtyVehicle = dvehicle.Select(x => (decimal)x.TotalByQtyVehicle).Cast<decimal>().FirstOrDefault();
+
+            foreach (var vehicle in dvehicle)
+            {
+                if (!DriverExist)
+                {
+                    principalFullName = vehicle.principalFullName;
+                    principalIdentificationNumber = vehicle.IdentificationNumber;
+                }
+
+                var vparam = new VehicleProduct.Parameter();
+                vparam.id = vehicle.id != null ? vehicle.id : null;
+                vparam.vehicleDescription = vehicle.vehicleDescription;
+                vparam.year = vehicle.year;
+                vparam.vehiclePrice = vehicle.vehiclePrice;
+                vparam.insuredAmount = vehicle.insuredAmount;
+                vparam.percentageToInsure = vehicle.percentageToInsure;
+                vparam.totalPrime = vehicle.totalPrime;
+                vparam.totalIsc = vehicle.totalIsc;
+                vparam.ProratedPremium = vehicle.ProratedPremium;
+                vparam.isFacultative = vehicle.IsFacultative;
+                vparam.amountFacultative = vehicle.AmountFacultative;
+
+                vparam.totalDiscount = 0;
+                vparam.selectedProductCoreId = vehicle.selectedProductCoreId;
+                var vtCore = oDropDownManager.GetVehicleTypes((int?)vehicle.vehicleModel_Make_Id, (int?)vehicle.vehicleModel_Model_Id).FirstOrDefault();
+
+                if (vtCore != null)
+                {
+                    vparam.vehicleTypeCoreId = vtCore.CoreVehicleTypeId;
+                    vparam.vehicleTypeName = vtCore.VehicleTypeDesc;
+                }
+
+                vparam.selectedProductName = vehicle.selectedProductName;
+                vparam.vehicleMakeName = vehicle.vehicleMakeName;
+                vparam.usageId = vehicle.usageId;
+                vparam.usageName = vehicle.usageName;
+                vparam.storeId = vehicle.storeId;
+                vparam.storeName = vehicle.storeName;
+                vparam.driver_Id = DriverExist ? DriverId : vehicle.driver_Id;
+                vparam.vehicleModel_Make_Id = vehicle.vehicleModel_Make_Id;
+                vparam.vehicleModel_Model_Id = vehicle.vehicleModel_Model_Id;
+                vparam.quotation_Id = this.QuotationId;
+                vparam.selectedVehicleTypeId = vehicle.selectedVehicleTypeId;
+                vparam.selectedVehicleTypeName = vehicle.selectedVehicleTypeName;
+                vparam.selectedCoverageCoreId = vehicle.selectedCoverageCoreId;
+                vparam.selectedCoverageName = vehicle.selectedCoverageName;
+                vparam.vehicleYearOld = vehicle.vehicleYearOld;
+                vparam.surChargePercentage = (vehicle.surChargePercentage == 0) ? 0 : vehicle.surChargePercentage;
+                vparam.numeroFormulario = null;
+                vparam.rateJson = vehicle.rateJson;
+                vparam.userId = GetCurrentUserID();
+                vparam.secuenciaVehicleSysflex = vehicle.secuenciaVehicleSysflex;
+                vparam.secuenciaVehicleSysflex = vparam.secuenciaVehicleSysflex == 0 ? 1 : vehicle.secuenciaVehicleSysflex;
+                vparam.isFacultative = vehicle.IsFacultative;
+                vparam.amountFacultative = vehicle.AmountFacultative;
+                vparam.vehicleQuantity = vehicle.vehicleQuantity;
+                var SetVehicleResult = oVehicleProductManager.SetVehicleProduct(vparam);
+
+                var currentVehicleID = SetVehicleResult.EntityId;
+                var Total = (Convert.ToDecimal(vehicle.totalPrime) * vparam.vehicleQuantity.GetValueOrDefault());
+                totalVehiclesPrime += Total;
+
+                #region Guardar Coberturas del vehiculo
+
+                /*var json = JsonConvert.SerializeObject(vehicle.productLimit);
+
+                if (json != "null")
+                {
+                    ProductLimits productLimitSet = new ProductLimits();//JsonConvert.DeserializeObject<ProductLimits>(json);
+                    productLimitSet.TotalIsc = 0;
+                    productLimitSet.TotalDiscount = 0;
+                    productLimitSet.TotalPrime = 0;
+                    productLimitSet.IsSelected = true;
+
+                    if (vehicle.selectedDeductible.ToString() != "")
+                    {
+                        productLimitSet.SelectedDeductibleCoreId = vehicle.selectedDeductible;
+                        json = JsonConvert.SerializeObject(vehicle.GlobalDataDeductibleList);
+                        List<Entity.Entities.WSEntities.DeductibleValues> deductibleList = JsonConvert.DeserializeObject<List<Entity.Entities.WSEntities.DeductibleValues>>(json);
+
+                        Entity.Entities.WSEntities.DeductibleValues deductible = deductibleList.FirstOrDefault(d => d.CoreId == productLimitSet.SelectedDeductibleCoreId);
+                        productLimitSet.SelectedDeductibleName = deductible != null ? deductible.Name : null;
+                    }
+                    */
+
+                //Borrado masivo de coverturas y productlimits
+                oVehicleProductManager.DeleteVehicleProductCoveragesServices(currentVehicleID, false);
+                //
+
+                var prodParam = new ProductLimits.Parameter();
+                prodParam.id = null;
+                prodParam.vehicleProduct_Id = currentVehicleID;
+                prodParam.isSelected = true;
+                prodParam.totalIsc = 0;
+                prodParam.totalDiscount = 0;
+                prodParam.totalPrime = 0;
+                prodParam.servicesPrime = 0;
+                prodParam.tpPrime = 0;
+                prodParam.sdPrime = 0;
+                prodParam.selectedDeductibleCoreId = null;
+                prodParam.selectedDeductibleName = null;
+                prodParam.userId = GetCurrentUserID();
+
+                var productLimitSaved = oProductLimitsManager.SetProudctLimits(prodParam);
+                var currentProductLimit = productLimitSaved.EntityId;
+
+                /*var parm = new STL.POS.WsProxy.SysflexService.PolicySysFlexGetPrimaCoberturaKey();
+                parm.Cotizacion = decimal.Parse(this.GetQuotationCoreNumber(this.QuotationId));
+                parm.Secuencia = vehicle.secuenciaVehicleSysflex;
+                parm.Secuencia = parm.Secuencia == 0 ? 1 : parm.Secuencia;
+                var primacobertura = oCoreProxy.GetPrimaCobertura(parm);*/
+
+                #region Services
+
+                ServicesTypes.Parameter stParam = new ServicesTypes.Parameter();
+                stParam.id = null;
+                stParam.servicesTypesToProductLimits = currentProductLimit;
+                stParam.name = "Servicio por Default Exclusiones";
+                stParam.userId = GetCurrentUserID();
+                oServicesTypesRepositoryManager.SetServiceType(stParam);
+
+
+                /*
+                 List<string> headers = new List<string>();
+
+                var jsonST = JsonConvert.SerializeObject(vehicle.ServicesSelected);
+                var st = JsonConvert.DeserializeObject<List<Entity.Entities.WSEntities.ServiceTypeWS>>(jsonST);
+                foreach (var stList in st)
+                {
+                    foreach (var sc in stList.Coverages)
+                    {
+                        if (!headers.Contains(stList.Name))
+                        {
+                            ServicesTypes.Parameter stParam = new ServicesTypes.Parameter();
+                            stParam.id = null;
+                            stParam.servicesTypesToProductLimits = currentProductLimit;
+                            stParam.name = stList.Name;
+                            stParam.userId = GetCurrentUserID();
+                            serviceTypeSaved = oServicesTypesRepositoryManager.SetServiceType(stParam);
+                            headers.Add(stList.Name);
+                        }
+
+                        var currentServiceType = serviceTypeSaved.EntityId;
+
+                        #region SE Coverages
+
+                        if (sc.IsSelected)
+                        {
+                            var scParam = new Coverage.Parameter();
+
+                            if (primacobertura.Count() > 0)
+                            {
+                                var realCObert = primacobertura.FirstOrDefault(x => x.Secuencia == sc.CoverageDetailCoreId);
+                                if (realCObert != null)
+                                {
+                                    scParam.id = null;
+                                    scParam.isSelected = sc.IsSelected;
+                                    scParam.coverageDetailCoreId = sc.CoverageDetailCoreId;
+                                    scParam.name = sc.Name;
+                                    scParam.amount = realCObert.Prima;
+                                    scParam.limit = realCObert.Prima;
+                                    scParam.minDeductible = realCObert.MinimoDeducible.HasValue ? realCObert.MinimoDeducible.Value : 0;
+                                    scParam.deductible = realCObert.Deducible.HasValue ? realCObert.Deducible.Value : 0;
+                                    scParam.selfDamagesToProductLimits = null;
+                                    scParam.thirdPartyToProductLimits = null;
+                                    scParam.serviceType_Id = currentServiceType;
+                                    scParam.userId = GetCurrentUserID();
+                                    oCoverageManager.SetCoverageDetail(scParam);
+                                }
+                            }
+                        }
+                    }
+                    #endregion
+                }*/
+
+                #endregion
+
+                #region Self Damage Coverages
+
+                var sdParam = new Coverage.Parameter();
+                sdParam.id = null;
+                sdParam.isSelected = false;
+                sdParam.coverageDetailCoreId = 0;
+                sdParam.name = "Cobertura Daños Propios por Default Exclusiones";
+                sdParam.amount = 0;
+                sdParam.limit = 0;
+                sdParam.minDeductible = 0;
+                sdParam.deductible = 0;
+                sdParam.selfDamagesToProductLimits = currentProductLimit;
+                sdParam.thirdPartyToProductLimits = null;
+                sdParam.serviceType_Id = null;
+                sdParam.userId = GetCurrentUserID();
+                oCoverageManager.SetCoverageDetail(sdParam);
+
+                /*var jsonSelfDamages = JsonConvert.SerializeObject(vehicle.limitself.SelfDamagesCoverages);
+                var sfd = JsonConvert.DeserializeObject<List<Entity.Entities.WSEntities.CoverageDetailWS>>(jsonSelfDamages);
+
+                var sdParam = new Coverage.Parameter();
+
+                if (sfd != null)
+                {
+                    foreach (var sdc in sfd)
+                    {
+                        sdParam = new Coverage.Parameter();
+
+                        if (primacobertura.Count() > 0)
+                        {
+                            var realCObert = primacobertura.FirstOrDefault(x => x.Secuencia == sdc.CoverageDetailCoreId);
+                            if (realCObert != null)
+                            {
+                                decimal realLimit = 0;
+                                string MontoInformativo = realCObert.MontoInformativo.Replace(",", "");
+                                decimal.TryParse(MontoInformativo, out realLimit);
+                                sdParam.id = null;
+                                sdParam.isSelected = false;
+                                sdParam.coverageDetailCoreId = sdc.CoverageDetailCoreId;
+                                sdParam.name = sdc.Name;
+                                sdParam.amount = realLimit;
+                                sdParam.limit = realLimit;
+                                sdParam.minDeductible = realCObert.MinimoDeducible.HasValue ? realCObert.MinimoDeducible.Value : 0;
+                                sdParam.deductible = realCObert.Deducible.HasValue ? realCObert.Deducible.Value : 0;
+                                sdParam.selfDamagesToProductLimits = currentProductLimit;
+                                sdParam.thirdPartyToProductLimits = null;
+                                sdParam.serviceType_Id = null;
+                                sdParam.userId = GetCurrentUserID();
+                            }
+                        }
+
+                        oCoverageManager.SetCoverageDetail(sdParam);
+                    }
+                }*/
+
+                #endregion
+
+                #region Third Party Coverages
+
+                var tpParam = new Coverage.Parameter();
+                tpParam.id = null;
+                tpParam.isSelected = false;
+                tpParam.coverageDetailCoreId = 0;
+                tpParam.name = "Cobertura Daños Terceros por Default Exclusiones";
+                tpParam.amount = 0;
+                tpParam.limit = 0;
+                tpParam.minDeductible = 0;
+                tpParam.deductible = 0;
+                tpParam.selfDamagesToProductLimits = null;
+                tpParam.thirdPartyToProductLimits = currentProductLimit;
+                tpParam.serviceType_Id = null;
+                tpParam.userId = GetCurrentUserID();
+                oCoverageManager.SetCoverageDetail(tpParam);
+
+                /*var jsonThirdParty = JsonConvert.SerializeObject(vehicle.limitself.ThirdPartyCoverages);
+                var tps = JsonConvert.DeserializeObject<List<Entity.Entities.WSEntities.CoverageDetailWS>>(jsonThirdParty);
+               
+                if (tps != null)
+                {
+                    foreach (var tpc in tps)
+                    {
+                        tpParam = new Coverage.Parameter();
+
+                        if (primacobertura.Count() > 0)
+                        {
+                            var realCObert = primacobertura.FirstOrDefault(x => x.Secuencia == tpc.CoverageDetailCoreId);
+                            if (realCObert != null)
+                            {
+                                decimal realLimit = 0;
+                                string MontoInformativo = realCObert.MontoInformativo.Replace(",", "");
+                                decimal.TryParse(MontoInformativo, out realLimit);
+                                tpc.Amount = realLimit;
+                                tpc.Limit = realLimit;
+                                tpc.MinDeductible = realCObert.MinimoDeducible.HasValue ? realCObert.MinimoDeducible.Value : 0;
+                                tpc.Deductible = realCObert.Deducible.HasValue ? realCObert.Deducible.Value : 0;
+
+                                tpParam.id = null;
+                                tpParam.isSelected = false;
+                                tpParam.coverageDetailCoreId = tpc.CoverageDetailCoreId;
+                                tpParam.name = tpc.Name;
+                                tpParam.amount = realLimit;
+                                tpParam.limit = realLimit;
+                                tpParam.minDeductible = realCObert.MinimoDeducible.HasValue ? realCObert.MinimoDeducible.Value : 0;
+                                tpParam.deductible = realCObert.Deducible.HasValue ? realCObert.Deducible.Value : 0;
+                                tpParam.selfDamagesToProductLimits = null;
+                                tpParam.thirdPartyToProductLimits = currentProductLimit;
+                                tpParam.serviceType_Id = null;
+                                tpParam.userId = GetCurrentUserID();
+                            }
+                        }
+                        oCoverageManager.SetCoverageDetail(tpParam);
+                    }
+                }*/
+                #endregion
+                //}
+                #endregion
+            }
+
+            return
+                   Json(new { }, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

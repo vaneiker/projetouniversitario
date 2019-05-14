@@ -1,0 +1,147 @@
+﻿$(document).ready(function () {
+    InizitializeControls();
+    InitializeChosen();
+
+    
+    $(document).on('click', '#HideInHistory', function () {
+        getFamilyBrochure()
+    });
+
+    $(document).on('click', '.myBrochure', function () {
+        //var id = $(this).attr('rowID');
+        //GetBrochureByProduct(id);
+    });
+
+    $(document).on('click', '.submyBrochure', function () {
+        //var id = $(this).attr('rowID');
+        //GetBrochureByProduct(id);
+    });
+    componentHandler.upgradeAllRegistered();
+}); /// fin de document ready
+
+function getFamilyBrochure() {
+    $('#segundoTab').empty();
+    $.ajax({
+        type: "POST",
+        url: "/Home/GetProductTypeFamily",
+        data: {},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            //recorro el listado de tipos de brochure
+            $.each(result, function (idx, obj) {
+                //formulo el id del registro
+                var rowId = "#" + obj.name.toLowerCase() + "-tab";
+                var element = "<li class='nav-item'>";
+                element += "<a class='nav-link myBrochure' rowID='" + obj.Value + "' id='" + obj.name.toLowerCase() + "-tab' data-toggle='tab' href='#" + obj.name.toLowerCase() + "' role='tab' aria-controls='" + obj.name.toLowerCase() + "' aria-selected='true'>" + obj.name + "</a>";
+                element += "</li>";
+                
+                $('#segundoTab').append(element);
+                if (obj.Value == 1) {
+                    $(rowId).addClass('active');
+                    GetBrochureByProduct(obj.Value);
+                }
+                
+            });
+
+            var compare = "<li class='nav-item'>"
+            compare += "<a class='nav-link' id='tblComparativos-tab' data-toggle='tab' href='#tblComparativos' role='tab' aria-controls='tblComparativos' aria-selected='false'>Tabla comparativos</a>";
+            compare += "</li>";
+            $('#segundoTab').append(compare);
+        },
+        failure: function (response) {
+            showError([response.responseText], "Error cargando el listado de Brochure");
+        },
+        error: function (response) {
+            showError([response.responseText], "Error cargando el listado de Brochure");
+        }
+    });
+}
+
+function GetBrochureByProduct(ProductFamilyId) {
+    $('#tercerTab').empty();
+    $.ajax({
+        url: "/Home/GetBrochureByProduct",
+        dataType: 'json',
+        async: false,
+        data: { productTypeID: ProductFamilyId },
+        success: function (result) {
+            //recorro el listado de tipos de brochure
+            $.each(result, function (idx, obj) {
+                var element = "<li class='nav-item'>";
+                var rowId = ""
+                var Name = obj.Name.toLowerCase().replace(" ", "").replace("á", "a").replace("é", "a").replace("í", "a").replace("ó", "a").replace("ú", "a");
+
+                if (obj.Id == 1) {
+                    rowId = "#" + obj.Name.toLowerCase() + "i-tab";
+                    element += "<a class='nav-link submyBrochure'  rowID='" + obj.Id + "' id='" + rowId.replace("#", "") + "' data-toggle='tab' href='#" + Name + "i' role='tab' aria-controls='" + Name + "i' aria-selected='true'>" + obj.Name + "</a>";
+                    createTableCoverageHeader(obj.Coberturas);
+                    getCoverageTypesBrochure(obj.Id);
+                } else if (obj.Id == 12)
+                {
+                    rowId = "#" + obj.Name.toLowerCase() + "P-tab";
+                    element += "<a class='nav-link submyBrochure' rowID='" + obj.Id + "' id='" + rowId.replace("#", "") + "' data-toggle='tab' href='#" + Name + "P' role='tab' aria-controls='" + Name + "P' aria-selected='false'>" + obj.Name + "</a>";
+                } else {
+                    rowId = "#" + obj.Name.toLowerCase() + "-tab";
+                    element += "<a class='nav-link myBrochure' rowID='" + obj.Id + "' id='" + rowId.replace("#", "") + "' data-toggle='tab' href='#" + Name + "' role='tab' aria-controls='" + Name + "' aria-selected='false'>" + obj.Name + "</a>";
+                }
+
+                element += "</li>";
+                $('#tercerTab').append(element);
+
+                if (obj.Id == 1) {
+                    $(rowId).addClass('active');
+                }
+            });
+        },
+        failure: function (response) {
+            showError([response.responseText], "Error cargando el listado de Brochure");
+        },
+        error: function (response) {
+            showError([response.responseText], "Error cargando el listado de Brochure");
+        }
+    });
+}
+
+function createTableCoverageHeader(coverageName) {
+    var row = "";
+    var tableHeader = $('#coverageTable thead');
+    tableHeader.empty();
+
+    row = "<tr class='coverageTypes'></tr>";
+    
+    row += "<tr class='bg-info mdl-color-text--white'>";
+    row += "<th align='left' class='c1'><span>" + coverageName +"</span></th>";
+    row += "<th align='center' class='c2'><span>Límite</span></th>";
+    row += "<th align='center' class='c2'><span>Límite</span></th>";
+    row += "<th align='center' class='c2'><span>Límite</span></th>";
+    row += "<th align='center' class='c2'><span>Límite</span></th>";
+    row += "<th align='center' class='c2'><span>Límite</span></th>";
+    row += "</tr>";
+    tableHeader.append(row);
+}
+
+function getCoverageTypesBrochure(ProductTypeBrochureId) {
+      $.ajax({
+            url: "/Home/GetCoverageTypesBrochure",
+            dataType: 'json',
+            async: false,
+            data: { ProductTypeBrochureId: ProductTypeBrochureId },
+            success: function (result) {
+                //recorro el primer row que tiene el thead para agregar las columnas con los tipos de coberturas
+                var $row = $('#coverageTable thead tr.coverageTypes');
+                $row.empty();
+                $row.append("<th align='left' class='c1'>&nbsp;</th>");
+                //recorriendo los tipos de coverturas
+                $.each(result, function (idx, obj) {
+                    $row.append("<th align='center' class='bg-info mdl-color-text--white'><span>" + obj.name + "</span></th>");
+                });
+            },
+            failure: function (response) {
+                showError([response.responseText], "Error cargando los tipos de coberturas de Brochure");
+            },
+            error: function (response) {
+                showError([response.responseText], "Error cargando los tipos de coberturas de Brochure");
+            }
+        });
+}

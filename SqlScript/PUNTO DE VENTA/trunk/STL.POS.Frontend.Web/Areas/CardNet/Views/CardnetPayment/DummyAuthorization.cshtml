@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DummyAuthorization</title>
+</head>
+<body>
+    <div> 
+        <form action="@ViewBag.ReturnUrlOk" method="POST">
+            <p>CreditCardNumber<input type="text" name="CreditCardNumber" value="1234-5678-9012-3456" /></p>
+            <p>Response Code<input type="text" name="ResponseCode" value="@ViewBag.ResponseCode" /></p>
+            <p>AuthorizationCode<input type="text" name="AuthorizationCode" value="123456" /></p>
+            <p>RetrievalReferenceNumber<input type="text" name="RetrivalReferenceNumber " value="@ViewBag.RetrivalReferenceNumber" /></p>
+            <p>OrdenId<input type="text" name="OrdenId" value="@ViewBag.OrdenId" /></p>
+            <p>TransactionId<input type="text" name="TransactionId" value="@ViewBag.TransactionId" /></p>
+
+            <input type="submit" value="Enviar" />
+        </form>
+    </div>
+
+    <div>
+        <form action="@ViewBag.ReturnUrlCancel" method="POST">
+            <p>CreditCardNumber<input type="text" name="CreditCardNumber" value="1234-5678-9012-3456" /></p>
+            <p>Response Code<input type="text" name="ResponseCode" value="@ViewBag.ResponseCode" /></p>
+            <p>AuthorizationCode<input type="text" name="AuthorizationCode" value="123456" /></p>
+            <p>RetrievalReferenceNumber<input type="text" name="RetrivalReferenceNumber " value="@ViewBag.RetrivalReferenceNumber" /></p>
+            <p>OrdenId<input type="text" name="OrdenId" value="@ViewBag.OrdenId" /></p>
+            <p>TransactionId<input type="text" name="TransactionId" value="@ViewBag.TransactionId" /></p>
+
+            <input type="submit" value="Enviar" />
+        </form>
+    </div>
+</body>
+</html>

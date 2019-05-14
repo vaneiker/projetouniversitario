@@ -1,0 +1,108 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode
+@model STL.POS.Frontend.Web.NewVersion.Controllers.InclusionController.DataCoverage
+<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card mdl-cell--6-col-tablet mdl-cell--12-col-phone" id="@ViewBag.dvVehicleId">
+    <div class="mdl-card__media">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text m-auto mdl-color-text--white">@Model.VechicleDesc</h2>
+            <button type="button" class="btn float-right ec_btn btn-success btn-sm mr-2" onclick="EditVehicle('#@ViewBag.dvVehicleId')"><i class="material-icons">&#xE254;</i></button>
+            <button type="button" onclick="DeleteVehicle('#@ViewBag.dvVehicleId')" class="btn float-right ec_btn btn-danger btn-sm Close"><i class="material-icons"> &#xE5CD;</i></button>
+        </div>
+    </div>
+    <div class="mdl-card__supporting-text w-100">
+        <!-- Icon List -->
+        <ul class="demo-list-icon mdl-list">
+            <li class="mdl-list__item text-center">
+                <strong class="mdl-list__item-primary-content m-auto text-success">
+                    @*@Model.VechicleDesc*@
+                </strong>
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <strong class="mdl-list__item-primary-content">
+                    Valor:
+                </strong>
+                <span id="spValor"> @Model.VehicleValue.ToString("#,0.00", System.Globalization.CultureInfo.InvariantCulture)</span>
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <strong class="mdl-list__item-primary-content mr-5">
+                    Plan:
+                </strong>
+                @Html.DropDownList("ddlAllProducts", (IEnumerable<SelectListItem>)ViewBag.plaData, new { @class = "form-control AllProducts", @data = ViewBag.dvVehicleId })
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <strong class="mdl-list__item-primary-content mr-5">
+                    Cobertura:
+                </strong>
+                <select class="form-control coverage" data="@ViewBag.dvVehicleId">
+                    <option value="">Seleccione</option>
+                </select>
+                @*<button id="infoCB" data-toggle="modal" data-target="#ppCobertura" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored float-right"><i class="material-icons">&#xE88E;</i></button>*@
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <strong class="mdl-list__item-primary-content mr-5">
+                    Deducible:
+                </strong>
+                <select class="form-control Deducible" data="@ViewBag.dvVehicleId"></select>
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <strong class="mdl-list__item-primary-content">
+                    Servicios:
+                </strong>
+                <span>
+                    <button data-toggle="modal" data="@ViewBag.dvVehicleId" onclick="ShowServicesInclusion(this)" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored bg-success mdl-color-text--white"><i class="material-icons">add</i></button>
+                </span>
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                    <input class="mdl-textfield__input" type="text" id="cvehi" value="@ViewBag.VehicleQuantity" data="@ViewBag.dvVehicleId">
+                    <label class="mdl-textfield__label" for="cvehi">Cantidad de Vehi­culos</label>
+                </div>
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <strong class="mdl-list__item-primary-content">
+                    Prima Anual:
+                </strong>
+                <span id="AnnualPrime">0.00</span>
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <strong class="mdl-list__item-primary-content">
+                    Impuesto:
+                </strong>
+                <span id="ISC">0.00</span>
+            </li>
+            <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                <strong class="mdl-list__item-primary-content">
+                    Total Pagar:
+                </strong>
+                <span id="TAnnualPrime">0.00</span>
+            </li>
+        </ul>
+    </div>
+    @Html.HiddenFor(g => g.makeId, new { id = "hdnMakeId" })
+    @Html.HiddenFor(g => g.modelId, new { id = "hdnmodelId" })
+    @Html.HiddenFor(g => g.VehicleValue, new { id = "hdnVehicleValue" })
+    @Html.Hidden("hdnVehicleDataFromSaveAndEdit", (object)ViewBag.vehicleData)
+    @Html.Hidden("hdnProducts", Newtonsoft.Json.JsonConvert.SerializeObject(Model.Products))
+    @Html.Hidden("hdnHasPrime", false)
+    @Html.Hidden("totalPrimeWithoutTax", "")
+    @Html.Hidden("totalPrime", "")
+    @Html.Hidden("totalIsc", "")
+    @Html.Hidden("servicesPrime", "")
+    @Html.Hidden("tpPrime", "")
+    @Html.Hidden("sdPrime", "")
+    @Html.Hidden("rateJson", "")
+    @Html.Hidden("primaproratadiasinimpuestos", "")
+    @Html.Hidden("DiasCotizados", "")
+    @Html.Hidden("SelectedVehicleTypeId", "")
+    @Html.Hidden("SecuenciaSysFlex", (object)ViewBag.SecuenciaSysFlex)
+    @Html.Hidden("UsageFilterPlan", (object)ViewBag.UsageFilterPlan)
+    @Html.Hidden("VehicleId", (object)ViewBag.VehicleId)
+    @Html.Hidden("IsLawProduct")
+    @Html.Hidden("AdditionalServices", (object)ViewBag.Services)
+    @Html.Hidden("hdnServiceSelected", (object)ViewBag.ServiceSelected)
+    @Html.Hidden("hdnIsFacultative", "false")
+    @Html.Hidden("hdnAmountFacultative", "0")
+    @Html.Hidden("IsEditing", ((object)ViewBag.IsEditing).ToString().ToLower())
+    @Html.Hidden("Secuencia", (object)ViewBag.SecuenciaVehicleInclusion)
+</div>
+
+

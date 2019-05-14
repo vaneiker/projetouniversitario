@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContactService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://devservicecontact.statetrustlife.com/ContactService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://devservicecontact.statetrustlife.com/ContactService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://devservicecontact.statetrustlife.com/ContactService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Global.Contact.Service.Entities" />
+      <xsd:import schemaLocation="http://devservicecontact.statetrustlife.com/ContactService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Global.Common.Utils" />
+      <xsd:import schemaLocation="http://devservicecontact.statetrustlife.com/ContactService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Global.Common.Results" />
+      <xsd:import schemaLocation="http://devservicecontact.statetrustlife.com/ContactService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://devservicecontact.statetrustlife.com/ContactService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Entity.UnderWriting.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IContactService_AddContact_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddContact" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddContact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPhone" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddEmail" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAddress" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddIdentification_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddIdentification" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_AddIdentification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddIdentificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdateContact_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateContact" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdateContact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdateEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmail" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdateEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdatePhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePhone" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdatePhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdateAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAddress" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdateAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdateIdentification_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateIdentification" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_UpdateIdentification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateIdentificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_DeletePhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePhone" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_DeletePhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_DeleteEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEmail" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_DeleteEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_DeleteAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAddress" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_DeleteAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_DeleteIdDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteIdDocument" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_DeleteIdDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteIdDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetContact_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContact" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetContact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetAllPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPhone" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetAllPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetAllAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAddress" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetAllAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetAllIdDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIdDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetAllIdDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIdDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetAllEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEmail" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetAllEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetBinaryIdDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBinaryIdDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetBinaryIdDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBinaryIdDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetContactMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactMatch" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetContactMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetNcfType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNcfType" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetNcfType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNcfTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetContactExistByContactId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactExistByContactId" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetContactExistByContactId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactExistByContactIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactQuestionaireHealth_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactQuestionaireHealth" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactQuestionaireHealth_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactQuestionaireHealthResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactFinalBeneficiary_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactFinalBeneficiary" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactFinalBeneficiary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactFinalBeneficiaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactPepFormulary_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactPepFormulary" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactPepFormulary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactPepFormularyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactPepInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactPepInformation" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_SetContactPepInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetContactPepInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetOccupationByDesc_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOccupationByDesc" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetOccupationByDesc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOccupationByDescResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetCustomerNumberByContactId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerNumberByContactId" />
+  </wsdl:message>
+  <wsdl:message name="IContactService_GetCustomerNumberByContactId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerNumberByContactIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IContactService">
+    <wsdl:operation name="AddContact">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/AddContact" message="tns:IContactService_AddContact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/AddContactResponse" message="tns:IContactService_AddContact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/AddPhone" message="tns:IContactService_AddPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/AddPhoneResponse" message="tns:IContactService_AddPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/AddEmail" message="tns:IContactService_AddEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/AddEmailResponse" message="tns:IContactService_AddEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/AddAddress" message="tns:IContactService_AddAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/AddAddressResponse" message="tns:IContactService_AddAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddIdentification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/AddIdentification" message="tns:IContactService_AddIdentification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/AddIdentificationResponse" message="tns:IContactService_AddIdentification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContact">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/UpdateContact" message="tns:IContactService_UpdateContact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/UpdateContactResponse" message="tns:IContactService_UpdateContact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/UpdateEmail" message="tns:IContactService_UpdateEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/UpdateEmailResponse" message="tns:IContactService_UpdateEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/UpdatePhone" message="tns:IContactService_UpdatePhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/UpdatePhoneResponse" message="tns:IContactService_UpdatePhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/UpdateAddress" message="tns:IContactService_UpdateAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/UpdateAddressResponse" message="tns:IContactService_UpdateAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIdentification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/UpdateIdentification" message="tns:IContactService_UpdateIdentification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/UpdateIdentificationResponse" message="tns:IContactService_UpdateIdentification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/DeletePhone" message="tns:IContactService_DeletePhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/DeletePhoneResponse" message="tns:IContactService_DeletePhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/DeleteEmail" message="tns:IContactService_DeleteEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/DeleteEmailResponse" message="tns:IContactService_DeleteEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/DeleteAddress" message="tns:IContactService_DeleteAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/DeleteAddressResponse" message="tns:IContactService_DeleteAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteIdDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/DeleteIdDocument" message="tns:IContactService_DeleteIdDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/DeleteIdDocumentResponse" message="tns:IContactService_DeleteIdDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContact">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetContact" message="tns:IContactService_GetContact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetContactResponse" message="tns:IContactService_GetContact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetAllPhone" message="tns:IContactService_GetAllPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetAllPhoneResponse" message="tns:IContactService_GetAllPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetAllAddress" message="tns:IContactService_GetAllAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetAllAddressResponse" message="tns:IContactService_GetAllAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllIdDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetAllIdDocuments" message="tns:IContactService_GetAllIdDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetAllIdDocumentsResponse" message="tns:IContactService_GetAllIdDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetAllEmail" message="tns:IContactService_GetAllEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetAllEmailResponse" message="tns:IContactService_GetAllEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryIdDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetBinaryIdDocuments" message="tns:IContactService_GetBinaryIdDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetBinaryIdDocumentsResponse" message="tns:IContactService_GetBinaryIdDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetContactMatch" message="tns:IContactService_GetContactMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetContactMatchResponse" message="tns:IContactService_GetContactMatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNcfType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetNcfType" message="tns:IContactService_GetNcfType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetNcfTypeResponse" message="tns:IContactService_GetNcfType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactExistByContactId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetContactExistByContactId" message="tns:IContactService_GetContactExistByContactId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetContactExistByContactIdResponse" message="tns:IContactService_GetContactExistByContactId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactQuestionaireHealth">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactQuestionaireHealth" message="tns:IContactService_SetContactQuestionaireHealth_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactQuestionaireHealthResponse" message="tns:IContactService_SetContactQuestionaireHealth_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactFinalBeneficiary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactFinalBeneficiary" message="tns:IContactService_SetContactFinalBeneficiary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactFinalBeneficiaryResponse" message="tns:IContactService_SetContactFinalBeneficiary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactPepFormulary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactPepFormulary" message="tns:IContactService_SetContactPepFormulary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactPepFormularyResponse" message="tns:IContactService_SetContactPepFormulary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetContactPepInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/SetContactPepInformation" message="tns:IContactService_SetContactPepInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/SetContactPepInformationResponse" message="tns:IContactService_SetContactPepInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOccupationByDesc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetOccupationByDesc" message="tns:IContactService_GetOccupationByDesc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetOccupationByDescResponse" message="tns:IContactService_GetOccupationByDesc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerNumberByContactId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContactService/GetCustomerNumberByContactId" message="tns:IContactService_GetCustomerNumberByContactId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContactService/GetCustomerNumberByContactIdResponse" message="tns:IContactService_GetCustomerNumberByContactId_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IContactService" type="tns:IContactService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddContact">
+      <soap:operation soapAction="http://tempuri.org/IContactService/AddContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPhone">
+      <soap:operation soapAction="http://tempuri.org/IContactService/AddPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEmail">
+      <soap:operation soapAction="http://tempuri.org/IContactService/AddEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <soap:operation soapAction="http://tempuri.org/IContactService/AddAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddIdentification">
+      <soap:operation soapAction="http://tempuri.org/IContactService/AddIdentification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContact">
+      <soap:operation soapAction="http://tempuri.org/IContactService/UpdateContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmail">
+      <soap:operation soapAction="http://tempuri.org/IContactService/UpdateEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePhone">
+      <soap:operation soapAction="http://tempuri.org/IContactService/UpdatePhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddress">
+      <soap:operation soapAction="http://tempuri.org/IContactService/UpdateAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIdentification">
+      <soap:operation soapAction="http://tempuri.org/IContactService/UpdateIdentification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePhone">
+      <soap:operation soapAction="http://tempuri.org/IContactService/DeletePhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEmail">
+      <soap:operation soapAction="http://tempuri.org/IContactService/DeleteEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAddress">
+      <soap:operation soapAction="http://tempuri.org/IContactService/DeleteAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteIdDocument">
+      <soap:operation soapAction="http://tempuri.org/IContactService/DeleteIdDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContact">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPhone">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetAllPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAddress">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetAllAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllIdDocuments">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetAllIdDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEmail">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetAllEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryIdDocuments">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetBinaryIdDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactMatch">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetContactMatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNcfType">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetNcfType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactExistByContactId">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetContactExistByContactId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactQuestionaireHealth">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactQuestionaireHealth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactFinalBeneficiary">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactFinalBeneficiary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactPepFormulary">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactPepFormulary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetContactPepInformation">
+      <soap:operation soapAction="http://tempuri.org/IContactService/SetContactPepInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOccupationByDesc">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetOccupationByDesc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerNumberByContactId">
+      <soap:operation soapAction="http://tempuri.org/IContactService/GetCustomerNumberByContactId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContactService">
+    <wsdl:port name="BasicHttpBinding_IContactService" binding="tns:BasicHttpBinding_IContactService">
+      <soap:address location="http://devservicecontact.statetrustlife.com/ContactService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

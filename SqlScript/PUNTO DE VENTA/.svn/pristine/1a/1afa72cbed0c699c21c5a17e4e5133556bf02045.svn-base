@@ -1,0 +1,16 @@
+﻿$(document).ready(function () {
+    postToIframe();
+});
+
+function postToIframe() {
+    var ifrma = $('#bdChat');
+    urlX = "http://172.16.191.14:8080/StateTrustWeb/vo/virtualOffice";
+    ifrma.append('<form action="' + urlX + '" method="POST" target="_self" id="postToIframe" style="height:500px"></form>');
+
+    var $postToIframe = $('#postToIframe');
+
+    $postToIframe.append('<input type="hidden" name="token" value="73d9c8d0-8f3b-442e-9367-9d05a851b316" />');
+    $postToIframe.append('<input type="hidden" name="pkIncidentChat" value="18994" />');
+    $postToIframe.append('<input type="hidden" name="flag" value="1" />');
+    $postToIframe.submit().remove();
+}

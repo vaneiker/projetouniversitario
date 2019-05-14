@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9EC99534-3AB1-4EEC-9882-9F942F21490C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STL.POS.Data.NewVersion</RootNamespace>
+    <AssemblyName>STL.POS.Data.NewVersion</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EdmxModel\GET_COMBO_CONDICITIONS_BY_PARAMETERS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\POSSiteDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POSSiteDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\POSSiteDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\POSSiteDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POSSiteDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_FILL_DROP_DOWN_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_ALL_IDENTIFICATION_FINAL_BENEFICIARY_BY_DRIVER_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_ALL_IGNORE_RNC_VALIDATION_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_ALL_PEPS_BY_DRIVER_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_ALL_PERSON_INFO_BY_DRIVER_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_BENEFICIARIES_BY_DRIVER_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_BUSINESS_LINE_BY_COUNTRY_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_CITIES_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_COUNTRY_UBICACION_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_COVERAGE_TYPES_BROCHURE_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_DRIVER_BY_ID_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_IDENTIFICATION_FINAL_BENEFICIARY_OPTION_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_IGNORE_RNC_VALIDATION_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_JOBS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_MODELS_BY_BRANDS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_MUNICIPALITIES_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_PARAMETERS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_PEP_FORMULARY_BY_DRIVER_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_PEP_OPTIONS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_PRODUCTS_SYSFLEX_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_PRODUCT_TYPE_BROCHURE_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_PROVINCES_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATIONS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_COVERAGE_DETAILS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_COVERAGE_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_DRIVERS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_PAYMENT_INFO_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_PRODUCT_LIMITS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_REQUIREMENT_DOC_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_REQUIREMENT_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_SERVICES_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_SERVICES_TYPES_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_QUOTATION_VEHICLE_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_ST_VEHICLE_TYPE_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_USAGE_STATES_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_USERS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_VEHICLE_BRANDS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_VEHICLE_TYPES_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_GET_VIRTUAL_OFFICE_INTEGRATION_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_COVERAGE_DETAILS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_DRIVERS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_IDENTIFICATION_FINAL_BENEFICIARY_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_OWNERSHIP_STRUCTURE_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_PEP_FORMULARY_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_PERSONS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_PRODUCT_LIMITS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_QUOTATION_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_SERVICES_TYPES_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_SOCIAL_REASON_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_USERS_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EdmxModel\SP_SET_VEHICLE_PRODUCT_Result.cs">
+      <DependentUpon>POSSiteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PosSiteDataContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\CoverageRepository.cs" />
+    <Compile Include="Repository\DriverRepository.cs" />
+    <Compile Include="Repository\IdentificationFinalBeneficiaryRepository.cs" />
+    <Compile Include="Repository\PepFormularyRepository.cs" />
+    <Compile Include="Repository\DropDownRepository.cs" />
+    <Compile Include="Repository\DocumentRequiredRepository.cs" />
+    <Compile Include="Repository\PersonRepository.cs" />
+    <Compile Include="Repository\ProductLimitsRepository.cs" />
+    <Compile Include="Repository\ProductTypeBrochureRepository.cs" />
+    <Compile Include="Repository\QuotationRepository.cs" />
+    <Compile Include="Repository\ServicesTypesRepository.cs" />
+    <Compile Include="Repository\SocialReasonRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Repository\VehicleProductRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="EdmxModel\POSSiteDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>POSSiteDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EdmxModel\POSSiteDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>POSSiteDataModel.edmx</DependentUpon>
+      <LastGenOutput>POSSiteDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EdmxModel\POSSiteDataModel.edmx.diagram">
+      <DependentUpon>POSSiteDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="EdmxModel\POSSiteDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>POSSiteDataModel.edmx</DependentUpon>
+      <LastGenOutput>POSSiteDataModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{593d0c43-f556-4a61-889f-964fe656adc6}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

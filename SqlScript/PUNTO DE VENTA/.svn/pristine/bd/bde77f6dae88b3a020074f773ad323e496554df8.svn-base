@@ -1,0 +1,165 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Dantelin Castro">
+    <!-- <link rel="icon" href="images/favicon.png"> -->
+    <title>Cotizador</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/dtl.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.css">
+    <link rel="stylesheet" href="~/Content/css/material.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-light_blue.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/css/chosen.css">
+    <link rel="stylesheet" href="~/Content/css/block-styles.css">
+    <link href="~/Content/css/Master.css" rel="stylesheet" />
+    <link href="~/Content/css/SecurityCss.css" rel="stylesheet" />
+    <link href="~/Content/css/accordion.css" rel="stylesheet" />
+    <link href="~/Content/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <!--jquery UI Css-->
+    <link href="~/Content/css/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/jqueryui/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Content/css/jqueryui/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link href="~/Content/css/jqueryui/ui.notify.css" rel="stylesheet" />
+    <!--jquery UI Css-->
+
+    <script type="text/javascript" src="~/js/jquery-3.2.1.min.js"></script>
+
+    <script src="~/js/jquery-ui.js"></script>
+
+    <script src="~/js/Security/jquery.notify.min.js"></script>
+
+</head>
+<body class="bg_atl_body">
+    <div id="st-container" class="st-container">
+        @if (ViewBag.UserOrigin == STL.POS.Frontend.Web.NewVersion.CustomCode.CommonEnums.UserOrigins.VO)
+        {
+            if (ViewBag.onlyLoggedUsers == true)
+            {
+                Html.RenderPartial("_SlideMenuAgent");
+            }
+        }
+        <div class="st-pusher">
+            <div class="st-content">
+                @if (ViewBag.UserOrigin == STL.POS.Frontend.Web.NewVersion.CustomCode.CommonEnums.UserOrigins.VO)
+                {
+                    if (ViewBag.onlyLoggedUsers == true)
+                    {
+                        <div id="st-trigger-effects">
+                            @*<button data-effect="st-effect-2" id="btnLoadProfile" class="show_profile_es"> </button>*@
+                            <button data-effect="st-effect-2" id="btnLoadProfile" class="show_profile_es" onclick="GetUserProfileDataMVC(true);"> </button>
+                        </div>
+                    }
+                }
+                <div id="scroll_2">
+                    <div class="mdl-layout__container">
+                        @{Html.RenderPartial("_HeaderNavBar");}
+                        <main id="main" role="main" class="container main_cotiza_atl">
+                            @{Html.RenderPartial("_HeaderOptions");}
+
+                            <!--Contenedor-->
+                            @RenderBody()
+                            <!--Contenedor-->
+                            @{Html.RenderPartial("_ContinueLastStep");}
+
+                        </main>
+                        @{Html.RenderPartial("_Footer");}
+                    </div>                   
+
+                    <!-- TOOLTIPS -->
+                    <div class="mdl-tooltip mdl-tooltip--top bg-primary" data-mdl-for="infoCB">
+                        <strong class="">Ver Información de Coberturas</strong>
+                    </div>
+                    <!-- <div class="mdl-tooltip mdl-tooltip--top bg-primary" data-mdl-for="chat_btn">
+                      <strong>Iniciar Chat</strong>
+                    </div>
+                    <div class="mdl-tooltip mdl-tooltip--top bg-primary" data-mdl-for="mail_btn">
+                      <strong>Enviar un Correo</strong>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--============| POPUPS |============-->
+    @{Html.RenderPartial("_AllPopUps");}
+    <!--============| END POPUPS |============-->
+    <!--Hiddens Fields-->
+    <input type="hidden" id="quotationID" value="" />
+    <input type="hidden" id="QuotationNumber" value="@ViewBag.QuotationNumber" />
+    <input type="hidden" id="QuotationCoreNumber" value="" />
+    <input type="hidden" id="Financed" value="" />
+    <input type="hidden" id="lastModelSelected" value="" />
+    <input type="hidden" id="lastMakeSelected" value="" />
+    <input type="hidden" id="LastSelectedVehicleYearsOld" value="" />
+    <input type="hidden" id="lastDeducibleSelected" value="" />
+    <input type="hidden" id="oldAgentSelected" value="" />
+    <input type="hidden" id="newAgentSelected" value="" />
+    <input type="hidden" id="hdnInvalidUsage" value="N" />
+    <input type="hidden" id="hdnChangedSomethingClient" value="N" />
+    <input type="hidden" id="IsCustomer" value="@ViewBag.IsCustomer" />
+    <input type="hidden" id="AllowRedirect" value="true" />
+    <input type="hidden" id="ParameterTotalPrimium" value="0" />
+    <input type="hidden" id="QuotationTotalPrimium" value="0" />
+    <input type="hidden" id="hdnIsInclusion" value="N" />
+    <input type="hidden" id="hdnDefaultCityCode" value="" />
+    <input type="hidden" id="hdnOrigen" value="" />
+    <!--//Hiddens Fields-->
+
+
+    <script src="~/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="~/js/jquery-1.12.4.min.js"></script>
+    <script src="~/js/vendor/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/material.min.js"></script>
+    <script src="~/js/chosen.jquery.min.js"></script>
+
+    <script src="~/js/jquery-ui.js"></script>
+
+    <script src="~/js/Security/jquery.nestedAccordion.js"></script>
+    <script src="~/js/Security/jquery.nicescroll.min.js"></script>
+    <script src="~/js/Security/jquery.notify.min.js"></script>
+    <script src="~/js/Security/jquery.countdownTimer.min.js"></script>
+
+    <script src="~/js/datepicker-es.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
+    <script src="~/js/jquery.mask.js"></script>
+    <script src="~/js/MaskedInput.js"></script>
+    <script src="~/js/CustomValidations.js"></script>
+
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/moment-with-locales.js"></script>
+
+    <script src="~/js/linq.min.js"></script>
+        
+    <script src="~/js/ControllersJs/Custom.js"></script>
+    <script src="~/js/jquery.qtip.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/ControllersJs/Summary.js"></script>        
+    <script src="~/js/ControllersJs/InfoAddDriver.js"></script>    
+    <script src="~/js/ControllersJs/InfoAddVehicle.js"></script>
+    <script src="~/js/Utility.js"></script>    
+    <script src="~/js/ControllersJs/QuotationSearch.js"></script>
+    <script src="~/js/pagination.js"></script>    
+    <script src="~/js/ControllersJs/Inclusion.js"></script>    
+    <script src="~/js/ControllersJs/ProductBrochure.js"></script>
+
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- // <script src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+
+
+    <script type="text/javascript">
+
+
+
+    </script>
+
+</body>
+</html>

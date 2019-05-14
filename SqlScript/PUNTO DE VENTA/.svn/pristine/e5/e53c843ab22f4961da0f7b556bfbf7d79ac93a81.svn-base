@@ -1,0 +1,179 @@
+﻿using STL.POS.Frontend.Web.NewVersion.CustomCode;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace STL.POS.Frontend.Web.NewVersion.Controllers
+{
+    public partial class HomeController : BaseController
+    {
+        public class ItemPaymentFreq
+        {
+            public int id { get; set; }
+            public decimal Discount { get; set; }
+            public decimal initial { get; set; }
+        }
+
+        private new Tuple<QuotationViewModel.Vehicles, QuotationViewModel> getData()
+        {
+            ViewBag.QuoId = QuotationId;
+            var DataQuotation = getQuotationData(QuotationId);
+            ViewBag.IsFinanced = DataQuotation.Financed;
+            var FirstVehicle = getVehicleData(QuotationId).FirstOrDefault();
+            var DataDrivers = getDriverData(QuotationId);
+
+            Colors = oDropDownManager.GetDropDown("COLORS").Select(c => new SelectListItem
+            {
+                Text = c.name,
+                Value = c.name
+            });
+
+            ViewBag.Colors = Colors;
+
+            Drivers = DataDrivers.Select(d => new SelectListItem
+            {
+                Text = d.GetFullName(),
+                Value = d.Id.ToString()
+            });
+
+            ViewBag.Drivers = Drivers;
+
+            dataPaymentFreq = oDropDownManager.GetDropDown("PaymentFreq").Select(p => new SelectListItem
+            {
+                Text = p.name,
+                Value = p.Value.Replace("\"", "'")
+            });
+
+            ViewBag.PaymentFreq = dataPaymentFreq;
+
+            var DataView = new Tuple<QuotationViewModel.Vehicles, QuotationViewModel>(FirstVehicle, DataQuotation);
+
+            return
+                 DataView;
+        }
+
+        public ActionResult InfoAddVehicle()
+        {
+            ViewBag.TitlePage = "INFORMACIÓN ADICIONAL VEHÍCULO";
+            var DataView = getData();
+            CurrentDataQuotation = DataView;
+            return View(DataView);
+        }
+
+        /// <summary>
+        /// Metodo de guardado para el vehiculo
+        /// </summary>
+        /// <param name="frm"></param>
+        /// <param name="QuotId"></param>
+        /// <param name="VehicleNumber"></param>
+        /// <returns></returns>
+        public ActionResult SaveInfoVehicle(FormCollection frm)
+        {
+            try
+            {
+                var VehicleNumber = frm["hdnVehicleNumber"].ToInt();
+                var StartDate = frm["StartDate"].ToString();
+                var EndDate = frm["EndDate"].ToString();
+                
+                var PaymenFreqData = Newtonsoft.Json.JsonConvert.DeserializeObject<ItemPaymentFreq>(frm["Item2.PaymentFreqIdSelected"]);
+                var PaymentFreqIdSelected = PaymenFreqData.id;
+
+                var chassis = frm["chassis"];
+                var Plate = frm["plate"];
+                var Color = frm["Item1.Color"];
+                var NumeroFormulario = frm["NumeroFormulario"];
+
+                var dataVehicle = CurrentDataQuotation.Item2._vehicles.FirstOrDefault(v => v.VehicleNumber == VehicleNumber);
+
+                var param = new Entity.Entities.VehicleProduct.Parameter
+                {
+                    id = dataVehicle.Id,
+                    vehicleDescription = dataVehicle.VehicleDescription,
+                    year = dataVehicle.Year,
+                    cylinders = dataVehicle.Cylinders,
+                    passengers = dataVehicle.Passengers,
+                    weight = dataVehicle.Weight,
+                    chassis = chassis,
+                    plate = Plate,
+                    color = Color,
+                    vehiclePrice = dataVehicle.VehiclePrice,
+                    insuredAmount = dataVehicle.InsuredAmount,
+                    percentageToInsure = dataVehicle.PercentageToInsure,
+                    totalPrime = dataVehicle.TotalPrime,
+                    totalIsc = dataVehicle.TotalIsc,
+                    totalDiscount = dataVehicle.TotalDiscount,
+                    selectedProductCoreId = dataVehicle.SelectedProductCoreId,
+                    vehicleTypeCoreId = dataVehicle.VehicleTypeCoreId,
+                    selectedProductName = dataVehicle.SelectedProductName,
+                    vehicleTypeName = dataVehicle.VehicleTypeName,
+                    vehicleMakeName = dataVehicle.VehicleMakeName,
+                    usageId = dataVehicle.UsageId,
+                    usageName = dataVehicle.UsageName,
+                    storeId = dataVehicle.StoreId,
+                    storeName = dataVehicle.StoreName,
+                    driver_Id = dataVehicle.Driver_Id,
+                    vehicleModel_Make_Id = dataVehicle.VehicleModel_Make_Id,
+                    vehicleModel_Model_Id = dataVehicle.VehicleModel_Model_Id,
+                    quotation_Id = dataVehicle.Quotation_Id,
+                    selectedVehicleTypeId = dataVehicle.SelectedVehicleTypeId,
+                    selectedVehicleTypeName = dataVehicle.SelectedVehicleTypeName,
+                    selectedCoverageCoreId = dataVehicle.SelectedCoverageCoreId,
+                    selectedCoverageName = dataVehicle.SelectedCoverageName,
+                    vehicleYearOld = dataVehicle.VehicleYearOld,
+                    surChargePercentage = dataVehicle.SurChargePercentage,
+                    numeroFormulario = NumeroFormulario,
+                    rateJson = dataVehicle.RateJson,
+                    userId = GetCurrentUserID(),
+                    modi_Date = DateTime.Now,
+                    secuenciaVehicleSysflex = dataVehicle.SecuenciaVehicleSysflex,
+                    isFacultative = dataVehicle.IsFacultative,
+                    amountFacultative = dataVehicle.AmountFacultative,
+                    vehicleQuantity = dataVehicle.VehicleQuantity
+                };
+
+                //Guardar los datos del vehiculo
+                oVehicleProductManager.SetVehicleProduct(param);
+
+                //Actualizar datos de la cotizacion
+                oQuotationManager.SetQuotation(new Entity.Entities.Quotation.parameter
+                {
+                    id = QuotationId,
+                    startDate = DateTime.Parse(StartDate),
+                    endDate = DateTime.Parse(EndDate),
+                    paymentFrequencyId = PaymentFreqIdSelected
+                });
+
+                CurrentDataQuotation = getData();
+
+                return
+                    RedirectToAction("GetNextVehicle", new { QuotId = QuotationId, VehicleNumber = VehicleNumber });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public ActionResult GetNextVehicle(int QuotId, long? VehicleNumber)
+        {
+            var DataView = CurrentDataQuotation;
+            var DataVehicles = DataView.Item2._vehicles;
+            var DataQuotation = DataView.Item2;
+            var CountVehicles = DataVehicles.Count();
+            VehicleNumber = VehicleNumber + 1;
+            if (VehicleNumber > CountVehicles)
+                VehicleNumber = 1;
+
+            ViewBag.QuoId = QuotId;
+            ViewBag.Drivers = Drivers;
+            ViewBag.Colors = Colors;
+            ViewBag.PaymentFreq = dataPaymentFreq;
+
+            var NextVehicle = DataVehicles.FirstOrDefault(v => v.VehicleNumber == VehicleNumber);
+            DataView = new Tuple<QuotationViewModel.Vehicles, QuotationViewModel>(NextVehicle, DataQuotation);
+            return PartialView("Vehicles", DataView);
+        }
+    }
+}

@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using STL.POS.Data.NewVersion.Repository;
+using Entity.Entities;
+
+namespace STL.POS.Logic
+{
+    public class PersonManager : BaseManager
+    {
+        private readonly PersonRepository personRepository;
+
+        public PersonManager()
+        {
+            personRepository = new PersonRepository();
+        }
+
+        public BaseEntity SetPerson(Person.PersonParameters parameter)
+        {
+
+            return
+                 personRepository.SetPerson(parameter);
+        }
+
+    }
+}

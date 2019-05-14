@@ -1,0 +1,2892 @@
+﻿var GlobalData = null;
+var GlobalDataUsages = null;
+var GlobalDataProductsByUsage = null;
+var GlobalAllProducts = null;
+var GlobalDataCoverages = null;
+var GlobalDataProductLimits = null;
+var GlobalDataDeductibleList = null;
+var GlobalDataXVehicle = null;
+var GlobalDataPopupSelectedServices = null;
+var GLobalPopupAnnualTotal = null;
+var GlobalpercentageToInsure = 100;
+var AllVehicleDataToSave = null;
+var GlobalSecuenciaVehicleSysflex = 0;
+var vehicleRandomID = null;
+var isEditingVehicle = false;
+var firstTime = true;
+var GlobalCurrentIsc = 16;
+
+var divLoading = '<div class="loading2" >  </div> ';
+var divImageLoading = '<div id="loading2Image" class="LoadingEs" style="display: none;z-index: 99999999;"> <iframe src="about:blank" style="border:none; top: 0; left: 0; height:100%; width:100%; z-index:-1; position: absolute;"/></div> ';
+
+BeginRequestHandler = function (sender, args) {
+    $("body").append(divLoading);
+    $("body").append(divImageLoading);
+    $("#loading2Image").addClass("LoadingEs");
+    $("#loading2Image").css("display", "block");
+};
+
+EndRequestHandler = function (sender, args) {
+    $("#loading2Image,.loading2").remove();
+};
+
+$(document).ready(function () {
+
+    $(document).ajaxStart(function () {
+        BeginRequestHandler();
+    });
+
+    $(document).ajaxStop(function () {
+        EndRequestHandler();
+    });
+
+    $(".chosen-select-deselect").chosen({
+        disable_search_threshold: 10,
+        no_results_text: "Oops, nothing found!",
+        allow_single_deselect: true,
+        width: "95%"
+    });
+
+    $('.normalDatepicker').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        minDate: new Date(),
+        onSelect: function (dateText) {
+            var $parent = $(this).parent();
+            $parent.addClass("is-dirty");
+            $parent.removeClass('requerido');
+            $parent.removeClass('erarequerido');
+            $parent.addClass('erarequerido');
+        }
+    });
+
+    $('.dateOfBirth.datepicker').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-80:+0",//80 Years Limit
+        onSelect: function (dateText) {
+            var $parent = $(this).parent();
+            $parent.addClass("is-dirty");
+            $parent.removeClass('requerido');
+            $parent.removeClass('erarequerido');
+            $parent.addClass('erarequerido');
+        }
+    });
+
+    $("#btnLoadProfile").click(function (e) {
+        $("#menu-2").fadeIn(200);
+        GetUserProfileDataMVC(true);
+        return true;
+    });
+
+    $('body').click(function () {
+        if ($("#st-container").hasClass('st-menu-open')) {
+            $("#menu-2").fadeOut(200);
+        }
+    });
+
+    $.datepicker.setDefaults($.datepicker.regional["es"]);
+    $.datepicker.setDefaults({
+        dateFormat: getCurrentDateFormat(),
+        //monthNamesShort: monthNames
+    });
+    //#EndRegion
+
+
+    var $buttonClicked = null;
+    $(document).on('click', '.myButton', function (e) {
+        $buttonClicked = $(this);
+    });
+
+    $(document).on('submit', '.myform', function (e) {
+
+        var formObj = $(this);
+        var $submit = $buttonClicked;
+        var callBack = $submit.data("begin") || "";
+
+        if (callBack != "") {
+            eval(callBack);
+            return false;
+        }
+
+        var formURL = formObj.attr("action");
+        var formData = new FormData(this); //formObj.serializeArray();
+        var type = formObj.data("type") || "POST";
+        var contentType = formObj.data("contenttype") || false;// 'application/json; charset=utf-8'; 
+        //var successMessage = formObj.data("successmessage") || "";
+        //var errorMessage = formObj.data("errormessage") || "";
+
+        $submit.data('loading-text', "<i class='fa fa-refresh fa-spin'></i>");
+        $submit.button('loading');
+
+
+
+        $.ajax({
+            url: formURL,
+            type: type,
+            data: formData/*JSON.stringify(formData)*/,
+            mimeType: "multipart/form-data",
+            contentType: contentType,
+            cache: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                $submit.button('reset');
+                debugger
+                data = eval("(" + data + ")");
+
+                //para redireccionar a una pagina y/o error
+                if (data.isRedirect) {
+                    window.location.href = data.redirectUrl;
+                }
+
+                if (data.MessageSucess) {
+                    showSucess([data.MessageSucess]);
+                }
+
+                if (data.messageError) {
+                    showError([data.messageError]);
+                }
+
+                var callBack = $submit.data("success") || "";
+
+                if (data.MessageSucess) {
+                    if (callBack != "") {
+                        //location.href = callBack;
+                        setTimeout(function () { eval(callBack); }, 2000);
+                    }
+                }
+
+                if (data.showNextSection) {
+                    $('#headVH').find('a').trigger('click');
+                }
+
+                //Cuando haga lo de la encriptacion va esto
+                //window.history.pushState({ order: 1 }, document.title, '/Home/Index/' + data.quotationIdEncript);
+                debugger
+                window.history.pushState({ order: 1 }, document.title, '/Home/Index/' + data.QuotationId);
+            },
+            error: function (data, textStatus, jqXHR) {
+                $submit.button('reset');
+                console.log($submit);
+
+                if (data.messageError) {
+                    showError([data.messageError]);
+                } else {
+                    var textError = data + " " + textStatus + " " + jqXHR;
+                    showError([textError]);
+                }
+
+                var callBack = $submit.data("error") || "";
+                if (callBack != "") {
+                    eval(callBack);
+                }
+            }
+        });
+        e.preventDefault(); //Prevent Default action.
+    });
+
+    $(document).on("click", ".DeleteConfirm", function (e) {
+        //$(".DeleteConfirm").on("click", function (e) {
+        var $me = $(this);
+
+        var deleteMessage = $me.data("messagedelete");
+        var titledelete = $me.data("titledelete");
+
+        if (deleteMessage !== "") {
+
+            bootbox.dialog({
+                message: deleteMessage,
+                title: " <i class=\"fa fa-exclamation-triangle\"></i> " + titledelete,
+                buttons: {
+                    success: {
+                        label: "Ok",
+                        className: "btn-success buttonOKMODAL",
+                        callback: function () {
+
+                            $me.data('loading-text', "<i class='fa fa-refresh fa-spin'></i>");
+                            $me.button('loading');
+
+                            $(".buttonOKMODAL").data('loading-text', "<i class='fa fa-refresh fa-spin'></i>");
+                            $(".buttonOKMODAL").button('loading');
+
+                            var url = $me.attr("href");
+
+                            $.ajax({
+                                url: url,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data, textStatus, jqXHR) {
+
+                                    var mycallBack = $me.data("redirectonsuccess") || "";
+
+                                    if (data.MessageSucess) {
+                                        $.gritter.add({
+                                            title: 'Exito!',
+                                            text: data.MessageSucess,
+                                            class_name: 'growl-success',
+                                            //image: 'images/screen.png',
+                                            //image: '/images/tick.png',
+                                            sticky: false,
+                                            time: '2000'
+                                        });
+                                    }
+
+                                    if (data.messageError) {
+                                        $.gritter.add({
+                                            title: 'Error',
+                                            text: data.messageError,
+                                            class_name: 'growl-danger',
+                                            //image: 'images/screen.png',
+                                            sticky: false,
+                                            time: '2000'
+                                        });
+                                    }
+
+                                    $me.button('reset');
+                                    $(".buttonOKMODAL").button('reset');
+
+                                    if (data.MessageSucess) {
+                                        if (mycallBack != "") {
+                                            //location.href = callBack;
+                                            setTimeout(function () { eval(mycallBack); }, 2000);
+
+                                        }
+                                    }
+
+                                },
+                                error: function (data) {
+                                    $me.button('reset');
+
+                                    if (data.messageError) {
+                                        $.gritter.add({
+                                            title: 'Error',
+                                            text: data.messageError,
+                                            class_name: 'growl-danger',
+                                            sticky: false,
+                                            time: '2000'
+                                        });
+                                    } else {
+                                        $.gritter.add({
+                                            title: 'Error',
+                                            text: data,
+                                            class_name: 'growl-danger',
+                                            sticky: false,
+                                            time: '2000'
+                                        });
+                                    }
+                                }
+
+
+                            });
+                            return false;
+                        }
+                    },
+                    danger: {
+                        label: "Cancel",
+                        className: "btn-danger",
+                        callback: function () {
+
+                            var s = $(this);
+                            s.modal("hide");
+
+                            return false;
+
+                        }
+                    },
+                }
+            });
+        }
+        return false;
+    });
+
+    //#Region Jquery Validate
+    $.validator.setDefaults({
+        showErrors: function (errorMap, errorList) {
+            if (errorList.length > 0) {
+                var messages = $.map(errorList, function (item) { return item.message; });
+                showError(messages, "Se han producido los siguientes errores:");
+            }
+        },
+        ignore: ":hidden:not(.chosen-select-deselect)",//Le digo que no ignore los campos ocultos que tenga esa clase
+        //ignore: [":not([readonly='readonly'])"], //Le digo que no ignore los campos ocultos que tenga esa clase
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        onsubmit: true,
+        focusInvalid: false
+    });
+
+    customValidationsMethods();
+
+    frmClientInfoBasicValidations();
+    //#EndRegion
+
+    //Agregando clase requerido(que pone un borde rojo) a los campos que son requeridos
+    $('.putErrorBorder').addClass('requerido');
+    applyEventsRequiredFields();
+    //
+
+    getAgentsList();
+    getStorages();
+    getRecargos();
+    AllDropsChanges();
+
+    /*Mascara para los telefonos*/
+    $("[phonenumber = 'PhoneNumber10']").inputmask("(999)-999-9999");
+    /**/
+
+    /*Mascara para los tipo de identificaciones*/
+    $(".optionLicence").change(function () {
+        var opt = $(this);
+        var numberLic = $("#IdentificationNumber");
+
+        if (opt.is(":checked")) {
+            switch (opt.attr("id")) {
+
+                case "IdentificationTypeCed":
+                case "IdentificationTypeCedLic":
+                    numberLic.inputmask("999-9999999-9");
+                    break;
+                case "IdentificationTypeCedRnc":
+                    numberLic.inputmask("999-99999-9");
+                    break;
+                case "IdentificationTypeCedPasaport":
+                    numberLic.inputmask("remove");
+                    break;
+                default:
+            }
+        }
+    });
+    /**/
+
+    $(".btnSaveClientBasic").click(function () {
+        var agentSelected = $("#AgentList").val();
+
+        if (agentSelected !== '') {
+            return true;
+        } else {
+            showError(['Debe seleccionar un Representante para poder continuar'], 'Debe Seleccionar un Representante');
+            return false;
+        }
+    });
+
+    $("#AgentList").change(function () {
+        var drop = $(this);
+
+        $("#AgentSelected").val(drop.val());
+
+        //Setiando el anterior agente seleccionado
+        if ($("#oldAgentSelected").val() == '') {
+            $("#oldAgentSelected").val(drop.val());
+        }
+    });
+
+    $("#AddVehicle").click(function () {
+
+        $('#headCober').find('a').trigger('click');
+
+        var newVehicle = null;
+        var SecuenciaVehicleSysflex = 1;
+
+        if (AllVehicleDataToSave != null) {
+
+            newVehicle = AllVehicleDataToSave.find(function (item) {
+                item.randomId == vehicleRandomID;
+            });
+
+            debugger
+
+            var lastVeh = AllVehicleDataToSave[AllVehicleDataToSave.length - 1];
+
+            if (lastVeh) {
+                SecuenciaVehicleSysflex = (lastVeh.SecuenciaVehicleSysflex + 1);
+            }
+        }
+
+        var qtyVehicles = 1;
+
+        var q = parseInt($("#qtyVehicles").val());
+        qtyVehicles = isNaN(q) ? 1 : q;
+        $("#qtyVehicles").val(qtyVehicles);
+        $("#qtyVehicles").parent().addClass("is-dirty");
+
+        var $qtyVehicles_elem = $('.qtyVehiclesDina');
+
+        if ($qtyVehicles_elem.length > 0) {
+
+            $.each($qtyVehicles_elem, function (idx, obj) {
+
+                var randomid = $(obj).attr("data-vehiclerandomid");
+
+                if (randomid == vehicleRandomID) {
+                    $qtyVehicles_elem = $(obj);
+
+                    qtyVehicles = $qtyVehicles_elem.val();
+                }
+            });
+        }
+
+        debugger
+
+        var usage = $("#Usages").val();
+        var selectedVehicleType = $("#VehicleType").val();
+
+        var brand = $("#VehicleModel_Make_Id").val();
+        var model = $("#VehicleModel_Model_Id").val();
+        var year = $("#yearsAvaibles").val();
+        var vehiclePrice = parseFloat($("#vehiclePrice").val().replace(/,/g, ''));
+        var selectedCoverage = $("#Coverages").val();
+        var VehicleDriver = $("#VehicleDriver_Id").val();
+        var VehicleYearsOld = $("#VehicleYearsOld").val();
+
+        var makeName = $("#VehicleModel_Make_Id option:selected").text();
+        var modelName = $("#VehicleModel_Model_Id option:selected").text();
+        var store = $("#StoreCar").val();
+        var StoreName = $("#StoreCar option:selected").text();
+        var VehicleQuantity = qtyVehicles;//$("#qtyVehicles").val();
+
+        if (newVehicle == null || newVehicle == undefined) {
+
+            vehicleRandomID = Math.floor((Math.random() * -20000) + (-1));
+
+            debugger
+            var newVehicle = {};
+            newVehicle.randomId = vehicleRandomID;
+            newVehicle.SecuenciaVehicleSysflex = SecuenciaVehicleSysflex;
+
+            newVehicle.Year = year;
+            newVehicle.VehiclePrice = vehiclePrice;
+            newVehicle.SelectedVehicleTypeId = selectedVehicleType;
+            newVehicle.SelectedVehicleTypeName = selectedVehicleType;
+            newVehicle.UsageId = usage;
+            newVehicle.VehicleModel_Make_Id = brand;
+            newVehicle.VehicleMakeName = makeName;
+            newVehicle.VehicleModel_Model_Id = model;
+            newVehicle.VehicleModelName = modelName;
+            newVehicle.VehicleDescription = makeName + " " + modelName;
+            newVehicle.StoreId = store;
+            newVehicle.StoreName = StoreName;
+            newVehicle.Driver_Id = VehicleDriver;
+            newVehicle.VehicleYearOld = VehicleYearsOld;
+            newVehicle.VehicleQuantity = VehicleQuantity;
+
+
+            newVehicle.GlobalDataUsages = GlobalDataUsages;
+            newVehicle.GlobalData = GlobalData;
+            newVehicle.GlobalDataProductsByUsage = GlobalDataProductsByUsage;
+            newVehicle.GlobalAllProducts = GlobalAllProducts;
+
+            var realVehicle = setVehicle(newVehicle);
+
+            setAllVehicleDataToSave(realVehicle);
+
+            //Pendiente logica de cuando elimine un vehiculo quitarlo de la seccion de vehiculos
+            debugger
+            if (firstTime) {
+
+                //setiando randomid a los campos existentes
+                var desc = realVehicle.VehicleDescription + " " + realVehicle.Year;
+                $("#vehicleTitle").html(desc);
+                $("#vehicleTitle").attr("data-vehiclerandomid", realVehicle.randomId);
+                $("#vehicleDescription").html(desc);
+                $("#vehicleDescription").attr("data-vehiclerandomid", realVehicle.randomId);
+
+                $("#VehicleValue").attr("data-vehiclerandomid", realVehicle.randomId);
+                $("#VehicleValue").html(number_format(vehiclePrice, 2));
+                $("#ddlAllProducts").attr("data-vehiclerandomid", realVehicle.randomId);
+                $("#Coverages").attr("data-vehiclerandomid", realVehicle.randomId);
+                $("#Deducible").attr("data-vehiclerandomid", realVehicle.randomId);
+                $("#totalPrime").attr("data-vehiclerandomid", realVehicle.randomId);
+                $("#SurchargePercent").attr("data-vehiclerandomid", realVehicle.randomId);
+                $("#qtyVehicles").attr("data-vehiclerandomid", realVehicle.randomId);
+                $("#btnDeleteVehicle").attr("data-vehiclerandomid", realVehicle.randomId);
+
+
+                firstTime = false;
+            }
+        } else {
+            //Actualizando
+            debugger
+
+            newVehicle.Year = year;
+            newVehicle.VehiclePrice = vehiclePrice;
+            newVehicle.SelectedVehicleTypeId = selectedVehicleType;
+            newVehicle.UsageId = usage;
+            newVehicle.VehicleModel_Make_Id = brand;
+            newVehicle.VehicleMakeName = makeName;
+            newVehicle.VehicleModel_Model_Id = model;
+            newVehicle.VehicleModelName = modelName;
+            newVehicle.VehicleDescription = makeName + " " + modelName;
+            newVehicle.StoreId = store;
+            newVehicle.StoreName = StoreName;
+            newVehicle.Driver_Id = VehicleDriver;
+            newVehicle.VehicleYearOld = VehicleYearsOld;
+            newVehicle.VehicleQuantity = VehicleQuantity;
+
+
+            newVehicle.GlobalDataUsages = GlobalDataUsages;
+            newVehicle.GlobalData = GlobalData;
+            newVehicle.GlobalDataProductsByUsage = GlobalDataProductsByUsage;
+            newVehicle.GlobalAllProducts = GlobalAllProducts;
+
+            var realVehicle = setVehicle(newVehicle);
+
+            setAllVehicleDataToSave(realVehicle, "UPDATE");
+        }
+
+        resetVehicleInfo();
+
+        paintVehicles(AllVehicleDataToSave);
+
+        vehicleRandomID = 0;
+    });
+
+    $("#vehiclePrice").focusout(function () {
+        var $this = $(this);
+        var parent = $($this.parent());
+
+        if (parseFloat($this.val()) > 0) {
+
+            if (!parent.hasClass('is-dirty')) {
+                parent.addClass("is-dirty");
+            }
+        } else {
+            parent.removeClass("is-dirty");
+        }
+
+        updateGlobalDataProductLimits();
+    });
+
+    $("#qtyVehicles").focusout(function () {
+        var v = $(this);
+        var randomID = v.attr("data-vehiclerandomid");
+        debugger
+        getRates(randomID);
+    });
+
+    $(".saveServices").click(function () {
+
+        var ServicesCoverages = GlobalDataProductLimits.ServicesCoverages;
+
+        $.each(GlobalDataPopupSelectedServices, function (idx, item) {
+
+            var service = ServicesCoverages.find(function (sc) { return sc.Name == item.id });
+
+            $.each(service.Coverages, function (idx, cov) { cov.IsSelected = (cov.Id == item.value); });
+
+        });
+
+        GLobalPopupAnnualTotal = 0;
+
+        var tblBody = $("#servicesBody");
+        tblBody.empty();
+
+        GlobalDataPopupSelectedServices = [];
+
+        getRates();
+    });
+
+    GetCurrentIsc();
+
+    $("#btnDeleteVehicle").click(function () {
+        var randomid = $(this).attr("data-vehiclerandomid");
+        removeVehicle(randomid);
+    });
+    
+    $("#vehiclePrice").inputmask({ 'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': '', 'placeholder': '0' });
+
+    $(".servicesPopUp").change(function () {
+        var $this = $(this);
+        //var randomID = $this.attr("data-vehiclerandomid");
+        debugger
+        //getRates(randomID);
+    });
+
+
+    var quotationID = GetURLParameter();
+    loadQuotation(quotationID);
+});
+
+function getCurrentDateFormat() {
+    return 'dd-M-yy';
+}
+
+function showError(errorList, title) {
+
+    var errorContainer = $("#ppError");
+    var errorTitle = $("#errorTitle");
+    var errorListContainer = $("#errorListContainer");
+
+    if (title) {
+        errorTitle.html(title);
+    }
+
+    errorListContainer.empty();
+    if (errorList) {
+        $.each(errorList, function (item, i) {
+            errorListContainer.append('<li class="text-left">' + i + '</li>');
+        });
+    }
+    errorContainer.modal('show');
+}
+
+function showWarning(warningList, title) {
+
+    var warningContainer = $("#ppWarning");
+    var warningTitle = $("#warningTitle");
+    var warningListContainer = $("#warningListContainer");
+
+    if (title) {
+        warningTitle.html(title);
+    }
+
+    warningListContainer.empty();
+    if (warningList) {
+        $.each(warningList, function (item, i) {
+            warningListContainer.append('<li class="text-left">' + i + '</li>');
+        });
+    }
+    warningContainer.modal('show');
+}
+
+function showSucess(sucessList, title, okCallback, OcultarBoton) {
+
+    var sucessContainer = $("#ppSucess");
+    var sucessTitle = $("#sucessTitle");
+    var sucessListContainer = $("#sucessListContainer");
+    var okButton = $('#btnSucessOk');
+
+    if (title) {
+        sucessTitle.html(title);
+    }
+
+    sucessListContainer.empty();
+    if (sucessList) {
+        $.each(sucessList, function (item, i) {
+            sucessListContainer.append('<li class="text-left">' + i + '</li>');
+        });
+    }
+
+    if (OcultarBoton != true) {
+        $("#RedirectToOtherApp").css("display", "none");
+    }
+
+
+    okButton.focus();
+
+    if (okCallback) {
+        okButton.unbind('click');
+        okButton.click(function () {
+            sucessContainer.modal('hide');
+            okCallback();
+        });
+    }
+
+    sucessContainer.modal('show');
+}
+
+function showInfo(infoList, title) {
+
+    var infoContainer = $("#ppInfo");
+    var infoTitle = $("#infoTitle");
+    var infoListContainer = $("#infoListContainer");
+
+    if (title) {
+        infoTitle.html(title);
+    }
+
+    infoListContainer.empty();
+    if (infoList) {
+        $.each(infoList, function (item, i) {
+            infoListContainer.append('<li class="text-left">' + i + '</li>');
+        });
+    }
+    infoContainer.modal('show');
+}
+
+function showQuestion(question, title, acceptAction, CancelAction) {
+
+    var questionModalContainer = $("#ppQuestion");
+    var questionTitle = $("#questionTitle");
+    var questionContainer = $("#questionContainer");
+    var okButton = $('#btnQuestionOk');
+    var cancelButton = $('#btnQuestionCancel');
+
+    if (title) {
+        questionTitle.html(title);
+    }
+
+    questionContainer.empty();
+    if (question) {
+        questionContainer.html(question);
+    }
+
+    okButton.off("click");
+    okButton.click(function () { questionModalContainer.modal('hide'); acceptAction(); });
+
+    if (typeof CancelAction === "function") {
+        cancelButton.off("click");
+        cancelButton.click(function () { questionModalContainer.modal('hide'); CancelAction(); });
+    } else {
+        cancelButton.click(function () { questionModalContainer.modal('hide'); });
+    }
+
+    questionModalContainer.modal('show');
+}
+
+function applyEventsRequiredFields() {
+    var form = $("#frmClientInfoBasic");
+
+    var allDivsRequired = form.find('.putErrorBorder.requerido');
+
+    $.each(allDivsRequired, function (i, div) {
+
+        var realDiv = $(div);
+        var actualInputsInDiv = realDiv.find('input[type="text"], select');
+
+        $.each(actualInputsInDiv, function (i, element) {
+
+            var realElement = $(element);
+
+            if (realElement.is(':input[type="text"]')) {
+                putClassRequeridoInputs(realElement);
+            } else if (realElement.is('select')) {
+                putClassRequeridoSelects(realElement);
+            }
+        });
+    });
+}
+
+function putClassRequeridoInputs(input) {
+
+    $(input).focusout(function () {
+        $this = $(this);
+        var parentDiv = $(this).parent();
+
+        if ($this.val() == "") {
+            if (parentDiv.hasClass('erarequerido')) {
+                parentDiv.addClass('requerido');
+                parentDiv.removeClass('erarequerido');
+            }
+        } else {
+            parentDiv.removeClass('requerido');
+            parentDiv.addClass('erarequerido');
+        }
+    });
+}
+
+function putClassRequeridoSelects(input) {
+
+    $(input).change(function () {
+        $this = $(this);
+        var parentDiv = $(this).parent().parent();
+
+        if (!parentDiv.hasClass('putErrorBorder')) {
+            parentDiv = $(this).parent();
+        }
+
+        if ($this.val() == "") {
+            if (parentDiv.hasClass('erarequerido')) {
+                parentDiv.addClass('requerido');
+                parentDiv.removeClass('erarequerido');
+            }
+        } else {
+            parentDiv.removeClass('requerido');
+            parentDiv.addClass('erarequerido');
+        }
+    });
+}
+
+function frmClientInfoBasicValidations() {
+
+    $("#frmClientInfoBasic").validate(
+        {
+            rules: {
+                FirstName: {
+                    required: true,
+                    maxlength: 50
+                },
+                DateOfBirth: {
+                    required: true,
+                    dateFormat: true
+                },
+                Sex: {
+                    required: true
+                },
+                ForeignLicense: {
+                    required: true
+                },
+                Email: {
+                    email: true
+                },
+
+
+                /*driverLastname: {
+                    required: true,
+                    maxlength: 50
+                }*/
+            },
+            messages: {
+                FirstName: {
+                    required: 'El Nombre es requerido.',
+                },
+                DateOfBirth: {
+                    required: 'La Fecha de Nacimiento es requerida',
+                    dateFormat: 'Debe ingresar una Fecha de Nacimiento válida',
+                }, Sex: {
+                    required: 'El Sexo es requerido.',
+                }, ForeignLicense: {
+                    required: 'La Licencia Extranjera es requerida.',
+                },
+                Email: {
+                    email: 'El Email debe ser una dirección de correo electrónico válida'
+                },
+            }
+        });
+}
+
+function AllDropsChanges() {
+
+    $("#VehicleModel_Make_Id").change(function () {
+        var $this = $(this);
+        getVehicleModels($this.val());
+    });
+
+    $("#VehicleModel_Model_Id").change(function () {
+        var $this = $(this);
+
+        var lastModelSelected = parseInt($("#lastModelSelected").val());
+        lastModelSelected = isNaN(lastModelSelected) ? 1 : lastModelSelected;
+        var modelIdActual = $this.val();
+
+        if (lastModelSelected > 0) {
+
+            if (lastModelSelected != modelIdActual) {
+                $("#lastModelSelected").val(modelIdActual);
+                //llamar metodo que me trae los productos de sysflex
+
+                var brand = $("#VehicleModel_Make_Id").val();
+                var year = $("#yearsAvaibles").val();
+
+                GetProductsFromSysflex(brand, modelIdActual, year);
+            }
+        }
+    });
+
+    $("#yearsAvaibles").change(function () {
+        var $this = $(this);
+
+        var year = $this.val();
+        var brand = $("#VehicleModel_Make_Id").val();
+        var model = $("#VehicleModel_Model_Id").val();
+
+        GlobalDataProductLimits = null;
+
+        //llamar metodo que me trae los productos de sysflex
+        GetProductsFromSysflex(brand, model, year);
+        enableVehicleOldCombo(year);
+    });
+
+    $("#VehicleType").change(function () {
+        var $this = $(this);
+
+        var selectedVehicleType = $this.val();
+
+        UsagesListByVehicleType(selectedVehicleType);
+    });
+
+    $("#Usages").change(function () {
+
+        var $this = $(this);
+
+        var usageSelected = $this.val();
+
+        var usage = GlobalDataUsages.filter(function (item) {
+            return item.idUso == usageSelected;
+        });
+
+        if (usage.length > 0) {
+            var UsageFound = usage[0];
+
+            var allowed = UsageFound.allowed;
+            var message = UsageFound.message;
+
+            if (allowed == 2) {
+                //mensaje error
+                showError([message], 'Uso Principal');
+                return;
+            }
+            else if (allowed == 3) {
+                //mensaje advertencia
+                showWarning([message], 'Uso Principal');
+                return;
+            }
+            ProductListByUsages(usageSelected);
+
+            updateGlobalDataProductLimits();
+        }
+    });
+
+    $("#StoreCar").change(function () {
+        var $this = $(this);
+        //pendiente logica para cuando edite un vehiculo
+        getRates();
+    });
+
+    $("#ddlAllProducts").change(function () {
+        var $this = $(this);
+        var selectedProductName = $("#ddlAllProducts option:selected").text();
+        var randomID = $this.attr("data-vehiclerandomid");
+        currentCoveragesByUsage(selectedProductName, randomID);
+    });
+
+    $(".SurchargePercent").change(function () {
+        var $this = $(this);
+        var randomID = $this.attr("data-vehiclerandomid");
+        debugger
+        getRates(randomID);
+    });
+
+}
+
+function getAgentsList() {
+
+    $.getJSON('/Home/GetAgents', function (json) {
+        var $select_elem = $("#AgentList");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+        $.each(json.agents, function (idx, obj) {
+            var keyAgent = {}
+
+            keyAgent['NameId'] = obj.NameId;
+            keyAgent['FullName'] = obj.FullName;
+            keyAgent['LastName'] = "";
+            keyAgent['AgentId'] = obj.AgentId;
+            keyAgent['AgentCode'] = obj.AgentCode;
+
+            var toJson = JSON.stringify(keyAgent);
+
+            $select_elem.append("<option value='" + toJson + "'>" + obj.FullNameAll + "</option>");
+        });
+        $select_elem.trigger("chosen:updated");
+    });
+}
+
+function getYearAvaiblesList() {
+
+    $.getJSON('/Home/GetVehicleAvailableYearsList', function (json) {
+        var $select_elem = $("#yearsAvaibles");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+        $.each(json.agents, function (idx, obj) {
+            $select_elem.append('<option value="' + obj.NameId + '">' + obj.FullNameAll + '</option>');
+        });
+        $select_elem.trigger("chosen:updated");
+    });
+}
+
+function getVehicleModels(brandID) {
+
+    $.getJSON('/Home/getVehiclesModelsByBrands', {
+        BrandID: brandID
+    }, function (json) {
+        var $select_elem = $("#VehicleModel_Model_Id");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+        $.each(json, function (idx, obj) {
+            $select_elem.append('<option value="' + obj.Id + '">' + obj.Name + '</option>');
+
+        });
+        $select_elem.trigger("chosen:updated");
+    });
+}
+
+function number_format(amount, decimals) {
+
+    amount += ''; // por si pasan un numero en vez de un string
+    amount = parseFloat(amount.replace(/[^0-9\.]/g, '')); // elimino cualquier cosa que no sea numero o punto
+
+    decimals = decimals || 0; // por si la variable no fue fue pasada
+
+    // si no es un numero o es igual a cero retorno el mismo cero
+    if (isNaN(amount) || amount === 0)
+        return parseFloat(0).toFixed(decimals);
+
+    // si es mayor o menor que cero retorno el valor formateado como numero
+    amount = '' + amount.toFixed(decimals);
+
+    var amount_parts = amount.split('.'),
+        regexp = /(\d+)(\d{3})/;
+
+    while (regexp.test(amount_parts[0]))
+        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
+
+    return amount_parts.join('.');
+}
+
+function loadQuotation(quotationID) {
+
+    $.getJSON('/Home/loadQuotatoin', {
+        QuotationID: quotationID
+    },
+        function (data) {
+            var quotData = data.quotData;
+
+            $("#spQuotationNumber").html(quotData.QuotationNumber);
+
+            //Hidden fields Cotizacion
+            $("#quotationID").val(quotData.Id);
+            $("#QuotationNumber").val(quotData.QuotationNumber);
+            $("#QuotationCoreNumber").val(quotData.QuotationCoreNumber);
+            $("#Financed").val(quotData.Financed);
+            //
+
+            //$("#AgentList").val(quotData._agentQuotation.Username);
+            //$("#AgentList").trigger("chosen:updated");
+
+
+            //Driver Basic Info
+            $.each(quotData._drivers, function (i, dri) {
+
+                if (dri.IsPrincipal) {
+                    $("#FirstName").val(dri.FirstName);
+                    $("#FirstName").parent().addClass("is-dirty");
+
+                    $("#FirstSurname").val(dri.FirstSurname);
+                    $("#FirstSurname").parent().addClass("is-dirty");
+
+                    var realDob = moment(dri.DateOfBirth).format("DD-MMM-YYYY");
+
+                    $("#DateOfBirth").val(realDob);
+                    $("#DateOfBirth").parent().addClass("is-dirty");
+
+                    $("#Sex").val(dri.Sex);
+                    $("#Sex").trigger("chosen:updated");
+
+                    if (dri.ForeignLicense) {
+                        $("#ForeignLicense").val("Si");
+                    } else {
+                        $("#ForeignLicense").val("No");
+                    }
+                    $("#ForeignLicense").parent().addClass("is-dirty");
+
+                    if (dri.IdentificationNumber !== '') {
+                        $("#IdentificationNumber").val(dri.IdentificationNumber);
+                        $("#IdentificationNumber").parent().addClass("is-dirty");
+                    }
+
+                    if (dri.PhoneNumber !== '') {
+                        $("#PhoneNumber").val(dri.PhoneNumber);
+                        $("#PhoneNumber").parent().addClass("is-dirty");
+                    }
+
+                    if (dri.Email !== '') {
+                        $("#Email").val(dri.Email);
+                        $("#Email").parent().addClass("is-dirty");
+                    }
+
+                    var check = $("input[name='IdentificationType']");
+
+                    $.each(check, function (i, iden) {
+                        var objCheck = $(iden);
+
+                        if (objCheck.val() == dri.IdentificationType) {
+                            objCheck.parent().addClass('is-checked');
+                            objCheck.trigger('click');
+                        }
+                    });
+                }
+            });
+            //
+
+            //llenar el drop drivers con los drivers en la seccion de vehiculo
+            var $select_elem = $("#VehicleDriver_Id");
+            $select_elem.empty();
+            $select_elem.append('<option value=""></option>');
+
+            $.each(quotData._drivers, function (idx, obj) {
+                var driverNameFull = obj.FirstName + ' ' + obj.FirstSurname;
+
+                $select_elem.append("<option value='" + obj.Id + "'>" + driverNameFull + "</option>");
+            });
+            $select_elem.trigger("chosen:updated");
+            //
+        });
+}
+
+function GetURLParameter() {
+    var sPageURL = window.location.href;
+    var indexOfLastSlash = sPageURL.lastIndexOf("/");
+
+    if (indexOfLastSlash > 0 && sPageURL.length - 1 != indexOfLastSlash)
+        return sPageURL.substring(indexOfLastSlash + 1);
+    else
+        return 0;
+}
+
+function GetProductsFromSysflex(brand, model, year) {
+
+    if (brand > 0 && model > 0 && year > 0) {
+
+        $.ajax({
+            url: "/Home/GetVehicleTypes_New",
+            dataType: 'json',
+            async: false,
+            cache: false,
+            data: {
+                brandId: brand,
+                modelId: model,
+                vehicleYear: year
+            },
+            success: function (data) {
+                $("#lastModelSelected").val(model);
+
+                GlobalData = data;
+                fillDropVehicleTypes(GlobalData);
+            }
+        });
+    }
+    else {
+        return [];
+    }
+}
+
+function fillDropVehicleTypes(vehicleTypes) {
+
+    var $select_elem = $("#VehicleType");
+    $select_elem.empty();
+    $select_elem.append('<option value=""></option>');
+
+    $.each(vehicleTypes, function (idx, obj) {
+        $select_elem.append("<option value='" + obj.Name + "'>" + obj.Name + "</option>");
+    });
+    $select_elem.trigger("chosen:updated");
+}
+
+function UsagesListByVehicleType(selectedVehicleType) {
+
+    if (selectedVehicleType) {
+
+        var usagebytype;
+
+        var t = GlobalData.filter(function (item) {
+            return item.Name == selectedVehicleType;
+        });
+
+
+        if (t != undefined) {
+            usagebytype = t[0].NewUsages;
+        }
+
+        $.ajax({
+            url: '/Home/GetUsageStates',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+
+                $.each(data, function (idx, us) {
+
+                    var obj = {
+                        idUso: us.id,
+                        descUso: us.name,
+                        allowed: us.allowed,
+                        message: us.message
+                    }
+
+                    usagebytype.push(obj);
+                });
+            }
+        });
+
+        GlobalDataUsages = usagebytype;
+
+        var $select_elem = $("#Usages");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+        $.each(usagebytype, function (idx, obj) {
+            $select_elem.append("<option value='" + obj.idUso + "'>" + obj.descUso + "</option>");
+        });
+        $select_elem.trigger("chosen:updated");
+    }
+    return [];
+}
+
+function enableVehicleOldCombo(vehicleYear) {
+
+    //pendiente logica: ME FALTA LA LOGICA DE CUANDO SEA NO SEA 0 KM BLOQUEAR ESE PRODUCTO self.remove0kmIfIsNotNew
+    var VehicleYearsOld = $("#VehicleYearsOld");
+
+    if (vehicleYear > 0) {
+
+        var QtyYearsBack0KmVip = "";
+
+        $.ajax({
+            url: "/Home/GetQtyYearsBack0KmVip",
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                QtyYearsBack0KmVip = data;
+            }
+        });
+
+
+        if (!QtyYearsBack0KmVip) {
+            QtyYearsBack0KmVip = 2;
+        }
+        var currentYear = new Date().getFullYear();
+
+
+        if ((currentYear - QtyYearsBack0KmVip) <= vehicleYear && vehicleYear <= (currentYear + 1)) {
+
+            //var isFirstLoading = self.isFirstLoading();
+            var isDisabled = VehicleYearsOld.is("disabled");
+            var lastvalue = $("#LastSelectedVehicleYearsOld").val();
+            var actualvalue = VehicleYearsOld.val();
+
+
+            if (/*isFirstLoading == false &&*/ lastvalue == actualvalue) {
+                VehicleYearsOld.val("");
+                $("#LastSelectedVehicleYearsOld").val(VehicleYearsOld.val());
+            }
+
+            VehicleYearsOld.parent().removeClass("is-dirty");
+            VehicleYearsOld.removeAttr("disabled");
+        }
+        else {
+
+            VehicleYearsOld.val("Usado");
+            VehicleYearsOld.trigger("chosen:updated");
+            VehicleYearsOld.parent().addClass("is-dirty");
+
+            $("#LastSelectedVehicleYearsOld").val(VehicleYearsOld.val());
+            //self.isFirstLoading(false);
+
+            VehicleYearsOld.attr("disabled", "disabled");
+        }
+    }
+    else
+        VehicleYearsOld.removeAttr("disabled");
+}
+
+function getStorages() {
+
+    $.ajax({
+        url: "/Home/GetStoreStates",
+        dataType: 'json',
+        async: false,
+        success: function (data) {
+
+            var $select_elem = $("#StoreCar");
+            $select_elem.empty();
+            $select_elem.append('<option value=""></option>');
+
+            $.each(data, function (idx, obj) {
+                $select_elem.append("<option value='" + obj.id + "'>" + obj.name + "</option>");
+            });
+            $select_elem.trigger("chosen:updated");
+        }
+    });
+}
+
+function ProductListByUsages(usageSelected) {
+
+    if (usageSelected) {
+
+        var UsageFound = GlobalDataUsages.filter(function (item) {
+            return item.idUso == usageSelected;
+        });
+
+        if (UsageFound.length) {
+            var currentUsageFound = UsageFound[0];
+
+            var selectedVehicleType = $("#VehicleType").val();
+
+            var t = GlobalData.filter(function (item) {
+                return item.Name == selectedVehicleType;
+            });
+
+            var AllProductListByUsages;
+
+            if (t.length > 0) {
+                AllProductListByUsages = t[0].ProductByUsages;
+                GlobalAllProducts = t[0].Products;
+            }
+
+            var FilteredProductList = AllProductListByUsages.filter(function (item) {
+                return item.UsoDescripcion.indexOf(currentUsageFound.descUso) != -1;
+            });
+
+            if (FilteredProductList.length > 0) {
+
+                var NewCurrentProductList = [];
+
+                $.each(FilteredProductList, function (idx, plist) {
+
+                    var prodsNews = GlobalAllProducts.find(function (currProd) {
+                        return currProd.Name.indexOf(plist.ProductoDescripcion) != -1
+                    });
+
+                    if (prodsNews != undefined) {
+                        NewCurrentProductList.push(prodsNews);
+                    }
+                });
+
+                GlobalDataProductsByUsage = NewCurrentProductList;
+
+                var $select_elem = $("#ddlAllProducts");
+                var randomid = $select_elem.attr("data-vehiclerandomid");
+
+                if (vehicleRandomID != null) {
+                    if (randomid != vehicleRandomID) {
+                        return;
+                    }
+                }
+
+                $select_elem.empty();
+                $select_elem.append('<option value="">Seleccionar</option>');
+                $.each(NewCurrentProductList, function (idx, obj) {
+                    $select_elem.append("<option value='" + obj.Id + "'>" + obj.Name + "</option>");
+                });
+            }
+        }
+    }
+    return [];
+}
+
+function currentCoveragesByUsage(selectedProductName, randomID) {
+
+    if (selectedProductName) {
+
+        var vehicle = getAllDataVehicleByRandomID(randomID);
+        debugger
+        var usage = vehicle.UsageId; //$("#Usages").val();
+        var selectedVehicleType = vehicle.SelectedVehicleTypeName; //$("#VehicleType").val();        
+
+        var vehGlobalDataUsages = vehicle.GlobalDataUsages;
+        var vehGlobalData = vehicle.GlobalData;
+
+        var UsageFound = vehGlobalDataUsages.find(function (item) {
+            return item.idUso == usage
+        });
+
+        //ORIGINAL
+        //var UsageFound = GlobalDataUsages.find(function (item) {
+        //    return item.idUso == usage
+        //});
+
+        if (UsageFound != undefined) {
+
+            var t = vehGlobalData.filter(function (item) {
+                return item.Name == selectedVehicleType;
+            });
+
+            //ORIGINAL
+            //var t = GlobalData.filter(function (item) {
+            //    return item.Name == selectedVehicleType;
+            //});
+
+            var AllCoveragesListByUsages;
+
+            if (t.length > 0) {
+                AllCoveragesListByUsages = t[0].CoveragesByUsages;
+            }
+
+            var FilteredCovList = AllCoveragesListByUsages.filter(function (item) {
+                return item.UsoDescripcion.indexOf(UsageFound.descUso) != -1 && item.ProductName == selectedProductName;
+            });
+
+            GlobalDataCoverages = FilteredCovList;
+
+            vehicle.GlobalDataCoverages = GlobalDataCoverages
+            var realv = setVehicle(vehicle);
+            setAllVehicleDataToSave(realv, "UPDATE");
+
+            $(".Coverages").off("change");
+            $(".Coverages").change(function () {
+                var $this = $(this);
+                var randomID = $this.attr("data-vehiclerandomid");
+
+                updateGlobalDataProductLimits(randomID, $this.val());
+
+                showRechargeAllLawProducts($this.val(), randomID);
+
+                if ($this.val() !== '') {
+                    $("#servicesPopUp").removeAttr('disabled');
+                } else {
+                    $("#servicesPopUp").attr('disabled', 'disabled');
+                }
+            });
+
+
+            var $select_elem = $(".Coverages");
+            if ($select_elem.length > 1) {
+                $.each($select_elem, function (idx, obj) {
+                    var randomid = $(obj).attr("data-vehiclerandomid");
+                    if (randomid == randomID) {
+                        $select_elem = $(obj);
+                    }
+                });
+            }
+            $select_elem.empty();
+            $select_elem.append('<option value="">Seleccionar</option>');
+            $.each(GlobalDataCoverages, function (idx, obj) {
+                $select_elem.append("<option value='" + obj.Id + "'>" + obj.Name + "</option>");
+            });
+
+            var $select_elem = $(".Deducible");
+            if ($select_elem.length > 1) {
+                $.each($select_elem, function (idx, obj) {
+                    var randomid = $(obj).attr("data-vehiclerandomid");
+                    if (randomid == randomID) {
+                        $select_elem = $(obj);
+                    }
+                });
+            }
+            $select_elem.empty();
+            $select_elem.append('<option value="">Seleccionar</option>');
+        }
+    }
+}
+
+function updateGlobalDataProductLimits(randomID, realSelectedCoverage) {
+    debugger
+    var brand = "";
+    var model = "";
+    var year = "";
+    var vehiclePrice = "";
+    var selectedCoverage = "";
+    var vehicle = null;
+
+    if (isEditingVehicle || randomID == undefined) {
+
+        brand = $("#VehicleModel_Make_Id option:selected").val();
+        model = $("#VehicleModel_Model_Id option:selected").val();
+        year = $("#yearsAvaibles option:selected").val();
+        vehiclePrice = parseFloat($("#vehiclePrice").val().replace(/,/g, ''));
+        selectedCoverage = $("#Coverages option:selected").val();
+
+    } else {
+
+        vehicle = getAllDataVehicleByRandomID(randomID);
+        brand = vehicle.VehicleModel_Make_Id;
+        model = vehicle.VehicleModel_Model_Id;
+        year = vehicle.Year;
+        vehiclePrice = vehicle.VehiclePrice;
+        selectedCoverage = vehicle.SelectedCoverageCoreId == undefined ? realSelectedCoverage : vehicle.SelectedCoverageCoreId;
+    }
+
+    if (selectedCoverage && brand && year && vehiclePrice) {
+
+        $.ajax({
+            url: "/Home/GetCoverageDetailsOfVehicle",
+            dataType: 'json',
+            data: {
+                coverageCoreId: selectedCoverage,
+                makeId: brand,
+                modelId: model,
+                vehiclePrice: vehiclePrice
+            },
+            success: function (data) {
+                debugger
+                GlobalDataProductLimits = data.coverageLimits;
+                GlobalDataDeductibleList = data.deductibles;
+
+                if (vehicle != undefined) {
+
+                    vehicle.GlobalDataProductLimits = GlobalDataProductLimits;
+                    vehicle.GlobalDataDeductibleList = GlobalDataDeductibleList;
+
+                    var realVehicle = setVehicle(vehicle);
+                    setAllVehicleDataToSave(realVehicle, "UPDATE");
+                }
+
+                getDeducibles(GlobalDataDeductibleList, randomID);
+
+                SetAdditionals(randomID);
+
+                getRates(randomID);
+
+                //var viewModel = ko.mapping.fromJS(data, self.productLimitMapping);
+                //self.productLimitSet(viewModel.coverageLimits);
+                //self.deductibleList(data.deductibles);
+                //self.getPrimes();
+            }
+        });
+    }
+    else {
+        GlobalDataProductLimits = null;
+        if (vehicle != undefined) {
+            vehicle.GlobalDataProductLimits = null;
+        }
+    }
+}
+
+function getDeducibles(deductibleList, randomID) {
+
+    var vh = getAllDataVehicleByRandomID(randomID);
+
+    $(".Deducible").off("change");
+    $(".Deducible").change(function () {
+        var $this = $(this);
+
+        $("#lastDeducibleSelected").val($this.val());
+        var randomID = $this.attr("data-vehiclerandomid");
+
+        var realSelectedCoverage = getOptionSelectedDropWithClass(".Coverages", randomID);
+
+        updateGlobalDataProductLimits(randomID, realSelectedCoverage);
+    });
+
+    var $select_elem = $(".Deducible");
+
+    if ($select_elem.length > 1) {
+
+        $.each($select_elem, function (idx, obj) {
+
+            var randomid = $(obj).attr("data-vehiclerandomid");
+
+            if (randomid == randomID) {
+                $select_elem = $(obj);
+            }
+        });
+    }
+    $select_elem.empty();
+    $select_elem.append('<option value="">Seleccionar</option>');
+
+
+    if (vh.GlobalDataDeductibleList.length > 0) {
+        $select_elem.removeAttr('disabled');
+    } else {
+        $select_elem.attr('disabled', 'disabled');
+        return false;
+    }
+
+
+    var lastSelected = "";
+    var exist = false;
+
+    $.each(deductibleList, function (idx, obj) {
+        lastSelected = parseInt($("#lastDeducibleSelected").val());
+        lastSelected = !isNaN(lastSelected) ? lastSelected : "";
+
+        if (lastSelected == obj.CoreId) {
+            exist = true;
+        }
+        $select_elem.append("<option value='" + obj.CoreId + "'>" + obj.Name + "</option>");
+    });
+
+    if (exist) {
+        $select_elem.val(lastSelected);
+    }
+}
+
+function getRates(randomID) {
+    debugger
+    var vehicle = getAllDataVehicleByRandomID(randomID);
+
+    if (vehicle != null) {
+
+        if (vehicle.GlobalDataProductLimits) {
+
+            if (validateGetRates(randomID)) {
+
+                var servicesIdList = [];
+
+                var ServicesCoverages = vehicle.GlobalDataProductLimits.ServicesCoverages;
+
+                if (ServicesCoverages) {
+                    var allCoverages = new Array();
+                    $.each(ServicesCoverages, function (item) { $.each(item.Coverages, function (sItem) { allCoverages.push(sItem) }); });
+                    $.each(allCoverages.filter(function (item) { return item.IsSelected; }), function (item) { servicesIdList.push(item.CoverageDetailCoreId); });
+                }
+
+                var getQuotationNumberForRates = $("#quotationID").val();
+                var getQuotationNumber = $("#QuotationNumber").val();
+                var principalDateOfBirth = $("#DateOfBirth").val();
+
+                //pendiente de logica flotilla
+                /*
+                porque una cosa es la cantidad global de vehiculos, y la cantidad de vehiculos en x vehiculo
+                */
+
+                var _qtyVehiclesCreated = qtyVehiclesCreated();
+                var VehicleQuantity = vehicle.VehicleQuantity; //$("#qtyVehicles").val();//este seria el campo qtyVehicles del vehiculo seleccionado
+                var qtyVehicles = 1;
+
+                if (_qtyVehiclesCreated == 0) {
+                    qtyVehicles = VehicleQuantity;
+                }
+                else if (VehicleQuantity > _qtyVehiclesCreated) {
+                    qtyVehicles = VehicleQuantity;
+                } else if (_qtyVehiclesCreated > VehicleQuantity) {
+                    qtyVehicles = _qtyVehiclesCreated;
+                }
+
+                var quotationCoreNumber = $("#QuotationCoreNumber").val(); //self.parent.quotationCoreNumber();
+
+                //Original
+                var NewAgentID = "";
+                var NewAgent = getNewAgentSelected();// self.parent.getNewAgentSelected();
+
+                if (NewAgent != null) {
+                    NewAgentID = NewAgent.NameId;
+                }
+
+                var getActualAgentSelected = getOldAgentSelected(); //self.parent.getOldAgent();
+                var ActualAgentSelected = "";
+
+                if (getActualAgentSelected != null) {
+                    ActualAgentSelected = getActualAgentSelected.NameId;
+                }
+
+
+                var wasChangeDateBirth = false;
+                //Pendiente logica
+                /*if (self.parent && self.parent.changedDateBirth() == true && self.parent.changedDateBirthFirst() == false) {
+                    wasChangeDateBirth = true;
+                    principalDateOfBirth = $("#dateOfBirthAdd").val() == "" ? self.getDriver().dateOfBirth : $("#dateOfBirthAdd").val();
+                }
+        
+                if (self.parent && self.parent.changedDateBirthFirst() == true) {
+                    wasChangeDateBirth = true;
+                    //principalDateOfBirth = $("#dateOfBirth").val() == "" ? self.getDriver().dateOfBirth : $("#dateOfBirth").val();
+        
+                    principalDateOfBirth = $("#NewdateOfBirth").val() == "" ? self.getDriver().dateOfBirth : $("#NewdateOfBirth").val();
+                }
+                */
+
+                var wasChangeClientSex = false;
+                var clientSex = $("#Sex").val(); //self.getDriver().selectedSex();
+                /* if (self.parent && self.parent.changedClientSexFirst() == true) {
+                     wasChangeClientSex = true;
+                     //clientSex = $("#clientSex").val() == "" ? self.getDriver().selectedSex() : $("#clientSex").val();
+                     clientSex = $("#NewclientSex").val() == "" ? self.getDriver().selectedSex() : $("#NewclientSex").val();
+         
+                 }*/
+
+
+                var getForeingLicenceDriver = $("#ForeignLicense").val();// self.getForeingLicenceDriver();
+                /*if (self.parent && self.parent.changedForeingLicenceFirst() == true) {
+                    //getForeingLicenceDriver = $("#ForeingLicence").val() == "" ? self.getForeingLicenceDriver() : $("#ForeingLicence").val();
+                    getForeingLicenceDriver = $("#NewForeingLicence").val() == "" ? self.getForeingLicenceDriver() : $("#NewForeingLicence").val();
+                }*/
+
+
+                var arraySelfAndThirdsDamage = [];
+                var arrayServiceCoverages = [];
+
+                if (vehicle.GlobalDataProductLimits.SelfDamagesCoverages) {
+                    $.each(vehicle.GlobalDataProductLimits.SelfDamagesCoverages, function (item) {
+                        var AsociativeArraySelfAndThirdsDamage = {}
+                        AsociativeArraySelfAndThirdsDamage["CoverageDetailCoreId"] = item.CoverageDetailCoreId;
+                        AsociativeArraySelfAndThirdsDamage["Limit"] = item.Limit;
+                        AsociativeArraySelfAndThirdsDamage["Name"] = item.Name;
+
+                        arraySelfAndThirdsDamage.push(AsociativeArraySelfAndThirdsDamage);
+                    });
+                }
+
+                if (vehicle.GlobalDataProductLimits.ThirdPartyCoverages) {
+                    $.each(vehicle.GlobalDataProductLimits.ThirdPartyCoverages, function (item) {
+                        AsociativeArraySelfAndThirdsDamage = {}
+                        AsociativeArraySelfAndThirdsDamage["CoverageDetailCoreId"] = item.CoverageDetailCoreId;
+                        AsociativeArraySelfAndThirdsDamage["Limit"] = item.Limit;
+                        AsociativeArraySelfAndThirdsDamage["Name"] = item.Name;
+
+                        arraySelfAndThirdsDamage.push(AsociativeArraySelfAndThirdsDamage);
+                    });
+                }
+
+
+                if (vehicle.GlobalDataProductLimits.ServicesCoverages) {
+                    var allCoverages = new Array();
+                    $.each(vehicle.GlobalDataProductLimits.ServicesCoverages, function (item) {
+                        $.each(item.Coverages, function (sItem) {
+
+                            var AsociativearrayServiceCoverages = {}
+                            AsociativearrayServiceCoverages["CoverageDetailCoreId"] = sItem.CoverageDetailCoreId;
+                            AsociativearrayServiceCoverages["Limit"] = sItem.Limit;
+                            AsociativearrayServiceCoverages["Name"] = sItem.Name;
+                            AsociativearrayServiceCoverages["isSelected"] = sItem.IsSelected;
+
+                            arrayServiceCoverages.push(AsociativearrayServiceCoverages);
+                        });
+                    });
+                }
+
+                var limitSelfThirdJson = JSON.stringify(arraySelfAndThirdsDamage);
+                var serviceCoberageJson = JSON.stringify(arrayServiceCoverages);
+
+                var usage = vehicle.UsageId;
+                var usageName = "";
+
+                var UsageFound = vehicle.GlobalDataUsages.find(function (item) { return item.idUso == usage });
+                if (UsageFound) {
+                    usageName = UsageFound.descUso;
+
+                    var allowed = UsageFound.allowed;
+                    var message = UsageFound.message;
+                    //var UsageInvalidMessageShow = self.parent.getLastStep();
+
+                    //No debe generar prima
+                    if (allowed == 2) {
+                        return;
+                    }
+                }
+
+                var asyncOrNo = false; //self.parent.changeDate() ? false : true;
+
+                var SecuenciaVehicleSysflex = vehicle.SecuenciaVehicleSysflex; //self.SecuenciaVehicleSysflex();//Pendiente logica
+
+                var coverageCoreId = getOptionSelectedDropWithClass(".Coverages", randomID);
+                var SelectedCoverageName = getOptionSelectedTextDropWithClass(".Coverages", randomID);
+                var isSemifull = SelectedCoverageName;
+                var selectedVehicleType = vehicle.SelectedVehicleTypeId; //$("#VehicleType option:selected").text();
+
+
+                var brand = vehicle.VehicleModel_Make_Id;
+                var model = vehicle.VehicleModel_Model_Id;
+                var makeName = vehicle.VehicleMakeName;
+                var modelName = vehicle.VehicleModelName;
+
+                var year = vehicle.Year;
+
+                var currentStartDateSelected = moment(new Date()).format(getCurrentDateTimeMomentFormat());
+                var endDate = moment(currentStartDateSelected).add(12, 'months').startOf('day');
+                var currentEndDateSelected = (endDate.format(getCurrentDateTimeMomentFormat()));
+
+                var selectedDeductible = getOptionSelectedDropWithClass(".Deducible", randomID);
+                var store = vehicle.StoreId;
+                var storeName = vehicle.StoreName;
+                var selectedSurchargePercent = getOptionSelectedDropWithClass(".SurchargePercentDina", randomID);
+
+                if (selectedSurchargePercent == "" || selectedSurchargePercent == undefined) {
+                    selectedSurchargePercent = $(".SurchargePercent option:selected").val();
+                }
+
+                var _insuredAmount = insuredAmount(randomID);
+
+                var IsFacultative = false;
+                var AmountFacultative = 0;
+
+                var selectedVehicleTypeId = -1;
+                var rateJson = "";
+                var porcImpuesto = 0;
+
+                var VehicleYearsOld = vehicle.VehicleYearsOld;
+                var VehicleDriver = vehicle.Driver_Id;
+                var vehiclePrice = vehicle.VehiclePrice;
+                var SelectedProductCore = getOptionSelectedDropWithClass(".ddlAllProductsDina", randomID);;
+                var SelectedProductName = getOptionSelectedTextDropWithClass(".ddlAllProductsDina", randomID);;
+
+
+                if (SelectedProductCore == "" || SelectedProductCore == undefined) {
+                    SelectedProductCore = $("#ddlAllProducts option:selected").val();
+                }
+
+                if (SelectedProductName == "" || SelectedProductName == undefined) {
+                    SelectedProductName = $("#ddlAllProducts option:selected").text();
+                }
+                var _isLawProduct = isLawProduct(randomID);
+                var idCapacidad = getIdCapacidad(randomID);
+                var descCapacidad = getDescCapacidad(randomID);
+
+                debugger
+                $.ajax({
+                    url: '/Home/GetRates',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        coverageCoreId: coverageCoreId,
+                        productId: selectedVehicleType,
+                        brandId: brand,
+                        modelId: model,
+                        vehicleYear: year,
+                        coveragePercent: GlobalpercentageToInsure,
+                        startDate: currentStartDateSelected,
+                        endDate: currentEndDateSelected,
+                        insuredAmount: _insuredAmount,
+                        servicesIdLstoreist: servicesIdList.join(),
+                        deductibleId: selectedDeductible,
+                        gender: clientSex,
+                        principalDateOfBirth: principalDateOfBirth,
+                        storageId: store,
+                        percentSurCharge: selectedSurchargePercent,
+                        QuotationNumberForRates: getQuotationNumberForRates,
+                        LicenciaExtranjera: getForeingLicenceDriver,
+                        qtyVehicles: qtyVehicles,
+                        usage: usage,
+                        secuencia: SecuenciaVehicleSysflex,
+                        agentChangeSelected: NewAgentID,
+                        quotationCore: quotationCoreNumber,
+                        Esdeley: _isLawProduct,
+                        idCapacidad: idCapacidad,
+                        descCapacidad: descCapacidad,
+                        coverages: serviceCoberageJson,
+                        limitself: limitSelfThirdJson,
+                        usagename: usageName,
+                        isSemifull: isSemifull,
+                        QuotationNumber: getQuotationNumber,
+                        wasChangeDateBirth: wasChangeDateBirth,
+                        wasChangeClientSex: wasChangeClientSex,
+                        actualAgentSelected: ActualAgentSelected
+                    },
+                    async: asyncOrNo,
+                    success: function (data) {
+                        debugger
+
+                        /*Me esta faltando el monto de los servicios, revisar si es que no estan guardandose, tabajar en esta parte, las logicas pendientes, formatear los montos y la logica para cuando sea mas de un vehiculo*/
+                        if (vehicle.GlobalDataProductLimits) {
+
+                            if (data.TpPrime != undefined) {
+
+                                vehicle.GlobalDataProductLimits.TpPrime = data.TpPrime;
+                                vehicle.GlobalDataProductLimits.SdPrime = data.SdPrime;
+                                vehicle.GlobalDataProductLimits.ServicesPrime = data.ServicesPrime;
+
+                                var total = data.SdPrime + data.TpPrime + data.ServicesPrime;
+                                var iscPercentage = parseFloat(GlobalCurrentIsc);
+                                vehicle.GlobalDataProductLimits.TotalIsc = (total * (iscPercentage / 100));
+
+                                selectedVehicleTypeId = data.VehicleTypeId;
+                                rateJson = data.jsonRates;
+                                porcImpuesto = iscPercentage;
+
+                                var totalPrimePlusIsc = (total + vehicle.GlobalDataProductLimits.TotalIsc);
+
+                                var $elem = $(".totalPrime");
+
+                                if ($elem.length > 1) {
+                                    $.each($elem, function (idx, obj) {
+                                        var randomid = $(obj).attr("data-vehiclerandomid");
+                                        if (randomid == randomID) {
+                                            $elem = $(obj);
+                                            $elem.html("$" + number_format(totalPrimePlusIsc, 2));
+                                        }
+                                    });
+                                } else {
+                                    $elem.html("$" + number_format(totalPrimePlusIsc, 2));
+                                }
+
+                                //Pendiente Logica
+                                /* if (self.NotFirstLoading() == true) {
+                                     $.ajax({
+                                         url: '/PoSAuto/GetPercentByQtyVehicle',
+                                         type: 'POST',
+                                         dataType: 'json',
+                                         data: { qtyVehicles: qtyVehicles },
+                                         async: true,
+                                         success: function (data) {
+                                             self.parent.PercentByQtyVehicle(data);
+     
+                                             if (data > 0) {
+                                                 self.parent.isFlotilla(true);
+                                             } else {
+                                                 self.parent.isFlotilla(false);
+                                             }
+     
+                                         }
+                                     });
+                                 } else {
+                                     self.NotFirstLoading(true);
+                                 }*/
+
+                                var subRamo = coverageCoreId;//self.selectedCoverage().Id;
+
+                                //Solos los que no son de Ley
+                                if (!_isLawProduct) {
+                                    /*Reaseguro*/
+                                    $.ajax({
+                                        url: '/Home/getMaximoReaseguroSubRamo_New',
+                                        dataType: 'json',
+                                        data: { SecuenciaVehicleSysflex: SecuenciaVehicleSysflex, quotationCoreNumber: quotationCoreNumber, make: makeName, model: modelName, year: year },
+                                        async: false,
+                                        success: function (data) {
+                                            debugger
+                                            if (data.IsFacultative) {
+                                                IsFacultative = data.IsFacultative;
+                                                AmountFacultative = data.AmountFacultative;
+                                                showWarning([data.message], 'Advertencia Reaseguro');
+                                            } else {
+                                                IsFacultative = false;
+                                                AmountFacultative = 0;
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+
+
+                            vehicle.isLawProduct = _isLawProduct;
+                            vehicle.GlobalDataProductLimits = vehicle.GlobalDataProductLimits;
+                            vehicle.servicescoverages = arrayServiceCoverages;
+                            vehicle.limitSelfThirdsDamages = arraySelfAndThirdsDamage;
+
+                            vehicle.VehicleDescription = makeName + " " + modelName;
+
+                            vehicle.InsuredAmount = _insuredAmount;
+                            vehicle.PercentageToInsure = GlobalpercentageToInsure;
+                            vehicle.TotalPrime = getTotalPrime(randomID);
+                            vehicle.TotalIsc = vehicle.GlobalDataProductLimits.TotalIsc;
+                            vehicle.SelectedProductCoreId = SelectedProductCore;
+                            vehicle.SelectedProductName = SelectedProductName;
+                            vehicle.UsageId = usage;
+                            vehicle.UsageName = usageName;
+                            vehicle.Quotation_Id = getQuotationNumberForRates;
+                            vehicle.SelectedVehicleTypeId = selectedVehicleTypeId;
+                            vehicle.SelectedVehicleTypeName = selectedVehicleType;
+                            vehicle.SelectedCoverageCoreId = coverageCoreId;
+                            vehicle.SelectedCoverageName = SelectedCoverageName;
+                            vehicle.SurChargePercentage = selectedSurchargePercent;
+                            vehicle.RateJson = rateJson;
+                            vehicle.SecuenciaVehicleSysflex = SecuenciaVehicleSysflex;
+                            vehicle.IsFacultative = IsFacultative
+                            vehicle.AmountFacultative = AmountFacultative
+                            vehicle.VehicleQuantity = VehicleQuantity;
+                            vehicle.selectedDeductible = selectedDeductible;
+
+                            vehicle.idCapacidad = idCapacidad;
+                            vehicle.descCapacidad = descCapacidad;
+                            vehicle.isSemifull = isSemifull;
+                            vehicle.actualAgentSelected = ActualAgentSelected;
+                            vehicle.porcImpuesto = porcImpuesto;
+                            vehicle.principalDateOfBirth = principalDateOfBirth;
+
+                            var realVehicle = setVehicle(vehicle, randomID);
+                            debugger
+                            setAllVehicleDataToSave(realVehicle, "UPDATE");
+                        }
+                    }
+                });
+            }
+        }
+    }
+}
+
+function getRecargos() {
+
+    $.ajax({
+        url: '/Home/GetSurchargePercentage',
+        dataType: 'json',
+        async: false,
+        success: function (data) {
+            var $select_elem = $("#SurchargePercent");
+            $select_elem.empty();
+            $select_elem.append('<option value="">Seleccione</option>');
+
+            $.each(data, function (idx, obj) {
+                $select_elem.append("<option value='" + obj.id + "'>" + obj.name + "</option>");
+            });
+        }
+    });
+}
+
+function getRecargosForNewVehicles(dropid) {
+
+    $.ajax({
+        url: '/Home/GetSurchargePercentage',
+        dataType: 'json',
+        async: false,
+        success: function (data) {
+            var $select_elem = $("#" + dropid);
+            $select_elem.empty();
+            $select_elem.append('<option value="">Seleccione</option>');
+            $.each(data, function (idx, obj) {
+                $select_elem.append("<option value='" + obj.id + "'>" + obj.name + "</option>");
+            });
+        }
+    });
+}
+
+function showRechargeAllLawProducts(selectedCoverage, randomID) {
+
+    var $select_elem = $(".SurchargePercent");
+    if ($select_elem.length > 1) {
+        $.each($select_elem, function (idx, obj) {
+            var randomid = $(obj).attr("data-vehiclerandomid");
+            if (randomid == randomID) {
+                $select_elem = $(obj);
+            }
+        });
+    }
+
+    if (selectedCoverage) {
+
+        var vehicle = getAllDataVehicleByRandomID(randomID);
+
+        var prod = vehicle.GlobalDataCoverages.find(function (item) {
+            return item.Id == selectedCoverage;
+        });
+
+        //var prod = GlobalDataCoverages.find(function (item) {
+        //    return item.Id == selectedCoverage;
+        //});
+
+        if (prod) {
+            var whatis = prod.IsLaw;
+
+            if (whatis == false) {
+                //Chequeao que no sea un semifull
+                var isSemifull = prod.Name.toLowerCase().indexOf('semi');
+                var issemi = (isSemifull != -1);
+
+                if (issemi) {
+                    $select_elem.attr('disabled', 'disabled');
+                    $select_elem.val("");
+                } else {
+                    $select_elem.removeAttr('disabled');
+                }
+                return issemi;
+            }
+            $select_elem.attr('disabled', 'disabled');
+            $select_elem.val("");
+        }
+    } else {
+        $select_elem.removeAttr('disabled');
+    }
+}
+
+function SetAdditionals(randomID) {
+    var selectedCoverage = getOptionSelectedDropWithClass(".Coverages", randomID);
+
+    var vehcicle = getAllDataVehicleByRandomID(randomID);
+
+    if (selectedCoverage > 0) {
+
+        var results = new Array();
+
+        var ServicesCoverages = vehcicle.GlobalDataProductLimits.ServicesCoverages;
+
+        for (var i = 0; i < ServicesCoverages.length; i++) {
+
+            var sc = ServicesCoverages[i];
+            var obj = { id: sc.Name, value: -2 };
+            ///obj.value.subscribe(self.popupCalculateAnnualTotal);//Si marco el chck disparame esto
+            //var selected = _.find(sc.Coverages(), function (cov) { return cov.IsSelected(); });
+            var selected = sc.Coverages.find(function (cov) { return cov.IsSelected; });
+            if (selected) {
+                obj.value = selected.Id;
+            }
+            results.push(obj);
+        }
+
+        GlobalDataPopupSelectedServices = results;
+
+        vehcicle.GlobalDataPopupSelectedServices = GlobalDataPopupSelectedServices;
+
+        popupCalculateAnnualTotal(vehcicle);
+
+        var realv = setVehicle(vehicle, randomID);
+        debugger
+        setAllVehicleDataToSave(realv, "UPDATE");
+
+        PaintTableServices(vehcicle.GlobalDataPopupSelectedServices, randomID);
+    }
+}
+
+function popupCalculateAnnualTotal(vehcicle) {
+    var total = 0;
+
+    $.each(vehcicle.GlobalDataPopupSelectedServices, function (idx, item) {
+
+        var service = vehcicle.GlobalDataProductLimits.ServicesCoverages.find(function (sc) { return sc.Name == item.id });
+        if (service) {
+            var selectedCoverage = service.Coverages.find(function (cov) { return cov.Id == item.value; });
+            if (selectedCoverage) {
+                total += selectedCoverage.Amount;
+            }
+        }
+    });
+
+    GLobalPopupAnnualTotal = total;
+    vehcicle.GLobalPopupAnnualTotal = total;
+
+    $("#txtTotalServicesSelected").val("$" + number_format(vehcicle.GLobalPopupAnnualTotal, 2));
+}
+
+function PaintTableServices(selectedservices, randomID) {
+    var tblBody = $("#servicesBody");
+    tblBody.empty();
+
+    var vehcicle = getAllDataVehicleByRandomID(randomID);
+
+    var ServicesCoverages = vehcicle.GlobalDataProductLimits.ServicesCoverages;
+
+    $.each(ServicesCoverages, function (idx, i) {
+
+        //Cabecera
+        var cabecera = i.Name;
+        var coverages = i.Coverages;
+
+        var rowHeader = '<tr class="table-primary">' +
+            '<td align="left"></td>' +
+            '<td align="center" class="font-weight-bold text-uppercase">{1}</td>' +
+            '<td align="center"></td>' +
+            '</tr>';
+
+        rowHeader = rowHeader.replace('{1}', cabecera);
+
+        tblBody.append(rowHeader);
+
+        //detalle
+        $.each(coverages, function (idx, c) {
+            var isChecked = "";
+
+            var selServ = selectedservices.filter(function (item) {
+                return item.value == c.Id;
+            });
+
+
+            if (selServ.length > 0) {
+                isChecked = "checked='checked'";
+            }
+
+            var rowDetail = '<tr>' +
+                '<td align="left">' +
+                '<span class="mdl-list__item-secondary-action float-left mr-3">' +
+                '<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">' +
+                '<input type="checkbox" id="chk_{5}" class="mdl-checkbox__input  servicesChecked" data-vehiclerandomid="{9}" {4} value="{6}" data-sname="{8}" />' +//pendiente logica convertir esto en el radiobutton
+                //'<input type="radio" id="radio_{5}" name="{7}" class="mdl-checkbox__input servicesChecked" {4} value="{6}" />' +
+                '</label>' +
+                '</span >' +
+                '<span class="mdl-list__item-primary-content">{1}</span>' +
+                '</td>' +
+                '<td align="center">{2}</td>' +
+                '<td align="center">{3}</td>' +
+                '</tr>';
+
+            rowDetail = rowDetail.replace('{1}', c.Name).replace('{2}', c.Name).replace('{3}', c.Amount)
+                .replace('{4}', isChecked).replace('{5}', c.Name.replace(' ', '')).replace('{6}', c.Id).replace('{7}', cabecera.replace(' ', ''))
+                .replace('{8}', cabecera).replace('{9}', randomID);
+
+            tblBody.append(rowDetail);
+        });
+    });
+
+    $(".servicesChecked").off("change");
+    $(".servicesChecked").change(function () {
+        var chk = $(this);
+        var vehicle = null;
+
+        if (chk.is(":checked")) {
+            var v = chk.val();
+            var sname = chk.attr('data-sname');
+            var randomid = chk.attr("data-vehiclerandomid");
+            vehicle = getAllDataVehicleByRandomID(randomid);
+            debugger
+
+            for (var i in vehicle.GlobalDataPopupSelectedServices) {
+                if (vehicle.GlobalDataPopupSelectedServices[i].id == sname) {
+                    vehicle.GlobalDataPopupSelectedServices[i].value = v;
+                    break;
+                }
+            }
+        } else {
+            var v = chk.val();
+            var sname = chk.attr('data-sname');
+            var randomid = chk.attr("data-vehiclerandomid");
+            vehicle = getAllDataVehicleByRandomID(randomid);
+            debugger
+            //PENDIENTE PONER EL CHECK COMO UN RARIO PARA Q SE SELECCIONE UNO
+
+            for (var i in vehicle.GlobalDataPopupSelectedServices) {
+                if (vehicle.GlobalDataPopupSelectedServices[i].id == sname) {
+                    vehicle.GlobalDataPopupSelectedServices[i].value = -2;
+                    break;
+                }
+            }
+        }
+        popupCalculateAnnualTotal(vehicle);
+
+        var realv = setVehicle(vehicle, randomID);
+        debugger
+        setAllVehicleDataToSave(realv, "UPDATE");
+    });
+}
+
+function getOldAgentSelected() {
+    var obj = JSON.parse($("#oldAgentSelected").val());
+
+    return obj;
+}
+
+function getNewAgentSelected() {
+
+    var obj = JSON.parse($("#AgentList").val());
+
+    return obj;
+}
+
+function getCurrentDateTimeMomentFormat() {
+    return "DD-MMM-YYYY hh:mm:ss a";
+}
+
+function insuredAmount(randomID) {
+    var vehicle = getAllDataVehicleByRandomID(randomID);
+
+    var vehiclePrice = vehicle.VehiclePrice;
+    if (vehiclePrice && GlobalpercentageToInsure)
+        return vehiclePrice * (GlobalpercentageToInsure / 100);
+    else
+        return 0;
+}
+
+function isLawProduct(randomID) {
+
+    var selectedCoverage = getOptionSelectedDropWithClass(".Coverages", randomID);
+    var vehicle = getAllDataVehicleByRandomID(randomID);
+
+    if (selectedCoverage) {
+
+        var prod = vehicle.GlobalDataCoverages.find(function (item) {
+            return item.Id == selectedCoverage;
+        });
+
+        if (prod) {
+            return prod.IsLaw;
+        }
+    } else {
+        return true;
+    }
+}
+
+function getIdCapacidad(randomID) {
+
+    var $select_elem = $(".ddlAllProductsDina");
+    var selectedProduct = "";
+    var vehicle = null;
+
+    if ($select_elem.length > 1) {
+        $.each($select_elem, function (idx, obj) {
+            var randomid = $(obj).attr("data-vehiclerandomid");
+            if (randomid == randomID) {
+                $select_elem = $(obj);
+                selectedProduct = $select_elem;
+                vehicle = getAllDataVehicleByRandomID(randomid);
+            }
+        });
+    } else {
+        selectedProduct = $("#ddlAllProducts");
+        var randomid = selectedProduct.attr("data-vehiclerandomid");
+        vehicle = getAllDataVehicleByRandomID(randomid);
+    }
+
+
+    if (vehicle.GlobalAllProducts && selectedProduct.val()) {
+
+        var pr = vehicle.GlobalAllProducts.find(function (p) {
+            return p.Id == selectedProduct.val()
+        });
+
+        if (pr != null) {
+            return pr.IdCapacidad;
+        } else {
+            return 0;
+        }
+    }
+    else {
+        return 0;
+    }
+};
+
+function getDescCapacidad(randomID) {
+
+    var $select_elem = $(".ddlAllProductsDina");
+    var selectedProduct = "";
+    var vehicle = null;
+
+    if ($select_elem.length > 1) {
+        $.each($select_elem, function (idx, obj) {
+            var randomid = $(obj).attr("data-vehiclerandomid");
+            if (randomid == randomID) {
+                $select_elem = $(obj);
+                selectedProduct = $select_elem;
+                vehicle = getAllDataVehicleByRandomID(randomid);
+            }
+        });
+    } else {
+        selectedProduct = $("#ddlAllProducts");
+        var randomid = selectedProduct.attr("data-vehiclerandomid");
+        vehicle = getAllDataVehicleByRandomID(randomid);
+    }
+
+    if (vehicle.GlobalAllProducts && selectedProduct.val()) {
+
+        var pr = vehicle.GlobalAllProducts.find(function (p) {
+            return p.Id == selectedProduct.val()
+        });
+
+        if (pr != null) {
+            return pr.DescCapacidad;
+        } else {
+            return "";
+        }
+    }
+    else {
+        return "";
+    }
+};
+
+function validateGetRates(randomID) {
+    var msgs = [];
+
+    var vehicle = getAllDataVehicleByRandomID(randomID);
+
+    var vehiclePrice = vehicle.VehiclePrice;
+    var driver = vehicle.Driver_Id;
+
+
+
+    var selectedCoverage = getOptionSelectedDropWithClass(".Coverages", randomID);
+
+    var selectedDeductible = getOptionSelectedDropWithClass(".Deducible", randomID);
+
+    if (vehiclePrice == 0)
+        msgs.push('Debe ingresar el Precio del Vehículo para poder obtener su cotización.')
+
+    if (!vehicle.GlobalDataProductLimits)
+        msgs.push('Debe seleccionar un Tipo de Producto para poder obtener su cotización.');
+
+    if (driver == 0)
+        msgs.push('Debe seleccionar un Conductor para poder obtener su cotización.');
+
+    if (selectedCoverage == 0)
+        msgs.push('Debe seleccionar una Cobertura para poder obtener su cotización.');
+
+
+    if (!vehicle.GlobalDataDeductibleList || (vehicle.GlobalDataDeductibleList.length > 0 && selectedDeductible == 0))
+        msgs.push('Debe seleccionar un Deducible para poder obtener su cotización.');
+
+
+    if (msgs.length > 0) {
+        //showError(msgs, "Obtener Cotización");
+        return false;
+    }
+    else
+        return true;
+}
+
+function GetCurrentIsc() {
+
+    $.ajax({
+        url: "/Home/GetCurrentIsc",
+        dataType: 'json',
+        async: false,
+        cache: false,
+        data: {},
+        success: function (data) {
+            GlobalCurrentIsc = data.isc;
+        }
+    });
+}
+
+function getTotalPrime(randomID) {
+    var total = 0;
+    var vehicle = getAllDataVehicleByRandomID(randomID);
+
+    if (vehicle.GlobalDataProductLimits) {
+        total = vehicle.GlobalDataProductLimits.SdPrime + vehicle.GlobalDataProductLimits.TpPrime + vehicle.GlobalDataProductLimits.ServicesPrime;
+    }
+    return total;
+}
+
+function setAllVehicleDataToSave(objVehicle, action) {
+
+    if (AllVehicleDataToSave != null) {
+
+        if (action == "UPDATE") {
+            var current = AllVehicleDataToSave.find(function (item) {
+                return item.randomId == objVehicle.randomId
+            });
+
+            if (current != undefined) {
+
+                AllVehicleDataToSave = AllVehicleDataToSave.filter(function (item) {
+                    return item.randomId != objVehicle.randomId
+                });
+
+                AllVehicleDataToSave.push(current);
+            }
+        } else {
+            AllVehicleDataToSave.push(objVehicle);
+        }
+
+    } else {
+        AllVehicleDataToSave = new Array();
+        AllVehicleDataToSave.push(objVehicle);
+    }
+}
+
+function resetVehicleInfo() {
+
+    $("#VehicleDriver_Id").val("");
+    $("#VehicleDriver_Id").trigger("chosen:updated");
+
+    $("#VehicleModel_Make_Id").val("");
+    $("#VehicleModel_Make_Id").trigger("chosen:updated");
+
+    $("#VehicleModel_Model_Id").val("");
+    $("#VehicleModel_Model_Id").empty();
+    $("#VehicleModel_Model_Id").trigger("chosen:updated");
+
+    $("#yearsAvaibles").val("");
+    $("#yearsAvaibles").trigger("chosen:updated");
+
+    $("#VehicleType").val("");
+    $("#VehicleType").empty();
+    $("#VehicleType").trigger("chosen:updated");
+
+    $("#Usages").val("");
+    $("#Usages").empty();
+    $("#Usages").trigger("chosen:updated");
+
+    $("#StoreCar").val("");
+    $("#StoreCar").trigger("chosen:updated");
+
+    $("#vehiclePrice").val("0");
+    $("#VehicleYearsOld").val("");
+    $("#VehicleYearsOld").parent().removeClass('is-dirty');
+}
+
+function setVehicle(obj, randomID) {
+
+    var newVehicle = {};
+
+    var v = getAllDataVehicleByRandomID(randomID);
+
+    if (v != undefined) {
+        newVehicle = v;
+    }
+
+    newVehicle.randomId = obj.randomId != undefined ? obj.randomId : newVehicle.randomId;
+
+    newVehicle.isLawProduct = obj.isLawProduct != undefined ? obj.isLawProduct : newVehicle.isLawProduct;
+
+    newVehicle.GlobalDataProductLimits = obj.GlobalDataProductLimits != undefined ? obj.GlobalDataProductLimits : newVehicle.GlobalDataProductLimits;
+    newVehicle.GlobalDataUsages = obj.GlobalDataUsages != undefined ? obj.GlobalDataUsages : newVehicle.GlobalDataUsages;
+    newVehicle.GlobalData = obj.GlobalData != undefined ? obj.GlobalData : newVehicle.GlobalData;
+    newVehicle.GlobalDataDeductibleList = obj.GlobalDataDeductibleList != undefined ? obj.GlobalDataDeductibleList : newVehicle.GlobalDataDeductibleList;
+    newVehicle.GlobalDataCoverages = obj.GlobalDataCoverages != undefined ? obj.GlobalDataCoverages : newVehicle.GlobalDataCoverages;
+    newVehicle.GlobalDataProductsByUsage = obj.GlobalDataProductsByUsage != undefined ? obj.GlobalDataProductsByUsage : newVehicle.GlobalDataProductsByUsage;
+    newVehicle.GlobalAllProducts = obj.GlobalAllProducts != undefined ? obj.GlobalAllProducts : newVehicle.GlobalAllProducts;
+    newVehicle.GlobalDataPopupSelectedServices = obj.GlobalDataPopupSelectedServices != undefined ? obj.GlobalDataPopupSelectedServices : newVehicle.GlobalDataPopupSelectedServices;
+    newVehicle.GLobalPopupAnnualTotal = obj.GLobalPopupAnnualTotal != undefined ? obj.GLobalPopupAnnualTotal : newVehicle.GLobalPopupAnnualTotal;;
+
+    newVehicle.servicescoverages = obj.servicescoverages != undefined ? obj.servicescoverages : newVehicle.servicescoverages;
+    newVehicle.limitSelfThirdsDamages = obj.limitSelfThirdsDamages != undefined ? obj.limitSelfThirdsDamages : newVehicle.limitSelfThirdsDamages;
+
+    newVehicle.VehicleDescription = obj.VehicleDescription != undefined ? obj.VehicleDescription : newVehicle.VehicleDescription;
+    newVehicle.Year = obj.Year != undefined ? obj.Year : newVehicle.Year;
+    newVehicle.VehiclePrice = obj.VehiclePrice != undefined ? obj.VehiclePrice : newVehicle.VehiclePrice;
+    newVehicle.InsuredAmount = obj.InsuredAmount != undefined ? obj.InsuredAmount : newVehicle.InsuredAmount;
+    newVehicle.PercentageToInsure = obj.PercentageToInsure != undefined ? obj.PercentageToInsure : newVehicle.PercentageToInsure;
+    newVehicle.TotalPrime = obj.TotalPrime != undefined ? obj.TotalPrime : newVehicle.TotalPrime;
+    newVehicle.TotalIsc = obj.TotalIsc != undefined ? obj.TotalIsc : newVehicle.TotalIsc;
+    newVehicle.SelectedProductCoreId = obj.SelectedProductCoreId != undefined ? obj.SelectedProductCoreId : newVehicle.SelectedProductCoreId;
+    newVehicle.SelectedProductName = obj.SelectedProductName != undefined ? obj.SelectedProductName : newVehicle.SelectedProductName;
+    newVehicle.VehicleMakeName = obj.VehicleMakeName != undefined ? obj.VehicleMakeName : newVehicle.VehicleMakeName;
+    newVehicle.UsageId = obj.UsageId != undefined ? obj.UsageId : newVehicle.UsageId;
+    newVehicle.UsageName = obj.UsageName != undefined ? obj.UsageName : newVehicle.UsageName;
+    newVehicle.StoreId = obj.StoreId != undefined ? obj.StoreId : newVehicle.StoreId;
+    newVehicle.StoreName = obj.StoreName != undefined ? obj.StoreName : newVehicle.StoreName;
+    newVehicle.Driver_Id = obj.Driver_Id != undefined ? obj.Driver_Id : newVehicle.Driver_Id;
+    newVehicle.VehicleModel_Make_Id = obj.VehicleModel_Make_Id != undefined ? obj.VehicleModel_Make_Id : newVehicle.VehicleModel_Make_Id;
+    newVehicle.VehicleModel_Model_Id = obj.VehicleModel_Model_Id != undefined ? obj.VehicleModel_Model_Id : newVehicle.VehicleModel_Model_Id;
+    newVehicle.Quotation_Id = obj.Quotation_Id != undefined ? obj.Quotation_Id : newVehicle.Quotation_Id;
+    newVehicle.SelectedVehicleTypeId = obj.SelectedVehicleTypeId != undefined ? obj.SelectedVehicleTypeId : newVehicle.SelectedVehicleTypeId;
+    newVehicle.SelectedVehicleTypeName = obj.SelectedVehicleTypeName != undefined ? obj.SelectedVehicleTypeName : newVehicle.SelectedVehicleTypeName;
+    newVehicle.SelectedCoverageCoreId = obj.SelectedCoverageCoreId != undefined ? obj.SelectedCoverageCoreId : newVehicle.SelectedCoverageCoreId;
+    newVehicle.SelectedCoverageName = obj.SelectedCoverageName != undefined ? obj.SelectedCoverageName : newVehicle.SelectedCoverageName;
+    newVehicle.VehicleYearOld = obj.VehicleYearOld != undefined ? obj.VehicleYearOld : newVehicle.VehicleYearOld;
+    newVehicle.SurChargePercentage = obj.SurChargePercentage != undefined ? obj.SurChargePercentage : newVehicle.SurChargePercentage;
+    newVehicle.RateJson = obj.RateJson != undefined ? obj.RateJson : newVehicle.RateJson;
+    newVehicle.SecuenciaVehicleSysflex = obj.SecuenciaVehicleSysflex != undefined ? obj.SecuenciaVehicleSysflex : newVehicle.SecuenciaVehicleSysflex;
+    newVehicle.IsFacultative = obj.IsFacultative != undefined ? obj.IsFacultative : newVehicle.IsFacultative;
+    newVehicle.AmountFacultative = obj.AmountFacultative != undefined ? obj.AmountFacultative : newVehicle.AmountFacultative;
+    newVehicle.VehicleQuantity = obj.VehicleQuantity != undefined ? obj.VehicleQuantity : newVehicle.VehicleQuantity;
+    newVehicle.selectedDeductible = obj.selectedDeductible != undefined ? obj.selectedDeductible : newVehicle.selectedDeductible;
+    newVehicle.idCapacidad = obj.idCapacidad != undefined ? obj.idCapacidad : newVehicle.idCapacidad;
+    newVehicle.descCapacidad = obj.descCapacidad != undefined ? obj.descCapacidad : newVehicle.descCapacidad;
+    newVehicle.isSemifull = obj.isSemifull != undefined ? obj.isSemifull : newVehicle.isSemifull;
+    newVehicle.actualAgentSelected = obj.actualAgentSelected != undefined ? obj.actualAgentSelected : newVehicle.actualAgentSelected;
+    newVehicle.principalDateOfBirth = obj.principalDateOfBirth != undefined ? obj.principalDateOfBirth : newVehicle.principalDateOfBirth;
+
+    newVehicle.VehicleModelName = obj.VehicleModelName != undefined ? obj.VehicleModelName : newVehicle.VehicleModelName;
+
+
+    return newVehicle;
+}
+
+function paintVehicles(AllVehicleDataToSave) {
+    var divVehicles = $("#sectVehicles");
+
+    if (AllVehicleDataToSave.length > 1) {
+
+        var toignoreFirstVehicle = AllVehicleDataToSave[0];//ignoro el primer registro porque es el que viene por default
+
+        var vehicles = AllVehicleDataToSave.filter(function (item) {
+            return item.randomId != toignoreFirstVehicle.randomId;
+        });
+
+        $.each(vehicles, function (idx, v) {
+            debugger
+            if (vehicleRandomID == v.randomId) {
+
+                var vehicledesc = (v.VehicleDescription + " " + v.Year);
+                var vRandomID = v.randomId;
+                var usageSelected = v.UsageId;
+                var selectedVehicleType = v.SelectedVehicleTypeId;
+                var vehiclePrice = v.VehiclePrice;
+                var qtyVehicle = v.VehicleQuantity;
+
+                //verificar si debo mostrar o no el drop de los recargos
+                //Si el drop original existe entonces el usuario tiene permisos para ver dicho drop
+                var surchargeDrop = "";
+                var SurchargeId = 'SurchargePercent_' + vRandomID;
+                if ($("#SurchargePercent").length > 0) {
+
+                    surchargeDrop = '<li class="mdl-list__item mdl-card__actions mdl-card--border">' +
+                        '<strong class="mdl-list__item-primary-content mr-5">' +
+                        'Recargo:' +
+                        '</strong>' +
+                        '<select id="{1}" class="form-control SurchargePercentDina" data-vehiclerandomid="{2}"></select>' +
+                        '</li>';
+
+                    surchargeDrop = surchargeDrop.replace('{1}', SurchargeId).replace('{2}', vRandomID);
+                }
+                //
+
+                //var toClone = $("#divtocopy").clone(true);
+                //$("#divtocopy").after(toClone);
+
+                //Cabecera
+                var header =
+                    '<div class="mdl-card__media">' +
+                    '<div class="mdl-card__title">' +
+                    '<h2 class="mdl-card__title-text m-auto mdl-color-text--white">{1}</h2>' +
+                    '<button id="btnEditVehicle_{2}" data-vehiclerandomid="{4}" type="button" class="btn float-right ec_btn btn-success btn-sm mr-2 editVehicleDina"><i class="material-icons">&#xE254;</i></button>' +
+                    '<button id="btnDeleteVehicle_{3}" data-vehiclerandomid="{5}" type="button" class="btn float-right ec_btn btn-danger btn-sm deleteVehicleDina"><i class="material-icons">&#xE5CD;</i></button>' +
+                    '</div>' +
+                    '</div>';
+                header = header.replace("{1}", vehicledesc).replace("{2}", vRandomID).replace("{3}", vRandomID)
+                    .replace("{4}", vRandomID).replace("{5}", vRandomID);
+
+                debugger
+
+                //detalle
+                var detail = '<div class="mdl-card__supporting-text w-100">' +
+                    '<!--Icon List -->' +
+                    '<ul class="demo-list-icon mdl-list">' +
+                    '<li class="mdl-list__item text-center"><strong id="vehicleDescription_{2}" data-vehiclerandomid="{11}" class="mdl-list__item-primary-content m-auto text-success vehicleDescriptionDina">' +
+                    '{1}</strong></li>' +
+                    '<li class="mdl-list__item mdl-card__actions mdl-card--border">' +
+                    '<strong class="mdl-list__item-primary-content">Valor:</strong>' +
+                    '<span id="VehicleValue_{3}" data-vehiclerandomid="{12}" class="VehicleValueDina">{17}</span></li>' +
+                    '<li class="mdl-list__item mdl-card__actions mdl-card--border">' +
+                    '<strong class="mdl-list__item-primary-content mr-5">Plan:</strong>' +
+                    '<select id="ddlAllProducts_{4}" data-vehiclerandomid="{10}" class="form-control ddlAllProductsDina"><option value="">Seleccione</option></select>' +
+                    '</li>' +
+                    '<li class="mdl-list__item mdl-card__actions mdl-card--border">' +
+                    '<strong class="mdl-list__item-primary-content mr-5">Cobertura:</strong>' +
+                    '<select id="Coverages_{5}" data-vehiclerandomid="{13}" class="form-control Coverages"><option value="">Seleccione</option></select>' +
+                    '<button id="infoCB" data-toggle="modal" data-target="#ppCobertura" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored float-right"><i class="material-icons">&#xE88E;</i></button>' +
+                    '</li>' +
+                    '<li class="mdl-list__item mdl-card__actions mdl-card--border">' +
+                    '<strong class="mdl-list__item-primary-content mr-5">Deducible:</strong><select id="Deducible_{6}" data-vehiclerandomid="{14}" class="form-control Deducible"></select>' +
+                    '</li>' +
+                    '<li class="mdl-list__item mdl-card__actions mdl-card--border">' +
+                    '<strong class="mdl-list__item-primary-content">Servicios:</strong>' +
+                    '<span>' +
+                    '<button id="servicesPopUp" disabled="disabled" data-toggle="modal" data-target="#addServicios" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored bg-success mdl-color-text--white servicesPopUpDina" ><i class="material-icons">add</i></button>' +
+                    '</span>' +
+                    '</li>' +
+                    '<li class="mdl-list__item mdl-card__actions mdl-card--border">' +
+                    '<strong class="mdl-list__item-primary-content">' +
+                    'Prima Anual:' +
+                    '</strong>' +
+                    '<span id="totalPrime_{7}" data-vehiclerandomid="{15}" class="totalPrime">$0</span>' +
+                    '</li>' +
+                    surchargeDrop +
+                    '<li class="mdl-list__item mdl-card__actions mdl-card--border">' +
+                    //'<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty" data-upgraded=",MaterialTextfield">' +
+                    '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty" data-upgraded=",MaterialTextfield">' +
+                    '<input class="mdl-textfield__input qtyVehiclesDina" type="text" id="qtyVehicles_{9}" data-vehiclerandomid="{16}" value="{19}">' +
+                    '<label class="mdl-textfield__label" for="qtyVehicles_{18}">Cantidad de Vehículo</label>' +
+                    '</div>' +
+                    '</li>' +
+                    '</ul>' +
+                    '</div>';
+
+                detail = detail.replace("{1}", vehicledesc).replace("{2}", vRandomID)
+                    .replace("{3}", vRandomID).replace("{4}", vRandomID)
+                    .replace("{5}", vRandomID).replace("{6}", vRandomID)
+                    .replace("{7}", vRandomID).replace("{8}", vRandomID)
+                    .replace("{9}", vRandomID).replace("{10}", vRandomID)
+                    .replace("{11}", vRandomID).replace("{12}", vRandomID)
+                    .replace("{13}", vRandomID).replace("{14}", vRandomID)
+                    .replace("{15}", vRandomID).replace("{16}", vRandomID)
+                    .replace("{17}", number_format(vehiclePrice, 2)).replace("{18}", vRandomID)
+                    .replace("{19}", 1)
+                    ;
+
+                var divFather =
+                    '<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card mdl-cell--6-col-tablet mdl-cell--12-col-phone">' +
+                    header +
+                    detail +
+                    '</div>';
+                divVehicles.append(divFather);
+
+                getRecargosForNewVehicles(SurchargeId);
+
+                /*
+                cuando genere la siguiente seccion del vehiculo llenar el drop del plan otra vez, el nuevo objeto y con ello los datos de la cobertura y deducible etc
+                */
+
+                vehicleRandomID = v.randomId;
+                ProductListByUsagesForNewVehicles(usageSelected, selectedVehicleType, v.randomId);
+
+                //Asignandole Un change a todos los drops de plan dinamicos
+                $(".ddlAllProductsDina").off("click");
+                $(".ddlAllProductsDina").change(function () {
+                    var $this = $(this);
+
+                    var i = $this.attr('id');
+                    var selectedProductName = $("#" + i + " option:selected").text();
+                    var randomID = $this.attr("data-vehiclerandomid");
+
+                    currentCoveragesByUsage(selectedProductName, randomID);
+                });
+
+                $(".qtyVehiclesDina").off("click");
+                $(".qtyVehiclesDina").focusout(function () {
+                    var v = $(this);
+                    var randomID = v.attr("data-vehiclerandomid");
+                    debugger
+                    getRates(randomID);
+                });
+
+                $(".deleteVehicleDina").off("click");
+                $(".deleteVehicleDina").click(function () {
+                    var randomid = $(this).attr("data-vehiclerandomid");
+                    debugger
+                    removeVehicle(randomid);
+                });
+
+                $(".SurchargePercentDina").off("click");
+                $(".SurchargePercentDina").change(function () {
+                    var $this = $(this);
+                    var randomID = $this.attr("data-vehiclerandomid");
+                    debugger
+                    getRates(randomID);
+                });
+
+                $(".servicesPopUpDina").off("click");
+                $(".servicesPopUpDina").change(function () {
+                    var $this = $(this);
+                    var randomID = $this.attr("data-vehiclerandomid");
+                    debugger
+                    //getRates(randomID);
+                });
+                
+            }
+        });
+    }
+}
+
+function ProductListByUsagesForNewVehicles(usageSelected, selectedVehicleType, randomID) {
+
+    if (usageSelected) {
+
+        var vehicle = getAllDataVehicleByRandomID(randomID);
+
+        var UsageFound = vehicle.GlobalDataUsages.filter(function (item) {
+            return item.idUso == usageSelected;
+        });
+
+        if (UsageFound.length) {
+            var currentUsageFound = UsageFound[0];
+
+            var t = vehicle.GlobalData.filter(function (item) {
+                return item.Name == selectedVehicleType;
+            });
+
+
+            var AllProductListByUsages;
+
+            if (t.length > 0) {
+                AllProductListByUsages = t[0].ProductByUsages;
+                GlobalAllProducts = t[0].Products;
+            }
+
+            var FilteredProductList = AllProductListByUsages.filter(function (item) {
+                return item.UsoDescripcion.indexOf(currentUsageFound.descUso) != -1;
+            });
+
+            if (FilteredProductList.length > 0) {
+
+                var NewCurrentProductList = [];
+
+                $.each(FilteredProductList, function (idx, plist) {
+
+                    var prodsNews = GlobalAllProducts.find(function (currProd) {
+                        return currProd.Name.indexOf(plist.ProductoDescripcion) != -1
+                    });
+
+                    if (prodsNews != undefined) {
+                        NewCurrentProductList.push(prodsNews);
+                    }
+                });
+
+                GlobalDataProductsByUsage = NewCurrentProductList;
+
+                vehicle.GlobalDataProductsByUsage = GlobalDataProductsByUsage;
+                vehicle.GlobalAllProducts = GlobalAllProducts;
+
+                var realVehicle = setVehicle(vehicle);
+
+                setAllVehicleDataToSave(realVehicle, "UPDATE");
+
+                var $select_elem = $(".ddlAllProductsDina");
+
+                if ($select_elem.length > 1) {
+                    $.each($select_elem, function (idx, obj) {
+                        var randomid = $(obj).attr("data-vehiclerandomid");
+                        if (randomid == vehicleRandomID) {
+                            $select_elem = $(obj);
+                        }
+                    });
+                }
+                $select_elem.empty();
+                $select_elem.append('<option value="">Seleccionar</option>');
+
+                $.each(NewCurrentProductList, function (idx, obj) {
+                    $select_elem.append("<option value='" + obj.Id + "'>" + obj.Name + "</option>");
+                });
+            }
+        }
+    }
+    return [];
+}
+
+function getAllDataVehicleByRandomID(randomID) {
+
+    if (AllVehicleDataToSave != null) {
+
+        var vehicle = AllVehicleDataToSave.find(function (item) {
+            return item.randomId == randomID;
+        });
+    }
+
+    return vehicle;
+}
+
+function getOptionSelectedDropWithClass(dropClass, randomID) {
+
+    var $select_elem = $(dropClass);
+
+    if ($select_elem.length > 1) {
+
+        $.each($select_elem, function (idx, obj) {
+
+            var randomid = $(obj).attr("data-vehiclerandomid");
+
+            if (randomid == randomID) {
+                $select_elem = $(obj);
+            }
+        });
+    }
+
+    return $select_elem.val();
+}
+
+function getOptionSelectedTextDropWithClass(dropClass, randomID) {
+
+    var $select_elem = $(dropClass);
+
+    if ($select_elem.length > 1) {
+
+        $.each($select_elem, function (idx, obj) {
+
+            var randomid = $(obj).attr("data-vehiclerandomid");
+
+            if (randomid == randomID) {
+                $select_elem = $(obj);
+            }
+        });
+    }
+
+    return $("#" + $select_elem.attr('id') + " option:selected").text();
+}
+
+function qtyVehiclesCreated() {
+    var totalVehicleQty = 0;
+    debugger
+    $.each(AllVehicleDataToSave, function (idx, vehicle) {
+        debugger
+        var actualVehicleQty = vehicle.VehicleQuantity;
+
+        totalVehicleQty += actualVehicleQty;
+    });
+
+    return totalVehicleQty;
+}
+
+function removeVehicle(randomID) {
+
+    var current = AllVehicleDataToSave.find(function (item) {
+        return item.randomId == randomID
+    });
+
+    if (current != undefined) {
+        AllVehicleDataToSave = AllVehicleDataToSave.filter(function (item) {
+            return item.randomId != randomID
+        });
+    }
+
+
+
+    //self.vehicles.remove(vehicleToRemove);
+
+    var qtyVehicles = qtyVehiclesCreated();
+    //pendiente logica flotilla
+    /*$.ajax({
+        url: '/Home/GetPercentByQtyVehicle',
+        type: 'POST',
+        dataType: 'json',
+        data: { qtyVehicles: qtyVehicles },
+        async: false,
+        success: function (data) {
+            self.PercentByQtyVehicle(data);
+
+            if (data > 0) {
+                self.isFlotilla(true);
+            } else {
+                self.isFlotilla(false);
+            }
+        }
+    });*/
+
+    var quotationCoreNumber = getQuotationCoreNumber();
+    if (current.SecuenciaVehicleSysflex > 0) {
+        $.ajax({
+            url: '/Home/DeleteVehicleOnSysflex',
+            type: 'POST',
+            dataType: 'json',
+            data: { SecuenciaVehicleSysflex: current.SecuenciaVehicleSysflex, quotationCoreNumber: quotationCoreNumber },
+            async: false,
+            success: function (data) {
+                if (data == "ERROR") {
+                    showError(['A ocurrido un error Eliminando el Vehículo'], 'Eliminando Vehículo');
+                }
+            }
+        });
+    }
+}
+
+function getQuotationCoreNumber() {
+    return $("#QuotationCoreNumber").val();
+}

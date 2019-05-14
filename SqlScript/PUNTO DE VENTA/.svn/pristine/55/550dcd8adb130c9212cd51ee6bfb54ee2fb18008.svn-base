@@ -1,0 +1,90 @@
+﻿<!-- Header steps and price selector -->
+<div class="row_A head2">
+    @{ Html.RenderPartial("_StepSelector"); }
+    <div class="col-3 fl cotizN">
+        <div class="label_plus_input par" style="display:none;">
+            <span>@Globalization.Shared.CotizadorLayout.Language</span>
+            <select id="languageSelector" onchange="changeLanguage(this.value)">
+                @foreach (var id in ViewBag.LanguageList.Keys)
+                {
+                    if (id == ViewBag.CurrentLanguage)
+                    {
+                        <option selected="selected" value="@id">@ViewBag.LanguageList[id]</option>
+                    }
+                    else
+                    {
+                        <option value="@id">@ViewBag.LanguageList[id]</option>
+                    }
+                }
+            </select>
+        </div>
+        @*<div class="label_plus_input par invert">
+                <span>Cotización No.</span>
+                <input type="text" disabled="disabled" data-bind="value: $root.quotation() ? $root.quotation().quotationNumber : '-'" />
+            </div>*@
+
+        <!-- ko if: !agentList || !agentList().length -->
+        <div class="label_plus_input par">
+            <span>@Globalization.Shared.CotizadorLayout.User</span>
+            <input type="text" disabled="disabled" value="@(ViewBag.CurrentUserFullName != null? ViewBag.CurrentUserFullName : "-")" />
+        </div>
+        <!-- /ko -->
+        <!-- ko if: agentList && agentList().length -->
+        <div class="label_plus_input par">
+            <span>@Globalization.Shared.CotizadorLayout.Agent</span>@*, css: {errorBorder: !brand()}*@
+            <input type="text" data-bind="attr: { title: agent() ? agent().Name : '' }, jqAuto: { value: agent, source: agentList, inputProp: 'Name', labelProp: 'Name', options: { minLength: 2, position: { my: 'left-160 top', at: 'left bottom', collision: 'none' }, open: function () { $('.ui-autocomplete.ui-menu').width($(this).parent().innerWidth()); } } }, enable: agentList().length > 1" />
+        </div>
+        <!-- /ko -->
+
+    </div>
+</div>
+
+<!-- Contenedor -->
+<div class="row pdv_cont agr_conductor">
+    <!-- COLUMNA IZQUIERDA -->
+    <div class="data_side_L cont_gnl col-3">
+        @{ Html.RenderPartial("_SideViewPricing");}
+
+        <!-- ko if: sideViewCustom && sideViewCustom() -->
+        <div data-bind="template: { name: sideViewCustom() }"></div>
+        <!-- /ko -->
+        <button class="btn_vp box_shw2" data-bind="click: $root.showOurProducts">@Globalization.Shared.CotizadorLayout.OurProductsLabel</button>
+
+        <div class="row_A mB20">
+            <div class="centrodellamadas">
+                <i class="icon24"></i>
+                <div class="title">
+                    <p class="centro" style="padding-top: 2px;">@Globalization.Shared.CotizadorLayout.CallCenterLabel</p>
+                </div>
+                <ul>
+                    <li id="tel">(809) 565-5591</li>
+                    <li id="email"><a href="mailto:servicios@atlantica.do">servicios@atlantica.do</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="version">
+            @{Html.RenderAction("GetSystemVersionInfo", "Version", new { Area = string.Empty });}
+        </div>
+    </div><!--// .data_side_L -->
+    <!--// COLUMNA IZQUIERDA -->
+    <!-- COLUMNA DERECHA -->
+    <div class="data_main_R cont_gnl col-9">
+        <!-- Main steps sector -->
+        <div class="mainAcor">
+            <ul id="cbp-ntaccordion2" class="cbp-ntaccordion" data-bind="foreach: steps()">
+                <li data-bind="css: { 'cbp-ntopen': $parent.currentStepId() == order() }, visible: mainVisible()">
+                    <div class="cbp-ntcontent" data-bind="template: { name: stepTemplate }">
+
+                    </div>
+
+                    <input id="currentStepIdhdn" type="hidden" data-bind="value: $parent.currentStepId()" value="" />
+                </li>
+            </ul>
+        </div>
+
+    </div><!--// .data_main_R -->
+    <!--// COLUMNA DERECHA -->
+    <div style="display:none;" id="paymentFormContainer"></div>
+</div>
+<!--// Contenedor -->

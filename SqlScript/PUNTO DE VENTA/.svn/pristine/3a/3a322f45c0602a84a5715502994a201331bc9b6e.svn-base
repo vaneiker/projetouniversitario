@@ -1,0 +1,447 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode;
+@model STL.POS.Frontend.Web.NewVersion.CustomCode.QuotationViewModel
+@{
+
+    var principalDriver = Model.GetPrincipalDriver();
+
+    DateTime starDate = DateTime.Now;
+    DateTime endDate = starDate.AddYears(1);
+
+
+}
+<div id="accordion" role="tablist" class="accordStyles portfolio-max-width">
+    <!-- Información del Cliente y Conductores -->
+    <div class="ac1">
+
+        <div role="tab" id="headInfoCC">
+            <a data-toggle="collapse" href="#infoCC" aria-expanded="true" aria-controls="infoCC">
+                <h2 class="mdl-chip mdl-chip--contact col-12 mdl-shadow--4dp" role="tab">
+                    <span class="mdl-chip__contact mdl-color-text--white bg-primary">1</span>
+                    <span class="mdl-chip__text">Información del Cliente y Conductores </span>
+                    <i class="material-icons text-primary ac">&#xE5C6;</i>
+                </h2>
+            </a>
+        </div>
+        <div id="infoCC" class="collapse show" role="tabpanel" data-parent="#accordion" aria-labelledby="headInfoCC">
+            <div class="collapse show mdl-cell w-100 ml-0 mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                <div class="mdl-grid col-12">
+                    <form id="frmClientInfoBasic" method="post" class="mdl-grid">
+
+                        @Html.Hidden("driver", principalDriver.Id)
+
+                        <ul class="nav nav-pills  nav-fill  flex-column flex-sm-row w-100 nav-justified mt-1">
+                            <li class="flex-sm-fill text-sm-center  nav-item dropdown pt-2">
+                                @*@Html.DropDownList("ddlCountry", (SelectList)ViewBag.ListCountries, "", new { @data_placeholder = "Seleccione el País...", @class = "chosen-select-deselect form-control" })*@
+                                <select id="ddlCountry" data-placeholder="Seleccione el País..." class="chosen-select-deselect form-control"></select>
+                            </li>
+                            <li class=" flex-sm-fill text-sm-center nav-item dropdown pt-2 hideSearh">
+                                <select id="ddlbussinessline" data-placeholder="Seleccione Tipo de Producto" class="chosen-select-deselect form-control"></select>
+                            </li>
+                        </ul>
+                        <!-- Campos -->
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                                <input class="mdl-textfield__input" pattern="[A-Z,a-z, ]*" type="text" id="FirstName" name="FirstName" value="@(principalDriver.FirstName)">
+                                <label class="mdl-textfield__label" for="FirstName">Nombre</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="FirstSurname" name="FirstSurname" value="@principalDriver.FirstSurname">
+                                <label class="mdl-textfield__label" for="FirstSurname">Apellido</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                                <input class="mdl-textfield__input dateOfBirth datepicker " type="text" id="DateOfBirth" name="DateOfBirth" readonly="readonly" value="@(principalDriver.DateOfBirth>=new DateTime(1900,1,1) ? principalDriver.DateOfBirth.ToString("dd-MMM-yyyy") : "")">
+                                <label class="mdl-textfield__label" for="DateOfBirth">Fecha de Nacimiento</label>
+                                <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="dateNC">
+                                    <i class="material-icons">&#xE916;</i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mt-0 mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left putErrorBorder">
+                                <div class="mdl-textfield hideSearh dtl_gris ">
+                                    @Html.DropDownList("Sex", (SelectList)ViewBag.Sexes, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Sexo" })
+                                </div>
+                            </div>
+                            <div class="mt-0 mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                                    @Html.DropDownList("ForeignLicense", (SelectList)ViewBag.ForeingLicence, "", new { @class = "mdl-textfield__input" })
+                                    <label class="mdl-textfield__label" for="licExtra">Licencia Extranjera</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                            <label class="mb-1 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col " for="IdentificationTypeCed">
+                                <input type="radio" id="IdentificationTypeCed" class="mdl-radio__button optionLicence" name="IdentificationType" value="Cédula">
+                                <span class="mdl-radio__label">Cédula</span>
+                            </label>
+                            <label class=" mb-1 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="IdentificationTypeCedLic">
+                                <input type="radio" id="IdentificationTypeCedLic" class="mdl-radio__button optionLicence" name="IdentificationType" value="Licencia">
+                                <span class="mdl-radio__label">Licencia</span>
+                            </label>
+                            <label class=" mb-1 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="IdentificationTypeCedRnc">
+                                <input type="radio" id="IdentificationTypeCedRnc" class="mdl-radio__button optionLicence" name="IdentificationType" value="RNC">
+                                <span class="mdl-radio__label">RNC</span>
+                            </label>
+                            <label class="mb-1 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="IdentificationTypeCedPasaport">
+                                <input type="radio" id="IdentificationTypeCedPasaport" class="mdl-radio__button optionLicence" name="IdentificationType" value="Pasaporte">
+                                <span class="mdl-radio__label">Pasaporte</span>
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="IdentificationNumber" name="IdentificationNumber" value="@principalDriver.IdentificationNumber">
+                                <label class="mdl-textfield__label" for="IdentificationNumber">Número de Identificación</label>
+                                <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="IdentificationNumber">
+                                    <i class="material-icons">&#xE8A6;</i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="PhoneNumber" name="PhoneNumber" phonenumber='PhoneNumber10' value="@principalDriver.PhoneNumber">
+                                <label class="mdl-textfield__label" for="PhoneNumber">Número de Teléfono</label>
+                                <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="PhoneNumber">
+                                    <i class="material-icons">&#xE0CD;</i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="Email" name="Email" value="@principalDriver.Email">
+                                <label class="mdl-textfield__label" for="Email">Correo Electrónico</label>
+                                <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="Email">
+                                    <i class="material-icons">&#xE0BE;</i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <button data-toggle="collapse" aria-expanded="false" aria-controls="infoVH" class="w-100 mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-color-text--white bg-info float-right mt-3 myButton btnSaveClientBasic" data-success="">
+                                <strong class="x-hide">Siguiente</strong>
+                                <i class="material-icons">arrow_forward</i>
+                            </button>
+
+                            @*<a data-toggle="collapse" href="#infoVH" aria-expanded="false" aria-controls="infoVH" class="w-100 mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-color-text--white bg-info float-right mt-3 myButton">
+                                    <strong class="x-hide">Siguiente</strong>
+                                    <i class="material-icons">arrow_forward</i>
+                                </a>*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Información del Vehículo -->
+    <div class="ac2">
+        <div role="tab" id="headVH">
+            <a data-toggle="collapse" href="#infoVH" aria-expanded="false" aria-controls="infoVH">
+                <h2 class="mdl-chip mdl-chip--contact col-12 mdl-shadow--4dp">
+                    <span class="mdl-chip__contact mdl-color-text--white bg-primary">2</span>
+                    <span class="mdl-chip__text">Información del Vehículo</span>
+                    <i class="material-icons text-primary ac">&#xE5C6;</i>
+                </h2>
+            </a>
+        </div>
+        <div id="infoVH" class="collapse" role="tabpanel" data-parent="#accordion" aria-labelledby="headVH">
+            <div class="collapse mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-shadow--4dp">
+                <form id="frmVehicleInfoBasic" method="post" class="mdl-grid form_wp1094">
+                    <!-- Campos -->
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder addAgain">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            @Html.DropDownList("VehicleModel_Make_Id", (SelectList)ViewBag.VehiclebrandsList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Marca" })
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder addAgain">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <select id="VehicleModel_Model_Id" name="VehicleModel_Model_Id" class="chosen-select-deselect form-control" data-placeholder="Modelo">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder addAgain">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            @Html.DropDownList("yearsAvaibles", (SelectList)ViewBag.VehicleAvailableYearsList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Año" })
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder addAgain">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <select id="VehicleType" name="VehicleType" class="chosen-select-deselect form-control" data-placeholder="Tipo Vehiculo">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder addAgain">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <select class="mdl-textfield__input" data-placeholder="Nuevo / 0KM" id="VehicleYearsOld" name="VehicleYearsOld">
+                                <option value=""></option>
+                                <option value="0 Km">Sí</option>
+                                <option value="Usado">No</option>
+                            </select>
+                            <label class="mdl-textfield__label" for="VehicleYearsOld">Nuevo / 0KM</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder addAgain">
+                        <div class="text-sm-center  mdl-textfield nav-item dropdown">
+                            <select id="Usages" name="Usages" class="chosen-select-deselect form-control nav-link text-center btn btn-outline-secondary mt-3 mdl-cell--12-col" data-placeholder="Uso Principal">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder addAgain">
+                        <div class="mdl-textfield hideSearh">
+                            <select id="StoreCar" name="StoreCar" class="chosen-select-deselect form-control nav-link text-center btn btn-outline-secondary mt-3 mdl-cell--12-col" data-placeholder="Estacionamiento">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder addAgain vprice">
+                            <input class="mdl-textfield__input" type="text" id="vehiclePrice" name="vehiclePrice" value="0">
+                            <label class="mdl-textfield__label" for="valor">Valor</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder addAgain">
+                        <div class="text-sm-center  mdl-textfield nav-item dropdown">
+                            <select id="VehicleDriver_Id" name="VehicleDriver_Id" class="chosen-select-deselect form-control" data-placeholder="Conductor Principal">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--12-col mb-4">
+
+                        @*<button id="btnCloseSection" class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-color-text--white bg-info float-right ml-2">
+                                <i class="material-icons">arrow_forward</i><strong class="x-hide">Siguiente</strong>
+                            </button>*@
+
+                        <button id="AddVehicle" class="mdl-textfield mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white text-capitalize p-0 mb-md-0 float-right mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <i class="material-icons">add</i>Agregar Vehículo
+                        </button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Seleccionar Cobertura -->
+    <div class="ac3">
+        <div role="tab" id="headCober">
+            <a data-toggle="collapse" href="#selecCober" aria-expanded="false" aria-controls="selecCober">
+                <h2 class="mdl-chip mdl-chip--contact col-12 mdl-shadow--4dp">
+                    <span class="mdl-chip__contact mdl-color-text--white bg-primary">3</span>
+                    <span class="mdl-chip__text">Seleccionar Cobertura</span>
+                    <i class="material-icons text-primary ac">&#xE5C6;</i>
+                </h2>
+            </a>
+        </div>
+        <div id="selecCober" class="collapse" role="tabpanel" data-parent="#accordion" aria-labelledby="headCober">
+            <div id="sectVehicles" class="collapse mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-grid position-relative">
+
+                <div id="dvparentSectionVehicle" class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card mdl-cell--6-col-tablet mdl-cell--12-col-phone parentSectionVehicle" data-vehiclerandomid="">
+                    <div class="mdl-card__media">
+                        <div class="mdl-card__title">
+                            <h2 id="vehicleTitle" data-vehiclerandomid="" class="mdl-card__title-text m-auto mdl-color-text--white vehicleTitle">Vehiculo 1</h2>
+                            <button id="btnEditVehicle" data-vehiclerandomid="" type="button" class="btn float-right ec_btn btn-success btn-sm mr-2 editVehicle"><i class="material-icons">&#xE254;</i></button>
+                            <button id="btnDeleteVehicle" data-vehiclerandomid="" type="button" class="btn float-right ec_btn btn-danger btn-sm deleteVehicle"><i class="material-icons">&#xE5CD;</i></button>
+                        </div>
+                    </div>
+                    <div class="mdl-card__supporting-text w-100">
+                        <form id="frmVehicleInfoBasic2" class="mdl-grid">
+                            <!-- Icon List -->
+                            <ul class="demo-list-icon mdl-list">
+                                @*<li class="mdl-list__item text-center">
+                                        <strong id="vehicleDescription" data-vehiclerandomid="" class="mdl-list__item-primary-content m-auto text-success vehicleDescription">
+                                        </strong>
+                                    </li>*@
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                                    <strong class="mdl-list__item-primary-content">
+                                        Valor:
+                                    </strong>
+                                    <span id="VehicleValue" data-vehiclerandomid="" class="VehicleValue"></span>
+                                </li>
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border putErrorBorder">
+                                    <strong class="mdl-list__item-primary-content mr-5">
+                                        Plan:
+                                    </strong>
+                                    <select id="ddlAllProducts" data-vehiclerandomid="" class="form-control ddlAllProducts">
+                                        <option value="">Seleccione</option>
+                                    </select>
+                                </li>
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border putErrorBorder">
+                                    <strong class="mdl-list__item-primary-content mr-5">
+                                        Cobertura:
+                                    </strong>
+                                    <select id="Coverages" data-vehiclerandomid="" class="form-control Coverages">
+                                        <option value="">Seleccione</option>
+                                    </select>
+                                    @*<button id="infoCB" data-toggle="modal" data-target="#ppCobertura" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored float-right"><i class="material-icons">&#xE88E;</i></button>*@
+                                </li>
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border putErrorBorder">
+                                    <strong class="mdl-list__item-primary-content mr-5">
+                                        Deducible:
+                                    </strong>
+                                    <select id="Deducible" data-vehiclerandomid="" class="form-control Deducible"></select>
+                                </li>
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                                    <strong class="mdl-list__item-primary-content">
+                                        Servicios:
+                                    </strong>
+                                    <span>
+                                        <button id="servicesPopUp" disabled="disabled" data-vehiclerandomid="" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored bg-success mdl-color-text--white servicesPopUp"><i class="material-icons">add</i></button>
+                                    </span>
+                                </li>
+                                @if (ViewBag.userCanApplySurCharge == "S")
+                                {
+                                    <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                                        <strong class="mdl-list__item-primary-content mr-5">
+                                            Recargo:
+                                        </strong>
+                                        <select id="SurchargePercent" data-vehiclerandomid="" class="form-control SurchargePercent"></select>
+
+                                    </li>
+                                }
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border putErrorBorder">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                                        <input class="mdl-textfield__input qtyVehicles" type="text" id="qtyVehicles" data-vehiclerandomid="">
+                                        <label class="mdl-textfield__label" for="qtyVehicles">Cantidad de Vehículo</label>
+                                    </div>
+                                </li>
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                                    <strong class="mdl-list__item-primary-content">
+                                        Prima Anual:
+                                    </strong>
+                                    <span id="totalPrime" data-vehiclerandomid="" class="totalPrime">$0</span>
+                                </li>
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                                    <strong class="mdl-list__item-primary-content">
+                                        Impuesto:
+                                    </strong>
+                                    <span id="ISC" data-vehiclerandomid="" class="ISC">$0</span>
+                                </li>
+                                <li class="mdl-list__item mdl-card__actions mdl-card--border">
+                                    <strong class="mdl-list__item-primary-content">
+                                        Total Pagar:
+                                    </strong>
+                                    <span id="totalToPay" data-vehiclerandomid="" class="totalToPay">$0</span>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="mdl-cell--12-col clearfix home-ft-btn">
+                    <a data-toggle="collapse" href="#infoVH" aria-expanded="false" aria-controls="infoVH" class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-color-text--white bg-info float-left ml-2"><i class="material-icons">arrow_back</i><strong class="x-hide">Atras</strong></a>
+
+                    <!--Flujo normal-->
+                    @Ajax.RawActionLink(string.Format("<strong class='x-hide'>Siguiente</strong><i class='material-icons'>arrow_forward</i>"),
+                                      "Summary",
+                                      "Home", null,
+                                      new AjaxOptions
+                                      {
+                                          UpdateTargetId = "dvContainer",
+                                          InsertionMode = InsertionMode.Replace,
+                                          OnSuccess = "InitializeSummary()",
+                                          OnBegin = "return SaveDataVehicle()"
+                                      },
+                                      new
+                                      {
+                                          @id = "lnkContinue",
+                                          @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-info float-right"
+                                      })
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+    <div class="container">
+        <div class="mdl-mega-footer__top-section">
+            <div class="mdl-mega-footer__left-section float-left">
+
+                @if (ViewBag.onlyLoggedUsers == false)
+                {
+                    <a href="#" target="_blank" id="uptocall-mini" class="float-left ml-2 mr-4"><i class="uptocall-mini-phone"></i></a>
+                    
+                    <button id="chat_btn_Main" type="button" class="btn btn-outline-info mr-1">
+                        <i class="fa fa-commenting fa-2x fa-fw" aria-hidden="true"></i>
+                        <strong class="x-hide">Iniciar Chat</strong>
+                    </button>
+                }
+                @*<button id="mail_btn" type="button" class="btn btn-outline-warning hide">
+                        <i class="fa fa-envelope fa-2x fa-fw" aria-hidden="true"></i>
+                        <strong class="x-hide">Enviar un Correo</strong>
+                    </button>*@
+            </div>
+            <div class="mdl-mega-footer__right-section float-right">
+                <ul class="mdl-mega-footer__link-list mdl-color-text--white d-flex justify-content-center x-hide mb-0 mt-2 float-left">
+                    <li><!-- <i class="fa fa-phone float-left mr-3"></i> --><strong>Tel: </strong> (809) 565-5591 &nbsp•&nbsp</li>
+                    <li class="mr-3"> <!-- <i class="fa fa-envelope float-left mr-3" aria-hidden="true"></i> --> <strong> Email:</strong> ventas@atlantica.do</li>
+                </ul>
+                <!--Ir a la de pago-->
+                @*@Ajax.RawActionLink("<strong class='x-hide'>Continuar</strong><i class='material-icons'>arrow_forward</i>",
+                    "_PaymentCheckout",
+                    "Home",
+                    null,
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "dvContainer",
+                        InsertionMode = InsertionMode.Replace
+                    },
+                    new
+                    {
+                        @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success"
+                    }
+                    )*@
+                <!--Ir a la de pago-->
+                <!--Ir a la de completar info vehiculos-->
+                @*@Ajax.RawActionLink("<strong class='x-hide'>Info. Adicional Vehículo</strong> <i class='material-icons float-left mt-2'>&#xE531;</i><i class='material-icons x-block xl-hide float-right'>&#xE88F;</i>",
+                    "InfoAddVehicle",
+                    "Home",
+                     null,
+                     new AjaxOptions
+                     {
+                         InsertionMode = InsertionMode.Replace,
+                         UpdateTargetId = "dvContainer",
+                         OnSuccess = "InitializeVehicle()",
+                     }, new
+                     {
+                         @data = @ViewBag.QuoId,
+                         @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success"
+                     }
+                    )*@
+                <!--Ir a la de completar info vehiculos-->
+                <!--Flujo normal-->
+                @*@Ajax.RawActionLink(string.Format("<strong class='x-hide'>Continuar</strong><i class='material-icons'>arrow_forward</i>"),
+                    "Summary",
+                    "Home", null,
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "dvContainer",
+                        InsertionMode = InsertionMode.Replace,
+                        OnSuccess = "InitializeSummary()",
+                        OnBegin = "return SaveDataVehicle()"
+                    },
+                    new
+                    {
+                        @id = "lnkContinue",
+                        @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success"
+                    })*@
+            </div>
+        </div>
+    </div>
+</footer>

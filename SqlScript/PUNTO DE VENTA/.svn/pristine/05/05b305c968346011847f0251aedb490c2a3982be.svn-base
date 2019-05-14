@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ATL_VOQueueServices.EN.Entity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ATL_VOQueueServices.EN.Entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="FilterQueues">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anonimous_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BL_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Date" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Call_Meeting_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Meeting_SubType_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Subtype_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Meeting_Type_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Reason_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Case_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Case_Seq_No" type="xs:int" />
+      <xs:element minOccurs="0" name="City_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contact_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Corp_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Country_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Create_Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefLang" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Department_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="DomesticReg_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Driver_GPS_Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Hist_Seq_No" type="xs:int" />
+      <xs:element minOccurs="0" name="Modi_Date" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Notified_to_Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Office_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Phone_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Policy_No" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Policy_Prime_New" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Queue_Anonimous_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Source_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Status_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Type_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Region_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Service_Channel_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="State_Prov_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="flag" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="pkIncidentChat" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FilterQueues" nillable="true" type="tns:FilterQueues" />
+  <xs:complexType name="ArrayOfQueues">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Queues" nillable="true" type="tns:Queues" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueues" nillable="true" type="tns:ArrayOfQueues" />
+  <xs:complexType name="Queues">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anonimous_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BL_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Assigned_Caller" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Assigned_CallerFullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Date" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Call_Meeting_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Meeting_Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Status_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Meeting_SubType_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Subtype_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Meeting_Type_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_REason_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Reason_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Case_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Case_Seq_No" type="xs:int" />
+      <xs:element minOccurs="0" name="City_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contact_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Corp_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Country_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Create_Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefLang" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Department_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="DomesticReg_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Driver_GPS_Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Hist_Seq_No" type="xs:int" />
+      <xs:element minOccurs="0" name="Inbound_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Modi_Date" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Notified_to_Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Office_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Phone_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Policy_No" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Anonimous_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Source_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Status_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Status_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Type_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Type_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Region_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Service_Channel_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="State_Prov_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Status_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Submitted_By_Department_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="flag" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="pkIncidentChat" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Queues" nillable="true" type="tns:Queues" />
+  <xs:complexType name="FilterAnonimus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anonimous_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_SubType_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Type_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Driver_GPS_Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Modi_Date" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Phone_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Policy_No" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Anonimous_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Source_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Queue_Status_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="flag" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="pkIncidentChat" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FilterAnonimus" nillable="true" type="tns:FilterAnonimus" />
+  <xs:complexType name="Filter_QueueCatalog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessLine" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Department_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Filter_QueueCatalog" nillable="true" type="tns:Filter_QueueCatalog" />
+  <xs:complexType name="ArrayOfQueueTypeCatalogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueueTypeCatalogs" nillable="true" type="tns:QueueTypeCatalogs" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueueTypeCatalogs" nillable="true" type="tns:ArrayOfQueueTypeCatalogs" />
+  <xs:complexType name="QueueTypeCatalogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessLine" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Department_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Type_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Type_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueTypeCatalogs" nillable="true" type="tns:QueueTypeCatalogs" />
+  <xs:complexType name="ArrayOfQueueDepartments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueueDepartments" nillable="true" type="tns:QueueDepartments" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueueDepartments" nillable="true" type="tns:ArrayOfQueueDepartments" />
+  <xs:complexType name="QueueDepartments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Bl_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Departament_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Department_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Office_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueDepartments" nillable="true" type="tns:QueueDepartments" />
+  <xs:complexType name="ArrayOfQueueSourceTypeCatalogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueueSourceTypeCatalogs" nillable="true" type="tns:QueueSourceTypeCatalogs" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueueSourceTypeCatalogs" nillable="true" type="tns:ArrayOfQueueSourceTypeCatalogs" />
+  <xs:complexType name="QueueSourceTypeCatalogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessLine" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Source_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Source_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueSourceTypeCatalogs" nillable="true" type="tns:QueueSourceTypeCatalogs" />
+  <xs:complexType name="ArrayOfQueueService_ChannelCatalogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueueService_ChannelCatalogs" nillable="true" type="tns:QueueService_ChannelCatalogs" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueueService_ChannelCatalogs" nillable="true" type="tns:ArrayOfQueueService_ChannelCatalogs" />
+  <xs:complexType name="QueueService_ChannelCatalogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Bl_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Corp_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Service_Channel_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Service_Channel_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueService_ChannelCatalogs" nillable="true" type="tns:QueueService_ChannelCatalogs" />
+  <xs:complexType name="ArrayOfFilter_QueueStatusCatalog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Filter_QueueStatusCatalog" nillable="true" type="tns:Filter_QueueStatusCatalog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFilter_QueueStatusCatalog" nillable="true" type="tns:ArrayOfFilter_QueueStatusCatalog" />
+  <xs:complexType name="Filter_QueueStatusCatalog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Status_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Queue_Status_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Filter_QueueStatusCatalog" nillable="true" type="tns:Filter_QueueStatusCatalog" />
+  <xs:complexType name="ArrayOfQueueCall_ReasonCatalogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueueCall_ReasonCatalogs" nillable="true" type="tns:QueueCall_ReasonCatalogs" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueueCall_ReasonCatalogs" nillable="true" type="tns:ArrayOfQueueCall_ReasonCatalogs" />
+  <xs:complexType name="QueueCall_ReasonCatalogs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Bl_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_REason_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Reason_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Corp_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Departament_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Department_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueCall_ReasonCatalogs" nillable="true" type="tns:QueueCall_ReasonCatalogs" />
+  <xs:complexType name="Filter_QueueCatalogMeeting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessLine" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Meeting_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Department_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Filter_QueueCatalogMeeting" nillable="true" type="tns:Filter_QueueCatalogMeeting" />
+  <xs:complexType name="ArrayOfMeetingTypeandSubtype">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MeetingTypeandSubtype" nillable="true" type="tns:MeetingTypeandSubtype" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMeetingTypeandSubtype" nillable="true" type="tns:ArrayOfMeetingTypeandSubtype" />
+  <xs:complexType name="MeetingTypeandSubtype">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessLine" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Meeting_SubType_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Subtype_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Call_Meeting_Type_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Call_Meeting_Type_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Department_Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MeetingTypeandSubtype" nillable="true" type="tns:MeetingTypeandSubtype" />
+  <xs:complexType name="ArrayOfQueueBusinessLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueueBusinessLine" nillable="true" type="tns:QueueBusinessLine" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueueBusinessLine" nillable="true" type="tns:ArrayOfQueueBusinessLine" />
+  <xs:complexType name="QueueBusinessLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BL_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Bl_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Bussiness_Line_Type" type="xs:int" />
+      <xs:element minOccurs="0" name="Company_Desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Company_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USerID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserLogin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueBusinessLine" nillable="true" type="tns:QueueBusinessLine" />
+</xs:schema>

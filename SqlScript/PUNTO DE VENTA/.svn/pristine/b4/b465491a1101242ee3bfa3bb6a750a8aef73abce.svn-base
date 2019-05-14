@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://devagentservice.statetrustlife.com/AgentService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" />
+  <xs:import schemaLocation="http://devagentservice.statetrustlife.com/AgentService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetAgentsbyBussinesLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="companiId" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="Linea" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentsbyBussinesLineResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentsbyBussinesLineResult" nillable="true" type="q1:ArrayOfAgent.BusinessLine" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="AgentKey" nillable="true" type="q2:Agent.Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentDataResult" nillable="true" type="q3:ArrayOfAgent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="AgentKey" nillable="true" type="q4:Agent.Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentResult" nillable="true" type="q5:ArrayOfAgent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListAgentsId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="company" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListAgentsIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetListAgentsIdResult" nillable="true" type="q6:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentArray">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameter" nillable="true" type="q7:Agent.Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentArrayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentArrayResult" nillable="true" type="q8:ArrayOfAgent.ArrayInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentSaleChannels">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q9:Agent.SaleChannelKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentSaleChannelsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentSaleChannelsResult" nillable="true" type="q10:ArrayOfAgent.SaleChannel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentAcademic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q11:Agent.AcademicKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentAcademicResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentAcademicResult" nillable="true" type="q12:ArrayOfAgent.Academic" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentChain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q13:Agent.ChainKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentChainResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentChainResult" nillable="true" type="q14:ArrayOfAgent.Chain" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentAgentChainDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q15:Agent.ChainDetailKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentAgentChainDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentAgentChainDetailResult" nillable="true" type="q16:ArrayOfAgent.ChainDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentFamily">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q17:Agent.FamilyKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentFamilyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentFamilyResult" nillable="true" type="q18:ArrayOfAgent.Family" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentLevel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q19:Agent.LevelKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentLevelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentLevelResult" nillable="true" type="q20:ArrayOfAgent.Level" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentReferences">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q21:Agent.ReferenceKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentReferencesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentReferencesResult" nillable="true" type="q22:ArrayOfAgent.Reference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentDirections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q23:Agent.CommDetailKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentDirectionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentDirectionsResult" nillable="true" type="q24:ArrayOfAgent.CommDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q25:Agent.CommDetailKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentEmailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentEmailResult" nillable="true" type="q26:ArrayOfAgent.CommDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentPhone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q27:Agent.CommDetailKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentPhoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentPhoneResult" nillable="true" type="q28:ArrayOfAgent.CommDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q29:Agent.DocumentKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentDocumentResult" nillable="true" type="q30:ArrayOfAgent.Document" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentTree">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CorpId" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="Principal" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PrincipalType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AgentStatusID" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentTreeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentTreeResult" nillable="true" type="q31:ArrayOfAgent.AgentTree" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentTreeNewInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CorpId" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="AgentId" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="NameId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="BlId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentTreeNewInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentTreeNewInfoResult" nillable="true" type="q32:ArrayOfAgent.AgentTreeInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentAssignedOfficeNew">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="parameters" nillable="true" type="q33:Agent.AssignedOfficeKeyNew" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentAssignedOfficeNewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="GetAgentAssignedOfficeNewResult" nillable="true" type="q34:ArrayOfAgent.AssignedOffice" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListFileOnBase">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AgentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListFileOnBaseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetListFileOnBaseResult" nillable="true" type="q35:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBinaryFileOnBase">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="documentHandle" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBinaryFileOnBaseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetBinaryFileOnBaseResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveAgent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="agentModel" nillable="true" type="q36:Agent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveAgentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="SaveAgentResult" nillable="true" type="q37:Agent.Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="lstAddress" nillable="true" type="q38:ArrayOfAgent.CommDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="SaveAddressResult" nillable="true" type="q39:ArrayOfAgent.CommDetailKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SavePhone">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="lstPhone" nillable="true" type="q40:ArrayOfAgent.CommDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SavePhoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="SavePhoneResult" nillable="true" type="q41:ArrayOfAgent.CommDetailKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="lstEmail" nillable="true" type="q42:ArrayOfAgent.CommDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveEmailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="SaveEmailResult" nillable="true" type="q43:ArrayOfAgent.CommDetailKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveFamily">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="lstFamily" nillable="true" type="q44:ArrayOfAgent.Family" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveFamilyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="SaveFamilyResult" nillable="true" type="q45:ArrayOfAgent.FamilyKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveReferences">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="lstReference" nillable="true" type="q46:ArrayOfAgent.Reference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveReferencesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="SaveReferencesResult" nillable="true" type="q47:ArrayOfAgent.ReferenceKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveAcademic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="lstAcademic" nillable="true" type="q48:ArrayOfAgent.Academic" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveAcademicResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="SaveAcademicResult" nillable="true" type="q49:ArrayOfAgent.AcademicKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveChainDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="lstChainDetail" nillable="true" type="q50:ArrayOfAgent.ChainGeneric" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveChainDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Global.Agent.Service.Entity" minOccurs="0" name="SaveChainDetailResult" nillable="true" type="q51:ArrayOfAgent.ChainGenericKey" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace STL.POS.Data.CSEntities
+{
+    public class Helperes
+    {
+        public static int QuantityOfMonth(DateTime dt, DateTime df)
+        {
+            int monthsApart = 12 * (dt.Year - df.Year) + dt.Month - df.Month;
+            return Math.Abs(monthsApart);
+        }
+
+        public static int QuantityOfDays(DateTime dt, DateTime df)
+        {
+            int DaysApart = df.Date.Subtract(dt.Date).Days;
+            return Math.Abs(DaysApart);
+        }
+    }
+}

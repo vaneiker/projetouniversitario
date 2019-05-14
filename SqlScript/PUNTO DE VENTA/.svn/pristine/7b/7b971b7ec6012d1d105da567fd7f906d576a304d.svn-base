@@ -1,0 +1,21 @@
+﻿using STL.POS.Data.NewVersion.EdmxModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace STL.POS.Data.NewVersion.Repository
+{
+    public class BaseRepository
+    {
+        private PosSiteDataContext DataContext;
+        protected POS_SITEEntities PosContex;
+
+        public BaseRepository()
+        {
+            DataContext = new PosSiteDataContext();
+            PosContex = DataContext.PosContex;
+        }
+    }
+}

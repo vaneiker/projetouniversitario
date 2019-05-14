@@ -1,0 +1,223 @@
+﻿$(document).ready(function () {
+    var $ddlMonth = $("#ddlMonth");
+    $ddlMonth.change(function () { DropDownMonthChange(this) });
+
+    var $IsFinancedChk = $("#IsFinanced");
+
+    $IsFinancedChk.click(function () { CheckBoxIsFinancedChange(this) });
+
+    $("#dvVehicleMenu").find("a:first").click();
+
+    var IsFinanced = $("#hdnIsFinanced").val() == "1";
+    var Period = $("#hdnPeriod").val();
+    var MonthlyPayment = $("#hdnMonthlyPayment").val();
+
+    if (IsFinanced) {
+        $IsFinancedChk.prop("checked", IsFinanced);
+        $("#QuotAmount").val(number_format(MonthlyPayment, 2));
+        $ddlMonth = $("#ddlMonth");
+        $ddlMonth.val(Period);
+        DropDownMonthChange($ddlMonth);
+        CheckBoxIsFinancedChange($IsFinancedChk)
+    }
+});
+
+function CheckBoxIsFinancedChange(obj) {
+    var $this = $(obj);
+    var IsFinanced = $this.prop("checked");
+
+    if (IsFinanced) {
+        $("#tbFinanced").fadeIn(200);
+    } else {
+        $("#QuotAmount").text("0.00");
+        $("#ddlMonth").val("-1");
+        $("#lnkViewAmortizationTable").hide();
+        $("#tbFinanced").fadeOut(200);
+    }
+}
+
+function DropDownMonthChange(obj) {
+    var TotalPremium = $("#hdnTotalPrime").val();
+    var Period = $(obj).val();
+    GetAmortizacionTable(Period, TotalPremium, function (data) {
+        var dataAmortizationTable = data;
+        QuotAmount = dataAmortizationTable.productCalculatorResult.Payment;
+        $("#lnkViewAmortizationTable").css("display", QuotAmount > 0 ? "block" : "none");
+        $("#QuotAmount").text(number_format(QuotAmount, 2));
+        $("#hdnMonthlyPayment").val(QuotAmount);
+    });
+}
+
+function GetCoverage(param) {
+    var parameter = JSON.parse(param);
+    $.ajax({
+        url: "/Home/GetCoverage",
+        data: JSON.stringify({ VehicleId: parameter.VehicleId }),
+        dataType: "json",
+        type: "POST",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataFilter: function (data) { return data; },
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            $("#dvCoverage").fadeIn(200);
+            var DollarSign = "$";
+            var dataCoverage = data;
+            var $TableThirDamage = $("#ThirDamage");
+            var $TitleThirDamage = $TableThirDamage.find("thead").find("tr").find("th:first");
+            var $TitleProductName = $TableThirDamage.find("thead").find("tr").find("th").eq(1).find("span:first");
+            $TitleProductName.text(parameter.ProductName);
+            $TitleThirDamage.text("Daños a terceros");
+            var $TbodyThirdDamage = $TableThirDamage.find("tbody");
+            var $TrToDelete = $TbodyThirdDamage.find("tr");
+            if ($TrToDelete.length > 0)
+                $TrToDelete.remove();
+
+            //Daños a terceros
+            $.each(dataCoverage.ThirdDamage, function (index, value) {
+                var RowTr = "<tr><td>{1}</td> <td <td style='text-align: right'>{2}</td></tr>";
+                RowTr = RowTr.replace("{1}", value.Name).replace("{2}", number_format(value.Limit, 2));
+                $TbodyThirdDamage.append(RowTr);
+            });
+
+            var $TableSelfDamage = $("#SelfDamage");
+            var $TitleSelfDamage = $TableSelfDamage.find("thead").find("tr").find("th:first");
+            $TitleSelfDamage.text("Daños propios");
+            var $TbodySelfDamage = $TableSelfDamage.find("tbody");
+
+            var $TrToDelete = $TbodySelfDamage.find("tr");
+            if ($TrToDelete.length > 0)
+                $TrToDelete.remove();
+
+            //Daños a propios
+            $.each(dataCoverage.SelfDamage, function (index, value) {
+                var RowTr = "<tr><td>{1}</td> <td <td style='text-align: right'>{2}</td></tr>";
+                RowTr = RowTr.replace("{1}", value.Name).replace("{2}", number_format(value.Limit, 2));
+                $TbodySelfDamage.append(RowTr);
+            });
+
+            //Adicionales
+            var $TableAdditional = $("#Additional");
+            var $TitleAdditional = $TableAdditional.find("thead").find("tr").find("th:first");
+            $TitleAdditional.text("Suplementos");
+            var $TbodyAdditional = $TableAdditional.find("tbody");
+
+            var $TrToDelete = $TbodyAdditional.find("tr");
+            if ($TrToDelete.length > 0)
+                $TrToDelete.remove();
+
+            //Daños a propios
+            $.each(dataCoverage.Additional, function (index, value) {
+                var RowTr = "<tr><td>{1}</td> <td style='text-align: right'>{2}</td></tr>";
+                RowTr = RowTr.replace("{1}", value.Name).replace("{2}", number_format(value.Limit, 2));
+                $TbodyAdditional.append(RowTr);
+            });
+
+            //Desplegar la Prima Anual
+            $("#TotalAnnualPrime").text(DollarSign + " " + number_format(parameter.TotalPrime, 2));
+            $("#TotalTax").text(DollarSign + " " + number_format(parameter.TotalIsc, 2));
+            var TotalAmountPay = parameter.TotalPrime + parameter.TotalIsc;
+            $("#TotalAmountPay").text(DollarSign + " " + number_format(TotalAmountPay, 2));
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr);
+        }
+    });
+}
+
+function GetAmortizacionTable(Period, TotalPremium, CallBack) {
+    $.ajax({
+        url: "/Home/GetAmortizacionTable",
+        data: JSON.stringify({ Period: Period, TotalPremium: TotalPremium }),
+        dataType: "json",
+        type: "POST",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataFilter: function (data) { return data; },
+        beforeSend: function () {
+
+        },
+        success: CallBack,
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr);
+        }
+    });
+}
+
+function ViewQuotation() {
+    var quotationId = parseInt($("#hdnQuotId").val());
+    showQuotationTH(quotationId, function (data) {
+        window.open(data, '_blank');
+    });
+}
+
+function showQuotationTH(QuotationId, CallBack) {
+    $.ajax({
+        url: "/Home/ShowQuotation",
+        data: JSON.stringify({ QuotationId: QuotationId }),
+        dataType: "json",
+        type: "POST",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataFilter: function (data) { return data; },
+        beforeSend: function () {
+
+        },
+        success: CallBack,
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr);
+        }
+    });
+}
+
+function ViewAmortizationTable() {
+    var quotationId = parseInt($("#hdnQuotId").val());
+    var Period = $("#ddlMonth").val();
+    var TotalPrime = parseFloat($("#hdnTotalPrime").val());
+    showAmortizationTableTH(Period, quotationId, TotalPrime, function (data) {
+        window.open(data, '_blank');
+    });
+}
+
+function showAmortizationTableTH(Period, QuotationId, TotalPrime, CallBack) {
+    $.ajax({
+        url: "/Home/ShowAmortizationTable",
+        data: JSON.stringify({ QuotationId: QuotationId, period: Period, TotalPrime: TotalPrime }),
+        dataType: "json",
+        type: "POST",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataFilter: function (data) { return data; },
+        beforeSend: function () {
+
+        },
+        success: CallBack,
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr);
+        }
+    });
+};
+
+function SaveFinanced() {
+    var MonthlyPayment = parseFloat($("#hdnMonthlyPayment").val());
+    var Period = parseInt($("#ddlMonth").val());
+    var financed = $("#IsFinanced").prop("checked");
+    var params = JSON.stringify({ MonthlyPayment: MonthlyPayment, Period: Period, financed: financed });
+    $.ajax({
+        url: "/Home/SaveFinanced",
+        data: params,
+        dataType: "json",
+        type: "POST",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataFilter: function (data) { return data; },
+        beforeSend: function () {
+
+        },
+        success: function () {
+
+        }
+    });
+}

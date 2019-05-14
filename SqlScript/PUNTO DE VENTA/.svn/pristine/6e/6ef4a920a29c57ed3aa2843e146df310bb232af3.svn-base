@@ -1,0 +1,1802 @@
+﻿using STL.POS.AgentWSProxy;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using STL.POS.Frontend.Web.NewVersion.CustomCode;
+using Entity.Entities;
+using Newtonsoft.Json;
+
+namespace STL.POS.Frontend.Web.NewVersion.Controllers
+{
+    public partial class HomeController : BaseController
+    {
+        #region Combo's Fill Calls
+
+        public JsonResult GetMonths()
+        {
+            var months = new Dictionary<int, string>();
+
+            for (int i = 1; i < 13; i++)
+            {
+                months.Add(i, new DateTime(1, i, 1).ToString("MMM"));
+            }
+
+            return Json(months.Select(d => new { Id = d.Key, Name = d.Value }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAgents()
+        {
+            var usuario = GetCurrentUsuario();
+            List<AgentTreeInfoNew> agentList = new List<AgentTreeInfoNew>();
+            if (usuario != null)
+            {
+                int bl = 2;
+
+                if (usuario.UserType == Statetrust.Framework.Security.Bll.Usuarios.UserTypeEnum.Assistant)
+                {
+                    agentList = oAgentWSProxy.GetAgentTreeNewInfoCallNew(usuario.AgentOffices.FirstOrDefault().CorpId, usuario.AgentId, usuario.AgentNameId, bl);
+                }
+                else if (usuario.UserType == Statetrust.Framework.Security.Bll.Usuarios.UserTypeEnum.Agent)
+                {
+                    agentList = oAgentWSProxy.GetAgentTreeNewInfoCallNew(usuario.AgentOffices.FirstOrDefault().CorpId, usuario.AgentId, usuario.AgentNameId, bl);
+
+                    if (agentList.Count() == 0 || agentList.Count() == 1)
+                    {
+                        agentList = new List<AgentTreeInfoNew>();
+                        string userNameID = !string.IsNullOrEmpty(usuario.AgentNameId) ? usuario.AgentNameId : usuario.UserLogin;
+
+                        agentList.Add(new AgentTreeInfoNew() { FullNameAll = usuario.FirstName + " " + usuario.LastName + "(" + usuario.AgentCode + ")", NameId = userNameID, AgentId = usuario.AgentId });
+                    }
+                }
+            }
+
+            agentList = agentList.OrderBy(o => o.FullNameAll).ToList();
+
+            return Json(new { agents = agentList }, JsonRequestBehavior.AllowGet);
+        }
+
+        private SelectList GetVehicleAvailableYearsList(int selectedValue = 0)
+        {
+            //1960 to now
+            string minYear = oDropDownManager.GetParameter("PARAMETER_KEY_MIN_YEAR_VEHICLE").Value;
+            var year = !string.IsNullOrEmpty(minYear) ? minYear.ToInt() : 1960;
+
+            var list = new List<int>();
+            for (int i = DateTime.Now.Year + 1; i >= year; i--)
+            {
+                list.Add(i);
+            }
+
+            return new SelectList(list.Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Value", "Text", selectedValue);
+        }
+
+        private bool ExisteMarcaSysflex(List<STL.POS.WsProxy.SysflexService.PolicySysflexMarcaVehiculo> ListaSysflex, string descripcion)
+        {
+            var existe = false;
+
+            foreach (var m in ListaSysflex)
+            {
+                if (m.Descripcion.ToUpper() == descripcion.ToUpper())
+                {
+                    existe = true;
+                    break;
+                }
+            }
+
+            return existe;
+        }
+
+        private SelectList getVehiclesBrands(int selectedValue = 0)
+        {
+            List<STL.POS.WsProxy.SysflexService.PolicySysflexMarcaVehiculo> ListaMarcasSysflex = new List<STL.POS.WsProxy.SysflexService.PolicySysflexMarcaVehiculo>();
+            ListaMarcasSysflex = oCoreProxy.GetVehicleMakes();
+
+            List<MakePos> ListaMarcasPost = new List<MakePos>();
+
+            var Brands = oDropDownManager.GetDropDown(CommonEnums.DropDownType.BRANDS.ToString());
+
+            foreach (var m in Brands)
+            {
+                if (!string.IsNullOrEmpty(m.name) && !string.IsNullOrWhiteSpace(m.name))
+                {
+                    string newName = m.name.Trim();
+                    if (ExisteMarcaSysflex(ListaMarcasSysflex, newName) == true)
+                    {
+                        ListaMarcasPost.Add(new MakePos() { id = m.Value.ToInt(), name = newName });
+                    }
+                }
+            }
+
+            return new SelectList(ListaMarcasPost.OrderBy(x => x.name).Select(i => new SelectListItem { Text = i.name, Value = i.id.ToString() }), "Value", "Text", selectedValue);
+        }
+
+        public JsonResult getVehiclesModelsByBrands(int BrandID)
+        {
+            var Models = oDropDownManager.GetVehicleModels(BrandID);
+
+            return Json(Models.ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        private SelectList getSexes(string sex = "")
+        {
+            Dictionary<string, string> sexes = new Dictionary<string, string>();
+            sexes.Add("Femenino", "Femenino");
+            sexes.Add("Masculino", "Masculino");
+            sexes.Add("Empresa", "Empresa");
+
+            return new SelectList(sexes.Select(i => new SelectListItem { Text = i.Key.ToString(), Value = i.Value.ToString() }), "Value", "Text", sex);
+        }
+
+        private SelectList getForeingLicence(string foreinglic = "")
+        {
+            Dictionary<string, string> foreingLicence = new Dictionary<string, string>();
+            foreingLicence.Add("Si", "Si");
+            foreingLicence.Add("No", "No");
+
+            return new SelectList(foreingLicence.Select(i => new SelectListItem { Text = i.Key.ToString(), Value = i.Value.ToString() }), "Value", "Text", foreinglic);
+        }
+
+        public ActionResult GetUsageStates()
+        {
+            var output = oDropDownManager.GetUsageStates().Select(u => new
+            {
+                id = u.Id,
+                name = u.Name,
+                allowed = u.Allowed,
+                message = u.UsageMessage
+            });
+
+            return Json(output.OrderBy(x => x.allowed).ThenBy(n => n.name), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetQtyYearsBack0KmVip()
+        {
+            var Param = oDropDownManager.GetParameter("PARAMETER_KEY_QTY_YEARS_BACK_OKM_VIP").Value;
+            return Json(Param, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetStoreStates()
+        {
+            var param = oDropDownManager.GetParameter("PARAMETER_KEY_STORED_VALUES").Value;
+
+            Dictionary<int, string> values = JsonConvert.DeserializeObject<Dictionary<int, string>>(param);
+
+            var output = from pair in values
+                         select new { id = pair.Key, name = pair.Value };
+
+            return Json(output, JsonRequestBehavior.AllowGet);
+        }
+
+        private int GetModelCoreId(int makeId, int modelId)
+        {
+            int coreId = -1;
+
+            var models = oDropDownManager.GetVehicleModels(makeId);
+            if (models != null)
+            {
+                var realmodel = models.FirstOrDefault(x => x.Id == modelId);
+                if (realmodel != null)
+                {
+                    coreId = realmodel.CoreId.ToInt();
+                }
+            }
+
+            return
+                coreId;
+        }
+
+        public JsonResult GetSurchargePercentage()
+        {
+            var u = GetCurrentUsuario();
+            if (u != null)
+            {
+                if (u.CanApplySurcharge)
+                {
+                    var sur = oDropDownManager.GetDropDown(CommonEnums.DropDownType.SURCHARGEPERCENTAGE.ToString());
+
+                    var output = from v in sur
+                                 orderby v.Value
+                                 select new { id = v.Value, name = v.name };
+
+                    return Json(output.ToArray(), JsonRequestBehavior.AllowGet);
+                }
+            }
+            List<string> lempty = new List<string>();
+            return Json(lempty.ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCurrentIsc()
+        {
+            var param = oDropDownManager.GetParameter("PARAMETER_KEY_PERCENTAGE_ISC").Value;
+            return Json(new { isc = param }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPercentByQtyVehicle(int qtyVehicles)
+        {
+            List<decimal> lvalues = new List<decimal>();
+
+            if (qtyVehicles > 0)
+            {
+                var jsonParam = oDropDownManager.GetParameter("PARAMETER_KEY_PERCENT_FLOTILLA_DISCOUNT").Value;
+                decimal percentParam = 0;
+                
+                var json = JsonConvert.DeserializeObject<List<Utility.Percent_Flotilla_Discount>>(jsonParam);
+
+                foreach (var qty in json)
+                {
+                    if (qtyVehicles >= qty.From && qtyVehicles <= qty.To)
+                    {
+                        percentParam = (qty.Porc * 100);
+
+                        lvalues.Add(percentParam);
+
+                        return Json(lvalues, JsonRequestBehavior.AllowGet);
+                    }
+                }
+            }
+            return Json(lvalues, JsonRequestBehavior.AllowGet);
+        }
+       
+        #endregion
+
+        #region Quotation
+
+        private QuotationViewModel getQuotationData(int QuotationID)
+        {
+            var quotData = oQuotationManager.GetQuotation(QuotationID);
+            var data = new QuotationViewModel();
+            data.StartDate = quotData.StartDate;
+            data.EndDate = quotData.EndDate;
+            data.PaymentFreqIdSelected = quotData.PaymentFreqIdSelected != null ? quotData.PaymentFreqIdSelected.Replace("\"", "'") : "";
+
+            data.Id = quotData.Id;
+            data.QuotationCoreNumber = quotData.QuotationCoreNumber;
+            data.QuotationNumber = quotData.QuotationNumber;
+            data.TotalPrime = quotData.TotalPrime;
+            data.TotalISC = quotData.TotalISC;
+            data.TotalDiscount = quotData.TotalDiscount;
+            data.PaymentFrequency = quotData.PaymentFrequency;
+            data.SendInspectionOnly = quotData.SendInspectionOnly;
+            data.Financed = quotData.Financed;
+            data.MonthlyPayment = quotData.MonthlyPayment;
+            data.Period = quotData.Period;
+            data.Domiciliation = quotData.Domiciliation;
+            data.Credit_Card_Type_Id = quotData.Credit_Card_Type_Id;
+            data.Expiration_Date_Month = quotData.Expiration_Date_Month.GetValueOrDefault();
+            data.Expiration_Date_Year = quotData.Expiration_Date_Year;
+            data.Credit_Card_Number = quotData.Credit_Card_Number;
+            data.Credit_Card_Number_Key = quotData.Credit_Card_Number_Key;
+            data.Card_Holder = quotData.Card_Holder;
+            return
+                data;
+        }
+
+        private IEnumerable<QuotationViewModel.drivers> getDriverData(int QuotationID)
+        {
+            var quotDriver = oQuotationManager.GetQuotationDrivers(QuotationID).Select(x => new QuotationViewModel.drivers
+            {
+                Id = x.Id,
+                FirstName = x.FirstName,
+                SecondName = x.SecondName,
+                FirstSurname = x.FirstSurname,
+                SecondSurname = x.SecondSurname,
+                DateOfBirth = x.DateOfBirth,
+                IsPrincipal = x.IsPrincipal,
+                Address = x.Address,
+                PhoneNumber = x.PhoneNumber,
+                Mobile = x.Mobile,
+                WorkPhone = x.WorkPhone,
+                MaritalStatus = x.MaritalStatus,
+                Job = x.Job,
+                Company = x.Company,
+                YearsInCompany = x.YearsInCompany,
+                Sex = x.Sex,
+                City_Country_Id = x.City_Country_Id,
+                City_Domesticreg_Id = x.City_Domesticreg_Id,
+                City_State_Prov_Id = x.City_State_Prov_Id,
+                City_City_Id = x.City_City_Id,
+                Nationality_Global_Country_Id = x.Nationality_Global_Country_Id,
+                Email = x.Email,
+                IdentificationType = x.IdentificationType,
+                IdentificationNumber = x.IdentificationNumber,
+                ForeignLicense = x.ForeignLicense,
+                IdentificationNumberValidDate = x.IdentificationNumberValidDate,
+                InvoiceTypeId = x.InvoiceTypeId,
+                UserId = x.UserId,
+                Modi_Date = x.Modi_Date,
+                PostalCode = x.PostalCode,
+                AnnualIncome = x.AnnualIncome,
+                SocialReasonId = x.SocialReasonId,
+                OwnershipStructureId = x.OwnershipStructureId,
+                IdentificationFinalBeneficiaryOptionsId = x.IdentificationFinalBeneficiaryOptionsId,
+                PepFormularyOptionsId = x.PepFormularyOptionsId,
+                Home_Owner = x.Home_Owner,
+                QtyPersonsDepend = x.QtyPersonsDepend,
+                QtyEmployees = x.QtyEmployees,
+                Linked = x.Linked,
+                Segment = x.Segment,
+                Fax = x.Fax,
+                URL = x.URL,
+                CityDesc = x.CityDesc,
+                MunicipioDesc = x.MunicipioDesc,
+                GlobalCountryDesc = x.GlobalCountryDesc,
+                GlobalCountryDescEN = x.GlobalCountryDescEN,
+                StateProvDesc = x.StateProvDesc,
+                SocialReasonDesc = x.SocialReasonDesc,
+                PepFormularyOptionsDesc = x.PepFormularyOptionsDesc,
+                OwnershipStructureDesc = x.OwnershipStructureDesc,
+                IdentificationFinalBeneficiaryOptionsDesc = x.IdentificationFinalBeneficiaryOptionsDesc
+            });
+
+            return
+                  quotDriver;
+        }
+        private IEnumerable<QuotationViewModel.Vehicles> getVehicleData(int QuotationID)
+        {
+            var quotVehicle = oQuotationManager.GetQuotationVehicles(QuotationID).Select(x => new QuotationViewModel.Vehicles
+                    {
+                        VehicleNumber = x.VehicleNumber,
+                        Id = x.Id,
+                        VehicleDescription = x.VehicleDescription,
+                        Year = x.Year,
+                        Cylinders = x.Cylinders,
+                        Passengers = x.Passengers,
+                        Weight = x.Weight,
+                        Chassis = x.Chassis,
+                        Plate = x.Plate,
+                        Color = x.Color,
+                        VehiclePrice = x.VehiclePrice,
+                        InsuredAmount = x.InsuredAmount,
+                        PercentageToInsure = x.PercentageToInsure,
+                        TotalPrime = x.TotalPrime,
+                        TotalIsc = x.TotalIsc,
+                        TotalDiscount = x.TotalDiscount,
+                        SelectedProductCoreId = x.SelectedProductCoreId,
+                        VehicleTypeCoreId = x.VehicleTypeCoreId,
+                        SelectedProductName = x.SelectedProductName,
+                        VehicleTypeName = x.VehicleTypeName,
+                        VehicleMakeName = x.VehicleMakeName,
+                        ModelDesc = x.ModelDesc,
+                        UsageId = x.UsageId,
+                        UsageName = x.UsageName,
+                        StoreId = x.StoreId,
+                        StoreName = x.StoreName,
+                        Driver_Id = x.Driver_Id,
+                        VehicleModel_Make_Id = x.VehicleModel_Make_Id,
+                        VehicleModel_Model_Id = x.VehicleModel_Model_Id,
+                        Quotation_Id = x.Quotation_Id,
+                        SelectedVehicleTypeId = x.SelectedVehicleTypeId,
+                        SelectedVehicleTypeName = x.SelectedVehicleTypeName,
+                        SelectedCoverageCoreId = x.SelectedCoverageCoreId,
+                        SelectedCoverageName = x.SelectedCoverageName,
+                        VehicleYearOld = x.VehicleYearOld,
+                        SurChargePercentage = x.SurChargePercentage,
+                        NumeroFormulario = x.NumeroFormulario,
+                        RateJson = x.RateJson,
+                        UserId = x.UserId,
+                        Modi_Date = x.Modi_Date,
+                        SecuenciaVehicleSysflex = x.SecuenciaVehicleSysflex,
+                        IsFacultative = x.IsFacultative,
+                        AmountFacultative = x.AmountFacultative,
+                        VehicleQuantity = x.VehicleQuantity,
+                        TotalPrimeVehicle = x.TotalPrime.GetValueOrDefault() + x.TotalIsc.GetValueOrDefault()
+                    });
+            return
+                quotVehicle;
+        }
+
+        private QuotationViewModel GetDataQuotation(int QuotationID = 0)
+        {
+            var data = new QuotationViewModel();
+
+            if (QuotationID > 0)
+            {
+                var quotData = oQuotationManager.GetQuotation(QuotationID);
+                data.StartDate = quotData.StartDate;
+                data.EndDate = quotData.EndDate;
+                data.PaymentFreqIdSelected = quotData.PaymentFreqIdSelected != null ? quotData.PaymentFreqIdSelected.Replace("\"", "'") : "";
+
+                data.Id = quotData.Id;
+                data.QuotationCoreNumber = quotData.QuotationCoreNumber;
+                data.QuotationNumber = quotData.QuotationNumber;
+                data.TotalPrime = quotData.TotalPrime;
+                data.TotalISC = quotData.TotalISC;
+                data.TotalDiscount = quotData.TotalDiscount;
+                data.PaymentFrequency = quotData.PaymentFrequency;
+                data.SendInspectionOnly = quotData.SendInspectionOnly;
+
+                #region Driver's
+                var quotDriver = oQuotationManager.GetQuotationDrivers(QuotationID);
+                if (quotDriver.Count() > 0)
+                {
+                    data._drivers = quotDriver.Select(x => new QuotationViewModel.drivers
+                    {
+                        Id = x.Id,
+                        FirstName = x.FirstName,
+                        SecondName = x.SecondName,
+                        FirstSurname = x.FirstSurname,
+                        SecondSurname = x.SecondSurname,
+                        DateOfBirth = x.DateOfBirth,
+                        IsPrincipal = x.IsPrincipal,
+                        Address = x.Address,
+                        PhoneNumber = x.PhoneNumber,
+                        Mobile = x.Mobile,
+                        WorkPhone = x.WorkPhone,
+                        MaritalStatus = x.MaritalStatus,
+                        Job = x.Job,
+                        Company = x.Company,
+                        YearsInCompany = x.YearsInCompany,
+                        Sex = x.Sex,
+                        City_Country_Id = x.City_Country_Id,
+                        City_Domesticreg_Id = x.City_Domesticreg_Id,
+                        City_State_Prov_Id = x.City_State_Prov_Id,
+                        City_City_Id = x.City_City_Id,
+                        Nationality_Global_Country_Id = x.Nationality_Global_Country_Id,
+                        Email = x.Email,
+                        IdentificationType = x.IdentificationType,
+                        IdentificationNumber = x.IdentificationNumber,
+                        ForeignLicense = x.ForeignLicense,
+                        IdentificationNumberValidDate = x.IdentificationNumberValidDate,
+                        InvoiceTypeId = x.InvoiceTypeId,
+                        UserId = x.UserId,
+                        Modi_Date = x.Modi_Date,
+                        PostalCode = x.PostalCode,
+                        AnnualIncome = x.AnnualIncome,
+                        SocialReasonId = x.SocialReasonId,
+                        OwnershipStructureId = x.OwnershipStructureId,
+                        IdentificationFinalBeneficiaryOptionsId = x.IdentificationFinalBeneficiaryOptionsId,
+                        PepFormularyOptionsId = x.PepFormularyOptionsId,
+                        Home_Owner = x.Home_Owner,
+                        QtyPersonsDepend = x.QtyPersonsDepend,
+                        QtyEmployees = x.QtyEmployees,
+                        Linked = x.Linked,
+                        Segment = x.Segment,
+                        Fax = x.Fax,
+                        URL = x.URL,
+                        CityDesc = x.CityDesc,
+                        MunicipioDesc = x.MunicipioDesc,
+                        GlobalCountryDesc = x.GlobalCountryDesc,
+                        GlobalCountryDescEN = x.GlobalCountryDescEN,
+                        StateProvDesc = x.StateProvDesc,
+                        SocialReasonDesc = x.SocialReasonDesc,
+                        PepFormularyOptionsDesc = x.PepFormularyOptionsDesc,
+                        OwnershipStructureDesc = x.OwnershipStructureDesc,
+                        IdentificationFinalBeneficiaryOptionsDesc = x.IdentificationFinalBeneficiaryOptionsDesc
+
+                    })
+                    .ToList();
+                }
+                #endregion
+
+                #region Vehicle's
+                var quotVehicle = oQuotationManager.GetQuotationVehicles(QuotationID);
+                if (quotVehicle.Count() > 0)
+                {
+                    data._vehicles = quotVehicle.Select(x => new QuotationViewModel.Vehicles
+                    {
+                        VehicleNumber = x.VehicleNumber,
+                        Id = x.Id,
+                        VehicleDescription = x.VehicleDescription,
+                        Year = x.Year,
+                        Cylinders = x.Cylinders,
+                        Passengers = x.Passengers,
+                        Weight = x.Weight,
+                        Chassis = x.Chassis,
+                        Plate = x.Plate,
+                        Color = x.Color,
+                        VehiclePrice = x.VehiclePrice,
+                        InsuredAmount = x.InsuredAmount,
+                        PercentageToInsure = x.PercentageToInsure,
+                        TotalPrime = x.TotalPrime,
+                        TotalIsc = x.TotalIsc,
+                        TotalDiscount = x.TotalDiscount,
+                        SelectedProductCoreId = x.SelectedProductCoreId,
+                        VehicleTypeCoreId = x.VehicleTypeCoreId,
+                        SelectedProductName = x.SelectedProductName,
+                        VehicleTypeName = x.VehicleTypeName,
+                        VehicleMakeName = x.VehicleMakeName,
+                        ModelDesc = x.ModelDesc,
+                        UsageId = x.UsageId,
+                        UsageName = x.UsageName,
+                        StoreId = x.StoreId,
+                        StoreName = x.StoreName,
+                        Driver_Id = x.Driver_Id,
+                        VehicleModel_Make_Id = x.VehicleModel_Make_Id,
+                        VehicleModel_Model_Id = x.VehicleModel_Model_Id,
+                        Quotation_Id = x.Quotation_Id,
+                        SelectedVehicleTypeId = x.SelectedVehicleTypeId,
+                        SelectedVehicleTypeName = x.SelectedVehicleTypeName,
+                        SelectedCoverageCoreId = x.SelectedCoverageCoreId,
+                        SelectedCoverageName = x.SelectedCoverageName,
+                        VehicleYearOld = x.VehicleYearOld,
+                        SurChargePercentage = x.SurChargePercentage,
+                        NumeroFormulario = x.NumeroFormulario,
+                        RateJson = x.RateJson,
+                        UserId = x.UserId,
+                        Modi_Date = x.Modi_Date,
+                        SecuenciaVehicleSysflex = x.SecuenciaVehicleSysflex,
+                        IsFacultative = x.IsFacultative,
+                        AmountFacultative = x.AmountFacultative,
+                        VehicleQuantity = x.VehicleQuantity,
+                        TotalPrimeVehicle = x.TotalPrime.GetValueOrDefault() + x.TotalIsc.GetValueOrDefault(),
+
+                        vehicleProductLimits = oQuotationManager.GetQuotationProductLimits(x.Id.GetValueOrDefault()).Select(a => new QuotationViewModel.VehicleProductLimits
+                        {
+                            Id = a.Id,
+                            IsSelected = a.IsSelected,
+                            SdPrime = a.SdPrime,
+                            TpPrime = a.TpPrime,
+                            ServicesPrime = a.ServicesPrime,
+                            ISC = a.ISC,
+                            ISCPercentage = a.ISCPercentage,
+                            TotalPrime = a.TotalPrime,
+                            TotalIsc = a.TotalIsc,
+                            TotalDiscount = a.TotalDiscount,
+                            SelectedDeductibleCoreId = a.SelectedDeductibleCoreId,
+                            SelectedDeductibleName = a.SelectedDeductibleName,
+                            VehicleProduct_Id = a.VehicleProduct_Id,
+                            UserId = a.UserId
+                        })
+                        .FirstOrDefault(),
+
+                        coverages = oQuotationManager.GetQuotationCoverage(x.Id.GetValueOrDefault(), CommonEnums.CoverageFilterType.Todo.ToInt()).Select(a => new QuotationViewModel.coverages
+                        {
+                            Id = a.Id,
+                            IsSelected = a.IsSelected,
+                            CoverageDetailCoreId = a.CoverageDetailCoreId,
+                            Name = a.Name,
+                            Amount = a.Amount,
+                            MinDeductible = a.MinDeductible,
+                            SelfDamagesToProductLimits = a.SelfDamagesToProductLimits,
+                            ThirdPartyToProductLimits = a.ThirdPartyToProductLimits,
+                            ServiceType_Id = a.ServiceType_Id,
+                            Limit = a.Limit,
+                            UserId = a.UserId,
+                            Deductible = a.Deductible,
+                            CoverageType = a.CoverageType
+                        })
+                        .ToList(),
+
+                        _services = oQuotationManager.GetQuotationCoverage(x.Id.GetValueOrDefault(), CommonEnums.CoverageFilterType.ServiciosSeleccionados.ToInt()).Select(a => new QuotationViewModel.coverages
+                        {
+                            Id = a.Id,
+                            IsSelected = a.IsSelected,
+                            CoverageDetailCoreId = a.CoverageDetailCoreId,
+                            Name = a.Name,
+                            Amount = a.Amount,
+                            MinDeductible = a.MinDeductible,
+                            SelfDamagesToProductLimits = a.SelfDamagesToProductLimits,
+                            ThirdPartyToProductLimits = a.ThirdPartyToProductLimits,
+                            ServiceType_Id = a.ServiceType_Id,
+                            Limit = a.Limit,
+                            UserId = a.UserId,
+                            Deductible = a.Deductible,
+                            CoverageType = a.CoverageType
+                        })
+                        .ToList(),
+                    })
+                    .ToList();
+                }
+                #endregion
+
+                #region Agent Quotation
+                data._agentQuotation = oUserManager.GetUser(quotData.User_Id, null, null, null);
+                #endregion
+            }
+
+            return data;
+        }
+
+        private int GetNewDailyQuotationNumber()
+        {
+            var nextQ = oDropDownManager.GetDropDown(CommonEnums.DropDownType.NEXTQUOTATION.ToString());
+
+            if (nextQ.Count() > 0)
+                return nextQ.FirstOrDefault().Value.ToInt() + 1;
+            else
+                return 0;
+        }
+
+        public string GetQuotationCoreNumber(int quotationPossitenumber)
+        {
+            var quotation = oQuotationManager.GetQuotation(quotationPossitenumber);
+
+            if (quotation != null && quotation.QuotationCoreNumber != null)
+            {
+                return quotation.QuotationCoreNumber;
+            }
+            else { return "0"; }
+        }
+
+        public JsonResult loadQuotatoin(int quotationID)
+        {
+            var data = GetDataQuotation(quotationID);
+
+            return Json(new { quotData = data }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Methods of CoreProxy
+
+        public Entity.Entities.WSEntities.OfficeMatchWS GetOfficeMatch(int globalOfficeId)
+        {
+            Entity.Entities.WSEntities.OfficeMatchWS result = null;
+
+            var dataResult = oCoreProxy.GetofficeMatch_NewPV(globalOfficeId).FirstOrDefault();
+            if (dataResult != null)
+            {
+                result = new Entity.Entities.WSEntities.OfficeMatchWS
+                {
+                    OfficeDesc = dataResult.OfficeDesc,
+                    OfficeIdGlobal = dataResult.OfficeIdGlobal,
+                    OfficeIdSysFlex = dataResult.OfficeIdSysFlex
+                };
+            }
+
+            return result;
+        }
+
+        public JsonResult GetVehicleTypes_New(int brandId, int modelId, int vehicleYear)
+        {
+            var model = oDropDownManager.GetVehicleTypes(brandId, modelId).FirstOrDefault();
+
+            if (model != null)
+            {
+                var paramDeLey = oDropDownManager.GetParameter("PARAMETER_KEY_DELEY_DISCRIMINATOR").Value;
+                int codRamo = oDropDownManager.GetParameter("PARAMETER_KEY_COD_RAMO").Value.ToInt();
+
+                try
+                {
+                    var usersysflexornotProducts = oDropDownManager.GetParameter("PARAMETER_KEY_USE_OR_NOT_SYSFLEX_PRODUCTS").Value;
+
+                    if (usersysflexornotProducts == "S")
+                    {
+                        var prods = oCoreProxy.GetVehicleTypes_NewPV(model.CoreVehicleTypeId, vehicleYear, paramDeLey, codRamo);
+
+                        var realProds = ProductsFromSysflex.GetVehicleTypes_NewPV(prods);
+
+                        return Json(realProds.ToArray(), JsonRequestBehavior.AllowGet);
+                    }
+                    else if (usersysflexornotProducts == "N")
+                    {
+                        var prods = ProductsFromSysflex.GetProductsSysflex(model.CoreVehicleTypeId, vehicleYear, null, codRamo);
+                        return Json(prods.ToArray(), JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new System.Collections.ArrayList(), JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    var msg = string.Format("BrandId: {0} - ModelId: {1} - VehicleYear: {2}\nMensaje: {3}\nDetalle: {4}"
+                                 , brandId.ToString()
+                                 , modelId.ToString()
+                                 , vehicleYear.ToString()
+                                 , ex.Message
+                                 , ex.StackTrace);
+                    LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, -1, "Error al obtener datos de productos desde Sysflex", msg, ex);
+                    return Json(new System.Collections.ArrayList(), JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+                return Json(new System.Collections.ArrayList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public Entity.Entities.WSEntities.ProductLimitWS GetCoverageDetails(int coverageCoreId, decimal vehiclePrice, int codRamo)
+        {
+            Entity.Entities.WSEntities.ProductLimitWS pLimit = new Entity.Entities.WSEntities.ProductLimitWS();
+            decimal temp;
+
+            var selfAndOthers = oCoreProxy.GetCoverageNewDetail(coverageCoreId, (int)WsProxy.SysFlexCoverageDetailsIndicators.SelfAndThirdParty, vehiclePrice, codRamo);
+
+            pLimit.ThirdPartyCoverages = (from s in selfAndOthers
+                                          where s.CoverageDetailType.ToLower() == Entity.Entities.WSEntities.CoverageDetailWS.CoverageDetailTypeThirdParty.ToLower()
+                                          orderby s.CoverageDetailName
+                                          select new Entity.Entities.WSEntities.CoverageDetailWS()
+                                          {
+                                              CoverageDetailCoreId = s.CoverageDetailID.GetValueOrDefault(),
+                                              Amount = decimal.TryParse(s.CoverageDetaiInformationAmount, out temp) ? Convert.ToDecimal(s.CoverageDetaiInformationAmount) : 0m,
+                                              Limit = decimal.TryParse(s.CoverageDetaiInformationAmount, out temp) ? Convert.ToDecimal(s.CoverageDetaiInformationAmount) : 0m,
+                                              MinDeductible = s.MinimumDeductible.GetValueOrDefault(),
+                                              Name = s.CoverageDetailName
+                                          }).ToList();
+
+            pLimit.SelfDamagesCoverages = (from s in selfAndOthers
+                                           where s.CoverageDetailType.ToLower() == Entity.Entities.WSEntities.CoverageDetailWS.CoverageDetailTypeSelfDamages.ToLower()
+                                           orderby s.CoverageDetailName
+                                           select new Entity.Entities.WSEntities.CoverageDetailWS()
+                                           {
+                                               CoverageDetailCoreId = s.CoverageDetailID.GetValueOrDefault(),
+                                               Amount = decimal.TryParse(s.CoverageDetaiInformationAmount, out temp) ? Convert.ToDecimal(s.CoverageDetaiInformationAmount) : 0m,
+                                               Limit = decimal.TryParse(s.CoverageDetaiInformationAmount, out temp) ? Convert.ToDecimal(s.CoverageDetaiInformationAmount) : 0m,
+                                               MinDeductible = s.MinimumDeductible.GetValueOrDefault(),
+                                               Name = s.CoverageDetailName
+                                           }).ToList();
+
+            //Additionals
+            var services = oCoreProxy.GetCoverageNewDetail(coverageCoreId, (int)WsProxy.SysFlexCoverageDetailsIndicators.AdditionalServices, vehiclePrice, codRamo);
+
+            pLimit.ServicesCoverages = (from s in services
+                                        orderby s.CoverageDetailType
+                                        select s.CoverageDetailType).Distinct().Select(s =>
+                                            new Entity.Entities.WSEntities.ServiceTypeWS
+                                            {
+                                                Name = s,
+                                                Coverages = new List<Entity.Entities.WSEntities.CoverageDetailWS>()
+                                            }).Distinct().ToList();
+
+            var rand = new Random(DateTime.Now.Millisecond);
+
+            pLimit.ServicesCoverages.ToList().ForEach(sc =>
+                    {
+                        var coverages = (from s in services
+                                         where s.CoverageDetailType == sc.Name
+                                         orderby s.CoverageDetailName
+                                         select new Entity.Entities.WSEntities.CoverageDetailWS()
+                                         {
+                                             Id = rand.Next(10000) * -1,
+                                             CoverageDetailCoreId = s.CoverageDetailID.GetValueOrDefault(),
+                                             IsSelected = s.mandatory,
+                                             Amount = s.Premium.GetValueOrDefault(0m),
+                                             Limit = decimal.TryParse(s.CoverageDetaiInformationAmount, out temp) ? Convert.ToDecimal(s.CoverageDetaiInformationAmount) : 0m,
+                                             MinDeductible = s.MinimumDeductible.GetValueOrDefault(),
+                                             Name = s.CoverageDetailName
+                                         }).ToList();
+
+                        sc.Coverages = coverages;
+                    });
+
+            return pLimit;
+        }
+
+        public JsonResult GetCoverageDetailsOfVehicle(int coverageCoreId, int makeId, int modelId, decimal vehiclePrice)
+        {
+            int coreId;
+            int codRamo = oDropDownManager.GetParameter("PARAMETER_KEY_COD_RAMO").Value.ToInt();
+            int DEDUCIBLE_SURCHARGE = oDropDownManager.GetParameter("PARAMETER_KEY_ID_DEDUCIBLE_SURCHARGE").Value.ToInt();
+
+            try
+            {
+                coreId = GetModelCoreId(makeId, modelId);
+
+                var coverageLimits = GetCoverageDetails(coverageCoreId, vehiclePrice, codRamo);
+
+                var surcharges = oCoreProxy.GetDeductibles_NewPV(coverageCoreId, DEDUCIBLE_SURCHARGE, coreId, codRamo); ;
+
+                var deductibles = from s in surcharges
+                                  orderby s.Descripcion
+                                  select new Entity.Entities.WSEntities.DeductibleValuesWS() { CoreId = s.Secuencia, Name = s.Descripcion };
+
+                return Json(new { deductibles = deductibles.ToArray(), coverageLimits = coverageLimits }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                var msg = string.Format("CoverageId: {0} - MakeId: {1} - ModelId: {2} - vehiclePrice: {3}\nMensaje: {4}\nDetalle: {5}", coverageCoreId.ToString()
+                    , makeId.ToString()
+                    , modelId.ToString()
+                    , vehiclePrice.ToString()
+                    , ex.Message
+                    , ex.StackTrace);
+                LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, -1, "Error al obtener datos de coberturas y deducibles desde Sysflex", msg, ex);
+                throw ex;
+            }
+        }
+
+        public JsonResult GetRates(
+         int coverageCoreId,
+         int brandId,
+         int modelId,
+         int vehicleYear,
+         int coveragePercent,
+         string startDate,
+         string endDate,
+         decimal insuredAmount,
+         string productId,
+         int storageId,
+         string servicesIdList,
+         string deductibleId,
+         string gender,
+         string principalDateOfBirth,
+         decimal? percentSurCharge,
+         string QuotationNumberForRates,
+         string LicenciaExtranjera,
+         int qtyVehicles,
+         int usage,
+         int secuencia = 1,
+         string agentChangeSelected = "",
+         string quotationCore = "0",
+         bool Esdeley = false,
+         int idCapacidad = 0,
+         string descCapacidad = "",
+         string coverages = "",
+         string limitself = "",
+         string usagename = "",
+         string isSemifull = "",
+         string QuotationNumber = "",
+         bool wasChangeDateBirth = false,
+         bool wasChangeClientSex = false,
+         string actualAgentSelected = "")
+        {
+            List<string> statusMessages = new List<string>();
+            int cod_company = oDropDownManager.GetParameter("PARAMETER_KEY_COMPANY_ID_SYSFLEX").Value.ToInt();
+            int ramo = oDropDownManager.GetParameter("PARAMETER_KEY_COD_RAMO").Value.ToInt();
+
+            #region Actualizando Agente Cotizacion si Cambian el que seleccionaron al principio
+            /*Si el id del agente cambia entonces actualizar la tabla de cotizacion con el id del agente nuevo
+             esto permitira que la prima cambie*/
+
+            int intermediario = 0;
+            var currentDriverSaved = oQuotationManager.GetQuotationDrivers(QuotationNumberForRates.ToInt());
+            Driver PrincipalDriver = new Driver();
+            if (currentDriverSaved != null)
+            {
+                PrincipalDriver = currentDriverSaved.FirstOrDefault(x => x.IsPrincipal);
+            }
+
+            if (!string.IsNullOrEmpty(agentChangeSelected) && !string.IsNullOrEmpty(QuotationNumberForRates))
+            {
+                OthersFields otf = GetOthersFields(QuotationNumberForRates, agentChangeSelected);
+
+                if (otf.AgentIDOnSysflex > 0)
+                {
+                    intermediario = otf.AgentIDOnSysflex;
+
+                    oCoreProxy.SetAgentInQuotationHeader_NewPV(otf.objQuotation, PrincipalDriver, intermediario, "POS-" + User.Identity.Name, cod_company, otf.codMoneda, otf.codramo, otf.tasaMoneda, otf.idOficina, null, out statusMessages);
+
+                    if (statusMessages.Count() > 0)
+                    {
+                        string realMessage = "";
+
+                        foreach (var stmsg in statusMessages)
+                        {
+                            realMessage += "\n" + stmsg;
+                        }
+                        LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, -1, "Error al modificar el intermediario de la cotizacion", "Mensaje: " + realMessage, null);
+                        throw new Exception("Error al modificar el intermediario de la cotizacion.");
+                    }
+                }
+            }
+
+            if (wasChangeDateBirth)
+            {
+                OthersFields otf = GetOthersFields(QuotationNumberForRates, actualAgentSelected);
+
+                if (otf.AgentIDOnSysflex > 0)
+                {
+                    var newDatebirth = DateTime.Parse(principalDateOfBirth, culturelanguaje);
+
+                    intermediario = otf.AgentIDOnSysflex;
+
+                    oCoreProxy.SetAgentInQuotationHeader_NewPV(otf.objQuotation, PrincipalDriver, intermediario, "POS-" + User.Identity.Name, cod_company, otf.codMoneda, otf.codramo, otf.tasaMoneda, otf.idOficina, newDatebirth, out statusMessages);
+
+                    if (statusMessages.Count() > 0)
+                    {
+                        string realMessage = "";
+
+                        foreach (var stmsg in statusMessages)
+                        {
+                            realMessage += "\n" + stmsg;
+                        }
+                        LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, -1, "Error al modificar el intermediario de la cotizacion", "Mensaje: " + realMessage, null);
+                        throw new Exception("Error al modificar el intermediario de la cotizacion.");
+                    }
+                }
+            }
+
+            if (wasChangeClientSex)
+            {
+                OthersFields otf = GetOthersFields(QuotationNumberForRates, actualAgentSelected);
+
+                if (otf.AgentIDOnSysflex > 0)
+                {
+                    var newSex = gender;
+
+                    intermediario = otf.AgentIDOnSysflex;
+
+                    oCoreProxy.SetAgentInQuotationHeader_NewPV(otf.objQuotation, PrincipalDriver, intermediario, "POS-" + User.Identity.Name, cod_company, otf.codMoneda, otf.codramo, otf.tasaMoneda, otf.idOficina, null, out statusMessages, newSex);
+
+                    if (statusMessages.Count() > 0)
+                    {
+                        string realMessage = "";
+
+                        foreach (var stmsg in statusMessages)
+                        {
+                            realMessage += "\n" + stmsg;
+                        }
+                        LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, -1, "Error al modificar el intermediario de la cotizacion", "Mensaje: " + realMessage, null);
+                        throw new Exception("Error al modificar el intermediario de la cotizacion.");
+                    }
+                }
+            }
+            /**/
+            #endregion
+
+            #region Insertando Detalle/Obteniendo prima de la cotizacion
+
+
+            var model = oDropDownManager.GetVehicleModels(brandId).FirstOrDefault(x => x.Id == modelId);
+
+            var Marca = oDropDownManager.GetDropDown(STL.POS.Frontend.Web.NewVersion.CustomCode.CommonEnums.DropDownType.BRANDS.ToString()).FirstOrDefault(x => x.Value == brandId.ToString());
+
+            var Type = oDropDownManager.GetVehicleTypes(brandId, modelId).FirstOrDefault();
+
+            var Type1 = oDropDownManager.GetVehicleTypes(brandId, modelId).FirstOrDefault();
+
+            /*Storage from POS_SITE*/
+            var param = oDropDownManager.GetParameter("PARAMETER_KEY_STORED_VALUES").Value;
+            Dictionary<int, string> values = JsonConvert.DeserializeObject<Dictionary<int, string>>(param);
+            var StorageOutput = from pair in values
+                                select new { id = pair.Key, name = pair.Value };
+
+            var storageName = "";
+            if (StorageOutput.Count() > 0)
+            {
+                var storage = StorageOutput.FirstOrDefault(x => x.id == storageId);
+                if (storage != null)
+                {
+                    storageName = storage.name;
+                }
+            }
+
+            if (deductibleId == "") { deductibleId = "0"; }
+            var success = false;
+
+            var tipoveh = new List<Entity.Entities.WSEntities.ComboCondicion>();
+            var Marcavehiculo = new List<Entity.Entities.WSEntities.ComboCondicion>();
+            var Usovehiculo = new List<Entity.Entities.WSEntities.ComboCondicion>();
+            var Aniovehiculo = new List<Entity.Entities.WSEntities.ComboCondicion>();
+            var Deductible = new List<Entity.Entities.WSEntities.ComboCondicion>();
+            var Storage = new List<Entity.Entities.WSEntities.ComboCondicion>();
+            //var VersionVehiculo = new SysflexComboCondicion();
+
+            /*type MakesVEH*/
+            Marcavehiculo = ComboConditionsMethods.GetComboCondicion_New("MakesVEH", ramo, coverageCoreId, "MARCA VEHÍCULO", Marca.name, null, null);
+
+            /*type YearVEH*/
+            Aniovehiculo = ComboConditionsMethods.GetAnioVehiculo_New("YearVEH", ramo, coverageCoreId, "AÑOS VEHICULOS", null, vehicleYear, null);
+
+            /*type DeducibleVEH*/
+            Deductible = ComboConditionsMethods.GetDeductible_New("DeducibleVEH", ramo, coverageCoreId, "DEDUCIBLE", null, vehicleYear, Convert.ToInt32(deductibleId));
+
+            /*type StorageVEH*/
+            Storage = ComboConditionsMethods.GetDeductible_New("StorageVEH", ramo, coverageCoreId, "Estacionamiento", storageName, null, null);
+
+            var cDetail = new STL.POS.WsProxy.SysflexService.PolicyQuotationSysFlexCotDet.Key();
+
+            var startDatetime = DateTime.Parse(startDate, culturelanguaje);
+            var endDatetime = DateTime.Parse(endDate, culturelanguaje);
+
+            cDetail.cotizacion = Convert.ToDecimal(quotationCore);
+
+            cDetail.ramo = ramo;
+            cDetail.subRamo = coverageCoreId;
+            cDetail.secuencia = secuencia;
+            cDetail.montoAsegurado = insuredAmount;
+            cDetail.tasa = 0;
+            cDetail.formadePago = "";
+
+            cDetail.idTipoVehiculo = Type.CoreVehicleTypeId.ToString();
+
+            if (Marcavehiculo.Count() > 0)
+            {
+                cDetail.idMarcaVehiculo = Marcavehiculo.FirstOrDefault().Codigo.ToString();
+            }
+
+            cDetail.idModeloVehiculo = model.CoreId.ToString();
+            cDetail.idVersion = "";
+            cDetail.version = "";
+
+            if (Aniovehiculo.Count() > 0)
+            {
+                cDetail.idAnoVehiculo = Aniovehiculo.FirstOrDefault().Codigo.ToString();
+            }
+            cDetail.anoVehiculo = vehicleYear.ToString();
+
+            cDetail.idUso = usage.ToString();
+
+            if (Storage.Count() > 0)
+            {
+                cDetail.idEstacionaEn = Storage.FirstOrDefault().Codigo.ToString();
+            }
+
+            cDetail.idColor = "";
+            cDetail.color = "";
+            cDetail.idCapacidad = idCapacidad.ToString();
+            cDetail.capacidad = descCapacidad;
+
+            cDetail.fechaInicio = startDatetime;
+            cDetail.fechaFin = endDatetime;
+
+            /*Actualziacion de fecha de vencimiento en base a 6 meses*/
+            if (isSemifull.Contains("(6 Meses)")
+                || isSemifull.Contains("( 6 Meses )")
+                || isSemifull.Contains("( 6 Meses)")
+                || isSemifull.Contains("(6 Meses )")
+                )
+            {
+                var dateStart = startDatetime;
+                DateTime newEndDate = dateStart.AddMonths(6);
+
+                cDetail.fechaFin = newEndDate;
+                cDetail.fechaInicio = startDatetime;
+            }
+
+
+            //si es de ley no lleva deducible
+            if (!Esdeley)
+            {
+                if (Deductible.Count() > 0 && Deductible.FirstOrDefault().Codigo != null & Deductible.FirstOrDefault().Descripcion != null)
+                {
+                    cDetail.iddeducible = Deductible.FirstOrDefault().Codigo.ToString();
+                    cDetail.deducible = Deductible.FirstOrDefault().Descripcion.ToString();
+                }
+                else
+                {
+                    cDetail.iddeducible = "0";
+                    cDetail.deducible = "";
+                }
+            }
+
+            cDetail.compania = cod_company;
+
+            var quantityOfMonth = Utility.QuantityOfMonth(cDetail.fechaInicio.Value, cDetail.fechaFin.Value);
+            cDetail.cantidadMeses = quantityOfMonth == 0 ? 1 : quantityOfMonth;// 12;
+
+            cDetail.codigoTarifa = 1;
+            cDetail.categoria = "";
+            cDetail.tipoVehiculo = Type.VehicleTypeDesc;
+            cDetail.marcaVehiculo = Marca.name;
+            cDetail.modeloVehiculo = model.Name;
+            cDetail.uso = usagename;
+            cDetail.estacionaEn = Storage.Count() > 0 ? Storage.FirstOrDefault().Descripcion : storageName;
+            cDetail.renovacionAutomatica = "S";
+            cDetail.usuario = "POS-" + User.Identity.Name;
+            cDetail.estatus = "ACTIVO";
+            cDetail.porciendoCobertura = coveragePercent.ToString();
+
+            cDetail.PorcientoRecargoVentas = percentSurCharge;
+
+            bool foreingLicence = false;
+            if ((LicenciaExtranjera == "1" || LicenciaExtranjera == "true" || LicenciaExtranjera == "True" || LicenciaExtranjera == "TRUE") && gender != "Empresa" && isSemifull.ToLower().IndexOf("semi") <= -1)
+            {
+                foreingLicence = true;
+            }
+            else if (gender == "Empresa")
+            {
+                var foreingLicenceParam = oDropDownManager.GetParameter("PARAMETER_KEY_COMPANY_DEFAULT_FOREIGNLICENSE").Value;
+                bool.TryParse(foreingLicenceParam, out foreingLicence);
+            }
+            cDetail.licenciaExtranjera = foreingLicence;
+
+
+            var genderId = 1;
+
+            if (gender == "Femenino")
+            {
+                genderId = 2;
+            }
+
+            DateTime birthday = DateTime.Now;
+            int age = 0;
+
+            //if (gender == "Empresa" || string.IsNullOrEmpty(principalDateOfBirth)) //Original 08-09-2017
+            if (gender == "Empresa")
+            {
+                var genderParam = oDropDownManager.GetParameter("PARAMETER_KEY_COMPANY_DEFAULT_SEX").Value;
+                int genderCompany = 0;
+                int.TryParse(genderParam, out genderCompany);
+
+                if (genderCompany > 0)
+                {
+                    genderId = genderCompany;
+
+                    gender = "N/A";
+                }
+
+                var ageParam = oDropDownManager.GetParameter("PARAMETER_KEY_COMPANY_DEFAULT_AGE").Value;
+                int ageCompany = 0;
+                int.TryParse(ageParam, out ageCompany);
+
+                if (ageCompany > 0)
+                {
+                    age = 0;
+                }
+            }
+            else
+            {
+                birthday = DateTime.Parse(principalDateOfBirth, culturelanguaje);
+                age = Utility.GetAge(birthday);
+            }
+
+            STL.POS.WsProxy.SysflexService.PolicySexoEdadKeyParameter paramSex = new WsProxy.SysflexService.PolicySexoEdadKeyParameter();
+            paramSex.Sexo = gender;
+            paramSex.Edad = age.ToString();
+            paramSex.RamoID = ramo;
+            paramSex.subramo = coverageCoreId;
+
+            var resultSexoEdad = oCoreProxy.GetSexoEdad(paramSex);
+            var sexage = !string.IsNullOrEmpty(resultSexoEdad) ? resultSexoEdad : null;
+            cDetail.sexoEdad = sexage;
+
+            success = false;
+
+            try
+            {
+                //Inserto el detalle de la cotizacion
+                var output = oCoreProxy.GetRates_New(cDetail, out statusMessages);
+                /**/
+
+
+                /*inserto las cobeturas del vehiculo actual*/
+
+                if (!string.IsNullOrEmpty(limitself))
+                {
+                    List<Entity.Entities.WSEntities.CoverageJsonClass> selfAndThirdCoverage = new List<Entity.Entities.WSEntities.CoverageJsonClass>();
+
+                    var self = JsonConvert.DeserializeObject<List<Entity.Entities.WSEntities.CoverageJsonClass>>(limitself);
+
+                    if (self != null)
+                    {
+                        foreach (var st in self.ToList())
+                        {
+                            selfAndThirdCoverage.Add(st);
+                        }
+                    }
+
+                    List<Entity.Entities.WSEntities.CoverageJsonClass> ServiceCoverage = new List<Entity.Entities.WSEntities.CoverageJsonClass>();
+
+                    if (!string.IsNullOrEmpty(coverages) && coverages != "[]")
+                    {
+                        var serviceCov = JsonConvert.DeserializeObject<List<Entity.Entities.WSEntities.CoverageJsonClass>>(coverages);
+
+                        if (serviceCov != null)
+                        {
+                            foreach (var ser in serviceCov.ToList())
+                            {
+                                Entity.Entities.WSEntities.CoverageJsonClass servicesActual = new Entity.Entities.WSEntities.CoverageJsonClass();
+                                servicesActual.CoverageDetailCoreId = ser.CoverageDetailCoreId;
+                                servicesActual.Name = ser.Name;
+                                servicesActual.Limit = ser.Limit;
+                                servicesActual.isSelected = ser.isSelected;
+                                //servicesActual.delete = (ser.isSelected == false);
+
+                                ServiceCoverage.Add(servicesActual);
+                            }
+                        }
+                    }
+
+                    oCoreProxy.SetCoverageVehicle_GetRate_NewPV(selfAndThirdCoverage, ServiceCoverage, Convert.ToDecimal(quotationCore), secuencia, cod_company, out statusMessages);
+                    /**/
+
+                    //Inserto otra vez el detalle de manera que se actualize con los cambios de las coberturas
+                    output = oCoreProxy.GetRates_New(cDetail, out statusMessages);
+                    /**/
+                }
+
+                if (statusMessages.Count() > 0)
+                {
+                    string realMessage = "";
+
+                    foreach (var stmsg in statusMessages)
+                    {
+                        realMessage += "\n" + stmsg;
+                    }
+
+                    LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, Convert.ToInt32(QuotationNumberForRates), "Error al obtener la prima", "Mensaje: " + " QuotationID: " + QuotationNumber + " " + realMessage, null);
+
+                    throw new Exception("Error al obtener la Prima.");
+                }
+                success = true;
+                return Json(output, JsonRequestBehavior.AllowGet);
+
+
+            }
+            catch (Exception ex)
+            {
+                if (statusMessages.Count() > 0)
+                {
+                    string realMessage = "";
+
+                    foreach (var stmsg in statusMessages)
+                    {
+                        realMessage += "\n" + stmsg;
+                    }
+
+                    LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, Convert.ToInt32(QuotationNumberForRates), "Error al obtener la prima", "Mensaje: " + " QuotationID: " + QuotationNumber + " " + realMessage, null);
+                }
+                success = false;
+                throw new Exception("Error al obtener la Prima.");
+            }
+            #endregion
+        }
+
+        private OthersFields GetOthersFields(string QuotationNumberForRates, string agentChangeSelected = "")
+        {
+            OthersFields otf = new OthersFields();
+            int intermediario = 0;
+            int QuotationIDForRates = 0;
+
+            if (!string.IsNullOrEmpty(QuotationNumberForRates))
+            {
+                var idOficina = oDropDownManager.GetParameter("PARAMETER_KEY_COD_OFICINA").Value.ToInt();
+                var idOficinaVO = oDropDownManager.GetParameter("PARAMETER_KEY_COD_OFICINA_VO").Value.ToInt();
+
+                int.TryParse(QuotationNumberForRates, out QuotationIDForRates);
+                var quotation = GetDataQuotation(QuotationIDForRates); //GetQuotationForReport(QuotationIDForRates);
+                var quotationUser = quotation != null ? getQuotationUserById(quotation.User_Id.GetValueOrDefault()) : null;
+
+                if (quotation != null)
+                {
+                    if (quotation.SendInspectionOnly.HasValue && !quotation.SendInspectionOnly.Value)
+                    {
+                        ViewBag.userCanApplySurCharge = "N";
+                    }
+                }
+
+                var userAgenCode = new Statetrust.Framework.Security.Bll.Usuarios();
+
+                if (!string.IsNullOrEmpty(agentChangeSelected))
+                {
+                    userAgenCode = getAgenteUserInfo(agentChangeSelected);
+                }
+                else
+                {
+                    userAgenCode = getAgenteUserInfo((quotationUser.AgentId.HasValue ? quotationUser.AgentId.Value : 0));
+                }
+
+                if (userAgenCode != null)
+                {
+                    var OfficeId = 13;
+                    idOficinaVO = userAgenCode.AgentOffices != null ? userAgenCode.AgentOffices.FirstOrDefault().OfficeId : idOficinaVO;
+
+                    var dataMatch = GetOfficeMatch(idOficinaVO);
+
+                    if (dataMatch != null && dataMatch.OfficeIdSysFlex.GetValueOrDefault() > 0)
+                    {
+                        OfficeId = dataMatch.OfficeIdSysFlex.GetValueOrDefault();
+                    }
+                    else
+                    {
+                        idOficina = idOficinaVO = userAgenCode.AgentOffices.First().OfficeId;
+                    }
+
+                    idOficina = OfficeId;
+
+                    int.TryParse(userAgenCode.AgentCode, out intermediario);
+                }
+
+                otf.idOficina = idOficina;
+                otf.AgentIDOnSysflex = intermediario;
+                otf.codMoneda = oDropDownManager.GetParameter("PARAMETER_KEY_COD_MONEDA_SYSFLEX").Value.ToInt();
+                otf.tasaMoneda = oDropDownManager.GetParameter("PARAMETER_KEY_TASA_MONEDA").Value.ToInt();
+                otf.codramo = oDropDownManager.GetParameter("PARAMETER_KEY_COD_RAMO").Value.ToInt();
+                otf.objQuotation = quotation;
+            }
+
+            return otf;
+        }
+
+        public JsonResult getMaximoReaseguroSubRamo_New(int SecuenciaVehicleSysflex, decimal quotationCoreNumber, string make, string model, string year)
+        {
+            int cod_company = oDropDownManager.GetParameter("PARAMETER_KEY_COMPANY_ID_SYSFLEX").Value.ToInt();
+
+            string message = "";
+            bool IsFacultative = false;
+            decimal AmountFacultative = 0;
+
+            var result = oCoreProxy.GetReinsuranceByItemVehicle(cod_company, quotationCoreNumber, SecuenciaVehicleSysflex);
+
+            if (result.Count() > 0 && result.FirstOrDefault() != null)
+            {
+                if (result.FirstOrDefault().ValorFacultativo > 0)
+                {
+                    IsFacultative = true;
+                    AmountFacultative = result.FirstOrDefault().ValorFacultativo.GetValueOrDefault();
+
+                    var messageParam = oDropDownManager.GetParameter("PARAMETER_KEY_MESSAGE_REINSURANCE").Value;
+                    message = string.Format(messageParam, make, model, year);
+                }
+            }
+
+            return Json(new { IsFacultative = IsFacultative, message = message, AmountFacultative = AmountFacultative }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteVehicleOnSysflex(int SecuenciaVehicleSysflex, decimal quotationCoreNumber)
+        {
+            try
+            {
+                int cod_company = oDropDownManager.GetParameter("PARAMETER_KEY_COMPANY_ID_SYSFLEX").Value.ToInt();
+
+                oCoreProxy.DeleteVehicleOnSysflex(cod_company, SecuenciaVehicleSysflex, quotationCoreNumber);
+
+                return Json("OK", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, -1, "Error al BORRAR el vehiculo en sysflex.", "Detalle: Cotizacion id Sysflex: " + quotationCoreNumber + " MENSAJE: " + ex.Message + " StackTrace: " + ex.StackTrace, ex);
+                return Json("ERROR", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        #endregion
+
+        // GET: Home
+        public ActionResult Index(int id = 0)
+        {
+            //QuotationID = 32948;
+
+            ViewBag.TitlePage = "COTIZADOR";
+
+            var usuario = GetCurrentUsuario();
+
+            var onlyLoggedUsers = allowOnlyLoggedUsers();
+
+            if (usuario == null && onlyLoggedUsers)
+            {
+                var urlLogin = System.Web.Configuration.WebConfigurationManager.AppSettings["SecurityLogin"].ToString();
+
+                Session.RemoveAll();
+
+                return Json(new { redirectNoLogin = urlLogin }, JsonRequestBehavior.AllowGet);
+            }
+
+
+            //var data = GetDataQuotation(id);
+
+            ViewBag.VehicleAvailableYearsList = GetVehicleAvailableYearsList();
+            ViewBag.VehiclebrandsList = getVehiclesBrands();
+            //ViewBag.Sexes = getSexes(data.GetPrincipalDriver().Sex);
+            ViewBag.Sexes = getSexes("");
+
+            string foreinglic = "";
+            //if (data.GetPrincipalDriver().ForeignLicense.HasValue)
+            //{
+            //    if (data.GetPrincipalDriver().ForeignLicense.Value == true)
+            //    {
+            //        foreinglic = "Si";
+            //    }
+            //    else if (data.GetPrincipalDriver().ForeignLicense.Value == false)
+            //    {
+            //        foreinglic = "No";
+            //    }
+            //}
+
+            ViewBag.ForeingLicence = getForeingLicence(foreinglic);
+
+            /*if (data.Id != null)
+            {
+                ViewBag.QuotationNumber = data.QuotationNumber;
+                ViewBag.QuotationID = data.Id;
+                ViewBag.QuotationCoreNumber = data.QuotationCoreNumber;
+            }*/
+
+            //ViewBag.AllDrivers = new SelectList(data.GetListOfDriver().Select(i => new SelectListItem { Text = i.GetFullName(), Value = i.Id.ToString() }), "Value", "Text");
+
+            //return View(data);
+
+            ViewBag.userCanApplySurCharge = usuario != null ? usuario.CanApplySurcharge ? "S" : "N" : "N";
+
+            return View(new QuotationViewModel());
+        }
+
+        [HttpPost]
+        public JsonResult SaveClientInfoBasic(FormCollection form, QuotationViewModel quotModel)
+        {
+            int quotationID = form["quotationID"].ToInt();
+            try
+            {
+                var usuario = GetCurrentUsuario();
+                var agent = JsonConvert.DeserializeObject<AgentTreeInfoNew>(form["AgentSelected"].ToString());
+
+                bool isNewQuotation = quotationID == 0;
+                var currDate = DateTime.Now;
+
+                string Mask = oDropDownManager.GetParameter("PARAMETER_KEY_CREDIT_CARD_MASK").Value;
+                string strCreditCardNumber = string.Empty;
+                string msgValidationCreditCard = string.Empty;
+                int longitudMask = 0;
+                //IsFinanced = IsFinanced == null ? false : IsFinanced;
+                bool IsFinanced = false;
+
+                //JULISY TIENE QUE HACE UN METODO EXTRA PARA ACTULIZAR LA COTIZACION CON LOS DATOS DE CREDICI
+
+                #region Insertando Cotizacion en Pos_site
+                Quotation.parameter param = new Quotation.parameter();
+                param.id = quotationID;
+
+                if (isNewQuotation)
+                {
+                    param.productNumber = "01";
+                    param.businessLine_Id = 1;
+                    param.cardnetPaymentStatus = CommonEnums.QuotationCardnetStatus.NotSent.ToInt();
+                    isNewQuotation = true;
+
+                    param.quotationDailyNumber = GetNewDailyQuotationNumber();
+                    param.quotationNumber = param.productNumber + DateTime.Now.ToString("yyyyMMdd") + param.quotationDailyNumber.ToString().PadLeft(4, '0');
+                }
+
+                string startDate = form["StartDate"];
+                string endDate = form["EndDate"];
+                DateTime newDate = DateTime.Parse(startDate, culturelanguaje);
+                if (newDate.TimeOfDay.TotalHours > 0)
+                {
+                    param.startDate = newDate;
+                }
+                else
+                {
+                    param.startDate = DateTime.Parse((startDate + " " + DateTime.Now.ToShortTimeString()), culturelanguaje);
+                }
+
+                DateTime newDateEnd = DateTime.Parse(endDate, culturelanguaje);
+                if (newDateEnd.TimeOfDay.TotalHours <= 0)
+                {
+                    param.endDate = newDateEnd;
+                }
+                else
+                {
+                    //param.endDate = DateTime.Parse((endDate + " " + DateTime.Now.ToShortTimeString()), culturelanguaje);
+                    param.endDate = newDateEnd;
+                }
+
+                if (param.startDate.Value.Date < DateTime.Now.Date)
+                {
+                    throw new Exception("La Fecha Inicio de Vigencia no puede ser menor a la Fecha Actual.");
+                }
+
+                if (param.endDate.Value.Date < DateTime.Now.Date)
+                {
+                    throw new Exception("La Fecha Fin de Vigencia no puede ser menor a la Fecha Actual.");
+                }
+
+                param.lastStepVisited = 1;
+
+                param.paymentFrequencyId = null;
+                param.paymentFrequency = "0 pago";
+                param.paymentWay = null;
+
+                param.currency_Id = 1;
+                param.currencySymbol = "RD$";
+
+                param.achAccountHolderGovId = null;
+                param.achBankRoutingNumber = null;
+                param.achName = string.Empty;
+                param.achNumber = null;
+                param.achType = 0;
+
+                param.iSCPercentage = 0;//Despues que tenga vehiculo tengo q setiar esto
+                param.discountPercentage = 0;//paymentObj.currentDiscountPercentage;//Para el descuento por pronto pago
+                param.sendInspectionOnly = false;//Despues que tenga vehiculo tengo q setiar esto
+                param.amountToPayEnteredByUser = 0;
+
+                param.declined = false;
+
+                param.messaging = false;
+
+                param.financed = IsFinanced;
+                param.monthlyPayment = null;
+                param.period = null;
+                param.credit_Card_Type_Id = 0;
+                param.credit_Card_Number_Key = null;
+                param.credit_Card_Number = null;
+
+                param.expiration_Date_Year = 0;
+                param.expiration_Date_Month = 0;
+                param.card_Holder = null;
+                param.domiciliation = false;
+
+                /*Cuando tenga el vehiculo setiar estos datos*/
+                param.quotationProduct = "";
+                param.discountPercentage = 0;
+                param.totalISC = 0;
+                param.totalPrime = 0;
+                param.totalDiscount = 0;
+
+                param.flotillaDiscountPercent = 0;
+                param.totalFlotillaDiscount = 0;
+                /**/
+
+
+                if (usuario == null)
+                {
+                    if (isNewQuotation)
+                    {
+                        var id = form["IdentificationNumber"] + form["DateOfBirth"].ToDatetime().ToString("ddMMyyyy");
+                        param.user_Id = CheckUser(id, form["FirstName"], form["FirstSurname"], form["Email"]);
+                    }
+                    else
+                    {
+                        var us = CheckQuotationHasUser(param.id.GetValueOrDefault());
+                        if (us > 0)
+                        {
+                            param.user_Id = us;
+                        }
+                        else
+                        {
+                            var id = form["IdentificationNumber"] + form["DateOfBirth"].ToDatetime().ToString("ddMMyyyy");
+                            param.user_Id = CheckUser(id, form["FirstName"], form["FirstSurname"], form["Email"]);
+                        }
+                    }
+                }
+                else if (usuario.UserType == Statetrust.Framework.Security.Bll.Usuarios.UserTypeEnum.Assistant)
+                {
+                    if (agent != null)
+                        param.user_Id = CheckUser(agent.NameId, agent.FullName, "", string.Empty, agent.AgentId);
+                    else
+                    {
+                        var us = CheckQuotationHasUser(param.id.GetValueOrDefault());
+                        if (us > 0)
+                        {
+                            param.user_Id = us;
+                        }
+                        else
+                        {
+                            param.user_Id = CheckUser(usuario.UserLogin, usuario.FirstName, usuario.LastName, usuario.Email);
+                        }
+                    }
+                }
+                else if (usuario.UserType == Statetrust.Framework.Security.Bll.Usuarios.UserTypeEnum.User)
+                {
+                    param.user_Id = CheckUser(usuario.UserLogin, usuario.FirstName, usuario.LastName, usuario.Email);
+                }
+                else //Agent
+                {
+                    if (agent != null)
+                    {
+                        param.user_Id = CheckUser(agent.NameId, agent.FullName, "", string.Empty, agent.AgentId);
+                    }
+                    else
+                    {
+                        var us = CheckQuotationHasUser(param.id.GetValueOrDefault());
+                        if (us > 0)
+                        {
+                            param.user_Id = us;
+                        }
+                        else
+                        {
+                            param.user_Id = CheckUser(usuario.UserLogin, usuario.FirstName, usuario.LastName, usuario.Email, usuario.AgentId);
+                        }
+                    }
+                }
+
+                int qtyDayOfVigency = Utility.QuantityOfDays(param.startDate.Value, param.endDate.Value);
+                param.qtyDayOfVigency = qtyDayOfVigency == 0 ? 365 : qtyDayOfVigency;// 365;
+
+                param.status = 0;
+                param.lastStepVisited = 1;
+                param.modi_UserId = Usuario.UserID;
+                var quotSaved = oQuotationManager.SetQuotation(param);
+                quotationID = quotSaved.EntityId;
+                var currentQuotationSaved = oQuotationManager.GetQuotation(quotationID);
+
+
+                #endregion
+
+                #region Person/Driver
+
+                Person.PersonParameters pers = new Person.PersonParameters();
+                pers.isPrincipal = true;
+
+                pers.firstName = form["FirstName"];
+                pers.firstSurname = form["FirstSurname"];
+                pers.sex = form["Sex"];
+                pers.foreignLicense = form["ForeignLicense"] == "Si" ? true : false;
+
+                string identf = !string.IsNullOrEmpty(form["IdentificationType"]) ? form["IdentificationType"] : "";
+
+                if (!string.IsNullOrEmpty(form["DateOfBirth"]) && identf != "RNC")
+                {
+                    pers.dateOfBirth = form["DateOfBirth"].ToDatetime();
+                }
+                else
+                {
+                    pers.dateOfBirth = new DateTime(1753, 01, 01);//FEcha por default cuando sea rnc que podria venir vacio
+                }
+                pers.identificationType = identf;
+
+                string[] ident = new string[] { "Cédula", "Licencia", "RNC" };
+
+                if (!string.IsNullOrEmpty(form["IdentificationNumber"]) && ident.Contains(identf))
+                {
+                    pers.identificationNumber = form["IdentificationNumber"].Replace("-", "");
+                }
+                else
+                {
+                    pers.identificationNumber = form["IdentificationNumber"];
+                }
+
+                pers.phoneNumber = form["PhoneNumber"];
+                pers.email = form["Email"];
+
+                /*Poner la ciudad por default*/
+                var city = oDropDownManager.GetCities(129, 817, null).FirstOrDefault();
+                var keyCity = city.Value.Split('-');
+                if (keyCity.Count() > 2)
+                {
+                    pers.country_Id = 129;
+                    pers.domesticreg_Id = keyCity[0].ToInt();
+                    pers.state_Prov_Id = keyCity[1].ToInt();
+                    pers.city_Id = keyCity[3].ToInt();
+                }
+
+                pers.userId = Usuario.UserID;
+                var personSaved = oPersonManagerManager.SetPerson(pers);
+
+                Driver.parameters dri = new Driver.parameters();
+                dri.accidentsLast3Years = null;
+                dri.yearsDriving = null;
+                dri.userId = Usuario.UserID;
+                dri.quotationId = quotSaved.EntityId;
+                dri.id = personSaved.EntityId;
+                var driverSaved = oDriverManager.SetDriver(dri);
+
+                var currentDriverSaved = oQuotationManager.GetQuotationDrivers(currentQuotationSaved.Id.GetValueOrDefault());
+                Driver PrincipalDriver = new Driver();
+                if (currentDriverSaved != null)
+                {
+                    PrincipalDriver = currentDriverSaved.FirstOrDefault(x => x.IsPrincipal);
+                }
+
+                #endregion
+
+                #region Insertando Cotizacion en Sysflex
+
+                var codMonedaVO = oDropDownManager.GetParameter("PARAMETER_KEY_COD_MONEDA").Value.ToInt();
+                var codMoneda = oDropDownManager.GetParameter("PARAMETER_KEY_COD_MONEDA_SYSFLEX").Value.ToInt();
+                var tasaMoneda = oDropDownManager.GetParameter("PARAMETER_KEY_TASA_MONEDA").Value.ToInt();
+                var idOficina = oDropDownManager.GetParameter("PARAMETER_KEY_COD_OFICINA").Value.ToInt();
+                var idOficinaVO = oDropDownManager.GetParameter("PARAMETER_KEY_COD_OFICINA_VO").Value.ToInt();
+                var agentNameId = oDropDownManager.GetParameter("PARAMETER_KEY_AGENT_NAME").Value;
+                var agentId = oDropDownManager.GetParameter("PARAMETER_KEY_AGENT_ID").Value.ToInt();
+                var servicesRetryAmount = oDropDownManager.GetParameter("PARAMETER_KEY_SERVICES_RETRY_AMOUNT").Value.ToInt();
+                string messageError;
+                var codramo = oDropDownManager.GetParameter("PARAMETER_KEY_COD_RAMO").Value.ToInt();
+
+                var quotationUser = getQuotationUser(agent.NameId);
+
+                int agentCode = -1;
+                if (quotationID > 0 && quotationUser != null && quotationUser.AgentId.HasValue)
+                {
+                    var userAgenCode = getAgenteUserInfo(quotationUser.AgentId.Value);
+                    if (userAgenCode != null)
+                    {
+                        if (userAgenCode.AgentId <= 0)
+                        {
+                            userAgenCode = getAgenteUserInfo(quotationUser.Username);//que es el nameid
+                        }
+
+                        int.TryParse(userAgenCode.AgentCode, out agentCode);
+                    }
+                }
+
+                if (agentCode <= 0)
+                {
+                    agentCode = oDropDownManager.GetParameter("PARAMETER_KEY_COD_INTERMEDIARIO").Value.ToInt();
+                }
+
+                if (usuario != null && usuario.UserType != Statetrust.Framework.Security.Bll.Usuarios.UserTypeEnum.User) //Agent or Suscriptor
+                {
+                    if (quotationID > 0 && quotationUser != null && quotationUser.AgentId.HasValue)
+                    {
+                        var userAgentOffice = getAgenteUserInfo(quotationUser.AgentId.Value);
+                        if (userAgentOffice != null)
+                        {
+                            if (userAgentOffice.AgentId <= 0)
+                            {
+                                userAgentOffice = getAgenteUserInfo(quotationUser.Username);//que es el nameid
+                            }
+
+                            var OfficeId = 13;
+                            idOficinaVO = userAgentOffice.AgentOffices != null ? userAgentOffice.AgentOffices.FirstOrDefault().OfficeId : idOficinaVO;
+
+                            var dataMatch = GetOfficeMatch(idOficinaVO);
+
+                            if (dataMatch != null && dataMatch.OfficeIdSysFlex.GetValueOrDefault() > 0)
+                                OfficeId = dataMatch.OfficeIdSysFlex.GetValueOrDefault();
+
+                            idOficina = OfficeId;
+                        }
+                    }
+                    else
+                        idOficina = idOficinaVO = usuario.AgentOffices.First().OfficeId;
+                }
+                else if (usuario == null)
+                {
+                    if (quotationID > 0 && quotationUser != null && quotationUser.AgentId.HasValue)
+                    {
+                        var userAgentOffice = getAgenteUserInfo(quotationUser.AgentId.Value);
+                        if (userAgentOffice != null)
+                        {
+                            if (userAgentOffice.AgentId <= 0)
+                            {
+                                userAgentOffice = getAgenteUserInfo(quotationUser.Username);//que es el nameid
+                            }
+                            var OfficeId = 13;
+                            idOficinaVO = userAgentOffice.AgentOffices != null ? userAgentOffice.AgentOffices.FirstOrDefault().OfficeId : idOficinaVO;
+
+
+                            var dataMatch = GetOfficeMatch(idOficinaVO);
+                            if (dataMatch != null && dataMatch.OfficeIdSysFlex.GetValueOrDefault() > 0)
+                                OfficeId = dataMatch.OfficeIdSysFlex.GetValueOrDefault();
+
+                            idOficina = OfficeId;
+                        }
+                    }
+                }
+
+
+                decimal flotillaPercent = param.flotillaDiscountPercent.GetValueOrDefault();
+                int DESCUENTO_FLOTILLA_ID = oDropDownManager.GetParameter("PARAMETER_KEY_DESCUENTO_FLOTILLA_ID_SYSFLEX").Value.ToInt();
+
+                decimal prontoPagoPercent = param.discountPercentage.GetValueOrDefault();
+                int PRONTO_PAGO_ID = oDropDownManager.GetParameter("PARAMETER_KEY_PRONTO_PAGO_ID_SYSFLEX").Value.ToInt();
+
+                int cod_COMPANY = oDropDownManager.GetParameter("PARAMETER_KEY_COMPANY_ID_SYSFLEX").Value.ToInt();
+                string Sistema = oDropDownManager.GetParameter("PARAMETER_KEY_SYSTEMA").Value;
+
+                string NoCotizacionCore = "0";
+
+
+                if (string.IsNullOrEmpty(currentQuotationSaved.QuotationCoreNumber))
+                {
+                    NoCotizacionCore = GetQuotationCoreNumber(quotationID);
+                }
+                else
+                {
+                    NoCotizacionCore = currentQuotationSaved.QuotationCoreNumber;
+                }
+
+
+                if (string.IsNullOrEmpty(NoCotizacionCore) || NoCotizacionCore == "0")
+                {
+                    NoCotizacionCore = oCoreProxy.SetAutoQuotationHeaderForGetCoreQuotationNumber_NewPV(currentQuotationSaved, PrincipalDriver, codMoneda, tasaMoneda, agentCode, idOficina, codramo,
+                        servicesRetryAmount, "POS-" + User.Identity.Name, cod_COMPANY, flotillaPercent, DESCUENTO_FLOTILLA_ID, prontoPagoPercent, PRONTO_PAGO_ID, Sistema, out messageError);
+
+                    if (!string.IsNullOrEmpty(messageError))
+                    {
+                        System.ArgumentException argEx = new System.ArgumentException("Error al crear la Cotizacion", messageError);
+                        LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, -1, "Error al guardar nueva cotización", "Mensaje: " + messageError, argEx);
+                        throw argEx;
+                    }
+                }
+                #endregion
+
+                #region Actualizando Cotizacion con los datos de sysflex
+
+                Quotation.parameter UpdParam = new Quotation.parameter();
+                UpdParam.id = currentQuotationSaved.Id;
+
+                UpdParam.principalFullName = PrincipalDriver.FirstName.Trim() + (!string.IsNullOrEmpty(PrincipalDriver.FirstSurname) ? " " + PrincipalDriver.FirstSurname.Trim() : "");
+                UpdParam.principalIdentificationNumber = PrincipalDriver.IdentificationNumber;
+
+                UpdParam.quotationCoreNumber = NoCotizacionCore;
+
+                param.modi_UserId = Usuario.UserID;
+                oQuotationManager.SetQuotation(UpdParam);
+
+                #endregion
+
+
+                ViewBag.QuotationID = currentQuotationSaved.Id;
+                ViewBag.QuotationNumber = currentQuotationSaved.QuotationNumber;
+                ViewBag.QuotationCoreNumber = currentQuotationSaved.QuotationCoreNumber;
+            }
+            catch (Exception ex)
+            {
+                string Mensaje = "EXCEPTION MESSAGE: " + ex.Message + " INNER EXCEPTION: " + ex.InnerException + " STACKTRACE: " + ex.StackTrace;
+                int? userid = GetCurrentUserID();
+                string urlPage = Url.Action("Save", "Adquiriente", new { }, Request.Url.Scheme); //Helper.GetBaseUrl();
+
+                //Insertamos en el log
+                LoggerHelper.Log(CommonEnums.Categories.Error, User.Identity.Name, quotationID, "Error al guardar nueva cotización", "Mensaje: " + ex.Message, ex);
+
+                //devolmeos un mensaje de error
+                return Json(new { messageError = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { MessageSucess = "", QuotationId = ViewBag.QuotationID, QuotationNumber = ViewBag.QuotationNumber, showNextSection = true }, JsonRequestBehavior.AllowGet);
+        }
+
+    }
+}

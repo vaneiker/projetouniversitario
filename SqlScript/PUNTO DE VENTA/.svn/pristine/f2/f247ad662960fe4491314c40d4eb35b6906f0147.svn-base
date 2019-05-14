@@ -1,0 +1,205 @@
+﻿<script type="text/html" id="stepVehicleCoverage">
+    <div class="select_cober stepVehicleCoverage pventa" data-bind="with: stepData">
+        <div class="mT20 box_SP">
+            <div class="ttl"><b class="tbA" data-bind="css: { tbA: $root.currentStepId() == $parent.order() }"></b>@Globalization.PosAuto.StepVehicleCoverage.AddVehicleTitle</div>
+            <div class="boxCont">
+                <div class="tbl data_G agregar_vh">
+                    <table>
+                        <thead>
+                            <tr class="gradient_azul">
+                                <th align="center"><span>No.</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.BrandLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.ModelLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.YearLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.VehicleTypeLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.NewVehicleLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.MainUsageLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.ParkingLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.DriverLabel</span></th>
+                                <th align="center" class="c10"></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: vehicles">
+                            <tr>
+                                <td align="center" data-bind="text: $index() + 1"></td>
+                                <td align="center">
+                                    <select data-bind="options: $parent.vehicleBrandList, optionsText: 'name', optionsValue: 'id', value: brand, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !brand()}"></select>
+                                </td>
+                                <td align="center">
+                                    <select data-bind="options: modelList, optionsText: 'name', optionsValue: 'id', value: model, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !model()}"></select>
+                                </td>
+                                <td align="center">
+                                    <select data-bind="options: $parent.vehicleAvailableYears, value: year, css: {errorBorder: !year()}"></select>
+                                </td>
+
+                                @****************//DESCOMENTAR SYSFLEX VIEJO************************@
+                                <td align="center">
+                                    <select data-bind="options: vehicleTypeList, optionsText: 'Name', value: selectedVehicleType, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !selectedVehicleType()}"></select>
+                                </td>
+                                @****************//DESCOMENTAR SYSFLEX VIEJO************************@
+
+                                <td align="center">
+                                    <select id="VehicleYearsOld" data-bind="options: $parent.vehicleYearsOldList, optionsText: 'name', optionsValue: 'id', value:selectedVehicleYearsOld, optionsCaption:'@Globalization.Global.Select', enable: enableVehicleOldCombo, css: {errorBorder: !selectedVehicleYearsOld()}"></select>
+                                </td>
+
+                                @****************//DESCOMENTAR SYSFLEX VIEJO************************@
+                                @*<td align="center">
+                                        <select data-bind="options: $parent.usageList, optionsText: 'name', optionsValue: 'id', value: usage, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !usage()}"></select>
+                                    </td>*@
+                                @****************//DESCOMENTAR SYSFLEX VIEJO************************@
+
+                                <td align="center">
+                                    <select data-bind="options: UsagesListByVehicleType, optionsText: 'descUso', optionsValue: 'idUso', value: usage, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !usage()}"></select>
+                                </td>
+
+                                <td align="center">
+                                    <select data-bind="options: $parent.storeList, optionsText: 'name', optionsValue: 'id', value: store, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !store()}"></select>
+                                </td>
+
+                                <td align="center">
+                                    <select data-bind="options: $parent.drivers, optionsText: 'toString', optionsValue: 'id', value: driver, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !driver()}"></select>
+                                </td>
+                                <td align="center" class="c10"><a class="grid_icons cazul delete" href="#" data-bind="click: function() { $parent.removeVehicle($data); }"></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row_A bdrT_cyan">
+                    <button class="add_btn  button button-green alignC embossed fr mL30 mT10" data-bind="click: addVehicle">@Globalization.PosAuto.StepVehicleCoverage.AddVehicleButtonLabel</button>
+                </div>
+
+            </div>
+            <!-- Boton de Funcion -->
+        </div>
+
+        <div class="mT20 box_SP" data-bind="visible:  $root.currentStepId() == $parent.order()">
+            <div class="ttl"><b data-bind="css: { tbB: $root.currentStepId() == $parent.order() }"></b>@Globalization.PosAuto.StepVehicleCoverage.SelectCoverageTitle</div>
+            <div class="boxCont">
+                <div class="tbl data_G select_cober">
+                    <button class="btn_Rosa embossed pag17" data-bind="click: showBrochure">@Globalization.PosAuto.StepVehicleCoverage.ProductAndCoverageButtonLabel</button><!--  onclick="location.href='pag17.html'" -->
+                    <table>
+                        <thead>
+                            <tr class="gradient_azul">
+                                <th align="center"><span>No.</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.VehicleLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.VehicleValueLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.ProductLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.CoverageLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.DeductibleLabel</span></th>
+                                <th align="center"><span>@Globalization.PosAuto.StepVehicleCoverage.SupplementsLabel</span></th>
+                                <th align="center"><span>@Html.Raw(Globalization.PosAuto.StepVehicleCoverage.AnnualPrimeLabel)</span></th>
+
+                                @if (ViewBag.userCanApplySurCharge == "S")
+                                {
+                                    <th align="center" class="hideme"><span>@Globalization.PosAuto.StepVehicleCoverage.ApplySurchargeLabel</span></th>
+                                }
+                                <th align="center"><span>@Html.Raw(Globalization.PosAuto.StepVehicleCoverage.VehicleQuantityLabel)</span></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: vehicles">
+                            <tr>
+                                <td align="center" data-bind="text: $index() + 1"></td>
+                                <td align="left" data-bind="text: toString"></td>
+                                <td align="center">
+                                    <input type="text" class="autoselectable label_plus_input" data-bind="value: vehiclePrice.currencyformatted, css: { errorBorder: !vehiclePrice() }" />
+                                </td>
+
+                                @****************//COMENTAR SYSFLEX VIEJO************************@
+                                @*<td align="center">
+                                        <select data-bind="options: vehicleTypeList, optionsText: 'Name', value: selectedVehicleType, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !selectedVehicleType()}"></select>
+                                    </td>*@
+                                @****************//COMENTAR SYSFLEX VIEJO************************@
+
+                                @****************//DESCOMENTAR SYSFLEX VIEJO************************@
+                                <td align="center">
+                                    @*<select id="ddlAllProducts" data-bind="options: currentProducts, optionsText: 'Name', value: selectedProduct, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !selectedProduct()}"></select> ORIGINAL*@
+                                    <select id="ddlAllProducts" data-bind="options: ProductListByUsages, optionsText: 'Name', value: selectedProduct, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !selectedProduct()}"></select>
+                                </td>
+                                @****************//DESCOMENTAR SYSFLEX VIEJO************************@
+
+                                <td align="center">
+                                    <select data-bind="options: currentCoverages, optionsText: 'Name', value: selectedCoverage, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !selectedCoverage()}"></select>
+                                </td>
+                                <td align="center">
+                                    <!-- ko if: (deductibleList() && deductibleList().length > 0)-->
+                                    <select data-bind="options: deductibleList, optionsText:'Name', optionsValue:'CoreId', value: selectedDeductible, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !selectedDeductible()}"></select>
+                                    <!-- /ko-->
+                                    <!-- ko if: (!deductibleList() || (deductibleList().length == 0))-->
+                                    -
+                                    <!-- /ko-->
+                                </td>
+                                <td align="center">
+                                    <!-- ko if: (additionalsEnabled)-->
+                                    <button class="add_btn  button button-green alignC mL30 embossed" data-bind="click: function() { showAdditionals($data);}">@Globalization.PosAuto.StepVehicleCoverage.AddButtonLabel</button>
+                                    <!-- /ko -->
+                                    <!-- ko if: (!(additionalsEnabled()))-->
+                                    <button class="add_btn add_btn_disabled  button button-green alignC mL30 embossed" disabled="disabled">@Globalization.PosAuto.StepVehicleCoverage.AddButtonLabel</button>
+                                    <!-- /ko -->
+                                </td>
+                                <td align="right" data-bind="text: totalPrime.formatted"></td>
+
+                                @if (ViewBag.userCanApplySurCharge == "S")
+                                {
+                                    <td align="center">
+                                        @*options: $parent.surchargePercentList  optionsValue: 'id', value: selectedSurchargePercent,*@
+                                        <!-- ko if: (showRechargeAllLawProducts() == true)-->
+                                        -
+                                        <!-- /ko-->
+                                        <!-- ko if: (showRechargeAllLawProducts() == false)-->
+                                        <select data-bind="options: $parent.surchargePercentList, optionsText: 'name', value: selectedSurchargePercent, optionsCaption: '@Globalization.Global.Select'"></select>
+                                        <!-- /ko-->
+                                    </td>
+                                }
+
+                                <td align="center">
+                                    <input type="text" id="VehicleQuantity" name="VehicleQuantity" class="autoselectable label_plus_input" data-bind="value: VehicleQuantity, css: { errorBorder: !VehicleQuantity() || VehicleQuantity() <= 0 }" />
+                                </td>
+                            </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- Boton de Funcion -->
+        </div>
+
+        <div class="row_A alignC mT10 mB10 bbFuntion">
+            <div class="col-2 fl"><a class="back_btn" href="#" data-bind="click: function() { $root.prevStep(); }"><i class="flecha_iz_az"></i>@Globalization.PosAuto.StepVehicleCoverage.BackButtonLabel</a></div>
+            <div class="col-4 fl">&nbsp;</div>
+            <div class="col-3 fr"><a href="#" class="button button-blue alignC embossed row_A" data-bind="click: stepVehicleCompleted, attr: { disabled: enableContinueStep2() }">@Globalization.PosAuto.StepVehicleCoverage.ContinueButtonLabel</a></div>
+
+            @*<!-- ko if: (showButtonDuplicate() == true)-->
+                <div class="col-3 fr"><a href="#" id="btnopenModalDuplicate" class="button button-blue alignC embossed row_A" data-bind="click: openModalDuplicate">@Globalization.PosAuto.StepVehicleCoverage.DuplicateButtonLabel</a></div>
+                <!-- /ko-->*@
+        </div>
+
+        <!--POP UP Vehicle Duplicate-->
+        <div class="modal popup03 vehicleDuplicate">
+            <a data-modal-close="true" class="closeX" href="#" data-bind="click: function() { $('.modal.popup03.vehicleDuplicate').hide(); }">×</a>
+
+            <br />
+
+            <table style="min-width: 500px !important; width: 550px !important;">
+                <thead>
+                    <tr class="gradient_azul">
+                        <th align="center" style="width: 200px !important"><span>Vehiculos</span></th>
+                        <th align="center" style="width: 50px !important"><span>Cantidad</span></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: vehicles">
+                    <tr>
+                        @*data-bind="text: vechileBrandModelYear"*@
+                        <td align="left">
+                            <input type="text" id="vehicleDesc" readonly="readonly" class="vehicleDesc" data-bind="value: vechileBrandModelYear(), attr: { 'data-veid': id() }" />
+                        </td>
+                        <td align="left">
+                            <input type="text" placeholder="@Globalization.Global.WriteHereNumber" id="quantity" class="qtyVeh" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <div class="col-4"><a href="#" class="button button-blue alignC embossed row_A" data-bind="click: saveDuplicates">@Globalization.PosAuto.StepVehicleCoverage.DuplicateButtonLabel</a></div>
+        </div><!--cpopup-->
+        @{Html.RenderPartial("_PopupServices"); }
+        <!--// Contenedor -->
+    </div>
+</script>

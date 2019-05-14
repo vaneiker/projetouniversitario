@@ -1,0 +1,161 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode
+@*@model Tuple<List<QuotationViewModel.Vehicles>, Dictionary<string, decimal?>, STL.POS.Frontend.Web.NewVersion.CustomCode.CommonEnums.RequestType>*@
+@model  List<Requeriments>
+
+@{
+    int quotationID = ViewBag.QuoId;
+}
+
+<div class="mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-shadow--4dp tbl-rs">
+    <div class="mdl-cell mdl-cell--12-col float-left clearfix">
+        @*<a id="view_btn" href="#" onclick="ViewQuotation()" class="btn btn-outline-info float-right mr-3">
+                <i class="fa fa-eye fa-2x fa-fw" aria-hidden="true"></i>
+                <strong class="x-hide">@(_isExclusion ? "Ver Solicitud Cambios" : "Ver Cotización")</strong>
+            </a>*@
+    </div>
+    <div class="mdl-layout mdl-js-layout p-md-3">
+        <div class="mdl-cell mdl-cell--12-col ">
+            <div class="card mdl-shadow--2dp mdl-cell mdl-cell--12-col float-left">
+                <div class="card-header bg-info mdl-color-text--white text-center font-weight-bold">
+                    Documentos Requeridos
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-light text-center" id="tblDocumentRequireds" border="1">
+                        <thead>
+                            <tr class="bg-primary mdl-color-text--white">
+                                <th scope="col">Obligatorio</th>
+                                <th scope="col">Validado</th>
+                                <th scope="col">Subido Por</th>
+                                <th scope="col">Validado Por</th>
+                                <th scope="col">Documento</th>
+                                <th scope="col">Subir / Ver Documento</th>
+                                <th scope="col">Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ foreach (var i in Model)
+                                {
+                                    string cssRequired = i.Required ? "isDocumentRequired" : "isDocumentNotRequired";
+                                    string cssValidate = i.Validated ? "wasDocumentRequiredValidate" : "wasNotDocumentRequiredValidate";
+                                    string cssDelete = i.DocumentId.HasValue ? "DocumentRequiredDelete" : "DocumentRequiredDeleteDisabled";
+                                    string cssUpload = i.DocumentId.HasValue ? "DocumentRequiredView" : "DocumentRequiredUpload";
+                                    string infoDoc = quotationID + "|" + i.DocumentId + "|" + i.RequirementTypeId + "|" + i.RequirementTypeDesc + "|" + i.PersonId + "|" + i.VehicleId;
+
+                                    <tr>
+                                        <td>
+                                            <span class="@(cssRequired)"></span>
+                                        </td>
+                                        <td>
+                                            <span class="@(cssValidate)"></span>
+                                        </td>
+                                        <td>
+                                            @Html.Raw(i.CreateUserName)
+                                        </td>
+                                        <td>
+                                            @Html.Raw(i.ValidatedUserName)
+                                        </td>
+                                        <td>
+                                            @Html.Raw(i.RequirementTypeDesc)
+                                        </td>
+                                        <td>
+                                            <button class="@(cssUpload) btnUploadDoc" data-info="@infoDoc"></button>
+                                        </td>
+                                        <td>
+                                            <button class="@(cssDelete) btnDeleteDoc"></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+    <div class="container">
+        <div class="mdl-mega-footer__top-section">
+
+            <div class="mdl-mega-footer__left-section float-left">
+                @if (((CommonEnums.RequestType)ViewBag.RequestType) == CommonEnums.RequestType.Emision)
+                {
+                    @Ajax.RawActionLink(string.Format("<i class='material-icons float-left mr-3'>arrow_back</i><strong class='x-hide mt-1 d-block float-left'>Atras</strong>"),
+                                            "InfoAddVehicle",
+                                            "Home",
+                                             null,
+                                             new AjaxOptions
+                                             {
+                                                 InsertionMode = InsertionMode.Replace,
+                                                 UpdateTargetId = "dvContainer",
+                                                 OnSuccess = "InitializeVehicle()"
+                                             }, new
+                                             {
+                                                 @data = @ViewBag.QuoId,
+                                                 @class = "btn btn-outline-info mb-1 mr-2 lh22 float-left"
+                                             }
+                                            )
+                }
+                else if (((CommonEnums.RequestType)ViewBag.RequestType) == CommonEnums.RequestType.Inclusion)
+                {
+                    @Ajax.RawActionLink(string.Format("<i class='material-icons float-left mr-3'>arrow_back</i><strong class='x-hide mt-1 d-block float-left'>Atras</strong>"),
+                                          "Summary",
+                                          "Home", null,
+                                          new AjaxOptions
+                                          {
+                                              UpdateTargetId = "dvContainer",
+                                              InsertionMode = InsertionMode.Replace,
+                                              OnSuccess = "InitializeSummary()"
+                                          },
+                                               new { @class = "btn btn-outline-info mb-1 mr-2 float-left" })
+                }
+
+                @if (ViewBag.onlyLoggedUsers == false)
+                { <a href="#" target="_blank" id="uptocall-mini" class="float-left ml-2 mr-4"><i class="uptocall-mini-phone"></i></a>}
+            </div>
+
+            <div class="mdl-mega-footer__right-section float-right">
+                <ul class="mdl-mega-footer__link-list mdl-color-text--white d-flex justify-content-center x-hide mb-0 mt-2 float-left">
+                    <li><!-- <i class="fa fa-phone float-left mr-3"></i> --><strong>Tel: </strong> (809) 565-5591 &nbsp•&nbsp</li>
+                    <li class="mr-3"> <!-- <i class="fa fa-envelope float-left mr-3" aria-hidden="true"></i> --> <strong> Email:</strong> ventas@atlantica.do</li>
+                </ul>
+                @if (((CommonEnums.RequestType)ViewBag.RequestType) == CommonEnums.RequestType.Emision)
+                {
+                    @Ajax.RawActionLink("<strong class='x-hide d-block float-left mr-2'>Continuar</strong><i class='material-icons float-right ml-2'>arrow_forward</i>",
+                                              "_PaymentCheckout",
+                                              "Home",
+                                              null,
+                                              new AjaxOptions
+                                              {
+                                                  UpdateTargetId = "dvContainer",
+                                                  InsertionMode = InsertionMode.Replace,
+                                              },
+                                              new
+                                              {
+                                                  @class = "btn btn-outline-success mb-1 lh22 float-right btnSendToPaymentCheckOut"
+                                              }
+                                              )
+                }
+                else if (((CommonEnums.RequestType)ViewBag.RequestType) == CommonEnums.RequestType.Inclusion)
+                {
+                    @Ajax.RawActionLink("<strong class='x-hide d-block float-left mr-2'>Continuar</strong><i class='material-icons float-right ml-2'>arrow_forward</i>",
+                                              "_PaymentCheckout",
+                                              "Home",
+                                              null,
+                                              new AjaxOptions
+                                              {
+                                                  UpdateTargetId = "dvContainer",
+                                                  InsertionMode = InsertionMode.Replace
+                                              },
+                                              new
+                                              {
+                                                  @class = "btn btn-outline-success mb-1 lh22 float-right btnSendToPaymentCheckOut"
+                                              }
+                                              )
+                }
+            </div>
+        </div>
+    </div>
+</footer>

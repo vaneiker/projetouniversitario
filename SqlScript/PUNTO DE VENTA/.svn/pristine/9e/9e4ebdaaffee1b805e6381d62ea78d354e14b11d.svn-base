@@ -1,0 +1,1986 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SetClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:SysFlexClientParameters" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexClientParameters">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoCedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apellidos" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaNacimiento" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Intermediario" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelefonoCasa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelefonoTrabajo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Celular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nacionalidad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ramo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubRamo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaTotal" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hora" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodMoneda" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TasaMoneda" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Oficina" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaLicencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sexo" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ncf" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetClientResult" type="tns:SysFlexCotizacionHeader" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexCotizacionHeader">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cliente" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Intermediario" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoNeto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsuarioAdiciona" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaAdiciona" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsuarioModifica" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaModifica" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ramo" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hora" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deudor" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodMoneda" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Prima" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcComision" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Oficina" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comunicaciones" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCotizacionDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CotizacionDetail" type="tns:SysFlexCotizacionDetailParameters" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexCotizacionDetailParameters">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ramo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubRamo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Items" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoVehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarcaVehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModeloVehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AnoVehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chasis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Placa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Color" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cilindro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Pasajeros" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Uso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EstacionaEn" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcRecargo" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoRecargo" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcDescuento" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoDescuento" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcImpuesto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoImpuesto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaNeta" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaBruta" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicio" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFin" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TarifaLeyID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tasa" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroFormulario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiciosSeparadoPorComa" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCotizacionDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetCotizacionDetailResult" type="tns:SysFlexCotizacionDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexCotizacionDetail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ramo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubRamo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Secuencia" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoVehiculo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarcaVehiculo" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadCilindro" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadPasajeros" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CantidadToneladas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsoVehiculo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnoVehiculo" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chasis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Placa" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodColor" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="Color" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcRecargo" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoRecargo" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcDescuento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoDescuento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcImpuesto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoImpuesto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="RenovacionAutomatica" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaBruta" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Neto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAsegurado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadMeses" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoTarifa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsuarioAdiciona" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaAdiciona" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsuarioModifica" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaModifica" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tasa" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCotizacionCobertura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CotizacionCoberturas" type="tns:SysFlexCotizacionCoberturas" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexCotizacionCoberturas">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Items" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoberturaID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Limite" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCotizacionCoberturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetCotizacionCoberturaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCEmision">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Emision" type="tns:SysFlexEmisionParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexEmisionParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" nillable="true" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodigoConcepto" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCEmisionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetCEmisionResult" type="tns:SysFlexEmision" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexEmision">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TipoCxc" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroCxc" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodigoConcepto" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCEmisionFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Emision" type="tns:SysFlexEmisionParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCEmisionFacturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetCEmisionFacturaResult" type="tns:SysFlexEmisionFactura" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexEmisionFactura">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCEmisionPagos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmisionPago" type="tns:SysFlexEmisionPagosParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexEmisionPagosParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoQuePaga" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroQuePaga" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoPago" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Pagado" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Oficina" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FormaPago" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCEmisionPagosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetCEmisionPagosResult" type="tns:SysFlexEmisionPagos" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexEmisionPagos">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TipoPago" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroPago" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetAcuerdoDePago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameter" type="tns:SysFlexAcuerdoDePagoParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexAcuerdoDePagoParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inicial" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadCuotas" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetAcuerdoDePagoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetAcuerdoDePagoResult" type="tns:ArrayOfSysFlexAcuerdoDePago" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexAcuerdoDePago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexAcuerdoDePago" nillable="true" type="tns:SysFlexAcuerdoDePago" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexAcuerdoDePago">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SecuenciaMov" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cuota" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcientoInicial" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaPago" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValorCuota" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BalanceCuota" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetMensajeria">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameter" type="tns:SysFlexMensajeriaParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexMensajeriaParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cotizacion" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetMensajeriaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetMensajeriaResult" type="tns:ArrayOfSysFlexMensajeria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexMensajeria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexMensajeria" nillable="true" type="tns:SysFlexMensajeria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexMensajeria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdCompania" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdRequerimiento" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdOrigen" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescOrigen" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdTipoEntidad" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescEntidad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdSector" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescSector" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreReferencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Celular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComentarioHeader" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Referencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenciaSecuencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenciaKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nota" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdRequerimientoDetalle" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdTipoRequerimiento" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescTipoRequerimiento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdTipoDocumento" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescTipoDocumento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComentarioDetail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetPolizaDescuento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameter" type="tns:SysFlexPolizaDescuentoParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexPolizaDescuentoParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConceptoId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcDescuento" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetPolizaDescuentoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetPolizaInclusion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameter" type="tns:SysFlexPolizaInclusionParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexPolizaInclusionParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Compania" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ramo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubRamo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TarifaLeyId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaTotalConImpuesto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaTotalSinImpuesto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodMoneda" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcImpuesto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaImpuesto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tasa" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="VehiculoCondiciones" type="tns:ArrayOfVehiculoCondicion" />
+          <s:element minOccurs="0" maxOccurs="1" name="VehiculoCoberturas" type="tns:ArrayOfVehiculoCondicion" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoRnc" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apellidos" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaNacimiento" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sexo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelCasa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelTrabajo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelCel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nacionalidad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaExpiracionLicencia" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EsInclusion" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVehiculoCondicion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VehiculoCondicion" nillable="true" type="tns:VehiculoCondicion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VehiculoCondicion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CondicionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsNumeric" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValorAlf" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValorNum" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetPolizaInclusionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetPolizaInclusionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProducts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleAno" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductsResult" type="tns:ArrayOfSysFlexProducts" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexProducts">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexProducts" nillable="true" type="tns:SysFlexProducts" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexProducts">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LineBusinessID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductTypeID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducttypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoverageID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="initialPercent" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndingPercent" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="initialPremium" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndingPremium" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Premium" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PremiumPercent" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Calculate" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequiereInspeccion" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVehicleType">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVehicleTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleTypeResult" type="tns:ArrayOfSysFlexVehicleType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexVehicleType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexVehicleType" nillable="true" type="tns:SysFlexVehicleType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexVehicleType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="VehicleTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="VehicleTypeKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentPremium" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="VehicleTypeDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLineBusiness">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLineBusinessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLineBusinessResult" type="tns:ArrayOfSysFlexLineBusiness" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexLineBusiness">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexLineBusiness" nillable="true" type="tns:SysFlexLineBusiness" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexLineBusiness">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LineBusinessID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineBusinessKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineBusinessName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVehicleYears">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CoverageID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleYearsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleYearsResult" type="tns:ArrayOfSysFlexVehicleYears" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexVehicleYears">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexVehicleYears" nillable="true" type="tns:SysFlexVehicleYears" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexVehicleYears">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="VehicleYearID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LineBusinessID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoverageID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineBusinessName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AmountOfYears" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Year" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InitialValue" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndingValue" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_First" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_Second" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_Third" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent_Fourth" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentPremium_First" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentPremium_Second" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentPremium_Third" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentPremium_Fourth" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCoverage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CoverageID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleTypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCoverageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCoverageResult" type="tns:ArrayOfSysFlexCoverage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexCoverage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexCoverage" nillable="true" type="tns:SysFlexCoverage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexCoverage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LineBusinessID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoverageID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="mandatory" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCoverageDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CoverageID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="indicator" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleVlue" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCoverageDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCoverageDetailsResult" type="tns:ArrayOfSysFlexCoverageDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexCoverageDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexCoverageDetails" nillable="true" type="tns:SysFlexCoverageDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexCoverageDetails">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LineBusinessID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineBusinessName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoverageID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageDetailType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoverageDetailID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageDetailName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageDetaiInformationAmount" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percent" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="deductible" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinimumDeductible" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="baseDeductible" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Premium" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="mandatory" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSurcharges">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CoverageID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SequenceConditionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Modelo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurchargesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSurchargesResult" type="tns:ArrayOfSysFlexSurcharges" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexSurcharges">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexSurcharges" nillable="true" type="tns:SysFlexSurcharges" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexSurcharges">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LineBusinessID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoverageID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SurchargesID" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SurchargesName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SurchargesPercent" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SequenceConditionID" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CoverageID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleYear" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="insuredAmount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="coveragePercent" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicesIDS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="surchargeIDS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="beginDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndgDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecargosIDEstaciona" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecargosIDDeducible" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecargosSexo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecargoEdad" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Modelo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Intermediario" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PorcIntermediarioRecargo" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="LicenciaExtranjera" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="CantidadVehiculos" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRatesResult" type="tns:SysFlexRates" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexRates">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaTerceros" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaServicio" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcDanosPropios" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaDanosPropio" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcRecargos" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoRecargos" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaMinima" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoDescuentos" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcDescuentos" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MesesCotiza" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MesesVigencia" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaDiaria" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiasVigencia" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiasCotiza" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaProrrata" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcImpuesto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaNeta" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoImpuesto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaBruta" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckChassisPlaca">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chassis" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckChassisPlacaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckChassisPlacaResult" type="tns:ArrayOfSysFlexChassisPlaca" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexChassisPlaca">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexChassisPlaca" nillable="true" type="tns:SysFlexChassisPlaca" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexChassisPlaca">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOfficeMatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="globalOfficeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOfficeMatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOfficeMatchResult" type="tns:ArrayOfSysFlexOfficeMatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexOfficeMatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexOfficeMatch" nillable="true" type="tns:SysFlexOfficeMatch" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexOfficeMatch">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OfficeIdGlobal" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OfficeIdSysFlex" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfficeDesc" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMaximoReaseguroSubRamo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameter" type="tns:SysFlexMaximoReaseguroParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SysFlexMaximoReaseguroParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Ramo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubRamo" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMaximoReaseguroSubRamoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMaximoReaseguroSubRamoResult" type="tns:ArrayOfSysFlexMaximoReaseguro" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexMaximoReaseguro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexMaximoReaseguro" nillable="true" type="tns:SysFlexMaximoReaseguro" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexMaximoReaseguro">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Ramo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubRamo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipoproducto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaximoReaseguro" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCondiciones">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ramo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subRamo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCondicionesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCondicionesResult" type="tns:ArrayOfSysFlexCondicion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSysFlexCondicion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SysFlexCondicion" nillable="true" type="tns:SysFlexCondicion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SysFlexCondicion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Ramo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubRamo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CondicionId" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsNumeric" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfSysFlexProducts" nillable="true" type="tns:ArrayOfSysFlexProducts" />
+      <s:element name="ArrayOfSysFlexVehicleType" nillable="true" type="tns:ArrayOfSysFlexVehicleType" />
+      <s:element name="ArrayOfSysFlexLineBusiness" nillable="true" type="tns:ArrayOfSysFlexLineBusiness" />
+      <s:element name="ArrayOfSysFlexVehicleYears" nillable="true" type="tns:ArrayOfSysFlexVehicleYears" />
+      <s:element name="ArrayOfSysFlexCoverage" nillable="true" type="tns:ArrayOfSysFlexCoverage" />
+      <s:element name="ArrayOfSysFlexCoverageDetails" nillable="true" type="tns:ArrayOfSysFlexCoverageDetails" />
+      <s:element name="ArrayOfSysFlexSurcharges" nillable="true" type="tns:ArrayOfSysFlexSurcharges" />
+      <s:element name="SysFlexRates" nillable="true" type="tns:SysFlexRates" />
+      <s:element name="ArrayOfSysFlexChassisPlaca" nillable="true" type="tns:ArrayOfSysFlexChassisPlaca" />
+      <s:element name="ArrayOfSysFlexOfficeMatch" nillable="true" type="tns:ArrayOfSysFlexOfficeMatch" />
+      <s:element name="ArrayOfSysFlexCondicion" nillable="true" type="tns:ArrayOfSysFlexCondicion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SetClientSoapIn">
+    <wsdl:part name="parameters" element="tns:SetClient" />
+  </wsdl:message>
+  <wsdl:message name="SetClientSoapOut">
+    <wsdl:part name="parameters" element="tns:SetClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCotizacionDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCotizacionDetail" />
+  </wsdl:message>
+  <wsdl:message name="SetCotizacionDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCotizacionDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCotizacionCoberturaSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCotizacionCobertura" />
+  </wsdl:message>
+  <wsdl:message name="SetCotizacionCoberturaSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCotizacionCoberturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCEmisionSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCEmision" />
+  </wsdl:message>
+  <wsdl:message name="SetCEmisionSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCEmisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCEmisionFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCEmisionFactura" />
+  </wsdl:message>
+  <wsdl:message name="SetCEmisionFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCEmisionFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCEmisionPagosSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCEmisionPagos" />
+  </wsdl:message>
+  <wsdl:message name="SetCEmisionPagosSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCEmisionPagosResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAcuerdoDePagoSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAcuerdoDePago" />
+  </wsdl:message>
+  <wsdl:message name="SetAcuerdoDePagoSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAcuerdoDePagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetMensajeriaSoapIn">
+    <wsdl:part name="parameters" element="tns:SetMensajeria" />
+  </wsdl:message>
+  <wsdl:message name="SetMensajeriaSoapOut">
+    <wsdl:part name="parameters" element="tns:SetMensajeriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetPolizaDescuentoSoapIn">
+    <wsdl:part name="parameters" element="tns:SetPolizaDescuento" />
+  </wsdl:message>
+  <wsdl:message name="SetPolizaDescuentoSoapOut">
+    <wsdl:part name="parameters" element="tns:SetPolizaDescuentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetPolizaInclusionSoapIn">
+    <wsdl:part name="parameters" element="tns:SetPolizaInclusion" />
+  </wsdl:message>
+  <wsdl:message name="SetPolizaInclusionSoapOut">
+    <wsdl:part name="parameters" element="tns:SetPolizaInclusionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleType" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLineBusinessSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLineBusiness" />
+  </wsdl:message>
+  <wsdl:message name="GetLineBusinessSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLineBusinessResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleYearsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleYears" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleYearsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleYearsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCoverage" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCoverageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCoverageDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCoverageDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSurchargesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSurcharges" />
+  </wsdl:message>
+  <wsdl:message name="GetSurchargesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSurchargesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRates" />
+  </wsdl:message>
+  <wsdl:message name="GetRatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckChassisPlacaSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckChassisPlaca" />
+  </wsdl:message>
+  <wsdl:message name="CheckChassisPlacaSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckChassisPlacaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeMatchSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOfficeMatch" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeMatchSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOfficeMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMaximoReaseguroSubRamoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMaximoReaseguroSubRamo" />
+  </wsdl:message>
+  <wsdl:message name="GetMaximoReaseguroSubRamoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMaximoReaseguroSubRamoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCondicionesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCondiciones" />
+  </wsdl:message>
+  <wsdl:message name="GetCondicionesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCondicionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsHttpGetIn">
+    <wsdl:part name="ProductID" type="s:string" />
+    <wsdl:part name="VehicleTypeID" type="s:string" />
+    <wsdl:part name="VehicleAno" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleTypeHttpGetIn" />
+  <wsdl:message name="GetVehicleTypeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexVehicleType" />
+  </wsdl:message>
+  <wsdl:message name="GetLineBusinessHttpGetIn" />
+  <wsdl:message name="GetLineBusinessHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexLineBusiness" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleYearsHttpGetIn">
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="CoverageID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleYearsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexVehicleYears" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageHttpGetIn">
+    <wsdl:part name="CoverageID" type="s:string" />
+    <wsdl:part name="VehicleTypeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexCoverage" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageDetailsHttpGetIn">
+    <wsdl:part name="CoverageID" type="s:string" />
+    <wsdl:part name="indicator" type="s:string" />
+    <wsdl:part name="vehicleVlue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexCoverageDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetSurchargesHttpGetIn">
+    <wsdl:part name="CoverageID" type="s:string" />
+    <wsdl:part name="SequenceConditionID" type="s:string" />
+    <wsdl:part name="Modelo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSurchargesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexSurcharges" />
+  </wsdl:message>
+  <wsdl:message name="GetRatesHttpGetIn">
+    <wsdl:part name="CoverageID" type="s:string" />
+    <wsdl:part name="ProductID" type="s:string" />
+    <wsdl:part name="VehicleYear" type="s:string" />
+    <wsdl:part name="insuredAmount" type="s:string" />
+    <wsdl:part name="coveragePercent" type="s:string" />
+    <wsdl:part name="ServicesIDS" type="s:string" />
+    <wsdl:part name="surchargeIDS" type="s:string" />
+    <wsdl:part name="beginDate" type="s:string" />
+    <wsdl:part name="EndgDate" type="s:string" />
+    <wsdl:part name="RecargosIDEstaciona" type="s:string" />
+    <wsdl:part name="RecargosIDDeducible" type="s:string" />
+    <wsdl:part name="RecargosSexo" type="s:string" />
+    <wsdl:part name="RecargoEdad" type="s:string" />
+    <wsdl:part name="Modelo" type="s:string" />
+    <wsdl:part name="Intermediario" type="s:string" />
+    <wsdl:part name="PorcIntermediarioRecargo" type="s:string" />
+    <wsdl:part name="LicenciaExtranjera" type="s:string" />
+    <wsdl:part name="CantidadVehiculos" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRatesHttpGetOut">
+    <wsdl:part name="Body" element="tns:SysFlexRates" />
+  </wsdl:message>
+  <wsdl:message name="CheckChassisPlacaHttpGetIn">
+    <wsdl:part name="chassis" type="s:string" />
+    <wsdl:part name="placa" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckChassisPlacaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexChassisPlaca" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeMatchHttpGetIn">
+    <wsdl:part name="globalOfficeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeMatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexOfficeMatch" />
+  </wsdl:message>
+  <wsdl:message name="GetCondicionesHttpGetIn">
+    <wsdl:part name="ramo" type="s:string" />
+    <wsdl:part name="subRamo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCondicionesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexCondicion" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsHttpPostIn">
+    <wsdl:part name="ProductID" type="s:string" />
+    <wsdl:part name="VehicleTypeID" type="s:string" />
+    <wsdl:part name="VehicleAno" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleTypeHttpPostIn" />
+  <wsdl:message name="GetVehicleTypeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexVehicleType" />
+  </wsdl:message>
+  <wsdl:message name="GetLineBusinessHttpPostIn" />
+  <wsdl:message name="GetLineBusinessHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexLineBusiness" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleYearsHttpPostIn">
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="CoverageID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleYearsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexVehicleYears" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageHttpPostIn">
+    <wsdl:part name="CoverageID" type="s:string" />
+    <wsdl:part name="VehicleTypeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexCoverage" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageDetailsHttpPostIn">
+    <wsdl:part name="CoverageID" type="s:string" />
+    <wsdl:part name="indicator" type="s:string" />
+    <wsdl:part name="vehicleVlue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCoverageDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexCoverageDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetSurchargesHttpPostIn">
+    <wsdl:part name="CoverageID" type="s:string" />
+    <wsdl:part name="SequenceConditionID" type="s:string" />
+    <wsdl:part name="Modelo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSurchargesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexSurcharges" />
+  </wsdl:message>
+  <wsdl:message name="GetRatesHttpPostIn">
+    <wsdl:part name="CoverageID" type="s:string" />
+    <wsdl:part name="ProductID" type="s:string" />
+    <wsdl:part name="VehicleYear" type="s:string" />
+    <wsdl:part name="insuredAmount" type="s:string" />
+    <wsdl:part name="coveragePercent" type="s:string" />
+    <wsdl:part name="ServicesIDS" type="s:string" />
+    <wsdl:part name="surchargeIDS" type="s:string" />
+    <wsdl:part name="beginDate" type="s:string" />
+    <wsdl:part name="EndgDate" type="s:string" />
+    <wsdl:part name="RecargosIDEstaciona" type="s:string" />
+    <wsdl:part name="RecargosIDDeducible" type="s:string" />
+    <wsdl:part name="RecargosSexo" type="s:string" />
+    <wsdl:part name="RecargoEdad" type="s:string" />
+    <wsdl:part name="Modelo" type="s:string" />
+    <wsdl:part name="Intermediario" type="s:string" />
+    <wsdl:part name="PorcIntermediarioRecargo" type="s:string" />
+    <wsdl:part name="LicenciaExtranjera" type="s:string" />
+    <wsdl:part name="CantidadVehiculos" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRatesHttpPostOut">
+    <wsdl:part name="Body" element="tns:SysFlexRates" />
+  </wsdl:message>
+  <wsdl:message name="CheckChassisPlacaHttpPostIn">
+    <wsdl:part name="chassis" type="s:string" />
+    <wsdl:part name="placa" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckChassisPlacaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexChassisPlaca" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeMatchHttpPostIn">
+    <wsdl:part name="globalOfficeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeMatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexOfficeMatch" />
+  </wsdl:message>
+  <wsdl:message name="GetCondicionesHttpPostIn">
+    <wsdl:part name="ramo" type="s:string" />
+    <wsdl:part name="subRamo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCondicionesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSysFlexCondicion" />
+  </wsdl:message>
+  <wsdl:portType name="WSSysFlexVehicleSoap">
+    <wsdl:operation name="SetClient">
+      <wsdl:input message="tns:SetClientSoapIn" />
+      <wsdl:output message="tns:SetClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCotizacionDetail">
+      <wsdl:input message="tns:SetCotizacionDetailSoapIn" />
+      <wsdl:output message="tns:SetCotizacionDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCotizacionCobertura">
+      <wsdl:input message="tns:SetCotizacionCoberturaSoapIn" />
+      <wsdl:output message="tns:SetCotizacionCoberturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmision">
+      <wsdl:input message="tns:SetCEmisionSoapIn" />
+      <wsdl:output message="tns:SetCEmisionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmisionFactura">
+      <wsdl:input message="tns:SetCEmisionFacturaSoapIn" />
+      <wsdl:output message="tns:SetCEmisionFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmisionPagos">
+      <wsdl:input message="tns:SetCEmisionPagosSoapIn" />
+      <wsdl:output message="tns:SetCEmisionPagosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAcuerdoDePago">
+      <wsdl:input message="tns:SetAcuerdoDePagoSoapIn" />
+      <wsdl:output message="tns:SetAcuerdoDePagoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMensajeria">
+      <wsdl:input message="tns:SetMensajeriaSoapIn" />
+      <wsdl:output message="tns:SetMensajeriaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPolizaDescuento">
+      <wsdl:input message="tns:SetPolizaDescuentoSoapIn" />
+      <wsdl:output message="tns:SetPolizaDescuentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPolizaInclusion">
+      <wsdl:input message="tns:SetPolizaInclusionSoapIn" />
+      <wsdl:output message="tns:SetPolizaInclusionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <wsdl:input message="tns:GetProductsSoapIn" />
+      <wsdl:output message="tns:GetProductsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleType">
+      <wsdl:input message="tns:GetVehicleTypeSoapIn" />
+      <wsdl:output message="tns:GetVehicleTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLineBusiness">
+      <wsdl:input message="tns:GetLineBusinessSoapIn" />
+      <wsdl:output message="tns:GetLineBusinessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <wsdl:input message="tns:GetVehicleYearsSoapIn" />
+      <wsdl:output message="tns:GetVehicleYearsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverage">
+      <wsdl:input message="tns:GetCoverageSoapIn" />
+      <wsdl:output message="tns:GetCoverageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <wsdl:input message="tns:GetCoverageDetailsSoapIn" />
+      <wsdl:output message="tns:GetCoverageDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurcharges">
+      <wsdl:input message="tns:GetSurchargesSoapIn" />
+      <wsdl:output message="tns:GetSurchargesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRates">
+      <wsdl:input message="tns:GetRatesSoapIn" />
+      <wsdl:output message="tns:GetRatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <wsdl:input message="tns:CheckChassisPlacaSoapIn" />
+      <wsdl:output message="tns:CheckChassisPlacaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeMatch">
+      <wsdl:input message="tns:GetOfficeMatchSoapIn" />
+      <wsdl:output message="tns:GetOfficeMatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaximoReaseguroSubRamo">
+      <wsdl:input message="tns:GetMaximoReaseguroSubRamoSoapIn" />
+      <wsdl:output message="tns:GetMaximoReaseguroSubRamoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCondiciones">
+      <wsdl:input message="tns:GetCondicionesSoapIn" />
+      <wsdl:output message="tns:GetCondicionesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSSysFlexVehicleHttpGet">
+    <wsdl:operation name="GetProducts">
+      <wsdl:input message="tns:GetProductsHttpGetIn" />
+      <wsdl:output message="tns:GetProductsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleType">
+      <wsdl:input message="tns:GetVehicleTypeHttpGetIn" />
+      <wsdl:output message="tns:GetVehicleTypeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLineBusiness">
+      <wsdl:input message="tns:GetLineBusinessHttpGetIn" />
+      <wsdl:output message="tns:GetLineBusinessHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <wsdl:input message="tns:GetVehicleYearsHttpGetIn" />
+      <wsdl:output message="tns:GetVehicleYearsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverage">
+      <wsdl:input message="tns:GetCoverageHttpGetIn" />
+      <wsdl:output message="tns:GetCoverageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <wsdl:input message="tns:GetCoverageDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetCoverageDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurcharges">
+      <wsdl:input message="tns:GetSurchargesHttpGetIn" />
+      <wsdl:output message="tns:GetSurchargesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRates">
+      <wsdl:input message="tns:GetRatesHttpGetIn" />
+      <wsdl:output message="tns:GetRatesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <wsdl:input message="tns:CheckChassisPlacaHttpGetIn" />
+      <wsdl:output message="tns:CheckChassisPlacaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeMatch">
+      <wsdl:input message="tns:GetOfficeMatchHttpGetIn" />
+      <wsdl:output message="tns:GetOfficeMatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCondiciones">
+      <wsdl:input message="tns:GetCondicionesHttpGetIn" />
+      <wsdl:output message="tns:GetCondicionesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSSysFlexVehicleHttpPost">
+    <wsdl:operation name="GetProducts">
+      <wsdl:input message="tns:GetProductsHttpPostIn" />
+      <wsdl:output message="tns:GetProductsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleType">
+      <wsdl:input message="tns:GetVehicleTypeHttpPostIn" />
+      <wsdl:output message="tns:GetVehicleTypeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLineBusiness">
+      <wsdl:input message="tns:GetLineBusinessHttpPostIn" />
+      <wsdl:output message="tns:GetLineBusinessHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <wsdl:input message="tns:GetVehicleYearsHttpPostIn" />
+      <wsdl:output message="tns:GetVehicleYearsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverage">
+      <wsdl:input message="tns:GetCoverageHttpPostIn" />
+      <wsdl:output message="tns:GetCoverageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <wsdl:input message="tns:GetCoverageDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetCoverageDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurcharges">
+      <wsdl:input message="tns:GetSurchargesHttpPostIn" />
+      <wsdl:output message="tns:GetSurchargesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRates">
+      <wsdl:input message="tns:GetRatesHttpPostIn" />
+      <wsdl:output message="tns:GetRatesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <wsdl:input message="tns:CheckChassisPlacaHttpPostIn" />
+      <wsdl:output message="tns:CheckChassisPlacaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeMatch">
+      <wsdl:input message="tns:GetOfficeMatchHttpPostIn" />
+      <wsdl:output message="tns:GetOfficeMatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCondiciones">
+      <wsdl:input message="tns:GetCondicionesHttpPostIn" />
+      <wsdl:output message="tns:GetCondicionesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSSysFlexVehicleSoap" type="tns:WSSysFlexVehicleSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SetClient">
+      <soap:operation soapAction="http://tempuri.org/SetClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCotizacionDetail">
+      <soap:operation soapAction="http://tempuri.org/SetCotizacionDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCotizacionCobertura">
+      <soap:operation soapAction="http://tempuri.org/SetCotizacionCobertura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmision">
+      <soap:operation soapAction="http://tempuri.org/SetCEmision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmisionFactura">
+      <soap:operation soapAction="http://tempuri.org/SetCEmisionFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmisionPagos">
+      <soap:operation soapAction="http://tempuri.org/SetCEmisionPagos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAcuerdoDePago">
+      <soap:operation soapAction="http://tempuri.org/SetAcuerdoDePago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMensajeria">
+      <soap:operation soapAction="http://tempuri.org/SetMensajeria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPolizaDescuento">
+      <soap:operation soapAction="http://tempuri.org/SetPolizaDescuento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPolizaInclusion">
+      <soap:operation soapAction="http://tempuri.org/SetPolizaInclusion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <soap:operation soapAction="http://tempuri.org/GetProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleType">
+      <soap:operation soapAction="http://tempuri.org/GetVehicleType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLineBusiness">
+      <soap:operation soapAction="http://tempuri.org/GetLineBusiness" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <soap:operation soapAction="http://tempuri.org/GetVehicleYears" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverage">
+      <soap:operation soapAction="http://tempuri.org/GetCoverage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <soap:operation soapAction="http://tempuri.org/GetCoverageDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurcharges">
+      <soap:operation soapAction="http://tempuri.org/GetSurcharges" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRates">
+      <soap:operation soapAction="http://tempuri.org/GetRates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <soap:operation soapAction="http://tempuri.org/CheckChassisPlaca" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeMatch">
+      <soap:operation soapAction="http://tempuri.org/GetOfficeMatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaximoReaseguroSubRamo">
+      <soap:operation soapAction="http://tempuri.org/GetMaximoReaseguroSubRamo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCondiciones">
+      <soap:operation soapAction="http://tempuri.org/GetCondiciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSSysFlexVehicleSoap12" type="tns:WSSysFlexVehicleSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SetClient">
+      <soap12:operation soapAction="http://tempuri.org/SetClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCotizacionDetail">
+      <soap12:operation soapAction="http://tempuri.org/SetCotizacionDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCotizacionCobertura">
+      <soap12:operation soapAction="http://tempuri.org/SetCotizacionCobertura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmision">
+      <soap12:operation soapAction="http://tempuri.org/SetCEmision" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmisionFactura">
+      <soap12:operation soapAction="http://tempuri.org/SetCEmisionFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCEmisionPagos">
+      <soap12:operation soapAction="http://tempuri.org/SetCEmisionPagos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAcuerdoDePago">
+      <soap12:operation soapAction="http://tempuri.org/SetAcuerdoDePago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMensajeria">
+      <soap12:operation soapAction="http://tempuri.org/SetMensajeria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPolizaDescuento">
+      <soap12:operation soapAction="http://tempuri.org/SetPolizaDescuento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPolizaInclusion">
+      <soap12:operation soapAction="http://tempuri.org/SetPolizaInclusion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <soap12:operation soapAction="http://tempuri.org/GetProducts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleType">
+      <soap12:operation soapAction="http://tempuri.org/GetVehicleType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLineBusiness">
+      <soap12:operation soapAction="http://tempuri.org/GetLineBusiness" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <soap12:operation soapAction="http://tempuri.org/GetVehicleYears" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverage">
+      <soap12:operation soapAction="http://tempuri.org/GetCoverage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetCoverageDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurcharges">
+      <soap12:operation soapAction="http://tempuri.org/GetSurcharges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRates">
+      <soap12:operation soapAction="http://tempuri.org/GetRates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <soap12:operation soapAction="http://tempuri.org/CheckChassisPlaca" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeMatch">
+      <soap12:operation soapAction="http://tempuri.org/GetOfficeMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaximoReaseguroSubRamo">
+      <soap12:operation soapAction="http://tempuri.org/GetMaximoReaseguroSubRamo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCondiciones">
+      <soap12:operation soapAction="http://tempuri.org/GetCondiciones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSSysFlexVehicleHttpGet" type="tns:WSSysFlexVehicleHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetProducts">
+      <http:operation location="/GetProducts" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleType">
+      <http:operation location="/GetVehicleType" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLineBusiness">
+      <http:operation location="/GetLineBusiness" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <http:operation location="/GetVehicleYears" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverage">
+      <http:operation location="/GetCoverage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <http:operation location="/GetCoverageDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurcharges">
+      <http:operation location="/GetSurcharges" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRates">
+      <http:operation location="/GetRates" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <http:operation location="/CheckChassisPlaca" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeMatch">
+      <http:operation location="/GetOfficeMatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCondiciones">
+      <http:operation location="/GetCondiciones" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSSysFlexVehicleHttpPost" type="tns:WSSysFlexVehicleHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetProducts">
+      <http:operation location="/GetProducts" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleType">
+      <http:operation location="/GetVehicleType" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLineBusiness">
+      <http:operation location="/GetLineBusiness" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <http:operation location="/GetVehicleYears" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverage">
+      <http:operation location="/GetCoverage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <http:operation location="/GetCoverageDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurcharges">
+      <http:operation location="/GetSurcharges" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRates">
+      <http:operation location="/GetRates" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <http:operation location="/CheckChassisPlaca" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeMatch">
+      <http:operation location="/GetOfficeMatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCondiciones">
+      <http:operation location="/GetCondiciones" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSSysFlexVehicle">
+    <wsdl:port name="WSSysFlexVehicleSoap" binding="tns:WSSysFlexVehicleSoap">
+      <soap:address location="http://wssysflex2.dev.atlantica.local/WSSysFlexVehicle.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSSysFlexVehicleSoap12" binding="tns:WSSysFlexVehicleSoap12">
+      <soap12:address location="http://wssysflex2.dev.atlantica.local/WSSysFlexVehicle.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSSysFlexVehicleHttpGet" binding="tns:WSSysFlexVehicleHttpGet">
+      <http:address location="http://wssysflex2.dev.atlantica.local/WSSysFlexVehicle.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSSysFlexVehicleHttpPost" binding="tns:WSSysFlexVehicleHttpPost">
+      <http:address location="http://wssysflex2.dev.atlantica.local/WSSysFlexVehicle.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Queue_Services" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://atlqueueservices.qa.atlantica.local/WCFServices/Queues_Services.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://atlqueueservices.qa.atlantica.local/WCFServices/Queues_Services.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://atlqueueservices.qa.atlantica.local/WCFServices/Queues_Services.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ATL_VOQueueServices.EN.Entity" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IQueues_SP_SET_QUEUES_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_SET_QUEUES" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_SET_QUEUES_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_SET_QUEUESResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_SET_QUEUESBY_QUEUESTATUS_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_SET_QUEUESBY_QUEUESTATUS" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_SET_QUEUESBY_QUEUESTATUS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_SET_QUEUESBY_QUEUESTATUSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_SET_QUEUES_ANONIMOUS_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_SET_QUEUES_ANONIMOUS" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_SET_QUEUES_ANONIMOUS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_SET_QUEUES_ANONIMOUSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_GET_QUEUES_CASE_NOTES_HTMLFormat_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_GET_QUEUES_CASE_NOTES_HTMLFormat" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_GET_QUEUES_CASE_NOTES_HTMLFormat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_GET_QUEUES_CASE_NOTES_HTMLFormatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_GET_QUEUES_QUEUES_CASE_NOTESByUSerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_GET_QUEUES_CASE_ANONIMOUS_ByUSerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_Filter_Queue_InputMessage">
+    <wsdl:part name="parameters" element="tns:Filter_Queue" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_Filter_Queue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Filter_QueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Type_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Type" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Type_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Department_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Department" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Department_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_DepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Source_Type_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Source_Type" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Source_Type_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Source_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Service_Channel_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Service_Channel" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Service_Channel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Service_ChannelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Status" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Call_Reason_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Call_Reason" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Call_Reason_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Call_ReasonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Meeting_Type_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Meeting_Type" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Meeting_Type_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Meeting_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Meeting_SubType_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Meeting_SubType" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_Meeting_SubType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_Meeting_SubTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_Filter_Catalog_InputMessage">
+    <wsdl:part name="parameters" element="tns:Filter_Catalog" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_Filter_Catalog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Filter_CatalogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_Filter_CatalogMeeting_InputMessage">
+    <wsdl:part name="parameters" element="tns:Filter_CatalogMeeting" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_Filter_CatalogMeeting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Filter_CatalogMeetingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_BusinessLine_InputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_BusinessLine" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_SP_Get_Queue_BusinessLine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SP_Get_Queue_BusinessLineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_Filter_QueueAnonimus_InputMessage">
+    <wsdl:part name="parameters" element="tns:Filter_QueueAnonimus" />
+  </wsdl:message>
+  <wsdl:message name="IQueues_Filter_QueueAnonimus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Filter_QueueAnonimusResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IQueues">
+    <wsdl:operation name="SP_SET_QUEUES">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_SET_QUEUES" message="tns:IQueues_SP_SET_QUEUES_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_SET_QUEUESResponse" message="tns:IQueues_SP_SET_QUEUES_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_SET_QUEUESBY_QUEUESTATUS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_SET_QUEUESBY_QUEUESTATUS" message="tns:IQueues_SP_SET_QUEUESBY_QUEUESTATUS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_SET_QUEUESBY_QUEUESTATUSResponse" message="tns:IQueues_SP_SET_QUEUESBY_QUEUESTATUS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_SET_QUEUES_ANONIMOUS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_SET_QUEUES_ANONIMOUS" message="tns:IQueues_SP_SET_QUEUES_ANONIMOUS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_SET_QUEUES_ANONIMOUSResponse" message="tns:IQueues_SP_SET_QUEUES_ANONIMOUS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID" message="tns:IQueues_SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEIDResponse" message="tns:IQueues_SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_GET_QUEUES_CASE_NOTES_HTMLFormat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_GET_QUEUES_CASE_NOTES_HTMLFormat" message="tns:IQueues_SP_GET_QUEUES_CASE_NOTES_HTMLFormat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_GET_QUEUES_CASE_NOTES_HTMLFormatResponse" message="tns:IQueues_SP_GET_QUEUES_CASE_NOTES_HTMLFormat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer" message="tns:IQueues_SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_GET_QUEUES_QUEUES_CASE_NOTESByUSerResponse" message="tns:IQueues_SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer" message="tns:IQueues_SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_GET_QUEUES_CASE_ANONIMOUS_ByUSerResponse" message="tns:IQueues_SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Filter_Queue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/Filter_Queue" message="tns:IQueues_Filter_Queue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/Filter_QueueResponse" message="tns:IQueues_Filter_Queue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Type">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Type" message="tns:IQueues_SP_Get_Queue_Type_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_TypeResponse" message="tns:IQueues_SP_Get_Queue_Type_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Department">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Department" message="tns:IQueues_SP_Get_Queue_Department_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_DepartmentResponse" message="tns:IQueues_SP_Get_Queue_Department_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Source_Type">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Source_Type" message="tns:IQueues_SP_Get_Queue_Source_Type_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Source_TypeResponse" message="tns:IQueues_SP_Get_Queue_Source_Type_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Service_Channel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Service_Channel" message="tns:IQueues_SP_Get_Queue_Service_Channel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Service_ChannelResponse" message="tns:IQueues_SP_Get_Queue_Service_Channel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Status">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Status" message="tns:IQueues_SP_Get_Queue_Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_StatusResponse" message="tns:IQueues_SP_Get_Queue_Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Call_Reason">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Call_Reason" message="tns:IQueues_SP_Get_Queue_Call_Reason_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Call_ReasonResponse" message="tns:IQueues_SP_Get_Queue_Call_Reason_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Meeting_Type">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Meeting_Type" message="tns:IQueues_SP_Get_Queue_Meeting_Type_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Meeting_TypeResponse" message="tns:IQueues_SP_Get_Queue_Meeting_Type_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Meeting_SubType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Meeting_SubType" message="tns:IQueues_SP_Get_Queue_Meeting_SubType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_Meeting_SubTypeResponse" message="tns:IQueues_SP_Get_Queue_Meeting_SubType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Filter_Catalog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/Filter_Catalog" message="tns:IQueues_Filter_Catalog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/Filter_CatalogResponse" message="tns:IQueues_Filter_Catalog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Filter_CatalogMeeting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/Filter_CatalogMeeting" message="tns:IQueues_Filter_CatalogMeeting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/Filter_CatalogMeetingResponse" message="tns:IQueues_Filter_CatalogMeeting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_BusinessLine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_BusinessLine" message="tns:IQueues_SP_Get_Queue_BusinessLine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/SP_Get_Queue_BusinessLineResponse" message="tns:IQueues_SP_Get_Queue_BusinessLine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Filter_QueueAnonimus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IQueues/Filter_QueueAnonimus" message="tns:IQueues_Filter_QueueAnonimus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IQueues/Filter_QueueAnonimusResponse" message="tns:IQueues_Filter_QueueAnonimus_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IQueues" type="tns:IQueues">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SP_SET_QUEUES">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_SET_QUEUES" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_SET_QUEUESBY_QUEUESTATUS">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_SET_QUEUESBY_QUEUESTATUS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_SET_QUEUES_ANONIMOUS">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_SET_QUEUES_ANONIMOUS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_SET_QUEUES_ANONIMOUS_WITH_SOURCEID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_GET_QUEUES_CASE_NOTES_HTMLFormat">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_GET_QUEUES_CASE_NOTES_HTMLFormat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_GET_QUEUES_QUEUES_CASE_NOTESByUSer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_GET_QUEUES_CASE_ANONIMOUS_ByUSer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Filter_Queue">
+      <soap:operation soapAction="http://tempuri.org/IQueues/Filter_Queue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Type">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Department">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_Department" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Source_Type">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_Source_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Service_Channel">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_Service_Channel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Status">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Call_Reason">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_Call_Reason" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Meeting_Type">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_Meeting_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_Meeting_SubType">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_Meeting_SubType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Filter_Catalog">
+      <soap:operation soapAction="http://tempuri.org/IQueues/Filter_Catalog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Filter_CatalogMeeting">
+      <soap:operation soapAction="http://tempuri.org/IQueues/Filter_CatalogMeeting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SP_Get_Queue_BusinessLine">
+      <soap:operation soapAction="http://tempuri.org/IQueues/SP_Get_Queue_BusinessLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Filter_QueueAnonimus">
+      <soap:operation soapAction="http://tempuri.org/IQueues/Filter_QueueAnonimus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Queue_Services">
+    <wsdl:port name="BasicHttpBinding_IQueues" binding="tns:BasicHttpBinding_IQueues">
+      <soap:address location="http://atlqueueservices.qa.atlantica.local/WCFServices/Queues_Services.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

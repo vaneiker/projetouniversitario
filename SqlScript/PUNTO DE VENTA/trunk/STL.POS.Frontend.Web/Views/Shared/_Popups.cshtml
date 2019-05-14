@@ -1,0 +1,124 @@
+﻿ <!--#######################| ALL POPUPS |##########################-->
+<!--===========| POPUP Marbetes - Cedula - Licencias - Pasaporte |============ -->
+<div class="modal marb_izq wrapp doc_identi">
+    <div class="frontal"> <img src="/images/ced.png"> </div>
+    <div class="btn_funcion">
+        <ul class="Doc_Actions padd0">
+            <li><a href="#" class="print_icon2"></a></li>
+            <li><a href="#" class="pdf_icon2"></a></li>
+            <li><a href="#" class="save_icon2"></a></li>
+            <li><a data-modal-close="true" href="#" class="contract_icon"></a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<!--POP UP Reportes-->
+<div class="modal autoPDF report">
+    <a data-modal-close="true" class="closeX" href="#" onclick="closeReport();">×</a>
+    <iframe id="reportFrame" class="reportSource" src="" frameborder="0" marginwidth=2 marginheight=4 scrolling="auto"></iframe>
+
+    <div class="btn_funciones cont_gnl fl">
+        <ul class="">
+            <li id="reportBuyButton" style="display:none;"><button class="buy_icon"></button></li>
+            <li id="reportSaveButton"><button class="save_icon"></button></li>
+            <li><button class="emailB" data-bind="click: function() { $root.showEmailSender(); }"></button></li>
+            <li id="reportPrintButton"><button class="print_icon" data-bind="click: function() { $root.printReporteCotizacion(); }"></button></li>
+            <li id="reportDownloadButton"><div><a target="_blank" href="#" class="pdf_icon" download="Cotizacion"></a></div></li>
+        </ul>
+    </div>
+</div><!--cpopup-->
+<!--POP UP Reportes (2)-->
+<div class="modal autoPDF pag_17">
+    <a data-modal-close="true" class="closeX" href="#" onclick="$('.modal.autoPDF.pag_17').hide();">×</a>
+    <iframe id="reportIframe" src="" frameborder="0" marginwidth=2 marginheight=4 scrolling="auto"></iframe>
+
+    <div class="btn_funciones cont_gnl fl">
+        <ul class="">
+            @*<li><a class="save_icon"></a></li>*@
+            <li><button id="saveReportBtn" class="save_icon"></button></li>
+            <li><button class="emailB" data-bind="click: function () { $root.showEmailSender(); }"></button></li>
+            <li><button class="print_icon" onclick="pdfPrint('reportIframe')"></button></li>
+            <li><button class="pdf_icon"></button></li>
+        </ul>
+    </div>
+</div><!--cpopup-->
+<!--POP UP ERROR VEHICLE COVERAGE-->
+<div class="modal cpopup popupErrorAuto" id="errorAutoContainer">
+    <p id="errorAutoTitle">
+    </p>
+    <div class="popup02">
+        <p id="errorAutoMessage">
+        </p>
+        <div class=" tbl grid_popup">
+            <div class="divTableScroll">
+                <table id="errorAutoList"></table>
+            </div>
+        </div>
+        <div class="mT20">
+            <button class="pbtn pb_red" style="margin:0 auto;" onclick="$('#errorAutoContainer').hide();">Cerrar</button>
+        </div>
+    </div>
+</div><!--cpopup-->
+<!--POP UP BUY SUCCESS-->
+<div class="modal popup03 suCompra">
+    <!--   -->
+    <a data-modal-close="true" class="closeX" href="#" data-bind="click: function() { $('.modal.popup03.suCompra').hide(); $root.newQuotationNoQuestion(); location.reload(); }">×</a>
+    <p>Su compra ha sido finalizada Exitosamente.</p>
+    <p>Ud. Puede acceder a nuestro Portar del Cliente para todo lo concerniente a su póliza. <br /><a href="#" class="LinkATL">www.atlantica.do</a></p>
+    <p>Para ver y/o imprimir su marbete temporal por favor dar click en “Imprimir Marbete”</p>
+    <p id="noPolicyMarbete"></p>
+    <p id="noAuthorizationCode"></p>
+    @*<p>Para ver y/o imprimir su recibo de pago por favor dar click en “Imprimir Recibo”</p>*@
+    <div class="mT10">
+        <a href="#" class="pbtn pb_blue" data-bind="click: function () { mainData().showMarbeteTH($('#marbeteReciboQuotId').val()); }">Ver/Imprimir Marbete</a>
+        @*<a data-modal-close="true" href="#" data-bind="click: function() { mainData().showContract($('#marbeteReciboQuotId').val()); }" class="pbtn pb_green fl">Ver/Imprimir Recibo de Pago</a>*@
+    </div>
+</div><!--cpopup-->
+<!--EMAIL-->
+<div class="modal popup03 popupEmail">
+    <!--   -->
+    <a data-modal-close="true" class="closeX" href="#" onclick="$('.modal.popup03.popupEmail').hide(); $('#reportFrame').show();">×</a>
+    <p>
+        Ingrese los destinatarios
+    </p>
+    <div class="tbl grid_popup">
+        <table>
+            <thead>
+                <tr class="gradient_azul">
+                    <th align="center"><span>Email</span></th>
+                    <th align="center" style="width:40px"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: emailDestList">
+                <tr>
+                    <td align="center">
+                        <input type="text" data-bind="value: $rawData" placeholder="--" />
+                    </td>
+                    <td align="center">
+                        <!--ko if: $index() != 0 -->
+                        <a class="grid_icons cazul delete" href="#" data-bind="click: function() { $parent.emailDestList.splice($index(), 1); }"></a>
+                        <!--/ko-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="btnPlus plus" data-bind="click: addEmailDest"></button>
+    <div class="mT10">
+        <button id="send" class="pbtn pb_green">Aceptar</button>
+        <button class="pbtn pb_red" onclick="$('.modal.popup03.popupEmail').hide(); $('#reportFrame').show();">Cancelar</button>
+    </div>
+</div><!--cpopup-->
+<!--POP UP Rnc Cedula Validation-->
+<div class="modal popup03 docValidate">
+    <!--   -->
+    <a data-modal-close="true" class="closeX" href="#" data-bind="click: function() { $('.modal.popup03.docValidate').hide();  $('#dociframe').attr('src', ''); }">×</a>
+    <iframe id="docIframe" src="" width="600" height="350"></iframe>
+</div><!--cpopup-->
+
+
+
+
+

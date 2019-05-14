@@ -1,0 +1,338 @@
+﻿<script type="text/html" id="stepBuy1">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+
+
+    <div class="select_buy1 info_ad_conduc" data-bind="with: stepData">
+        <form data-bind="submit: setAditionalDriverInfo" id="setAditionalDriverInfoForm">
+            <div class="box_SP row_B">
+                <div class="ttl">Información del Conductor</div>
+
+                <div class="boxCont">
+                    <div class="col-6 fl lb_azul">
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.DriverLabel</span>
+                            <select data-bind="options: drivers(), optionsText: function(item){return item.toString;}, optionsValue: function(item){return drivers.indexOf(item);}, value: driversInfoAd" disabled></select>
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepDrivers.FirstNameLabel</span>
+                            <input id="focusFirstName" name="firstname" type="text" data-bind="value: infoAdDriver().firstName, css: {errorBorder: !infoAdDriver().firstName()}" class="cancel noWeirdChar" />
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepDrivers.SurnameLabel</span>@*, css: {errorBorder: !newDriver.surname()}*@
+                            <input name="surnameO" type="text" class="noWeirdChar" data-bind="value: infoAdDriver().surname, css: {errorBorder: !infoAdDriver().surname() && infoAdDriver().identificationType()!='RNC'}" placeholder="@Globalization.Global.WriteHere" />
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepDrivers.SexLabel</span>
+                            <input name="selectedSexTextO" type="text" data-bind="value: infoAdDriver().selectedSexText" disabled="disabled" />
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.BirthdayLabel</span>
+                            <input id="dateOfBirthAdd" type="text" class="datepicker dateOfBirth" name="dateOfBirth" data-bind="value: infoAdDriver().dateOfBirth, css: { errorBorder: ValidDobCompany()   }" />
+
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepDrivers.TypeIdLabel</span>
+                            <select id="identificationTypeO" name="identificationTypeO" data-bind="options: $root.identificationTypeList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().identificationType, optionsCaption: '@Globalization.Global.Select',css: { errorBorder: infoAdDriver().identificationType() == null }"></select>
+                        </div>
+
+                        <!-- ko if: cedMask()-->
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.IdNumberLabel</span>
+                            <input type="text" id="license" name="licenseO" data-bind="value: infoAdDriver().license, inputmask: { mask: '999-9999999-9'}, css: {errorBorder: !infoAdDriver().license() || documetInvalid()==true}" />
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: rncMask() -->
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.IdNumberLabel</span>
+                            <input type="text" id="license" name="licenseO" data-bind="value: infoAdDriver().license, inputmask: { mask: '999-99999-9'}, css: {errorBorder: !infoAdDriver().license() || documetInvalid()==true}" />
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: rncMask() == false && cedMask() == false-->
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.IdNumberLabel</span>
+                            <input type="text" id="license" name="licenseO" data-bind="value: infoAdDriver().license, css: {errorBorder: !infoAdDriver().license() || documetInvalid()==true}" />
+                        </div>
+                        <!-- /ko -->
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.IdentificationNumberValidDateLabel</span>@*errorBorder: IdentificationNumberValidDateRequired()*@
+                            <input type="text" class="datepicker IdentificationNumberValidDate" id="IdentificationNumberValidDateO" name="IdentificationNumberValidDateO" data-bind="value: infoAdDriver().IdentificationNumberValidDate , css: { errorBorder: IdentificationNumberValidDateRequired  }" />
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.NationalityLabel</span>
+                            <select name="nationality" data-bind="options: $root.nationalitiesList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().nationality, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !infoAdDriver().nationality()}"></select>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-6 fl lb_azul">
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.ProvinceLabel</span>
+                            <select name="provinceId" data-bind="options: $root.provinces, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().provinceId, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !infoAdDriver().provinceId()}"></select>
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepDrivers.MunicipalityLabel</span>@*, css: {errorBorder: !newDriver.provinceId()}*@
+                            @*<select name="municipalityId" data-bind="options: _.filter($root.Municipalities, function(m){ return m.id.split('-')[1] == newDriver.provinceId();}), optionsText: 'name', optionsValue: 'id', value: newDriver.municipalityId, optionsCaption: '@Globalization.Global.Select'"></select>*@
+                            <select name="municipalityId" data-bind="options: $root.Municipalities, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().municipalityId, optionsCaption: '@Globalization.Global.Select'"></select>
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.CityLabel</span>
+                            <select name="cityId" data-bind="options: $root.cities, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().cityId, optionsCaption: '@Globalization.Global.Select'"></select>
+                            @*<select name="cityId" data-bind="options: _.filter($root.cities(), function(c){ return c.id.split('-')[2] == infoAdDriver().municipalityId();}), optionsText: 'name', optionsValue: 'id', value: infoAdDriver().cityId, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !infoAdDriver().cityId()}"></select>*@
+                            @*<select name="cityId" data-bind="options: $root.cities, optionsText: 'name', optionsValue: 'id', value: newDriver.cityId, optionsCaption: '@Globalization.Global.Select'"></select>*@
+                        </div>
+
+                        @*<div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.CityLabel</span>
+                            <select name="cityId" data-bind="options: _.filter($root.cities(), function(c){ return c.id.split('-')[1] == infoAdDriver().provinceId();}), optionsText: 'name', optionsValue: 'id', value: infoAdDriver().cityId, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !infoAdDriver().cityId()}"></select>
+                        </div>*@
+
+                        <div class="label_plus_input">
+                            <span>Código Postal</span>
+                            <input type="text" value="" placeholder="@Globalization.Global.WriteHere" name="PostalCode" data-bind="value: infoAdDriver().PostalCode" />
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.HomeAddressLabel</span>
+                            <input type="text" value="" placeholder="@Globalization.Global.WriteHere" name="address" data-bind="value: infoAdDriver().address, css: {errorBorder: !infoAdDriver().address()}" />
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.HomeTelephoneNumberLabel</span>@*self.phoneNumberIsRequired !infoAdDriver().phoneNumber()*@
+                            <input type="text" value="" placeholder="@Globalization.Global.WriteHere" id="phoneNumberO" name="phoneNumberO" phonenumber='PhoneNumber10' data-bind="value: infoAdDriver().phoneNumber, css: {errorBorder: phoneNumberIsRequired()  }" />
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.CellphoneLabel</span>@*!infoAdDriver().mobile()*@
+                            <input type="text" value="" placeholder="@Globalization.Global.WriteHere" id="mobile" name="mobile" phonenumber='PhoneNumber10' data-bind="value: infoAdDriver().mobile, css: {errorBorder: phoneNumberIsRequired()  }" />
+                        </div>
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.WorkTelephoneNumberLabel</span>@*!infoAdDriver().workPhone()*@
+                            <input type="text" value="" placeholder="@Globalization.Global.WriteHere" id="workPhone" name="workPhone" phonenumber='PhoneNumber10' data-bind="value: infoAdDriver().workPhone, css: {errorBorder: phoneNumberIsRequired() }" />
+                        </div>
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.EmaiLabel</span>@*, css: {errorBorder: !infoAdDriver().email() && AllAreLawProducts() == false }*@
+                            <input type="text" value="" placeholder="@Globalization.Global.WriteHere" name="emailO" data-bind="value: infoAdDriver().email" />
+                        </div>
+
+                        <!-- ko if: (showSelectOptionInvoiceType() == true) -->
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepDrivers.InvoiceTypeId</span>
+                            <select id="InvoiceTypeId" name="InvoiceTypeId" data-bind="options: $root.typeInvoiceList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().InvoiceTypeId, optionsCaption: '@Globalization.Global.Select',css: { errorBorder: !infoAdDriver().InvoiceTypeId() }"></select>
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: (showSelectOptionInvoiceType() == false) -->
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepDrivers.InvoiceTypeId</span>
+                            <select id="InvoiceTypeId" name="InvoiceTypeId" data-bind="options: $root.typeInvoiceList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().InvoiceTypeId, css: { errorBorder: !infoAdDriver().InvoiceTypeId() }"></select>
+                        </div>
+                        <!-- /ko -->
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepDrivers.ForeingLicence</span>
+                            <input id="ForeingLicenceText" name="ForeingLicenceText" type="text" data-bind="value: infoAdDriver().ForeignLicense()==true? 'Sí':'No'" disabled="disabled" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box_SP col-6 fl lb_azul mT10" id="addDriverBox">
+                    <div class="ttl">Cumplimiento</div>
+
+                    <div class="boxCont">
+                        <div class="label_plus_input">
+                            <span>
+                                @Globalization.PosAuto.StepBuy1.itPepLabel <i id="spanPep" title="" class="fa fa-question-circle" aria-hidden="true" style="font-size:27px;"></i>
+                            </span>
+                            <select id="PepFormularyOptionsId" name="PepFormularyOptionsId" data-bind="options: PepOptionsList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().PepFormularyOptionsId, optionsCaption: '@Globalization.Global.Select', css: { errorBorder: !infoAdDriver().PepFormularyOptionsId() && infoAdDriver().identificationType() != 'RNC' }"></select>
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.FinalbeneficiaryLabel <i id="spanBF" title="" class="fa fa-question-circle" aria-hidden="true" style="font-size:27px;"></i></span>
+                            <select id="IdentificationFinalBeneficiaryOptionsId" name="IdentificationFinalBeneficiaryOptionsId" data-bind="options: IdentificationFinalBeneficiaryOptionsList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().IdentificationFinalBeneficiaryOptionsId, optionsCaption: '@Globalization.Global.Select', css: { errorBorder: !infoAdDriver().IdentificationFinalBeneficiaryOptionsId() && AllAreLawProducts() == false }"></select>
+                        </div>
+
+                        <div class="label_plus_input" id="SocialReasonDiv">
+                            <span>@Globalization.PosAuto.StepBuy1.SocialReasonLabel</span>
+                            <select id="SocialReasonId" name="SocialReasonId" data-bind="options: SocialReasonList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().SocialReasonId, optionsCaption: '@Globalization.Global.Select',css: { errorBorder: !infoAdDriver().SocialReasonId() && infoAdDriver().identificationType() == 'RNC' }"></select>
+                        </div>
+
+                        <div class="label_plus_input" id="OwnershipStructureDiv">
+                            <span>@Globalization.PosAuto.StepBuy1.OwnershipStructureLabel</span>@*,css: { errorBorder: infoAdDriver().OwnershipStructureId() == null }*@
+                            <select id="OwnershipStructureId" name="OwnershipStructureId" data-bind="options: OwnerShipStructureList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().OwnershipStructureId, optionsCaption: '@Globalization.Global.Select',css: { errorBorder: !infoAdDriver().OwnershipStructureId() && infoAdDriver().identificationType() == 'RNC' }"></select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="box_SP col-6 fl lb_azul mT10 ">
+                    <div class="ttl">Información Laboral</div>
+
+                    <div class="boxCont">
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.OccupationLabel</span>
+                            <select name="job" data-bind="options: $root.jobList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().job, optionsCaption: '@Globalization.Global.Select', css: {errorBorder: !infoAdDriver().job() && AllAreLawProducts() == false}"></select>
+                        </div>
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.CompanyWorkForLabel</span>
+                            <input type="text" value="" placeholder="Escriba Aquí" name="company" data-bind="value: infoAdDriver().company, css: {errorBorder: !infoAdDriver().company() && AllAreLawProducts() == false && OwnershipStructureSelectedText() != '' }" />
+                        </div>
+
+                        <div class="label_plus_input">
+                            <span>@Globalization.PosAuto.StepBuy1.AnnualIncomeLabel</span>
+                            <input type="text" value="" placeholder="Escriba Aquí" id="AnnualIncome" name="AnnualIncome" data-bind="value: infoAdDriver().AnnualIncome.currencyformatted, css: {errorBorder: !infoAdDriver().AnnualIncome() && AllAreLawProducts() == false && OwnershipStructureSelectedText() != ''  }" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pventa">
+                <div class="row_A alignC mT10 mB10 bbFuntion">
+                    <div class="col-2 fl">
+                        <a class="back_btn" href="#" data-bind="click: function() { parent.mainData().initSteps(true); setAditionalDriverInfoMethod(null,true); parent.prevStep(); }"><i class="flecha_iz_az"></i>@Globalization.PosAuto.StepVehicleCoverage.BackButtonLabel</a>
+                    </div>
+
+                    <div class="col-4 fl">&nbsp;</div>
+                    <div class="col-6 fl">
+                        <!-- ko if: getStepStatus($root.currentStepId()) == stepStatuses.COMPLETED || drivers().length == 1 -->
+                        <div class="col-4 fr">
+                            <input id="continueToVehicle" class="button button-blue alignC embossed row_A" data-bind="value: parent.steps()[$root.currentStepId()-1].nextStepButtonTitle(), click: fourthStepAdvance" />
+                        </div>
+                        <!-- /ko -->
+
+                        <div class="col-4 fr">
+                            <input type="submit" style="white-space: normal;" class="button button-blue alignC embossed row_A" data-bind="value: '@Globalization.PosAuto.StepBuy1.NextDriverLabel', visible: drivers().length > 1 " />
+                        </div>
+
+                        <div class="col-4 fr beneficiaryfinalclass">
+                            <input style="white-space: normal;" class="button button-blue alignC embossed row_A" data-bind="value: 'Beneficiarios Finales', visible: showOrNotIdentificationFinalBeneficiaryForm(), click: OpenModalButtonBeneficiaryFinal" />
+                        </div>
+
+                        <div class="col-4 fr Pepclass">
+                            <input style="white-space: normal;" class="button button-blue alignC embossed row_A" data-bind="value: 'Calidad PEP', visible: showOrNotIPepForm(), click: OpenModalButtonPep" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+        <!--POP UP Beneficiarios Finales-->
+        <div class="reset wrapp contGnl cpc wrapp contGnl cpc modal CompliancePopup IdentificationFinalBeneficiaryPOP" id="BeneficiaryPopup" style="margin-left: auto;margin-right: auto;">
+            <div class="labelAZ mB">@Globalization.PosAuto.StepBuy1.FinalbeneficiaryLabel2</div>
+            <form data-bind="submit: SetBeneficiaryFinal" id="beneficiaryfinalForm">
+                <div class="cont_gnl row_A blue mB">
+                    <div class="tbl data_Gpl tCom col-12 brochure_box">
+                        <table>
+                            <thead>
+                                <tr class="gradient_azul">
+                                    <th align="left" class="c1"><span></span></th>
+                                    <th align="center" class="c2"><span>Nombre Completo</span></th>
+                                    <th align="center" class="c3"><span>Porcentaje</span></th>
+                                    <th align="left" class="c1"><span></span></th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: ListBeneficiaryByDriver">
+                                <tr>
+                                    <td align="center" data-bind="text: $index() + 1"></td>
+                                    <td align="center">
+                                        <input type="text" id="fullNameBeneficiary" name="fullNameBeneficiary" maxlength="300" class="noWeirdChar" data-bind="value: fullNameBeneficiary, css: { errorBorder: !fullNameBeneficiary() }" />
+                                    </td>
+                                    <td align="center">
+                                        <input type="text" id="percentageBeneficiary" name="percentageBeneficiary" class="percentageBeneficiary" maxlength="3" data-bind="value: formattedPercent, css: { errorBorder: AllAreLawProducts == false && (!formattedPercent() || formattedPercent()<20 || formattedPercent()>100) }" />
+                                    </td>
+                                    <td align="center" class="c6">
+                                        <a class="grid_icons cazul delete" href="#" data-bind="click: function() { $parent.removeBeneficiaryFinal($data); }"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row_A bdrT_cyan B30">
+                        <button class="add_btn  button button-green alignC embossed fr mL30 mT10" data-bind="click: addNewBeneficiaryFinal">Agregar Beneficiario</button>
+                    </div>
+                </div>
+                <div class="row_A">
+                    <button type="submit" class="button button-green alignC embossed col-4 fl">Completado</button>
+                    <a href="#" class="button button-red alignC embossed col-4 fl" data-bind="click: CancelSetBeneficiaryFinal">Cancelar</a>
+                    <a href="#" class="button button-blue alignC embossed col-4 fl" onclick="$('.IdentificationFinalBeneficiaryPOP').hide();">Cerrar Ventana</a>
+                </div>
+            </form>
+        </div>
+        <!--POP UP Beneficiarios Finales-->
+        <!--POP UP PEPS-->
+        <div class="reset wrapp contGnl cpc wrapp contGnl cpc modal CompliancePopup PepPOP" id="PepPopup" style="margin-left: auto;margin-right: auto;">
+            <div class="labelAZ mB">PEPS</div>
+            <form data-bind="submit: SetPep" id="PepForm">
+                <div class="cont_gnl row_A blue  mB">
+                    <div class="tbl data_Gpl tCom col-12 brochure_box">
+                        <table>
+                            <thead>
+                                <tr class="gradient_azul">
+                                    <th align="left" class="c1"><span></span></th>
+                                    <th align="center" class="c2"><span>Nombre Completo</span></th>
+                                    <th align="center" class="c3"><span>Parentesco</span></th>
+                                    <th align="center" class="c4"><span>Posición y/o Cargo Público</span></th>
+                                    <th align="center" class="c5"><span>A&ntilde;o Desde</span></th>
+                                    <th align="center" class="c6"><span>A&ntilde;o Hasta</span></th>
+                                    <th align="left" class="c7"><span></span></th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: ListPepByDriver">
+                                <tr>
+                                    <td align="center" data-bind="text: $index() + 1"></td>
+                                    <td align="center">
+                                        <input type="text" id="fullNamePep" name="fullNamePep" maxlength="300" class="noWeirdChar" data-bind="value: fullNamePep, css: { errorBorder: !fullNamePep() }" />
+                                    </td>
+
+                                    <td>
+                                        <div class="label_plus_input">
+                                            <select style="width:100% !important;" id="RelationshipIdPep" name="RelationshipIdPep" class="RelationshipIdPep" data-bind="options: $root.RelationshipList, optionsText: 'name', optionsValue: 'id', value: RelationshipIdPep, optionsCaption: '@Globalization.Global.Select',css: { errorBorder: RelationshipIdPep() == null}"></select>
+                                        </div>
+                                    </td>
+
+                                    <td align="center">
+                                        <input type="text" id="PositionPep" name="PositionPep" maxlength="1000" class="noWeirdChar" data-bind="value: PositionPep, css: { errorBorder: !PositionPep() }" />
+                                    </td>
+                                    <td align="center">
+                                        @*, css: { errorBorder: !fromYear() }*@
+                                        <input type="text" id="fromYear" name="fromYear" maxlength="4" data-bind="value: fromYear" />
+                                    </td>
+                                    <td align="center">
+                                        @*, css: { errorBorder: !toYear()}*@
+                                        <input type="text" id="toYear" name="toYear" maxlength="4" data-bind="value: toYear" />
+                                    </td>
+                                    <td align="center">
+                                        <a class="grid_icons cazul delete" href="#" data-bind="click: function() { $parent.removePep($data); }"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row_A bdrT_cyan mB30">
+                        <button class="add_btn  button button-green alignC embossed fr mL30 mT10" data-bind="click: addNewPep">Agregar PEP</button>
+                    </div>
+                </div>
+                <div class="row_A">
+                    <button type="submit" class="button button-green alignC embossed col-4 fl">Completado</button>
+                    <a href="#" class="button button-red alignC embossed  col-4 fl" data-bind="click: CancelSetPep">Cancelar</a>
+                    <a href="#" class="button button-blue alignC embossed col-4 fl" onclick="$('.PepPOP').hide();">Cerrar Ventana</a>
+                </div>
+            </form>
+        </div>
+        <!--POP UP PEPS-->
+    </div>
+</script>
+

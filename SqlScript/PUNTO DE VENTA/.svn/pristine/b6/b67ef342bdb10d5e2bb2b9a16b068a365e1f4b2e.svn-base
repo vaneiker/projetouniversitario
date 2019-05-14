@@ -1,0 +1,1486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SysFlexService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://devsysflexservice.statetrustlife.com/SysFlexService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://devsysflexservice.statetrustlife.com/SysFlexService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://devsysflexservice.statetrustlife.com/SysFlexService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SysFlex.Entity" />
+      <xsd:import schemaLocation="http://devsysflexservice.statetrustlife.com/SysFlexService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://devsysflexservice.statetrustlife.com/SysFlexService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://devsysflexservice.statetrustlife.com/SysFlexService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/AtlanticaGuidewireToGPService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISysFlexService_GetVehicleTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleTypes" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetVehicleTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetRate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRate" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetRate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetSubBunch_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubBunch" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetSubBunch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubBunchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetRefills_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRefills" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetRefills_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRefillsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetBunch_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBunch" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetBunch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBunchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProducts" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetProductsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsEx" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetProductsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCoverageProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoverageProduct" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCoverageProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoverageProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCoverageDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoverageDetails" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCoverageDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoverageDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetVehicleYears_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleYears" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetVehicleYears_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVehicleYearsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetAnoVehiculo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnoVehiculo" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetAnoVehiculo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnoVehiculoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetSexoEdadProducto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSexoEdadProducto" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetSexoEdadProducto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSexoEdadProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_CheckChassisOrRegistry_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckChassisOrRegistry" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_CheckChassisOrRegistry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckChassisOrRegistryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_CheckChassisPlaca_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckChassisPlaca" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_CheckChassisPlaca_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckChassisPlacaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetMensajeria_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetMensajeria" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetMensajeria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetMensajeriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetPolizaDescuento_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPolizaDescuento" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetPolizaDescuento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPolizaDescuentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMaximoReaseguro_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaximoReaseguro" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMaximoReaseguro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaximoReaseguroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationDetailEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationDetailEx" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationDetailEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationDetailExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_MovimientoAutomaticoPoliza_InputMessage">
+    <wsdl:part name="parameters" element="tns:MovimientoAutomaticoPoliza" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_MovimientoAutomaticoPoliza_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MovimientoAutomaticoPolizaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetComboConditionsByParameters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetComboConditionsByParameters" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetComboConditionsByParameters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetComboConditionsByParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMarcaVehiculo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMarcaVehiculo" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMarcaVehiculo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMarcaVehiculoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetFacultativePlacementSysflex_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetFacultativePlacementSysflex" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetFacultativePlacementSysflex_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetFacultativePlacementSysflexResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_CheckPolicyActive_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPolicyActive" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_CheckPolicyActive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPolicyActiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetContrato_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContrato" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetContrato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContratoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetPrimaCobertura_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrimaCobertura" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetPrimaCobertura_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrimaCoberturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationHeader_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationHeader" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationHeader_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationHeaderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationDetail" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverage" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationEmition_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationEmition" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationEmition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationEmitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationEmitionFactura_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationEmitionFactura" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationEmitionFactura_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationEmitionFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetAgentPolicy_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAgentPolicy" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetAgentPolicy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAgentPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetPaymentAgreement_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPaymentAgreement" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetPaymentAgreement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPaymentAgreementResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationHeaderVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationHeaderVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationHeaderVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationHeaderVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationDetailVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationDetailVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationDetailVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationDetailVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverageVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverageVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverageVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverageVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationReinsuranceVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationReinsuranceVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationReinsuranceVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationReinsuranceVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverageReinsuranceVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverageReinsuranceVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverageReinsuranceVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverageReinsuranceVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationPaymentAgreementVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationPaymentAgreementVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationPaymentAgreementVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationPaymentAgreementVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetPasstransitVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPasstransitVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetPasstransitVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPasstransitVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetMotionBillingVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetMotionBillingVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetMotionBillingVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetMotionBillingVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetProductVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetProductVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetRefillsVechile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRefillsVechile" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetRefillsVechile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRefillsVechileResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_DeleteCoverageVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCoverageVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_DeleteCoverageVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCoverageVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_ActualizaDetailCobertura_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizaDetailCobertura" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_ActualizaDetailCobertura_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizaDetailCoberturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_FacturacionMovimientoSinGP_InputMessage">
+    <wsdl:part name="parameters" element="tns:FacturacionMovimientoSinGP" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_FacturacionMovimientoSinGP_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FacturacionMovimientoSinGPResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNextNCFNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextNCFNumber" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNextNCFNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextNCFNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNCFandInvoiceNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNCFandInvoiceNumber" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNCFandInvoiceNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNCFandInvoiceNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNCFandDebitNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNCFandDebitNumber" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNCFandDebitNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNCFandDebitNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNCFandCreditNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNCFandCreditNumber" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNCFandCreditNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNCFandCreditNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCotizacionEndosoCesion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCotizacionEndosoCesion" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCotizacionEndosoCesion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCotizacionEndosoCesionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SPCCotizacionEndosoCesion_InputMessage">
+    <wsdl:part name="parameters" element="tns:SPCCotizacionEndosoCesion" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SPCCotizacionEndosoCesion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SPCCotizacionEndosoCesionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SPCDeleteCotizacionCobertura_InputMessage">
+    <wsdl:part name="parameters" element="tns:SPCDeleteCotizacionCobertura" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SPCDeleteCotizacionCobertura_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SPCDeleteCotizacionCoberturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetClient_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetClient_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetClient_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetClient_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationHeader_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationHeader_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationHeader_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationHeader_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCondition_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCondition_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCondition_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCondition_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverage_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverage_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverage_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverage_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationDetail_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationDetail_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationDetail_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationDetail_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationReinsurance_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationReinsurance_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationReinsurance_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationReinsurance_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverageReinsurance_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverageReinsurance_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationCoverageReinsurance_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationCoverageReinsurance_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationPaymentAgreement_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationPaymentAgreement_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetQuotationPaymentAgreement_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetQuotationPaymentAgreement_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetPasstransit_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPasstransit_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetPasstransit_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPasstransit_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetMotionBilling_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetMotionBilling_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetMotionBilling_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetMotionBilling_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCoverageProduct_IL_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoverageProduct_IL" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCoverageProduct_IL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoverageProduct_ILResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetAcuerdosProductoSV_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAcuerdosProductoSV" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetAcuerdosProductoSV_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAcuerdosProductoSVResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetAcuerdosProducto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAcuerdosProducto" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetAcuerdosProducto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAcuerdosProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_QuotationVehicleDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:QuotationVehicleDelete" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_QuotationVehicleDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QuotationVehicleDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetReinsuranceByItemVehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReinsuranceByItemVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetReinsuranceByItemVehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReinsuranceByItemVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetAgentManager_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAgentManager" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetAgentManager_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAgentManagerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetAgent_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAgent" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetAgent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMatchOffice_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchOffice" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMatchOffice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchOfficeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNewAgentCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNewAgentCode" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetNewAgentCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNewAgentCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCheckAgentExists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCheckAgentExists" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetCheckAgentExists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCheckAgentExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetSourceIdAndOrMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSourceIdAndOrMatch" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_SetSourceIdAndOrMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSourceIdAndOrMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMatchPaymentType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchPaymentType" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMatchPaymentType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchPaymentTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMatchBankAccountType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchBankAccountType" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetMatchBankAccountType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchBankAccountTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetSupervisorRealCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSupervisorRealCode" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_GetSupervisorRealCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSupervisorRealCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_InsertLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLog" />
+  </wsdl:message>
+  <wsdl:message name="ISysFlexService_InsertLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLogResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISysFlexService">
+    <wsdl:operation name="GetVehicleTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetVehicleTypes" message="tns:ISysFlexService_GetVehicleTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetVehicleTypesResponse" message="tns:ISysFlexService_GetVehicleTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetRate" message="tns:ISysFlexService_GetRate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetRateResponse" message="tns:ISysFlexService_GetRate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubBunch">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetSubBunch" message="tns:ISysFlexService_GetSubBunch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetSubBunchResponse" message="tns:ISysFlexService_GetSubBunch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRefills">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetRefills" message="tns:ISysFlexService_GetRefills_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetRefillsResponse" message="tns:ISysFlexService_GetRefills_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBunch">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetBunch" message="tns:ISysFlexService_GetBunch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetBunchResponse" message="tns:ISysFlexService_GetBunch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetProducts" message="tns:ISysFlexService_GetProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetProductsResponse" message="tns:ISysFlexService_GetProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsEx">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetProductsEx" message="tns:ISysFlexService_GetProductsEx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetProductsExResponse" message="tns:ISysFlexService_GetProductsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetCoverageProduct" message="tns:ISysFlexService_GetCoverageProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetCoverageProductResponse" message="tns:ISysFlexService_GetCoverageProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetCoverageDetails" message="tns:ISysFlexService_GetCoverageDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetCoverageDetailsResponse" message="tns:ISysFlexService_GetCoverageDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetVehicleYears" message="tns:ISysFlexService_GetVehicleYears_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetVehicleYearsResponse" message="tns:ISysFlexService_GetVehicleYears_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnoVehiculo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetAnoVehiculo" message="tns:ISysFlexService_GetAnoVehiculo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetAnoVehiculoResponse" message="tns:ISysFlexService_GetAnoVehiculo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSexoEdadProducto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetSexoEdadProducto" message="tns:ISysFlexService_GetSexoEdadProducto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetSexoEdadProductoResponse" message="tns:ISysFlexService_GetSexoEdadProducto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisOrRegistry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/CheckChassisOrRegistry" message="tns:ISysFlexService_CheckChassisOrRegistry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/CheckChassisOrRegistryResponse" message="tns:ISysFlexService_CheckChassisOrRegistry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/CheckChassisPlaca" message="tns:ISysFlexService_CheckChassisPlaca_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/CheckChassisPlacaResponse" message="tns:ISysFlexService_CheckChassisPlaca_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMensajeria">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetMensajeria" message="tns:ISysFlexService_SetMensajeria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetMensajeriaResponse" message="tns:ISysFlexService_SetMensajeria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPolizaDescuento">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetPolizaDescuento" message="tns:ISysFlexService_SetPolizaDescuento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetPolizaDescuentoResponse" message="tns:ISysFlexService_SetPolizaDescuento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaximoReaseguro">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetMaximoReaseguro" message="tns:ISysFlexService_GetMaximoReaseguro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetMaximoReaseguroResponse" message="tns:ISysFlexService_GetMaximoReaseguro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationDetailEx">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationDetailEx" message="tns:ISysFlexService_SetQuotationDetailEx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationDetailExResponse" message="tns:ISysFlexService_SetQuotationDetailEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MovimientoAutomaticoPoliza">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/MovimientoAutomaticoPoliza" message="tns:ISysFlexService_MovimientoAutomaticoPoliza_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/MovimientoAutomaticoPolizaResponse" message="tns:ISysFlexService_MovimientoAutomaticoPoliza_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetComboConditionsByParameters">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetComboConditionsByParameters" message="tns:ISysFlexService_GetComboConditionsByParameters_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetComboConditionsByParametersResponse" message="tns:ISysFlexService_GetComboConditionsByParameters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMarcaVehiculo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetMarcaVehiculo" message="tns:ISysFlexService_GetMarcaVehiculo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetMarcaVehiculoResponse" message="tns:ISysFlexService_GetMarcaVehiculo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFacultativePlacementSysflex">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetFacultativePlacementSysflex" message="tns:ISysFlexService_SetFacultativePlacementSysflex_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetFacultativePlacementSysflexResponse" message="tns:ISysFlexService_SetFacultativePlacementSysflex_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPolicyActive">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/CheckPolicyActive" message="tns:ISysFlexService_CheckPolicyActive_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/CheckPolicyActiveResponse" message="tns:ISysFlexService_CheckPolicyActive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContrato">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetContrato" message="tns:ISysFlexService_GetContrato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetContratoResponse" message="tns:ISysFlexService_GetContrato_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrimaCobertura">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetPrimaCobertura" message="tns:ISysFlexService_GetPrimaCobertura_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetPrimaCoberturaResponse" message="tns:ISysFlexService_GetPrimaCobertura_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationHeader">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationHeader" message="tns:ISysFlexService_SetQuotationHeader_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationHeaderResponse" message="tns:ISysFlexService_SetQuotationHeader_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationDetail" message="tns:ISysFlexService_SetQuotationDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationDetailResponse" message="tns:ISysFlexService_SetQuotationDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverage" message="tns:ISysFlexService_SetQuotationCoverage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverageResponse" message="tns:ISysFlexService_SetQuotationCoverage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationEmition">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationEmition" message="tns:ISysFlexService_SetQuotationEmition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationEmitionResponse" message="tns:ISysFlexService_SetQuotationEmition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationEmitionFactura">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationEmitionFactura" message="tns:ISysFlexService_SetQuotationEmitionFactura_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationEmitionFacturaResponse" message="tns:ISysFlexService_SetQuotationEmitionFactura_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAgentPolicy">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetAgentPolicy" message="tns:ISysFlexService_SetAgentPolicy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetAgentPolicyResponse" message="tns:ISysFlexService_SetAgentPolicy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPaymentAgreement">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetPaymentAgreement" message="tns:ISysFlexService_SetPaymentAgreement_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetPaymentAgreementResponse" message="tns:ISysFlexService_SetPaymentAgreement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationHeaderVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationHeaderVehicle" message="tns:ISysFlexService_SetQuotationHeaderVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationHeaderVehicleResponse" message="tns:ISysFlexService_SetQuotationHeaderVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationDetailVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationDetailVehicle" message="tns:ISysFlexService_SetQuotationDetailVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationDetailVehicleResponse" message="tns:ISysFlexService_SetQuotationDetailVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverageVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverageVehicle" message="tns:ISysFlexService_SetQuotationCoverageVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverageVehicleResponse" message="tns:ISysFlexService_SetQuotationCoverageVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationReinsuranceVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationReinsuranceVehicle" message="tns:ISysFlexService_SetQuotationReinsuranceVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationReinsuranceVehicleResponse" message="tns:ISysFlexService_SetQuotationReinsuranceVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverageReinsuranceVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverageReinsuranceVehicle" message="tns:ISysFlexService_SetQuotationCoverageReinsuranceVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverageReinsuranceVehicleResponse" message="tns:ISysFlexService_SetQuotationCoverageReinsuranceVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationPaymentAgreementVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationPaymentAgreementVehicle" message="tns:ISysFlexService_SetQuotationPaymentAgreementVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationPaymentAgreementVehicleResponse" message="tns:ISysFlexService_SetQuotationPaymentAgreementVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPasstransitVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetPasstransitVehicle" message="tns:ISysFlexService_SetPasstransitVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetPasstransitVehicleResponse" message="tns:ISysFlexService_SetPasstransitVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMotionBillingVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetMotionBillingVehicle" message="tns:ISysFlexService_SetMotionBillingVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetMotionBillingVehicleResponse" message="tns:ISysFlexService_SetMotionBillingVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetProductVehicle" message="tns:ISysFlexService_GetProductVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetProductVehicleResponse" message="tns:ISysFlexService_GetProductVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRefillsVechile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetRefillsVechile" message="tns:ISysFlexService_GetRefillsVechile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetRefillsVechileResponse" message="tns:ISysFlexService_GetRefillsVechile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCoverageVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/DeleteCoverageVehicle" message="tns:ISysFlexService_DeleteCoverageVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/DeleteCoverageVehicleResponse" message="tns:ISysFlexService_DeleteCoverageVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaDetailCobertura">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/ActualizaDetailCobertura" message="tns:ISysFlexService_ActualizaDetailCobertura_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/ActualizaDetailCoberturaResponse" message="tns:ISysFlexService_ActualizaDetailCobertura_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FacturacionMovimientoSinGP">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/FacturacionMovimientoSinGP" message="tns:ISysFlexService_FacturacionMovimientoSinGP_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/FacturacionMovimientoSinGPResponse" message="tns:ISysFlexService_FacturacionMovimientoSinGP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNextNCFNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetNextNCFNumber" message="tns:ISysFlexService_GetNextNCFNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetNextNCFNumberResponse" message="tns:ISysFlexService_GetNextNCFNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNCFandInvoiceNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetNCFandInvoiceNumber" message="tns:ISysFlexService_GetNCFandInvoiceNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetNCFandInvoiceNumberResponse" message="tns:ISysFlexService_GetNCFandInvoiceNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNCFandDebitNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetNCFandDebitNumber" message="tns:ISysFlexService_GetNCFandDebitNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetNCFandDebitNumberResponse" message="tns:ISysFlexService_GetNCFandDebitNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNCFandCreditNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetNCFandCreditNumber" message="tns:ISysFlexService_GetNCFandCreditNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetNCFandCreditNumberResponse" message="tns:ISysFlexService_GetNCFandCreditNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCotizacionEndosoCesion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetCotizacionEndosoCesion" message="tns:ISysFlexService_GetCotizacionEndosoCesion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetCotizacionEndosoCesionResponse" message="tns:ISysFlexService_GetCotizacionEndosoCesion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SPCCotizacionEndosoCesion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SPCCotizacionEndosoCesion" message="tns:ISysFlexService_SPCCotizacionEndosoCesion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SPCCotizacionEndosoCesionResponse" message="tns:ISysFlexService_SPCCotizacionEndosoCesion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SPCDeleteCotizacionCobertura">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SPCDeleteCotizacionCobertura" message="tns:ISysFlexService_SPCDeleteCotizacionCobertura_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SPCDeleteCotizacionCoberturaResponse" message="tns:ISysFlexService_SPCDeleteCotizacionCobertura_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetClient_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetClient_IL" message="tns:ISysFlexService_SetClient_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetClient_ILResponse" message="tns:ISysFlexService_SetClient_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationHeader_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationHeader_IL" message="tns:ISysFlexService_SetQuotationHeader_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationHeader_ILResponse" message="tns:ISysFlexService_SetQuotationHeader_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCondition_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCondition_IL" message="tns:ISysFlexService_SetQuotationCondition_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCondition_ILResponse" message="tns:ISysFlexService_SetQuotationCondition_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverage_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverage_IL" message="tns:ISysFlexService_SetQuotationCoverage_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverage_ILResponse" message="tns:ISysFlexService_SetQuotationCoverage_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationDetail_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationDetail_IL" message="tns:ISysFlexService_SetQuotationDetail_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationDetail_ILResponse" message="tns:ISysFlexService_SetQuotationDetail_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationReinsurance_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationReinsurance_IL" message="tns:ISysFlexService_SetQuotationReinsurance_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationReinsurance_ILResponse" message="tns:ISysFlexService_SetQuotationReinsurance_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverageReinsurance_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverageReinsurance_IL" message="tns:ISysFlexService_SetQuotationCoverageReinsurance_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationCoverageReinsurance_ILResponse" message="tns:ISysFlexService_SetQuotationCoverageReinsurance_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationPaymentAgreement_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationPaymentAgreement_IL" message="tns:ISysFlexService_SetQuotationPaymentAgreement_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetQuotationPaymentAgreement_ILResponse" message="tns:ISysFlexService_SetQuotationPaymentAgreement_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPasstransit_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetPasstransit_IL" message="tns:ISysFlexService_SetPasstransit_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetPasstransit_ILResponse" message="tns:ISysFlexService_SetPasstransit_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMotionBilling_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetMotionBilling_IL" message="tns:ISysFlexService_SetMotionBilling_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetMotionBilling_ILResponse" message="tns:ISysFlexService_SetMotionBilling_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageProduct_IL">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetCoverageProduct_IL" message="tns:ISysFlexService_GetCoverageProduct_IL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetCoverageProduct_ILResponse" message="tns:ISysFlexService_GetCoverageProduct_IL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAcuerdosProductoSV">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetAcuerdosProductoSV" message="tns:ISysFlexService_GetAcuerdosProductoSV_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetAcuerdosProductoSVResponse" message="tns:ISysFlexService_GetAcuerdosProductoSV_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAcuerdosProducto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetAcuerdosProducto" message="tns:ISysFlexService_GetAcuerdosProducto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetAcuerdosProductoResponse" message="tns:ISysFlexService_GetAcuerdosProducto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QuotationVehicleDelete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/QuotationVehicleDelete" message="tns:ISysFlexService_QuotationVehicleDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/QuotationVehicleDeleteResponse" message="tns:ISysFlexService_QuotationVehicleDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReinsuranceByItemVehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetReinsuranceByItemVehicle" message="tns:ISysFlexService_GetReinsuranceByItemVehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetReinsuranceByItemVehicleResponse" message="tns:ISysFlexService_GetReinsuranceByItemVehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAgentManager">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetAgentManager" message="tns:ISysFlexService_SetAgentManager_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetAgentManagerResponse" message="tns:ISysFlexService_SetAgentManager_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAgent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetAgent" message="tns:ISysFlexService_SetAgent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetAgentResponse" message="tns:ISysFlexService_SetAgent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchOffice">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetMatchOffice" message="tns:ISysFlexService_GetMatchOffice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetMatchOfficeResponse" message="tns:ISysFlexService_GetMatchOffice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewAgentCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetNewAgentCode" message="tns:ISysFlexService_GetNewAgentCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetNewAgentCodeResponse" message="tns:ISysFlexService_GetNewAgentCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckAgentExists">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetCheckAgentExists" message="tns:ISysFlexService_GetCheckAgentExists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetCheckAgentExistsResponse" message="tns:ISysFlexService_GetCheckAgentExists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSourceIdAndOrMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/SetSourceIdAndOrMatch" message="tns:ISysFlexService_SetSourceIdAndOrMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/SetSourceIdAndOrMatchResponse" message="tns:ISysFlexService_SetSourceIdAndOrMatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchPaymentType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetMatchPaymentType" message="tns:ISysFlexService_GetMatchPaymentType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetMatchPaymentTypeResponse" message="tns:ISysFlexService_GetMatchPaymentType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchBankAccountType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetMatchBankAccountType" message="tns:ISysFlexService_GetMatchBankAccountType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetMatchBankAccountTypeResponse" message="tns:ISysFlexService_GetMatchBankAccountType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupervisorRealCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/GetSupervisorRealCode" message="tns:ISysFlexService_GetSupervisorRealCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/GetSupervisorRealCodeResponse" message="tns:ISysFlexService_GetSupervisorRealCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISysFlexService/InsertLog" message="tns:ISysFlexService_InsertLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISysFlexService/InsertLogResponse" message="tns:ISysFlexService_InsertLog_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndPointBehavior" type="tns:ISysFlexService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVehicleTypes">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetVehicleTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRate">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubBunch">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetSubBunch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRefills">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetRefills" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBunch">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetBunch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsEx">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetProductsEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageProduct">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetCoverageProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageDetails">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetCoverageDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleYears">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetVehicleYears" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnoVehiculo">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetAnoVehiculo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSexoEdadProducto">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetSexoEdadProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisOrRegistry">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/CheckChassisOrRegistry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckChassisPlaca">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/CheckChassisPlaca" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMensajeria">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetMensajeria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPolizaDescuento">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetPolizaDescuento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaximoReaseguro">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetMaximoReaseguro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationDetailEx">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationDetailEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MovimientoAutomaticoPoliza">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/MovimientoAutomaticoPoliza" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComboConditionsByParameters">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetComboConditionsByParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMarcaVehiculo">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetMarcaVehiculo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFacultativePlacementSysflex">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetFacultativePlacementSysflex" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPolicyActive">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/CheckPolicyActive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContrato">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetContrato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrimaCobertura">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetPrimaCobertura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationHeader">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationHeader" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationDetail">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverage">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationCoverage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationEmition">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationEmition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationEmitionFactura">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationEmitionFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAgentPolicy">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetAgentPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPaymentAgreement">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetPaymentAgreement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationHeaderVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationHeaderVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationDetailVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationDetailVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverageVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationCoverageVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationReinsuranceVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationReinsuranceVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverageReinsuranceVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationCoverageReinsuranceVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationPaymentAgreementVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationPaymentAgreementVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPasstransitVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetPasstransitVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMotionBillingVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetMotionBillingVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetProductVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRefillsVechile">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetRefillsVechile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCoverageVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/DeleteCoverageVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaDetailCobertura">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/ActualizaDetailCobertura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FacturacionMovimientoSinGP">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/FacturacionMovimientoSinGP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextNCFNumber">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetNextNCFNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNCFandInvoiceNumber">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetNCFandInvoiceNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNCFandDebitNumber">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetNCFandDebitNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNCFandCreditNumber">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetNCFandCreditNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCotizacionEndosoCesion">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetCotizacionEndosoCesion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPCCotizacionEndosoCesion">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SPCCotizacionEndosoCesion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPCDeleteCotizacionCobertura">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SPCDeleteCotizacionCobertura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetClient_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetClient_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationHeader_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationHeader_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCondition_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationCondition_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverage_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationCoverage_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationDetail_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationDetail_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationReinsurance_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationReinsurance_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationCoverageReinsurance_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationCoverageReinsurance_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQuotationPaymentAgreement_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetQuotationPaymentAgreement_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPasstransit_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetPasstransit_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMotionBilling_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetMotionBilling_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoverageProduct_IL">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetCoverageProduct_IL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAcuerdosProductoSV">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetAcuerdosProductoSV" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAcuerdosProducto">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetAcuerdosProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuotationVehicleDelete">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/QuotationVehicleDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReinsuranceByItemVehicle">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetReinsuranceByItemVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAgentManager">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetAgentManager" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAgent">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchOffice">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetMatchOffice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewAgentCode">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetNewAgentCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckAgentExists">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetCheckAgentExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSourceIdAndOrMatch">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/SetSourceIdAndOrMatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchPaymentType">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetMatchPaymentType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchBankAccountType">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetMatchBankAccountType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSupervisorRealCode">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/GetSupervisorRealCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertLog">
+      <soap:operation soapAction="http://tempuri.org/ISysFlexService/InsertLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SysFlexService">
+    <wsdl:port name="EndPointBehavior" binding="tns:EndPointBehavior">
+      <soap:address location="http://devsysflexservice.statetrustlife.com/SysFlexService.svc/SysFlexService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,202 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode;
+@model Quotation.PaymentCheckOut
+@{
+    CommonEnums.RequestType RequestType = ViewBag.RequestType;
+}
+
+<div class="mdl-cell card mdl-cell--6-col ml-0 float-left lb_azul" id="addDriverBox">
+    <div class="card-header bg-info mdl-color-text--white em1-3"><strong>FORMA DE PAGO</strong></div>
+    <div class="card-body">
+        <div class="mdl-cell mt-0 mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+            <div class="mdl-textfield">
+                <div class="col-md-12 float-left pl-0 mt-2">
+                    @Html.DropDownListFor(model => model.PaymentWay, (IEnumerable<SelectListItem>)ViewBag.WayToPay, new { id = "paymentTypeId", @class = "chosen-select-deselect form-control", @data_placeholder = "Forma de Pago" })
+                </div>
+                <div id="divNotifyMessaging" style="display:none;" class="mdl-cell mdl-cell--12-col mdl-textfield ">
+                    <label for="Messaging" class="fl mR"><strong>Notificar a Mensajería?</strong></label>
+                    @Html.CheckBoxFor(model => model.Messaging, new { @class = "fl mT5" })
+                </div>
+            </div>
+        </div>
+        <div id="divTextCard" style="display:none;" class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" id="inpTextCard" type="number" name="InpTextCard" disabled="disabled">
+            <label class="mdl-textfield__label">Se aceptan pagos de tarjetas Visa, Mastercard y American Express..</label>
+        </div>
+    </div>
+</div>
+
+<div class="mdl-cell card mdl-cell--6-col mr-0 float-right lb_azul">
+    <div class="card-header  bg-info mdl-color-text--white em1-3"><strong>DETALLE DE PAGO</strong></div>
+    <div class="card-body">
+
+        @if (RequestType == CommonEnums.RequestType.Inclusion)
+        {
+            <div class="mdl-cell mdl-cell--6-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                @Html.EditorFor(model => model.TotalAnnualPrime, new { htmlAttributes = new { @class = "mdl-textfield__input applyCurrency", disabled = "disabled" } })
+                @Html.LabelFor(model => model.TotalAnnualPrime, "Prima neta Anual", htmlAttributes: new { @class = "mdl-textfield__label" })
+            </div>
+        }
+
+        <div class="mdl-cell mdl-cell--6-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+            @Html.EditorFor(model => model.TotalPrime, new { htmlAttributes = new { @class = "mdl-textfield__input applyCurrency", disabled = "disabled" } })
+            @Html.LabelFor(model => model.TotalPrime, RequestType == CommonEnums.RequestType.Emision ? "Prima Total" : "Prima neta a prorrata", htmlAttributes: new { @class = "mdl-textfield__label" })
+        </div>
+
+        @if (RequestType == CommonEnums.RequestType.Emision)
+        {
+            <div class="mdl-cell mdl-cell--6-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                @Html.EditorFor(model => model.TotalPrimeToDiscount, new { htmlAttributes = new { @class = "mdl-textfield__input applyCurrency", disabled = "disabled" } })
+                @Html.LabelFor(model => model.TotalPrimeToDiscount, "Prima Total a Aplicar Descuento", htmlAttributes: new { @class = "mdl-textfield__label" })
+            </div>
+        }
+
+        <div class="mdl-cell mdl-cell--12-col mdl-textfield ">
+            @Html.DropDownListFor(model => model.PaymentFrequencyDropDown, (IEnumerable<SelectListItem>)ViewBag.PaymentFreq, new { id = "paymentFrecuency", @class = "chosen-select-deselect form-control", @data_placeholder = "Frecuencia de Pago" })
+        </div>
+
+        @if (RequestType == CommonEnums.RequestType.Emision)
+        {
+            <div class="mdl-cell mdl-cell--6-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                @Html.EditorFor(model => model.TotalDiscount, new { htmlAttributes = new { @class = "mdl-textfield__input applyCurrency", disabled = "disabled" } })
+                @Html.LabelFor(model => model.TotalDiscount, "Descuento", htmlAttributes: new { @class = "mdl-textfield__label" })
+            </div>
+        }
+
+        @if (@Model.FlotillaDiscount)
+        {
+            <div class="mdl-cell mdl-cell--6-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                @Html.EditorFor(model => model.TotalFlotillaDiscount, new { htmlAttributes = new { @class = "mdl-textfield__input applyCurrency", disabled = "disabled" } })
+                @Html.LabelFor(model => model.TotalFlotillaDiscount, "Descuento Flotilla", htmlAttributes: new { @class = "mdl-textfield__label" })
+            </div>
+        }
+        <div class="mdl-cell mdl-cell--6-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+            @Html.EditorFor(model => model.TotalAmountWithDiscount, new { htmlAttributes = new { @class = "mdl-textfield__input applyCurrency", disabled = "disabled" } })
+            @Html.LabelFor(model => model.TotalAmountWithDiscount, "Prima Total sin Impuestos", htmlAttributes: new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-cell mdl-cell--6-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+            @Html.EditorFor(model => model.TotalISC, new { htmlAttributes = new { @class = "mdl-textfield__input applyCurrency", disabled = "disabled", data_percentage = Model.ISCPercentage } })
+            @Html.LabelFor(model => model.TotalISC, "Impuestos", htmlAttributes: new { @class = "mdl-textfield__label" })
+        </div>
+        <div class="mdl-cell mdl-cell--6-col float-left mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+            @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "mdl-textfield__input applyCurrency", disabled = "disabled" } })
+            @Html.LabelFor(model => model.Total, "Total", htmlAttributes: new { @class = "mdl-textfield__label" })
+        </div>
+
+        @if (RequestType == CommonEnums.RequestType.Inclusion)
+        {
+            <div id="DropPaymentFreq">
+
+
+            </div>
+        }
+
+        <div class="mdl-cell mdl-cell--12-col float-left">
+            <div class="input-group">
+                @if (RequestType == CommonEnums.RequestType.Emision)
+                {
+                    <span class="input-group-addon bg-info mdl-color-text--white">Monto Mínimo a Pagar</span>
+                }
+                else if (RequestType == CommonEnums.RequestType.Inclusion)
+                {
+                    <span class="input-group-addon bg-info mdl-color-text--white">Monto Mínimo Inicial a Pagar</span>
+                }
+
+                <span id="sInitial" class="input-group-addon border border-info">25%</span>
+                @Html.EditorFor(model => model.MinimunAmountToPay, new { htmlAttributes = new { @class = "form-control border border-info text-center font-weight-bold text-info applyCurrency", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col float-left">
+            <div class="input-group">
+                @if (RequestType == CommonEnums.RequestType.Emision)
+                {
+                    <span class="input-group-addon border border-warning bg-warning mdl-color-text--white font-weight-bold">Monto a Pagar</span>
+                }
+                else if (RequestType == CommonEnums.RequestType.Inclusion)
+                {
+                    <span class="input-group-addon border border-warning bg-warning mdl-color-text--white font-weight-bold">Monto de Cuotas a Pagar</span>
+                }
+
+                @Html.EditorFor(model => model.AmountToPayEnteredByUser, new { htmlAttributes = new { @class = "form-control form-control-lg border border-warning text-center font-weight-bold applyCurrency", disabled = "disabled" } })
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (RequestType == CommonEnums.RequestType.Emision)
+{
+    <div class="mdl-cell--12-col mdl-shadow--4dp p-md-3 mt-3 clearfix w-100">
+        <div class="alert alert-primary mb-0 float-left border-primary text-center w-100" role="alert">
+            Si paga el monto de prima anual 100% se le otorga un descuento del 5% del valor de su prima anual
+        </div>
+    </div>
+}
+
+<div class="mdl-cell card w-100 ml-0 mdl-cell--12-col mdl-shadow--4dp mt-3 p-3">
+    @if (ViewBag.onlyLoggedUsers == false)
+    {
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white text-capitalize p-0 mb-md-0 float-right ">
+            <i class="material-icons">arrow_forward</i>Continuar con un Agente
+        </button>
+    }
+</div>
+
+<footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+    <div class="container">
+        <div class="mdl-mega-footer__top-section">
+
+            <div class="mdl-mega-footer__left-section float-left">
+                @Ajax.RawActionLink("<i class='material-icons float-left mr-3'>arrow_back</i><strong class='x-hide mt-1 d-block float-left'>Atras</strong>",
+                                              "InfoAddVehicle",
+                                                     "Home",
+                                                      null,
+                                                      new AjaxOptions
+                                                      {
+                                                          InsertionMode = InsertionMode.Replace,
+                                                          UpdateTargetId = "dvContainer",
+                                                          OnSuccess = "InitializeVehicle(); $('#btnDissmisPayment').hide();"
+                                                      },
+                                      new { @class = "btn btn-outline-info mb-1 mr-2 float-left" })
+
+                @*<a href="#" target="_blank" id="uptocall-mini" class="float-left ml-2 mr-4"><i class="uptocall-mini-phone"></i></a>
+                    <a id="mail_btn" href="mailto:costumer@correo.com" class="btn btn-outline-warning">
+                        <i class="fa fa-envelope fa-2x fa-fw" aria-hidden="true"></i>
+                        <strong class="x-hide">Enviarme por Correo</strong>
+                    </a>*@
+            </div>
+
+            <div class="mdl-mega-footer__right-section float-right">
+                <ul class="mdl-mega-footer__link-list mdl-color-text--white d-flex justify-content-center x-hide mb-0 mt-2 float-left">
+                    <li><!-- <i class="fa fa-phone float-left mr-3"></i> --><strong>Tel: </strong> (809) 565-5591 &nbsp•&nbsp</li>
+                    <li class="mr-3"> <!-- <i class="fa fa-envelope float-left mr-3" aria-hidden="true"></i> --> <strong> Email:</strong> ventas@atlantica.do</li>
+                </ul>
+
+                <a class="btn btn-outline-success mb-1 lh22 float-right" href="#" id="aPagar">
+                    <i class="material-icons mr-3 float-left">&#xE8A1;</i>
+                    <strong class='x-hide d-block float-left'>PAGAR</strong>
+                </a>
+
+                @*@Ajax.RawActionLink("<i class=\"material-icons mr-3\">&#xE8A1;</i>PAGAR",
+                    "_PaymentCheckoutSave",
+                    "Home",
+                    null,
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "divCardnetForm",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "Post",
+                        OnBegin = "PaymentCheckoutSave(); return false;",
+                        OnSuccess = "PaymentCheckoutSave(); return false;",
+
+                    },
+                    new
+                    {
+                        @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success"
+                    }
+                    )*@
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<script src="~/js/ControllersJs/_PaymentCheckoutJS.js"></script>

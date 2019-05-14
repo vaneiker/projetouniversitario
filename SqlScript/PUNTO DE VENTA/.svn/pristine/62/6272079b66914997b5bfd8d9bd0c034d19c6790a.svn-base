@@ -1,0 +1,86 @@
+﻿using Entity.Entities;
+using STL.POS.Data.NewVersion.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace STL.POS.Logic
+{
+    public class QuotationManager : BaseManager
+    {
+        private readonly QuotationRepository quotationRepository;
+
+        public QuotationManager()
+        {
+            quotationRepository = new QuotationRepository();
+        }
+
+        #region Set
+        public BaseEntity SetQuotation(Quotation.parameter parameter)
+        {
+            return
+                    quotationRepository.SetQuotation(parameter);
+        }
+
+        public int SetQuotationDeclined()
+        {
+            return quotationRepository.SetQuotationDeclined();
+        }
+
+        #endregion
+
+        #region Get
+        public Quotation GetQuotation(int? quotationID, string quotationNumber = "", string policyNumber = "")
+        {
+            return
+                quotationRepository.GetQuotation(quotationID, quotationNumber, policyNumber);
+        }
+
+        public IEnumerable<Driver> GetQuotationDrivers(int quotationId)
+        {
+            return
+                quotationRepository.GetQuotationDrivers(quotationId);
+        }
+
+        public IEnumerable<Coverage> GetQuotationCoverage(int? vehicleId, int Filtro)
+        {
+            return
+                quotationRepository.GetQuotationCoverage(vehicleId, Filtro);
+        }
+
+        public IEnumerable<VehicleProduct> GetQuotationVehicles(int quotationID)
+        {
+            return
+                quotationRepository.GetQuotationVehicles(quotationID);
+        }
+
+        public IEnumerable<ProductLimits> GetQuotationProductLimits(int vehicleID)
+        {
+            return
+               quotationRepository.GetQuotationProductLimits(vehicleID);
+        }
+
+        public IEnumerable<ServicesTypes> GetQuotationServicesTypes(int quotationID)
+        {
+            return
+                quotationRepository.GetQuotationServicesTypes(quotationID);
+        }
+
+        public IEnumerable<Coverage> GetQuotationServices(int quotationID)
+        {
+            return
+                quotationRepository.GetQuotationServices(quotationID);
+        }
+
+        public IEnumerable<Coverage> GetQuotationCoverageDetail(int quotationID)
+        {
+            return
+                quotationRepository.GetQuotationCoverageDetail(quotationID);
+        }
+
+
+        #endregion
+    }
+}

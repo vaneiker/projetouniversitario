@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DD44F1B8-2A17-47E7-8CE4-9F5A8F2B652A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STL.POS.VirtualOfficeProxy</RootNamespace>
+    <AssemblyName>STL.POS.VirtualOfficeProxy</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IVirtualOfficeProxy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ContactsProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\VOProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualOfficeProxy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContactsProxy\ContactService.wsdl" />
+    <None Include="Service References\ContactsProxy\ContactService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContactsProxy\ContactService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContactsProxy\ContactService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContactsProxy\ContactService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContactsProxy\ContactService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContactsProxy\ContactService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContactsProxy\ContactService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.AddressResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.ContactResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.DeleteCommunicationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.DeleteIdDocumentResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.EmailResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.getResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.getResultBinaryIdDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.IdentificationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.MatchResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.PhoneResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactsProxy\STL.POS.VirtualOfficeProxy.ContactsProxy.SetContactQuestionaireHealthResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1.wsdl" />
+    <None Include="Service References\VOProxy\PolicyService11.wsdl" />
+    <None Include="Service References\VOProxy\PolicyService18.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService181.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1810.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1811.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1812.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1813.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1814.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1815.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1816.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1817.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1818.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1819.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService182.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1820.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1821.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1822.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1823.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1824.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1825.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1826.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1827.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1828.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1829.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService183.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1830.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1831.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1832.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1833.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1834.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1835.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService1836.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService184.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService185.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService186.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService187.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService188.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService189.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService61.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService62.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService63.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService64.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService65.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService71.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService72.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService73.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService81.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService810.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService811.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService812.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService813.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService814.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService815.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService82.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService83.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService84.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService85.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService86.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService87.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService88.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\PolicyService89.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.CalculateLoansResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.CoverageGroupDetailResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.CoverageGroupResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.CoverageProductResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.CoverageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.CoverageTypeResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.CreateLoanResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.ExportAgentResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.ExportClientResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.getResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.GpDomiciliationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.MakeModelHomologationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.ProductResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.ProductTypeResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.RequirementResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.ResultCode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetAirPlaneInsuredCoverageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetAirPlaneInsuredPilotResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetAirplaneInsuredResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetBailInsuredCoverageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetBailInsuredResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetNavyInsuredCoverageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetNavyInsuredResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetPolicyInsuredCoverageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetPropertyDetailResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetPropertyInsuredDetailCoverageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetPropertyInsuredDetailFeatureResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetPropertyInsuredDetailResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetPropertyInsuredResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetPropertyResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetTransportInsuredCoverageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.SetTransportInsuredResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.VehicleCoverageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\VOProxy\STL.POS.VirtualOfficeProxy.VOProxy.VehicleInsuredResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ContactsProxy\" />
+    <WCFMetadataStorage Include="Service References\VOProxy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VOProxy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VOProxy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VOProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{593d0c43-f556-4a61-889f-964fe656adc6}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.Data\STL.POS.Data.csproj">
+      <Project>{5ae6ab7f-a100-4dc8-99b3-a82f0537bcb5}</Project>
+      <Name>STL.POS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.WsProxy\STL.POS.WsProxy.csproj">
+      <Project>{9327aeb7-f748-4ec9-83c0-44e806f1f12a}</Project>
+      <Name>STL.POS.WsProxy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContactsProxy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContactsProxy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContactsProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContactsProxy\ContactService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VOProxy\PolicyService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\VOProxy\PolicyService11.disco" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

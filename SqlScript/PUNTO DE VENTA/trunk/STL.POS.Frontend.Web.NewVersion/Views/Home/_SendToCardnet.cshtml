@@ -1,0 +1,26 @@
+﻿@model Cardnet.RequestModel
+
+    <form method="post" action="@Model.CardnetUrl" id="cardnetAuthForm">
+        <p><input name="TransactionType" value="@Model.TransactionType" type="hidden"></p>
+        <p><input name="CurrencyCode" value="@Model.CurrencyCode" type="hidden"></p>
+        <p><input name="AcquiringInstitutionCode" value="@Model.AcquiringInstitutionCode" type="hidden"></p>
+        <p><input name="MerchantType" value="@Model.MerchantType" type="hidden"></p>
+        <p><input name="MerchantNumber" value="@Model.MerchantNumber" type="hidden"></p>
+        <p><input name='MerchantNumber_amex' value='@Model.MerchantNumber_amex' type="hidden"></p>
+        <p><input name="MerchantTerminal" value="@Model.MerchantTerminal" type="hidden"></p>
+        <p><input name='MerchantTerminal_amex' value="@Model.MerchantTerminal_amex" type="hidden"></p>
+        <p><input name="ReturnUrl" value="@Model.ReturnUrl" type="hidden"></p>
+        <p><input name="CancelUrl" value="@Model.CancelUrl" type="hidden"></p>
+        <p><input name="PageLanguaje" value="@Model.PageLanguaje" type="hidden"></p>
+        <p><input name="OrdenId" value="@Model.OrdenId" type="hidden"></p>
+        <p><input name="TransactionId" value="@Model.TransactionId" type="hidden"></p>
+        <p><input name="Amount" value="@Model.Amount" type="hidden"></p>
+        <p><input name="Tax" value="@Model.Tax" type="hidden"></p>
+        <p><input name="MerchantName" value="@Model.MerchantName" type="hidden"></p>
+        <p><input name="KeyEncriptionKey" value="@Model.KeyEncriptionKey" type="hidden"></p>
+        <p><input name="Ipclient" value="@Model.Ipclient" type="hidden"></p>
+    </form>
+
+<script type="text/javascript">
+    //document.getElementById("cardnetAuthForm").submit();
+</script>

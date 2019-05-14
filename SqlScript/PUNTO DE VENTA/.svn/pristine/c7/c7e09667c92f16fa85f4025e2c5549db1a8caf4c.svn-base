@@ -1,0 +1,822 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using STL.POS.Data;
+using System.Xml.Serialization;
+using System.IO;
+using STL.POS.THProxy.THWebService;
+using System.Configuration;
+using Microsoft.Web.Services3.Design;
+using System.Timers;
+using System.Threading;
+using STL.POS.WsProxy;
+using STL.POS.WsProxy.SysflexService;
+
+
+namespace STL.POS.THProxy
+{
+    public class THProxy : ITHProxy
+    {
+        private THSecurityAssertion securityToken;
+        private JobAPIWebService webClient;
+
+
+        private const int ID_DOCUMENT_CAMBIO_DE_CONTRASENIA = 1335501224;
+        private const int ID_DOCUMENT_COTIZACION_ACEPTADA = 1335501036;
+        private const int ID_DOCUMENT_COTIZACION_NO_COMPLETADA = 1335501038;
+        private const int ID_DOCUMENT_COTIZACION_PENDIENTE_INSPECCION = 1335501039;
+        private const int ID_DOCUMENT_COTIZACION_PROXIMA_A_VENCER_15_DIAS = 1335501037;
+        private const int ID_DOCUMENT_COTIZACION_PROXIMA_A_VENCER_5_DIAS = 1335501041;
+        private const int ID_DOCUMENT_ENVIO_CONTRASENIA = 1335501028;
+        private const int ID_DOCUMENT_COTIZACION_ENVIADA_EMAIL = 1335501268;
+        private const int ID_DOCUMENT_RESUMEN_COTIZACION = 1335501365;
+        private const int ID_DOCUMENT_RESUMEN_COTIZACION_GUARDADA = 1335501365;
+        private const int ID_DOCUMENT_MARBETE = 1335501793;
+        private const int ID_DOCUMENT_MARBETE_ENVIADA_EMAIL = 1335501987;
+
+        private const int ID_DOCUMENT_RESUMEN_COTIZACION_MAYOR4 = 1335504116;
+
+        public const string BATCH_RESULT_QueuedForParsing = "p";
+        public const string BATCH_RESULT_Parsing = "P";
+        public const string BATCH_RESULT_DocumentProduction = "D";
+        public const string BATCH_RESULT_Stored = "H";
+        public const string BATCH_RESULT_ProcessingCompleted = "C";
+        public const string BATCH_RESULT_Finished = "F";
+        public const string BATCH_RESULT_SentForReview = "W";
+        public const string BATCH_RESULT_Stopped = "S";
+        public const string BATCH_RESULT_Errored = "E";
+
+        private const double GET_REPORT_TIMEOUT_MS = 60000;
+        private const int GET_BATCH_STATUS_TIMEOUT_MS = 500;
+        private const int CREATE_MARBETE_PDF_MS = 5000;
+
+        public GetProjectId GetThProjectId
+        {
+            get;
+            set;
+        }
+
+        public THProxy()
+        {
+            webClient = new JobAPIWebService();
+            var user = ConfigurationManager.AppSettings["ThUsername"];
+            var pass = ConfigurationManager.AppSettings["ThPassword"];
+
+            //webClient.Timeout = 300000;//en milisegundos
+
+            securityToken = new THSecurityAssertion(user, pass);
+
+            webClient.SetPolicy(new Policy(securityToken));
+        }
+
+        private byte[] SerializeToXml(POS_AUTO transaction, bool writeToFile = false)
+        {
+            XmlSerializer serial = new XmlSerializer(typeof(POS_AUTO));
+            var stream = new MemoryStream();
+
+            serial.Serialize(stream, transaction);
+
+            var stReader = new StreamReader(stream);
+            var file = Path.Combine(Path.GetTempPath(), Path.GetTempFileName()) + ".xml";
+
+            if (writeToFile)
+            {
+                stream.Position = 0;
+                var fileStream = new FileStream(file, FileMode.OpenOrCreate);
+                var stWriter = new StreamWriter(fileStream);
+                stWriter.Write(stReader.ReadToEnd());
+                stWriter.Flush();
+                stWriter.Close();
+            }
+
+            stream.Position = 0;
+
+            var buffer = stream.ToArray();
+
+            return buffer;
+        }
+
+        public int SendNewUserCreated(string username, string fullname, string userEmail, string link)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Transaction.DocumentId = ID_DOCUMENT_ENVIO_CONTRASENIA;
+            transaction.Transaction.Fullname = fullname;
+            transaction.Transaction.Url = link;
+            transaction.Transaction.UserEmail = userEmail;
+            transaction.Transaction.Username = username;
+
+            var buffer = SerializeToXml(transaction);
+
+            return SendToTH(transaction, buffer);
+        }
+
+        public int SendForgetPassword(string username, string fullname, string userEmail, string link)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Transaction.DocumentId = ID_DOCUMENT_CAMBIO_DE_CONTRASENIA;
+            transaction.Transaction.Fullname = fullname;
+            transaction.Transaction.Url = link;
+            transaction.Transaction.UserEmail = userEmail;
+            transaction.Transaction.Username = username;
+
+            var buffer = SerializeToXml(transaction);
+
+            return SendToTH(transaction, buffer);
+
+        }
+
+        public int SendQuotationCompletedAndPaid(Quotation quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_COTIZACION_ACEPTADA;
+            transaction.Transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Transaction.UserEmail = quotation.GetPrincipalEmail();
+            transaction.Transaction.Username = !string.IsNullOrEmpty(agentFullName) ? agentFullName : quotation.User != null ? quotation.User.GetFullName() : userDefault;
+
+            LoadQuotationDetail(quotation, transaction, codRamo);
+
+            transaction.Quotation.LineOfBusiness = "AUTO"; // "AUTO";// quotation.BusinessLine.Name;
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+            var buffer = SerializeToXml(transaction);
+
+            return SendToTH(transaction, buffer);
+        }
+
+        public Tuple<byte[], byte[]> GetMarbeteExecutePreview(Quotation quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106)
+        {
+            byte[] result;
+
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_MARBETE;
+            //transaction.Transaction.Fullname = quotation.PrincipalFullName; //ORIGINAL 06-10-2016
+            //transaction.Transaction.Username = quotation.User != null ? quotation.User.GetFullName() : userDefault;
+
+            transaction.Transaction.Username = !string.IsNullOrEmpty(agentFullName) ? agentFullName : quotation.User != null ? quotation.User.GetFullName() : userDefault;
+
+            transaction.Transaction.UserEmail = quotation.GetPrincipalEmail();
+            transaction.Transaction.NoPoliza = quotation.PolicyNumber;
+            if (quotation.StartDate.HasValue)
+                transaction.Transaction.FechaInicio = quotation.StartDate.Value.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            if (quotation.EndDate.HasValue)
+            {
+                //transaction.Transaction.FechaVencimiento = quotation.EndDate.Value.ToString("dd-MMM-yyyy hh:mm:ss tt"); //ORIGINA 17-10-2016 JHEIRON DOTEL
+                transaction.Transaction.FechaVencimiento = quotation.StartDate.Value.AddDays(90).Date.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            }
+
+            LoadQuotationDetail(quotation, transaction, codRamo);
+
+            transaction.Quotation.LineOfBusiness = "AUTO";//  "AUTO";// quotation.BusinessLine.Name;
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+            var buffer = SerializeToXml(transaction);
+
+            result = SendToTHExecutePreview(transaction, buffer);
+
+            Thread.Sleep(CREATE_MARBETE_PDF_MS);
+
+            return new Tuple<byte[], byte[]>(result, buffer);
+        }
+
+        public int GetMarbete(Quotation quotation, string userDefault = "10562", int codRamo = 106)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_MARBETE;
+            //transaction.Transaction.Fullname = quotation.PrincipalFullName; //ORIGINAL 06-10-2016
+            transaction.Transaction.Username = quotation.User != null ? quotation.User.GetFullName() : userDefault;
+            transaction.Transaction.UserEmail = quotation.GetPrincipalEmail();
+            transaction.Transaction.NoPoliza = quotation.PolicyNumber;
+            if (quotation.StartDate.HasValue)
+                transaction.Transaction.FechaInicio = quotation.StartDate.Value.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            if (quotation.EndDate.HasValue)
+                transaction.Transaction.FechaVencimiento = quotation.EndDate.Value.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            LoadQuotationDetail(quotation, transaction, codRamo);
+
+            transaction.Quotation.LineOfBusiness = "AUTO";//  "AUTO";// quotation.BusinessLine.Name;
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+            var buffer = SerializeToXml(transaction);
+
+            int result = SendToTH(transaction, buffer);
+            Thread.Sleep(CREATE_MARBETE_PDF_MS);
+
+            return result;
+        }
+
+        public int SendMarbeteByMail(Quotation quotation, List<string> destinationAddresses, string userDefault = "10562", string agentFullName = "", int codRamo = 106)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_MARBETE_ENVIADA_EMAIL;
+            transaction.Transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Transaction.UserEmail = string.Join(",", destinationAddresses);
+            transaction.Transaction.NoPoliza = quotation.PolicyNumber;
+            if (quotation.StartDate.HasValue)
+                transaction.Transaction.FechaInicio = quotation.StartDate.Value.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            //if (quotation.EndDate.HasValue)
+            //    transaction.Transaction.FechaVencimiento = quotation.EndDate.Value.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            if (quotation.EndDate.HasValue)
+            {
+                //transaction.Transaction.FechaVencimiento = quotation.EndDate.Value.ToString("dd-MMM-yyyy hh:mm:ss tt"); //ORIGINA 17-10-2016 JHEIRON DOTEL
+                transaction.Transaction.FechaVencimiento = quotation.StartDate.Value.AddDays(90).Date.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            }
+
+            transaction.Transaction.Username = !string.IsNullOrEmpty(agentFullName) ? agentFullName : quotation.User != null ? quotation.User.GetFullName() : userDefault;
+
+            LoadQuotationDetail(quotation as QuotationAuto, transaction, codRamo);
+            transaction.Quotation.LineOfBusiness =  "AUTO";// quotation.BusinessLine.Name;
+            transaction.Quotation.PrincipalName = quotation.PrincipalFullName;
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+            var buffer = SerializeToXml(transaction);
+
+            return SendToTH(transaction, buffer);
+
+        }
+
+        public int SendQuotation15DaysWarning(Quotation quotation, int codRamo = 106)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_COTIZACION_PROXIMA_A_VENCER_15_DIAS;
+            transaction.Transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Transaction.UserEmail = quotation.GetPrincipalEmail();
+            transaction.Transaction.NoPoliza = quotation.PolicyNumber;
+
+            LoadQuotationDetail(quotation, transaction, codRamo);
+
+            transaction.Quotation.LineOfBusiness =  "AUTO";// quotation.BusinessLine.Name;
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+            var buffer = SerializeToXml(transaction);
+
+            return SendToTH(transaction, buffer);
+        }
+
+        public int SendQuotation5DaysWarning(Quotation quotation, int codRamo = 106)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_COTIZACION_PROXIMA_A_VENCER_5_DIAS;
+            transaction.Transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Transaction.UserEmail = quotation.GetPrincipalEmail();
+
+            LoadQuotationDetail(quotation, transaction, codRamo);
+
+            transaction.Quotation.LineOfBusiness =  "AUTO";// quotation.BusinessLine.Name;
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+            var buffer = SerializeToXml(transaction);
+            return SendToTH(transaction, buffer);
+        }
+
+        public int SendQuotationCompletedButPaidCancelled(Quotation quotation, int codRamo = 106)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_COTIZACION_NO_COMPLETADA;
+            transaction.Transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Transaction.UserEmail = quotation.GetPrincipalEmail();
+
+            LoadQuotationDetail(quotation as QuotationAuto, transaction, codRamo);
+
+            transaction.Quotation.LineOfBusiness =  "AUTO";// quotation.BusinessLine.Name;
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+
+            var buffer = SerializeToXml(transaction);
+
+            return SendToTH(transaction, buffer);
+
+        }
+
+        public int SendQuotationInspectionPending(Quotation quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_COTIZACION_PENDIENTE_INSPECCION;
+            transaction.Transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Transaction.UserEmail = quotation.GetPrincipalEmail();
+
+            transaction.Transaction.Username = !string.IsNullOrEmpty(agentFullName) ? agentFullName : quotation.User != null ? quotation.User.GetFullName() : userDefault;
+
+            LoadQuotationDetail(quotation as QuotationAuto, transaction, codRamo);
+
+            transaction.Quotation.LineOfBusiness = "AUTO"; // "AUTO";// quotation.BusinessLine.Name; //ORIGINAL 15-08-2017
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+            var buffer = SerializeToXml(transaction, false);
+
+            return SendToTH(transaction, buffer);
+
+        }
+
+        public int SendQuotationByMail(Quotation quotation, List<string> destinationAddresses, string userDefault = "10562", string agentFullName = "", int codRamo = 106)
+        {
+            var transaction = new POS_AUTO();
+            transaction.Transaction = new POS_AUTOTransaction();
+            transaction.Quotation = new POS_AUTOQuotation();
+
+            transaction.Transaction.DocumentId = ID_DOCUMENT_COTIZACION_ENVIADA_EMAIL;
+            transaction.Transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Transaction.UserEmail = string.Join(",", destinationAddresses);
+
+            transaction.Transaction.Username = !string.IsNullOrEmpty(agentFullName) ? agentFullName : quotation.User != null ? quotation.User.GetFullName() : userDefault;
+
+            LoadQuotationDetail(quotation as QuotationAuto, transaction, codRamo);
+            transaction.Quotation.LineOfBusiness =  "AUTO";// quotation.BusinessLine.Name;
+            transaction.Quotation.PrincipalName = quotation.PrincipalFullName;
+            transaction.Quotation.Product = quotation.GetQuotationProduct();
+
+            var buffer = SerializeToXml(transaction);
+
+            return SendToTH(transaction, buffer);
+
+        }
+
+        private byte[] SendToTHExecutePreview(POS_AUTO transaction, byte[] transactionData)
+        {
+            byte[] binary = null;
+
+            ExternalJobRequestAPI request = new ExternalJobRequestAPI();
+
+            request.batchName = "IntegracionPuntodeVenta";
+
+            if (GetThProjectId != null)
+            {
+                request.projectID = GetThProjectId();
+            }
+            else
+                request.projectID = 1335500015; //Failsafe
+
+            //#if (DEBUG)
+            //            request.projectID = 1335500015;
+            //#else
+            //                        request.projectID = 0;
+            //#endif
+            request.batchConfigResID = 1335501240;
+            request.batchCollect = 8;
+            request.finOption = 0;
+            request.jobType = 0;
+            request.transactionData = transactionData;
+
+            var result = webClient.executePreview(request);
+
+            //obtener canal(es) documento(s) generado(s)
+            var channelDocuments = result.masterChannels;
+
+            for (int i = 0; i < channelDocuments.Length; i++)
+            {
+                var doc = channelDocuments[i];
+                binary = doc.data;
+                String ext = doc.formatString;
+                if (ext == "pdf")
+                    break;
+            }
+
+            return binary;
+        }
+
+        private int SendToTH(POS_AUTO transaction, byte[] transactionData)
+        {
+            ExternalJobRequestAPI request = new ExternalJobRequestAPI();
+
+            request.batchName = "IntegracionPuntodeVenta";
+
+            if (GetThProjectId != null)
+            {
+                request.projectID = GetThProjectId();
+            }
+            else
+            {
+                request.projectID = 1335500015; //Failsafe
+            }
+
+            request.batchConfigResID = 1335501240;
+            request.batchCollect = 8;
+            request.finOption = 0;
+            request.jobType = 0;
+            request.transactionData = transactionData;
+            var output = webClient.submitBatch(request);
+            return output;
+        }
+
+        public string GetBatchJobStatus(int bjId)
+        {
+            var batchJob = webClient.getBatchJob(bjId);
+            return batchJob.batchStatus;
+        }
+
+        public Tuple<int, byte[]> SendDetailedAutoQuotationOnSave(QuotationAuto quotation, int codRamo = 106)
+        {
+            var dataObject = new POS_AUTO();
+            var transaction = new POS_AUTOTransaction();
+            var quotationTH = new POS_AUTOQuotation();
+            dataObject.Transaction = transaction;
+
+            /*Forma Anterior de Flotilla 21-07-2017*/
+            /*if (quotation.VehicleProducts.Count() > 4)
+            {
+                transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION_MAYOR4;//Para vehiculos mayores a 4
+            }
+            else
+            {
+                transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION_GUARDADA;
+            }*/
+
+            transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION_MAYOR4;
+
+            transaction.Fullname = quotation.PrincipalFullName;
+
+            LoadQuotationDetail(quotation, dataObject, codRamo);
+
+            var buffer = SerializeToXml(dataObject, false);
+
+            var batchJobId = SendToTH(dataObject, buffer);
+
+            return new Tuple<int, byte[]>(batchJobId, buffer);
+        }
+
+
+        /// <summary>
+        ///  Este metodo devuelve la cotizacion como un arreglo de bytes
+        /// </summary>
+        /// <param name="quotation"></param>
+        /// <returns></returns>
+        public byte[] SendDetailedAutoQuotationPreview(QuotationAuto quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106)
+        {
+            byte[] result;
+            var dataObject = new POS_AUTO();
+            var transaction = new POS_AUTOTransaction();
+            var quotationTH = new POS_AUTOQuotation();
+            dataObject.Transaction = transaction;
+
+            /*Forma Anterior de Flotilla 21-07-2017*/
+            /*if (quotation.VehicleProducts.Count() > 4)
+            {
+                transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION_MAYOR4;//Para vehiculos mayores a 4
+            }
+            else
+            {
+                transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION;
+            }*/
+
+            transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION_MAYOR4;
+
+
+            transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Username = !string.IsNullOrEmpty(agentFullName) ? agentFullName : quotation.User != null ? quotation.User.GetFullName() : userDefault;
+
+            LoadQuotationDetail(quotation, dataObject, codRamo);
+
+            var buffer = SerializeToXml(dataObject, false);
+
+            result = SendToTHExecutePreview(dataObject, buffer);
+
+            return result;
+        }
+
+        public int SendDetailedAutoQuotation(QuotationAuto quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106)
+        {
+            var dataObject = new POS_AUTO();
+            var transaction = new POS_AUTOTransaction();
+            var quotationTH = new POS_AUTOQuotation();
+            dataObject.Transaction = transaction;
+
+            /*Forma Anterior de Flotilla 21-07-2017*/
+            /*if (quotation.VehicleProducts.Count() > 4)
+            {
+                transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION_MAYOR4;//Para vehiculos mayores a 4
+            }
+            else
+            {
+                transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION;
+            }*/
+
+            transaction.DocumentId = ID_DOCUMENT_RESUMEN_COTIZACION_MAYOR4;
+
+            transaction.Fullname = quotation.PrincipalFullName;
+            transaction.Username = !string.IsNullOrEmpty(agentFullName) ? agentFullName : quotation.User != null ? quotation.User.GetFullName() : userDefault;
+
+            LoadQuotationDetail(quotation, dataObject, codRamo);
+
+            var buffer = SerializeToXml(dataObject, false);
+
+            var batchJobId = SendToTH(dataObject, buffer);
+
+            var getReportTimer = new System.Timers.Timer(GET_REPORT_TIMEOUT_MS);
+
+            var status = BATCH_RESULT_Parsing;
+            getReportTimer.Start();
+            while (getReportTimer.Enabled && status != BATCH_RESULT_Finished)
+            {
+                status = webClient.getBatchJob(batchJobId).batchStatus;
+                Thread.Sleep(GET_BATCH_STATUS_TIMEOUT_MS);
+            }
+
+            if (status != BATCH_RESULT_Finished)
+            {
+                if (status != BATCH_RESULT_Errored)
+                    throw new TimeoutException("No se ha generado el reporte en tiempo: error de timeout");
+                else
+                    throw new Exception("Error en la generación del reporte.");
+            }
+
+            return batchJobId;
+        }
+
+        private static void LoadQuotationDetail(Quotation quotation, POS_AUTO dataObject, int codRamo)
+        {
+
+            POS_AUTOQuotation quotationTH = new POS_AUTOQuotation();
+            dataObject.Quotation = quotationTH;
+
+            //Primera página
+            quotationTH.PrincipalName = quotation.PrincipalFullName;
+            quotationTH.PrincipalCountry = quotation.GetPrincipal().City.Country.Global_Country_Desc;
+            quotationTH.ProposalDate = DateTime.Now;
+            quotationTH.ProposalDateSpecified = true;
+            quotationTH.Plan = "AUTO";
+            quotationTH.IdType = quotation.GetPrincipal().IdentificationType == null ? "" : quotation.GetPrincipal().IdentificationType;
+            quotationTH.IdNumber = quotation.GetPrincipal().IdentificationNumber == null ? "" : quotation.GetPrincipal().IdentificationNumber;
+
+            if (!string.IsNullOrEmpty(quotation.GetPrincipal().PhoneNumber))
+            {
+                quotationTH.TelephoneNumber = quotation.GetPrincipal().PhoneNumber;
+            }
+            else if (!string.IsNullOrEmpty(quotation.GetPrincipal().Mobile))
+            {
+                quotationTH.TelephoneNumber = quotation.GetPrincipal().Mobile;
+            }
+            else if (!string.IsNullOrEmpty(quotation.GetPrincipal().WorkPhone))
+            {
+                quotationTH.TelephoneNumber = quotation.GetPrincipal().WorkPhone;
+            }
+            else
+            {
+                quotationTH.TelephoneNumber = "";
+            }
+
+            quotationTH.Email = quotation.GetPrincipal().Email == null ? "" : quotation.GetPrincipal().Email;
+            quotationTH.NumberOfPayments = quotation.PaymentFrequencyId;
+            quotationTH.NumberOfPaymentsSpecified = true;
+            quotationTH.QuotationNumber = quotation.QuotationNumber;
+            quotationTH.QuotationDate = quotation.Created;
+            quotationTH.QuotationDateSpecified = true;
+            quotationTH.NumberOfVehicles = (quotation as QuotationAuto).VehicleProducts.Count;
+            quotationTH.StartDate = quotation.StartDate.Value;
+            quotationTH.StartDateSpecified = true;
+            quotationTH.EndDate = quotation.EndDate.Value;
+            quotationTH.EndDateSpecified = true;
+
+            int invoicetypeid = 0;
+
+            //Conductores
+            var driversTh = new List<POS_AUTOQuotationDrivers>();
+            foreach (var driver in (quotation as QuotationAuto).Drivers)
+            {
+                var driverTh = new POS_AUTOQuotationDrivers();
+                driverTh.BirthDate = driver.DateOfBirth;
+                driverTh.BirthDateSpecified = true;
+                driverTh.Email = driver.Email;
+                driverTh.IdNumber = driver.IdentificationNumber;
+                driverTh.IdType = driver.IdentificationType;
+                driverTh.Name = driver.GetFullName();
+                //driverTh.TelephoneNumber = driver.PhoneNumber;
+
+                if (!string.IsNullOrEmpty(driver.PhoneNumber))
+                {
+                    driverTh.TelephoneNumber = driver.PhoneNumber;
+                }
+                else if (!string.IsNullOrEmpty(driver.Mobile))
+                {
+                    driverTh.TelephoneNumber = driver.Mobile;
+                }
+                else if (!string.IsNullOrEmpty(driver.WorkPhone))
+                {
+                    driverTh.TelephoneNumber = driver.WorkPhone;
+                }
+                else
+                {
+                    driverTh.TelephoneNumber = "";
+                }
+
+                driversTh.Add(driverTh);
+                if (invoicetypeid == 0)
+                {
+                    invoicetypeid = driver.InvoiceTypeId.GetValueOrDefault();
+                }
+            }
+            quotationTH.Drivers = driversTh.ToArray();
+
+            //Vehiculos
+            var vehiclesTH = new List<POS_AUTOQuotationVehicles>();
+            foreach (var vehicle in (quotation as QuotationAuto).VehicleProducts)
+            {
+                var vehicleTH = new POS_AUTOQuotationVehicles();
+                //vehicleTH.Brand = vehicle.VehicleModel.Make.Make_Desc; //Esto da error porque el objeto Make viene null REVISAR
+                vehicleTH.Brand = vehicle.VehicleMakeName;
+                vehicleTH.EnsuredAmount = vehicle.InsuredAmount.GetValueOrDefault(0);
+                vehicleTH.EnsuredAmountSpecified = true;
+                vehicleTH.Model = vehicle.VehicleModel.Model_Desc;
+                vehicleTH.Plan = vehicle.SelectedProductName;
+                vehicleTH.VehicleType = vehicle.SelectedVehicleTypeName;
+                vehicleTH.Year = vehicle.Year.GetValueOrDefault(0);
+                vehicleTH.YearSpecified = true;
+                vehicleTH.Registro = vehicle.Plate;
+                vehicleTH.Chasis = vehicle.Chassis;
+
+                vehicleTH.VehicleValue = vehicle.VehiclePrice;
+                vehicleTH.Quantity = vehicle.VehicleQuantity.HasValue ? vehicle.VehicleQuantity.Value : 1;
+                vehicleTH.VehiclePrime = vehicle.TotalPrime.HasValue ? vehicle.TotalPrime.Value : 0;
+
+                if (vehicle.ProductLimits.Count > 0)
+                {
+                    var prodLimit = vehicle.ProductLimits.First(pl => pl.IsSelected);
+
+                    //Coberturas por vehículos (terceros)
+                    var tpCoveragesTH = new List<POS_AUTOQuotationVehiclesThirdDamagesCoverages>();
+                    foreach (var tpCov in prodLimit.ThirdPartyCoverages)
+                    {
+                        var tpCovTH = new POS_AUTOQuotationVehiclesThirdDamagesCoverages();
+                        tpCovTH.Description = tpCov.Name.Capitalize(' ');
+                        tpCovTH.Limit = tpCov.Limit;
+                        tpCovTH.MinimumDeductibleSpecified = true;
+                        tpCovTH.MinimumDeductible = tpCov.MinDeductible;
+                        tpCovTH.LimitSpecified = true;
+                        tpCoveragesTH.Add(tpCovTH);
+                    }
+                    vehicleTH.ThirdDamagesCoverages = tpCoveragesTH.ToArray();
+                    vehicleTH.ThirdDamagesPrime = prodLimit.TpPrime.GetValueOrDefault(0);
+                    vehicleTH.ThirdDamagesPrimeSpecified = true;
+
+                    var sdCoveragesTH = new List<POS_AUTOQuotationVehiclesSelfDamagesCoverages>();
+
+                    var SysFlexProxy = new CoreProxy(new SysFlexServiceClient());
+
+                    foreach (var tpCov in prodLimit.SelfDamagesCoverages)
+                    {
+                        var sdCovTH = new POS_AUTOQuotationVehiclesSelfDamagesCoverages();
+                        sdCovTH.Description = tpCov.Name.Capitalize(' ');
+                        sdCovTH.Limit = tpCov.Limit;
+                        sdCovTH.MinimumDeductibleSpecified = true;
+                        sdCovTH.MinimumDeductible = tpCov.MinDeductible;
+                        sdCovTH.LimitSpecified = true;
+
+                        sdCovTH.Deducible = Convert.ToInt32(tpCov.Deductible.GetValueOrDefault()) + "(%)";//Cambio 14-08-2017
+
+                        sdCoveragesTH.Add(sdCovTH);
+
+                        /*Original 14-08-2017*/
+                        //var deductibleRoturaCristales = "10 (%)";                     
+                        //if (prodLimit.SelectedDeductibleCoreId.HasValue)
+                        //{
+                        //    //Rotura de Cristal
+                        //    if (tpCov.Name.ToLower() == "Rotura de Cristales".ToLower())
+                        //    {
+                        //        var getResult = SysFlexProxy.GetCoverage(vehicle.SelectedCoverageCoreId.GetValueOrDefault(), 0, vehicle.VehiclePrice, codRamo);
+
+                        //        if (getResult.Any())
+                        //        {
+                        //            var result = getResult.FirstOrDefault(x => x.CoverageDetailName.ToLower() == "Rotura de Cristales".ToLower());
+
+                        //            if (result != null)
+                        //                deductibleRoturaCristales = Math.Truncate(result.deductible.GetValueOrDefault()).ToString() + "(%)";
+
+                        //            sdCovTH.Deducible = deductibleRoturaCristales;
+                        //        }
+                        //    }
+                        //    else
+                        //        sdCovTH.Deducible = prodLimit.SelectedDeductibleName;
+                        //}
+                        /**/
+                    }
+                    vehicleTH.SelfDamagesCoverages = sdCoveragesTH.ToArray();
+                    vehicleTH.SelfDamagesPrime = prodLimit.SdPrime.GetValueOrDefault(0);
+                    vehicleTH.SelfDamagesPrimeSpecified = true;
+
+                    var addCoveragesTH = new List<POS_AUTOQuotationVehiclesAdditionals>();
+                    decimal ServicesPrimeTotal = 0;
+                    foreach (var addCov in prodLimit.ServicesCoverages)
+                    {
+                        var selected = addCov.Coverages.FirstOrDefault(c => c.IsSelected);
+
+                        if (selected != null)
+                        {
+                            var addCovTH = new POS_AUTOQuotationVehiclesAdditionals();
+                            addCovTH.Description = selected.Name.Capitalize(' ');
+                            addCovTH.Limit = selected.Amount;
+                            addCovTH.LimitSpecified = true;
+                            addCovTH.MinimumDeductibleSpecified = true;
+                            addCovTH.MinimumDeductible = selected.MinDeductible;
+                            addCoveragesTH.Add(addCovTH);
+
+                            ServicesPrimeTotal += selected.Amount;
+                        }
+                    }
+                    vehicleTH.Additionals = addCoveragesTH.ToArray();
+                    vehicleTH.AdditionalsPrime = ServicesPrimeTotal;
+                    vehicleTH.AdditionalsPrimeSpecified = true;
+
+                    /*Original 21-07-2017*/
+                    /*vehicleTH.TotalVehiclePrime = prodLimit.TpPrime.GetValueOrDefault(0) +
+                        prodLimit.SdPrime.GetValueOrDefault(0) +
+                        prodLimit.ServicesPrime.GetValueOrDefault(0);*/
+
+                    vehicleTH.TotalVehiclePrime = (vehicleTH.VehiclePrime * vehicleTH.Quantity);
+
+                    vehicleTH.TotalVehiclePrimeSpecified = true;
+                }
+
+                vehiclesTH.Add(vehicleTH);
+            }
+            quotationTH.Vehicles = vehiclesTH.ToArray();
+            quotationTH.NumberOfVehicles = vehiclesTH.Count;
+            quotationTH.NumberOfVehiclesSpecified = true;
+
+            decimal total = 0;
+
+            var primes = new POS_AUTOQuotationPrimeResume();
+
+
+            primes.TotalAnualPrime = quotation.TotalPrime.Value;
+            primes.TotalAnualPrimeSpecified = true;
+
+            //Descuentos
+            var realDiscount = (quotation.TotalFlotillaDiscount.HasValue ? quotation.TotalFlotillaDiscount.Value : 0) + (quotation.TotalDiscount.HasValue ? quotation.TotalDiscount.Value : 0);
+
+            primes.Discount = realDiscount;
+            primes.DiscountSpecified = true;
+
+            decimal newTotalAnualPrime = ((quotation.TotalPrime.HasValue ? quotation.TotalPrime.Value : 0) - realDiscount);
+            decimal newTotaltaxes = newTotalAnualPrime * ((quotation.ISCPercentage.HasValue ? quotation.ISCPercentage.Value : 0) / 100);
+
+            //Prima Total Con descuento
+            primes.PrimeDiscount = newTotalAnualPrime;
+            primes.PrimeDiscountSpecified = true;
+
+            if (newTotaltaxes > 0)
+            {
+                if (invoicetypeid == 5)
+                {
+                    //limpiar el campo de impuesto del vehiculo.
+                    primes.Taxes = 0;
+                    newTotaltaxes = 0;
+                }
+                else
+                {
+                    primes.Taxes = newTotaltaxes;
+                }
+                primes.TaxesSpecified = true;
+            }
+            else
+            {
+                if (invoicetypeid == 5)
+                {
+                    //limpiar el campo de impuesto del vehiculo.
+                    primes.Taxes = 0;
+                    newTotaltaxes = 0;
+                }
+                else
+                {
+                    primes.Taxes = quotation.TotalISC.Value;
+                }
+                primes.TaxesSpecified = true;
+            }
+
+            total = newTotalAnualPrime + newTotaltaxes;
+
+            primes.TotalPayment = total;
+            primes.TotalPaymentSpecified = true;
+            dataObject.Quotation.PrimeResume = primes;
+        }
+    }
+}

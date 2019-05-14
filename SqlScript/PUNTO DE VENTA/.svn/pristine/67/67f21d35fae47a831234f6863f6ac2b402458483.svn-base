@@ -1,0 +1,912 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2FEA1C40-7CC9-43C3-9510-E4CCAFAE2C17}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STL.POS.Frontend.Web</RootNamespace>
+    <AssemblyName>STL.POS.Frontend.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.7.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.7\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ReportViewer\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ReportViewer\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ReportViewer\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\Microsoft.Web.Services3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Statetrust.Framework.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Dal, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Statetrust.Framework.Dal.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Bll, Version=1.0.6101.19563, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Statetrust.Framework.Security.Bll.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Core, Version=1.0.6016.22665, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Statetrust.Framework.Security.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Core.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Statetrust.Framework.Security.Core.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Security.Dal, Version=1.0.6101.19562, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Statetrust.Framework.Security.Dal.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Statetrust.Framework.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Statetrust.Framework.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Statetrust.Framework.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="STL.POS.WsProxy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\STL.POS.WsProxy\bin\Debug\STL.POS.WsProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Unity.Mvc4, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc4.1.4.0.0\lib\net45\Unity.Mvc4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\accordion.css" />
+    <Content Include="Content\ajax-loader.gif" />
+    <Content Include="Content\amr--.css" />
+    <Content Include="Content\amr-custom.css" />
+    <Content Include="Content\amr.css" />
+    <Content Include="Content\amr02.css" />
+    <Content Include="Content\component.css" />
+    <Content Include="Content\dtl.css" />
+    <Content Include="Content\dtlCustom.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\jquery.qtip.min.css" />
+    <Content Include="Content\vo_menu.css" />
+    <Content Include="DLL\Statetrust.Framework.Core.dll" />
+    <Content Include="DLL\Statetrust.Framework.Dal.dll" />
+    <Content Include="DLL\Statetrust.Framework.Resources.dll" />
+    <Content Include="DLL\Statetrust.Framework.Resources.pdb" />
+    <Content Include="DLL\Statetrust.Framework.Security.Bll.dll" />
+    <Content Include="DLL\Statetrust.Framework.Security.Bll.pdb" />
+    <Content Include="DLL\Statetrust.Framework.Security.Core.dll" />
+    <Content Include="DLL\Statetrust.Framework.Security.Core.Mvc.dll" />
+    <Content Include="DLL\Statetrust.Framework.Security.Dal.dll" />
+    <Content Include="DLL\Statetrust.Framework.Security.Dal.pdb" />
+    <Content Include="DLL\Statetrust.Framework.Web.dll" />
+    <Content Include="DLL\Statetrust.Framework.Web.Mvc.dll" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome.svg" />
+    <Content Include="fonts\icomoon_arrows\icomoon.dev.svg" />
+    <Content Include="fonts\icomoon_arrows\icomoon.svg" />
+    <Content Include="fonts\slick.svg" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_75_FF6600_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_flat_75_FF6600_40x100.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\menu.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Images\245.GIF" />
+    <Content Include="Images\ach_view.PNG" />
+    <Content Include="Images\adicionales_03.png" />
+    <Content Include="Images\agente-icon.png" />
+    <Content Include="Images\AjaxLoader.gif" />
+    <Content Include="Images\Alert-01.png" />
+    <Content Include="Images\alert.png" />
+    <Content Include="Images\alert_ico.png" />
+    <Content Include="Images\auto.PNG" />
+    <Content Include="Images\BackNav.png" />
+    <Content Include="Images\bg-active.png" />
+    <Content Include="Images\bg-loging.png" />
+    <Content Include="Images\bg-top-menu.png" />
+    <Content Include="Images\bg_callcenter_top.png" />
+    <Content Include="Images\bg_callcenter_top_02.png" />
+    <Content Include="Images\bg_callcenter_top_03.png" />
+    <Content Include="Images\black-car-01.png" />
+    <Content Include="Images\BLUE-CAR-01.png" />
+    <Content Include="Images\Boton.png" />
+    <Content Include="Images\btn-azul-144.png" />
+    <Content Include="Images\btn-azul-160.png" />
+    <Content Include="Images\btn-fusia-144.png" />
+    <Content Include="Images\btn-fusia-160.png" />
+    <Content Include="Images\btn-green-3.png" />
+    <Content Include="Images\btn-green.png" />
+    <Content Include="Images\btn_comprar-2.png" />
+    <Content Include="Images\btn_comprar.png" />
+    <Content Include="Images\btn_Pahora.png" />
+    <Content Include="Images\btn_Pahora2.png" />
+    <Content Include="Images\btn_perfiles.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\calendar_icon-OLD.png" />
+    <Content Include="Images\calendar_icon.png" />
+    <Content Include="Images\carro azul-01.png" />
+    <Content Include="Images\carro negro-01.png" />
+    <Content Include="Images\carro rojo-01.png" />
+    <Content Include="Images\carro-azul-01.png" />
+    <Content Include="Images\carro_azul.png" />
+    <Content Include="Images\casa.PNG" />
+    <Content Include="Images\ced.png" />
+    <Content Include="Images\cellphone.png" />
+    <Content Include="Images\celular.png" />
+    <Content Include="Images\charts.png" />
+    <Content Include="Images\Checkmark gradient green.png" />
+    <Content Include="Images\Checkmark.png" />
+    <Content Include="Images\collapse.png" />
+    <Content Include="Images\contract.png" />
+    <Content Include="Images\cotejo-2.png" />
+    <Content Include="Images\cotejo.PNG" />
+    <Content Include="Images\cotizar.PNG" />
+    <Content Include="Images\cotizar2.PNG" />
+    <Content Include="Images\cvc.png" />
+    <Content Include="Images\delete_icon.png" />
+    <Content Include="Images\dolar.PNG" />
+    <Content Include="Images\DXR.png" />
+    <Content Include="Images\edit_icon.png" />
+    <Content Include="Images\edit_paper.png" />
+    <Content Include="Images\elementos.png" />
+    <Content Include="Images\email.png" />
+    <Content Include="Images\empleos-icon.png" />
+    <Content Include="Images\escudo-01.PNG" />
+    <Content Include="Images\evertec.png" />
+    <Content Include="Images\expand-01-01-01.png" />
+    <Content Include="Images\expand-01-01.png" />
+    <Content Include="Images\expand-01.png" />
+    <Content Include="Images\Family.PNG" />
+    <Content Include="Images\FamilyVD.png" />
+    <Content Include="Images\fax.png" />
+    <Content Include="Images\flecha_azul.PNG" />
+    <Content Include="Images\flecha_verde.PNG" />
+    <Content Include="Images\footer_icons.png" />
+    <Content Include="Images\ico-auto.png" />
+    <Content Include="Images\ico-cotizar.png" />
+    <Content Include="Images\ico-lcomerciales.png" />
+    <Content Include="Images\ico-lespeciales.png" />
+    <Content Include="Images\ico24.png" />
+    <Content Include="Images\Icons-CentrodeLlamadas_03.png" />
+    <Content Include="Images\Icons-CentrodeLlamadas_04.png" />
+    <Content Include="Images\Icons-CentrodeLlamadas_06.png" />
+    <Content Include="Images\Icons-CentrodeLlamadas_09.png" />
+    <Content Include="Images\Icons-CentrodeLlamadas_11.png" />
+    <Content Include="Images\icon_car.png" />
+    <Content Include="Images\loading-02.gif" />
+    <Content Include="Images\loading_Atlantica.gif" />
+    <Content Include="Images\loading_Atlantica_rosa.gif" />
+    <Content Include="Images\logo-02.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logout.png" />
+    <Content Include="Images\lupa_icon.png" />
+    <Content Include="Images\maletin.PNG" />
+    <Content Include="Images\pagination_background.png" />
+    <Content Include="Images\Paper Bin.PNG" />
+    <Content Include="Images\pasos_elements.png" />
+    <Content Include="Images\pasos_elements00.png" />
+    <Content Include="Images\Pay.png" />
+    <Content Include="Images\pdf_icon.png" />
+    <Content Include="Images\Pencil.PNG" />
+    <Content Include="Images\plus.png" />
+    <Content Include="Images\Print.png" />
+    <Content Include="Images\profile_btn.svg" />
+    <Content Include="Images\pventa\24_horas.png" />
+    <Content Include="Images\pventa\avehiculo.png" />
+    <Content Include="Images\pventa\email.png" />
+    <Content Include="Images\pventa\epapeles.png" />
+    <Content Include="Images\pventa\imarbete.png" />
+    <Content Include="Images\pventa\logo.png" />
+    <Content Include="Images\pventa\logo30p.png" />
+    <Content Include="Images\pventa\logo_servicios_xpress--.png" />
+    <Content Include="Images\pventa\logo_servicios_xpress.png" />
+    <Content Include="Images\pventa\pasos_elements.png" />
+    <Content Include="Images\pventa\pcliente.png" />
+    <Content Include="Images\pventa\phone.png" />
+    <Content Include="Images\pventa\rpago.png" />
+    <Content Include="Images\save.png" />
+    <Content Include="Images\top_menu\auto.PNG" />
+    <Content Include="Images\top_menu\bg-active-2.png" />
+    <Content Include="Images\top_menu\bg-active.png" />
+    <Content Include="Images\top_menu\cotizar.PNG" />
+    <Content Include="Images\top_menu\ico-auto.png" />
+    <Content Include="Images\top_menu\ico-cancelaciones.png" />
+    <Content Include="Images\top_menu\ico-clients.png" />
+    <Content Include="Images\top_menu\ico-commissions.png" />
+    <Content Include="Images\top_menu\ico-contactos.png" />
+    <Content Include="Images\top_menu\ico-cotizar.png" />
+    <Content Include="Images\top_menu\ico-dashboard.png" />
+    <Content Include="Images\top_menu\ico-entretenimiento.png" />
+    <Content Include="Images\top_menu\ico-formas.png" />
+    <Content Include="Images\top_menu\ico-lcomerciales.png" />
+    <Content Include="Images\top_menu\ico-lespeciales.png" />
+    <Content Include="Images\top_menu\ico-payouts.png" />
+    <Content Include="Images\top_menu\ico-propiedad.png" />
+    <Content Include="Images\top_menu\ico-reclamos.png" />
+    <Content Include="Images\top_menu\ico-salud.png" />
+    <Content Include="Images\top_menu\ico-servicios.png" />
+    <Content Include="Images\top_menu\ico-vida.png" />
+    <Content Include="Images\top_menu\lcomerciales.PNG" />
+    <Content Include="Images\top_menu\OLD\auto.PNG" />
+    <Content Include="Images\top_menu\OLD\cotizar.PNG" />
+    <Content Include="Images\top_menu\OLD\lcomerciales.PNG" />
+    <Content Include="Images\top_menu\OLD\propiedad.PNG" />
+    <Content Include="Images\top_menu\OLD\Salud.PNG" />
+    <Content Include="Images\top_menu\OLD\tuagente.PNG" />
+    <Content Include="Images\top_menu\OLD\viaje.PNG" />
+    <Content Include="Images\top_menu\OLD\vida.PNG" />
+    <Content Include="Images\top_menu\propiedad.PNG" />
+    <Content Include="Images\top_menu\Salud.PNG" />
+    <Content Include="Images\top_menu\tuagente.PNG" />
+    <Content Include="Images\top_menu\viaje.PNG" />
+    <Content Include="Images\top_menu\vida.PNG" />
+    <Content Include="Images\warIco.png" />
+    <Content Include="Scripts\additional-methods.js" />
+    <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\Areas\Auto\pepViewModel.js" />
+    <Content Include="Scripts\Areas\Auto\finalBeneficiaryViewModel.js" />
+    <Content Include="Scripts\Areas\Auto\init.js" />
+    <Content Include="Scripts\jquery.qtip.min.js" />
+    <Content Include="Scripts\knockout.simpleGrid.3.0.js" />
+    <Content Include="Scripts\Areas\Auto\vehicleDuplicateViewModel.js" />
+    <Content Include="Scripts\knockout-jqAutocomplete.js" />
+    <Content Include="Scripts\knockout-jqAutocomplete.min.js" />
+    <Content Include="Scripts\MaskedInput.js" />
+    <Content Include="Scripts\root\countryBlViewModel.js" />
+    <Content Include="Scripts\root\homeIndexInit.js" />
+    <Content Include="Scripts\root\pagingQuotationViewModel.js" />
+    <Content Include="Scripts\root\paymentViewModel.js" />
+    <Content Include="Scripts\Areas\Salud\personViewModel.js" />
+    <Content Include="Scripts\Areas\Salud\saludViewModel.js" />
+    <Content Include="Scripts\Areas\Security\changePassword_init.js" />
+    <Content Include="Scripts\Areas\Security\login_init.js" />
+    <Content Include="Scripts\datepicker-es.js" />
+    <Content Include="Content\jqueryui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\jqueryui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\jqueryui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jqueryui\jquery-ui.css" />
+    <Content Include="Content\jqueryui\jquery-ui.min.css" />
+    <Content Include="Content\jqueryui\jquery-ui.structure.css" />
+    <Content Include="Content\jqueryui\jquery-ui.structure.min.css" />
+    <Content Include="Content\jqueryui\jquery-ui.theme.css" />
+    <Content Include="Content\jqueryui\jquery-ui.theme.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\top_menu.css" />
+    <Content Include="Content\kickstart.min.css" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\Areas\Auto\additionalProductSelectedViewModel.js" />
+    <Content Include="Scripts\Areas\Auto\autoViewModel.js" />
+    <Content Include="Scripts\Areas\Auto\productViewModel.js" />
+    <Content Include="Scripts\Areas\Auto\driverViewModel.js" />
+    <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\root\resumePricingViewModel.js" />
+    <Content Include="Scripts\Areas\Auto\vehicleViewModel.js" />
+    <Content Include="Scripts\global.js" />
+    <Content Include="Scripts\jquery-1.11.3.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.cbpNTAccordion.js" />
+    <Content Include="Scripts\jquery.cbpNTAccordion.min.js" />
+    <Content Include="Areas\Auto\Views\PoSAuto\StepDrivers.cshtml" />
+    <Content Include="Areas\Auto\Views\PoSAuto\StepVehicles.cshtml" />
+    <Content Include="Scripts\knockout.mapping.js" />
+    <Content Include="Scripts\knockout.mapping.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Areas\Salud\init.js" />
+    <Content Include="Scripts\root\selectQuotationViewModel.js" />
+    <Content Include="Tmp\Temp.html" />
+    <Content Include="Images\Icons-CentrodeLlamadas_03.psd" />
+    <Content Include="Areas\Auto\Views\PoSAuto\StepVehicleCoverage.cshtml" />
+    <Content Include="Areas\Auto\Views\PoSAuto\StepResume.cshtml" />
+    <Content Include="Areas\Auto\Views\PoSAuto\_PopupServices.cshtml" />
+    <Content Include="Areas\Auto\Views\GnlPP\Index.cshtml" />
+    <Content Include="Areas\Auto\Views\GnlPP\FamilyTypes.cshtml" />
+    <Content Include="Areas\Auto\Views\GnlPP\NoProductLeyTypes.cshtml" />
+    <Content Include="Areas\Auto\Views\GnlPP\ProductLeyTypes.cshtml" />
+    <Content Include="Areas\Auto\Views\GnlPP\TablaComparativos.cshtml" />
+    <Content Include="App_Code\BrochureHelper.cshtml" />
+    <Content Include="Areas\Auto\Views\web.config" />
+    <Content Include="Areas\Auto\Views\PoSAuto\SideViewCustom.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\DirectPublishDEV.pubxml" />
+    <None Include="Properties\PublishProfiles\DirectPublishQA.pubxml" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Unity.Mvc4.README.txt" />
+    <Content Include="Views\Shared\_SideViewPricing.cshtml" />
+    <Content Include="Areas\Auto\Views\PoSAuto\StepCoverage.cshtml" />
+    <Content Include="fonts\fontawesome.eot" />
+    <Content Include="fonts\fontawesome.ttf" />
+    <Content Include="fonts\fontawesome.woff" />
+    <Content Include="fonts\icomoon_arrows\icomoon.eot" />
+    <Content Include="fonts\icomoon_arrows\icomoon.ttf" />
+    <Content Include="fonts\icomoon_arrows\icomoon.woff" />
+    <Content Include="fonts\readme.md" />
+    <Content Include="Areas\Auto\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Auto\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Auto\Views\PoSAuto\StepBuy1.cshtml" />
+    <Content Include="Areas\Auto\Views\PoSAuto\StepBuy2.cshtml" />
+    <Content Include="Areas\Auto\Views\PoSAuto\StepBuy3.cshtml" />
+    <Content Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrev.xsc">
+      <Link>Reports\QuotationPrev.xsc</Link>
+      <DependentUpon>QuotationPrev.xsd</DependentUpon>
+    </Content>
+    <None Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrev.xsd">
+      <Link>Reports\QuotationPrev.xsd</Link>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuotationPrev4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrev.xss">
+      <Link>Reports\QuotationPrev.xss</Link>
+      <DependentUpon>QuotationPrev.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\Security\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Security\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Security\Views\Account\ChangePassword.cshtml" />
+    <Content Include="Images\top_menu\Thumbs.db" />
+    <Content Include="Areas\Salud\Views\web.config" />
+    <Content Include="Areas\Salud\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Salud\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Salud\Views\PoSSalud\Index.cshtml" />
+    <Content Include="Areas\Salud\Views\PoSSalud\StepPersons.cshtml" />
+    <Content Include="Areas\CardNet\Views\web.config" />
+    <Content Include="Areas\CardNet\Views\CardnetPayment\AuthorizationForm.cshtml" />
+    <Content Include="Areas\CardNet\Views\CardnetPayment\DummyAuthorization.cshtml" />
+    <Content Include="Areas\CardNet\Views\CardnetPayment\AuthorizationSuccess.cshtml" />
+    <Content Include="Areas\CardNet\Views\CardnetPayment\AuthorizationCancelled.cshtml" />
+    <Content Include="Areas\CardNet\Views\CardnetPayment\ProcessPayMentFinalizeQuotation.cshtml" />
+    <Content Include="Areas\Salud\Views\PoSSalud\StepPreconditions.cshtml" />
+    <Content Include="Areas\Salud\Views\PoSSalud\StepBenefit.cshtml" />
+    <Content Include="Areas\Salud\Views\PoSSalud\StepBuy1.cshtml" />
+    <Content Include="Areas\Salud\Views\PoSSalud\StepBuy2.cshtml" />
+    <Content Include="Areas\Salud\Views\PoSSalud\StepBuy3.cshtml" />
+    <Content Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrevSalud.xsc">
+      <Link>Reports\QuotationPrevSalud.xsc</Link>
+      <DependentUpon>QuotationPrevSalud.xsd</DependentUpon>
+    </Content>
+    <None Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrevSalud.xsd">
+      <Link>Reports\QuotationPrevSalud.xsd</Link>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuotationPrevSalud1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrevSalud.xss">
+      <Link>Reports\QuotationPrevSalud.xss</Link>
+      <DependentUpon>QuotationPrevSalud.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\SubMarbete.rdlc" />
+    <Content Include="Reports\Marbete.rdlc" />
+    <Content Include="Reports\ATLANTICA_Folleto.pdf" />
+    <Content Include="Reports\Vida.pdf" />
+    <Content Include="Reports\tabla-beneficio.pdf" />
+    <Content Include="Reports\Salud.pdf" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\kickstart.min.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\modernizr.custom.js" />
+    <Content Include="Scripts\root\posViewModel.js" />
+    <Content Include="Scripts\popup_btns.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
+    <Content Include="VirtualOfficeWs\SubscriptorManager.svc" />
+    <Content Include="Views\Shared\_SideMenuVO.cshtml" />
+    <Content Include="Views\ReportViewer\Index.cshtml" />
+    <Content Include="Views\Shared\_ReportViewerLayout.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.DevSRV012.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.PreProdSRV012.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.SRV018-4000.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\ReviseQuotation.cshtml" />
+    <Content Include="Views\Shared\_MainMenuHistoric.cshtml" />
+    <Content Include="Web PROD.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrev.cs">
+      <Link>Reports\QuotationPrev.cs</Link>
+      <DependentUpon>QuotationPrev.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrev.designer.cs">
+      <Link>Reports\QuotationPrev.designer.cs</Link>
+      <DependentUpon>QuotationPrev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrev4.Designer.cs">
+      <Link>Reports\QuotationPrev4.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuotationPrev.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrevSalud.cs">
+      <Link>Reports\QuotationPrevSalud.cs</Link>
+      <DependentUpon>QuotationPrevSalud.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrevSalud.designer.cs">
+      <Link>Reports\QuotationPrevSalud.designer.cs</Link>
+      <DependentUpon>QuotationPrevSalud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\STL.POS.Data\POSEntities\Datasets\QuotationPrevSalud1.Designer.cs">
+      <Link>Reports\QuotationPrevSalud1.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuotationPrevSalud.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Auto\Controllers\GnlPPController.cs" />
+    <Compile Include="Areas\CardNet\CardNetAreaRegistration.cs" />
+    <Compile Include="Areas\CardNet\Controllers\CardNetPaymentController.cs" />
+    <Compile Include="Areas\CardNet\Models\RequestAuthModel.cs" />
+    <Compile Include="Areas\CardNet\Models\RequestModel.cs" />
+    <Compile Include="Areas\CardNet\Models\ResponseModel.cs" />
+    <Compile Include="Areas\Salud\Controllers\PoSSaludController.cs" />
+    <Compile Include="Areas\Salud\SaludAreaRegistration.cs" />
+    <Compile Include="Areas\Security\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Security\Models\LoginRegisterModel.cs" />
+    <Compile Include="Areas\Security\Models\ChangePasswordModel.cs" />
+    <Compile Include="Areas\Security\SecurityAreaRegistration.cs" />
+    <Compile Include="Controllers\AlertsController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ReportViewerController.cs" />
+    <Compile Include="Controllers\VersionController.cs" />
+    <Compile Include="Helpers\AjaxHandleErrorAttribute.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Auto\AutoAreaRegistration.cs" />
+    <Compile Include="Areas\Auto\Controllers\PoSAutoController.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\ExtensionMethods.cs" />
+    <Compile Include="Helpers\JsonNetResult.cs" />
+    <Compile Include="Helpers\LoggerHelper.cs" />
+    <Compile Include="Helpers\PosTraceListener.cs" />
+    <Compile Include="Helpers\SendQuotationResult.cs" />
+    <Compile Include="Images\top_menu\OLD\PosAuthorizeAttribute.cs" />
+    <Compile Include="Helpers\SendEmailHelper.cs" />
+    <Compile Include="Helpers\ValidationErrorException.cs" />
+    <Compile Include="Helpers\WebReportRenderer.cs" />
+    <Compile Include="Models\QuotationSearchRegisterModel.cs" />
+    <Compile Include="Models\SelectQuotationFilterModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VirtualOfficeWs\ISubscriptorManager.cs" />
+    <Compile Include="VirtualOfficeWs\Result.cs" />
+    <Compile Include="VirtualOfficeWs\SubscriptorManager.svc.cs">
+      <DependentUpon>SubscriptorManager.svc</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualOfficeWs\User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_MainMenu.cshtml" />
+    <Content Include="fonts\slick.eot" />
+    <Content Include="fonts\slick.ttf" />
+    <Content Include="fonts\slick.woff" />
+    <Content Include="Views\Shared\_CotizadorLayout.cshtml" />
+    <Content Include="Areas\Auto\Views\PoSAuto\Index.cshtml" />
+    <Content Include="Views\Shared\_StepSelector.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Scripts\ko.moneyExtender.js" />
+    <Content Include="Tmp\cotizar.pdf" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Shared\_Popups.cshtml" />
+    <Content Include="Views\Shared\_MainMenuVO.cshtml" />
+    <Content Include="Views\Home\SelectQuotation.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Home\QuotationSearch.cshtml" />
+    <Content Include="Views\Shared\_GlobalPopups.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Auto\Models\" />
+    <Folder Include="Areas\CardNet\Views\Shared\" />
+    <Folder Include="Areas\Salud\Models\" />
+    <Folder Include="Areas\Security\Views\Shared\" />
+    <Folder Include="Images\vo_menu\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\WebReportRenderer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{593d0c43-f556-4a61-889f-964fe656adc6}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.AchWsProxy\STL.POS.AchWsProxy.csproj">
+      <Project>{5d06f521-074e-46d5-9857-448b6c878ac5}</Project>
+      <Name>STL.POS.AchWsProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.AgentProxy\STL.POS.AgentWSProxy.csproj">
+      <Project>{a48f5e11-f651-4fe0-93a6-3593eecda245}</Project>
+      <Name>STL.POS.AgentWSProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.Data\STL.POS.Data.csproj">
+      <Project>{5ae6ab7f-a100-4dc8-99b3-a82f0537bcb5}</Project>
+      <Name>STL.POS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.Frontend.Security.SecurityProvider\STL.POS.Frontend.Security.SecurityProvider.csproj">
+      <Project>{fb7910dd-13f5-4207-a2c0-801c458e7ccb}</Project>
+      <Name>STL.POS.Frontend.Security.SecurityProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.Frontend.Web.Globalization\STL.POS.Frontend.Web.Globalization.csproj">
+      <Project>{5d1abedc-d969-41a3-8d5c-0bbc0c9551b7}</Project>
+      <Name>STL.POS.Frontend.Web.Globalization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.GlobalLogger\STL.POS.GlobalLogger.csproj">
+      <Project>{ba692d84-c660-4e34-b33d-b3a1737e1e2b}</Project>
+      <Name>STL.POS.GlobalLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.THProxy\STL.POS.THProxy.csproj">
+      <Project>{198feed6-5b79-4c6e-8583-6840c59a562e}</Project>
+      <Name>STL.POS.THProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.PlexysProxy\STL.POS.PlexysProxy.csproj">
+      <Project>{c6ce23b2-8a68-4ef4-81e3-445701093531}</Project>
+      <Name>STL.POS.PlexysProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.VirtualOfficeProxy\STL.POS.VirtualOfficeProxy.csproj">
+      <Project>{dd44f1b8-2a17-47e7-8ce4-9f5a8f2b652a}</Project>
+      <Name>STL.POS.VirtualOfficeProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.VirtualOfficeProxy\STL.POS.VirtualOfficeProxy.csproj">
+      <Project>{dd44f1b8-2a17-47e7-8ce4-9f5a8f2b652a}</Project>
+      <Name>STL.POS.VirtualOfficeProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STL.POS.WsProxy\STL.POS.WsProxy.csproj">
+      <Project>{9327aeb7-f748-4ec9-83c0-44e806f1f12a}</Project>
+      <Name>STL.POS.WsProxy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\QuotationPrev.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\SubCoverages.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\SubDrivers.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\SubCoveragesUni.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\SubFlotillaServices.rdlc" />
+    <Content Include="Reports\SubFlotillaSelfDamages.rdlc" />
+    <Content Include="Reports\SubFlotillaPayment.rdlc" />
+    <Content Include="Reports\SubFlotillaQuotationDetail.rdlc" />
+    <Content Include="Reports\SubFlotillaVehicles.rdlc" />
+    <Content Include="Reports\SubFlotillaThirdParty.rdlc" />
+    <Content Include="Reports\ContratoVentaSeguro.rdlc" />
+    <Content Include="Reports\QuotationPrevFlotilla.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\QuotationPrevSalud.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PreProdSRV012|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevSRV012|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SRV018-4000|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>22436</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:22440/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:22440/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

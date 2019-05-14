@@ -1,0 +1,50 @@
+﻿<div style="display:none">
+    @* Continuar a la pantalla de resumen *@
+    @Ajax.RawActionLink(string.Format("<strong class='x-hide'>Siguiente</strong><i class='material-icons'>arrow_forward</i>"),
+                                      "Summary",
+                                      "Home", null,
+                                      new AjaxOptions
+                                      {
+                                          UpdateTargetId = "dvContainer",
+                                          InsertionMode = InsertionMode.Replace,
+                                          OnSuccess = "InitializeSummary()"
+                                      },
+                                      new
+                                      {
+                                          @id = "lnkContinue",
+                                          @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-info float-right returnStep2"
+                                      })
+
+    @* Continuar a los datos del conductor *@
+    @Ajax.RawActionLink(string.Format("<strong class='x-hide'>Comprar</strong> <i class='material-icons x-block xl-hide float-left mt-2'>&#xE8CC;</i><i class=material-icons float-right mt-2'>arrow_forward</i>"),
+                                    "InfoAddDriver",
+                                    "Home",
+                                     null,
+                                     new AjaxOptions
+                                     {
+                                         UpdateTargetId = "dvContainer",
+                                         InsertionMode = InsertionMode.Replace,
+                                         OnSuccess = "InitializeDriver()"
+                                     },
+                                      new { @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success returnStep3" })
+
+
+    @* Continuar a los datos del vehiculo *@
+    @Ajax.RawActionLink("<strong class='x-hide'>Info. Adicional Vehículo</strong> <i class='material-icons float-left mt-2'>&#xE531;</i><i class='material-icons x-block xl-hide float-right'>&#xE88F;</i>",
+                                            "InfoAddVehicle",
+                                            "Home",
+                                             null,
+                                             new AjaxOptions
+                                             {
+                                                 InsertionMode = InsertionMode.Replace,
+                                                 UpdateTargetId = "dvContainer",
+                                                 OnSuccess = "InitializeVehicle()"
+                                             }, new
+                                             {
+                                                 @data = @ViewBag.QuoId,
+                                                 @class = "mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success returnStep4"
+                                             }
+                                            )
+
+
+</div>

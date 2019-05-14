@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433-->
+<configuration>
+  <configSections>
+    <section name="loggingConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" requirePermission="true" />
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="STL.POS.THProxy.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+
+    <!--For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468-->
+
+  </configSections>
+  <loggingConfiguration name="" tracingEnabled="true" defaultCategory="General">
+    <listeners>
+      <add listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.CustomTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" type="STL.POS.Frontend.Web.Helpers.PosTraceListener, STL.POS.Frontend.Web, Version=2.4.0.402, Culture=neutral, PublicKeyToken=null" name="PosTraceListener" />
+      <add name="Email Trace Listener" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.EmailTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.EmailTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" toAddress="clebron@statetrustlife.com;robispo@statetrustlife.com" fromAddress="subscripcionxpress@atlantica.do" subjectLineStarter="ERROR EN PUNTO DE VENTA - " subjectLineEnder="." smtpServer="smtp.office365.com" smtpPort="587" formatter="Text Formatter" authenticationMode="UserNameAndPassword" useSSL="true" userName="subscripcionxpress@atlantica.do" password="Subxpr3$$!" />
+    </listeners>
+    <formatters>
+      <add type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" template="Timestamp: {timestamp}{newline}&#xA;Message: {message}{newline}&#xA;Category: {category}{newline}&#xA;Priority: {priority}{newline}&#xA;EventId: {eventid}{newline}&#xA;Severity: {severity}{newline}&#xA;Title:{title}{newline}&#xA;Machine: {localMachine}{newline}&#xA;App Domain: {localAppDomain}{newline}&#xA;ProcessId: {localProcessId}{newline}&#xA;Process Name: {localProcessName}{newline}&#xA;Thread Name: {threadName}{newline}&#xA;Win32 ThreadId:{win32ThreadId}{newline}&#xA;Extended Properties: {dictionary({key} - {value}{newline})}" name="Text Formatter" />
+    </formatters>
+    <categorySources>
+      <add switchValue="All" name="General">
+        <listeners>
+          <add name="PosTraceListener" />
+        </listeners>
+      </add>
+      <add switchValue="All" name="Error">
+        <listeners>
+          <add name="PosTraceListener" />
+          <add name="Email Trace Listener" />
+        </listeners>
+      </add>
+    </categorySources>
+    <specialSources>
+      <allEvents switchValue="All" name="All Events" />
+      <notProcessed switchValue="All" name="Unprocessed Category" />
+      <errors switchValue="All" name="Logging Errors &amp; Warnings">
+        <listeners>
+          <add name="PosTraceListener" />
+        </listeners>
+      </errors>
+    </specialSources>
+  </loggingConfiguration>
+  <connectionStrings>
+    <add name="PosModel" connectionString="Data Source=172.16.193.14;initial catalog=POS_SITE;User Id=Developer05;Password=Developer05;Integrated Security=False;multipleactiveresultsets=True;application name=EntityFramework" providerName="System.Data.SqlClient" />
+    <add name="Statetrust.Framework.SecurityConnectionString" connectionString="Data Source=172.16.193.14;Initial Catalog=Security;User ID=Developer05;Password=Developer05" />
+    <add name="GlobalLogger" connectionString="data source=172.16.193.14;initial catalog=Global;user id=Developer05;password=Developer05" />
+    <add name="STFGlobalEntities" connectionString="metadata=res://*/STFGlobalEntities.csdl|res://*/STFGlobalEntities.ssdl|res://*/STFGlobalEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=172.16.193.14;initial catalog=Global;persist security info=True;user id=Developer05;password=Developer05;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />    
+  </connectionStrings>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="PreserveLoginUrl" value="true" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="DatabaseInitializerForType STL.POS.Data.PosModel, STL.POS.Data" value="Disabled" />
+    <add key="ThUsername" value="dev\THServices" />
+    <add key="ThPassword" value="" />
+
+
+    <!--Agregado por StateTrust-->
+
+    <add key="EncriptionKey" value="$t@teTru$t" />
+    <add key="STFIncludeJquery" value="false" />
+    <add key="STFIncludeJqueryUI" value="false" />
+    <add key="STFIncludeKnockout" value="false" />
+    <add key="STFIncludeJqueryForm" value="true" />
+    <add key="STFJqueryVersion" value="jQuery_v1_11_3" />
+    <add key="STFShowAvailableApps" value="true" />
+    <add key="STFSessionNotification" value="true" />
+    <add key="STFSessionTimeWarning" value="1" />
+    <add key="STFEditAgentProfile" value="false" />
+    <add key="STFShowChangeCompany" value="true" />
+    <add key="STFShowLogo" value="true" />
+    <add key="STFEmailHost" value="statetrustlife-com.mail.protection.outlook.com" />
+    <add key="STFEmailPort" value="25" />
+    <add key="STFEmailFrom" value="ggarcia@statetrustlife.com" />
+    <add key="STFApplySecurityScript" value="true" />
+
+    <!--configuraciones Modulo Seguridad-->
+    <add key="AppID" value="POSAT" />
+    <add key="NewBusinessAppId" value="NBDEV" />
+    <add key="PuntodeventaqaAppId" value="POSQA" />
+    <add key="NewBusinessqaAppId" value="NBQA" />
+    
+    <add key="SecurityMenuBar" value="false" />
+    <add key="ApplySecurity" value="false" />
+    <add key="appTitle" value="Test" />
+    <add key="ApplicationLogin" value="true" />
+    <add key="SecurityLogin" value="http://atlanticasecurity.qa.atlantica.local/index.aspx" />
+    <!--configuraciones Modulo Seguridad-->
+
+    <!--Agregado por StateTrust-->
+    <add key="MinAllowedAmountToPay" value="0.30" />
+
+    <add key="PdfBrochoure" value="C:\Temp\Brochure" />
+    <add key="GlobalConnectionString" value="GlobalLogger" />
+    <add key="SendEmail" value="True" />
+
+    <!--
+    1 =  Solo usuarios Logueados
+    0 =  Todo el mundo
+    -->
+    <add key="PARAMETER_KEY_ONLY_LOGGED_USER" value="1" />
+
+    <!--KEYS INTEGRACION PUNTOS DE VENTAS-->
+    
+    <!--Punto de Venta Salud-->
+    <add key="PuntodeVentaSaludAppId" value="PVSAL" />
+    <add key="PvSaludPath" value="Pos/Index" />
+    <add key="PvSaludApp_Name" value="PuntodeVentaSalud" />
+    <!--Punto de Venta Salud-->
+
+    <!--Punto de Venta Generales-->
+    <add key="PuntodeVentaLineasAliadasAppId" value="POSG" />    
+    <add key="PVLineasAliadasApp_Name" value="PuntodeVentaLineasAliadas" />
+    <!--Punto de Venta Generales-->
+
+    <!--Punto de Venta Vida-->
+    <add key="NuevosNegociosVidaAppId" value="NBL" />
+    <add key="PvVidaPath" value="AddNewClient.aspx" />
+    <add key="PVVidaApp_Name" value="NuevosNegociosVida" />
+    <!--Punto de Venta Vida-->
+    
+    
+
+    <!--KEYS INTEGRACION PUNTOS DE VENTAS-->
+
+
+  </appSettings>
+  <applicationSettings>
+    <STL.POS.THProxy.Properties.Settings>
+      <setting name="STL_POS_THProxy_THWebService_JobAPIWebService" serializeAs="String">
+        <value>http://172.16.193.18:8080/thunderhead/services/JobAPIWebWrapped</value>
+      </setting>
+    </STL.POS.THProxy.Properties.Settings>
+  </applicationSettings>
+  <system.web>
+    <authentication mode="Forms">
+      <forms timeout="90"></forms>
+    </authentication>
+    <!--<sessionState timeout="1440"></sessionState>-->
+    <sessionState timeout="90"></sessionState>
+    <globalization uiCulture="es" culture="es-DO" />
+    <compilation debug="true" targetFramework="4.5.1" />
+    <customErrors mode="Off">
+    </customErrors>
+    <httpRuntime targetFramework="4.5.1"  maxRequestLength="1048576"/>
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Helpers" />
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Routing" />
+        <add namespace="System.Web.WebPages" />
+      </namespaces>
+    </pages>
+  </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <remove name="OPTIONSVerbHandler" />
+      <remove name="TRACEVerbHandler" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+
+    <httpProtocol>
+      <customHeaders>
+        <add name="Access-Control-Allow-Origin" value="http://atlanticasecurity.qa.atlantica.local/index.aspx" />
+      </customHeaders>
+    </httpProtocol>
+
+    <security>
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="1073741824" />
+      </requestFiltering>
+    </security>
+
+
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" culture="neutral" publicKeyToken="30ad4fe6b2a6aeed" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-1.5.2.14234" newVersion="1.5.2.14234" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Practices.Unity" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.0" newVersion="3.5.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Http" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.2.0" newVersion="5.2.2.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IGPPayments" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_IPlexisServices" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_IPolicyService" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_IContactService" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_IAgentService" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+        <binding name="BasicHttpBinding_ISysFlexService" maxBufferPoolSize="2147483647" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" />
+
+      </basicHttpBinding>
+      <customBinding>
+        <binding name="WSSysFlexVehicleSoap12">
+          <textMessageEncoding messageVersion="Soap12" />
+          <httpTransport maxReceivedMessageSize="2147483647" />
+        </binding>
+      </customBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://wssysflex2.dev.atlantica.local/WSSysFlexVehicle.asmx" binding="customBinding" bindingConfiguration="WSSysFlexVehicleSoap12" contract="WSSysFlexVehicleService.WSSysFlexVehicleSoap" name="WSSysFlexVehicleSoap12" />
+      <endpoint address="http://localhost:6000/PlexisServices.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPlexisServices" contract="PlexisService.IPlexisServices" name="BasicHttpBinding_IPlexisServices" />
+
+      <!--Gp desarrollo-->
+      <endpoint address="http://172.16.193.36/CSToGP/GPPayments.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IGPPayments" contract="AchPayments.IGPPayments" name="IGPPaymentsEndpoint" />
+
+
+      <!--Conexion a desarrollo-->
+      <endpoint address="http://devpolicyglobalservice.statetrustlife.com/PolicyService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPolicyService" contract="VOProxy.IPolicyService" name="BasicHttpBinding_IPolicyService" />
+      <endpoint address="http://devservicecontact.statetrustlife.com/ContactService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IContactService" contract="ContactsProxy.IContactService" name="BasicHttpBinding_IContactService" />
+      <endpoint address="http://devagentservice.statetrustlife.com/AgentService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IAgentService" contract="AgentService.IAgentService" name="BasicHttpBinding_IAgentService" />
+      <endpoint address="http://devsysflexservice.statetrustlife.com/SysFlexService.svc/SysFlexService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISysFlexService" contract="SysflexService.ISysFlexService" name="BasicHttpBinding_ISysFlexService" />
+
+
+
+      <!--Conexion a QA-->
+      <!--<endpoint address="http://policyglobalservice.qa.atlantica.local/PolicyService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IPolicyService" contract="VOProxy.IPolicyService" name="BasicHttpBinding_IPolicyService" />
+      <endpoint address="http://servicecontact.qa.atlantica.local/ContactService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IContactService" contract="ContactsProxy.IContactService" name="BasicHttpBinding_IContactService" />
+      <endpoint address="http://agentservice.qa.atlantica.local/AgentService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IAgentService" contract="AgentService.IAgentService" name="BasicHttpBinding_IAgentService" />
+      <endpoint address="http://qasysflexservice.qa.atlantica.local/SysFlexService.svc/SysFlexService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISysFlexService" contract="SysflexService.ISysFlexService" name="BasicHttpBinding_ISysFlexService" />-->
+
+
+
+      <!--<endpoint address="http://sysflexservice.atlantica.do/SysFlexService.svc/SysFlexService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISysFlexService"  contract="SysflexService.ISysFlexService" name="BasicHttpBinding_ISysFlexService" />-->
+
+    </client>
+  </system.serviceModel>
+  <system.net>
+    <mailSettings>
+      <smtp deliveryMethod="Network">
+        <network host="smtp.office365.com" targetName="STARTTLS/smtp.office365.com" port="587" userName="subscripcionxpress@atlantica.do" password="Subxpr3$$!" enableSsl="true" />
+      </smtp>
+    </mailSettings>
+  </system.net>
+</configuration>

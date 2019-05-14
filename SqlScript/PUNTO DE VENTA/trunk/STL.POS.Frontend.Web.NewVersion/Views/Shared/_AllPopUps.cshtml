@@ -1,0 +1,1096 @@
+﻿<!--============| POPUPS |============-->
+<!-- Popup Información de Coberturas -->
+<div class="modal fade" id="ppCobertura" tabindex="-1" role="dialog" aria-labelledby="ppCobertura" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>Información</strong> Cobertura
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup Añadir Servicios -->
+<div class="modal fade" id="addServicios" tabindex="-1" role="dialog" aria-labelledby="addServicios" aria-hidden="true">
+    <div class="modal-dialog pp-720" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE8E8;</i> <strong>AÑADIR</strong> SERVICIO
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="table-responsive ">
+                        <table class="tablemdl-list">
+                            <thead>
+                                <tr class="bg-info mdl-color-text--white text-center">
+                                    <th><span>Cobertura</span></th>
+                                    <th><span>Detalle</span></th>
+                                    <th class="bg-success"><span>Prima anual</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="servicesBody">
+                                @*<tr class="table-primary">
+                                        <td align="left"></td>
+                                        <td align="center" class="font-weight-bold text-uppercase" data-bind="text: Name">Aero Ambulancia</td>
+                                        <td align="center"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <span class="mdl-list__item-secondary-action float-left mr-3">
+                                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+                                                    <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" />
+                                                </label>
+                                            </span>
+                                            <span class="mdl-list__item-primary-content" data-bind="text: Name">
+                                                Aero Ambulancia Básica
+                                            </span>
+                                        </td>
+                                        <td align="center" data-bind="text: Name">Aero Ambulancia Básica</td>
+                                        <td align="center" data-bind="text: Amount.formatted">1,050.40</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <span class="mdl-list__item-secondary-action float-left mr-3">
+                                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-2">
+                                                    <input type="checkbox" id="list-checkbox-2" class="mdl-checkbox__input" />
+                                                </label>
+                                            </span>
+                                            <span class="mdl-list__item-primary-content" data-bind="text: Name">
+                                                Aero Ambulancia Max
+                                            </span>
+                                        </td>
+                                        <td align="center" data-bind="text: Name">Aero Ambulancia Max</td>
+                                        <td align="center" data-bind="text: Amount.formatted">1,881.36</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td align="left">&nbsp;</td>
+                                        <td align="center" class="font-weight-bold text-uppercase" data-bind="text: Name">Asistencia Vial</td>
+                                        <td align="center"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <span class="mdl-list__item-secondary-action float-left mr-3">
+                                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-3">
+                                                    <input type="checkbox" id="list-checkbox-3" class="mdl-checkbox__input" checked />
+                                                </label>
+                                            </span>
+                                            <span class="mdl-list__item-primary-content" data-bind="text: Name">
+                                                Asistencia Vial Atlantica
+                                            </span>
+                                        </td>
+                                        <td align="center" data-bind="text: Name">Asistencia Vial Atlantica</td>
+                                        <td align="center" data-bind="text: Amount.formatted">1,515.18</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td align="left">&nbsp;</td>
+                                        <td align="center" class="font-weight-bold text-uppercase" data-bind="text: Name">Casa Del Conductor</td>
+                                        <td align="center"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <span class="mdl-list__item-secondary-action float-left mr-3">
+                                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-4">
+                                                    <input type="checkbox" id="list-checkbox-4" class="mdl-checkbox__input" checked />
+                                                </label>
+                                            </span>
+                                            <span class="mdl-list__item-primary-content" data-bind="text: Name">
+                                                Casa Del Conductor
+                                            </span>
+                                        </td>
+                                        <td align="center" data-bind="text: Name">Casa Del Conductor</td>
+                                        <td align="center" data-bind="text: Amount.formatted">1,793.11</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td align="left">&nbsp;</td>
+                                        <td align="center" class="font-weight-bold text-uppercase" data-bind="text: Name">EXTRAS</td>
+                                        <td align="center"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <span class="mdl-list__item-secondary-action float-left mr-3">
+                                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-5">
+                                                    <input type="checkbox" id="list-checkbox-5" class="mdl-checkbox__input" />
+                                                </label>
+                                            </span>
+                                            <span class="mdl-list__item-primary-content" data-bind="text: Name">
+                                                Robo o Perdida de Llaves del Vehículo
+                                            </span>
+                                        </td>
+                                        <td align="center" data-bind="text: Name">Robo o Perdida de Llaves del Vehículo</td>
+                                        <td align="center" data-bind="text: Amount.formatted">624.00</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td align="left">&nbsp;</td>
+                                        <td align="center" class="font-weight-bold text-uppercase" data-bind="text: Name">Vehiculo Rentado</td>
+                                        <td align="center"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <span class="mdl-list__item-secondary-action float-left mr-3">
+                                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-6">
+                                                    <input type="checkbox" id="list-checkbox-6" class="mdl-checkbox__input" checked />
+                                                </label>
+                                            </span>
+                                            <span class="mdl-list__item-primary-content" data-bind="text: Name">
+                                                Vehiculo Rentado Full Size 15 Dias
+                                            </span>
+                                        </td>
+                                        <td align="center" data-bind="text: Name">Vehiculo Rentado Full Size 15 Dias</td>
+                                        <td align="center" data-bind="text: Amount.formatted">2,226.43</td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row mb-3 mr-0">
+                        <div class=" col-sm-6"></div>
+                        <div class=" col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="button">Total Anual</button>
+                                </span>
+                                <input id="txtTotalServicesSelected" type="text" readonly="readonly" class="form-control text-right font-weight-bold em2" value="0.00" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        <button type="button" class="btn btn-success cursor saveServices" data-vehiclerandomid="" data-dismiss="modal"><i class="fa fa-save mr-2"></i>Guardar</button>
+                        <button type="button" class="btn btn-danger cursor" data-dismiss="modal"><i class="fa fa-ban mr-2"></i>Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup Nuestros Productos -->
+
+<div class="modal fade" id="nProcuctos" tabindex="-1" role="dialog" aria-labelledby="nProcuctos" aria-hidden="true">
+    <div class="modal-dialog pp-980" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons float-left mr-3">shop</i> <strong>NUESTROS</strong> PRODUCTOS
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="card text-center">
+                        <div class="card-header bg-primary">
+                            <ul class="nav nav-tabs card-header-tabs" id="principalTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active mdl-color-text--white" id="autMoto-tab" data-toggle="tab" href="#autMoto" role="tab" aria-controls="autMoto" aria-selected="true">Autos y Motores</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="autMoto" role="tabpanel" aria-labelledby="autMoto-tab">
+                                    <!-- TAB 2 -->
+                                    <ul class="nav nav-tabs" id="segundoTab" role="tablist"></ul>
+                                    <div id="dvtabContent" class="tab-content">
+                                        <div class="tab-pane fade show active" id="ley" role="tabpanel" aria-labelledby="ley-tab">
+                                            <!-- TAB 3 -->
+                                            <ul class="nav nav-tabs justify-content-center" id="tercerTab" role="tablist"></ul>
+                                            <div id="dvTabContentTableCoverages" class="tab-content">
+                                                <div class="tab-pane fade show active" id="leyi" role="tabpanel" aria-labelledby="leyi-tab">
+                                                    <div class="col-12 row float-none m-auto mdl-shadow--2dp">
+                                                        <table id="coverageTable" class="table table-responsive table-striped">
+                                                            <thead>
+                                                                <tr class="coverageTypes"></tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="row_B mt-md-5">
+                                                        <div class="card brochure_box">
+                                                            <div class="card-body">
+                                                                <div class="col-md-3"><img src="~/Content/images/brochure.png" alt="..." class="img-thumbnail"></div>
+                                                                <div class="col-md-2">
+                                                                    <div class="card text-center mdl-shadow--2dp">
+                                                                        <div class="card-header bg-info mdl-color-text--white">
+                                                                            Ley
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <a href="#" class="ico_G30 pdf_ico grayscale"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="card text-center mdl-shadow--2dp">
+                                                                        <div class="card-header bg-info mdl-color-text--white">
+                                                                            Productos linea de vehiculos
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <a href="#" class="ico_G30 pdf_ico grayscale"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="card text-center mdl-shadow--2dp">
+                                                                        <div class="card-header bg-info mdl-color-text--white">
+                                                                            ¿Quienes somos?
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <a href="#" class="ico_G30 pdf_ico grayscale"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger cursor" data-dismiss="modal"><i class="fa fa-ban mr-2"></i>Cerrar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="motoresBasico" role="tabpanel" aria-labelledby="motoresBasico-tab">...</div>
+                                                <div class="tab-pane fade" id="motoresDeportivo" role="tabpanel" aria-labelledby="motoresDeportivo-tab">...</div>
+                                                <div class="tab-pane fade" id="ultraP" role="tabpanel" aria-labelledby="ultraP-tab">...</div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="full" role="tabpanel" aria-labelledby="full-tab">...</div>
+                                        <div class="tab-pane fade" id="semifull" role="tabpanel" aria-labelledby="semifull-tab">...</div>
+                                        <div class="tab-pane fade" id="tblComparativos" role="tabpanel" aria-labelledby="tblComparativos-tab">...</div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="vidaAcc" role="tabpanel" aria-labelledby="vidaAcc-tab">...</div>
+                                <div class="tab-pane fade" id="saludViaje" role="tabpanel" aria-labelledby="saludViaje-tab">...</div>
+                                <div class="tab-pane fade" id="propiedadTab" role="tabpanel" aria-labelledby="propiedadTab-tab">...</div>
+                                <div class="tab-pane fade" id="serviciosFunerarios" role="tabpanel" aria-labelledby="serviciosFunerarios-tab">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Error -->
+<div class="modal fade z9999" id="ppError" tabindex="-1" role="dialog" aria-labelledby="ppError" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header bg-danger">
+                    <h3 class="block-title d-block">
+                        <i class="material-icons mr-2">&#xE033;</i><strong id="errorTitle">Se han producido los siguientes errores:</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-danger cursor border border-white" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-8 m-auto text-center">
+                        <ul id="errorListContainer"></ul>
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        <button type="button" data-dismiss="modal" class="btn btn-danger cursor">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup Error -->
+<!-- Popup Advertencia -->
+<div class="modal fade" id="ppWarning" tabindex="-1" role="dialog" aria-labelledby="ppWarning" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header bg-warning">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i><strong id="warningTitle">Advertencia</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-warning cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-8 m-auto text-center">
+                        <ul id="warningListContainer"></ul>
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        <button type="button" data-dismiss="modal" class="btn btn-warning cursor">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup Advertencia -->
+<!-- Popup Exito -->
+<div class="modal fade" id="ppSucess" tabindex="-1" role="dialog" aria-labelledby="ppSucess" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header bg-success">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i><strong id="sucessTitle">Exito</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-success cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-8 m-auto text-center">
+                        <ul id="sucessListContainer"></ul>
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        <button type="button" data-dismiss="modal" id="btnSucessOk" class="btn btn-success cursor">Ok</button>
+                        <button type="button" id="RedirectToOtherApp" data-dismiss="modal" class="btn btn-info cursor RedirectToOtherApp" data-path="Illustrations.aspx" data-appname="NewBusiness">Ir a la Bandeja de Auto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup Exito -->
+<!-- Popup Informacion -->
+<div class="modal fade" id="ppInfo" tabindex="-1" role="dialog" aria-labelledby="ppInfo" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header bg-info">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i><strong id="infoTitle">Información</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-info cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-8 m-auto text-center">
+                        <ul id="infoListContainer"></ul>
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        <button type="button" data-dismiss="modal" class="btn btn-info cursor">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup Informacion -->
+<!-- Popup Pregunta -->
+<div class="modal fade" id="ppQuestion" tabindex="-1" role="dialog" aria-labelledby="ppQuestion" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header bg-info">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i><strong id="questionTitle">Pregunta</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-info cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-8 m-auto text-center">
+                        <p id="questionContainer"></p>
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        <button type="button" data-dismiss="modal" id="btnQuestionOk" class="btn btn-info cursor">Ok</button>
+                        <button type="button" data-dismiss="modal" id="btnQuestionCancel" class="btn btn-danger cursor">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup Pregunta -->
+<!-- Popup Pep Formulary -->
+<div class="modal fade" id="ppPep" data-focus="false" tabindex="-1" role="dialog" aria-labelledby="ppPep" aria-hidden="true">
+    <div class="modal-dialog pp-1048" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>Personas Expuestas Políticamente</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="ClosePep" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="tCom">
+                        <table id="PepTable" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                            <thead>
+                                <tr class="bg-info">
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3"><span></span></th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3"><span>Nombre Completo</span></th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3"><span>Parentesco</span></th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3"><span>Posición y/o Cargo Público</span></th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3"><span>Año Desde</span></th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3"><span>Año Hasta</span></th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3"><span></span></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="w-100 mt-3 float-left pt-3">
+                        <a id="CompletadoPep" class="mdl-button mr-3 mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success float-right">
+                            <strong class="x-hide">Guardar</strong>
+                            @*<i class="material-icons">arrow_forward</i>*@
+                        </a>
+                        <a id="CancelarPep" class="mdl-button mr-3 mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-danger float-right">
+                            <strong class="x-hide">Cancelar</strong>
+                            @*<i class="material-icons">arrow_forward</i>*@
+                        </a>
+
+                        <button id="AddPep" class="mdl-button float-right mr-3 mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-color-text--white bg-info">
+
+                            <strong class="x-hide"><i class="material-icons">add</i>Agregar PEP</strong>
+                        </button>
+                    </div>
+                    <div class="notice info alert alert-primary float-left mt-3 w-100">
+                        <i class="material-icons float-left text-info">&#xE88E;</i> <p id="PepExplication" class=" text-primary d-block"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Beneficiary Formulary -->
+<div class="modal fade" id="ppBenef" data-focus="false" tabindex="-1" role="dialog" aria-labelledby="ppBenef" aria-hidden="true">
+    <div class="modal-dialog pp-1048" role="document">
+        <div class="modal-content" style="width:1209px">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons mr-2 mt-2">&#xE8A6;</i> <strong>Beneficiarios Finales</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="CloseBenef" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="tCom">
+                        <table id="BenefTable" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                            <thead>
+                                <tr class="bg-info">
+                                    <th></th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3">Nombre Completo</th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3">Porcentaje</th>
+                                    @*<th class="mdl-color-text--white font-weight-bold text-center em1-3">Es PEP?</th>
+                                        <th class="mdl-color-text--white font-weight-bold text-center em1-3">Tipo PEP</th>*@
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3">Tipo Identificación</th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3">Identificación</th>
+                                    <th class="mdl-color-text--white font-weight-bold text-center em1-3">Nacionalidad</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+
+
+                    <div class="w-100 mt-3 float-left pt-3">
+                        <a id="CompletadoBenef" class="mdl-button mr-3 mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success float-right">
+                            <strong class="x-hide">Guardar</strong>
+                            @*<i class="material-icons">arrow_forward</i>*@
+                        </a>
+                        <a id="CancelarBenef" class="mdl-button mr-3 mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-danger float-right">
+                            <strong class="x-hide">Cancelar</strong>
+                            @*<i class="material-icons">arrow_forward</i>*@
+                        </a>
+
+                        <button id="AddBenef" class="mdl-button float-right mr-3 mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-color-text--white bg-info">
+
+                            <strong class="x-hide"><i class="material-icons">add</i>Agregar Beneficiario</strong>
+                        </button>
+
+                        <a id="lnkViewAutoCertificationFinalBeneficiary" href="#" onclick="ViewAutoCertification()" class="btn btn-outline-info float-right mr-3" style="display:none">
+                            <i class="fa fa-eye fa-2x fa-fw" aria-hidden="true"></i>
+                            <strong class="x-hide">Auto Certificación del Beneficiario Final</strong>
+                        </a>
+                    </div>
+                    <div class="notice info alert alert-primary float-left mt-3 w-100">
+                        <i class="material-icons float-left  text-info">&#xE88E;</i> <p id="BenefExplication" class=" text-primary d-block"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Envio Correo -->
+<div class="modal fade" id="ppSendMail" tabindex="-1" role="dialog" aria-labelledby="ppSendMail" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-info">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i><strong id="infoTitle">Envío de Cotización por Correo</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-info cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-12 m-auto text-center">
+
+                        <div class="mdl-cell mdl-cell--11-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" pattern="[A-Z,a-z, ]*" type="text" id="txtEmail" name="txtEmail" value="">
+                                <label class="mdl-textfield__label" for="txtEmail">Enviar al/los Correo(s)</label>
+                            </div>
+                            <label class="alert alert-info w-100 float-left" for="">Puede agregar varios correos separados por coma (,)</label>
+                        </div>
+
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        <button type="button" data-dismiss="modal" class="btn btn-info cursor btnSendEmail">Enviar</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger cursor">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Marbete -->
+<div class="modal fade" id="ppMarbete" tabindex="-1" role="dialog" aria-labelledby="ppMarbete" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-info">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i><strong id="infoTitle">Marbete</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-info cursor" data-dismiss="modal" aria-label="Close" onclick="location.reload();">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-12 m-auto text-center">
+                        <p>Su compra ha sido finalizada Exitosamente.</p>
+                        <p>Ud. Puede acceder a nuestro Portar del Cliente para todo lo concerniente a su póliza. <br /><a href="https://www.atlantica.do/" class="LinkATL">https://www.atlantica.do/</a></p>
+                        <p>Para ver y/o imprimir su marbete temporal por favor dar click en “Imprimir Marbete”</p>
+
+                        <button type="button" class="btn btn-info cursor" onclick="getMarbete();">Ver/Imprimir Marbete</button>
+                        <br />
+                        <p id="noPolicyMarbete">Ha ocurrido un error al tratar envíar la cotización a la Bandeja, pero, se realizo el pago correctamente y se genero el número de póliza en SysFlex.. No. Póliza: " + PolicyNumberPayment</p>
+                        <p id="noAuthorizationCode">"No. Autorización Pago: " + AuthorizationCode</p>
+                        <p id="amountPay">Monto Pagado: $0.00</p>
+                    </div>
+                    <div class="col-12 modal-footer ">
+                        @*<button type="button" data-dismiss="modal" class="btn btn-info cursor btnSendEmail">Enviar</button>*@
+                        <button type="button" data-dismiss="modal" class="btn btn-danger cursor" onclick="location.reload();">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Cardnet -->
+<div class="modal fade" id="ppCardnet" data-focus="false" tabindex="-1" role="dialog" aria-labelledby="ppCardnet" aria-hidden="true">
+    <div class="modal-dialog pp-520" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons mr-2 mt-2">&#xE8A6;</i> <strong>CardNet</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="btnCloseCarnet" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content" id="divCardnetForm"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Filtro Clientes Historico -->
+<div class="modal fade" id="ppCustomerFilter" tabindex="-1" role="dialog" aria-labelledby="ppCustomerFilter" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>Para continuar a las cotizaciones iniciadas previamente:</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="closeCustomerFilter" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="w-75 m-auto">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" type="text" id="QuotationNumberFilter" name="QuotationNumberFilter">
+                            <label class="mdl-textfield__label" for="QuotationNumberFilter">Número de cotización</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="QuotationNumberFilter">
+                                <i class="material-icons">&#xE0C8;</i>
+                            </label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" type="text" id="IdentificationNumberFilter" name="IdentificationNumberFilter">
+                            <label class="mdl-textfield__label" for="IdentificationNumberFilter">Número de Identificación</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="IdentificationNumberFilter">
+                                <i class="material-icons">&#xE8A6;</i>
+                            </label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield w-100">
+                            <input class="mdl-textfield__input dateOfBirth datepicker" readonly="readonly" type="text" id="DateOfBirthFilter" name="DateOfBirthFilter">
+                            <label class="mdl-textfield__label" for="dateNC">Fecha de Nacimiento</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="DateOfBirthFilter">
+                                <i class="material-icons">&#xE916;</i>
+                            </label>
+                        </div>
+
+                        <button id="ContinueToHistory" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success w-100 mb-3">
+                            <strong class="x-hide">Continuar</strong>
+                            <i class="material-icons">arrow_forward</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--POP UP Rnc Cedula Validation-->
+<div class="modal fade popup03 docValidate" id="ppRncValid" tabindex="-1" role="dialog" aria-labelledby="ppRncValid" aria-hidden="false">
+    <div class="modal-dialog pp-720" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>Validación de Documento</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="closeCustomerFilter" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="w-100 m-auto">
+                        <iframe id="docIframe" src="" width="700" height="350"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--cpopup-->
+<!--PEP Explication-->
+<div class="modal fade" id="ppPepExplication" tabindex="-1" role="dialog" aria-labelledby="ppPepExplication" aria-hidden="true">
+    <div class="modal-dialog pp-980" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>¿Qu&eacute; es esto?</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="ClosePep" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+
+
+
+                    <div class="notice info alert alert-primary float-left mt-3 w-100">
+                        <i class="material-icons float-left text-info">&#xE88E;</i> <p id="PepExplication2" class="d-block"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End PEP Explication-->
+<!--PEP Explication-->
+<div class="modal fade" id="ppBenefExplication" tabindex="-1" role="dialog" aria-labelledby="ppBenefExplication" aria-hidden="true">
+    <div class="modal-dialog pp-980" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>¿Qu&eacute; es esto?</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="ClosePep" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="notice info alert alert-primary float-left mt-3 w-100">
+                        <i class="material-icons float-left text-info">&#xE88E;</i> <p id="BenefExplication2" class="d-block"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End PEP Explication-->
+<!--Customer Callback-->
+<div class="modal fade" id="ppCustomerCallback" tabindex="-1" role="dialog" aria-labelledby="ppCustomerCallback" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>Información para llamar al cliente:</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="closeCustomerCallback" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="w-100 m-auto">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" pattern="[A-Z,a-z, ]*" type="text" id="FirstNamesCallBack" name="FirstNamesCallBack">
+                            <label class="mdl-textfield__label" for="FirstNamesCallBack">Nombres</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" pattern="[A-Z,a-z, ]*" type="text" id="LastNamesCallBack" name="LastNamesCallBack">
+                            <label class="mdl-textfield__label" for="LastNamesCallBack">Apellidos</label>
+                        </div>
+                        @*<div class="mdl-cell mdl-cell--2-col mdl-cell--4 w-100">*@
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield">
+                            <select id="PhoneType" data-placeholder="Tipo de teléfono" class="chosen-select-deselect form-control"></select>
+                        </div>
+                        @*</div>*@
+                        <div class="mdl-grid p-0">
+                            <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input disabled" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="CountryCodeCallback" name="CountryCodeCallback">
+                                    <label class="mdl-textfield__label" for="CountryCodeCallback">+1</label>
+                                    <span class="mdl-textfield__error">Número inválido!</span>
+                                </div>
+                            </div>
+                            <div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    @*<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cArea">*@
+                                    <input class="mdl-textfield__input disabled" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="CityCodeCallback" name="CityCodeCallback">
+                                    <label class="mdl-textfield__label" for="CityCodeCallback">809</label>
+                                    <span class="mdl-textfield__error">Codigo area incorrecto!</span>
+                                </div>
+                            </div>
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    @*<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cdNumb">*@
+                                    <input class="mdl-textfield__input disabled" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="NumToCall" name="NumToCall">
+                                    <label class="mdl-textfield__label" for="NumToCall">9999999</label>
+                                    <span class="mdl-textfield__error">Teléfono Incorrecto!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+                            <input class="mdl-textfield__input" type="text" id="PolicyNumCallBack" name="PolicyNumCallBack">
+                            <label class="mdl-textfield__label" for="EmailCallback">No. Póliza</label>
+                        </div>
+
+                        <button id="SendCallback" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success w-100 mb-3">
+                            <strong class="x-hide">Enviar</strong>
+                            <i class="material-icons">arrow_forward</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Customer Callback-->
+<!-- Popup PDF Upload and Viewer -->
+<div class="modal fade" id="ppUploadDoc" tabindex="-1" role="dialog" aria-labelledby="ppUploadDoc" aria-hidden="true">
+    <div class="modal-dialog pp-980" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-info">
+                    <h3 class="block-title">
+                        <strong id="DocTitle"></strong>
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn btn-block-option bg-info cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="col-md-12 m-auto">
+                        <div id="dvfUpload" class="text-left form-control form-control-lg">
+                            <i class="material-icons float-left mr-3 text-primary">backup</i>
+                            <input type="file" id="fUpload" />
+                        </div>
+
+                        <div id="dvShowPDF" style="display:none;">
+                            <iframe id="showpdfIfra"></iframe>
+                        </div>
+
+                        <div id="dvShowValidateButton" style="display:none;" class="text-center">
+                            <label class="" for="chkValidateDoc">
+                                <input class='chkValidateDoc' type='checkbox' id='chkValidateDoc' />
+                                Validar
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-danger cursor btnCancelDoc">Cancelar</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-success cursor btnSaveDocumentRequired">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup PDF Upload and Viewer -->
+
+
+
+
+<div class="modal fade" id="ppDeclinedQuotation" tabindex="-1" role="dialog" aria-labelledby="ppDeclinedQuotation" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>Declinar:</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="closeDeclinedQuotation" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="w-75 m-auto">
+
+                        <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <select id="declinedReason" name="declinedReason" class="chosen-select-deselect form-control" data-placeholder="Motivo declinación">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100 is-dirty">
+                            <textarea class="mdl-textfield__input" rows="3" id="declinedReasonComment" name="declinedReasonComment"></textarea>
+                            <label class="mdl-textfield__label" for="declinedReasonComment">Comentario:</label>
+                        </div>
+
+                        <button id="btnDecline" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-danger mb-3 float-right">
+                            <strong class="x-hide">Declinar</strong>
+                            <i class="material-icons">&#xE033;</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ppQuotationNotes" tabindex="-1" role="dialog" aria-labelledby="ppQuotationNotes" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>NOTAS</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="closeDeclinedQuotation" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="w-100 m-auto">
+                        <input type="hidden" id="currentQuotId" value="" />
+
+                        <div id="dvListNotes" style="border: 1px solid #4472C4; border-radius: 5px; padding-top: 10px; padding-left: 15px; padding-bottom: 10px; height: 400px; overflow:auto;">
+                        </div>
+
+                        <br />
+                        <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                            <div class="">
+                                <select id="quoteNoteReason" name="quoteNoteReason" class="chosen-select-deselect form-control" data-placeholder="Asunto">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100 is-dirty">
+                            <textarea class="mdl-textfield__input" rows="5" id="quotNotes" name="quotNotes"></textarea>
+                            <label class="mdl-textfield__label" for="quotNotes">Notas:</label>
+                        </div>
+
+                        <button id="btnCancel" data-dismiss="modal" aria-label="Close" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-danger mb-3 float-left">
+                            <strong class="x-hide">Cancelar</strong>
+                            <i class="material-icons">&#xE033;</i>
+                        </button>
+
+                        <button id="btnSaveNotes" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success mb-3 float-right">
+                            <strong class="x-hide">Guardar</strong>
+                            <i class="material-icons">&#xE033;</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ppNewProspectPolicyServices" tabindex="-1" role="dialog" aria-labelledby="ppNewProspectPolicyServices" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header">
+                    <h3 class="block-title">
+                        <i class="material-icons">&#xE88F;</i> <strong>Servicios en la Poliza</strong>
+                    </h3>
+                    <div class="block-options">
+                        <button id="closeDeclinedQuotation" type="button" class="btn btn-block-option bg-danger cursor" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="table-responsive ">
+                        <table class="tablemdl-list">
+                            <thead>
+                                <tr class="bg-info mdl-color-text--white text-center">
+                                    <th><span>Cobertura</span></th>
+                                    <th class="bg-success"><span>Prima anual</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="NuevaPropuestaServicios">
+                                <tr>
+                                    <td>Casa Del Conductor</td>
+                                    <td>1,793.11</td>
+                                </tr>
+                                <tr>
+                                    <td>Asistencia Vial Atlantica</td>
+                                    <td>2,000.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <div class="row mb-3 mr-0">
+                        <div class=" col-sm-6"></div>
+                        <div class=" col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="button">Total Anual</button>
+                                </span>
+                                <input id="txtTotalServicesSelected2" type="text" readonly="readonly" class="form-control text-right font-weight-bold em2" value="1,793.11" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 modal-footer ">
+                        <button type="button" class="btn btn-danger cursor" data-dismiss="modal"><i class="fa fa-ban mr-2"></i>Cerrar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--============| END POPUPS |============-->
+    <!--============| EJECUCION DEE JAVASCRIPT PARA MODAL DE FILTROS DE CLIENTES |============-->
+    <script>
+        $(document).ready(function () {
+
+            //Edad maxima para poder asegurar un Vehículo (16 anos)
+            var currDate = moment(new Date());
+            var minDate = currDate.add(16 * -1, 'years');
+            //
+
+            $('.dateOfBirth.datepicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-80:+0",
+                maxDate: new Date(minDate),
+                onSelect: function (dateText) {
+                    var $parent = $(this).parent();
+                    $parent.addClass("is-dirty");
+                    $parent.removeClass('requerido');
+                    $parent.removeClass('erarequerido');
+                    $parent.addClass('erarequerido');
+                }
+            });
+
+            $(document).on('focusout', '#IdentificationNumberFilter, #QuotationNumberFilter, #DateOfBirthFilter', function () {
+                if ($(this).val() != '')
+                    $(this).addClass('Is-dirty');
+            });
+
+            $('#closeCustomerFilter').on('click', function () {
+                $('#ppCustomerFilter').modal('hide');
+                window.location.reload();
+            });
+
+            $('#ppCustomerFilter').on('hidden.bs.modal', function () {
+                $('#filtroHistorico').val('2'); // lo envio a nueva cotizacion nuevamente
+                $("#filtroHistorico").trigger("chosen:updated");
+            })
+
+            $(document).on('show.bs.modal', '#ppCustomerFilter', function () {
+                $('#filtroHistorico').val('2');
+                $("#filtroHistorico").trigger("chosen:updated");
+            })
+
+            $(document).on('click', '#ContinueToHistory', function () { return continueToHistory(); });
+        });
+    </script>

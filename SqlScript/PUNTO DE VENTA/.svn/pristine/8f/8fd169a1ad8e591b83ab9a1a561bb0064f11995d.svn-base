@@ -1,0 +1,437 @@
+﻿
+using Statetrust.Framework.Security.Bll;
+using Statetrust.Framework.Web.Mvc.WebParts.Controllers;
+using STL.POS.AchWsProxy;
+using STL.POS.AchWsProxy.AchPayments;
+using STL.POS.AgentWSProxy;
+using STL.POS.Frontend.Web.NewVersion.CustomCode;
+using STL.POS.Logic;
+using STL.POS.PlexysProxy;
+using STL.POS.PlexysProxy.PlexisService;
+using STL.POS.WsProxy;
+using STL.POS.WsProxy.SysflexService;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Web.Mvc;
+using VoProxy = STL.POS.VirtualOfficeProxy;
+using STL.POS.Frontend.Web.NewVersion.CustomCode;
+using Entity.Entities;
+
+
+namespace STL.POS.Frontend.Web.NewVersion.Controllers
+{
+    public class BaseController : STFMainController
+    {
+        public CultureInfo culturelanguaje = CultureInfo.CreateSpecificCulture("es-DO");
+        public SessionList datos;
+        private string key = "SessionData";
+        protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
+        {
+            var languageId = "es-DO";
+            /*if (Request.RequestContext.HttpContext.Session != null && Request.RequestContext.HttpContext.Session[SESSION_LANGUAGE_ID] != null)
+            {
+                languageId = Request.RequestContext.HttpContext.Session[SESSION_LANGUAGE_ID].ToString();
+            }*/
+
+            var currentCulture = CultureInfo.CreateSpecificCulture(languageId);
+            Thread.CurrentThread.CurrentCulture = currentCulture;
+            Thread.CurrentThread.CurrentUICulture = currentCulture;
+
+            //ViewBag.LanguageList = GetLanguageList();
+            ViewBag.CurrentLanguage = languageId;
+
+
+            var usuario = GetCurrentUsuario();
+
+            ViewBag.UserOrigin = CommonEnums.UserOrigins.VO;
+            ViewBag.UserType = usuario == null ? "" : Usuario.UserType.ToString();
+            ViewBag.isAgentUser = usuario == null ? false : (Usuario.UserType == Usuarios.UserTypeEnum.Agent || Usuario.UserType == Usuarios.UserTypeEnum.Assistant) ? true : false;
+
+            //if (usuario != null)//!string.IsNullOrEmpty(User.Identity.Name))
+            //{
+            //    var user = dataAccess.Users.FirstOrDefault(u => u.Username == usuario.UserLogin && u.UserOrigin == UserOrigins.VO);
+            //    if (user != null)
+            //    {
+            //        ViewBag.UserOrigin = UserOrigins.VO;
+            //        ViewBag.CurrentUserFullName = user.GetFullName();
+            //        ViewBag.UserType = user.UserType;
+            //    }
+            //}
+
+            return base.BeginExecuteCore(callback, state);
+        }
+
+        public BaseController()
+        {
+            if (System.Web.HttpContext.Current.Session == null)
+            {
+                System.Web.HttpContext.Current.Session.Add(key, new SessionList(key));
+                (System.Web.HttpContext.Current.Session[key] as SessionList).sessionObject = new SessionObject();
+            }
+            else
+                if (System.Web.HttpContext.Current.Session[key] == null)
+                {
+                    System.Web.HttpContext.Current.Session.Add(key, new SessionList(key));
+                    (System.Web.HttpContext.Current.Session[key] as SessionList).sessionObject = new SessionObject();
+                }
+
+            datos = (System.Web.HttpContext.Current.Session[key] as SessionList);
+        }
+
+        #region Managers
+
+        protected PersonManager oPersonManagerManager
+        {
+            get
+            {
+                return new Logic.PersonManager();
+            }
+        }
+        protected QuotationManager oQuotationManager
+        {
+            get
+            {
+                return new Logic.QuotationManager();
+            }
+        }
+        protected DropDownManager oDropDownManager
+        {
+            get
+            {
+                return new Logic.DropDownManager();
+            }
+        }
+        protected CoverageManager oCoverageManager
+        {
+            get { return new CoverageManager(); }
+        }
+        protected DriverManager oDriverManager
+        {
+            get
+            {
+                return new DriverManager();
+            }
+        }
+        protected IdentificationFinalBeneficiaryManager oIdentificationFinalBeneficiaryManager
+        {
+            get { return new IdentificationFinalBeneficiaryManager(); }
+        }
+        protected PepFormularyManager oPepFormularyManager
+        {
+            get { return new PepFormularyManager(); }
+        }
+        protected ProductLimitsManager oProductLimitsManager
+        {
+            get { return new ProductLimitsManager(); }
+        }
+        protected ServicesTypesRepositoryManager oServicesTypesRepositoryManager
+        {
+            get { return new ServicesTypesRepositoryManager(); }
+        }
+        protected SocialReasonManager oSocialReasonManager
+        {
+            get { return new SocialReasonManager(); }
+        }
+        protected VehicleProductManager oVehicleProductManager
+        {
+            get { return new VehicleProductManager(); }
+        }
+        protected UserManager oUserManager
+        {
+            get { return new UserManager(); }
+        }
+
+        #endregion
+
+        #region Services
+        protected AchPaymentProxy oAchPaymentProxy
+        {
+            get
+            {
+                return
+                    new AchPaymentProxy(null);
+            }
+        }
+        protected AgentProxy oAgentWSProxy
+        {
+            get
+            {
+                return
+                    new AgentProxy();
+            }
+        }
+        protected ProxyClient oPlexysProxy
+        {
+            get
+            {
+                return
+                    new ProxyClient(null);
+            }
+        }
+
+        protected VoProxy.VirtualOfficeProxy oVirtualOfficeProxy
+        {
+            get
+            {
+                return
+                    new VoProxy.VirtualOfficeProxy();
+            }
+        }
+
+        protected CoreProxy oCoreProxy
+        {
+            get
+            {
+                return
+                    new CoreProxy(new SysFlexServiceClient());
+            }
+        }
+
+        protected THProxy.THProxy oThunderheadProxy
+        {
+            get
+            {
+                return new THProxy.THProxy();
+            }
+        }
+
+        #endregion
+        #region Sessions
+
+        public int QuotationId
+        {
+            get { return (System.Web.HttpContext.Current.Session[key] as SessionList).Stored.sessionObject.QuotationId; }
+            set
+            {
+                datos.sessionObject.QuotationId = value;
+                datos.Save();
+            }
+        }
+
+        public String QuotationNumber
+        {
+            get { return (System.Web.HttpContext.Current.Session[key] as SessionList).Stored.sessionObject.QuotationNumber; }
+            set
+            {
+                datos.sessionObject.QuotationNumber = value;
+                datos.Save();
+            }
+        }
+
+        public List<AgentTreeInfoNew> AgentTreeInfoNew
+        {
+            get { return (System.Web.HttpContext.Current.Session[key] as SessionList).Stored.sessionObject.AgentTreeInfoNew; }
+            set
+            {
+                datos.sessionObject.AgentTreeInfoNew = value;
+                datos.Save();
+            }
+        } 
+
+        public Tuple<QuotationViewModel.Vehicles, QuotationViewModel> CurrentDataQuotation
+        {
+            get { return (System.Web.HttpContext.Current.Session[key] as SessionList).Stored.sessionObject.CurrentDataQuotation; }
+            set
+            {
+                datos.sessionObject.CurrentDataQuotation = value;
+                datos.Save();
+            }
+        }
+
+        public IEnumerable<SelectListItem> Colors
+        {
+            get { return (System.Web.HttpContext.Current.Session[key] as SessionList).Stored.sessionObject.Colors; }
+            set
+            {
+                datos.sessionObject.Colors = value;
+                datos.Save();
+            }
+        }
+
+        public IEnumerable<SelectListItem> Drivers
+        {
+            get { return (System.Web.HttpContext.Current.Session[key] as SessionList).Stored.sessionObject.Drivers; }
+            set
+            {
+                datos.sessionObject.Drivers = value;
+                datos.Save();
+            }
+        }
+
+        public IEnumerable<SelectListItem> dataPaymentFreq
+        {
+            get { return (System.Web.HttpContext.Current.Session[key] as SessionList).Stored.sessionObject.dataPaymentFreq; }
+            set
+            {
+                datos.sessionObject.dataPaymentFreq = value;
+                datos.Save();
+            }
+        }
+
+        #endregion
+
+        #region Datos Usuario de Pos_Site
+        protected int CheckUser(string userId, string name, string surname, string email, int? agentId = null)
+        {
+            int user_id = 0;
+
+            var usuario = GetCurrentUsuario();
+            if (usuario == null) //POS User
+            {
+                var user = oUserManager.GetUser(null, userId);
+
+                if (user == null) //Create user
+                {
+                    Entity.Entities.User.Parameter paramUser = new Entity.Entities.User.Parameter();
+                    paramUser.email = email;
+                    paramUser.name = name;
+                    paramUser.surname = surname;
+                    paramUser.username = userId;
+                    paramUser.userOrigin = CommonEnums.UserOrigins.POS.ToInt();
+                    paramUser.userStatus = 1;
+
+                    var userSaved = oUserManager.SetUser(paramUser);
+                    user_id = userSaved.EntityId;
+                }
+                return user_id;
+            }
+            else // User, Agent or suscriptor
+            {
+                Entity.Entities.User user = null;
+                Entity.Entities.User suscriptorUser = null;
+
+                if (usuario.UserType == Usuarios.UserTypeEnum.User)
+                {
+                    user = oUserManager.GetUser(null, userId);
+                }
+                else //Agent or suscriptor
+                {
+                    user = oUserManager.GetUser(null, userId, CommonEnums.UserType.Agent.ToInt());
+                    suscriptorUser = oUserManager.GetUser(null, usuario.UserLogin, CommonEnums.UserType.Subscriptor.ToInt());
+                }
+
+                if (user == null) //Create user
+                {
+                    var realAgent = getAgenteUserInfo(userId);
+
+                    Entity.Entities.User.Parameter paramUser = new Entity.Entities.User.Parameter();
+                    paramUser.email = email;
+                    paramUser.name = name;
+                    paramUser.surname = surname;
+                    paramUser.username = userId;
+                    paramUser.userType = usuario.UserType == Usuarios.UserTypeEnum.User ? CommonEnums.UserType.WebUser.ToInt() : CommonEnums.UserType.Agent.ToInt();
+                    paramUser.userOrigin = CommonEnums.UserOrigins.VO.ToInt();
+                    paramUser.suscriptor_Id = suscriptorUser != null ? suscriptorUser.Id : (int?)null;
+                    paramUser.agentId = realAgent != null ? realAgent.AgentId : agentId;
+                    paramUser.userStatus = 1;
+
+                    var userSaved = oUserManager.SetUser(paramUser);
+                    user_id = userSaved.EntityId;
+                }
+                else
+                {
+                    Entity.Entities.User.Parameter paramUser = new Entity.Entities.User.Parameter();
+                    paramUser.id = user.Id;
+
+                    if (user.Suscriptor_Id == 0)
+                    {
+                        paramUser.suscriptor_Id = suscriptorUser.Id;
+                    }
+                    if (user.AgentId == null || user.AgentId == 0)
+                    {
+                        var realAgent = getAgenteUserInfo(userId);
+
+                        paramUser.agentId = realAgent != null ? realAgent.AgentId : agentId;
+                    }
+
+                    var userSaved = oUserManager.SetUser(paramUser);
+                    user_id = userSaved.EntityId;
+                }
+
+                return user_id;
+            }
+        }
+
+        protected int CheckQuotationHasUser(int quotationID)
+        {
+            Entity.Entities.User user = null;
+
+            var quotation = oQuotationManager.GetQuotation(quotationID);
+
+            if (quotation != null)
+            {
+                var quotationUser = oUserManager.GetUser(quotation.User_Id);
+
+                if (quotationUser != null && quotationUser.AgentId.HasValue)
+                {
+                    //usuario que tiene la cotizacion agregada
+                    string nameidAgentQuo = quotationUser.Username;
+                    var agentIDAgentQuo = quotationUser.AgentId;
+
+                    user = oUserManager.GetUser(null, nameidAgentQuo, CommonEnums.UserType.Agent.ToInt());
+                    if (user == null)
+                    {
+                        user = oUserManager.GetUser(null, null, CommonEnums.UserType.Agent.ToInt(), agentIDAgentQuo);
+                    }
+                }
+            }
+            return user.Id;
+        }
+
+        protected Entity.Entities.User getQuotationUser(string userName)
+        {
+            var user = oUserManager.GetUser(null, userName);
+
+            return user;
+        }
+
+        protected Entity.Entities.User getQuotationUserById(int userID)
+        {
+            var user = oUserManager.GetUser(userID, null);
+
+            return user;
+        }
+
+        #endregion
+
+        protected Usuarios GetCurrentUsuario()
+        {
+            var sessionManager = Statetrust.Framework.Security.Core.Util.SessionManager.Get(Session);
+
+            if (sessionManager == null)
+                return null;
+            else
+                return Usuario;
+        }
+
+        public int? GetCurrentUserID()
+        {
+            var usuario = GetCurrentUsuario();
+            if (usuario != null)
+            {
+                return usuario.UserID;
+            }
+
+            return
+                null;
+        }
+
+        /// <summary>
+        /// 1 (true) = Solo usuarios Logueados, 0(false) =  Todo el mundo
+        /// </summary>
+        /// <returns></returns>
+        public bool allowOnlyLoggedUsers()
+        {
+            /*
+           1 = Solo usuarios Logueados
+           0 =  Todo el mundo
+           */
+            var onlyLoggedUsers = System.Web.Configuration.WebConfigurationManager.AppSettings["PARAMETER_KEY_ONLY_LOGGED_USER"].ToString(CultureInfo.InvariantCulture);
+
+            return onlyLoggedUsers == "1";
+        }
+    }
+}

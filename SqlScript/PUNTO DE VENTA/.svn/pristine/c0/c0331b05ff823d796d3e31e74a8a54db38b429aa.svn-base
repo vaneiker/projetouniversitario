@@ -1,0 +1,72 @@
+﻿using Entity.Entities;
+using STL.POS.Data.NewVersion.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace STL.POS.Logic
+{
+    public class DriverManager : BaseManager
+    {
+        private readonly DriverRepository driverRepository;
+
+        public DriverManager()
+        {
+            driverRepository = new DriverRepository();
+        }
+
+        #region Set
+        public BaseEntity SetDriver(Driver.parameters parameters)
+        {
+            return
+                   driverRepository.SetDriver(parameters);
+        }
+
+        public BaseEntity SetPepByDriver(PepFormulary.Parameter parameters)
+        {
+            return
+                   driverRepository.SetPepByDriver(parameters);
+        }
+
+        public BaseEntity SetBeneficiariesByDriver(IdentificationFinalBeneficiary.Parameter parameters)
+        {
+            return
+                   driverRepository.SetIdentificationFinalBeneneficiary(parameters);
+        }
+        #endregion
+
+        #region Get
+        public Driver GetDriver(int driverID)
+        {
+            return
+                driverRepository.GetDriver(driverID);
+        }
+
+        public IEnumerable<PepFormulary> GetPepsFormularyByDriver(int driverID)
+        {
+            return
+                driverRepository.GetPepsFormularyByDriver(driverID);
+        }
+
+        public IEnumerable<IdentificationFinalBeneficiary> GetDriverBeneficiaries(int driverID)
+        {
+            return
+                driverRepository.GetIdentificationFinalBeneficiaries(driverID);
+        }
+        #endregion
+
+        public int DeletePepsByDriver(int driverID)
+        {
+            return
+                driverRepository.DeletePepsByDriver(driverID);
+        }
+
+        public int DeleteBeneficiariesByDriver(int driverID)
+        {
+            return
+                driverRepository.DeleteBeneficiariesByDriver(driverID);
+        }
+    }
+}

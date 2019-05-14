@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="dcastro-amateo" />
+    <title>@ViewBag.Title</title>
+
+    <!--CSS Style-->
+    @Styles.Render("~/Content/reset")
+    @Styles.Render("~/Content/vo")
+    @Styles.Render("~/Content/kickstart")
+    @Styles.Render("~/Content/menuBundle")
+    @Styles.Render("~/Content/amr")
+    @Styles.Render("~/Content/dtl")
+    @Styles.Render("~/Content/jqueryuilib")
+
+    <!--SCRIPTS -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/underscore")
+    @Scripts.Render("~/bundles/kickstart")
+    @Scripts.Render("~/bundles/knockoutjs")
+    @Scripts.Render("~/bundles/global")
+    @Scripts.Render("~/bundles/jqueryvalidate")
+
+
+    @*<script type="text/javascript" src="~/Scripts/knockout.simpleGrid.3.0.js"></script>
+        <script type="text/javascript" src="~/Scripts/Areas/Auto/vehicleDuplicateViewModel.js"></script>*@
+
+
+</head>
+<body class="car">
+    <!-- Contenedor General -->
+
+
+    <div id="st-container" class="st-container" style="overflow-y: auto;">
+        @if (ViewBag.UserOrigin == STL.POS.Data.UserOrigins.VO && ViewBag.UserType != STL.POS.Data.UserType.WebUser)
+        {
+            Html.RenderPartial("_SideMenuVO");
+        }
+        <div class="st-pusher">
+            <div class="st-content">
+                <div class="main_menu menu2 mB10 staticSll">
+                    <div class="box_logo"><a href="/" class="logo"></a></div>
+                    @if (ViewBag.User != null)
+                    {
+                        //@ViewBag.User.FullName
+                    }
+                </div>
+
+                <!--boton abre y cierra el canvas-->
+                @if (ViewBag.UserOrigin == STL.POS.Data.UserOrigins.VO && ViewBag.UserType != STL.POS.Data.UserType.WebUser)
+                {
+                    <div id="st-trigger-effects">
+                        <button data-effect="st-effect-2" id="btnLoadProfile" class="show_profile" onclick="GetUserProfileDataMVC(true);"> </button>
+                    </div>
+                }
+                @*class="st-content-inner"*@
+                <div id="scroll_2">
+                    <div class="main clearfix">
+                        <div class="contenido_derecha">
+                            <!--wrapper de las columnas-->
+                            <div class="grid grid-pad">
+                                <div id="divBody" class="">
+                                    <div class=" wrapper-fluid box_shw sev_xpress">
+                                        <!--wrapper-->
+                                        <!-- Contenedor -->
+                                        @RenderBody()
+                                        <!--// Contenedor -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() >= 200) {
+                    $('.staticSll').addClass('fixed-header');
+                    $('.pdv_cont').addClass('pdT400');
+                }
+                else {
+                    $('.staticSll').removeClass('fixed-header');
+                    $('.pdv_cont').removeClass('pdT400');
+                }
+            });
+        });
+    </script>
+    <!--// Contenedor General -->
+</body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CSToGP" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CSToGP" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CashPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CheckbookID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PaymentDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PaymentNotes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QuoteNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceivedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourcePlatform" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceTransactionID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CashPayment" nillable="true" type="tns:CashPayment" />
+  <xs:complexType name="GPPaymentResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerBalance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PaymentNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GPPaymentResult" nillable="true" type="tns:GPPaymentResult" />
+  <xs:complexType name="CheckPayment">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CashPayment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CheckNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CheckPayment" nillable="true" type="tns:CheckPayment" />
+  <xs:complexType name="ACHPayment">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CashPayment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BankAccountHolder" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BankAccountHolderGovernmentID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BankAccountNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BankAccountType" type="xs:int" />
+          <xs:element minOccurs="0" name="BankRoutingNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ACHPayment" nillable="true" type="tns:ACHPayment" />
+  <xs:complexType name="CreditCardPayment">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CashPayment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CreditCardIssuer" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CreditCardMaskedCardNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CreditCardProcessorTransactionNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreditCardPayment" nillable="true" type="tns:CreditCardPayment" />
+  <xs:complexType name="STBPayment">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CashPayment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BankAccountHolder" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BankAccountNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="STBPayment" nillable="true" type="tns:STBPayment" />
+</xs:schema>

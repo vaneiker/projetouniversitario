@@ -1,0 +1,96 @@
+﻿
+@{
+    if (ViewBag.PaymentFromCardnet != null)
+    {
+        <input type="hidden" id="hdnPaymentStatus" value="@Html.Raw(ViewBag.PaymentStatus)" />
+        <input type="hidden" id="hdnPaymentFromCardnet" value="@Html.Raw(ViewBag.PaymentFromCardnet)" />
+        <input type="hidden" id="hdnPaymentSuccess" value="@Html.Raw(ViewBag.PaymentSuccess)" />
+        <input type="hidden" id="hdnfailInsentingQuotationOnSysFlexOrVO" value=" @Html.Raw(ViewBag.failInsentingQuotationOnSysFlexOrVO)" />
+        <input type="hidden" id="hdnPaymentMessage" value=" @Html.Raw(ViewBag.PaymentMessage) " />
+        <input type="hidden" id="hdnPolicyNumber" value=" @Html.Raw(ViewBag.PolicyNumber)" />
+        <input type="hidden" id="hdnAuthorizationCode" value=" @Html.Raw(ViewBag.AuthorizationCode)" />
+        <input type="hidden" id="hdnerrorGPToSysflexMessage" value=" @Html.Raw(ViewBag.errorGPToSysflexMessage)" />
+        <input type="hidden" id="hdnerrorGPToSysflexMessage2" value=" @Html.Raw(ViewBag.errorGPToSysflexMessage2)" />
+        <input type="hidden" id="hdnallowOnlyLoggedUsers" value=" @Html.Raw(ViewBag.allowOnlyLoggedUsers)" />
+    }
+}
+
+<script type="text/javascript">
+
+    window.parent.$(document).ready(function () {
+
+        PaymentStatus = document.getElementById("hdnPaymentStatus").value;
+        PaymentFromCardnet = document.getElementById("hdnPaymentFromCardnet").value;
+        PaymentSuccess = document.getElementById("hdnPaymentSuccess").value;
+        failInsentingQuotationOnSysFlexOrVO = document.getElementById("hdnfailInsentingQuotationOnSysFlexOrVO").value;
+        PaymentMessage = document.getElementById("hdnPaymentMessage").value;
+        PolicyNumberPayment = document.getElementById("hdnPolicyNumber").value;
+        AuthorizationCode = document.getElementById("hdnAuthorizationCode").value;
+        errorGPToSysflexMessage = document.getElementById("hdnerrorGPToSysflexMessage").value;
+        errorGPToSysflexMessage2 = document.getElementById("hdnerrorGPToSysflexMessage2").value;
+        allowOnlyLoggedUsers = document.getElementById("hdnallowOnlyLoggedUsers").value;
+
+        var quotationNumber = window.parent.$("#QuotationNumber").val();
+
+        //Cuando se hace un pago por cardnet
+        if (typeof PaymentStatus != 'undefined' && PaymentFromCardnet == "True") {
+
+            if (PaymentStatus == "True")//El pago fue aprobado por cardnet
+            {
+                window.parent.$('#noAuthorizationCode').show();
+
+                if (failInsentingQuotationOnSysFlexOrVO == "W") {
+                    window.parent.$("#noPolicyMarbete").html("Ha ocurrido un error al tratar envíar la cotización a la Bandeja, pero, se realizo el pago correctamente y se genero el número de póliza en SysFlex.. No. Póliza: " + PolicyNumberPayment);
+                    window.parent.$("#noAuthorizationCode").html("No. Autorización Pago: " + AuthorizationCode);
+                    window.parent.$("#ppMarbete").modal({ backdrop: 'static', keyboard: false, show: true });
+                }
+                else if (failInsentingQuotationOnSysFlexOrVO === "GP") {
+                    window.parent.$("#noPolicyMarbete").html(errorGPToSysflexMessage.replace("{0}", PolicyNumberPayment));
+                    window.parent.$("#noAuthorizationCode").html("No. Autorización Pago: " + AuthorizationCode);
+                    window.parent.$("#ppMarbete").modal({ backdrop: 'static', keyboard: false, show: true });
+                }
+                else if (failInsentingQuotationOnSysFlexOrVO === "GP2") {
+                    window.parent.$("#noPolicyMarbete").html(errorGPToSysflexMessage2.replace("{0}", PolicyNumberPayment));
+                    window.parent.$("#noAuthorizationCode").html("No. Autorización Pago: " + AuthorizationCode);
+                    window.parent.$("#ppMarbete").modal({ backdrop: 'static', keyboard: false, show: true });
+                }
+                else {
+                    window.parent.$("#noPolicyMarbete").html("No. Poliza: " + PolicyNumberPayment);
+                    window.parent.$("#noAuthorizationCode").html("No. Autorización Pago: " + AuthorizationCode);
+                    window.parent.$("#ppMarbete").modal({ backdrop: 'static', keyboard: false, show: true });
+                }
+
+                window.parent.history.replaceState({}, '', '/Home/Index');
+
+                changeOptionFilter();
+
+            } else {
+                if (failInsentingQuotationOnSysFlexOrVO == "S") {
+                    window.parent.showError(['El pago fue procesado con éxito, pero, ocurrió un error enviando la cotización al sistema core.'], 'Enviando a Sysflex');
+                }
+                else if (failInsentingQuotationOnSysFlexOrVO == "E") {
+                    window.parent.showError(['Esta cotización ya ha sido enviada a nuestros sistemas.'], 'Pagos');
+                }
+                else if (failInsentingQuotationOnSysFlexOrVO == "W") {
+                    window.parent.showError(['Ocurrió un error enviando la cotización a la bandeja, pero, se genero el número de póliza........ No. Póliza: ' + PolicyNumberPayment], 'Enviando a Sysflex');
+                }
+                else if (failInsentingQuotationOnSysFlexOrVO === "GP") {
+                    window.parent.showError([errorGPToSysflexMessage.replace("{0}", PolicyNumberPayment)], 'Pagos');
+
+                }
+                else if (failInsentingQuotationOnSysFlexOrVO === "GP2") {
+                    window.parent.showError([errorGPToSysflexMessage2.replace("{0}", PolicyNumberPayment)], 'Pagos');
+                }
+                else if (failInsentingQuotationOnSysFlexOrVO === "CH") {                    
+                    window.parent.showError([errorGPToSysflexMessage2], 'Pagos');
+                }
+                else {
+                    window.parent.showError(['No se ha podido realizar el pago de la cotización Nro <strong>' + quotationNumber + '</strong>. El proveedor de pagos ha respondido con el siguiente mensaje: <strong>' + PaymentMessage + '</strong>'], 'Pagos');
+                }
+            }
+        }
+        //
+    });
+
+    window.parent.$("#btnCloseCarnet").trigger("click");
+</script>

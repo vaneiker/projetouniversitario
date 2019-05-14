@@ -1,0 +1,190 @@
+﻿<script type="text/html" id="stepBuy3">
+
+    <div class="select_buy3 pagoDll" data-bind="with: stepData, visible: stepData.allLawProducts">
+        <div id="skipPaymentBtn" style="display:none" class="col-3">
+            <a href="#" class="button button-blue alignC embossed" data-bind="click: skipPayment">@Globalization.PosAuto.StepBuy3.SkipButtonLabel</a>
+        </div>
+        <form data-bind="submit: pay" id="payForm">
+            <div class="col-6 fl cont_gnl">
+                <div class="labelBlue">  <!-- ko if: payment.applicant.wayToPay() == 1 -->@Globalization.PosAuto.StepBuy3.CashLabel<!--/ko--><!-- ko if: payment.applicant.wayToPay() == 2 -->@Globalization.PosAuto.StepBuy3.CreditCardLabel<!--/ko--><!-- ko if: payment.applicant.wayToPay() == 4 -->ACH<!--/ko--></div>
+                <div class="label_plus_input par">
+                    <span>@Globalization.PosAuto.StepBuy3.MethodOfPaymentLabel</span>
+                    <select name="applicantWayToPay" id="applicantWayToPay" data-bind="options: $root.wayToPayList, optionsText: 'name', optionsValue: 'id', value: payment.applicant.wayToPay, css: {errorBorder: !payment.applicant.wayToPay()}"></select>
+                </div>
+                <!-- ko if: payment.applicant.wayToPay() == 2 -->
+                <div class="col-12 sipaga mT20">
+                    <p>@Globalization.PosAuto.StepBuy3.CreditCardAcceptanceLabel.</p>
+                </div>
+                <!--/ko-->
+                <!-- ko if: payment.applicant.wayToPay() == 4 -->
+                <!-- ACH -->
+                <div class="label_plus_input par">
+                    <span>@Globalization.PosAuto.StepBuy3.AccountHolderNameLabel</span>
+                    <input type="text" placeholder="@Globalization.Global.WriteHere" name="achName" data-bind="value: payment.ach.name, css: {errorBorder: !payment.ach.name()}" />
+                </div>
+                <div class="label_plus_input par">
+                    <span>@Globalization.PosAuto.StepBuy3.AccountHolderIdLabel</span>
+                    <input type="text" placeholder="@Globalization.Global.WriteHere" name="achAccountHolderGovernmentId" data-bind="value: payment.ach.achAccountHolderGovernmentId, css: {errorBorder: !payment.ach.achAccountHolderGovernmentId()}" />
+                </div>
+                <div class="label_plus_input par">
+                    <span>@Globalization.PosAuto.StepBuy3.RouteNumberLabel</span>
+                    <input type="text" placeholder="@Globalization.Global.WriteHere" name="achBankRoutingNumber" data-bind="value: payment.ach.achBankRoutingNumber, css: {errorBorder: !payment.ach.achBankRoutingNumber()}" />
+                </div>
+                <div class="label_plus_input par">
+                    <span>@Globalization.PosAuto.StepBuy3.AccountTypeLabel</span>
+                    <select name="achType" data-bind="options: $root.typeAccounts, optionsText: 'name', optionsValue: 'id', value: payment.ach.type, css: {errorBorder: payment.ach.type() < 0 }"></select>
+                </div>
+                <div class="label_plus_input par">
+                    <span>@Globalization.PosAuto.StepBuy3.AccountNumberLabel</span>
+                    <input type="text" id="achNumber" placeholder="@Globalization.Global.WriteHere" name="achNumber" data-bind="value: payment.ach.number, css: {errorBorder: !payment.ach.number()}, visible: !payment.ach.dummyNumberVisible()" />
+                    <input type="text" id="achNumberDummy" readonly="readonly" data-bind="value: payment.ach.dummyNumber, click: payment.ach.editNumber, visible: payment.ach.dummyNumberVisible()" />
+                </div>
+                <!-- /ko -->
+                <!-- ko if: payment.applicant.wayToPay() == 1 -->
+                <!-- Efectivo -->
+                <div class="col-12 sipaga mT20">
+
+                    <!-- ko if: ShowOrNotMessaging() == true -->
+                    <div class=" ">
+                        <div class="ckLabel fr">
+                            <div class="check_lb">
+                                <input type="checkbox" data-bind="checked: Messaging" id="MessagingQuotTJ">
+                                <label for="MessagingQuotTJ"></label>
+                            </div>
+                            <span>@Globalization.PosAuto.StepBuy3.MessagingLabel</span>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+
+                </div>
+                <!-- /ko -->
+
+            </div>
+            <div class="col-6 fl cont_gnl">
+                <div class="labelBlue"><i class="pay_ico"></i>@Globalization.PosAuto.StepBuy3.PaymentDetailLabel</div>
+                <div class="row_A" id="BoxPay">
+                    <div class="label_plus_input par">
+                        <span>@Globalization.PosAuto.StepBuy3.TotalPrimeLabel</span>
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" name="totalPrime" data-bind="value: totalPrime.formatted" disabled="disabled" />
+                    </div>
+
+                    <div class="label_plus_input par">
+                        <span>Prima Total a Aplicar Descuento</span>
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" name="totalPrimeNoMotors" data-bind="value: totalPrimeNoMotors.formatted" disabled="disabled" />
+                    </div>
+
+                    <div class="label_plus_input par">
+                        <span>@Globalization.PosAuto.StepBuy3.PaymentFreqLabel</span>
+
+                        <!-- ko if: GetSelectedVehicleType() == true -->
+                        <select name="applicantFrequency" id="applicantWayToPay" data-bind="options: payment.frequencyListMotor, optionsText: 'name', optionsValue: 'id', optionsCaption: '@Globalization.Global.Select', value: payment.applicant.frequency, css: {errorBorder: payment.applicant.frequency()==undefined}"></select>
+                        <!-- /ko -->
+                        <!-- ko if: GetSelectedVehicleType() == false -->
+                        <select name="applicantFrequency" id="applicantWayToPay" data-bind="options: payment.frequencyList, optionsText: 'name', optionsValue: 'id', optionsCaption: '@Globalization.Global.Select', value: payment.applicant.frequency, css: {errorBorder: payment.applicant.frequency()==undefined}"></select>
+                        <!-- /ko -->
+                    </div>
+
+
+                    <div class="label_plus_input par">
+                        <span>@Globalization.PosAuto.StepBuy3.DiscountLabel</span>
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" name="totalDiscount" data-bind="value: totalDiscount.formatted" disabled="disabled" />
+                    </div>
+
+                    <!--ko if: PercentByQtyVehicle() > 0 -->
+                    <div class="label_plus_input par">
+                        <span>@Globalization.Shared.SideViewPricing.FlotillaDiscount</span>
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" name="totalDiscount" data-bind="value:  TotalByQtyVehicle.formatted" disabled="disabled" />
+                    </div>
+                    <!-- /ko -->
+
+                    <div class="label_plus_input par">
+                        <span>Prima Total sin Impuestos</span>
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" name="primeTotalDiscount" data-bind="value: totalPrimeWithDiscount.formatted" disabled="disabled" />
+                    </div>
+
+
+                    <div class="label_plus_input par">
+                        <span>@Globalization.PosAuto.StepBuy3.TaxesLabel</span>
+                        @*<input type="text" placeholder="@Globalization.Global.WriteHere" name="totalIsc" data-bind="value: totalIsc.formatted" disabled="disabled" />*@
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" name="totalIsc" data-bind="value: newtotalIsc.formatted" disabled="disabled" />
+                    </div>
+                    <div class="label_plus_input par">
+                        <span>@Globalization.PosAuto.StepBuy3.TotalLabel</span>
+                        @*<input type="text" placeholder="@Globalization.Global.WriteHere" name="totalToPay" data-bind="value: totalToPay.formatted" disabled="disabled" />*@
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" name="totalToPay" data-bind="value: newtotalToPay.formatted" disabled="disabled" />
+                    </div>
+
+                    <div class="label_plus_input par input_dbl">
+                        <span>@Globalization.PosAuto.StepBuy3.minimunToPayLabel</span>
+                        <input type="text" id="minAllowedAmountToPayShowPercent" data-bind="value: minAllowedAmountToPayShowPercent" disabled="disabled" />
+                        <input type="text" id="minAllowedAmountToPayShow" data-bind="value: minAllowedAmountToPayShow.formatted" readonly="readonly" />
+                    </div>
+
+
+
+                    <div class="label_plus_input par">
+                        <span>@Globalization.PosAuto.StepBuy3.AmountToPayLabel</span>
+                        @*<input type="text" placeholder="@Globalization.Global.WriteHere" class="bg_grd_vd" name="amountToPayEntered" id="payment.amountToPayEntered" data-bind="value: payment.amountToPayEntered.currencyformatted, css: { errorBorder: !payment.amountToPayEntered() }, enable: isDiscountEnable " />*@
+
+                        <!-- ko if: isDiscountEnable() == false -->
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" class="bg_grd_vd" name="amountToPayEntered" id="payment.amountToPayEntered" data-bind="value: payment.amountToPayEntered.currencyformatted, css: { errorBorder: !payment.amountToPayEntered() }" disabled="disabled" style="color: #122A98 !important" />
+                        <!-- /ko -->
+                        <!-- ko if: isDiscountEnable() == true -->
+                        <input type="text" placeholder="@Globalization.Global.WriteHere" class="bg_grd_vd" name="amountToPayEntered" id="payment.amountToPayEntered" data-bind="value: payment.amountToPayEntered.currencyformatted, css: { errorBorder: !payment.amountToPayEntered() }" />
+                        <!-- /ko -->
+
+
+                        <input type="hidden" id="minAllowedAmountToPay" data-percentallowed="0" data-bind="value: minAllowedAmountToPay" />
+                        @*<input type="hidden" id="maxAllowedAmountToPay" data-bind="value: totalToPay" />*@
+                        <input type="hidden" id="maxAllowedAmountToPay" data-bind="value: newtotalToPay" />
+                    </div>
+
+                    <div class="pventa">
+                        <div class="row_A">
+                            <input type="submit" class="button button-blue alignC embossed row_A" value="@Globalization.PosAuto.StepBuy3.PayButtonLabel" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <br clear="all" />
+        <div class="col-12 sipaga mT20 fl">
+            <p>@Globalization.PosAuto.StepBuy3.DiscountMessage</p>
+        </div>
+        <a href="#" class="btn backBtn" data-bind="click: function() { parent.prevStep(); }"></a>
+    </div>
+
+    <div class="col-12" data-bind="with: stepData, visible: stepData.allLawProducts() == false">
+        <div class="content_pcitas">
+            <div class="pcitas">
+                @Globalization.PosAuto.StepBuy3.VehicleRequireInspectionLabel:
+            </div>
+
+            <div class="col-12 mT10 fl">
+                <div class="pcitas_text2 pass paddT13 paddB13">
+                    <ul data-bind="foreach: _.filter(vehicles(), function(item) { return !item.isLawProduct(); })">
+                        <li data-bind="text: toString"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12 mT10 fl">
+                <div class="pcitas_text2 pass t2">
+                    @Html.Raw(Globalization.PosAuto.StepBuy3.InspectionContactLabel)
+                </div>
+            </div>
+
+            <div class="pcitas_agradecimiento mT10" style="display: none;">
+                <p>
+                    @Globalization.PosAuto.StepBuy3.ThankYouLabel
+                </p>
+                <div class="alogo"></div>
+            </div>
+        </div>
+    </div><!--col-12-->
+
+
+    <input type="hidden" id="hdnIsAMotor" value="false" />
+
+</script>

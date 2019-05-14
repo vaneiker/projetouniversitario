@@ -1,0 +1,1203 @@
+﻿var rowPepTable = 0;
+var rowBenefTable = 0;
+var OperationResult = false;
+var OperationMessage = "";
+
+$(document).ready(function () {
+    $("#AnnualIncome").inputmask("currency", { showMaskOnFocus: true });
+
+    $(document).on('change', '#Nationality_Global_Country_Id', function () {
+
+        var country = $(this).val();
+        if (country == null) country = 0;
+        getProvinceList(country);
+    });
+
+    $(document).on('change', '#City_Country_Id', function () {
+
+        var country = $(this).val();
+        if (country == null) country = 0;
+        limpiarDropUbicacion('pais');
+        getProvinceList(country);
+    });
+
+    $(document).on('change', '#City_State_Prov_Id', function () {
+
+        var provinceID = $(this).val();
+        if (provinceID == null) provinceID = 0;
+
+        var countryID = $('#Nationality_Global_Country_Id').val();
+        getMunicipalities(countryID, provinceID);
+    });
+
+    $(document).on('change', '#municipality_Id', function () {
+
+        var municalityID = $(this).val();
+        if (municalityID == null) municalityID = '';
+
+        var countryID = $('#Nationality_Global_Country_Id').val();
+        GetSectors(countryID, municalityID);
+    });
+
+    $(document).on('change', '#Id', function () {
+        var driver = $(this).val();
+        getDriver(driver);
+    });
+
+    $(document).on('click', '#SaveAditionalInfoDriver', function () {
+      
+        var result = $('#FrmAditionalInformationDriver').valid();
+
+        if (!$('#FrmAditionalInformationDriver').valid()) {
+            return false;
+        }
+
+        var result = "";
+        var QuoId = $(this).attr("data");
+        SetAditionalInfo(QuoId); //datos del contacto
+        if (OperationResult) {
+            SetDomiciliationQuotation(QuoId); // datos de la domiciliacion
+        } else {
+            ShowError([OperationMessage], "Error guardando los datos");
+        }
+
+        if (!OperationResult) {
+            showError([OperationMessage], "Información Incompleta");
+        }
+
+        //result = SetDomiciliationQuotation(QuoId); // datos de la domiciliacion
+        return OperationResult;
+    });
+
+    $(document).on('change', '#creditCardTypeId', function () {
+        var type = $(this).val();
+
+        GetCreditCardTypeMask(type);
+    });
+
+    $(document).on('change', '#expirationDateYear', function () {
+        var selectedYear = $(this).val();
+
+        getYearMonths(selectedYear);
+    });
+
+    $(document).on('change', '#IsDomiciliation', function () {
+
+        var IsChecked = $(this).prop('checked');
+        if (IsChecked) {
+            $("#creditCardTypeId").removeAttr('disabled');
+            $("#editCreditCard").removeAttr('disabled');
+            $("#expirationDateYear").removeAttr('disabled');
+            $("#expirationDateMonth").removeAttr('disabled');
+            $("#cardHolder").removeAttr('disabled');
+        } else {
+            $("#creditCardTypeId").attr('disabled', 'disabled');
+            $("#creditCardNumber").attr('disabled', 'disabled');
+            $("#editCreditCard").attr('disabled', 'disabled');
+            $("#expirationDateYear").attr('disabled', 'disabled');
+            $("#expirationDateMonth").attr('disabled', 'disabled');
+            $("#cardHolder").attr('disabled', 'disabled');
+        }
+    });
+
+    $(document).on('change', '#PepFormularyOptionsId', function () {
+        if ($('#Id').val() == '' || $('#Id').val() <= 0) {
+            showError(["Debe seleccionar al menos un conductor."], "Información Incompleta");
+            $('#PepFormularyOptionsId').val("");
+            $('#PepFormularyOptionsId').trigger("chosen:updated");
+            return false;
+        }
+
+        var Selected = $(this).val();
+        if (Selected != '' && Selected != 3) {
+            ShowPepExplication('true');
+
+        } else {
+            rowPepTable = 0;
+        }
+    });
+    $(document).on('change', '#IdentificationType', function () {
+        debugger;
+       var selected = $(this).val();
+
+       if (selected != '' && selected != 'RNC') {
+           $('#DateOfBirth').val('');
+            $('#DateOfBirth').addClass('putErrorBorder');
+            $('#DateOfBirth').removeAttr('disabled');
+       } else {
+           $('#DateOfBirth').val('N/A');
+           $('#DateOfBirth').removeClass('putErrorBorder');
+           $('#DateOfBirth').attr('disabled','disabled');
+       }
+    });
+
+
+    $(document).on('click', '#AddPep', function () {
+
+        var Selected = $('#PepFormularyOptionsId').val();
+        if (Selected != '' && Selected != 3) {
+            ShowPepExplication('false');
+        } else {
+            rowPepTable = 0;
+        }
+    });
+
+    $(document).on('click', '#CompletadoPep', function () {
+        savePepsFormularyByDriver();
+    });
+
+    $(document).on('click', '#deletePep', function () {
+        var selection = $(this);
+        deletePep(selection);
+    });
+
+    $(document).on('click', '#DisplayPepForm', function () {
+        var pepSelected = $('#PepFormularyOptionsId').val();
+        if (pepSelected == 3 || pepSelected == '') {
+            showError(["Debe indicar que posee calidad PEP para capturar esta información"], "Advertencia");
+        } else {
+            getPepsByDriver('true');
+        }
+    });
+
+    var IDDriver = $("#Id").val();
+    getDriver(IDDriver);
+
+    $(document).on('click', '#DisplayBenefForm', function () {
+        getBeneficiariesByDriver('true');
+    });
+
+    $(document).on('click', '#CancelarBenef, #CloseBenef', function () {
+        ClearBeneficiaries();
+    });
+
+    $(document).on('click', '#deleteBenef', function () {
+        var selection = $(this);
+        deleteBenef(selection);
+    });
+
+    $(document).on('click', '#AddBenef', function () {
+
+        var Selected = $('#IdentificationFinalBeneficiaryOptionsId').val();
+        if (Selected != '' && Selected == 2) {
+            ShowBenefExplication('false');
+        } else {
+            rowBenefTable = 0;
+        }
+    });
+
+    $(document).on('click', '#CompletadoBenef', function () {
+        saveBeneficiary();
+    });
+
+    $(document).on('click', '#CancelarPep, #ClosePep', function () {
+        ClearPeps();
+    });
+
+    getQuotation();
+
+
+    $(document).on('click', '#editCreditCard', function () {
+
+        var type = $('#creditCardTypeId').val();
+        if (type == '') {
+            showError(["Debe seleccionar el tipo de tarjeta de crédito"], "Domiciliación");
+            return false;
+        } else {
+            GetCreditCardTypeMask(type);
+        }
+    });
+
+
+    frmAditionalInformationDriverValidations();
+
+}); /// fin de document ready
+
+function getProvinceList(countryID) {
+    if (countryID == null || countryID <= 0) {
+        limpiarDropUbicacion('provincia');
+        return
+    };
+
+    $.ajax({
+        url: "/Home/GetProvinces",
+        dataType: 'json',
+        async: false,
+        data: { countryID: countryID },
+        success: function (result) {
+            var $select_elem = $("#City_State_Prov_Id");
+            $select_elem.empty();
+            $select_elem.append('<option value=""></option>');
+
+            $.each(result, function (idx, obj) {
+                $select_elem.append('<option value="' + obj.Value + '">' + obj.name + '</option>');
+            });
+
+
+            $select_elem.trigger("chosen:updated");
+        }
+    });
+}
+
+function getMunicipalities(countryID, provinceID) {
+    if (countryID == 0 || provinceID == 0) {
+        limpiarDropUbicacion('municipio');
+        return;
+    }
+
+    $.ajax({
+        url: "/Home/GetMunicipalities",
+        dataType: 'json',
+        async: false,
+        data: { countryID: countryID, provinceID: provinceID },
+        success: function (result) {
+            var $select_elem = $("#municipality_Id");
+            $select_elem.empty();
+            $select_elem.append('<option value=""></option>');
+
+            $.each(result, function (idx, obj) {
+                $select_elem.append('<option value="' + obj.Value + '">' + obj.name + '</option>');
+            });
+
+            $select_elem.trigger("chosen:updated");
+        }
+    });
+}
+
+function GetSectors(countryID, municipalityID) {
+
+    if (municipalityID == '') {
+        limpiarDropUbicacion('municipio');
+        return;
+    }
+
+    $.ajax({
+        url: "/Home/GetSectors",
+        dataType: 'json',
+        async: false,
+        data: { countryID: countryID, 'municipalityID': municipalityID },
+        success: function (result) {
+            var $select_elem = $("#City_City_Id");
+            $select_elem.empty();
+            $select_elem.append('<option value=""></option>');
+
+            $.each(result, function (idx, obj) {
+                $select_elem.append('<option value="' + obj.Value + '">' + obj.name + '</option>');
+            });
+
+            $select_elem.trigger("chosen:updated");
+        }
+    });
+}
+
+function limpiarDropUbicacion(origen) {
+
+    if (origen == 'pais') {
+        var $select_elem = $("#City_State_Prov_Id");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+
+        var $select_elem = $("#municipality_Id");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+
+        var $select_elem = $("#City_City_Id");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+
+    } else if (origen == 'provincia') {
+        var $select_elem = $("#municipality_Id");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+
+        var $select_elem = $("#City_City_Id");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+    }
+    else if (origen == 'municipio') {
+
+        var $select_elem = $("#City_City_Id");
+        $select_elem.empty();
+        $select_elem.append('<option value=""></option>');
+
+    }
+}
+
+function getDriver(driver) {
+    $.ajax({
+        url: "/Home/GetDriver",
+        dataType: 'json',
+        async: false,
+        data: { driverID: driver },
+        success: function (result) {
+
+            if (result != null) {
+                $('#FirstName').val(result.FirstName);
+                $('#FirstName').parent().addClass("is-dirty");
+                $('#IsPrincipal').val(result.IsPrincipal);
+
+                $('#FirstSurname').val(result.FirstSurname);
+                $('#FirstSurname').parent().addClass("is-dirty");
+
+                $('#Sex').val(result.Sex);
+                $('#Sex').parent().addClass("is-dirty");
+
+                if (result.ForeignLicense) {
+                    $('#ForeignLicense').val("SI");
+                }
+                else {
+                    $('#ForeignLicense').val("NO");
+                }
+
+                $('#ForeignLicense').parent().addClass("is-dirty");
+
+                $("#IdentificationType").val(result.IdentificationType);
+                $("#IdentificationType").trigger("chosen:updated");
+                $('#IdentificationType').parent().addClass("is-dirty");
+
+                $('#IdentificationNumber').val(result.IdentificationNumber);
+                $('#IdentificationNumber').parent().addClass("is-dirty");
+
+                $('#IdentificationNumberValidDateO').val(result.IdentificationValidDate);
+                $('#IdentificationNumberValidDateO').parent().addClass("is-dirty");
+
+                $('#Nationality_Global_Country_Id').val(result.Nationality_Global_Country_Id);
+                $('#Nationality_Global_Country_Id').trigger("chosen:updated");
+
+                getProvinceList(result.Nationality_Global_Country_Id);
+
+
+                $('#PostalCode').val(result.PostalCode);
+                $('#PostalCode').parent().addClass("is-dirty");
+
+                $('#Address').val(result.Address);
+                $('#Address').parent().addClass("is-dirty");
+
+                $('#PhoneNumber').val(result.PhoneNumber);
+                $('#PhoneNumber').parent().addClass("is-dirty");
+
+                $('#Mobile').val(result.Mobile);
+                $('#Mobile').parent().addClass("is-dirty");
+
+                $('#WorkPhone').val(result.WorkPhone);
+                $('#WorkPhone').parent().addClass("is-dirty");
+
+                $('#Email').val(result.Email);
+                $('#Email').parent().addClass("is-dirty");
+
+                $('#InvoiceTypeId').val(result.InvoiceTypeId);
+                $('#InvoiceTypeId').trigger("chosen:updated");
+
+                $('#City_State_Prov_Id').val(result.City_State_Prov_Id);
+                $('#City_State_Prov_Id').trigger("chosen:updated");
+
+                getMunicipalities(result.Nationality_Global_Country_Id, result.City_State_Prov_Id);
+                var municipality = result.City_Domesticreg_Id + '-' + result.City_State_Prov_Id + '-' + result.municipality_Id;
+
+                $('#municipality_Id').val(municipality);
+                $('#municipality_Id').trigger("chosen:updated");
+
+                GetSectors(result.Nationality_Global_Country_Id, municipality);
+                var city = result.City_Domesticreg_Id + '-' + result.City_State_Prov_Id + '-' + result.municipality_Id + '-' + result.City_City_Id;
+                $("#City_City_Id").val(city);
+                $("#City_City_Id").trigger("chosen:updated");
+
+                $('#PepFormularyOptionsId').val(result.PepFormularyOptionsId);
+                $('#PepFormularyOptionsId').trigger("chosen:updated");
+
+                $('#IdentificationFinalBeneficiaryOptionsId').val(result.IdentificationFinalBeneficiaryOptionsId);
+                $('#IdentificationFinalBeneficiaryOptionsId').trigger("chosen:updated");
+
+                $('#SocialReasonId').val(result.SocialReasonId);
+                $('#SocialReasonId').trigger("chosen:updated");
+
+
+                $('#OwnershipStructureId').val(result.OwnershipStructureId);
+                $('#OwnershipStructureId').trigger("chosen:updated");
+
+                $('#Job').val(result.Job);
+                $('#Job').trigger("chosen:updated");
+
+                $('#Company').val(result.Company);
+                $('#Company').parent().addClass("is-dirty");
+
+                $('#AnnualIncome').val(result.AnnualIncome);
+                $('#AnnualIncome').parent().addClass("is-dirty");
+                $('#AnnualIncome').trigger("chosen:updated");
+
+                $('#chkhomeowner').prop('checked', result.Home_Owner);
+
+
+                if (result.IdentificationType == 'RNC') {
+                    $('#DateOfBirth').val("N/A");
+                    $('#DateOfBirth').parent().addClass("is-dirty");
+                    $('#DateOfBirth').attr('disabled', 'disabled');
+                    $("#QtyEmployeesRNC").css('display', 'block');
+                    $("#chkhomeowner_Div").css('display', 'none');
+                    $("#QtyPersonsDepend_Div").css('display', 'none');
+                    $('#QtyEmployees').val(result.QtyEmployees);
+                    $('#QtyEmployees').parent().addClass('is-dirty');
+                    $('#PepFormularyOptionsId').parent().attr('disabled', 'disabled');
+                    var ddlPep = $('#PepFormularyOptionsId');
+                    ddlPep.attr('disabled', 'disabled');
+                } else {
+                    $('#DateOfBirth').val(result.BirthDay);
+                    $('#DateOfBirth').parent().addClass("is-dirty");
+                    $('#DateOfBirth').removeAttr('disabled');
+
+                    $("#QtyEmployeesRNC").css('display', 'none');
+                    $("#chkhomeowner_Div").css('display', 'block');
+                    $("#QtyPersonsDepend_Div").css('display', 'block');
+                    $('#chkHomeOwner').val(result.Home_Owner)
+                    $('#QtyPersonsDepend').val(result.QtyPersonsDepend);
+                    $('#QtyPersonsDepend').parent().addClass('is-dirty');
+                    $('#PepFormularyOptionsId').removeAttr('disabled');
+                }
+
+                //valido si el driver tiene Pep
+                getPepsByDriver('false');
+                getBeneficiariesByDriver('false');
+
+            } else {
+                showError(["No se encontraron registros del contacto seleccionado, consulte al administrador del sistema"], "Contacto no encontrado");
+            }
+
+        }
+    });
+}
+
+function SetAditionalInfo(QuoId) {
+    var quotarionID = QuoId;
+    var DateOfBirth = "";
+    if ($('#IdentificationType').val() != 'RNC') {
+        DateOfBirth = $('#DateOfBirth').val();
+    }
+
+    var result = "";
+    var datos = {
+        Id: $('#Id').val(),
+        FirstName: $('#FirstName').val(),
+        FirstSurname: $('#FirstSurname').val(),
+        DateOfBirth: DateOfBirth,
+        Sex: $('#Sex').val(),
+        IdentificationType: $('#IdentificationType').val(),
+        IdentificationNumber: $('#IdentificationNumber').val(),
+        IdentificationNumberValidDate: $('#IdentificationNumberValidDateO').val(),
+        Nationality_Global_Country_Id: $('#Nationality_Global_Country_Id').val(),
+        PostalCode: $('#PostalCode').val(),
+        Address: $('#Address').val(),
+        PhoneNumber: $('#PhoneNumber').val(),
+        Mobile: $('#Mobile').val(),
+        WorkPhone: $('#WorkPhone').val(),
+        Email: $('#Email').val(),
+        InvoiceTypeId: $('#InvoiceTypeId').val(),
+        City_State_Prov_Id: $("#City_State_Prov_Id").val(),
+        municipality_Id: $('#municipality_Id').val(),
+        strCityID: $("#City_City_Id").val(),
+        PepFormularyOptionsId: $('#PepFormularyOptionsId').val(),
+        IdentificationFinalBeneficiaryOptionsId: $('#IdentificationFinalBeneficiaryOptionsId').val(),
+        SocialReasonId: $('#SocialReasonId').val(),
+        OwnershipStructureId: $('#OwnershipStructureId').val(),
+        Job: $('#Job').val(),
+        Company: $('#Company').val(),
+        AnnualIncome: $('#AnnualIncome').inputmask('remove').val(),
+        IsPrincipal: $('#IsPrincipal').val(),
+        Linked: "NI",
+        Segment: "010000",
+        Home_Owner: $('#chkHomeOwner').prop('checked'),
+        QtyPersonsDepend: $('#QtyPersonsDepend').val(),
+        QtyEmployees: $('#QtyEmployees').val()
+    };
+
+
+    $.ajax({
+        url: "/Home/SetAditionalInformationDriver",
+        dataType: 'json',
+        async: false,
+        data: datos,
+        success: function (oresult) {
+            if (oresult.result.Value = "Error") {
+                OperationResult = false;
+                OperationMessage = oresult.result.name;
+            } else {
+                OperationResult = true;
+                ClearPeps();
+            }
+        },
+        error: function (ex) {
+            OperationResult = false;
+            OperationMessage = ex.name;
+        }
+    });
+
+    return result;
+}
+
+function GetCreditCardTypeMask(creditCardTypeId) {
+    $('#creditCardNumber').val('');
+
+    if (creditCardTypeId != null && creditCardTypeId > 0) {
+        if (creditCardTypeId == 2) {
+            $('#creditCardNumber').inputmask('9999-999999-99999');
+        } else {
+            $('#creditCardNumber').inputmask('9999-9999-9999-9999');
+        }
+        $('#creditCardNumber').removeAttr('disabled');
+        $('#creditCardNumber').parent().addClass('is-dirty');
+    }
+}
+
+function getYearMonths() {
+    var expirationDateYear = $('#expirationDateYear').val();
+
+    var actualDate = new Date();
+    var ActualMonth = actualDate.getMonth() + 1;
+    var ActualYear = actualDate.getFullYear();
+
+    var InitialMonth = 1;
+    if (expirationDateYear == ActualYear) {
+        InitialMonth = ActualMonth;
+    }
+    var $select_elem = $("#expirationdatemonth");
+    $select_elem.empty();
+    $select_elem.append('<option value=""></option>');
+
+    for (i = InitialMonth; i <= 12; i++) {
+        $select_elem.append('<option value="' + i + '">' + i + '</option>');
+    }
+
+    $select_elem.trigger("chosen:updated");
+}
+
+function SetDomiciliationQuotation(QuoId) {
+
+    var quotarionID = QuoId;
+    var result = "";
+    var datos = {
+        Id: quotarionID,
+        Credit_Card_Type_Id: $('#creditCardTypeId').val(),
+        Credit_Card_Number: $('#creditCardNumber').val(),
+        Expiration_Date_Year: $('#expirationDateYear').val(),
+        Expiration_Date_Month: $('#expirationdatemonth').val(),
+        Card_Holder: $('#cardHolder').val(),
+        Domiciliation: $('#IsDomiciliation').prop('checked')
+    };
+
+    $.ajax({
+        url: "/Home/SetDomiciliationQuotation",
+        dataType: 'json',
+        async: false,
+        data: datos,
+        success: function (oresult) {
+            if (oresult.result.Value == "Error") {
+                OperationResult = false;
+                OperationMessage = oresult.result.name;
+                return false;
+            } else {
+
+                OperationResult = true;
+            }
+
+            $('#creditCardNumber').inputmask('remove');
+            $('#creditCardNumber').val(oresult.Credit_Card_Number);
+            $('#creditCardNumber').attr('disabled', 'disabled');
+            result = oresult.Value;
+        },
+        error: function (ex) {
+            OperationResult = false;
+            OperationMessage = ex.result.name;
+        }
+    });
+
+    return result;
+}
+
+function getPepNewRow() {
+    var row = "";
+
+
+    var dropDown = "<select style='width:100% !important;' id='RelationshipIdPep' name='RelationshipIdPep' class='RelationshipIdPep errorBorder'><option value=''>Seleccione</option>";
+    var relationsShips = getRelationShip();
+    dropDown += relationsShips;
+    dropDown += "</select>";
+
+
+    row += '<tr class="row">';
+
+    row += "<td align='center' rowID='" + rowPepTable + "'>" + rowPepTable + "</td>"; //columna 1
+    row += "<td align='center'>"; //columna rowPepTable
+    row += "<input type='text' id='fullNamePep' name='fullNamePep' class='noWeirdChar'>";
+    row += "</td>";
+
+    row += "<td><div class='label_plus_input'>"; // columna 3
+    row += dropDown;
+    row += "</div></td>";
+
+    row += "<td align='center'>"; //columna 4
+    row += "<input type='text' id='PositionPep' name='PositionPep' class='noWeirdChar errorBorder'>";
+    row += '</td>';
+
+    row += "<td align='center'>"; //columna 5
+    row += "<input type='number' class='fromYear' id='fromYear' name='fromYear'>";
+    row += '</td>';
+
+    row += "<td align='center'>"; //columna 6
+    row += "<input type='number' id='toYear' name='toYear'>";
+    row += '</td>';
+
+    row += "<td align='center'>"; //columna 7
+    row += "<a id='deletePep' class='grid_icons cazul delete' href='#'>Eliminar</a>";
+    row += '</td>';
+
+    row += '</tr>';
+
+
+    return row;
+}
+
+function getPepExplication() {
+
+    $.ajax({
+        url: "/Home/ShowPepExplication",
+        dataType: 'json',
+        async: false,
+        data: {},
+        success: function (result) {
+
+            $('#PepExplication').html(result);
+        }
+    });
+}
+
+function getRelationShip() {
+    var options = "";
+    $.ajax({
+        url: "/Home/GetRelationShip",
+        dataType: 'json',
+        async: false,
+        data: {},
+        success: function (result) {
+            $.each(result, function (idx, obj) {
+                options += '<option value="' + obj.Value + '">' + obj.name + '</option>';
+            });
+        }
+    });
+
+    return options;
+}
+
+function ShowPepExplication(ShowEmplication) {
+
+    var table = $('#PepTable').find('tbody');
+    rowPepTable += 1;
+
+    if (ShowEmplication == 'true') {
+        getPepExplication();
+    }
+    var row = getPepNewRow();
+
+    table.append(row);
+
+    $('#ppPep').modal('show');
+}
+
+function savePepsFormularyByDriver() {
+
+    var pepsformulary = [];
+
+    var table = $("#PepTable").find('tbody');
+
+    table.find('tr').each(function () {
+        var $tds = $(this).find('td');
+        var Id = $tds.eq(0).text();
+        var nombre = $tds.eq(1).find('#fullNamePep').val();
+        var relationShipID = $tds.eq(2).find('#RelationshipIdPep').val();
+        var position = $tds.eq(3).find('#PositionPep').val();
+        var fromYear = $tds.eq(4).find('#fromYear').val();
+        var toyear = $tds.eq(5).find('#toYear').val();
+
+        if (nombre == '') {
+            showError(["El Nombre Completo es requerido."], "Información Incompleta:");
+            return false;
+        }
+
+        if (relationShipID == '') {
+            showError(["El Parentezco es requerido."], "Información Incompleta");
+
+            return false;
+        }
+
+        if (position == '') {
+            showError(["La Posición y/o Cargo es requerido."], "Información Incompleta");
+            return false;
+        }
+
+        if ($('#Id').val() == '' || $('#Id').val() <= 0) {
+            showError(["Debe seleccionar al menos un conductor."], "Información Incompleta");
+            return false;
+        }
+
+        var pep = {};
+        pep.Id = 0;
+        pep.PersonsID = $('#Id').val();
+        pep.name = nombre;
+        pep.RelationshipId = relationShipID;
+        pep.Position = position;
+        pep.FromYear = fromYear;
+        pep.ToYear = toyear;
+
+        pepsformulary.push(pep);
+    });
+
+
+
+    $.ajax({
+        url: "/Home/SetPepsFormularyDriver",
+        dataType: 'json',
+        async: false,
+        data: { pep: JSON.stringify(pepsformulary) },
+        success: function (result) {
+            rowPepTable = 0;
+            $('#ppPep').modal('hide');
+        },
+        error: function (ex) {
+            showError([ex.name], "Error guardando los datos de PEP");
+        }
+
+    });
+
+}
+
+function deletePep(selected) {
+    $(selected).closest('tr').remove();
+    rowPepTable -= 1;
+}
+
+function getPepsByDriver(IsFromButton) {
+
+    if (IsFromButton == 'true') {
+        getPepExplication();
+    }
+    var driver = $('#Id').val();
+    $.ajax({
+        url: "/Home/getPepsFormularyByDriver",
+        dataType: 'json',
+        async: false,
+        data: { driverID: driver },
+        success: function (result) {
+
+            if (result != null) {
+                if ($("#IdentificationType").val() != 'RNC') {
+                    $('#DisplayPepForm').css('display', 'block'); // muestro el boton de agregar pep
+                }
+
+                if (IsFromButton == 'true') {
+                    $.each(result, function (idx, obj) {
+                        ShowPepExplication('false');
+                    });
+
+                    var table = $("#PepTable").find('tbody');
+                    $.each(result, function (idx, obj) {
+
+
+                        table.find('tr').each(function () {
+                            var $tds = $(this).find('td');
+                            var Id = $tds.eq(0).text();
+
+                            if (Id == obj.Id) {
+                                $tds.eq(1).find('#fullNamePep').val(obj.name);
+                                var relationShipID = $tds.eq(2).find('#RelationshipIdPep').val(obj.RelationshipId);
+                                var position = $tds.eq(3).find('#PositionPep').val(obj.Position);
+                                var fromYear = $tds.eq(4).find('#fromYear').val(obj.FromYear);
+                                var toyear = $tds.eq(5).find('#toYear').val(obj.ToYear);
+                            }
+                        });
+                    });
+                }
+            } else {
+                $('#DisplayPepForm').css('display', 'none');
+            }
+
+        }
+    });
+};
+
+function ClearPeps() {
+    rowPepTable = 0;
+    var table = $('#PepTable').find('tbody');
+    table.empty();
+
+    $('#ppPep').modal('hide');
+}
+
+
+// PROCESAMIENTO DE BENEFICIARIOS
+function ShowBenefExplication(ShowEmplication) {
+
+    var table = $('#BenefTable').find('tbody');
+    rowBenefTable += 1;
+
+    if (ShowEmplication == 'true') {
+        getBenefExplication();
+    }
+    var row = getBenefNewRow();
+
+    table.append(row);
+
+    $('#ppBenef').modal('show');
+}
+
+function getBeneficiariesByDriver(IsFromButton) {
+
+    if (IsFromButton == 'true') {
+        getBenefExplication();
+    }
+    var driver = $('#Id').val();
+    $.ajax({
+        url: "/Home/getBeneficiariesByDriver",
+        dataType: 'json',
+        async: false,
+        data: { driverID: driver },
+        success: function (result) {
+
+            if (result != null) {
+                if ($("#IdentificationType").val() == 'RNC') {
+                    $('#DisplayBenefForm').css('display', 'block'); // muestro el boton de agregar pep
+                }
+
+
+                if (IsFromButton == 'true') {
+                    $.each(result, function (idx, obj) {
+                        ShowBenefExplication('false');
+                    });
+
+                    var table = $("#BenefTable").find('tbody');
+                    $.each(result, function (idx, obj) {
+
+                        table.find('tr').each(function () {
+                            var $tds = $(this).find('td');
+                            var Id = $tds.eq(0).text();
+
+                            if (Id == obj.Id) {
+                                $tds.eq(1).find('#fullNameBenef').val(obj.name);
+                                $tds.eq(2).find('#PercentageParticipation').val(obj.percentageParticipation);
+                            }
+                        });
+                    });
+                }
+            } else {
+                $('#DisplayBenefForm').css('display', 'none');
+            }
+
+        }
+    });
+};
+
+function deleteBenef(selected) {
+    $(selected).closest('tr').remove();
+    rowBenefTable -= 1;
+}
+
+function saveBeneficiary() {
+
+    var Beneficiaries = [];
+    var HasError = false;
+
+    var table = $("#BenefTable").find('tbody');
+
+    table.find('tr').each(function () {
+        var $tds = $(this).find('td');
+        var Id = $tds.eq(0).text();
+        var nombre = $tds.eq(1).find('#fullNameBenef').val();
+        var percentage = $tds.eq(2).find('#PercentageParticipation').val();
+
+        if (nombre == '') {
+            HasError = true;
+            showError(["Debe indicar el nombre del beneficiario"], "Información Incompleta:");
+            return false;
+        }
+
+        if (percentage == '' || percentage == null) {
+            HasError = true;
+            showError(["Debe indicar el porcentaje del beneficiario"], "Información Incompleta");
+            return false;
+        }
+
+        if ($('#Id').val() == '' || $('#Id').val() <= 0) {
+            HasError = true;
+            showError(["Debe seleccionar al menos un conductor."], "Información Incompleta");
+            return false;
+        }
+
+        var benef = {};
+        benef.Id = 0;
+        benef.personsID = $('#Id').val();
+        benef.name = nombre;
+        benef.percentageParticipation = percentage;
+
+        Beneficiaries.push(benef);
+    });
+
+    if (!HasError) {
+        $.ajax({
+            url: "/Home/SetDriverBeneficiaries",
+            dataType: 'json',
+            async: false,
+            data: { beneficiaries: JSON.stringify(Beneficiaries) },
+            success: function (result) {
+                ClearBeneficiaries();
+            },
+            error: function (ex) {
+                showError([ex.name], "Error guardando los beneficiarios");
+            }
+        });
+    }
+}
+
+function getBenefExplication() {
+
+    $.ajax({
+        url: "/Home/ShowBenefExplication",
+        dataType: 'json',
+        async: false,
+        data: {},
+        success: function (result) {
+
+            $('#BenefExplication').html(result);
+        }
+    });
+}
+
+function getBenefNewRow() {
+    var row = "";
+
+    row += '<tr class="row">';
+
+    row += "<td align='center' rowID='" + rowBenefTable + "'>" + rowBenefTable + "</td>"; //columna 1
+    row += "<td align='center'>"; //columna 2
+    row += "<input type='text' id='fullNameBenef' name='fullNameBenef' class='noWeirdChar'>";
+    row += "</td>";
+
+    row += "<td align='center'>"; //columna 3
+    row += "<input type='number' id='PercentageParticipation' name='PercentageParticipation'>";
+    row += '</td>';
+
+    row += "<td align='center'>"; //columna 4
+    row += "<a id='deleteBenef' class='grid_icons cazul delete' href='#'>Eliminar</a>";
+    row += '</td>';
+    row += '</tr>';
+    return row;
+}
+function ClearBeneficiaries() {
+    rowBenefTable = 0;
+    var table = $('#BenefTable').find('tbody');
+    table.empty();
+
+    $('#ppBenef').modal('hide');
+}
+
+function getQuotation() {
+    $.ajax({
+        url: "/Home/GetQuotationData",
+        dataType: 'json',
+        async: false,
+        data: {},
+        success: function (result) {
+
+            var financed = result.Financed;
+            $('#IsFinanced').val(financed);
+
+            if (financed) {
+                $('#IsDomiciliation').attr('checked', true);
+                $('#IsDomiciliation').attr('disabled', 'disabled');
+                $('#creditCardNumber').addClass('putErrorBorder');
+                $('#creditCardNumber').addClass('putErrorBorder');
+                $('#expirationDateYear').addClass('putErrorBorder');
+                $('#expirationdatemonth').addClass('putErrorBorder');
+                $('#cardHolder').addClass('putErrorBorder');
+            } else {
+                $('#IsDomiciliation').removeAttr('disabled');
+                $('#IsDomiciliation').attr('checked', result.Domiciliation);
+
+                $('#creditCardNumber').removeClass('putErrorBorder');
+                $('#creditCardNumber').removeClass('putErrorBorder');
+                $('#expirationDateYear').removeClass('putErrorBorder');
+                $('#expirationdatemonth').removeClass('putErrorBorder');
+                $('#cardHolder').removeClass('putErrorBorder');
+            }
+
+            $('#creditCardTypeId').val(result.Credit_Card_Type_Id);
+            $('#creditCardTypeId').trigger("chosen:updated");
+
+            $('#creditCardNumber').inputmask('remove');
+            $('#creditCardNumber').val(result.Credit_Card_Number_Key);
+            $('#creditCardNumber').parent().addClass("is-dirty");
+            
+            $('#expirationDateYear').val(result.Expiration_Date_Year);
+            $('#expirationDateYear').trigger("chosen:updated");
+
+            getYearMonths();
+
+            $('#expirationdatemonth').val(result.Expiration_Date_Month);
+            $('#expirationdatemonth').trigger("chosen:updated");
+
+            $('#cardHolder').val(result.Card_Holder);
+            $('#cardHolder').parent().addClass("is-dirty");
+
+        },
+        error: function (ex) {
+            showError([ex.name], "Error guardando los beneficiarios");
+        }
+    });
+}
+
+function frmAditionalInformationDriverValidations() {
+
+    $("#FrmAditionalInformationDriver").validate(
+        {
+            rules: {
+                Id: {
+                    required: true
+                },
+                FirstName: {
+                    required: true,
+                    maxlength: 50
+                },
+                IdentificationType: {
+                    required: true
+                },
+                IdentificationNumber: {
+                    required: true
+                },
+                FirstSurname: {
+                    required:
+                         function (element) {
+                             return $("#IdentificationType").val() != 'RNC';
+                         },
+                    maxlength: 50
+                },
+                Email: {
+                        email: true
+                },
+                PepFormularyOptionsId: {
+                    required:
+                         function (element) {
+                             return $("#IdentificationType").val() != 'RNC';
+                         }
+                },
+                QtyPersonsDepend: {
+                    required:
+                         function (element) {
+                             return $('#IsFinanced').val() == 'true' && $("#IdentificationType").val() != 'RNC';
+                         }
+                },
+                QtyEmployees: {
+                    required:
+                         function (element) {
+                             return $('#IsFinanced').val() == 'true' && $("#IdentificationType").val() == 'RNC';
+                         }
+                },
+                expirationDateYear: {
+                    required:
+                         function (element) {
+                             return $('#IsFinanced').val() == 'true';
+                         }
+                },
+                expirationdatemonth: {
+                    required:
+                         function (element) {
+                             return $('#IsFinanced').val() == 'true';
+                         }
+                },
+                DateOfBirth: {
+                    required: true,
+                    dateFormat: true
+                },
+                Nationality_Global_Country_Id: {
+                    required: true
+                },
+                City_State_Prov_Id: {
+                    required: true
+                },
+                municipality_Id: {
+                    required: true
+                },
+                City_City_Id: {
+                    required: true
+                },
+                Address: {
+                    required: true
+                },
+                creditCardTypeId: {
+                    required:
+                         function (element) {
+                             return $('#IsFinanced').val() == 'true';
+                         }
+                },
+
+            },
+            messages: {
+                FirstName: {
+                    required: 'El Nombre es requerido.',
+                },
+                DateOfBirth: {
+                    required: 'La Fecha de Nacimiento es requerida',
+                    dateFormat: 'Debe ingresar una Fecha de Nacimiento válida',
+                },
+                Email: {
+                    email: 'El Email debe ser una dirección de correo electrónico válida'
+                },
+                FirstSurname: {
+                    required: 'El Apellido es requerido',
+                    maxlength: 'El Apellido no puede tener más de 50 caracteres de longitud'
+                },
+                Nationality_Global_Country_Id: {
+                    required: 'Debe indicar la Naciolinalidad'
+                },
+                City_State_Prov_Id: {
+                    required: 'Debe seleccionar la provincia'
+                },
+                municipality_Id: {
+                    required: 'Debe seleccionar el municipio'
+                },
+                City_City_Id: {
+                    required: 'Debe seleccionar el sector'
+                },
+                PepFormularyOptionsId: {
+                    required: 'Debe indicar si posee calidad PEP o no'
+                },
+                QtyPersonsDepend: {
+                    required: 'Debe indicar la cantidad de dependientes'
+                },
+                QtyEmployees: {
+                    required: 'Debe indicar la cantidad de empleados'
+                },
+                expirationDateYear: {
+                    required: 'Debe seleccionar el año de expiración de la tarjeta'
+                },
+                expirationdatemonth: {
+                    required: 'Debe seleccionar el mes de expiración de la tarjeta'
+                },
+                Id: {
+                    required: 'Debe seleccionar el conductor del vehículo'
+                },
+                IdentificationType: {
+                    required: 'Debe indicar el Tipo de Identificación'
+                },
+                IdentificationNumber: {
+                    required: 'Debe indicar el Número de Identificación'
+                },
+                Address: {
+                    required: 'Debe indicar la Dirección'
+                },
+                creditCardTypeId: {
+                    required: 'Debe el Tipo de Tarjeta de Crédito'
+                }
+            }
+        });
+}

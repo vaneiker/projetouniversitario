@@ -1,0 +1,33 @@
+﻿<!-- Agregado por StateTrust -->
+
+<div id="menu-2" style="display: none;">
+    @Html.Raw(ViewBag.htmlProfilePage)
+
+    <li class="trigger shown dash dynamicli">
+        <a href="#" id="test" class="trigger">
+            <span></span>
+            <h4>Menu</h4>
+        </a>
+        <ul style="display: none;">
+            <li>
+                <h2 class="sub_div_menu">Punto de Venta - Historico Cotizaciones</h2>
+
+                <a href="@Url.Action("QuotationSearch", "Home", new { currentUserName = User.Identity.Name })" class="btn_izquierda trigger">
+                    Historico Cotizaciones
+                </a>
+
+                @*<a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "CasesInProcess.aspx", appname = "NewBusiness" })" class="btn_izquierda trigger">
+                        Cases in Process
+                    </a>*@
+
+                @*<h2 class="sub_div_menu">Nuevos Negocios/Oficina Virtual</h2>
+                    <a href="@Url.Action("RedirectToVo", "Account", new { Area = "Security", path = "Illustrations.aspx", appname = "NewBusiness", tab = "illustration" })" class="btn_izquierda trigger">
+                        Cotizaciones
+                    </a>*@
+            </li>
+        </ul>
+    </li>
+    <!-- Agregando opciones al menu de Perfil -->
+</div>
+
+<!-- Agregado por StateTrust -->

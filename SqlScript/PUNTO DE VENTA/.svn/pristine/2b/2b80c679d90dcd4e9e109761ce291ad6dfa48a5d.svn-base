@@ -1,0 +1,72 @@
+﻿$(document).ready(function () {
+
+    $(document).on('click', '.btnUploadDoc', function () {
+        var bdoc = $(this);
+        var bdocData = bdoc.attr("data-info");
+        var spl = bdocData.split("|");
+        var title = spl[3];
+
+        openDocumentRequiredUpload(title);
+
+    });
+
+    $('.btnDeleteDoc').click(function (event) {
+        var bdoc = $(this);
+
+    });
+
+
+    $(document).on('change', '#fUpload', function (e) {
+
+        var files = e.target.files;
+        var myID = 0;
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append("file" + x, files[x]);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Home/uploadFileLocal?s=' + myID,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (result) {
+                        if (result.success) {
+                            var tmppath = result.path;
+                            $("#showpdfIfra").fadeIn("fast").attr('src', tmppath);
+                        } else {
+                            showError(['Ha ocurrido un error cargando el documento.'], 'Error cargando documento')
+                        }
+                    },
+                    error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                        showError([err], 'Error cargando documento');
+                    }
+                });
+            } else {
+                alert("This browser doesn't support HTML5 file uploads!");
+            }
+        }
+    });
+});
+
+
+function openDocumentRequiredUpload(title) {
+
+    var docContainerContainer = $("#ppUploadDoc");
+    var DocTitle = $("#DocTitle");
+    var DocListContainer = $("#errorListContainer");
+
+    if (title) {
+        DocTitle.html(title);
+    }
+
+    $("#dvShowPDF").show();
+
+    docContainerContainer.modal({ backdrop: 'static', keyboard: false, show: true });
+}

@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Histórico | Servicio Xpress";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+@Scripts.Render("~/bundles/home")
+
+<style type="text/css">
+    .ui-autocomplete {
+        /*width: 300px !important;*/
+    }
+</style>
+<div class="log_serv cHistorico staticSll top130">
+    <div class="head_xpress">
+        <div class="col-md-4 ">
+            <i class="logoXpress"></i>
+        </div>
+        <div class="col-md-4 "><button class="button button-blue alignC embossed row_A mT20" onclick="window.location = '/'">Nueva cotización</button></div>
+        <div class="col-md-4 ">
+            <h3>Histórico de Cotizaciones</h3>
+        </div>
+    </div>
+</div>
+<div class="row pdv_cont log_serv cHistorico">
+     
+
+    @Html.Hidden("currentUserName", (string)ViewBag.CurrentUserName)
+    <div class="tbl data_Gpl row_B">
+        <!-- ko if: agentList && agentList().length -->
+        <div class="col-md-12 ">
+            <div class="label_plus_input par">
+                <span>@*@Globalization.Shared.CotizadorLayout.Agent*@ Representante</span>
+                @*<input id="agentId" type="text" data-bind="attr: { title: filter.agentNameId }, event: { change: function () { if (!$('#agentId').val()) { filter.agentNameId(undefined); } } }, jqAuto: { value: filter.agentNameId, source: agentList, inputProp: 'FullNameAll', labelProp: 'FullNameAll', options: { minLength: 2, open: function () { $('.ui-autocomplete.ui-menu').width($(this).parent().innerWidth()); } }, valueProp: 'NameId' }">*@
+                <input id="agentId" type="text" data-bind="attr: { title: filter.agentNameId }, event: { change: isempty(filter) }, jqAuto: { value: filter.agentNameId, source: agentList, inputProp: 'FullNameAll', labelProp: 'FullNameAll', options: { minLength: 2, open: function () { $('.ui-autocomplete.ui-menu').width($(this).parent().innerWidth()); } }, valueProp: 'NameId' }">
+
+            </div>
+        </div>
+        <!-- /ko -->
+        <table class="quotationSearch">
+            <tr class="gradient_azul">
+                <th rowspan="2"></th>
+                <th><span>No. Cotización</span></th>
+                <th><span>Representante</span></th>
+                <th><span>Nombre Solicitante</span></th>
+                <th><span>Nro. de Identificación</span></th>
+                <th><span>Fecha Cotización</span></th>
+                <th><span>Linea de Negocio</span></th>
+                <th><span>Plan</span></th>
+                <th><span>Moneda</span></th>
+                <th><span>Prima Anual</span></th>
+                <th><span>Impuestos</span></th>
+                <th><span>Total</span></th>
+                <th><span>¿Declinar?</span></th>
+            </tr>
+            <tr class="inputsSelect_ln" id="filter">
+                <th class="ui-front"><input id="quotationId" type="text" data-bind="jqAuto: { value: filter.quotationId, source: quotationsList, inputProp: 'quotationNumber', labelProp: 'quotationNumber', valueProp: 'id'  }"></th>
+                <th class="ui-front">@*<input id="AgentQuotationNameID" type="text" data-bind="jqAuto: { value: filter.AgentQuotationNameID, source: AgentQuotationList, inputProp: 'FullName', labelProp: 'FullName', valueProp: 'NameID', options: { minLength: 2, open: function () { $('.ui-autocomplete.ui-menu').width('200px'); } }  }">*@</th>
+                <th><select data-bind="options: principalNameList, value: filter.principalName, optionsCaption: 'Todos'"></select></th>
+                <th><select data-bind="options: identificationList, value: filter.identification, optionsCaption: 'Todos' "></select></th>
+                <th><select data-bind="options: quotationDateList, value: filter.quotationDate, optionsCaption: 'Todas'" /></th>
+                <th><select data-bind="options: businessLineList, value: filter.businessLine, optionsCaption: 'Todas', optionsText: 'name', optionsValue: 'id'"></select></th>
+                <th><select data-bind="options: planList, value: filter.plan, optionsCaption: 'Todos'"></select></th>
+                <th><select data-bind="options: currencyList, value: filter.currency, optionsText: 'symbol', optionsValue: 'id', optionsCaption: 'Todas'"></select></th>
+                <th class="colSelector"><select data-bind="options: operatorList, value: filter.primeOperatorSelected"></select><input data-bind="value: filter.annualPrime" type="text"></th>
+                <th class="colSelector"><select data-bind="options: operatorList, value: filter.taxesOperatorSelected"></select><input data-bind="value: filter.taxes" type="text"></th>
+                <th class="colSelector"><select data-bind="options: operatorList, value: filter.totalOperatorSelected"></select><input data-bind="value: filter.total" type="text"></th>
+            </tr>
+            <tbody data-bind="foreach: registers">
+                <tr class="quotationSearchRow">
+                    <td>
+                        <div class="check_lb">
+                            <input name="qGroup" type="radio" data-bind="value: Id, checked: $parent.selectedQuotationId" />
+                        </div>
+                    </td>
+                    <td align="center" data-bind="text:QuotationNumber"></td>
+                    <td align="center" data-bind="text:FullName"></td>
+                    <td align="center" data-bind="text:PrincipalName"></td>
+                    <td align="center" data-bind="text:PrincipalIdentificationNumber"></td>
+                    <td align="center" data-bind="text:QuotationDate"></td>
+                    <td align="center" data-bind="text:BusinessLine"></td>
+                    <td align="center" data-bind="text:Plan"></td>
+                    <td align="center" data-bind="text:Currency"></td>
+                    <td align="right" data-bind="text:AnnualPrime"></td>
+                    <td align="right" data-bind="text:Taxes"></td>
+                    <td align="right" data-bind="text:Total"></td>
+                    <td align="center">
+                        <input name="qDeclined" type="checkbox" class="declinedQuotCheck" data-bind="value: Id, checked: false" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row_A mT10">
+            <div class="paginacion m0">
+                <p>Page <!--ko text:currentPage() + 1--><!--/ko--> of <!--ko text:(totalPages())--><!--/ko--> (<!--ko text:(totalRegisters  ())--><!--/ko--> items)</p>
+                <ul>
+                    <li><a class="prev_dis" href="#" data-bind="click:movePrev,css: { prev: currentPage() > 0, prev_dis: currentPage() == 0}"></a></li>
+                    <!--ko foreach: pagesList-->
+                    <li class="numbers" data-bind="css: { current:  $parent.currentPage() == ($data - 1) }"><a href="#" data-bind="click: function() { if (isNaN($data)) $parent.setCurrentPage($data); else $parent.setCurrentPage($data - 1); }, text: $data"></a></li>
+                    <!-- /ko -->
+                    <li><a class="next" href="#" data-bind="click: moveNext,css: { next: currentPage() < totalPages(), next_dis: currentPage() + 1 == totalPages() }"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row_A alignC m0">
+        @if (ViewBag.UserOrigin != null && ViewBag.UserOrigin == STL.POS.Data.UserOrigins.VO)
+        {
+            <div class="col-md-2 "><a class="back_btn" href="/"><i class="flecha_iz_az"></i>Regresar</a></div>
+        }
+        else
+        {
+            <div class="col-md-2 "><a class="back_btn" href="@Url.Action("SelectQuotation", "Home", new { Area = string.Empty })"><i class="flecha_iz_az"></i>Regresar</a></div>
+        }
+
+        <div class="col-md-6 "><div class="box_az_txt_rosa">Las cotizaciones una vez sean abiertas se actualizarán y podrán cambiar su prima</div></div>
+
+        <div class="col-md-2 "><button class="button button-blue alignC embossed row_A" data-bind="click: redirect">Continuar</button></div>
+        <div class="col-md-2 "><button class="button button-blue alignC embossed row_A declinedButton" disabled="disabled">Declinar Seleccionadas</button></div>
+
+    </div>
+    @{Html.RenderPartial("_GlobalPopups");}
+</div>
+

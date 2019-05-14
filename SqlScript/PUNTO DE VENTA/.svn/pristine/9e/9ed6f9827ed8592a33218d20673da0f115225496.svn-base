@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A48F5E11-F651-4FE0-93A6-3593EECDA245}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STL.POS.AgentWSProxy</RootNamespace>
+    <AssemblyName>STL.POS.AgentWSProxy</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgentProxy.cs" />
+    <Compile Include="AgentTreeInfoNew.cs" />
+    <Compile Include="IAgentProxy.cs" />
+    <Compile Include="IQueuesProxy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueuesProxy.cs" />
+    <Compile Include="Service References\AgentService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\QueuesServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgentService\AgentService.wsdl" />
+    <None Include="Service References\AgentService\AgentService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgentService\AgentService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgentService\AgentService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgentService\AgentService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgentService\AgentService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgentService\STL.POS.AgentWSProxy.AgentService.Agent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\Queues_Services.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QueuesServices\Queues_Services1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QueuesServices\Queues_Services2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QueuesServices\Queue_Services.wsdl" />
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.FilterAnonimus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.FilterQueues.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.Filter_QueueCatalog.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.Filter_QueueCatalogMeeting.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.Filter_QueueStatusCatalog.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.MeetingTypeandSubtype.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.QueueBusinessLine.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.QueueCall_ReasonCatalogs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.QueueDepartments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.Queues.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.QueueService_ChannelCatalogs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.QueueSourceTypeCatalogs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QueuesServices\STL.POS.AgentWSProxy.QueuesServices.QueueTypeCatalogs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AgentService\" />
+    <WCFMetadataStorage Include="Service References\QueuesServices\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AgentService\AgentService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AgentService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AgentService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AgentService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QueuesServices\Queues_Services.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QueuesServices\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QueuesServices\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QueuesServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

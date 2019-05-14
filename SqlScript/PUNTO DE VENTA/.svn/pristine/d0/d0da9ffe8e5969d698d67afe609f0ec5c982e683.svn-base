@@ -1,0 +1,135 @@
+﻿using STL.POS.Frontend.Web.NewVersion.CustomCode;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Entity.Entities;
+using System.Configuration;
+using System.Globalization;
+using System.Text;
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
+
+namespace STL.POS.Frontend.Web.NewVersion.Controllers
+{
+    public partial class HomeController : BaseController
+    {
+        public ActionResult DocumentRequired()
+        {
+            ViewBag.TitlePage = "DOCUMENTOS REQUERIDOS";
+            ViewBag.RequestType = base.RequestType;
+
+            var docsRequireds = getRequeriments(base.QuotationId);
+            ViewBag.QuoId = base.QuotationId;
+
+            /*ViewBag.QuoId = QuotationId; //flot: 33991;//32960;//32960 33006;
+            QuotationId = ViewBag.QuoId;
+            var DataQuotation = getDataQuotation(QuotationId);
+            ViewBag.QuotationNumber = DataQuotation.QuotationNumber;
+            ViewBag.isFinanced = DataQuotation.Financed.GetValueOrDefault() ? "1" : "0";
+            isFinanced = DataQuotation.Financed.GetValueOrDefault();
+            ViewBag.Period = DataQuotation.Period;
+            ViewBag.MonthlyPayment = DataQuotation.MonthlyPayment;
+
+            var dataPaymentFreqFinanced = oDropDownManager.GetDropDown("PaymentFreqFinanced").Select(p => new SelectListItem
+            {
+                Text = p.name,
+                Value = p.Value.Replace("\"", "'")
+            }).ToList();
+
+            dataPaymentFreqFinanced.Insert(0, new SelectListItem { Value = "-1", Text = "Seleccione" });
+
+            ViewBag.PaymentFreqFinanced = dataPaymentFreqFinanced;
+
+
+            var _vehicles = getVehicleData(QuotationId).ToList();
+            var quot = getQuotationData(QuotationId);
+
+            var TotalPrimeVehicle = quot.TotalPrime;
+            var TotalISCVehicle = quot.TotalISC;
+
+            var ISCPercentage = quot.ISCPercentage;
+            var TotalDiscountFlotilla = quot.TotalFlotillaDiscount;
+            var TotalPrimeVehicleWithDiscount = (TotalPrimeVehicle - TotalDiscountFlotilla);
+            var newTotalISC = TotalPrimeVehicleWithDiscount * (ISCPercentage / 100);
+
+            var newTotalPrimeVehicle = TotalPrimeVehicleWithDiscount + newTotalISC;
+
+            Dictionary<string, decimal?> fields = new Dictionary<string, decimal?>();
+            fields.Add("TPV", TotalPrimeVehicle);
+            fields.Add("TIV", TotalISCVehicle);
+            fields.Add("TDF", TotalDiscountFlotilla);
+            fields.Add("TPVD", TotalPrimeVehicleWithDiscount);
+            fields.Add("NTI", newTotalISC);
+            fields.Add("NTPV", newTotalPrimeVehicle);
+
+            var DataVehicle = new Tuple<List<CustomCode.QuotationViewModel.Vehicles>, Dictionary<string, decimal?>, CustomCode.CommonEnums.RequestType>
+                (_vehicles, fields, base.RequestType);
+
+            ViewBag.isNotLawProduct = isNotLawProduct;
+
+            ViewBag.IsExclusion = (base.RequestType == CustomCode.CommonEnums.RequestType.Exclusion);*/
+
+            //return PartialView(DataVehicle);
+            return PartialView("_DocumentRequired", docsRequireds);
+        }
+
+        private List<Requeriments> getRequeriments(int quotationID)
+        {
+            var docReq = oDocumentRequiredManager.GeQuotationRequeriments(new Requeriments.GetRequerimentsParameters()
+            {
+                quotationId = quotationID
+            });
+
+            return docReq.OrderByDescending(x => x.Required).ToList();
+        }
+
+
+        [HttpPost]
+        public ActionResult uploadFileLocal(string s = "")
+        {
+            string path = "";
+            bool _success = false;
+            try
+            {
+                foreach (string file in Request.Files)
+                {
+                    var fileContent = Request.Files[file];
+                    if (fileContent != null && fileContent.ContentLength > 0)
+                    {
+                        var guid = Guid.NewGuid().ToString().Substring(0, 10).ToUpper();
+                        // get a stream
+                        var stream = fileContent.InputStream;
+                        // and optionally write the file to disk
+                        var fileName = guid + "-" + Path.GetFileName(file) + ".pdf";
+                        path = Path.Combine(Server.MapPath("~/Tmp"), fileName);
+                        using (var fileStream = System.IO.File.Create(path))
+                        {
+                            stream.CopyTo(fileStream);
+                            _success = true;
+                        }
+                        path = "/Tmp/" + fileName;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Json(new { success = _success, path = path });
+        }
+
+        public FileStreamResult GetPDF(string name)
+        {
+            //if (!string.IsNullOrEmpty(name))
+            //{
+            FileStream fs = new FileStream(name, FileMode.Open, FileAccess.Read);
+            return File(fs, "application/pdf");
+            //}
+        }
+
+
+    }
+}

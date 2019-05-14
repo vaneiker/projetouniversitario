@@ -1,0 +1,523 @@
+﻿using STL.POS.Frontend.Web.NewVersion.CustomCode;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Entity.Entities;
+using System.Configuration;
+using System.Globalization;
+using System.Text;
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
+
+namespace STL.POS.Frontend.Web.NewVersion.Controllers
+{
+    public partial class HomeController : BaseController
+    {
+        public class VehicleCoverages
+        {
+            public IEnumerable<Coverage> ThirdDamage { get; set; }
+            public IEnumerable<Coverage> SelfDamage { get; set; }
+            public IEnumerable<Coverage> Additional { get; set; }
+        }
+
+        private QuotationViewModel getDataQuotation(int QuotId)
+        {
+            var data = getQuotationData(QuotId);
+
+            return
+                data;
+        }
+
+        public ActionResult Summary()
+        {
+            ViewBag.TitlePage = "RESUMEN";
+            ViewBag.QuoId = 33006;//32960;
+            QuotationId = ViewBag.QuoId;
+            var DataQuotation = getDataQuotation(QuotationId);
+            ViewBag.isFinanced = DataQuotation.Financed.GetValueOrDefault() ? "1" : "0";
+            ViewBag.Period = DataQuotation.Period;
+            ViewBag.MonthlyPayment = DataQuotation.MonthlyPayment;
+
+            var _vehicles = getVehicleData(QuotationId).ToList();
+            var TotalPrimeVehicle = _vehicles.Sum(p => p.TotalPrimeVehicle);
+            var DataVehicle = new Tuple<List<CustomCode.QuotationViewModel.Vehicles>, decimal>(_vehicles, TotalPrimeVehicle);
+            return View(DataVehicle);
+        }
+
+        [HttpPost]
+        public JsonResult GetCoverage(int VehicleId)
+        {
+            var coverages = oQuotationManager.GetQuotationCoverage(VehicleId, CommonEnums.CoverageFilterType.Todo.ToInt()).Select(a => new QuotationViewModel.coverages
+                       {
+                           Id = a.Id,
+                           IsSelected = a.IsSelected,
+                           CoverageDetailCoreId = a.CoverageDetailCoreId,
+                           Name = a.Name,
+                           Amount = a.Amount,
+                           MinDeductible = a.MinDeductible,
+                           SelfDamagesToProductLimits = a.SelfDamagesToProductLimits,
+                           ThirdPartyToProductLimits = a.ThirdPartyToProductLimits,
+                           ServiceType_Id = a.ServiceType_Id,
+                           Limit = a.Limit,
+                           UserId = a.UserId,
+                           Deductible = a.Deductible,
+                           CoverageType = a.CoverageType
+                       });
+
+            var ThirdDamage = coverages.Where(t => t.CoverageType == "Daños Terceros");
+            var SelfDamage = coverages.Where(s => s.CoverageType == "Daños Propios");
+            var Additional = coverages.Where(a => a.CoverageType == "Servicios");
+
+            var oVehiclesCoverages = new VehicleCoverages
+            {
+                ThirdDamage = ThirdDamage,
+                SelfDamage = SelfDamage,
+                Additional = Additional
+            };
+
+            return
+                Json(oVehiclesCoverages, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetAmortizacionTable(int Period, double TotalPremium)
+        {
+            var DataAmortizationTable = oVirtualOfficeProxy.GetAmortizationTable(TotalPremium, Period, "VehicleInsurance", 20, TotalPremium);
+
+            return
+                Json(DataAmortizationTable, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ShowAmortizationTable(int QuotationId, int period, double TotalPrime)
+        {
+            string PathFile = string.Empty;
+
+            //crear el archivo pdf 
+            var FileName = string.Concat("AmortizacionTableQuotationNumber", QuotationId.ToString(), ".pdf");
+            var FullFileName = string.Concat(Server.MapPath("~/Tmp/"), FileName);
+            var Xml = GenerateXMLContratoOTablaKCO(QuotationId, period);
+            var PdfFileByteArray = oThunderheadProxy.SendToTHExecutePreview(null, Xml);
+            System.IO.File.WriteAllBytes(FullFileName, PdfFileByteArray);
+            PathFile = @"\Tmp\" + FileName;
+            return
+                Json(PathFile, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ShowFinancedContractTH(int QuotationId)
+        {
+            string PathFile = string.Empty;
+
+            //crear el archivo pdf 
+            var FileName = string.Concat("FinancedContractQuotationNumber", QuotationId.ToString(), ".pdf");
+            var FullFileName = string.Concat(Server.MapPath("~/Tmp/"), FileName);
+            var Xml = GenerateXMLContratoOTablaKCO(QuotationId, IsContract: true);
+            var PdfFileByteArray = oThunderheadProxy.SendToTHExecutePreview(null, Xml);
+            System.IO.File.WriteAllBytes(FullFileName, PdfFileByteArray);
+            PathFile = @"\Tmp\" + FileName;
+            return
+                Json(PathFile, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ShowQuotation(int QuotationId)
+        {
+            string PathFile = string.Empty;
+            //crear el archivo pdf 
+            var FileName = string.Concat("QuotationNumber-", QuotationId.ToString(), ".pdf");
+            var FullFileName = string.Concat(Server.MapPath("~/Tmp/"), FileName);
+            byte[] Xml = GenerateXMLQuotation(QuotationId);
+            var PdfFileByteArray = oThunderheadProxy.SendToTHExecutePreview(null, Xml);
+            System.IO.File.WriteAllBytes(FullFileName, PdfFileByteArray);
+            PathFile = @"\Tmp\" + FileName;
+
+            return
+                  Json(PathFile, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Generar el contrato o la tabla de amortizacion
+        /// </summary>
+        /// <param name="QuotationId"></param>
+        /// <param name="PeriodQuota"></param>
+        /// <param name="IsContract"></param>
+        /// <returns></returns>
+        private byte[] GenerateXMLContratoOTablaKCO(int QuotationId, int? PeriodQuota = null, bool IsContract = false)
+        {
+            const string FormatoFecha = "{0:dd/MM/yyyy}";
+            var result = new byte[] { };
+            var Email = string.Empty;
+            #region Data
+            var PolicyData = getQuotationData(QuotationId);
+            var ContactData = getDriverData(QuotationId).FirstOrDefault();
+            var _vehicles = getVehicleData(QuotationId);
+
+            #endregion
+
+            #region Thunderhead
+            var DocumentId = IsContract ? ConfigurationManager.AppSettings["DocumentIDContratoKSI"]
+                                       : ConfigurationManager.AppSettings["DocumentIDAmortizacionKSI"];
+
+            var data = new THProxy.Schemas.POS_AUTO();
+
+            var oContract = new THProxy.Schemas.Contract();
+            var oTransaction = new THProxy.Schemas.Transaction();
+            var oLoan = new THProxy.Schemas.Loan();
+            var oFee = new THProxy.Schemas.Fee();
+            #region Transacction
+            oTransaction.DocumentId = DocumentId;
+
+            #region Loan
+            oLoan.Account = "";
+            oLoan.Id = "";
+            oLoan.Status = "";
+            oLoan.AccountName = ContactData.GetFullName();
+            oLoan.Client = ContactData.GetFullName();
+            oLoan.FoundsSource = "Fondos Propios";
+            oLoan.FundsDestination = "-";
+            oLoan.CredtitFacility = "PRESTAMOS PERSONALES PARA GASTOS";
+            oLoan.Comite = "";
+            oLoan.PaymentMethod = "";
+            oLoan.RequestedAmount = "";
+            oLoan.ApprovedAmount = "";
+            oLoan.ReleasedAmount = "";
+            oLoan.CapitalReturn = "";
+            oLoan.LastCut = "";
+            oLoan.Interest = "";
+            oLoan.Comission = "";
+            oLoan.DelayFee = "";
+            oLoan.FeeAmount = "";
+            oLoan.PaymentPeriod = "";
+            oLoan.Frequency = "";
+            oLoan.RequestDate = "";
+            oLoan.ApprovementDate = "";
+            oLoan.ReleasedDate = "";
+            oLoan.ExpirationDate = "";
+            oLoan.NextPaymentDate = "";
+
+            #region Fee
+            oLoan.Fee = new List<THProxy.Schemas.Fee>(0);
+            var Period = PolicyData.Period.HasValue ? PolicyData.Period.Value : PeriodQuota.GetValueOrDefault();
+            var MonthlyPayment = PolicyData.MonthlyPayment;
+
+            //Obtener la tabla de amortizacion del prestamo
+            var annualPremium = (double)(_vehicles.Sum(p => p.TotalPrimeVehicle));
+
+            var DataResult = oVirtualOfficeProxy.GetAmortizationTable(annualPremium,
+                                                                      Period,
+                                                                      "VehicleInsurance",
+                                                                      20,
+                                                                      annualPremium
+                                                                      );
+
+            double GastosCierre = DataResult.productCalculatorResult.ExpendituresAmount;
+
+            var FinancedAmount = DataResult.productCalculatorResult.FinancedAmount;
+
+            var DataAT = DataResult.productCalculatorResult.AmotizationTable;
+
+            var AmortizationTable = DataAT.Select(ta => new THProxy.Schemas.Fee
+            {
+                Number = ta.PeriodNumber.ToString().Replace(",", ""),
+                Date = string.Format(FormatoFecha, ta.Date),
+                Amount = ta.Payment.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(",", ""),
+                Capital = ta.Principal.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(",", ""),
+                Interests = ta.Interest.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(",", ""),
+                Comission = "0",
+                Spends = "0",
+                Total = ta.Balance.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(",", "")
+            });
+
+            oLoan.TotalCapital = DataAT.Sum(p => p.Principal).ToString("#,0.00", CultureInfo.InvariantCulture).Replace(",", "");
+            oLoan.TotalInterests = DataAT.Sum(p => p.Interest).ToString("#,0.00", CultureInfo.InvariantCulture).Replace(",", "");
+            oLoan.TotalComissions = "0";
+            oLoan.TotalSpends = "0";
+            oLoan.TotalAmount = "";
+
+            var NumeroCuotas = (DataAT.Count()).ToString("#,0", CultureInfo.InvariantCulture).Replace(",", "");
+            var NumeroCuotasDisplay = Period;
+
+            oLoan.FeeNumber = NumeroCuotas;
+            oLoan.Fee.AddRange(AmortizationTable);
+            oTransaction.Loan = oLoan;
+            #endregion
+
+            #endregion
+
+            #endregion
+            #region Contract
+            var ValueToConvertAnnualPrime = FinancedAmount.ToString("#,0.00", CultureInfo.InvariantCulture).Replace(",", "");
+            var ValueToConvertMonthlyPayment = MonthlyPayment.GetValueOrDefault().ToString("#,0.00", CultureInfo.InvariantCulture).Replace(",", "");
+            var LoanAmountString = Numalet.ToCardinal(ValueToConvertAnnualPrime, CultureInfo.InvariantCulture).ToUpper();
+            var PaymentAmountString = Numalet.ToCardinal(ValueToConvertMonthlyPayment, CultureInfo.InvariantCulture).ToUpper();
+
+            oContract.LoanNumber = PolicyData.QuotationNumber;
+            oContract.CustomerName = ContactData.GetFullName();
+            oContract.Citizenship = "Republica Dominicana";
+
+            var MaritalStatusDesc = "N/A";
+            MaritalStatusDesc = !string.IsNullOrEmpty(ContactData.MaritalStatus) ? ContactData.MaritalStatus : MaritalStatusDesc;
+
+            var Direccion = !string.IsNullOrEmpty(ContactData.Address) ? ContactData.Address : "-";
+
+            oContract.CivilStatus = MaritalStatusDesc;
+            oContract.Id = ContactData.IdentificationNumber;
+            oContract.Address1 = Direccion;
+            oContract.Address2 = Direccion;
+            oContract.CompanyRepresentative = "";
+            oContract.CompanyRepCiticenship = "";
+            oContract.CompanyRepId = "";
+            oContract.QuotationNumber = PolicyData.QuotationNumber;
+            oContract.InsuranceCompany = "ATLANTICA SEGUROS";
+            oContract.LoanAmountString = string.Format("{0} {1}", LoanAmountString, FinancedAmount.ToString("RD$#,0.00", CultureInfo.InvariantCulture));
+            oContract.NumberOfPaymentString = string.Format("{0} ({1}) Cuotas", Numalet.ToCardinal(NumeroCuotasDisplay.ToString(), CultureInfo.InvariantCulture), NumeroCuotasDisplay.ToString()).Replace("con 00/100.- ", "");
+            oContract.PaymentAmountString = string.Format("{0} {1}", PaymentAmountString, MonthlyPayment.GetValueOrDefault().ToString("RD$#,0.00", CultureInfo.InvariantCulture));
+            oContract.LoanRateString = "";
+
+            if (!string.IsNullOrEmpty(PolicyData.Credit_Card_Number) && PolicyData.Credit_Card_Type_Id.HasValue)
+            {
+                oContract.CreditCardNumber = Utility.Decrypt_Query(PolicyData.Credit_Card_Number);
+                oContract.CreditCardType = Enum.GetName(typeof(CommonEnums.CreditCardType), PolicyData.Credit_Card_Type_Id).Replace("_", " ");
+            }
+
+            var Month = PolicyData.Expiration_Date_Month.GetValueOrDefault();
+            var Year = PolicyData.Expiration_Date_Year.GetValueOrDefault();
+
+            var ExpirationDate = string.Concat(Month, "/", Year);
+            oContract.CreditCardExpirationDate = ExpirationDate;
+
+            string mes = DateTime.Now.ToString("MMMM").Capitalize();
+
+            var ContractDateString = string.Format("{0}({1}) di­as del mes de {2} del año {3} ({4})",
+                                                    Numalet.ToCardinal(DateTime.Now.Day).Replace("con 00/100.- ", ""),
+                                                    DateTime.Now.Day,
+                                                    mes,
+                                                    Numalet.ToCardinal(DateTime.Now.Year).Replace("con 00/100.- ", ""),
+                                                    DateTime.Now.Year);
+
+            oContract.ContractDateString = ContractDateString;
+            #endregion
+
+            data.Transaction = oTransaction;
+            data.Contract = oContract;
+            #endregion
+
+            var DocXML = Utility.SerializeToXMLString(data);
+
+            result = Encoding.UTF8.GetBytes(DocXML);
+
+            return
+                 result;
+        }
+
+        private byte[] GenerateXMLQuotation(int QuotationId)
+        {
+            const string FormatoFecha = "{0:yyyy-MM-dd}";
+            var NumericDefault = "0.00";
+            var DriverFullName = string.Empty;
+            var result = new byte[] { };
+
+            var oPosAuto = new CustomCode.TH.POS_AUTO();
+            var oTransaction = new CustomCode.TH.Transaction();
+            var oQuotation = new CustomCode.TH.Quotation();
+            var oDriver = new CustomCode.TH.Drivers();
+            var oVehicles = new List<CustomCode.TH.Vehicles>();
+
+            var oPrimeResume = new CustomCode.TH.PrimeResume();
+
+            #region Data
+            var dataQuotation = getDataQuotation(QuotationId);
+            var dataDriver = dataQuotation._drivers.FirstOrDefault();
+            var dataVehicles = dataQuotation._vehicles;
+            DriverFullName = dataDriver.GetFullName();
+            #endregion
+
+            #region Transaction
+            oTransaction.NoPoliza = dataQuotation.QuotationNumber;
+
+            /*Forma Anterior de Flotilla 21-07-2017*/
+            var quantityTotalDiferentVehicles = dataVehicles.Count();
+            var quantityTotalVehicles = dataVehicles.Where(x => x.VehicleQuantity > 4);
+
+            var quantityTotalVehiclesDuplicates = dataVehicles.Where(x => x.VehicleQuantity > 1);
+
+            if (quantityTotalVehiclesDuplicates != null)
+            {
+                foreach (var a in quantityTotalVehiclesDuplicates)
+                    quantityTotalDiferentVehicles += a.VehicleQuantity.Value;
+            }
+
+            if (quantityTotalDiferentVehicles > 4)
+                oTransaction.DocumentId = "1335504116";//Para vehiculos mayores a 4
+            else if (quantityTotalVehicles.Count() > 0)
+                oTransaction.DocumentId = "1335504116";//Para vehiculos mayores a 4
+            else
+                oTransaction.DocumentId = "1335501365";
+
+            oTransaction.Fullname = DriverFullName;
+            oTransaction.FechaInicio = string.Format(FormatoFecha, dataQuotation.StartDate);
+            oTransaction.FechaVencimiento = string.Format(FormatoFecha, dataQuotation.EndDate);
+
+            string userDefault = oDropDownManager.GetParameter("PARAMETER_KEY_COD_INTERMEDIARIO").Value.ToString();
+            var agentNameFull = userDefault;
+
+            if (dataQuotation._agentQuotation != null && dataQuotation._agentQuotation.AgentId != null)
+            {
+                var userAgenCode = getAgenteUserInfo(dataQuotation._agentQuotation.AgentId.Value);
+                if (userAgenCode != null)
+                {
+                    if (userAgenCode.AgentId <= 0)
+                        userAgenCode = getAgenteUserInfo(dataQuotation._agentQuotation.Username);
+
+                    agentNameFull = userAgenCode != null ? userAgenCode.FullName : userDefault;
+                }
+            }
+
+            oTransaction.Username = agentNameFull;
+            #endregion
+
+            #region Quotation
+            oQuotation.PrincipalName = DriverFullName;
+            oQuotation.PrincipalCountry = "República Dominicana";
+            oQuotation.QuotationNumber = dataQuotation.QuotationNumber;
+            oQuotation.QuotationDate = string.Format(FormatoFecha, DateTime.Now);
+            oQuotation.Plan = "AUTO";
+            oQuotation.StartDate = oTransaction.FechaInicio;
+            oQuotation.EndDate = oTransaction.FechaVencimiento;
+            oQuotation.ProposalDate = string.Format(FormatoFecha, DateTime.Now);
+            oQuotation.IdType = dataDriver.IdentificationType;
+            oQuotation.IdNumber = dataDriver.IdentificationNumber;
+            oQuotation.TelephoneNumber = dataDriver.PhoneNumber;
+            oQuotation.Email = dataDriver.Email;
+            oQuotation.NumberOfPayments = "0";
+            oQuotation.NumberOfVehicles = dataVehicles.Count().ToString(CultureInfo.InvariantCulture);
+
+            oDriver.Name = DriverFullName;
+            oDriver.IdType = dataDriver.IdentificationType;
+            oDriver.IdNumber = dataDriver.IdentificationNumber;
+            oDriver.BirthDate = string.Format(FormatoFecha, dataDriver.DateOfBirth);
+            oDriver.Email = dataDriver.Email;
+
+            if (!string.IsNullOrEmpty(dataDriver.PhoneNumber))
+                oDriver.TelephoneNumber = dataDriver.PhoneNumber;
+            else if (!string.IsNullOrEmpty(dataDriver.Mobile))
+                oDriver.TelephoneNumber = dataDriver.Mobile;
+            else if (!string.IsNullOrEmpty(dataDriver.WorkPhone))
+                oDriver.TelephoneNumber = dataDriver.WorkPhone;
+            else
+                oDriver.TelephoneNumber = "";
+
+            oQuotation.Drivers = oDriver;
+
+            //Recorrer los vehiculos
+            foreach (var itemVehicle in dataVehicles)
+            {
+                var oThirdDamagesCoverages = new List<CustomCode.TH.ThirdDamagesCoverages>();
+                var oSelfDamagesCoverages = new List<CustomCode.TH.SelfDamagesCoverages>();
+                var oAdditionals = new List<CustomCode.TH.Additionals>();
+
+                var oDataThirdDamagesCoverages = itemVehicle.coverages.Where(v => v.CoverageType == "Daños Terceros");
+                var oDataSelfDamagesCoverages = itemVehicle.coverages.Where(v => v.CoverageType == "Daños Propios");
+                var oDataAdditional = itemVehicle.coverages.Where(v => v.CoverageType == "Servicios");
+
+                //Daños Terceros
+                foreach (var itemTD in oDataThirdDamagesCoverages)
+                {
+                    oThirdDamagesCoverages.Add(new CustomCode.TH.ThirdDamagesCoverages
+                    {
+                        Description = itemTD.Name,
+                        Limit = itemTD.Limit.HasValue ? itemTD.Limit.Value.ToString(CultureInfo.InvariantCulture) : NumericDefault,
+                        MinimumDeductible = itemTD.MinDeductible.HasValue ? itemTD.MinDeductible.Value.ToString(CultureInfo.InvariantCulture) : NumericDefault
+                    });
+                }
+
+                //Daños Propios
+                foreach (var itemSD in oDataSelfDamagesCoverages)
+                {
+                    oSelfDamagesCoverages.Add(new CustomCode.TH.SelfDamagesCoverages
+                    {
+                        Description = itemSD.Name,
+                        Limit = itemSD.Limit.HasValue ? itemSD.Limit.Value.ToString(CultureInfo.InvariantCulture) : NumericDefault,
+                        Deducible = itemSD.Deductible.HasValue ? itemSD.Deductible.Value.ToString(CultureInfo.InvariantCulture) : NumericDefault,
+                        MinimumDeductible = itemSD.MinDeductible.HasValue ? itemSD.MinDeductible.Value.ToString(CultureInfo.InvariantCulture) : NumericDefault
+                    });
+                }
+
+                foreach (var itemAdditional in oDataAdditional)
+                {
+                    oAdditionals.Add(new CustomCode.TH.Additionals
+                    {
+                        Description = itemAdditional.Name,
+                        Limit = itemAdditional.Limit.HasValue ? itemAdditional.Limit.Value.ToString(CultureInfo.InvariantCulture) : NumericDefault,
+                        MinimumDeductible = itemAdditional.MinDeductible.HasValue ? itemAdditional.MinDeductible.Value.ToString() : NumericDefault
+                    });
+                }
+
+                var ThirdTotalDamagePrime = itemVehicle.vehicleProductLimits.TpPrime.Value.ToString(CultureInfo.InvariantCulture);
+                var SelfDamagesTotalPrime = itemVehicle.vehicleProductLimits.SdPrime.Value.ToString(CultureInfo.InvariantCulture);
+                var AdditionalsTotalPrime = itemVehicle.vehicleProductLimits.ServicesPrime.Value.ToString(CultureInfo.InvariantCulture);
+
+                oVehicles.Add(new CustomCode.TH.Vehicles
+                {
+                    Brand = itemVehicle.VehicleMakeName,
+                    Model = itemVehicle.ModelDesc,
+                    Year = itemVehicle.Year.Value.ToString(CultureInfo.InvariantCulture),
+                    VehicleType = itemVehicle.SelectedVehicleTypeName,
+                    Plan = itemVehicle.SelectedProductName,
+                    Registro = itemVehicle.Plate,
+                    Chasis = itemVehicle.Chassis,
+                    EnsuredAmount = itemVehicle.VehiclePrice.Value.ToString(CultureInfo.InvariantCulture),
+                    ThirdDamagesCoverages = oThirdDamagesCoverages,
+                    ThirdDamagesPrime = ThirdTotalDamagePrime,
+                    SelfDamagesCoverages = oSelfDamagesCoverages,
+                    SelfDamagesPrime = SelfDamagesTotalPrime,
+                    Additionals = oAdditionals,
+                    AdditionalsPrime = AdditionalsTotalPrime,
+                    TotalVehiclePrime = itemVehicle.TotalPrime.Value.ToString(CultureInfo.InvariantCulture),
+                    VehiclePrime = itemVehicle.TotalPrimeVehicle.ToString(CultureInfo.InvariantCulture),
+                    VehicleValue = itemVehicle.VehiclePrice.Value.ToString(CultureInfo.InvariantCulture),
+                    Quantity = itemVehicle.VehicleQuantity.Value.ToString(CultureInfo.InvariantCulture)
+                });
+            }
+
+            oQuotation.Vehicles = oVehicles;
+            var TotalPrime = dataQuotation.TotalPrime;
+            var TotalTaxes = dataQuotation.TotalISC;
+            var TotalDiscount = dataQuotation.TotalDiscount;
+            var PrimeDiscount = TotalPrime - TotalDiscount;
+            var TotalPaymnent = PrimeDiscount + TotalTaxes;
+
+            oPrimeResume.TotalAnualPrime = TotalPrime.Value.ToString(CultureInfo.InvariantCulture);
+            oPrimeResume.Taxes = TotalTaxes.Value.ToString(CultureInfo.InvariantCulture);
+            oPrimeResume.Discount = TotalDiscount.Value.ToString(CultureInfo.InvariantCulture);
+            oPrimeResume.PrimeDiscount = PrimeDiscount.Value.ToString(CultureInfo.InvariantCulture);
+            oPrimeResume.TotalPayment = TotalPaymnent.Value.ToString(CultureInfo.InvariantCulture);
+
+            oQuotation.PrimeResume = oPrimeResume;
+
+            #endregion
+
+            oPosAuto.Quotation = oQuotation;
+            oPosAuto.Transaction = oTransaction;
+
+            var DocXML = Utility.SerializeToXMLString(oPosAuto);
+
+            result = Encoding.UTF8.GetBytes(DocXML);
+
+            return
+                 result;
+        }
+
+        public void SaveFinanced(int? Period, decimal? MonthlyPayment, bool financed)
+        {
+            oQuotationManager.SetQuotation(new Quotation.parameter
+            {
+                id = QuotationId,
+                period = Period < 0 ? (int?)null : Period,
+                monthlyPayment = financed ? MonthlyPayment : (decimal?)null,
+                financed = financed
+            });
+        }
+    }
+}

@@ -1,0 +1,264 @@
+﻿<script type="text/html" id="stepResume">
+
+    <div class="data_main_R cont_gnl pventa" data-bind="with: stepData" style="width:100%;">
+        <div class="mainAcor" style="overflow-x:auto;">
+            <div class=" tbl data_Gpl row_B tbl_resumen cob_r">
+                <table class="mB20">
+                    <tr class="gradient_azul">
+                        <th align="left" class="c1" style="min-width:270px;"></th>
+                        <!--ko foreach: vehicles-->
+                        <th align="center" class="c2" style="min-width:150px;"><span data-bind="text: toString"></span></th>
+                        <!--/ko-->
+                    </tr>
+                    <tr class="gradient_azul">
+                        <th align="left" class="c1"><span>@Globalization.PosAuto.StepResume.ThirdPartyDamagesTitle</span></th>
+                        <!--ko foreach: vehicles-->
+                        <th align="center" class="c2"><span data-bind="text: getSelectedProductName()"></span></th>
+                        <!--/ko-->
+                    </tr>
+                    <!--ko foreach: ko.computed(function(){
+                        var cList = [];
+                        vehicles().forEach( function(v){
+                            if(v.productLimitSet())
+                                v.productLimitSet().ThirdPartyCoverages().forEach( function(c){
+                                    if($.inArray(c.Name(), $.map(cList, function(n){return n.Name();})) == -1)
+                                        cList.push(c);
+                                });
+                        });
+                        return cList.sort(function(a, b){return ((a.Name() < b.Name()) ? -1 : ((a.Name() > b.Name()) ? 1 : 0))});
+                    }) -->
+                    <tr>
+                        <td align="left" data-bind="text: $data.Name"></td>
+                        <!--ko foreach: $parent.vehicles-->
+                        <td align="center">
+                            <!--ko text:
+                                ko.computed(function(){
+                                    if(!productLimitSet())
+                                        return "";
+                                    var cov = ko.utils.arrayFirst(productLimitSet().ThirdPartyCoverages(), function(item) {
+                                        return $parent.Name() === item.Name();
+                                    });
+                                    return cov ? cov.Amount.money().formatted() : "-";
+                                })-->
+                            <!--/ko-->
+                        </td>
+                        <!--/ko-->
+                    </tr>
+                    <!--/ko-->
+                    <!-- Cobertura Daños Propios -->
+
+                    <tr class="gradient_azul" data-bind="visible: showSelfDamagesResume">
+                        <th align="left" data-bind="attr:{ colspan: vehicles().length + 1 }"><span>@Globalization.PosAuto.StepResume.SelfDamagesTitle</span></th>
+                    </tr>
+                    <!--ko foreach: ko.computed(function(){
+                        var cList = [];
+                        vehicles().forEach( function(v){
+                            if(v.productLimitSet())
+                                v.productLimitSet().SelfDamagesCoverages().forEach( function(c){
+                                    if($.inArray(c.Name(), $.map(cList, function(n){return n.Name();})) == -1)
+                                        cList.push(c);
+                                });
+                        });
+
+                        return cList.sort(function(a, b){return ((a.Name() < b.Name()) ? -1 : ((a.Name() > b.Name()) ? 1 : 0))});
+                    }) -->
+                    <tr>
+                        <td align="left" data-bind="text: $data.Name"></td>
+                        <!--ko foreach: $parent.vehicles-->
+                        <td align="center">
+                            <!--ko text:
+                                ko.computed(function(){
+                                    if(!productLimitSet())
+                                        return "";
+                                    var cov = ko.utils.arrayFirst(productLimitSet().SelfDamagesCoverages(), function(item) {
+                                        return $parent.Name() === item.Name();
+                                    });
+                                    return cov ? cov.Amount.money().formatted() : "-";
+                                })-->
+                            <!--/ko-->
+                        </td>
+                        <!--/ko-->
+                    </tr>
+                    <!--/ko-->
+                    <tr class="txtBold em1-2" data-bind="visible: showDeduciblesResume">
+                        <td align="left">Deducibles</td>
+                        <!--ko foreach: vehicles-->
+                        <td align="center">
+                            <!-- ko if: (deductibleList() && deductibleList().length > 0)-->
+                            <!--ko text:
+                                ko.computed(function(){
+                                    var ded = ko.utils.arrayFirst(deductibleList(), function(item) {
+                                        return selectedDeductible() === item.CoreId;
+                                    });
+                                    return ded ? ded.Name : "";
+                                })-->
+                            <!--/ko-->
+                            <!-- /ko-->
+                            <!-- ko if: (!deductibleList() || (deductibleList().length == 0))-->
+                            -
+                            <!-- /ko-->
+                        </td>
+                        <!--/ko-->
+                    </tr>
+                    <!-- Suplementos -->
+                    <tr class="gradient_azul" data-bind="visible: showSuplementsResume">
+                        <th align="left" data-bind="attr:{ colspan: vehicles().length + 1 }"><span>@Globalization.PosAuto.StepResume.SupplementsLabel</span></th>
+                    </tr>
+                    <!--ko foreach: ko.computed(function(){
+                        var cList = [];
+                        vehicles().forEach( function(v){
+                            if(v.productLimitSet())
+                                v.productLimitSet().ServicesCoverages().forEach( function(c){
+                                    var oneSelected = _.find(c.Coverages(), function(cov) { return cov.IsSelected(); });
+
+                                    if (oneSelected) {
+                                        if($.inArray(oneSelected.Name(), $.map(cList, function(n){return n.Name();})) == -1)
+                                            cList.push(oneSelected);
+                                        }
+                                });
+                        });
+                        return cList.sort(function(a, b){return ((a.Name() < b.Name()) ? -1 : ((a.Name() > b.Name()) ? 1 : 0))});
+                    }) -->
+                    <tr>
+                        <td align="left" data-bind="text: $data.Name"></td>
+                        <!--ko foreach: $parent.vehicles-->
+                        <td align="center">
+                            <!--ko text:
+                                     ko.computed(function(){
+
+                                                              if(!productLimitSet()){
+                                                                  return "";
+                                                               }
+
+                                                    var objServices;
+                                                    var sCov =_.find(productLimitSet().ServicesCoverages(), function (item) {
+
+                                                                 _.find(item.Coverages(), function (sItem) {
+                                                                    var theSame = $parent.Name() === sItem.Name();
+                                                                        if(theSame == true && sItem.IsSelected())
+                                                                        {
+                                                                           objServices = sItem;
+                                                                           return;
+                                                                        }
+                                                                    });
+
+                                                                        if(objServices != undefined)
+                                                                        {
+                                                                          return objServices;
+                                                                        }
+                                                                });
+
+                                                                if(objServices != undefined)
+                                                                {
+                                                                 return objServices ? objServices.Amount.money().formatted() : "-";
+                                                                }
+
+                                                              return "-";
+                                                 })-->
+                            <!--/ko-->
+                        </td>
+                        <!--/ko-->
+                    </tr>
+                    <!--/ko-->
+                    <tr class="total_tbl bg_grd_vd totalStep3">
+                        <td align="center"><div class=" alignR">@Globalization.PosAuto.StepResume.TotalAnnualPrimeLabel:</div></td>
+                        <!--ko foreach: vehicles-->
+                        <td align="center"><div class="monto" data-bind="text:totalPrime.formatted"></div></td>
+                        <!--/ko-->
+                    </tr>
+                    <tr class="txtBold em1-3">
+                        <td align="left">@Globalization.PosAuto.StepResume.TaxesLabel</td>
+
+                        <!-- ko if: getInfoDriverInvoiceTypeID() == false -->
+                        <!--ko foreach: vehicles-->
+                        <td align="center" data-bind="text: totalIsc.money().formatted"></td>
+                        <!--/ko-->
+                        <!--/ko-->
+                        <!-- ko if: getInfoDriverInvoiceTypeID() == true -->
+                        <td align="center">0.00</td>
+                        <!--/ko-->
+                    </tr>
+                    <tr class="total_tbl bg_grd_vd totalStep3">
+                        <td align="center"><div class=" alignR">@Globalization.PosAuto.StepResume.TotalAmountLabel:</div></td>
+                        <!-- ko if: getInfoDriverInvoiceTypeID() == false -->
+                        <!--ko foreach: vehicles-->
+                        <td align="center">
+                            <div class="monto">
+                                <!-- ko text:
+                                    ko.computed(function(){
+                                        return totalPrime() + totalIsc()
+                                    }).money().currencyformatted -->
+                                <!--/ko-->
+                            </div>
+                        </td>
+                        <!--/ko-->
+                        <!--/ko-->
+                        <!-- ko if: getInfoDriverInvoiceTypeID() == true -->
+                        <!--ko foreach: vehicles-->
+                        <td align="center">
+                            <div id="MontoTotalPagar" class="monto">
+                                <!-- ko text:
+                                ko.computed(function(){
+                                    return totalPrime()
+                                }).money().currencyformatted -->
+                                <!--/ko-->
+                            </div>
+                        </td>
+                        <!--/ko-->
+                        <!--/ko-->
+                    </tr>
+
+                </table>
+                <div class="lb row_B">
+                    <label class="fl mR15" for="IsFinanced"><strong>@Globalization.PosAuto.StepResume.QuotationFinanced</strong></label><input type="checkbox" id="IsFinanced" class="fl mT5" data-bind="checked: IsFinanced, attr : {'disabled' : AllAreLawProducts}" />
+                </div>
+                <div id="row_financed" style="display:none">
+                    <table>
+                        <tr class="total_tbl bg_grd_vd totalStep3">
+                            <td class="c1">
+                                <div class="col-md-3">@Globalization.PosAuto.StepResume.QuotationFinancedPeriod</div>
+                                @*<select id="period" class=" col-md-2 mT5" data-bind="options: $root.FinancingMonths, optionsText: 'name',optionsValue: 'id', value: id, optionsCaption: '@Globalization.Global.Select'"></select>*@
+                                <select name="period" id="period" class=" col-md-2 mT5" style="width: 24.666667% !important" data-bind="options: payment.frequencyList, optionsText: 'name', optionsValue: 'id', optionsCaption: '@Globalization.Global.Select', value: period"></select>
+                                <div class="col-md-6 alignR">@Globalization.PosAuto.StepResume.MonthlyPayment:</div>
+                            </td>
+                            
+                            <td align="center" class="c2">
+                                <div class="montoMesual  monto">
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row_A alignC mT10 mB10 bbFuntion">
+            <div class="col-3 fl"><a class="back_btn" data-bind="click: function() { parent.prevStep(); }"><i class="flecha_iz_az"></i>@Globalization.PosAuto.StepResume.BackButtonLabel</a></div>
+            <div class="col-3 fl"><button class="button button-blue alignC embossed fr col-7 mT16" data-bind="click:showReportQuotation">@Globalization.PosAuto.StepResume.ShowQuotationLabel</button></div>
+            <div class="col-2 fl"><button id="ViewAmortization" style="display:none" class="button button-blue alignC embossed fr col-7 mT16" data-bind="click:showAmortizationTableTH">@Globalization.PosAuto.StepResume.ViewAmortization</button></div>
+            <div class="col-4 fr"><button class="btn_comprar-2 col-5 fr" data-bind="click: function() { buyAfterQuickSteps(false); },visible: quickStepsComplete"></button></div>
+        </div>
+        @*/*if (oneSelected) {//original 09-08-2017
+            if($.inArray(c.Name(), $.map(cList, function(n){return n.Name();})) == -1)
+            cList.push(c);
+            }*/*@
+
+
+        @*/*
+            //ORIGINAL 09-08-2016=7
+            var sCov = ko.utils.arrayFirst(productLimitSet().ServicesCoverages(), function(item) {
+            return $parent.Name() === item.Name();
+            });
+
+            if(sCov)
+            {
+            var cov = ko.utils.arrayFirst(sCov.Coverages(), function(item) {
+            return item.IsSelected();
+            });
+
+            return cov ? cov.Amount.money().formatted() : "-";
+            }*/*@
+    </div><!--// .data_main_R -->
+
+</script>

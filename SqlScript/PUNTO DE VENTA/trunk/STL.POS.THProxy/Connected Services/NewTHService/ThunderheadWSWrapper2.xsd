@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ThunderheadWSWrapper" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ThunderheadWSWrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="THParams">
+    <xs:sequence>
+      <xs:element name="batchCollect" type="xs:int" />
+      <xs:element name="batchConfigResID" type="xs:int" />
+      <xs:element name="batchname" nillable="true" type="xs:string" />
+      <xs:element name="finOption" type="xs:int" />
+      <xs:element name="jobType" type="xs:int" />
+      <xs:element name="password" nillable="true" type="xs:string" />
+      <xs:element name="projectID" type="xs:int" />
+      <xs:element name="user" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="THParams" nillable="true" type="tns:THParams" />
+  <xs:complexType name="ArrayOfChannelDocumentWrapper">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ChannelDocumentWrapper" nillable="true" type="tns:ChannelDocumentWrapper" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChannelDocumentWrapper" nillable="true" type="tns:ArrayOfChannelDocumentWrapper" />
+  <xs:complexType name="ChannelDocumentWrapper">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FormatString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Xmlbinary" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChannelDocumentWrapper" nillable="true" type="tns:ChannelDocumentWrapper" />
+</xs:schema>

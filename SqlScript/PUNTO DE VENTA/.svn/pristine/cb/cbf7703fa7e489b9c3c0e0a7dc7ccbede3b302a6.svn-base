@@ -1,0 +1,75 @@
+﻿@model STL.POS.Frontend.Web.Models.SelectQuotationFilterModel
+@{
+    ViewBag.Title = "Cotizar | Servicio Xpress";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+@Scripts.Render("~/bundles/selectQuotation")
+@Scripts.Render("~/bundles/momentjs")
+<!-- Contenedor -->
+@if (!string.IsNullOrEmpty(Model.Error))
+{
+    <input type="hidden" id="error" value="@Model.Error" />
+}
+<div class="row pdv_cont log_serv cotiza">
+    <div class="head_xpress"><i class="logoXpress"></i></div>
+    <div class="cont_rosa">
+        <div class="ttlStep  azul_pl">@Globalization.Home.HomeSelectQuotation.ContinueQuoteTitle:</div>
+        <div class="row_A">
+            <label>@Globalization.Home.HomeSelectQuotation.EnterQuotNumberTitle</label>
+            <input type="text" data-bind="value: selectedQuotationNumber, maskedInput: '00000000000000'" id="quotNumber" />
+        </div>
+        <div class="row_A alignC">O</div>
+        <div class="row_A">
+            <label>@Globalization.Home.HomeSelectQuotation.EnterIdNumber</label>
+            <input type="text" data-bind="value: selectedIdNumber">
+        </div>
+        <div class="row_A">
+            <label>@Globalization.Home.HomeSelectQuotation.BirthDateTitle</label>
+            <div class="box_3">
+                <select data-bind="options: days, value: selectedDay"></select>
+            </div>
+            <div class="box_3">
+                <select data-bind="options:months, optionsText: 'Name', optionsValue: 'Id', value: selectedMonth"></select>
+            </div>
+            <div class="box_3">
+                <select data-bind="options:years, value: selectedYear, event: { keydown: yearPressKey }"></select>
+            </div>
+        </div>
+        <div class="alignC m0 buttons">
+            <div class="col-2 fl back_btn_div">
+                <a class="back_btn" href="/">
+                    <i class="flecha_iz_az">
+                    </i>Regresar
+                </a>
+            </div>
+
+            <div class="col-2 fr continueSearchDiv"><button class="button button-blue alignC embossed continueSearch" style="margin-top:15px;" data-bind="click: redirect">@Globalization.Home.HomeSelectQuotation.QuotTitle</button></div>
+
+        </div>
+    </div>
+    @{Html.RenderPartial("_GlobalPopups");}
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var model = new selectQuotationViewModel();
+        model.selectedYear(@Model.Year);
+        model.selectedMonth(@Model.Month);
+        model.selectedDay(@Model.Day);
+        model.selectedIdNumber('@Model.PrincipalId')
+        model.selectedQuotationNumber('@Model.QuotationNumber');
+        ko.applyBindings(model);
+
+        var errorHidden = $('#error');
+        if (errorHidden.val()) {
+            showError([errorHidden.val()], "Seleccionar Cotización");
+            errorHidden.remove();
+        }
+
+        $('#quotNumber').focus();
+
+    })
+
+</script>

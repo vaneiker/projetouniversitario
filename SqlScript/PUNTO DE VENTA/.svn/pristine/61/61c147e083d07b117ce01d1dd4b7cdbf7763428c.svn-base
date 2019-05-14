@@ -1,0 +1,160 @@
+﻿<script type="text/html" id="stepDrivers">
+    <!--POP UP PAGINA 2 DEL VICIO-->
+    <div class="modal popup01 p_agregar">
+        <!--   -->
+        <p>
+            @Globalization.PosAuto.StepDrivers.ModalAddTitle
+        </p>
+        <div class="mT20">
+            <button class="pbtn pb_red fl mT10" onclick="$('.p_agregar').hide();">@Globalization.Global.Yes</button>
+            <button class="pbtn pb_blue fl mT10" data-bind="click: function() { $('.p_agregar').hide(); $parent.nextStep();}">@Globalization.Global.No</button>
+
+        </div>
+    </div>
+
+    <div class="box_SP col-5 fl" id="addDriverBox" data-bind="with: stepData">
+        <div class="ttl">@Globalization.PosAuto.StepDrivers.DriversInfoTitle</div>
+
+        <div class="boxCont">
+            <div class=" row_A">
+                <div class="ckLabel fr">
+                    <div class="check_lb">
+                        <input type="checkbox" data-bind="checked: newDriver.principal" id="prinTJ">
+                        <label for="prinTJ"></label>
+                    </div>
+                    <span>@Globalization.PosAuto.StepDrivers.PrincipalLabel</span>
+                </div>
+            </div>
+            <form data-bind="submit: addDriver" id="addDriverForm">
+                <div class="row_A">
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.FirstNameLabel</span>
+                        <input id="focusFirstName" name="firstname" type="text" data-bind="value: newDriver.firstName, css: {errorBorder: !newDriver.firstName()}" class="cancel noWeirdChar">
+                    </div>
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.SurnameLabel</span>@*, css: {errorBorder: !newDriver.surname()}*@
+                        <input name="surname" type="text" data-bind="value: newDriver.surname" placeholder="@Globalization.Global.WriteHere" class="noWeirdChar">
+                    </div>
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.TypeIdLabel</span> @*,css: { errorBorder: newDriver.identificationType() == null }*@
+                        <select id="identificationType" name="identificationType" data-bind="options: $root.identificationTypeList, optionsText: 'name', optionsValue: 'id', value: newDriver.identificationType, optionsCaption: '@Globalization.Global.Select'"></select>
+                    </div>
+
+                    <!-- ko if: whatMask() == "C"-->
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepBuy1.IdNumberLabel</span>
+                        <input type="text" value="" placeholder="@Globalization.Global.WriteHere" id="license" name="license" data-bind="value: newDriver.license, inputmask: { mask: '999-9999999-9'}" />
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: whatMask() == "R" -->
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepBuy1.IdNumberLabel</span>
+                        <input type="text" value="" placeholder="@Globalization.Global.WriteHere" id="license" name="license" data-bind="value: newDriver.license, inputmask: { mask: '999-99999-9'}" />
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: whatMask() == "N"-->
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepBuy1.IdNumberLabel</span>
+                        <input type="text" value="" placeholder="@Globalization.Global.WriteHere" id="license" name="license" data-bind="value: newDriver.license" />
+                    </div>
+                    <!-- /ko -->
+
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.IdentificationNumberValidDateLabel</span>
+                        <input type="text" value="" class="datepicker IdentificationNumberValidDate" placeholder="@Globalization.Global.WriteHere" id="IdentificationNumberValidDate" name="IdentificationNumberValidDate" data-bind="value: newDriver.IdentificationNumberValidDate" />
+                    </div>
+
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.SexLabel</span>
+                        @*<select id="clientSex" name="clientSex" data-bind="options: newDriver.sexes, value: newDriver.selectedSex, css: {errorBorder: newDriver.selectedSex()==''}"></select>*@
+                        <select id="clientSex" name="clientSex" data-bind="options: newDriver.sexes, optionsText: 'name', optionsValue: 'id', value: newDriver.selectedSex, optionsCaption: '@Globalization.Global.Select',css: { errorBorder: !newDriver.selectedSex()}"></select>
+                    </div>
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.EmailLabel</span>@*, css: {errorBorder: !newDriver.email()}*@
+                        <input name="email" type="text" data-bind="value: newDriver.email" placeholder="@Globalization.Global.WriteHere">
+                    </div>
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.TelephoneLabel</span>@*, css: {errorBorder: !newDriver.phoneNumber()}*@
+                        <input name="phoneNumber" type="text" data-bind="value: newDriver.phoneNumber" phonenumber='PhoneNumber10' placeholder="@Globalization.Global.WriteHere">
+                    </div>
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.ProvinceLabel</span>@*, css: {errorBorder: !newDriver.provinceId()}*@
+                        <select name="provinceId" data-bind="options: $root.provinces, optionsText: 'name', optionsValue: 'id', value: newDriver.provinceId, optionsCaption: '@Globalization.Global.Select'"></select>
+                    </div>
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.CityLabel</span>@*, css: {errorBorder: !newDriver.cityId()}*@
+                        <select name="cityId" data-bind="options: _.filter($root.cities(), function(c){ return c.id.split('-')[1] == newDriver.provinceId();}), optionsText: 'name', optionsValue: 'id', value: newDriver.cityId, optionsCaption: '@Globalization.Global.Select'"></select>
+                    </div>
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.BirthdateLabel</span>@*!newDriver.dateOfBirth() && newDriver.identificationType() !='RNC' *@
+                        <input id="dateOfBirth" name="dateOfBirth" type="text" data-bind="value: newDriver.dateOfBirth, css: { errorBorder: !newDriver.dateOfBirth() && newDriver.identificationType() !='RNC' }" placeholder="@Globalization.Global.SelectDate" class="datepicker dateOfBirth">
+                    </div>
+
+                    <div class="label_plus_input">
+                        <span>@Globalization.PosAuto.StepDrivers.ForeingLicence</span>
+                        <select id="ForeingLicence" name="ForeingLicence" data-bind="options: $root.ForeingLicenceList, optionsText: 'name', optionsValue: 'id', value: newDriver.ForeignLicense, optionsCaption: '@Globalization.Global.Select',css: { errorBorder: newDriver.ForeignLicense() == null &&  newDriver.identificationType() !='RNC' }"></select>
+                    </div>
+                </div>
+                <div class="row_A">
+                    @*<a href="#" class="btn bgreen  fr btn_agregarC" data-bind="click: function() { addDriver(); }">Agregar</a>*@
+                    <input type="submit" class="fr button button-green alignC embossed wd50 mT10" value="@Globalization.PosAuto.StepDrivers.AddButton" />
+                </div>
+            </form>
+        </div>
+
+        @*data-bind="value: (!newDriver.dateOfBirth() && newDriver.identificationType() !='RNC') ? 'True' : 'False'"*@
+
+
+    </div>
+    <div class="col-1 fl flecha_comp">
+        <div class="arr_comp"></div>
+    </div>
+    <div class="box_SP col-6 fl" data-bind="with: stepData">
+        <div class="ttl">@Globalization.PosAuto.StepDrivers.DriversAddedTitle</div>
+        <div class="boxCont driverData">
+            <div class=" tbl data_G conduc_aseg">
+                <table>
+                    <thead>
+                        <tr class="gradient_azul">
+                            <th align="center" class="c1"><span>@Globalization.PosAuto.StepDrivers.FirstNameLabel</span></th>
+                            <th align="center" class="c2"><span>@Globalization.PosAuto.StepDrivers.SurnameLabel</span></th>
+                            <th align="center" class="c3"><span>@Globalization.PosAuto.StepDrivers.IdNumberLabel</span></th>
+                            <th align="center" class="c4"><span>@Globalization.PosAuto.StepDrivers.PrincipalLabel</span></th>
+                            <th align="center" class="c5" style="width: 32px">&nbsp;</th>
+                            <th align="center" class="c6" style="width: 32px">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: drivers">
+                        <tr data-bind="if: id() != $parent.newDriver.id()">
+                            <td align="center" class="c1" data-bind="text: firstName"></td>
+                            <td align="center" class="c2" data-bind="text: surname"></td>
+                            <td align="center" class="c3" data-bind="text: license"></td>
+                            <td align="center" class="c4">
+                                <!-- ko if: principal  -->
+                                <i class="icon_checked "></i>
+                                <!-- /ko -->
+                            </td>
+                            <td align="center" class="c5">
+                                <a class="grid_icons cazul edit" href="#" data-bind="click: $parent.editDriver"></a>
+                            </td>
+                            <td align="center" class="c6">
+                                <a class="grid_icons cazul delete" href="#" data-bind="click: $parent.removeDriver"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="pventa">
+        <!-- Boton de Funcion -->
+        <div class="row_A alignC mT10 mB10 bbFuntion">
+            <div class="col-2 fl"></div>
+            <div class="col-7 fl">&nbsp;</div>
+            <div class="col-3 fr"><a href="#" class="button button-blue alignC embossed row_A" data-bind="click: stepData.firstStepAdvance, attr: { disabled: !stepData.enableContinueStep1() }">@Globalization.PosAuto.StepDrivers.NextStepLabel</a></div>
+        </div>
+    </div>
+
+
+
+</script>

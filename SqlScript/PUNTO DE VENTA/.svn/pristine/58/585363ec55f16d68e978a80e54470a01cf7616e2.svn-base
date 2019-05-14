@@ -1,0 +1,475 @@
+﻿using Entity.Entities;
+using Newtonsoft.Json;
+using STL.POS.Frontend.Web.NewVersion.CustomCode;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace STL.POS.Frontend.Web.NewVersion.Controllers
+{
+    public partial class InclusionController : BaseController
+    {
+        public JsonResult CreateQuotationByVehicleChanges(string EndDate, string AgentCode, string DataCustomer, string policyNoMain)
+        {
+            return
+                CreateQuotationByInclusion(EndDate, AgentCode, DataCustomer, policyNoMain);
+        }
+
+        public JsonResult SaveVehicleChanges(string jsondataVehicle, string StartDate, string EndDate, string AgentCode, string DataCustomer, string policyNoMain, string QuotationId)
+        {
+            if (QuotationId.ToInt() <= 0)
+            {
+                object quotationResult = new object();
+                try
+                {
+                    //Insertando COtizacion
+                    quotationResult = CreateQuotationByInclusion(EndDate, AgentCode, DataCustomer, policyNoMain, StartDate);
+                    //
+                }
+                catch (Exception ex)
+                {
+                    LoggerHelper.Log(CommonEnums.Categories.Error, "POS-" + (GetCurrentUsuario() != null ? GetCurrentUsuario().UserLogin : "VentaDirecta"), QuotationId.ToInt(), "Error al guardar la exclusion", "Mensaje: " + ex.Message, ex);
+
+                    //devolmeos un mensaje de error
+                    return Json(new { messageError = "Error al guardar el cambio del vehiculo." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            try
+            {
+                var dvehicle = Newtonsoft.Json.JsonConvert.DeserializeObject<List<dynamic>>(jsondataVehicle);
+
+                var principalFullName = "";
+                var principalIdentificationNumber = "";
+                decimal totalVehiclesPrime = 0;
+                var DriverExist = false;
+                var DriverId = 0;
+                bool isFinanced = false;
+
+                List<string> QuotProduct = new List<string>();
+
+                var dataDriver = oQuotationManager.GetQuotationDrivers(base.QuotationId);
+                if (dataDriver.Any())
+                {
+                    var oDriver = dataDriver.FirstOrDefault(r => r.IsPrincipal);
+
+                    principalFullName = string.Concat(oDriver.FirstName, " ", oDriver.FirstSurname);
+                    principalIdentificationNumber = oDriver.IdentificationNumber;
+                    DriverId = oDriver.Id;
+                    DriverExist = true;
+                }
+
+                //borrando todos los vehiculos de la cotizacion
+                var allVeh = oQuotationManager.GetQuotationVehicles(base.QuotationId);
+                if (allVeh.Any())
+                {
+                    foreach (var vh in allVeh)
+                    {
+                        oVehicleProductManager.DeleteVehicleProductCoveragesServices(vh.Id.GetValueOrDefault(), true);
+                    }
+                }
+                //
+
+                foreach (var vehicle in dvehicle)
+                {
+                    if (!DriverExist)
+                    {
+                        principalFullName = vehicle.principalFullName;
+                        principalIdentificationNumber = vehicle.IdentificationNumber;
+                    }
+
+                    var Makes = oDropDownManager.GetDropDown(CommonEnums.DropDownType.BRANDS.ToString()).Select(x => new Generic()
+                    {
+                        name = !string.IsNullOrEmpty(x.name) ? x.name.ToLower().TrimStart().TrimEnd() : "",
+                        Value = x.Value
+                    });
+                    int realMakeID = 0;
+                    int realModelID = 0;
+
+                    if (Makes.Any())
+                    {
+                        string realMakeName = !string.IsNullOrEmpty(vehicle.vehicleMakeName.ToString()) ? vehicle.vehicleMakeName.ToString().ToLower().TrimStart().TrimEnd() : "";
+                        var r = Makes.FirstOrDefault(a => a.name == realMakeName);
+                        if (r != null)
+                        {
+                            realMakeID = r.Value.ToInt();
+                            var Models = oDropDownManager.GetVehicleModels(realMakeID);
+                            if (Models.Any())
+                            {
+                                int w = vehicle.vehicleModel_Model_Id;
+                                var mr = Models.FirstOrDefault(x => x.CoreId == w);
+                                if (mr != null)
+                                {
+                                    realModelID = mr.Id;
+                                }
+                                else
+                                {
+                                    string modelodesc = !string.IsNullOrEmpty(vehicle.ModeloDesc.ToString()) ? vehicle.ModeloDesc.ToString().TrimStart().TrimEnd() : "";
+                                    var mr2 = Models.FirstOrDefault(x => x.Name == modelodesc);
+                                    if (mr2 != null)
+                                    {
+                                        realModelID = mr2.Id;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    var vparam = new VehicleProduct.Parameter();
+                    vparam.id = vehicle.id != null ? vehicle.id : null;
+                    vparam.vehicleDescription = vehicle.vehicleDescription;
+                    vparam.year = !string.IsNullOrEmpty(vehicle.year.ToString()) ? vehicle.year : 0;
+                    vparam.vehiclePrice = 0;// vehicle.vehiclePrice;
+                    vparam.insuredAmount = 0;// vehicle.insuredAmount;
+                    vparam.percentageToInsure = vehicle.percentageToInsure;
+                    vparam.totalPrime = 0; //vehicle.totalPrime;
+                    vparam.totalIsc = 0;//vehicle.totalIsc;
+                    vparam.ProratedPremium = 0; //vehicle.ProratedPremium;
+                    vparam.isFacultative = vehicle.IsFacultative;
+                    vparam.amountFacultative = vehicle.AmountFacultative;
+                    vparam.totalDiscount = 0;
+                    vparam.selectedProductCoreId = vehicle.selectedProductCoreId;
+                    vparam.vehicleTypeCoreId = vehicle.selectedVehicleTypeId;
+                    vparam.vehicleTypeName = vehicle.selectedVehicleTypeName;
+                    vparam.selectedProductName = vehicle.selectedProductName;
+                    vparam.vehicleMakeName = vehicle.vehicleMakeName;
+                    vparam.usageId = vehicle.usageId;
+                    vparam.usageName = vehicle.usageName;
+                    vparam.storeId = vehicle.storeId;
+                    vparam.storeName = vehicle.storeName;
+                    vparam.driver_Id = DriverExist ? DriverId : vehicle.driver_Id;
+                    vparam.vehicleModel_Make_Id = realMakeID;
+                    vparam.vehicleModel_Model_Id = realModelID;
+                    vparam.quotation_Id = this.QuotationId;
+                    vparam.selectedVehicleTypeId = vehicle.selectedVehicleTypeId;
+                    vparam.selectedVehicleTypeName = vehicle.selectedVehicleTypeName;
+                    vparam.selectedCoverageCoreId = vehicle.selectedCoverageCoreId;
+                    vparam.selectedCoverageName = vehicle.selectedCoverageName;
+                    vparam.vehicleYearOld = vehicle.vehicleYearOld;
+                    vparam.surChargePercentage = (vehicle.surChargePercentage == 0) ? 0 : vehicle.surChargePercentage;
+                    vparam.numeroFormulario = null;
+                    vparam.rateJson = vehicle.rateJson;
+                    vparam.userId = GetCurrentUserID();
+                    vparam.secuenciaVehicleSysflex = vehicle.secuenciaVehicleSysflex;
+                    vparam.secuenciaVehicleSysflex = vparam.secuenciaVehicleSysflex == 0 ? 1 : vehicle.secuenciaVehicleSysflex;
+                    vparam.isFacultative = vehicle.IsFacultative;
+                    vparam.amountFacultative = vehicle.AmountFacultative;
+                    vparam.vehicleQuantity = vehicle.vehicleQuantity;
+
+                    vparam.chassis = string.IsNullOrEmpty(vehicle.Chassis.ToString()) ? "" : vehicle.Chassis.ToString().ToUpper();
+                    vparam.plate = string.IsNullOrEmpty(vehicle.Plate.ToString()) ? "" : vehicle.Plate.ToString().ToUpper(); ;
+                    vparam.color = vehicle.Color;
+
+                    isFinanced = vehicle.isFinanced;
+                    //totalVehiclesPrime += Convert.ToDecimal(vehicle.totalPrime);
+                    QuotProduct.Add(vehicle.selectedProductName.ToString());
+
+                    var SetVehicleResult = oVehicleProductManager.SetVehicleProduct(vparam);
+                    var currentVehicleID = SetVehicleResult.EntityId;
+
+                    #region Guardar Coberturas del vehiculo                    
+                    var prodParam = new ProductLimits.Parameter();
+                    prodParam.id = null;
+                    prodParam.vehicleProduct_Id = currentVehicleID;
+                    prodParam.isSelected = true;
+                    prodParam.totalIsc = 0;
+                    prodParam.totalDiscount = 0;
+                    prodParam.totalPrime = 0;
+                    prodParam.servicesPrime = 0;
+                    prodParam.tpPrime = 0;
+                    prodParam.sdPrime = 0;
+                    prodParam.selectedDeductibleCoreId = null;
+                    prodParam.selectedDeductibleName = null;
+                    prodParam.userId = GetCurrentUserID();
+
+                    var productLimitSaved = oProductLimitsManager.SetProudctLimits(prodParam);
+                    var currentProductLimit = productLimitSaved.EntityId;
+
+                    #region Services
+
+                    ServicesTypes.Parameter stParam = new ServicesTypes.Parameter();
+                    stParam.id = null;
+                    stParam.servicesTypesToProductLimits = currentProductLimit;
+                    stParam.name = "Aero Ambulancia";//Cobertura Servicios por Default Exclusiones
+                    stParam.userId = GetCurrentUserID();
+                    oServicesTypesRepositoryManager.SetServiceType(stParam);
+
+                    #endregion
+
+                    #region Self Damage Coverages
+
+                    var sdParam = new Coverage.Parameter();
+                    sdParam.id = null;
+                    sdParam.isSelected = false;
+                    sdParam.coverageDetailCoreId = 6;
+                    sdParam.name = "Colision y Vuelco";//Cobertura Danos Propios por Default Exclusiones
+                    sdParam.amount = 0;
+                    sdParam.limit = 0;
+                    sdParam.minDeductible = 0;
+                    sdParam.deductible = 0;
+                    sdParam.selfDamagesToProductLimits = currentProductLimit;
+                    sdParam.thirdPartyToProductLimits = null;
+                    sdParam.serviceType_Id = null;
+                    sdParam.userId = GetCurrentUserID();
+                    oCoverageManager.SetCoverageDetail(sdParam);
+
+                    #endregion
+
+                    #region Third Party Coverages
+
+                    var tpParam = new Coverage.Parameter();
+                    tpParam.id = null;
+                    tpParam.isSelected = false;
+                    tpParam.coverageDetailCoreId = 1;
+                    tpParam.name = "Daños a La Propiedad Ajena";//Cobertura Daños Terceros por Default Exclusiones
+                    tpParam.amount = 0;
+                    tpParam.limit = 0;
+                    tpParam.minDeductible = 0;
+                    tpParam.deductible = 0;
+                    tpParam.selfDamagesToProductLimits = null;
+                    tpParam.thirdPartyToProductLimits = currentProductLimit;
+                    tpParam.serviceType_Id = null;
+                    tpParam.userId = GetCurrentUserID();
+                    oCoverageManager.SetCoverageDetail(tpParam);
+
+                    #endregion
+
+                    #endregion
+
+                    string OldChassis = vehicle.OldChassis;
+                    string OldPlate = vehicle.OldPlate;
+                    string OldColor = vehicle.OldColor;
+
+                    int conditionIdChasis = vehicle.conditionIdChasis;
+                    int conditionIdPlaca = vehicle.conditionIdPlaca;
+                    int conditionIdColor = vehicle.conditionIdColor;
+
+                    #region Proceso de SetRequestChanges
+
+                    //Reviso si hay cambios
+                    int ChangeID = !string.IsNullOrEmpty(vehicle.ChangeID.ToString()) ? vehicle.ChangeID : 0;
+                    bool algoCambio = false;
+                    List<RequestChanges> dataVehicleRequestChange = Utility.getRequestChanges(policyNoMain, null, vparam.secuenciaVehicleSysflex.GetValueOrDefault(), false);
+                    if (dataVehicleRequestChange != null)
+                    {
+                        var k = dataVehicleRequestChange.Where(x => x.Change_Id == ChangeID).ToList();
+                        if (k.Any())
+                        {
+                            if (k.FirstOrDefault(x => x.New_Value != vparam.chassis && x.Condition_Id == conditionIdChasis) != null)
+                            {
+                                algoCambio = true;
+                            }
+
+                            if (k.FirstOrDefault(x => x.New_Value != vparam.plate && x.Condition_Id == conditionIdPlaca) != null)
+                            {
+                                algoCambio = true;
+                            }
+
+                            if (k.FirstOrDefault(x => x.New_Value != vparam.color && x.Condition_Id == conditionIdColor) != null)
+                            {
+                                algoCambio = true;
+                            }
+                        }
+                    }
+
+                    //
+                    if (ChangeID == 0 && algoCambio == false)
+                    {
+                        var actualChangeID = oVehicleProductManager.SetRequestChanges(new RequestChanges.Parameter()
+                        {
+                            change_Id = null,
+                            create_User = GetCurrentUserID(),
+                            policy_Number = policyNoMain,
+                            source = "Punto de Venta",
+                            vehicle_Secuence = vparam.secuenciaVehicleSysflex,
+                            condition_Id = conditionIdChasis,
+                            new_Value = vparam.chassis,
+                            old_Value = OldChassis
+                        });
+
+                        oVehicleProductManager.SetRequestChanges(new RequestChanges.Parameter()
+                        {
+                            change_Id = actualChangeID.EntityId,
+                            create_User = GetCurrentUserID(),
+                            policy_Number = policyNoMain,
+                            source = "Punto de Venta",
+                            vehicle_Secuence = vparam.secuenciaVehicleSysflex,
+                            condition_Id = conditionIdPlaca,
+                            new_Value = vparam.plate,
+                            old_Value = OldPlate
+                        });
+
+                        oVehicleProductManager.SetRequestChanges(new RequestChanges.Parameter()
+                        {
+                            change_Id = actualChangeID.EntityId,
+                            create_User = GetCurrentUserID(),
+                            policy_Number = policyNoMain,
+                            source = "Punto de Venta",
+                            vehicle_Secuence = vparam.secuenciaVehicleSysflex,
+                            condition_Id = conditionIdColor,
+                            new_Value = vparam.color,
+                            old_Value = OldColor
+                        });
+                    }
+                    else if (ChangeID > 0 && algoCambio)
+                    {
+                        var actualChangeID = oVehicleProductManager.SetRequestChanges(new RequestChanges.Parameter()
+                        {
+                            change_Id = null,
+                            create_User = GetCurrentUserID(),
+                            policy_Number = policyNoMain,
+                            source = "Punto de Venta",
+                            vehicle_Secuence = vparam.secuenciaVehicleSysflex,
+                            condition_Id = conditionIdChasis,
+                            new_Value = vparam.chassis,
+                            old_Value = OldChassis
+                        });
+
+                        oVehicleProductManager.SetRequestChanges(new RequestChanges.Parameter()
+                        {
+                            change_Id = actualChangeID.EntityId,
+                            create_User = GetCurrentUserID(),
+                            policy_Number = policyNoMain,
+                            source = "Punto de Venta",
+                            vehicle_Secuence = vparam.secuenciaVehicleSysflex,
+                            condition_Id = conditionIdPlaca,
+                            new_Value = vparam.plate,
+                            old_Value = OldPlate
+                        });
+
+                        oVehicleProductManager.SetRequestChanges(new RequestChanges.Parameter()
+                        {
+                            change_Id = actualChangeID.EntityId,
+                            create_User = GetCurrentUserID(),
+                            policy_Number = policyNoMain,
+                            source = "Punto de Venta",
+                            vehicle_Secuence = vparam.secuenciaVehicleSysflex,
+                            condition_Id = conditionIdColor,
+                            new_Value = vparam.color,
+                            old_Value = OldColor
+                        });
+                    }
+
+                    #endregion
+                }
+
+                //Actualizando la cotizacion con los totales de prima
+                Quotation.parameter qparam = new Quotation.parameter();
+                qparam.id = base.QuotationId;
+                qparam.sendInspectionOnly = true;
+                qparam.financed = isFinanced;
+                qparam.totalPrime = totalVehiclesPrime;
+
+                var prods = QuotProduct.Distinct();
+
+                if (prods.Count() > 1)
+                {
+                    qparam.quotationProduct = "FLOTILLA";
+                }
+                else
+                {
+                    qparam.quotationProduct = prods.First();
+                }
+
+                qparam.modi_UserId = GetCurrentUserID();
+                oQuotationManager.SetQuotation(qparam);
+
+
+                var quot = oQuotationManager.GetQuotation(base.QuotationId);
+                if (quot != null)
+                {
+                    base.QuotationNumber = quot.QuotationNumber;
+                }
+
+                return Json(new { MessageSucess = "", QuotationId = base.QuotationId, QuotationNumber = base.QuotationNumber }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                LoggerHelper.Log(CommonEnums.Categories.Error, "POS-" + (GetCurrentUsuario() != null ? GetCurrentUsuario().UserLogin : "VentaDirecta"), QuotationId.ToInt(), "Error al guardar el vehiculo a cambiar", "Mensaje: " + ex.Message, ex);
+
+                //devolmeos un mensaje de error
+                return Json(new { messageError = "Error al guardar el vehiculo a cambiar." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult CheckChassisPlateLawProducts(string Chassis, string Plate, string Poliza)
+        {
+            List<string> statusMessages = new List<string>();
+            bool success = true;
+            string realMessage = "";
+
+            try
+            {
+                var ccp = CheckChassisPlate(Chassis, Plate);
+
+                if (ccp.Count() > 0)
+                {
+                    string policyOfDuplicate = string.Join(", ", ccp.Select(i => i.Policy));
+                    string policyOfDuplicateEncriptep = Utility.Encrypt_Query(policyOfDuplicate);
+                    string mid = "Mensaje ID:";
+                    if (base.IsShowPolicy)
+                    {
+                        policyOfDuplicateEncriptep = policyOfDuplicate;
+                        mid = "Poliza(s):";
+                    }
+
+                    var arr = policyOfDuplicate.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (arr.FirstOrDefault(x => x != Poliza) != null)
+                    {
+                        statusMessages.Add(string.Format("El chasis \"{0}\" o placa \"{1}\" ya estan registrados en nuestros sistemas.<br/> {3} {2}",
+                           Chassis, Plate, policyOfDuplicateEncriptep, mid));
+
+                        success = false;
+                    }
+                }
+
+                if (statusMessages.Count() == 0)
+                {
+                    success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                statusMessages.Add("Falla en el método CheckChassisPlate. Detalle: " + ex.Message);
+                success = false;
+            }
+
+            if (!success)
+            {
+                foreach (var stmsg in statusMessages)
+                {
+                    realMessage += "\n" + stmsg;
+                }
+
+                LoggerHelper.Log(CommonEnums.Categories.Error, (GetCurrentUsuario() != null ? GetCurrentUsuario().UserLogin : "POS-VentaDirecta"), 0, "Falla en el método CheckChassisPlate", "Detalle: MENSAJE " + realMessage);
+                return Json(new { success = false, message = realMessage }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = true, message = "" }, JsonRequestBehavior.AllowGet);
+            }
+            /**/
+        }
+
+        private STL.POS.WsProxy.SysflexService.PolicyVehicleVehicleIdentification[] CheckChassisPlate(string chassis, string plate)
+        {
+            var result = oCoreProxy.CheckChassisPlate(chassis, plate);
+            return result;
+        }
+
+        public JsonResult GetVehicleRequestChange(string plno, int item)
+        {
+            List<RequestChanges> dataVehicleRequestChange = Utility.getRequestChanges(plno, null, item, true);
+
+            string newPlate = dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == CommonEnums.ChangeConditionCatalog.Placa.ToInt()) != null ? dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == CommonEnums.ChangeConditionCatalog.Placa.ToInt()).New_Value : "";//7 = Placa
+            string newChassis = dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == CommonEnums.ChangeConditionCatalog.Chasis.ToInt()) != null ? dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == CommonEnums.ChangeConditionCatalog.Chasis.ToInt()).New_Value : "";//6 = Chasis
+            string newColor = dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == CommonEnums.ChangeConditionCatalog.Color.ToInt()) != null ? dataVehicleRequestChange.FirstOrDefault(x => x.Condition_Id == CommonEnums.ChangeConditionCatalog.Color.ToInt()).New_Value : "";//5 = Color
+            int chid = dataVehicleRequestChange.FirstOrDefault() != null ? dataVehicleRequestChange.FirstOrDefault().Change_Id : 0;
+
+            return Json(new { newPlate = newPlate, newChassis = newChassis, newColor = newColor, chID = chid }, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

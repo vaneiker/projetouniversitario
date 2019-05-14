@@ -1,0 +1,47 @@
+﻿using STL.POS.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace STL.POS.THProxy
+{
+
+    public delegate int GetProjectId();
+
+    public interface ITHProxy
+    {
+
+        GetProjectId GetThProjectId { get; set; }
+
+        Tuple<byte[], byte[]> GetMarbeteExecutePreview(Quotation quotation, string userDefault = "", string agentFullName = "", int codRamo = 106);
+
+        int GetMarbete(Quotation quotation, string userDefault = "", int codRamo = 106);
+
+        int SendMarbeteByMail(Quotation quotation, List<string> destinationAddresses, string userDefault = "10562", string agentFullName = "", int codRamo = 106);
+
+        int SendQuotationCompletedAndPaid(Quotation quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106);
+
+        int SendQuotationCompletedButPaidCancelled(Quotation quotation, int codRamo = 106);
+
+        int SendQuotationInspectionPending(Quotation quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106);
+
+        int SendNewUserCreated(string username, string fullname, string userEmail, string link);
+
+        int SendForgetPassword(string username, string fullname, string userEmail, string link);
+
+        int SendQuotation15DaysWarning(Quotation quotation, int codRamo = 106);
+
+        int SendQuotation5DaysWarning(Quotation quotation, int codRamo = 106);
+
+        int SendQuotationByMail(Quotation quotation, List<string> destinationAddresses, string userDefault = "10562", string agentFullName = "", int codRamo = 106);
+
+        int SendDetailedAutoQuotation(QuotationAuto quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106);
+
+        Tuple<int, byte[]> SendDetailedAutoQuotationOnSave(QuotationAuto quotation, int codRamo = 106);
+        byte[] SendDetailedAutoQuotationPreview(QuotationAuto quotation, string userDefault = "10562", string agentFullName = "", int codRamo = 106);
+        string GetBatchJobStatus(int bjId);
+
+    }
+}

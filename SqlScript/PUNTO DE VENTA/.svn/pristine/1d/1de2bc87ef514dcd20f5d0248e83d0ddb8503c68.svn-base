@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/STG.BlackList.Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://devpolicyglobalservice.statetrustlife.com/PolicyService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" />
+  <xs:complexType name="SearchRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestType" nillable="true" type="tns:Types" />
+      <xs:element minOccurs="0" name="Agency" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" minOccurs="0" name="CompanyID" nillable="true" type="q1:Base.Company" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" name="Source" type="q2:Base.Cores" />
+      <xs:element minOccurs="0" name="Fields" nillable="true" type="tns:Types" />
+      <xs:element minOccurs="0" name="RequestFields" nillable="true" type="tns:ArrayOfFields" />
+      <xs:element minOccurs="0" name="CompanyKey" nillable="true" type="tns:CompanyKey" />
+      <xs:element minOccurs="0" name="SearchID" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" name="Status" type="q3:SearchResult.Status" />
+      <xs:element minOccurs="0" name="ProcessAgain" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchRequest" nillable="true" type="tns:SearchRequest" />
+  <xs:complexType name="Types">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Dflt" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TypeDescription" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Types" nillable="true" type="tns:Types" />
+  <xs:complexType name="ArrayOfFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Fields" nillable="true" type="tns:Fields" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFields" nillable="true" type="tns:ArrayOfFields" />
+  <xs:complexType name="Fields">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CoreKey" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Display" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/STG.BlackList.Entity.Enums" name="SearchType" type="q4:SearchResult.Types" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Fields" nillable="true" type="tns:Fields" />
+  <xs:complexType name="CompanyKey">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Company_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Corp_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Country_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Region_Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyKey" nillable="true" type="tns:CompanyKey" />
+</xs:schema>

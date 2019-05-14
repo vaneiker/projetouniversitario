@@ -1,0 +1,338 @@
+﻿@model STL.POS.Frontend.Web.NewVersion.CustomCode.QuotationViewModel.drivers
+
+<div class="mdl-grid col-12" id="dvAditionalInformationDriver">
+    @using (Ajax.BeginForm("SetAditionalInformationDriver",
+                           "Home",
+                           new AjaxOptions
+                           {
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = "dvAditionalInformationDriver",
+                               HttpMethod = "Post",
+                               //LoadingElementId=""
+                           },
+                           new { @name = "FrmAditionalInformationDriver", @id = "FrmAditionalInformationDriver" }))
+    {
+        @*<form action="FrmAditionalInformationDriver" method="post">*@
+
+        <div class="mdl-cell mdl-cell--12-col card w-100 ml-0 mdl-shadow--2dp">
+            <div class="card-header bg-info mdl-color-text--white em1-3"><strong>Información del Conductor</strong></div>
+            <div class="card-body">
+                <div class="mdl-grid col-12">
+                    <div class="nav col-12">
+                        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                            <div class="mdl-textfield ">
+                                <input type="hidden" id="IsPrincipal" />
+                                <input type="hidden" id="IsFinanced" />
+                                <input type="hidden" id="BenefPercentMin" />
+                                <input type="hidden" id="BenefPercentMax" />
+                                @*@Html.DropDownList("Id", (SelectList)ViewBag.DriverList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Conductor Principal" })*@
+
+                                @Html.DropDownListFor(m => m.Id, (IEnumerable<SelectListItem>)ViewBag.DriverList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Conductor Principal" })
+                                @*<select class="chosen-select-deselect form-control" data-placeholder="Conductor Principal">
+                                        <option></option>
+                                        <option value="1">Jose Manuel</option>
+                                        <option value="2">Marcos Diaz</option>
+                                    </select>*@
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Campos -->
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                            <input class="mdl-textfield__input" pattern="[A-Z,a-z, ]*" type="text" id="FirstName" name="FirstName">
+                            <label class="mdl-textfield__label" for="FirstName">Nombre</label>
+                            <!-- <span class="mdl-textfield__error">Nombre Requerido</span> -->
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="FirstSurname" name="FirstSurname">
+                            <label class="mdl-textfield__label" for="FirstSurname">Apellido</label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input dateOfBirth datepicker" disabled="disabled" type="text" id="DateOfBirth" name="DateOfBirth">
+                            <label class="mdl-textfield__label" for="dateNC">Fecha de Nacimiento</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="DateOfBirth">
+                                <i class="material-icons">&#xE916;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mt-0 mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                            <div class="form-material form-material-primary input-group">
+                                <!-- is-upgraded  -->
+                                <input class="form-control" type="text" id="Sex" name="Sex" placeholder="" disabled>
+                                <label class="mdl-textfield__label" for="Sex">Sexo</label>
+                            </div>
+                        </div>
+                        <div class="mt-0 mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                            @*<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">*@
+                            <div class="form-material form-material-primary input-group is-dirty">
+                                <!-- is-upgraded  -->
+
+                                <input class="form-control" type="text" id="ForeignLicense" name="ForeignLicense" placeholder="" disabled>
+                                <label class="mdl-textfield__label" for="ForeignLicense">Licencia Extrajera</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield">
+                            @Html.DropDownList("IdentificationType", (SelectList)ViewBag.idetificationTypes, "", new { @disabled = "disabled", @name = "IdentificationType", @class = "chosen-select-deselect form-control putErrorBorder", @data_placeholder = "Tipo de Identificación" })
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                            <input class="mdl-textfield__input putErrorBorder" type="text" id="IdentificationNumber" name="IdentificationNumber">
+                            <label class="mdl-textfield__label" for="IdentificationNumber">Número de Identificación</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="IdentificationNumber">
+                                <i class="material-icons">&#xE8A6;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="text" class="mdl-textfield__input normalDatepicker" id="IdentificationNumberValidDateO" name="IdentificationNumberValidDateO">
+                            <label class="mdl-textfield__label" for="IdentificationNumberValidDateO">Fecha de Expiración Identificación</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="IdentificationNumberValidDateO">
+                                <i class="material-icons">&#xE916;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield ">
+                            @Html.DropDownList("Nationality_Global_Country_Id", (SelectList)ViewBag.CountryList, "", new { @class = "chosen-select-deselect form-control requerido", @data_placeholder = "Nacionalidad" })
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="PostalCode" name="PostalCode">
+                            <label class="mdl-textfield__label" for="cpostal">Código Postal</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="PostalCode">
+                                <i class="material-icons">&#xE638;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                            <input class="mdl-textfield__input putErrorBorder" type="text" id="Address" name="Address">
+                            <label class="mdl-textfield__label" for="drcasa">Dirección Casa</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="Address">
+                                <i class="material-icons">&#xE0C8;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                            <input class="mdl-textfield__input" phonenumber="PhoneNumber10" type="text" id="PhoneNumber" name="PhoneNumber">
+                            <label class="mdl-textfield__label" for="PhoneNumber">Teléfono Casa</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="PhoneNumber">
+                                <i class="material-icons">&#xE0CD;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                            <input class="mdl-textfield__input" type="text" phonenumber="PhoneNumber10" id="Mobile" name="Mobile">
+                            <label class="mdl-textfield__label" for="nbTLF">Celular</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="Mobile">
+                                <i class="material-icons">&#xE8A5;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label putErrorBorder">
+                            <input class="mdl-textfield__input" type="text" phonenumber="PhoneNumber10" id="WorkPhone" name="WorkPhone">
+                            <label class="mdl-textfield__label" for="nbTLF">Teléfono Trabajo</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="WorkPhone">
+                                <i class="material-icons">&#xE0CF;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="Email" name="Email">
+                            <label class="mdl-textfield__label" for="Email">Correo Electrónico</label>
+                            <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="Email">
+                                <i class="material-icons">&#xE0BE;</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield ">
+
+                            @Html.DropDownList("InvoiceTypeId", (SelectList)ViewBag.InvoceTypeList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Tipo de Factura" })
+                            @*<select id="InvoiceTypeId" class="chosen-select-deselect form-control" data-placeholder="Tipo de Factura" name="InvoiceTypeId" data-bind="options: $root.typeInvoiceList, optionsText: 'name', optionsValue: 'id', value: infoAdDriver().InvoiceTypeId, css: { errorBorder: !infoAdDriver().InvoiceTypeId() }">
+                                    <option value=""></option>
+                                    <option value="7">Factura Consumidor Final</option>
+                                    <option value="1">Factura Valor Credito Fiscal</option>
+                                </select>*@
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield putErrorBorder">
+                            <select name="City_State_Prov_Id" id="City_State_Prov_Id" class="chosen-select-deselect form-control putErrorBorder" data-placeholder="Provincia"></select>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield putErrorBorder">
+                            <select name="municipality_Id" id="municipality_Id" class="chosen-select-deselect form-control putErrorBorder" data-placeholder="Municipio"></select>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield putErrorBorder">
+                            <select id="City_City_Id" name="City_City_Id" class="chosen-select-deselect form-control putErrorBorder" data-placeholder="Sector"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-cell card mdl-cell--6-col ml-0 float-left lb_azul" id="addDriverBox">
+            <div class="card-header bg-info mdl-color-text--white em1-3"><strong>Cumplimiento</strong></div>
+            <div class="card-body">
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                    <div class="mdl-textfield ">
+                        @Html.DropDownList("PepFormularyOptionsId", (SelectList)ViewBag.PepFormularyOptionsList, "", new { @disabled = "disabled", @class = "chosen-select-deselect form-control", @data_placeholder = "Posee calidad de PEP" })
+                        <i id="spanPep" title="" class="fa fa-question-circle" aria-hidden="true" style="font-size:27px;" data-hasqtip="1"></i>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                    <div class="mdl-textfield ">
+                        @Html.DropDownList("IdentificationFinalBeneficiaryOptionsId", (SelectList)ViewBag.IdentificationFinalBeneficiaryOptionsList, "", new { @disabled = "disabled", @class = "chosen-select-deselect form-control", @data_placeholder = "Beneficiario Final" })
+                        <i id="spanBF" title="" class="fa fa-question-circle" aria-hidden="true" style="font-size:27px;" data-hasqtip="3"></i>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                    <div class="mdl-textfield" id="SocialReasonDiv">
+                        @Html.DropDownList("SocialReasonId", (SelectList)ViewBag.SocialReasonList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Rason Social" })
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                    <div class="mdl-textfield " id="OwnershipStructureDiv">
+                        @Html.DropDownList("OwnershipStructureId", (SelectList)ViewBag.OwnerShipStructureList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Estructura de Titularidad (SA, SRL, EIRL, etc)" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-cell card mdl-cell--6-col mr-0 float-right lb_azul">
+            <div class="card-header  bg-info mdl-color-text--white em1-3"><strong>Información Laboral</strong></div>
+            <div class="card-body">
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield ">
+                    @*@Html.DropDownList("Job", (SelectList)ViewBag.JobList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Ocupación" })*@
+                    @Html.DropDownList("Job", (SelectList)ViewBag.JobList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Ocupación" })
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" id="Company" type="text" name="Company">
+                    <label class="mdl-textfield__label" for="Company">Empresa en la que Labora</label>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+                    <input class="mdl-textfield__input" type="text" id="AnnualIncome" name="AnnualIncome">
+                    <label class="mdl-textfield__label" for="AnnualIncome">Ingreso Anual</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell card mdl-cell--6-col mr-0 float-right lb_azul">
+            <div class="card-header  bg-info mdl-color-text--white em1-3"><strong>Información de Financiamiento</strong></div>
+            <div class="card-body">
+                <div id="chkhomeowner_Div" class="mdl-cell mdl-cell--12-col mdl-textfield ">
+                    <label for="chkHomeOwner" class="fl mR"><strong> Tiene Casa Propia? </strong></label>
+                    <input id="chkHomeOwner" name="chkHomeOwner" class="fl mT5" type="checkbox" />
+                </div>
+                <div id="QtyPersonsDepend_Div" class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" id="QtyPersonsDepend" type="number" name="QtyPersonsDepend">
+                    <label class="mdl-textfield__label" for="QtyPersonsDepend">Cantidad de Dependientes</label>
+                </div>
+                <div id="QtyEmployeesRNC" class="mdl-cell mdl-cell--12-col mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="display:none">
+                    <input class="mdl-textfield__input" type="number" id="QtyEmployees" name="QtyEmployees">
+                    <label class="mdl-textfield__label" for="QtyEmployees">Cantidad de Empleados</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell card mdl-cell--6-col mr-0 float-right lb_azul">
+            <div class="card-header  bg-info mdl-color-text--white em1-3"><strong>Domiciliación</strong></div>
+            <div class="card-body">
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield ">
+                    <label for="IsDomiciliation" class="fl mR"><strong> Desea domiciliar el pago? </strong></label>
+                    <input id="IsDomiciliation" name="IsDomiciliation" class="fl mT5" type="checkbox" checked="checked" />
+                </div>
+
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield ">
+                    @Html.DropDownList("creditCardTypeId", (SelectList)ViewBag.CreditCardTypes, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Tipo de Tarjeta" })
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" id="creditCardNumber" type="text" name="creditCardNumber" disabled="disabled">
+                    <label class="mdl-textfield__label" for="creditCardNumber">Número de tarjeta</label>
+                    @*<a id="editCreditCard" class="grid_icons cazul edit" href="#" style="display: block;"></a>*@
+                    <img id="editCreditCard" src="~/Content/images/edit_icon.png" />
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield ">
+                    @Html.DropDownList("expirationDateYear", (SelectList)ViewBag.YearList, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Año Vencimiento" })
+                </div>
+
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield ">
+                    <select id="expirationdatemonth" name="expirationdatemonth" class="chosen-select-deselect form-control" data-placeholder="Mes Vencimiento"></select>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="cardHolder" name="cardHolder">
+                    <label class="mdl-textfield__label" for="cardHolder">Tarjetahabiente</label>
+                </div>
+            </div>
+        </div>
+        <a id="DisplayPepForm" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success" style="display:none">
+            <strong class="x-hide">Calidad PEP</strong>
+            <i class="material-icons float-left mt-2">&#xE531;</i>
+            <i class="material-icons x-block xl-hide float-right">&#xE88F;</i>
+        </a>
+        <a id="DisplayBenefForm" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success" style="display:none">
+            <strong class="x-hide">Beneficiarios Finales</strong>
+            <i class="material-icons float-left mt-2">&#xE531;</i>
+            <i class="material-icons x-block xl-hide float-right">&#xE88F;</i>
+        </a>
+
+
+        <div class="mdl-cell card mdl-cell--12-col w-100 ml-0 mdl-shadow--4dp mt-3 p-3">
+            @if (ViewBag.isAgentUser == false)
+            {
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white text-capitalize p-0 mb-md-0 float-right ">
+                    <i class="material-icons">arrow_forward</i>Continuar con un Agente
+                </button>
+            }
+        </div>
+
+        <footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+            <div class="container">
+                <div class="mdl-mega-footer__top-section">
+                    <div class="mdl-mega-footer__left-section float-left">
+                        <a href="@Url.Action("Summary", "Home")" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success mr-3 float-left">
+                            <i class="material-icons">arrow_back</i>
+                            <strong class="x-hide">Atras</strong>
+                        </a>
+                        <a href="#" target="_blank" id="uptocall-mini" class="float-left ml-2 mr-4"><i class="uptocall-mini-phone"></i></a>
+                        <a id="mail_btn" href="mailto:costumer@correo.com" class="btn btn-outline-warning">
+                            <i class="fa fa-envelope fa-2x fa-fw" aria-hidden="true"></i>
+                            <strong class="x-hide">Enviarme por Correo</strong>
+                        </a>
+                    </div>
+
+                    <div class="mdl-mega-footer__right-section float-right">
+                        <ul class="mdl-mega-footer__link-list mdl-color-text--white d-flex justify-content-center x-hide mb-0 mt-2 float-left">
+                            <li><!-- <i class="fa fa-phone float-left mr-3"></i> --><strong>Tel: </strong> (809) 565-5591 &nbsp•&nbsp</li>
+                            <li class="mr-3"> <!-- <i class="fa fa-envelope float-left mr-3" aria-hidden="true"></i> --> <strong> Email:</strong> ventas@atlantica.do</li>
+                        </ul>
+                        <a id="SaveAditionalInfoDriver" data="@ViewBag.QuoId" href="@Url.Action("InfoAddVehicle","Home")" class="mdl-button mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-success ">
+                            <strong class="x-hide">Info. Adicional Vehículo</strong>
+                            <i class="material-icons float-left mt-2">&#xE531;</i>
+                            <i class="material-icons x-block xl-hide float-right">&#xE88F;</i>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        @*</form>*@
+    }
+</div>

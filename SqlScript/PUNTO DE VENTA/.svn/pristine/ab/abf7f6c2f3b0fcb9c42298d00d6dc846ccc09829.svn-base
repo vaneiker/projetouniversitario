@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Newtonsoft.Json;
+using System.Configuration;
+using STL.POS.AgentWSProxy;
+using STL.POS.Frontend.Web.NewVersion.CustomCode;
+using Entity.Entities;
+using System.Globalization;
+
+namespace STL.POS.Frontend.Web.NewVersion.Controllers
+{
+    public class ChatController : BaseController
+    {
+        //
+        // GET: /Chat/
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult GetProfile()
+        {
+            var ObjUser = GetCurrentUsuario();
+            var usuario = Usuario;
+            int _UserId = 0;
+            string token = "";
+            var RouteService = "";
+            //int ProjectId = _bPage.Usuario.application.ApplicationsID;
+            //int ProjectIdChat = Convert.ToInt32(ConfigurationManager.AppSettings["Chat_AppAppId"].ToString());
+            var ProjectId = 26; // VO-VEHICULOS
+            //var ProjectId = 20; // PuntoDeVenta-Diveria
+
+            var ProjectIdChat = Convert.ToInt32(ConfigurationManager.AppSettings["Chat_AppAppId"].ToString());
+            RouteService = string.Concat(ConfigurationManager.AppSettings["Chat_Entrada"].ToString(), "grupogd");
+            //_UserId = int.Parse(ObjUser.UserID.ToString());
+            token = oDropDownManager.GetLastUserLoggedToken(85/*ObjUser.UserID*/, ProjectId, ProjectIdChat); //result = _Bl.GET_LAST_USERLOGGED_TOKEN(Usuario.UserID, ProjectId, ProjectIdChat); //Traer el Ultimo Token del Usuario
+
+            return Json(new { ObjUser, RouteService = RouteService, token = "89e13658-e27a-48fc-94bd-116093200c33" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ChatTest()
+        {
+            return View();
+        }
+	}
+}

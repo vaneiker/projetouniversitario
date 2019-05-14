@@ -1,0 +1,34 @@
+﻿$(document).ready(function () {
+    $('#EndDate').datepicker();
+    $('#StartDate').datepicker();
+});
+
+SaveVehicleAndNext = function () {
+    $("#btnSubmitForm").click();
+}
+
+function ViewFinancedContract() {
+    var QuotationId = $("#hdnQuotId").val();
+    showFinancedContractTH(QuotationId, function (data) {
+        window.open(data, '_blank');
+    });
+}
+
+function showFinancedContractTH(QuotationId, CallBack) {
+    $.ajax({
+        url: "/Home/ShowFinancedContractTH",
+        data: JSON.stringify({ QuotationId: QuotationId }),
+        dataType: "json",
+        type: "POST",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataFilter: function (data) { return data; },
+        beforeSend: function () {
+
+        },
+        success: CallBack,
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr);
+        }
+    });
+};
