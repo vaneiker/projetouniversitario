@@ -4,7 +4,124 @@ function CargarShipLogsjs(id) {
     location.href = url;
 }
 
+
+
+//------===========START para duplicar una tabla =====================
+$(document).on('click', '.btnNextVehicle', function () {
+
+    vehicleRandomID = Math.floor((Math.random() * -20000) + (-1));
+
+    var $this = $(this);
+    var tbl = $("#tblAllVehicle");
+    var $Tbody = tbl.find("tbody");
+    var $trLast = $Tbody.find("tr:last");
+    var newTr = $('<tr>').attr('id', 'trVehicle_' + vehicleRandomID).addClass('trVehicle').attr('data-vehiclerandomid', vehicleRandomID);
+    newTr = generateNewRow(newTr);
+
+    $trLast.after(newTr);
+
+    generateDinamycEvents();
+
+    $('div.table-responsive').animate({ scrollLeft: '0' }, 300);
+
+    CollectData_Flot(vehicleRandomID);
+
+    applyEventsRequiredFields(true);
+}); 
+ 
+//------===========END para duplicar una tabla =====================
+            
+                 
 $(document).ready(function () {
+
+    //*************START CHECK AREA************
+
+    $('#ddCarrierSelect').on('change', function () {
+        var text = this.value;
+        var hdfCarrier = $("#hdfCarrierName");
+        hdfCarrier.val(text);
+    });
+
+
+    $('#ddoperator').on('change', function () {
+        var text = this.value;
+        var Hdfoperator = $("#hdfoperator");
+        Hdfoperator.val(text);
+    });
+
+
+    function setShiptmentType(obj) {
+
+        var $SelectedChk = $(obj);
+
+        AtiveModeShiptmentType($SelectedChk);
+        var $hdnIncoming = $("#Incoming");
+        if ($SelectedChk.attr("id") == "incomingShipment") {
+            $hdnIncoming.val("true");
+        } else
+            if ($SelectedChk.attr("id") == "OutgoingShipment") {
+                $hdnIncoming.val("false");
+            }
+    }
+
+    function AtiveModeShiptmentType(obj) {
+        var $SelectedChk = $(obj);
+        var $hdnIncoming = $("#Incoming");
+        if ($SelectedChk.attr("id") == "incomingShipment") {
+            alert("Muestro la opcion para poder guardar Incoming");
+            //$hdnIncoming.val("true");
+
+        } else
+            if ($SelectedChk.attr("id") == "OutgoingShipment") {
+                alert("Muestro la opcion para poder guardar Ougoing");
+                //$hdnIncoming.val("false");
+            }
+    }
+
+   
+    //*************END CHECK AREA************
+
+ //*************STARD RESPONSE SERVICES AREA************
+    function OnSuccess(data) {
+        var parameter1 = data.responseJSON.param1;
+        var parameter2 = data.responseJSON.param2;
+        var parameter3 = data.responseJSON.param3; 
+
+        if (parameter1 === 202) {
+            alertify.alert(
+                '<h1 style="color: #0a95c4; position:center; text-align:center;">¡Success!</h1>',
+                '<strong>' + parameter3 + '<br/><hr/>¡Successfully saved log!' + parameter2 + '</strong > ',
+                function () {
+                    alertify.success('¡SUCCESSFUL!');
+                });
+
+            //CargarShipLogsjs("null")
+        }
+        else if (parameter1 === 404) {
+            alertify.alert(
+                'Cliente y Póliza',
+                '<strong> Registration could not be saved successfully ' + parameter2 + '</strong>',
+                function () {
+                    alertify.error('¡Error!');
+                });
+        }
+    }
+    function OnFailure(data) {
+        var cedulaerror = data.responseJSON.param2;
+        alertify.alert(
+            'Cliente y Póliza',
+            '<strong>Error al generar ganador ' + cedulaerror + '</strong>',
+            function () {
+                alertify.error('¡Vuelva a intentarlo!');
+            });
+
+
+    }
+    
+
+ //*************END RESPONSE SERVICES AREA************
+
+
 
     tblShip = $('#ShipdataTables').DataTable({
         paging: true,
@@ -88,41 +205,3 @@ $(document).ready(function () {
     });
 });
 
-
-function setShiptmentMaterialsType(obj) {
-    var $SelectedChk = $(obj);
-
-    var $hdnMaterials = $("#Materials");
-    if ($SelectedChk.attr("id") == "MaterialsShipment") {
-        $hdnIncoming.val("true");
-    }   
-}
-
-
-function setShiptmentType(obj) {
- 
-    var $SelectedChk = $(obj);
-
-    AtiveModeShiptmentType($SelectedChk);
-    var $hdnIncoming = $("#Incoming");
-    if ($SelectedChk.attr("id") == "incomingShipment") {
-        $hdnIncoming.val("true");
-    } else
-        if ($SelectedChk.attr("id") == "OutgoingShipment") {
-            $hdnIncoming.val("false");
-        }
-}
-
-function AtiveModeShiptmentType(obj) {
-    var $SelectedChk = $(obj);
-    var $hdnIncoming = $("#Incoming");
-    if ($SelectedChk.attr("id") == "incomingShipment") {
-        alert("Muestro la opcion para poder guardar Incoming");
-        //$hdnIncoming.val("true");
-
-    } else
-        if ($SelectedChk.attr("id") == "OutgoingShipment") {
-            alert("Muestro la opcion para poder guardar Ougoing");
-            //$hdnIncoming.val("false");
-        }
-}

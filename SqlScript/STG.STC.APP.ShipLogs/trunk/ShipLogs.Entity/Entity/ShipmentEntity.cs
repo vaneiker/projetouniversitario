@@ -43,6 +43,7 @@ namespace ShipLogs.Entity.Entity
         public bool Materials { get; set; }
         public bool OtherContents { get; set; }
         public List<ShipmentDetailEntity> ListShipmentDetail { get; set; }
+
         public class ShipmentDetailEntity
         {
             public int? DetailUniqueID { get; set; }

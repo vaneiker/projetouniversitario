@@ -1,0 +1,742 @@
+﻿using Entity.Entities;
+using STL.POS.Data.NewVersion.EdmxModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace STL.POS.Data.NewVersion.Repository
+{
+    public class QuotationRepository : BaseRepository
+    {
+        public QuotationRepository() { }
+
+        #region Set
+
+        public virtual BaseEntity SetQuotation(Quotation.parameter parameter)
+        {
+            BaseEntity result;
+            IEnumerable<SP_SET_QUOTATION_Result> temp;
+
+            temp = PosContex.SP_SET_QUOTATION(
+                                                parameter.id,
+                                                parameter.productNumber,
+                                                parameter.quotationDailyNumber,
+                                                parameter.quotationNumber,
+                                                parameter.policyNumber,
+                                                parameter.startDate,
+                                                parameter.endDate,
+                                                parameter.paymentFrequencyId,
+                                                parameter.paymentFrequency,
+                                                parameter.paymentWay,
+                                                parameter.amountToPayEnteredByUser,
+                                                parameter.cardnetLastResponseCode,
+                                                parameter.cardnetLastResponseMessage,
+                                                parameter.cardnetAuthorizationCode,
+                                                parameter.cardnetPaymentStatus,
+                                                parameter.totalPrime,
+                                                parameter.totalISC,
+                                                parameter.iSCPercentage,
+                                                parameter.totalDiscount,
+                                                parameter.discountPercentage,
+                                                parameter.quotationCoreIdNumber,
+                                                parameter.clientCoreIdNumber,
+                                                parameter.sendInspectionOnly,
+                                                parameter.status,
+                                                parameter.termType_Id,
+                                                parameter.user_Id,
+                                                parameter.achName,
+                                                parameter.achAccountHolderGovId,
+                                                parameter.achBankRoutingNumber,
+                                                parameter.achType,
+                                                parameter.achNumber,
+                                                parameter.principalFullName,
+                                                parameter.businessLine_Id,
+                                                parameter.quotationProduct,
+                                                parameter.principalIdentificationNumber,
+                                                parameter.lastStepVisited,
+                                                parameter.currencySymbol,
+                                                parameter.currency_Id,
+                                                parameter.messaging,
+                                                parameter.declined,
+                                                parameter.flotillaDiscountPercent,
+                                                parameter.totalFlotillaDiscount,
+                                                parameter.quotationCoreNumber,
+                                                parameter.qtyDayOfVigency,
+                                                parameter.monthlyPayment,
+                                                parameter.financed,
+                                                parameter.period,
+                                                parameter.credit_Card_Type_Id,
+                                                parameter.credit_Card_Number_Key,
+                                                parameter.credit_Card_Number,
+                                                parameter.expiration_Date_Year,
+                                                parameter.expiration_Date_Month,
+                                                parameter.card_Holder,
+                                                parameter.domiciliation,
+                                                parameter.modi_UserId,
+                                                parameter.RequestTypeId,
+                                                parameter.DomicileInitialPayment,
+                                                parameter.policy_No_Main,
+                                                parameter.isExternal,
+                                                parameter.couponCode,
+                                                parameter.couponPercentageDiscount,
+                                                parameter.CouponProspectId,
+                                                parameter.RiskLevel,
+                                                parameter.contactFormId,
+                                                parameter.secuenciaMov,
+                                                parameter.flotillaMode
+                                            );
+
+            result = temp.Select(q => new BaseEntity
+            {
+                Action = q.Action,
+                EntityId = q.Id
+            })
+            .FirstOrDefault();
+
+            return
+                result;
+        }
+        public virtual int SetQuotationDeclined(int quotationId, int reasonDeclined, int userId, string reasonComment = "")
+        {
+            return PosContex.SP_SET_DECLINED_QUOTATIONS(quotationId, reasonDeclined, reasonComment, userId);
+        }
+        public virtual int SetQuotationNote(int quotationId, int noteReasonId, string Note, int userId)
+        {
+            return PosContex.SP_SET_QUOTATIONS_NOTES(quotationId, noteReasonId, Note, userId);
+        }
+        public virtual int SendQuotationNotesToGlobal(int quotationId, int? NoteId)
+        {
+            IEnumerable<SP_SET_QUOTATIONS_NOTES_GLOBAL_Result> result = null;
+
+            result = PosContex.SP_SET_QUOTATIONS_NOTES_GLOBAL(quotationId, NoteId);
+
+            if (result.FirstOrDefault() != null)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public virtual int SetLogVisits(LogVisits parameter)
+        {
+            int temp;
+            int result = 0;
+            temp = PosContex.SP_SET_LOG_VISITS(
+                parameter.contactFormId,
+                parameter.iP,
+                parameter.iPInfo,
+                parameter.system
+            );
+
+            result = 1;
+
+            return
+                result;
+        }
+
+        public virtual int SetQuotationReferred(Quotation.QuotationReferred parameters)
+        {
+            IEnumerable<SP_SET_QUOTATION_REFERRED_Result> temp;
+
+            temp = PosContex.SP_SET_QUOTATION_REFERRED(
+                parameters.QuotationId,
+                parameters.ReferredId,
+                parameters.ReferredName,
+                parameters.ReferredIdentificationNumber,
+                parameters.ReferredPhone,
+                parameters.ReferredEmail,
+                parameters.ReferredPolicy);
+
+            if (temp.FirstOrDefault() != null)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public virtual int DeleteQuotationReferred(int quotationId)
+        {
+            return PosContex.SP_DELETE_QUOTATION_REFERRED(quotationId);
+        }
+
+        #endregion
+
+        #region Get
+        public virtual Quotation GetQuotation(int? quotationID, string quotationNumber = "", string policyNumber = "")
+        {
+            Quotation result;
+            IEnumerable<SP_GET_QUOTATION_Result> temp;
+            temp = PosContex.SP_GET_QUOTATION(quotationID, quotationNumber, policyNumber);
+            result = temp.Select(q => new Quotation()
+            {
+                Id = q.Quotation_Id,
+                ProductNumber = q.ProductNumber,
+                QuotationDailyNumber = q.QuotationDailyNumber,
+                QuotationNumber = q.QuotationNumber,
+                PolicyNumber = q.PolicyNumber,
+                StartDate = q.StartDate,
+                EndDate = q.EndDate,
+                PaymentFrequencyId = q.PaymentFrequencyId,
+                PaymentFrequency = q.PaymentFrequency,
+                PaymentWay = q.PaymentWay,
+                AmountToPayEnteredByUser = q.AmountToPayEnteredByUser,
+                CardnetLastResponseCode = q.CardnetLastResponseCode,
+                CardnetLastResponseMessage = q.CardnetLastResponseMessage,
+                CardnetAuthorizationCode = q.CardnetAuthorizationCode,
+                CardnetPaymentStatus = q.CardnetPaymentStatus,
+                TotalPrime = q.TotalPrime,
+                TotalISC = q.TotalISC,
+                ISCPercentage = q.ISCPercentage,
+                TotalDiscount = q.TotalDiscount,
+                DiscountPercentage = q.DiscountPercentage,
+                QuotationCoreIdNumber = q.QuotationCoreIdNumber,
+                ClientCoreIdNumber = q.ClientCoreIdNumber,
+                SendInspectionOnly = q.SendInspectionOnly,
+                Status = q.Status,
+                TermType_Id = q.TermType_Id,
+                User_Id = q.User_Id,
+                AchName = q.AchName,
+                AchAccountHolderGovId = q.AchAccountHolderGovId,
+                AchBankRoutingNumber = q.AchBankRoutingNumber,
+                AchType = q.AchType,
+                AchNumber = q.AchNumber,
+                PrincipalFullName = q.PrincipalFullName,
+                BusinessLine_Id = q.BusinessLine_Id,
+                QuotationProduct = q.QuotationProduct,
+                PrincipalIdentificationNumber = q.PrincipalIdentificationNumber,
+                LastStepVisited = q.LastStepVisited,
+                CurrencySymbol = q.CurrencySymbol,
+                Currency_Id = q.Currency_Id,
+                Messaging = q.Messaging,
+                Declined = q.Declined,
+                FlotillaDiscountPercent = q.FlotillaDiscountPercent,
+                TotalFlotillaDiscount = q.TotalFlotillaDiscount,
+                QuotationCoreNumber = q.QuotationCoreNumber,
+                QtyDayOfVigency = q.qtyDayOfVigency,
+                MonthlyPayment = q.MonthlyPayment,
+                Financed = q.Financed,
+                Period = q.Period,
+                Credit_Card_Type_Id = q.Credit_Card_Type_Id,
+                Credit_Card_Number_Key = q.Credit_Card_Number_Key,
+                Credit_Card_Number = q.Credit_Card_Number,
+                Expiration_Date_Year = q.Expiration_Date_Year,
+                Expiration_Date_Month = q.Expiration_Date_Month,
+                Card_Holder = q.Card_Holder,
+                Domiciliation = q.Domiciliation,
+                PaymentFreqIdSelected = q.PaymentFreqIdSelected,
+                Created = q.Created,
+                UserName = q.Username,
+                RequestTypeId = q.Request_Type_Id.GetValueOrDefault(),
+                RequestTypeDesc = q.Request_Type_Desc,
+                DomicileInitialPayment = q.DomicileInitialPayment,
+                policyNoMain = q.policy_No_Main,
+                ApplyToDocumentRequired = q.ApplyToDocumentRequired,
+                isExternal = q.isExternal,
+                couponCode = q.CouponCode,
+                couponPercentageDiscount = q.CouponPercentageDiscount,
+                CouponProspectId = q.CouponProspectId,
+                RiskLevel = q.RiskLevel,
+                contactFormId = q.ContactFormId,
+                secuenciaMov = q.SecuenciaMov,
+                FlotillaMode = q.FlotillaMode
+            }).
+               FirstOrDefault();
+
+            return
+                result;
+        }
+        public virtual IEnumerable<Driver> GetQuotationDrivers(int QuotationId)
+        {
+            IEnumerable<Driver> result;
+            IEnumerable<SP_GET_QUOTATION_DRIVERS_Result> temp;
+            temp = PosContex.SP_GET_QUOTATION_DRIVERS(QuotationId);
+
+            result = temp.Select(p => new Driver
+            {
+                Id = p.Id,
+                FirstName = p.FirstName,
+                SecondName = p.SecondName,
+                FirstSurname = p.FirstSurname,
+                SecondSurname = p.SecondSurname,
+                DateOfBirth = p.DateOfBirth,
+                IsPrincipal = p.IsPrincipal,
+                Address = p.Address,
+                PhoneNumber = p.PhoneNumber,
+                Mobile = p.Mobile,
+                WorkPhone = p.WorkPhone,
+                MaritalStatus = p.MaritalStatus,
+                Job = p.Job,
+                Company = p.Company,
+                YearsInCompany = p.YearsInCompany,
+                Sex = p.Sex,
+                City_Country_Id = p.City_Country_Id,
+                City_Domesticreg_Id = p.City_Domesticreg_Id,
+                City_State_Prov_Id = p.City_State_Prov_Id,
+                City_City_Id = p.City_City_Id,
+                Nationality_Global_Country_Id = p.Nationality_Global_Country_Id,
+                Email = p.Email,
+                IdentificationType = p.IdentificationType,
+                IdentificationNumber = p.IdentificationNumber,
+                ForeignLicense = p.ForeignLicense,
+                IdentificationNumberValidDate = p.IdentificationNumberValidDate,
+                InvoiceTypeId = p.InvoiceTypeId,
+                UserId = p.UserId,
+                Modi_Date = p.Modi_Date,
+                PostalCode = p.PostalCode,
+                AnnualIncome = p.AnnualIncome,
+                SocialReasonId = p.SocialReasonId,
+                OwnershipStructureId = p.OwnershipStructureId,
+                IdentificationFinalBeneficiaryOptionsId = p.IdentificationFinalBeneficiaryOptionsId,
+                PepFormularyOptionsId = p.PepFormularyOptionsId,
+                Home_Owner = p.Home_Owner,
+                QtyPersonsDepend = p.QtyPersonsDepend,
+                QtyEmployees = p.QtyEmployees,
+                Linked = p.Linked,
+                Segment = p.Segment,
+                Fax = p.Fax,
+                URL = p.URL,
+                CityDesc = p.CityDesc,
+                MunicipioDesc = p.MunicipioDesc,
+                GlobalCountryDesc = p.GlobalCountryDesc,
+                GlobalCountryDescEN = p.GlobalCountryDescEN,
+                StateProvDesc = p.StateProvDesc,
+                SocialReasonDesc = p.SocialReasonDesc,
+                PepFormularyOptionsDesc = p.PepFormularyOptionsDesc,
+                OwnershipStructureDesc = p.OwnershipStructureDesc,
+                IdentificationFinalBeneficiaryOptionsDesc = p.IdentificationFinalBeneficiaryOptionsDesc,
+                NationalityGlobalCountryDesc = p.NationalityGlobalCountryDesc,
+                WorkAddress = p.WorkAddress,
+                PlaceOfBirth = p.PlaceOfBirth,
+                TypeOfPerson = p.TypeOfPerson,
+                ManagerName = p.ManagerName,
+                ManagerPepOptionId = p.ManagerPepOptionId
+            })
+            .ToArray();
+
+            return
+                 result;
+        }
+        public virtual IEnumerable<Coverage> GetQuotationCoverage(int? vehicleId, int? Filtro)
+        {
+            IEnumerable<Coverage> result;
+            IEnumerable<SP_GET_QUOTATION_COVERAGE_Result> temp;
+            temp = PosContex.SP_GET_QUOTATION_COVERAGE(vehicleId, Filtro);
+            result = temp.Select(x => new Coverage()
+            {
+                Id = x.Id,
+                IsSelected = x.IsSelected,
+                CoverageDetailCoreId = x.CoverageDetailCoreId,
+                Name = x.Name,
+                Amount = x.Amount,
+                MinDeductible = x.MinDeductible,
+                SelfDamagesToProductLimits = x.SelfDamagesToProductLimits,
+                ThirdPartyToProductLimits = x.ThirdPartyToProductLimits,
+                ServiceType_Id = x.ServiceType_Id,
+                Limit = x.Limit,
+                UserId = x.UserId,
+                Deductible = x.Deductible,
+                CoverageType = x.CoverageType,
+                coveragePercentage = x.CoveragePercentage,
+                baseDeductible = x.BaseDeductible,
+                AllowsToSummarize = x.AllowsToSummarize
+            }).ToArray();
+
+            return result;
+        }
+
+        public virtual IEnumerable<VehicleProduct> GetQuotationVehicles(int? quotationID)
+        {
+            IEnumerable<VehicleProduct> result;
+            IEnumerable<SP_GET_QUOTATION_VEHICLE_Result> temp;
+            temp = PosContex.SP_GET_QUOTATION_VEHICLE(quotationID);
+
+            result = temp.Select(x => new VehicleProduct()
+            {
+                VehicleNumber = x.VehicleNumber,
+                Id = x.Id,
+                VehicleDescription = x.VehicleDescription,
+                Year = x.Year,
+                Cylinders = x.Cylinders,
+                Passengers = x.Passengers,
+                Weight = x.Weight,
+                Chassis = x.Chassis,
+                Plate = x.Plate,
+                Color = x.Color,
+                VehiclePrice = x.VehiclePrice,
+                InsuredAmount = x.InsuredAmount,
+                PercentageToInsure = x.PercentageToInsure,
+                TotalPrime = x.TotalPrime,
+                TotalIsc = x.TotalIsc,
+                TotalDiscount = x.TotalDiscount,
+                SelectedProductCoreId = x.SelectedProductCoreId,
+                VehicleTypeCoreId = x.VehicleTypeCoreId,
+                SelectedProductName = x.SelectedProductName,
+                VehicleTypeName = x.VehicleTypeName,
+                VehicleMakeName = x.VehicleMakeName,
+                UsageId = x.UsageId,
+                UsageName = x.UsageName,
+                StoreId = x.StoreId,
+                StoreName = x.StoreName,
+                Driver_Id = x.Driver_Id,
+                VehicleModel_Make_Id = x.VehicleModel_Make_Id,
+                VehicleModel_Model_Id = x.VehicleModel_Model_Id,
+                Quotation_Id = x.Quotation_Id,
+                SelectedVehicleTypeId = x.SelectedVehicleTypeId,
+                SelectedVehicleTypeName = x.SelectedVehicleTypeName,
+                SelectedCoverageCoreId = x.SelectedCoverageCoreId,
+                SelectedCoverageName = x.SelectedCoverageName,
+                VehicleYearOld = x.VehicleYearOld,
+                SurChargePercentage = x.SurChargePercentage,
+                NumeroFormulario = x.NumeroFormulario,
+                RateJson = x.RateJson,
+                UserId = x.UserId,
+                SecuenciaVehicleSysflex = x.SecuenciaVehicleSysflex,
+                IsFacultative = x.IsFacultative,
+                AmountFacultative = x.AmountFacultative,
+                VehicleQuantity = x.VehicleQuantity,
+                ModelDesc = x.Model_Desc,
+                ProratedPremium = x.ProratedPremium,
+                SelectedVehicleFuelTypeId = x.SelectedVehicleFuelTypeId,
+                SelectedVehicleFuelTypeDesc = x.SelectedVehicleFuelTypeDesc,
+                minimumdepreciation = x.minimumdepreciation,
+                minimumdepreciationId = x.minimumdepreciationId,
+                IsOverPreMium = x.IsOverPreMium,
+                TotalDepreciationId = x.TotalDepreciationId,
+                TotalDeppreciation = x.TotalDeppreciation
+            })
+            .ToArray();
+
+            return result;
+        }
+        public virtual IEnumerable<ProductLimits> GetQuotationProductLimits(int vehicleID)
+        {
+            IEnumerable<ProductLimits> result;
+            IEnumerable<SP_GET_QUOTATION_PRODUCT_LIMITS_Result> temp;
+            temp = PosContex.SP_GET_QUOTATION_PRODUCT_LIMITS(vehicleID);
+
+            result = temp.Select(q => new ProductLimits()
+            {
+                Id = q.Id,
+                IsSelected = q.IsSelected,
+                SdPrime = q.SdPrime,
+                TpPrime = q.TpPrime,
+                ServicesPrime = q.ServicesPrime,
+                ISC = q.ISC,
+                ISCPercentage = q.ISCPercentage,
+                TotalPrime = q.TotalPrime,
+                TotalIsc = q.TotalIsc,
+                TotalDiscount = q.TotalDiscount,
+                SelectedDeductibleCoreId = q.SelectedDeductibleCoreId,
+                SelectedDeductibleName = q.SelectedDeductibleName,
+                VehicleProduct_Id = q.VehicleProduct_Id,
+                UserId = q.UserId
+            })
+            .ToArray();
+
+            return result;
+        }
+        public virtual IEnumerable<ServicesTypes> GetQuotationServicesTypes(int? quotationID)
+        {
+            IEnumerable<ServicesTypes> result;
+            IEnumerable<SP_GET_QUOTATION_SERVICES_TYPES_Result> temp;
+
+            temp = PosContex.SP_GET_QUOTATION_SERVICES_TYPES(quotationID);
+
+            result = temp.Select(q => new ServicesTypes()
+            {
+                Id = q.Id,
+                Name = q.Name,
+                ServicesTypesToProductLimits = q.ServicesTypesToProductLimits,
+                UserId = q.UserId
+            })
+            .ToArray();
+
+            return result;
+        }
+        public virtual IEnumerable<Coverage> GetQuotationServices(int? quotationID)
+        {
+            IEnumerable<Coverage> result;
+            IEnumerable<SP_GET_QUOTATION_SERVICES_Result> temp;
+
+            temp = PosContex.SP_GET_QUOTATION_SERVICES(quotationID);
+
+            result = temp.Select(q => new Coverage()
+            {
+                Id = q.Id,
+                IsSelected = q.IsSelected,
+                CoverageDetailCoreId = q.CoverageDetailCoreId,
+                Name = q.Name,
+                Amount = q.Amount,
+                MinDeductible = q.MinDeductible,
+                SelfDamagesToProductLimits = q.SelfDamagesToProductLimits,
+                ThirdPartyToProductLimits = q.ThirdPartyToProductLimits,
+                ServiceType_Id = q.ServiceType_Id,
+                Limit = q.Limit,
+                UserId = q.UserId,
+                Deductible = q.Deductible
+            })
+            .ToArray();
+
+            return result;
+        }
+        public virtual IEnumerable<Coverage> GetQuotationCoverageDetail(int? quotationID)
+        {
+            IEnumerable<Coverage> result;
+            IEnumerable<SP_GET_QUOTATION_COVERAGE_DETAILS_Result> temp;
+            temp = PosContex.SP_GET_QUOTATION_COVERAGE_DETAILS(quotationID);
+            result = temp.Select(x => new Coverage()
+            {
+                Id = x.Id,
+                IsSelected = x.IsSelected,
+                CoverageDetailCoreId = x.CoverageDetailCoreId,
+                Name = x.Name,
+                Amount = x.Amount,
+                MinDeductible = x.MinDeductible,
+                SelfDamagesToProductLimits = x.SelfDamagesToProductLimits,
+                ThirdPartyToProductLimits = x.ThirdPartyToProductLimits,
+                ServiceType_Id = x.ServiceType_Id,
+                Limit = x.Limit,
+                UserId = x.UserId,
+                Deductible = x.Deductible
+            })
+            .ToArray();
+
+            return result;
+        }
+        public virtual bool getQuotationToNotValidate(string quotarionNumber)
+        {
+            bool result = false;
+            IEnumerable<SP_GET_IGNORE_RNC_VALIDATION_Result> temp;
+            temp = PosContex.SP_GET_IGNORE_RNC_VALIDATION(quotarionNumber);
+            foreach (var item in temp)
+            {
+                if (!string.IsNullOrEmpty(item.QuotationNumber) && (item.Status.ToString() == "1" || item.Status.ToString().ToLower() == "true"))
+                {
+                    return true;
+                }
+            }
+            return result;
+        }
+        public virtual IEnumerable<Quotation> GetQuotations(int? userType, string currentUserName = "", string quotationNumber = "", string principalName = "", string identification = "", string p_agents = "", bool? filtrarAgentes = false)
+        {
+            IEnumerable<Quotation> result;
+            IEnumerable<SP_GET_QUOTATIONS_Result> temp;
+            temp = PosContex.SP_GET_QUOTATIONS(currentUserName, quotationNumber, principalName, identification, p_agents, userType, filtrarAgentes);
+
+            result = temp.Select(q => new Quotation()
+            {
+                Id = q.Id,
+                ProductNumber = q.ProductNumber,
+                QuotationDailyNumber = q.QuotationDailyNumber,
+                QuotationNumber = q.QuotationNumber,
+                PolicyNumber = q.PolicyNumber,
+                StartDate = q.StartDate,
+                EndDate = q.EndDate,
+                PaymentFrequencyId = q.PaymentFrequencyId,
+                PaymentFrequency = q.PaymentFrequency,
+                PaymentWay = q.PaymentWay,
+                AmountToPayEnteredByUser = q.AmountToPayEnteredByUser,
+                CardnetLastResponseCode = q.CardnetLastResponseCode,
+                CardnetLastResponseMessage = q.CardnetLastResponseMessage,
+                CardnetAuthorizationCode = q.CardnetAuthorizationCode,
+                CardnetPaymentStatus = q.CardnetPaymentStatus,
+                TotalPrime = q.TotalPrime,
+                TotalISC = q.TotalISC,
+                ISCPercentage = q.ISCPercentage,
+                TotalDiscount = q.TotalDiscount,
+                DiscountPercentage = q.DiscountPercentage,
+                QuotationCoreIdNumber = q.QuotationCoreIdNumber,
+                ClientCoreIdNumber = q.ClientCoreIdNumber,
+                SendInspectionOnly = q.SendInspectionOnly,
+                Status = q.Status,
+                TermType_Id = q.TermType_Id,
+                User_Id = q.User_Id,
+                AchName = q.AchName,
+                AchAccountHolderGovId = q.AchAccountHolderGovId,
+                AchBankRoutingNumber = q.AchBankRoutingNumber,
+                AchType = q.AchType,
+                AchNumber = q.AchNumber,
+                PrincipalFullName = q.PrincipalFullName,
+                BusinessLine_Id = q.BusinessLine_Id,
+                QuotationProduct = q.QuotationProduct,
+                PrincipalIdentificationNumber = q.PrincipalIdentificationNumber,
+                LastStepVisited = q.LastStepVisited,
+                CurrencySymbol = q.CurrencySymbol,
+                Currency_Id = q.Currency_Id,
+                Messaging = q.Messaging,
+                Declined = q.Declined,
+                FlotillaDiscountPercent = q.FlotillaDiscountPercent,
+                TotalFlotillaDiscount = q.TotalFlotillaDiscount,
+                QuotationCoreNumber = q.QuotationCoreNumber,
+                QtyDayOfVigency = q.qtyDayOfVigency,
+                MonthlyPayment = q.MonthlyPayment,
+                Financed = q.Financed,
+                Period = q.Period,
+                Credit_Card_Type_Id = q.Credit_Card_Type_Id,
+                Credit_Card_Number_Key = q.Credit_Card_Number_Key,
+                Credit_Card_Number = q.Credit_Card_Number,
+                Expiration_Date_Year = q.Expiration_Date_Year,
+                Expiration_Date_Month = q.Expiration_Date_Month,
+                Card_Holder = q.Card_Holder,
+                Domiciliation = q.Domiciliation,
+                BusinessLineDesc = q.BusinessLineDesc,
+                Created = q.Created,
+                FullName = q.FullName,
+                Total = q.TotalPrime + q.TotalISC,
+                UserName = q.Username,
+                RequestTypeId = q.Request_Type_Id,
+                RequestTypeDesc = q.Request_Type_Desc,
+                DomicileInitialPayment = q.DomicileInitialPayment,
+                DateOfBirth = q.DateOfBirth,
+                RiskLevel = q.RiskLevel
+            })
+            .ToArray();
+
+            return result;
+        }
+        public virtual Quotation.Payment GetQuotationPaymentInfo(int quotationId)
+        {
+            Quotation.Payment result;
+            IEnumerable<SP_GET_QUOTATION_PAYMENT_INFO_Result> temp;
+
+            temp = PosContex.SP_GET_QUOTATION_PAYMENT_INFO(quotationId);
+            result = temp.Select(p => new Quotation.Payment
+            {
+                PaymentWay = p.PaymentWay,
+                PaymentFrequencyId = p.PaymentFrequencyId,
+                AmountToPayEnteredByUser = p.AmountToPayEnteredByUser,
+                TotalPrime = p.TotalPrime,
+                TotalISC = p.TotalISC,
+                ISCPercentage = p.ISCPercentage,
+                TotalDiscount = p.TotalDiscount,
+                DiscountPercentage = p.DiscountPercentage,
+                FlotillaDiscountPercent = p.FlotillaDiscountPercent,
+                TotalFlotillaDiscount = p.TotalFlotillaDiscount,
+                Messaging = p.Messaging,
+                TotalPrimeToDiscount = p.TotalPrimeToDiscount,
+                PaymentFrequencyDropDown = p.PaymentFrequencyDropDown,
+                QuotationDailyNumber = p.QuotationDailyNumber,
+                couponCode = p.CouponCode,
+                couponPercentageDiscount = p.CouponPercentageDiscount
+            }).
+               FirstOrDefault();
+
+            return
+                result;
+        }
+        public virtual IEnumerable<Quotation.ProductExcludeAgent> GetProductExcludeByAgent(string AgentCode)
+        {
+            IEnumerable<Quotation.ProductExcludeAgent> result;
+            IEnumerable<GET_PRODUCTEXCLUDE_BY_AGENT_Result> temp;
+
+            temp = PosContex.GET_PRODUCTEXCLUDE_BY_AGENT(AgentCode);
+            result = temp.Select(p => new Quotation.ProductExcludeAgent
+            {
+
+                id = p.id,
+                AgentCode = p.AgentCode,
+                Ramo = p.Ramo,
+                SubramoDesc = p.SubramoDesc,
+                ProductDesc = p.ProductDesc,
+                Comentario = p.Comentario,
+                CreateDate = p.CreateDate,
+                ModifiedDate = p.ModifiedDate,
+                Estatus = p.Estatus
+
+            });
+
+            return
+                result;
+        }
+        public virtual Quotation.VerificationCode GetVerificationCode(string phoneNumber, string verificationCode)
+        {
+            IEnumerable<Quotation.VerificationCode> result;
+            IEnumerable<SP_GET_VERIFICATION_CODE_Result> temp;
+
+            temp = PosContex.SP_GET_VERIFICATION_CODE(phoneNumber, verificationCode);
+            result = temp.Select(p => new Quotation.VerificationCode
+            {
+                id = p.Id,
+                phoneNumber = p.PhoneNumber,
+                verification_Code = p.VerificationCode,
+                createdDate = p.CreatedDate
+            });
+
+            return
+                result.FirstOrDefault();
+        }
+        public virtual int SetVerificationCode(string phoneNumber, string verificationCode)
+        {
+            var temp = PosContex.SP_SET_VERIFICATION_CODE(phoneNumber, verificationCode);
+            return temp;
+        }
+        public virtual IEnumerable<Quotation.QuotationNotes> GetQuotationNotes(int QuotationId)
+        {
+            IEnumerable<Quotation.QuotationNotes> result;
+            IEnumerable<SP_GET_QUOTATIONS_NOTES_Result> temp;
+
+            temp = PosContex.SP_GET_QUOTATIONS_NOTES(QuotationId);
+
+            result = temp.Select(p => new Quotation.QuotationNotes
+            {
+                Id = p.Id,
+                Comment = p.Comment,
+                QuotationId = p.Quotation_Id,
+                UserId = p.User_Id,
+                CreateDate = p.Create_Date,
+                userName = p.userName
+            });
+
+            return
+                result.ToArray();
+        }
+
+        public virtual Quotation.QuotationReferred GetQuotationReferred(int quotationId, int? referredId)
+        {
+            IEnumerable<Quotation.QuotationReferred> result;
+            IEnumerable<SP_GET_QUOTATION_REFERRED_Result> temp;
+
+            temp = PosContex.SP_GET_QUOTATION_REFERRED(quotationId, referredId);
+
+            result = temp.Select(p => new Quotation.QuotationReferred
+            {
+                ReferredId = p.Referred_Id,
+                QuotationId = p.Quotation_Id,
+                ReferredEmail = p.Referred_Email,
+                ReferredIdentificationNumber = p.Referred_IdentificationNumber,
+                ReferredName = p.Referred_Name,
+                ReferredPhone = p.Referred_Phone,
+                ReferredPolicy = p.Referred_Policy
+            });
+
+            return
+                result.FirstOrDefault();
+        }
+
+        public virtual IEnumerable<Quotation.ProductsAppMode> GetProductAppMode(string appMode)
+        {
+            IEnumerable<Quotation.ProductsAppMode> result;
+            IEnumerable<SP_GET_RODUCT_TO_SHOW_POS_MODE_Result> temp;
+
+            temp = PosContex.SP_GET_RODUCT_TO_SHOW_POS_MODE(appMode);
+            result = temp.Select(p => new Quotation.ProductsAppMode
+            {
+                AppMode = p.AppMode,
+                ProductName = p.ProductName
+            });
+
+            return
+                result.ToArray();
+        }
+
+
+        #endregion
+    }
+}

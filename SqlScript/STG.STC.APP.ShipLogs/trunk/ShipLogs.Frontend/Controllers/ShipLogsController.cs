@@ -1,5 +1,6 @@
 ﻿using ShipLogs.Entity.Entity;
 using ShipLogs.Logic.LogicBL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,21 +27,30 @@ namespace ShipLogs.Frontend.Controllers
         }
         public ActionResult CargarShipLogs(string data)
         {
-           
-
+            string msjbtn = "";
+            var shipModel = LogicManager.GET_Shimet_Logic_All();
             var result = new ShipmentEntity();
-            //var url = HttpUtility.UrlDecode(data.Replace("+", " ").Replace("/", ""));
+            //var url = HttpUtility.UrlDecode(data.Replace("+", " ").Replace("/", "")); 
+
+
+            ViewBag.Carrier = LogicManager.CarrierLogicDirect();
+            ViewBag.Operator = LogicManager.GetOperator();
+            var temp = data == null ? "SAVE" : "UPDATE";
+
             if (string.IsNullOrWhiteSpace(data))
             {
-                //Redirect("");
+                // 
             }
             else
             {
                 var url = HttpUtility.UrlDecode(data);
                 var dec = Tools.Decode(url);
 
+
                 //valido que tipo de logtype es
-                var validalogtype = LogicManager.IsIncomingVerificationLog(dec); 
+                var validalogtype = LogicManager.IsIncomingVerificationLog(dec);
+
+
                 if (validalogtype.Incoming)
                 {
                     //Obtengo el detalle de Incoming
@@ -50,51 +60,56 @@ namespace ShipLogs.Frontend.Controllers
                 {
                     //Obtengo el solo el Outgoing
                     result = LogicManager.Method_Outgoing(dec);
-                    
-                }
 
+                    //ViewBag.CurrierList = ToSelectList(shipModel, "0", "CarrierName"); 
+
+                }
             }
+            ViewBag.btnMenssager = temp;
             return View(result);
         }
 
         public JsonResult GetCurrier(string searchString)
         {
-            var data = LogicManager.GetCarrierLogic(searchString);
+            var data = LogicManager.CarrierLogic(searchString);
 
-            return Json(data,JsonRequestBehavior.AllowGet);
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
 
         [HttpPost]
         public JsonResult SaveShipManten(ShipmentEntity objModel)
         {
+            System.Threading.Thread.Sleep(3000);
             dynamic showMessageString = string.Empty;
-
-
-
             if (!objModel.Incoming)
             {
                 var resp = LogicManager.Set_Shimet_Logic(objModel);
-                showMessageString = new
+
+                if (resp.Value == "INERT" || resp.Value == "UPDATE")
                 {
-                    //param1 = 402,
-                    //param2 = get.ExceptionMessenger
-                };
-                return Json(showMessageString, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                showMessageString = new
+                    showMessageString = new
+                    {
+                        param1 = 202,
+                        param2 = "The Registry was successfully saved"
+
+                    };
+
+                }
+                else
                 {
-                    //param1 = 202,
-                    //param2 = get.Poliza,
-                    //param3 = get.NombreCliente
-                };
-                return Json(showMessageString, JsonRequestBehavior.AllowGet);
+                    showMessageString = new
+                    {
+                        param1 = 404,
+                        param2 = "No Se guardo el Registro exitosamente",
+                        param3 = resp.Value
+                    };
+                }
+
             }
+            return Json(showMessageString, JsonRequestBehavior.AllowGet);
 
         }
 
     }
 }
-

@@ -18,23 +18,47 @@ namespace ShipLogs.Logic.LogicBL
             shioLogsRepocitory = new ShioLogsRepocitory();
         }
 
-        public virtual List<CarrierEntity> GetCarrierLogic(string name)
+        public virtual List<CarrierEntity> CarrierLogic(string name)
         {
             var result = shioLogsRepocitory.GetCarrier(name);
             return result;
         }
 
+
+        public virtual List<CarrierEntity> CarrierLogicDirect()
+        {
+            var result = shioLogsRepocitory.GetCarrierDirec();
+            return result;
+        }
+
+        public virtual List<OperatorEntity> GetOperator()
+        {
+            var result = shioLogsRepocitory.GetOperator();
+            return result;
+        }
+
         public virtual Generic Set_Shimet_Logic(ShipmentEntity parameters)
         {
-            if (!parameters.ShipUniqueID.HasValue)
+            Generic generic = new Generic();
+            try
             {
-                parameters.ShipUniqueID = 0;
+                if (!parameters.ShipUniqueID.HasValue)
+                {
+                    parameters.ShipUniqueID = 0;
+                }
+                parameters.Transit = false;
+
+                var Result = shioLogsRepocitory.Set_Shimet(parameters);
+
+                return Result.FirstOrDefault();
             }
-            parameters.Transit =false;
+            catch (Exception ex)
+            {
+                var error = generic.ErrorMenssager = ex.Message.ToString();
+                var code = generic.id = ex.GetHashCode();
+                return generic;
+            }
 
-            var Result = shioLogsRepocitory.Set_Shimet(parameters);
-
-            return Result.FirstOrDefault();
         }
         public virtual int Set_ShimetDetailsInsert_Logic(ShipmentDetailEntity parameters)
         {
@@ -61,9 +85,7 @@ namespace ShipLogs.Logic.LogicBL
             return
 
               shioLogsRepocitory.GET_ShimetAll();
-        }
-
-
+        } 
         public virtual ShipmentEntity Method_Outgoing(string param)
         {
 

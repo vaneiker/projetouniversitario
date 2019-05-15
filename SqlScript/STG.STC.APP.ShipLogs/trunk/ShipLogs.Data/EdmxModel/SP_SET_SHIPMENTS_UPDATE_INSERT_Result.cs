@@ -13,7 +13,7 @@ namespace ShipLogs.Data.EdmxModel
     
     public partial class SP_SET_SHIPMENTS_UPDATE_INSERT_Result
     {
-        public Nullable<int> Id { get; set; }
+        public int? Id { get; set; }
         public string Value { get; set; }
         public string IdAlf { get; set; }
     }

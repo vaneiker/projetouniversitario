@@ -1,0 +1,379 @@
+﻿@using STL.POS.Frontend.Web.NewVersion.CustomCode;
+@{
+    ViewBag.TitlePage = "Inclusión";
+    var Title = ((object)ViewBag.Title).ToString();
+}
+
+<div class="exc_div">
+    @if (ViewBag.SearchIsVisible)
+    {
+        <div class="mdl-cell--12-col bg-light mdl-shadow--4dp w-100 float-left mb-3">
+            <div id="OptionsRadios" class="mdl-cell mt-0 mb-0 mdl-textfield  mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left @(!ViewBag.onlyLoggedUsers? "requerido":"")">
+                <label class="mb-1 mt-0 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col " for="cdl">
+                    <input type="radio" id="cdl" class="mdl-radio__button" name="tipoID" value="1" @(ViewBag.onlyLoggedUsers ? "disabled=disabled" : "")>
+                    <span class="mdl-radio__label">Cédula</span>
+                </label>
+                <label class=" mb-1 mt-0 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="licen">
+                    <input type="radio" id="licen" class="mdl-radio__button" name="tipoID" value="2" @(ViewBag.onlyLoggedUsers ? "disabled=disabled" : "")>
+                    <span class="mdl-radio__label">Licencia</span>
+                </label>
+                <label class=" mb-1 mt-0 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="rnc-rd">
+                    <input type="radio" id="rnc-rd" class="mdl-radio__button" name="tipoID" value="3" @(ViewBag.onlyLoggedUsers ? "disabled=disabled" : "")>
+                    <span class="mdl-radio__label">RNC</span>
+                </label>
+                <label class="mb-1 mt-0 mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--6-col" for="pass-rd">
+                    <input type="radio" id="pass-rd" class="mdl-radio__button" name="tipoID" value="4" @(ViewBag.onlyLoggedUsers ? "disabled=disabled" : "")>
+                    <span class="mdl-radio__label">Pasaporte</span>
+                </label>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-left">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label @(!ViewBag.onlyLoggedUsers? "requerido":"")">
+                    <input class="mdl-textfield__input" type="text" id="nbID" @(ViewBag.onlyLoggedUsers ? "disabled=disabled" : "")>
+                    <label class="mdl-textfield__label" for="nbID">Número de Identificación</label>
+                    <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="nbID">
+                        <i class="material-icons">&#xE8A6;</i>
+                    </label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone float-right">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label requerido">
+                    <input class="mdl-textfield__input" type="text" id="nbPolicyNo">
+                    <label class="mdl-textfield__label" for="nbPolicyNo">Poliza</label>
+                    <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="nbPolicyNo">
+                        <i class="material-icons">&#xE8F7;</i>
+                    </label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--12-col float-left mt-0">
+                <hr class="border border-secondary mt-0 clearfix">
+                <button id="btnSearch" class="mdl-textfield mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white text-capitalize float-right mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone p-0 mb-3">
+                    <i class="material-icons">search</i>Buscar
+                </button>
+                <button id="btnCancel" class="mdl-button mr-3 mdl-button--raised mdl-js-button mb-1 mdl-js-ripple-effect mdl-color-text--white bg-danger float-right">
+                    <strong class="x-hide">Cancelar</strong>
+                </button>
+            </div>
+        </div>
+    }
+
+    <div class="mdl-cell--12-col bg-light mdl-shadow--4dp w-100 float-left mb-3">
+        <h5 class="p-2 rounded-top bg-primary text-center mdl-color-text--white mt-0 mb-0 d-block float-left"><i class="material-icons float-left mr-2">&#xE8F7;</i>Información del Cliente</h5>
+        <div class="mdl-grid col-12">
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="FullName" readonly="readonly">
+                    <label class="mdl-textfield__label" for="FullName">Nombre</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="Sex" readonly="readonly">
+                    <label class="mdl-textfield__label" for="Sex">Sexo</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="LicenciaExt" readonly="readonly">
+                    <label class="mdl-textfield__label" for="LicenciaExt">Licencia Extranjera</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="Identification" readonly="readonly">
+                    <label class="mdl-textfield__label" for="Identification">Numero de Identificación </label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input dateOfBirth" type="text" id="DateOfBirth" readonly="readonly">
+                    <label class="mdl-textfield__label" for="DateOfBirth">Fecha de Nacimiento</label>
+                    <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="dateNC">
+                        <i class="material-icons">&#xE916;</i>
+                    </label>
+                </div>
+            </div>
+            @if (Title == "EXCLUSIONES")
+            {
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input ExcludeStartDate datepicker" type="text" id="ExcludeStartDate" name="ExcludeStartDate" readonly="readonly">
+                        <label class="mdl-textfield__label" for="ExcludeStartDate">Fecha de Exclusión</label>
+                        <label class="mdl-button mdl-js-button mdl-button--icon" style="right: 0;" for="dateNC">
+                            <i class="material-icons">&#xE916;</i>
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="mdl-cell--12-col bg-light mdl-shadow--4dp w-100 float-left mb-3">
+        <h5 class="p-2 rounded-top bg-primary text-center mdl-color-text--white mt-0 mb-0 d-block float-left"><i class="material-icons float-left mr-2">&#xE8F7;</i>Vehículo de la poliza actual</h5>
+        <div class="table-responsive" style="height:auto; overflow:auto">
+            @if (Title == "EXCLUSIONES")
+            {
+                <div id="dvtblFilters" class="row" style="margin-left: 27px !important;">
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input tblfilter" type="text" id="txtMake" name="txtMake">
+                            <label class="mdl-textfield__label" for="txtMake">Marca</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input tblfilter" type="text" id="txtmodel" name="txtmodel">
+                            <label class="mdl-textfield__label" for="txtmodel">Modelo</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input tblfilter" type="text" id="txtchasis" name="txtchasis">
+                            <label class="mdl-textfield__label" for="txtchasis">Chasis</label>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <table class="table table-striped table-light text-center" id="tblVehicles" style="border-collapse: collapse !important;">
+                <thead>
+                    <tr class="bg-primary mdl-color-text--white">
+                        <th scope="col">#</th>
+                        <th scope="col">Número de Poliza</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Chassis</th>
+                        <th scope="col">Color</th>
+                        @if (Title == "EXCLUSIONES")
+                        {
+                            <th scope="col">Excluir</th>
+                        }
+                        else if (Title == "CAMBIOS")
+                        {
+                            <th scope="col">Modificar</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="collapse mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-shadow--4dp pt-0" id="frmVehicleInclusion">
+        <h4 class="p-2 bg-info text-center mdl-color-text--white mt-0"><i class="material-icons float-left em2">&#xE88F;</i>Información del Vehículo</h4>
+
+        <div class="mdl-grid col-12" id="dvVehicleForm">
+            <!-- Campos -->
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    @Html.DropDownList("ddlMarca", (IEnumerable<SelectListItem>)ViewBag.Brands, "", new { @class = "chosen-select-deselect form-control", @data_placeholder = "Marca" })
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <select id="ddlModelo" class="chosen-select-deselect form-control" data-placeholder="Modelo">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-sm-center float-left nav-item dropdown mdl-textfield mdl-js-textfield mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                @Html.DropDownList("ddlAnio", (IEnumerable<SelectListItem>)ViewBag.Years, new { @class = "chosen-select-deselect form-control", @data_placeholder = "Año" })
+            </div>
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                <div class="text-sm-center mdl-textfield  nav-item dropdown">
+                    <select id="ddlType" class="chosen-select-deselect form-control nav-link text-center btn btn-outline-secondary mt-3 mdl-cell--12-col" data-placeholder="Tipo">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                <div class="text-sm-center  mdl-textfield nav-item dropdown">
+                    <select id="fuelType" name="fuelType" class="chosen-select-deselect form-control nav-link text-center btn btn-outline-secondary mt-3 mdl-cell--12-col" data-placeholder="Tipo Combustible">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-sm-center nav-item dropdown float-right mdl-cell mdl-cell--2-col mdl-cell--3-col-tablet mdl-cell--12-col-phone hideSearh putErrorBorder">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty is-upgraded">
+                    <!-- is-upgraded  -->
+                    <select class="mdl-textfield__input" data-placeholder="Nuevo / 0KM" id="VehicleYearsOld">
+                        <option value=""></option>
+                        <option value="0 Km">Sí</option>
+                        <option value="Usado">No</option>
+                    </select>
+                    <label class="mdl-textfield__label" for="VehicleYearsOld">Nuevo / 0KM</label>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                <div class="text-sm-center  mdl-textfield nav-item dropdown">
+                    <select id="ddlPrincipalUsage" class="chosen-select-deselect form-control nav-link text-center btn btn-outline-secondary mt-3 mdl-cell--12-col" data-placeholder="Uso Principal">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col mdl-cell--3-col-tablet mdl-cell--12-col-phone putErrorBorder">
+                <div class="mdl-textfield hideSearh">
+                    @Html.DropDownList("ddlEstacionamiento", (IEnumerable<SelectListItem>)ViewBag.Stores, new { @class = "chosen-select-deselect form-control nav-link text-center btn btn-outline-secondary mt-3 mdl-cell--12-col", @data_placeholder = "Estacionamiento" })
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col mdl-cell--3-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="valor" decimal='decimal'>
+                    <label class="mdl-textfield__label" for="valor">Valor</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--12-col mb-4">
+                <button id="btnAddEditVehicle" onclick="AddVehicle()" class="mdl-textfield mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-color-text--white text-capitalize p-0 mb-md-0 float-right mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                    <i class="material-icons">add</i><span>Agregar Vehículo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="selecCober" class=" mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-grid" style="display:none">
+        <h4 class="p-2 bg-info text-center mdl-color-text--white mt-0 w-100">Seleccionar Cobertura</h4>
+        <div class="mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-grid"></div>
+    </div>
+    <div class="collapse mdl-cell mdl-cell--12-col mdl-card w-100 ml-0 mdl-shadow--4dp pt-0" id="frmVehicleChanges" style="display:none">
+        <h4 class="p-2 bg-info text-center mdl-color-text--white mt-0"><i class="material-icons float-left em2">&#xE88F;</i>Cambios Vehículo</h4>
+
+        <div class="mdl-grid col-12" id="dvVehicleForm">
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="Actualchassis" readonly="readonly">
+                    <label class="mdl-textfield__label" for="Actualchassis">Chasis Anterior</label>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="chassis">
+                    <label class="mdl-textfield__label" for="chassis">Chasis Nuevo</label>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="Actualplate" readonly="readonly">
+                    <label class="mdl-textfield__label" for="Actualplate">Placa Anterior</label>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="plate">
+                    <label class="mdl-textfield__label" for="plate">Placa Nueva</label>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="ActualColor" readonly="readonly">
+                    <label class="mdl-textfield__label" for="ActualColor">Color Anterior</label>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    @Html.DropDownList("Color", (IEnumerable<SelectListItem>)ViewBag.Colors, "", new { @id = "ddlColor", Name = "ddlColor", @class = "chosen-select-deselect form-control", @data_placeholder = "Color Nuevo" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+    <div class="container">
+        <div class="mdl-mega-footer__top-section">
+            <div class="mdl-mega-footer__right-section float-right">
+                <ul class="mdl-mega-footer__link-list mdl-color-text--white text-right x-hide mb-0 mt-2 float-left">
+                    <li class="text-info"><strong>Tel: </strong> 1-809-200-5591</li>
+                    <li><strong> Email:</strong> ventas@atlantica.do</li>
+                </ul>
+
+                @if (Title == "INCLUSIONES")
+                {
+                    @Ajax.RawActionLink(string.Format("<strong class='x-hide d-block float-left mr-2'>Continuar</strong><i class='material-icons float-right ml-2'>arrow_forward</i>"),
+                                      "Summary",
+                                      "Home", null,
+                                      new AjaxOptions
+                                      {
+                                          UpdateTargetId = "dvContainer",
+                                          InsertionMode = InsertionMode.Replace,
+                                          OnSuccess = "InitializeSummary()",
+                                          OnBegin = "return SaveVehicleInclusion()"
+                                      },
+                                      new
+                                      {
+                                          @id = "lnkContinue",
+                                          @class = "btn btn-outline-success mb-1 lh22  float-right  swatch-success"
+                                      })
+                }
+                else if (Title == "EXCLUSIONES")
+                {
+                    @Ajax.RawActionLink(string.Format("<strong class='x-hide d-block float-left mr-2'>Continuar</strong><i class='material-icons float-right ml-2'>arrow_forward</i>"),
+                                      "Summary",
+                                      "Home", null,
+                                      new AjaxOptions
+                                      {
+                                          UpdateTargetId = "dvContainer",
+                                          InsertionMode = InsertionMode.Replace,
+                                          OnSuccess = "InitializeSummary()",
+                                          OnBegin = "return SaveVehicleExlcusion()"
+                                      },
+                                      new
+                                      {
+                                          @id = "lnkContinue",
+                                          @class = "btn btn-outline-success mb-1 lh22  float-right swatch-success"
+                                      })
+                }
+                else if (Title == "CAMBIOS")
+                {
+                    @Ajax.RawActionLink(string.Format("<strong class='x-hide d-block float-left mr-2'>Continuar</strong><i class='material-icons float-right ml-2'>arrow_forward</i>"),
+                                      "Summary",
+                                      "Home", null,
+                                      new AjaxOptions
+                                      {
+                                          UpdateTargetId = "dvContainer",
+                                          InsertionMode = InsertionMode.Replace,
+                                          OnSuccess = "InitializeSummary()",
+                                          OnBegin = "return SaveVehicleChange()"
+                                      },
+                                      new
+                                      {
+                                          @id = "lnkContinue",
+                                          @class = "btn btn-outline-success mb-1 lh22 float-right swatch-success"
+                                      })
+                }
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+@Html.Hidden("hdnQuotationId", ((int)ViewBag.QuotationIdFromEdit) > 0 ? (object)ViewBag.QuotationIdFromEdit : "")
+@Html.Hidden("hdnIntermediarioId", ((int)ViewBag.IntermediarioIdFromEdit) > 0 ? (object)ViewBag.IntermediarioIdFromEdit : "")
+@Html.Hidden("hdnEndDate", "")
+@Html.Hidden("hdnCustomerDataInclusion", "")
+@Html.Hidden("hdnDriverData", "")
+@Html.Hidden("policyNoMain", (object)ViewBag.PolicyMainFromEdit)
+@Html.Hidden("hdndataVehicleTypes", "")
+@Html.Hidden("isFromHistory", "false")
+@Html.Hidden("hdnCoreQuotationNumber", (object)ViewBag.CoreQuotationNumber)
+@Html.Hidden("SecuenciaSysFlexMax")
+@Html.Hidden("hdnPercentByQtyVehicle")
+@Html.Hidden("hdnTotalByQtyVehicle")
+@Html.Hidden("hdnTitle", ((object)ViewBag.Title).ToString())
+@Html.Hidden("hdnExcludeVehiclesData")
+@Html.Hidden("hdnExcludeVehiclesQuantity")
+@Html.Hidden("hdnChangeID")
+

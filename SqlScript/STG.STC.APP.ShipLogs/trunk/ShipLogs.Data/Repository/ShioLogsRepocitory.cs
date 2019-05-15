@@ -165,5 +165,40 @@ namespace ShipLogs.Data.Repository
             return result;
         }
 
+    
+
+        public virtual List<CarrierEntity> GetCarrierDirec()
+        {
+            using (var dbo = new ShipLogs_Entities())
+            {
+                IEnumerable<CarrierEntity> RetornarValue = dbo.Database.SqlQuery<CarrierEntity>("EXEC [DBO].[SP_GetCarrierDirec]").ToList();
+                return RetornarValue.ToList();
+            }
+        }
+
+        public virtual List<OperatorEntity> GetOperator()
+        {
+            using (var dbo = new ShipLogs_Entities())
+            {
+                IEnumerable<OperatorEntity> RetornarValue = dbo.Database.SqlQuery<OperatorEntity>("EXEC [DBO].[SP_GET_OPERATOR]").ToList();
+                return RetornarValue.ToList();
+            }
+        }
+
+
+        public virtual List<CarrierEntity> ListCarrier(string name)
+        {
+            var result = new List<CarrierEntity>();
+            using (var dbo = new ShipLogs_Entities())
+            {
+                result = dbo.Carriers.Where(x => x.CarrierStatus == true).Select(x => new CarrierEntity
+                {
+                    CarrierName = x.CarrierName.ToUpper().TrimEnd().TrimEnd()
+
+                }).ToList();
+            }
+            return result;
+        }
+
     }
 }
