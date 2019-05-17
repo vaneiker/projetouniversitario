@@ -66,7 +66,7 @@ namespace ShipLogs.Data.Repository
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public virtual int Set_Shimet_DetailsSave(ShipmentDetailEntity parameters)
+        public virtual int Set_Shimet_DetailsSave(ShipmentEntity.ShipmentDetailEntity parameters)
         {
             int result = 0;
             using (var dbo = new ShipLogs_Entities())
@@ -75,7 +75,7 @@ namespace ShipLogs.Data.Repository
                                  parameters.ShipUniqueID,
                                  parameters.AssignedTo,
                                  parameters.ItemDetail,
-                                 parameters.operat,
+                                 "",
                                  parameters.DetailUniqueID
             );
                 return

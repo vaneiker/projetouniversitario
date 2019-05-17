@@ -80,18 +80,19 @@ namespace ShipLogs.Frontend.Controllers
         [HttpPost]
         public JsonResult SaveShipManten(ShipmentEntity objModel)
         {
-            System.Threading.Thread.Sleep(3000);
+          
             dynamic showMessageString = string.Empty;
             if (!objModel.Incoming)
             {
                 var resp = LogicManager.Set_Shimet_Logic(objModel);
 
-                if (resp.Value == "INERT" || resp.Value == "UPDATE")
+                if (resp.Value == "INSERT" || resp.Value == "UPDATE")
                 {
                     showMessageString = new
                     {
                         param1 = 202,
-                        param2 = "The Registry was successfully saved"
+                        param2 = "The Registry was successfully saved",
+                        param3=resp.id
 
                     };
 
@@ -106,10 +107,17 @@ namespace ShipLogs.Frontend.Controllers
                     };
                 }
 
-            }
+            }  
             return Json(showMessageString, JsonRequestBehavior.AllowGet);
 
         }
 
+        public JsonResult SaveShipMantenDetail(List<ShipmentEntity.ShipmentDetailEntity> datalle)
+        {
+            dynamic showMessageString = string.Empty;
+            var resp = LogicManager.Set_ShimetDetailsInsert_Logic(datalle);
+
+            return Json(showMessageString, JsonRequestBehavior.AllowGet);
+        } 
     }
 }

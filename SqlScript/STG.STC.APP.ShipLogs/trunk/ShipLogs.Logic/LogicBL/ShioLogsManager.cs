@@ -60,12 +60,27 @@ namespace ShipLogs.Logic.LogicBL
             }
 
         }
-        public virtual int Set_ShimetDetailsInsert_Logic(ShipmentDetailEntity parameters)
+        public virtual int Set_ShimetDetailsInsert_Logic(List<ShipmentEntity.ShipmentDetailEntity> parameters)
         {
-            return
+            var insertar = new ShipmentEntity.ShipmentDetailEntity();
 
-                shioLogsRepocitory.Set_Shimet_DetailsSave(parameters);
+            try
+            {
+                foreach (var d in parameters)
+                {
+                    insertar.ShipUniqueID = d.ShipUniqueID;
+                    insertar.AssignedTo = d.AssignedTo;
+                    insertar.ItemDetail = d.ItemDetail;
+                    insertar.DetailUniqueID = d.DetailUniqueID;
 
+                    shioLogsRepocitory.Set_Shimet_DetailsSave(insertar);
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+
+            }   return 1;
         }
         public virtual int Set_ShimetDetailsUpdate_Logic(ShipmentDetailEntity parameters)
         {
@@ -85,7 +100,7 @@ namespace ShipLogs.Logic.LogicBL
             return
 
               shioLogsRepocitory.GET_ShimetAll();
-        } 
+        }
         public virtual ShipmentEntity Method_Outgoing(string param)
         {
 
