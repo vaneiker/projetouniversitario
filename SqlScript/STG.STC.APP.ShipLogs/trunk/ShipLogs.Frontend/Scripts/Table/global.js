@@ -4,8 +4,7 @@ var tblShip;
 function CargarShipLogsjs(id) {
     var url = "/ShipLogs/CargarShipLogs?data=" + id;
     location.href = url;
-}
-
+} 
 
 tblShip = $('#ShipdataTables').DataTable({
     paging: true,
@@ -22,62 +21,26 @@ tblShip = $('#ShipdataTables').DataTable({
 });
 
 
- 
-$(document).on('click', '#btnNextShiDet', function () {
-   
-
-    $("#CarrierName").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "/ShipLogs/GetCurrier",
-                data: JSON.stringify({ searchString: $.trim($("#CarrierName").val()) }),
-                dataType: "json",
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                dataFilter: function (data) { return data; },
-                beforeSend: function () {
-                    //$("#txtABANumber").css("background-repeat", "no-repeat");
-                    //$("#CarrierName").css("background-position", "right");
-                    //$("#CarrierName1").css("background-image", "url('../../images/ui-anim_basic_16x16.gif')");
-                },
-                success: function (data) {
-                    response($.map(data, function (item) {
-                        return {
-                            label: item.CarrierName, value: item.CarrierName
-
-                        };
-                    }));
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log(textStatus);
-                }
-            });
-        },
-        minLength: 3,
-        select: function (event, ui) {
-            alert('Usted selecciono el id = ' + ui.item.id);
-
-        },
-        response: function (event, ui) {
-            var len = ui.content.length;
-        },
-        delay: 5
-    }).on('keyup', function (event) { });
-
-    $('#ddCarrierSelect').on('change', function () {
-        var text = this.value;
-        var hdfCarrier = $("#hdfCarrierName");
-        hdfCarrier.val(text);
-    });
+$('#ddCarrierSelect').on('change', function () {
+    var text = this.value;
+    var hdfCarrier = $("#hdfCarrierName");
+    hdfCarrier.val(text);
+});
 
 
-    $('#ddoperator').on('change', function () {
-        var text = this.value;
-        var Hdfoperator = $("#hdfoperator");
-        Hdfoperator.val(text);
-    });
+$('#ddoperator').on('change', function () {
+    var text = this.value;
+    var Hdfoperator = $("#hdfoperator");
+    Hdfoperator.val(text);
+});
 
-  
+
+$(function () {
+    $("#shipmentDate").datepicker({ dateFormat: "yy-mm-dd" }).val();
+});
+
+//Add New Register Detail
+$(document).on('click', '#btnNextShiDet', function () { 
     ShipRandomID = Math.floor((Math.random() * -20000) + (-1));
 
     var $this = $(this);
@@ -89,7 +52,56 @@ $(document).on('click', '#btnNextShiDet', function () {
     $trLast.after(newTr); 
 
 
-}); 
+});
+
+$(document).on('click', '#btnDeleteShiDet', function () {
+
+    var $this = $(this);
+    var randomID = $this.data('vehiclerandomid');
+
+    var trLen = $(".trVehicle").length;
+    if (trLen == 1) {
+        showWarning(['Debe existir al menos un vehículo']);
+        return false;
+    }
+
+    var current = altFind(AllVehicleDataToSave, function (item) {
+        return item.randomId == randomID
+    });
+
+    if (current != undefined) {
+        AllVehicleDataToSave = AllVehicleDataToSave.filter(function (item) {
+            return item.randomId != randomID
+        });
+    }
+
+    var quotationCoreNumber = getQuotationCoreNumber();
+    var vehicleID = current.Id;
+
+    if (current.SecuenciaVehicleSysflex > 0) {
+        $.ajax({
+            url: '/Home/DeleteVehicleOnSysflex',
+            type: 'POST',
+            dataType: 'json',
+            data: { SecuenciaVehicleSysflex: current.SecuenciaVehicleSysflex, quotationCoreNumber: quotationCoreNumber, vehicleID: vehicleID },
+            async: false,
+            success: function (data) {
+                if (data == "ERROR") {
+                    showError(['A ocurrido un error Eliminando el Vehículo'], 'Eliminando Vehículo');
+                }
+            }
+        });
+    }
+
+    //remuevo el Vehículo de la seccion de Vehículos
+    var tr = getHtmlElementByClass("trVehicle", randomID);
+    tr.remove();
+
+    GlobalVehicleDelete = true;
+});
+
+
+
 
     function generateNewRow(newTr) {
         var newInput = "";
@@ -161,43 +173,16 @@ $(document).on('click', '#btnNextShiDet', function () {
                 }
 }
 
-function OnSuccess(data) {
-
-
-    var a = data;
-
-    
  
-    $.ajax({
-        type: 'POST',
-        url: '/ShioLogs/SaveShipMantenDetail',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        success: function (data) {
-            if (data.status) {
-                alert('Successfully saved');
-                //here we will clear the form
-                list = [];
-                $('#orderNo,#orderDate,#description').val('');
-                $('#orderdetailsItems').empty();
-            }
-            else {
-                alert('Error');
-            }
-            $('#submit').text('Save');
-        },
-        error: function (error) {
-            console.log(error);
-            $('#submit').text('Save');
-        }
-    });
+
+function OnSuccess(data)
+{
+    alert("Deja que primero yo me ejecute");
+    CargarShipLogsjs(null);
 }
  
-    });
-
-}
-
-    function OnFailure(data) {
+function OnFailure(data)
+{
     var cedulaerror = data.responseJSON.param2;
     alertify.alert(
         'Cliente y Póliza',
@@ -205,42 +190,6 @@ function OnSuccess(data) {
         function () {
             alertify.error('¡Vuelva a intentarlo!');
         });
-
-
 }
  
- 
-       
-        
-
-
-        
-        //$('#ddCarrier').on('change', function () {
-        //    var text = this.value;
-        //    tblShip.columns(0).search(text).draw();
-        //});
-
-        //$('#ShipmentNumber').on('change', function () {
-        //    var text = this.value;
-        //    tblShip.columns(2).search(text).draw();
-        //});
-
-        //$('#ShipmentSender').on('change', function () {
-        //    var text = this.value;
-        //    tblShip.columns(4).search(text).draw();
-        //});
-
-        //$('#ShipmentReceiver').on('change', function () {
-        //    var text = this.value;
-        //    tblShip.columns(5).search(text).draw();
-        //});
-
-        //$('#ddLogType').on('change', function () {
-        //    var text = this.value;
-        //    var a = tblShip.columns(6).search(text).draw();
-
-        //});
-
-
-      
- 
+  

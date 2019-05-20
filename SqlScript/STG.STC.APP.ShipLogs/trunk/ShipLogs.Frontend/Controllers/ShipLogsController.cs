@@ -27,6 +27,11 @@ namespace ShipLogs.Frontend.Controllers
         }
         public ActionResult CargarShipLogs(string data)
         {
+
+
+
+
+
             string msjbtn = "";
             var shipModel = LogicManager.GET_Shimet_Logic_All();
             var result = new ShipmentEntity();
@@ -35,34 +40,40 @@ namespace ShipLogs.Frontend.Controllers
 
             ViewBag.Carrier = LogicManager.CarrierLogicDirect();
             ViewBag.Operator = LogicManager.GetOperator();
+
             var temp = data == null ? "SAVE" : "UPDATE";
 
-            if (string.IsNullOrWhiteSpace(data))
-            {
-                // 
+            // data is null? set the value a MA== 
+            if (string.IsNullOrWhiteSpace(data) || data=="null")
+            {  
+                data = HttpUtility.UrlDecode("MA==");
             }
             else
             {
                 var url = HttpUtility.UrlDecode(data);
                 var dec = Tools.Decode(url);
 
-
-                //valido que tipo de logtype es
-                var validalogtype = LogicManager.IsIncomingVerificationLog(dec);
-
-
-                if (validalogtype.Incoming)
+                if (dec != "0")
                 {
-                    //Obtengo el detalle de Incoming
-                    var detail = LogicManager.Method_Incoming(dec);
+                    //valido que tipo de logtype es
+                    var validalogtype = LogicManager.IsIncomingVerificationLog(dec);
+
+                    if (validalogtype.Incoming)
+                    {
+                        //Obtengo el detalle de Incoming
+                        var p = LogicManager.Method_Incoming(dec);
+
+                    }
+                    else
+                    {
+                        //Obtengo el solo el Outgoing
+                        result = LogicManager.Method_Outgoing(dec);
+
+                    }
                 }
                 else
                 {
-                    //Obtengo el solo el Outgoing
-                    result = LogicManager.Method_Outgoing(dec);
-
-                    //ViewBag.CurrierList = ToSelectList(shipModel, "0", "CarrierName"); 
-
+                    result = null;
                 }
             }
             ViewBag.btnMenssager = temp;
@@ -80,7 +91,7 @@ namespace ShipLogs.Frontend.Controllers
         [HttpPost]
         public JsonResult SaveShipManten(ShipmentEntity objModel)
         {
-          
+
             dynamic showMessageString = string.Empty;
             if (!objModel.Incoming)
             {
@@ -91,8 +102,8 @@ namespace ShipLogs.Frontend.Controllers
                     showMessageString = new
                     {
                         param1 = 202,
-                        param2 = "The Registry was successfully saved",
-                        param3=resp.id
+                        param2 = "The Registry was successfully saved!",
+                        param3 = resp.id
 
                     };
 
@@ -102,12 +113,12 @@ namespace ShipLogs.Frontend.Controllers
                     showMessageString = new
                     {
                         param1 = 404,
-                        param2 = "No Se guardo el Registro exitosamente",
+                        param2 = "The Record was not saved successfully!",
                         param3 = resp.Value
                     };
                 }
 
-            }  
+            }
             return Json(showMessageString, JsonRequestBehavior.AllowGet);
 
         }
@@ -118,6 +129,6 @@ namespace ShipLogs.Frontend.Controllers
             var resp = LogicManager.Set_ShimetDetailsInsert_Logic(datalle);
 
             return Json(showMessageString, JsonRequestBehavior.AllowGet);
-        } 
+        }
     }
 }
