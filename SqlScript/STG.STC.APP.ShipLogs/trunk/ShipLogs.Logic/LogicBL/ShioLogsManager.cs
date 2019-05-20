@@ -109,9 +109,9 @@ namespace ShipLogs.Logic.LogicBL
             var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Outgoing(obj);
             return dataList;
         }
-        public virtual IEnumerable<ShipmentViewModel> Method_Incoming(string param)
+        public virtual IEnumerable<ShipmentEntity.ShipmentDetailEntity> Method_Incoming(string param)
         {
-            var obj = new ShipmentViewModel();
+            var obj = new ShipmentEntity.ShipmentDetailEntity();
             obj.ShipUniqueID = int.Parse(param);
 
             var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Incoming(obj);

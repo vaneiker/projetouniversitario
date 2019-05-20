@@ -123,11 +123,11 @@ namespace ShipLogs.Data.Repository
                 return RetornarValue.ToArray();
             }
         }
-        public virtual IEnumerable<ShipmentViewModel> GET_Obtain_Shimet_Incoming(ShipmentViewModel param)
+        public virtual IEnumerable<ShipmentEntity.ShipmentDetailEntity> GET_Obtain_Shimet_Incoming(ShipmentEntity.ShipmentDetailEntity param)
         {
             using (var dbo = new ShipLogs_Entities())
             {
-                IEnumerable<ShipmentViewModel> RetornarValue = dbo.Database.SqlQuery<ShipmentViewModel>("EXEC [SP_GET_Obtain_Shimet_Incoming] @param",
+                IEnumerable<ShipmentEntity.ShipmentDetailEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntity.ShipmentDetailEntity>("EXEC [SP_GET_Obtain_Shimet_Incoming] @param",
                     new SqlParameter("@param", param.ShipUniqueID)).ToList();
                 return RetornarValue.ToArray();
             }
