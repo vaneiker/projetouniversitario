@@ -60,9 +60,9 @@ namespace ShipLogs.Logic.LogicBL
             }
 
         }
-        public virtual int Set_ShimetDetailsInsert_Logic(List<ShipmentEntity.ShipmentDetailEntity> parameters)
+        public virtual int Set_ShimetDetailsInsert_Logic(List<ShipmentDetailEntity> parameters)
         {
-            var insertar = new ShipmentEntity.ShipmentDetailEntity();
+            var insertar = new ShipmentDetailEntity();
 
             try
             {
@@ -80,8 +80,51 @@ namespace ShipLogs.Logic.LogicBL
             {
                 return 0;
 
-            }   return 1;
+            }
+            return 1;
         }
+
+
+        public virtual int Set_ShimetDetailsInsert_Logic(ShipmentDetailEntity parameters)
+        {
+            var insertar = new ShipmentDetailEntity();
+
+            try
+            {
+                insertar.ShipUniqueID = parameters.ShipUniqueID;
+                insertar.AssignedTo = parameters.AssignedTo;
+                insertar.ItemDetail = parameters.ItemDetail;
+                insertar.DetailUniqueID = parameters.DetailUniqueID;
+
+                shioLogsRepocitory.Set_Shimet_DetailsSave(insertar);
+
+            }
+            catch (Exception ex)
+            {
+                return 0;
+
+            }
+            return 1;
+        }
+        public virtual int Set_ShimetDetailsDelete_Logic(int parameters)
+        {
+            var insertar = new ShipmentDetailEntity();
+
+            try
+            {
+
+                shioLogsRepocitory.Set_Shimet_DetailsDelete(parameters);
+
+            }
+            catch (Exception ex)
+            {
+                return 0;
+
+            }
+            return 1;
+        }
+
+
         public virtual int Set_ShimetDetailsUpdate_Logic(ShipmentDetailEntity parameters)
         {
             return
@@ -109,9 +152,9 @@ namespace ShipLogs.Logic.LogicBL
             var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Outgoing(obj);
             return dataList;
         }
-        public virtual IEnumerable<ShipmentEntity.ShipmentDetailEntity> Method_Incoming(string param)
+        public virtual ShipmentEntity Method_Incoming(string param)
         {
-            var obj = new ShipmentEntity.ShipmentDetailEntity();
+            var obj = new ShipmentEntity();
             obj.ShipUniqueID = int.Parse(param);
 
             var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Incoming(obj);

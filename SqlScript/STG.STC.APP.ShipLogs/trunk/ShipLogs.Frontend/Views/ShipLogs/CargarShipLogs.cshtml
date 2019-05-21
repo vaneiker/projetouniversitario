@@ -9,9 +9,11 @@
 
 
 }
-<style>
-   #tblShipmentDetails { overflow: auto; /* append scrollbars if necessary */ }
-</style>
+@*<style>
+        #tblShipmentDetails {
+            overflow: auto; /* append scrollbars if necessary */
+        }
+    </style>*@
 
 @using (Ajax.BeginForm("SaveShipManten", new AjaxOptions()
 {
@@ -27,9 +29,12 @@
     @Html.AntiForgeryToken()
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.ShipUniqueID, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.HiddenFor(model => model.ShipUniqueID, new { htmlAttributes = new { @class = "form-control", @id = "shipUniqueID",@name = "shipUniqueID" } })
+    
     <div class="form-row">
         <h4>Shipment Details</h4>
+
+        <input type="hidden" value="@IsIncoming" id="Incominghdf" />
 
         @*Inicio del Formulario*@
         <div class="form-group col-md-4">
@@ -50,29 +55,34 @@
 
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.ShipmentNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ShipmentNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ShipmentNumber, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentNumber", @name = "ShipmentNumber" } })
             @Html.ValidationMessageFor(model => model.ShipmentNumber, "", new { @class = "text-danger" })
         </div>
+
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control", @id = "AccountNumber" ,@name = "AccountNumber" } })
             @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
         </div>
+
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.ShipmentDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ShipmentDate, new { htmlAttributes = new { @class = "form-control",@id="shipmentDate",@name="shipmentDate" } })
+            @Html.EditorFor(model => model.ShipmentDate, new { htmlAttributes = new { @class = "form-control", @id = "shipmentDate", @name = "shipmentDate" } })
             @Html.ValidationMessageFor(model => model.ShipmentDate, "", new { @class = "text-danger" })
         </div>
+
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.ShipmentWeight, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ShipmentWeight, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ShipmentWeight, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentWeight" , @name="ShipmentWeight" } })
             @Html.ValidationMessageFor(model => model.ShipmentWeight, "", new { @class = "text-danger" })
         </div>
+
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.ShipmentQTY, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ShipmentQTY, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ShipmentQTY, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentQTY" , @name="ShipmentQTY" } })
             @Html.ValidationMessageFor(model => model.ShipmentQTY, "", new { @class = "text-danger" })
         </div>
+
         <div class="form-group col-md-4 mT-2">
             <div class="form-check fl mR-1">
                 <input class="form-check-input" type="radio" name="ShiptmentType" id="incomingShipment" onclick="setShiptmentType(this)" @(IsIncoming ? "checked" : "")>
@@ -90,11 +100,13 @@
             @Html.HiddenFor(model => model.Incoming)
 
         </div>
+
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.ShipPackageType, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ShipPackageType, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ShipPackageType, new { htmlAttributes = new { @class = "form-control", @id = "ShipPackageType",@name = "ShipPackageType"  } })
             @Html.ValidationMessageFor(model => model.ShipPackageType, "", new { @class = "text-danger" })
         </div>
+
         <div class="form-group col-md-4">
             <label for="inputCarrier">Package Carrier</label>
             <select id="ddoperator" class="form-control">
@@ -108,29 +120,30 @@
             </select>
             @Html.HiddenFor(model => model.Operator, new { @id = "hdfoperator", @name = "hdfoperator" })
         </div>
+
         <div class="form-group col-md-8">
             <h4>Sender Information</h4>
             @Html.LabelFor(model => model.Sender, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.Sender, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Sender, new { htmlAttributes = new { @class = "form-control", @id = "Sender",@name = "Sender" } })
             @Html.ValidationMessageFor(model => model.Sender, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group col-md-4">
             <h4 class="mB-2">Type Materials</h4>
             <div class="form-check fl mR-1">
-                @Html.CheckBoxFor(x => x.Materials, new { @class = "form-check-input" })
+                @Html.CheckBoxFor(x => x.Materials, new { @class = "form-check-input", @id = "MaterialsCheck" ,@name = "MaterialsCheck"})
                 <label class="form-check-label" for="MaterialsShipmentLabel1">
                     Materials
                 </label>
             </div>
             <div class="form-check fl mR-1">
-                @Html.CheckBoxFor(x => x.CommissionChecks, new { @class = "form-check-input" })
+                @Html.CheckBoxFor(x => x.CommissionChecks, new { @class = "form-check-input", @id = "CommissionChecksCheck" , @name = "CommissionChecksCheck" })
                 <label class="form-check-label" for="MaterialsShipmentLabel2">
                     Commission Checks
                 </label>
             </div>
             <div class="form-check fl mR-1">
-                @Html.CheckBoxFor(x => x.OtherContents, new { @class = "form-check-input" })
+                @Html.CheckBoxFor(x => x.OtherContents, new { @class = "form-check-input", @id = "OtherContentsCheck", @name = "OtherContentsCheck" })
                 <label class="form-check-label" for="MaterialsShipmentLabel3">
                     Other
                 </label>
@@ -140,50 +153,55 @@
         <div class="form-group col-md-12">
             <h4>Receiver Information</h4>
         </div>
+
         <div class="form-group col-md-6">
             @Html.LabelFor(model => model.Receiver, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.Receiver, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Receiver, new { htmlAttributes = new { @class = "form-control", @id = "Receiver",@name = "Receiver" } })
             @Html.ValidationMessageFor(model => model.Receiver, "", new { @class = "text-danger" })
 
         </div>
+
         <div class="form-group col-md-6">
             @Html.LabelFor(model => model.ReceiverAttn, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ReceiverAttn, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ReceiverAttn, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverAttn", @name = "ReceiverAttn" } })
             @Html.ValidationMessageFor(model => model.ReceiverAttn, "", new { @class = "text-danger" })
         </div>
+
         <div class="form-group col-md-8">
             @Html.LabelFor(model => model.ReceiverAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ReceiverAddress, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ReceiverAddress, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverAddress", @name = "ReceiverAddress"  }})
             @Html.ValidationMessageFor(model => model.ReceiverAddress, "", new { @class = "text-danger" })
         </div>
+
     </div>
+
     <div class="form-group col-md-4">
         @Html.LabelFor(model => model.ReceiverCity, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.ReceiverCity, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.ReceiverCity, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverCity" , @name = "ReceiverCity"} })
         @Html.ValidationMessageFor(model => model.ReceiverCity, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group col-md-3">
         @Html.LabelFor(model => model.ReceiverState, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.ReceiverState, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.ReceiverState, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverState", @name = "ReceiverState" } })
         @Html.ValidationMessageFor(model => model.ReceiverState, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group col-md-2">
         @Html.LabelFor(model => model.ReceiverZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.ReceiverZipCode, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.ReceiverZipCode, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverZipCode", @name = "ReceiverZipCode" } })
         @Html.ValidationMessageFor(model => model.ReceiverZipCode, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group col-md-3">
         @Html.LabelFor(model => model.ReceiverCountry, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.ReceiverCountry, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.ReceiverCountry, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverCountry", @name = "ReceiverCountry" } })
         @Html.ValidationMessageFor(model => model.ReceiverCountry, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group col-md-4">
         @Html.LabelFor(model => model.ReceiverPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.ReceiverPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.ReceiverPhoneNumber, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverPhoneNumber",@name = "ReceiverPhoneNumber"  } })
         @Html.ValidationMessageFor(model => model.ReceiverPhoneNumber, "", new { @class = "text-danger" })
     </div>
 
@@ -193,8 +211,8 @@
 
     <!--========= Implementacion prueba=====================-->
 
- 
-    <table id="tblShipmentDetails" class="table table-bordered">
+
+    <table id="tblShipmentDetails" class="table table-responsive" style="overflow:auto;">
         <thead>
             <tr>
                 <th width="25%"><label>Assigned To</label></th>
@@ -203,46 +221,44 @@
             </tr>
         </thead>
         <tbody>
-            <tr id="trShipmentDetails">
+            <tr id="trShipmentDetails" class="trShip">
                 <td>
-                    <input class="form-control" type="text" id="txtAssignedTo" name="" placeholder="Assigned To...">
+                    <input class="form-control txtAssignedTo" type="text" id="txtAssignedTo" name="txtAssignedTo" placeholder="Assigned To...">
                 </td>
                 <td>
-                    <input class="form-control" type="text" id="txtTypethedetails" name="" placeholder="Type the details">
+                    <input class="form-control txtTypethedetails" type="text" id="txtTypethedetails" name="txtTypethedetails" placeholder="Type the details">
                 </td>
                 <td>
                     <button id="btnNextShiDet" title="Next Shipment Details" type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></button>
-                    <button id="btndeleteShipDet"  title="Delete Shipment Details" type="button" class="btn btn-danger deleteShipDet"><i class="glyphicon glyphicon-minus"></i></button>
+                    <button id="btndeleteShipDet" title="Delete Shipment Details" type="button" class="btn btn-danger deleteShipDet"><i class="glyphicon glyphicon-minus"></i></button>
                 </td>
             </tr>
         </tbody>
     </table>
- 
-  
- 
 
-    <div id="ShipmentDetailsOu"  class="container">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="true">Comments</a>
-                </li>
-            </ul>
-            <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                <div class="tab-content" id="myTabContent1">
-                    <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-                        <div id="containerOuging">
-                           
-                            @Html.TextAreaFor(model => model.ShipmentComments, new { @class = "form-control", @id = "exampleFormControlTextarea1" })
-                            @Html.ValidationMessageFor(model => model.ShipmentComments, "", new { @class = "text-danger" })
-                        </div>
+
+
+    <div id="ShipmentDetailsOu" class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="true">Comments</a>
+            </li>
+        </ul>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <div class="tab-content" id="myTabContent1">
+                <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                    <div id="containerOuging">
+                        @Html.TextAreaFor(model => model.ShipmentComments, new { @class = "form-control", @id = "ShipmentComments",@name="ShipmentComments" })
+                        @Html.ValidationMessageFor(model => model.ShipmentComments, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     @*<div class="container">
-        <img src="~/Content/images/ui-anim_basic_16x16.gif" id="loading" style=" display: none;  width: 100px;" /><br />
-    </div>*@
+            <img src="~/Content/images/ui-anim_basic_16x16.gif" id="loading" style=" display: none;  width: 100px;" /><br />
+        </div>*@
 
 
     <!--==== AND COMMENT STATUS  ====-->
@@ -258,4 +274,8 @@
     </div>
 
 }
+
+
+
+
 

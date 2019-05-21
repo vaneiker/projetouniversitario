@@ -46,6 +46,7 @@ warning 6002: The table/view 'ShipLogs.dbo.AddressBook' does not have a primary 
           <Property Name="AccountNumber" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Comments" Type="text" />
           <Property Name="CarrierStatus" Type="bit" />
+          <Property Name="position" Type="int" />
         </EntityType>
         <EntityType Name="dtproperties">
           <Key>
@@ -148,10 +149,14 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
         <Function Name="SP_FROM_Shipment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShipmentNumberParameter" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="SP_SET_SHIPMENT_DETAIL_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_SET_SHIPMENT_DETAIL_SAVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
           <Parameter Name="AssignedTo" Type="nchar" Mode="In" />
           <Parameter Name="ItemDetail" Type="text" Mode="In" />
+          <Parameter Name="operation" Type="varchar" Mode="In" />
           <Parameter Name="DetailUniqueID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_SET_SHIPMENT_DETAIL_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -338,6 +343,7 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
           <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CarrierStatus" Type="Boolean" />
+          <Property Name="position" Type="Int32" />
         </EntityType>
         <EntityType Name="dtproperty">
           <Key>
@@ -477,6 +483,7 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
             <Parameter Name="ShipUniqueID" Mode="In" Type="Int32" />
             <Parameter Name="AssignedTo" Mode="In" Type="String" />
             <Parameter Name="ItemDetail" Mode="In" Type="String" />
+            <Parameter Name="operation" Mode="In" Type="String" />
             <Parameter Name="DetailUniqueID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_SET_SHIPMENT_DETAIL_UPDATE">
@@ -581,6 +588,9 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
             <Parameter Name="dateTo" Mode="In" Type="DateTime" />
             <Parameter Name="quantity" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_SET_SHIPMENT_DETAIL_DELETE">
+          <Parameter Name="ShipUniqueID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_FILL_DROPDOWN_Result">
           <Property Type="String" Name="IdAlf" Nullable="false" MaxLength="1" />
@@ -656,6 +666,7 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
           <EntitySetMapping Name="Carriers">
             <EntityTypeMapping TypeName="ShipLogsModel.Carrier">
               <MappingFragment StoreEntitySet="Carriers">
+                <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="CarrierStatus" ColumnName="CarrierStatus" />
                 <ScalarProperty Name="CarrierUniqueID" ColumnName="CarrierUniqueID" />
                 <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
@@ -855,6 +866,7 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ShipmentSaveFile" FunctionName="ShipLogsModel.Store.sp_ShipmentSaveFile" />
           <FunctionImportMapping FunctionImportName="sp_ShipmentTotalShipments" FunctionName="ShipLogsModel.Store.sp_ShipmentTotalShipments" />
+          <FunctionImportMapping FunctionImportName="SP_SET_SHIPMENT_DETAIL_DELETE" FunctionName="ShipLogsModel.Store.SP_SET_SHIPMENT_DETAIL_DELETE" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

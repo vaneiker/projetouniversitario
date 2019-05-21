@@ -1,4 +1,5 @@
-﻿using ShipLogs.Entity.Entity;
+﻿using Newtonsoft.Json;
+using ShipLogs.Entity.Entity;
 using ShipLogs.Logic.LogicBL;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,8 +45,8 @@ namespace ShipLogs.Frontend.Controllers
             var temp = data == null ? "SAVE" : "UPDATE";
 
             // data is null? set the value a MA== 
-            if (string.IsNullOrWhiteSpace(data) || data=="null")
-            {  
+            if (string.IsNullOrWhiteSpace(data) || data == "null")
+            {
                 data = HttpUtility.UrlDecode("MA==");
             }
             else
@@ -61,7 +62,7 @@ namespace ShipLogs.Frontend.Controllers
                     if (validalogtype.Incoming)
                     {
                         //Obtengo el detalle de Incoming
-                        var p = LogicManager.Method_Incoming(dec);
+                        result = LogicManager.Method_Incoming(dec);
 
                     }
                     else
@@ -93,37 +94,77 @@ namespace ShipLogs.Frontend.Controllers
         {
 
             dynamic showMessageString = string.Empty;
-            if (!objModel.Incoming)
+
+            var resp = LogicManager.Set_Shimet_Logic(objModel);
+
+            if (resp.Value == "INSERT" || resp.Value == "UPDATE")
             {
-                var resp = LogicManager.Set_Shimet_Logic(objModel);
-
-                if (resp.Value == "INSERT" || resp.Value == "UPDATE")
+                showMessageString = new
                 {
-                    showMessageString = new
-                    {
-                        param1 = 202,
-                        param2 = "The Registry was successfully saved!",
-                        param3 = resp.id
+                    param1 = 202,
+                    param2 = "The Registry was successfully saved!",
+                    param3 = resp.id,
+                    param4 = resp.IdAlf,
+                    param5 = resp.Value
 
-                    };
 
-                }
-                else
-                {
-                    showMessageString = new
-                    {
-                        param1 = 404,
-                        param2 = "The Record was not saved successfully!",
-                        param3 = resp.Value
-                    };
-                }
+                };
 
             }
+            else
+            {
+                showMessageString = new
+                {
+                    param1 = 404,
+                    param2 = "The Record was not saved successfully!",
+                    param3 = resp.Value
+                };
+            }
+
             return Json(showMessageString, JsonRequestBehavior.AllowGet);
 
         }
 
-        public JsonResult SaveShipMantenDetail(List<ShipmentEntity.ShipmentDetailEntity> datalle)
+        [HttpPost]
+        public JsonResult SaveDet(string jsonDataDetail, int idHeader, string operation)
+        {  //deserializando json
+            var form = JsonConvert.DeserializeObject<List<dynamic>>(jsonDataDetail);
+
+            if (operation == "UPDATE")
+            {
+                var isdelete = LogicManager.Set_ShimetDetailsDelete_Logic(idHeader);
+
+                foreach (var itemDetail in form)
+                {
+                    //aqui mi procedure de guardar el detail
+                    LogicManager.Set_ShimetDetailsInsert_Logic(new ShipmentDetailEntity()
+                    {
+                        AssignedTo = itemDetail.txtAssignedTo.ToString(),
+                        ItemDetail = itemDetail.txtTypethedetails.ToString(),
+                        DetailUniqueID = 0,
+                        ShipUniqueID = idHeader
+                    });
+                }
+            }
+
+            else if (operation == "INSERT")
+            {
+                foreach (var itemDetail in form)
+                {
+                    //aqui mi procedure de guardar el detail
+                    LogicManager.Set_ShimetDetailsInsert_Logic(new ShipmentDetailEntity()
+                    {
+                        AssignedTo = itemDetail.txtAssignedTo.ToString(),
+                        ItemDetail = itemDetail.txtTypethedetails.ToString(),
+                        DetailUniqueID = 0,
+                        ShipUniqueID = idHeader
+                    });
+                }
+            }  
+            return Json("good", JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveShipMantenDetail(List<ShipmentDetailEntity> datalle)
         {
             dynamic showMessageString = string.Empty;
             var resp = LogicManager.Set_ShimetDetailsInsert_Logic(datalle);

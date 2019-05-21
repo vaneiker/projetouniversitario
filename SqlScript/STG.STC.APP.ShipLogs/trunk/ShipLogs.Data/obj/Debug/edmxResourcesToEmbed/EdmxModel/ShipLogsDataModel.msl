@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Carriers">
       <EntityTypeMapping TypeName="ShipLogsModel.Carrier">
         <MappingFragment StoreEntitySet="Carriers">
+          <ScalarProperty Name="position" ColumnName="position" />
           <ScalarProperty Name="CarrierStatus" ColumnName="CarrierStatus" />
           <ScalarProperty Name="CarrierUniqueID" ColumnName="CarrierUniqueID" />
           <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
@@ -212,5 +213,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_ShipmentSaveFile" FunctionName="ShipLogsModel.Store.sp_ShipmentSaveFile" />
     <FunctionImportMapping FunctionImportName="sp_ShipmentTotalShipments" FunctionName="ShipLogsModel.Store.sp_ShipmentTotalShipments" />
+    <FunctionImportMapping FunctionImportName="SP_SET_SHIPMENT_DETAIL_DELETE" FunctionName="ShipLogsModel.Store.SP_SET_SHIPMENT_DETAIL_DELETE" />
   </EntityContainerMapping>
 </Mapping>

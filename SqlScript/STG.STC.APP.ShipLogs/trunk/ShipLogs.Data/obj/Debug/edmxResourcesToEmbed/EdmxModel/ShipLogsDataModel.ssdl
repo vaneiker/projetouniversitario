@@ -41,6 +41,7 @@ warning 6002: The table/view 'ShipLogs.dbo.AddressBook' does not have a primary 
     <Property Name="AccountNumber" Type="nchar" MaxLength="20" Nullable="false" />
     <Property Name="Comments" Type="text" />
     <Property Name="CarrierStatus" Type="bit" />
+    <Property Name="position" Type="int" />
   </EntityType>
   <EntityType Name="dtproperties">
     <Key>
@@ -143,10 +144,14 @@ warning 6002: The table/view 'ShipLogs.dbo.ShipmentFiles' does not have a primar
   <Function Name="SP_FROM_Shipment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ShipmentNumberParameter" Type="nchar" Mode="In" />
   </Function>
+  <Function Name="SP_SET_SHIPMENT_DETAIL_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
+  </Function>
   <Function Name="SP_SET_SHIPMENT_DETAIL_SAVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ShipUniqueID" Type="int" Mode="In" />
     <Parameter Name="AssignedTo" Type="nchar" Mode="In" />
     <Parameter Name="ItemDetail" Type="text" Mode="In" />
+    <Parameter Name="operation" Type="varchar" Mode="In" />
     <Parameter Name="DetailUniqueID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_SET_SHIPMENT_DETAIL_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

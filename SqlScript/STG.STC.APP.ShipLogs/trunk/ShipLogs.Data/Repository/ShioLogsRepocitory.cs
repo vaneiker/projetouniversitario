@@ -66,7 +66,7 @@ namespace ShipLogs.Data.Repository
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public virtual int Set_Shimet_DetailsSave(ShipmentEntity.ShipmentDetailEntity parameters)
+        public virtual int Set_Shimet_DetailsSave(ShipmentDetailEntity parameters)
         {
             int result = 0;
             using (var dbo = new ShipLogs_Entities())
@@ -75,13 +75,29 @@ namespace ShipLogs.Data.Repository
                                  parameters.ShipUniqueID,
                                  parameters.AssignedTo,
                                  parameters.ItemDetail,
-                                 "",
+                                 "INSERT",
                                  parameters.DetailUniqueID
-            );
+                                 );
                 return
                     result;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public virtual void Set_Shimet_DetailsDelete(int parameters)
+        { 
+            using (var db = new ShipLogs_Entities())
+            {
+                var all = from c in db.ShipmentDetails select c;
+                db.ShipmentDetails.RemoveRange(all);
+                db.SaveChanges();
+            }           
+        }
+
+
         /// <summary>
         /// Esto actualiza los detalles de los paquetes
         /// </summary>
@@ -123,13 +139,13 @@ namespace ShipLogs.Data.Repository
                 return RetornarValue.ToArray();
             }
         }
-        public virtual IEnumerable<ShipmentEntity.ShipmentDetailEntity> GET_Obtain_Shimet_Incoming(ShipmentEntity.ShipmentDetailEntity param)
+        public virtual ShipmentEntity GET_Obtain_Shimet_Incoming(ShipmentEntity param)
         {
             using (var dbo = new ShipLogs_Entities())
             {
-                IEnumerable<ShipmentEntity.ShipmentDetailEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntity.ShipmentDetailEntity>("EXEC [SP_GET_Obtain_Shimet_Incoming] @param",
+                IEnumerable<ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntity>("EXEC [SP_GET_Obtain_Shimet_Incoming] @param",
                     new SqlParameter("@param", param.ShipUniqueID)).ToList();
-                return RetornarValue.ToArray();
+                return RetornarValue.FirstOrDefault();
             }
         }
         public virtual ShipmentEntity GET_Obtain_Shimet_Outgoing(int param)
@@ -165,7 +181,7 @@ namespace ShipLogs.Data.Repository
             return result;
         }
 
-    
+
 
         public virtual List<CarrierEntity> GetCarrierDirec()
         {

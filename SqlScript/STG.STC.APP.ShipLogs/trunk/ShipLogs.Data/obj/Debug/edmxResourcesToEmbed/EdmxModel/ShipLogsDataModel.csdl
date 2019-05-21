@@ -18,6 +18,7 @@
     <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="CarrierStatus" Type="Boolean" />
+    <Property Name="position" Type="Int32" />
   </EntityType>
   <EntityType Name="dtproperty">
     <Key>
@@ -157,6 +158,7 @@
       <Parameter Name="ShipUniqueID" Mode="In" Type="Int32" />
       <Parameter Name="AssignedTo" Mode="In" Type="String" />
       <Parameter Name="ItemDetail" Mode="In" Type="String" />
+      <Parameter Name="operation" Mode="In" Type="String" />
       <Parameter Name="DetailUniqueID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_SET_SHIPMENT_DETAIL_UPDATE">
@@ -260,6 +262,9 @@
       <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
       <Parameter Name="dateTo" Mode="In" Type="DateTime" />
       <Parameter Name="quantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SET_SHIPMENT_DETAIL_DELETE">
+      <Parameter Name="ShipUniqueID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_FILL_DROPDOWN_Result">

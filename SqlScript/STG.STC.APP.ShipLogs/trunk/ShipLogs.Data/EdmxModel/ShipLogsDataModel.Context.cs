@@ -77,7 +77,8 @@ namespace ShipLogs.Data.EdmxModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_SET_SHIPMENT_DETAIL_SAVE", shipUniqueIDParameter, assignedToParameter, itemDetailParameter, operationParameter, detailUniqueIDParameter);
         }
-    
+
+        
         public virtual int SP_SET_SHIPMENT_DETAIL_UPDATE(Nullable<int> shipUniqueID, string assignedTo, string itemDetail, string operation, Nullable<int> detailUniqueID)
         {
             var shipUniqueIDParameter = shipUniqueID.HasValue ?

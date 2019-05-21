@@ -54,23 +54,17 @@ namespace ShipLogs.Entity.Entity
         public string ReceiverPhoneNumber { get; set; }
         [Display(Name = "Comments")]
         public string ShipmentComments { get; set; }
-        public bool? Transit { get; set; } 
+        public bool? Transit { get; set; }
         public bool Incoming { get; set; }
         [Display(Name = "Commission Checks")]
         public bool CommissionChecks { get; set; }
         public bool Materials { get; set; }
         [Display(Name = "Other")]
-        public bool OtherContents { get; set; }
-        public List<ShipmentDetailEntity> ListShipmentDetail { get; set; }
+        public bool OtherContents { get; set; } 
+        public int? DetailUniqueID { get; set; }   
+        public string AssignedTo { get; set; }
+        public string ItemDetail { get; set; }
 
-        public class ShipmentDetailEntity
-        {
-            public int? DetailUniqueID { get; set; }
-            public int? ShipUniqueID { get; set; }
-            public string AssignedTo { get; set; }
-            public string ItemDetail { get; set; }
- 
-        }
 
 
 
