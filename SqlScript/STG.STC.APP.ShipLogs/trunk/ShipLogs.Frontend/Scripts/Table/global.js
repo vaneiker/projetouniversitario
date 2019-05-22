@@ -3,17 +3,36 @@ $(document).ready(function () {
     //Verifico si es un Incoming o Outgoing
     //Para poder mostrar o no los detalles
 
-    var hv = $('#Incominghdf').val();  
-    if (hv == "True") {
+    var hv = $('#IsIncomingHDN').val();  
+
+
+    if (hv == "true") {
         $("#tblShipmentDetails").show();
         $("#ShipmentDetailsOu").hide();
     }else
-    if (hv == "False") {
+    if (hv == "false") {
         $("#tblShipmentDetails").hide();
         $("#ShipmentDetailsOu").show();
-    }
+        }
+
+    //Add New Register Detail
+    $(document).on('click', '#btnNextShiDet', function () {
+        ShipRandomID = Math.floor((Math.random() * -20000) + (-1));
+
+        var $this = $(this);
+        var tbl = $("#tblShipmentDetails");
+        var $Tbody = tbl.find("tbody");
+        var $trLast = $Tbody.find("tr:last");
+        var newTr = $('<tr>').attr('id', 'trShip_' + ShipRandomID).addClass('trShip').attr('data-Shipclerandomid', ShipRandomID);
+        newTr = generateNewRow(newTr);
+        $trLast.after(newTr);
+
+
+    });
+
      
 });
+
 
 
 var tblShip;
@@ -54,69 +73,7 @@ $('#ddoperator').on('change', function () {
 $(function () {
     $("#shipmentDate").datepicker({ dateFormat: "yy-mm-dd" }).val();
 });
-
-//Add New Register Detail
-$(document).on('click', '#btnNextShiDet', function () {
-    ShipRandomID = Math.floor((Math.random() * -20000) + (-1));
-
-    var $this = $(this);
-    var tbl = $("#tblShipmentDetails");
-    var $Tbody = tbl.find("tbody");
-    var $trLast = $Tbody.find("tr:last");
-    var newTr = $('<tr>').attr('id', 'trShip_' + ShipRandomID).addClass('trShip').attr('data-Shipclerandomid', ShipRandomID);
-    newTr = generateNewRow(newTr);
-    $trLast.after(newTr);
-
-
-});
-
-$(document).on('click', '#btnDeleteShiDet', function () {
-
-    var $this = $(this);
-    var randomID = $this.data('vehiclerandomid');
-
-    var trLen = $(".trVehicle").length;
-    if (trLen == 1) {
-        showWarning(['Debe existir al menos un vehículo']);
-        return false;
-    }
-
-    var current = altFind(AllVehicleDataToSave, function (item) {
-        return item.randomId == randomID
-    });
-
-    if (current != undefined) {
-        AllVehicleDataToSave = AllVehicleDataToSave.filter(function (item) {
-            return item.randomId != randomID
-        });
-    }
-
-    var quotationCoreNumber = getQuotationCoreNumber();
-    var vehicleID = current.Id;
-
-    if (current.SecuenciaVehicleSysflex > 0) {
-        $.ajax({
-            url: '/Home/DeleteVehicleOnSysflex',
-            type: 'POST',
-            dataType: 'json',
-            data: { SecuenciaVehicleSysflex: current.SecuenciaVehicleSysflex, quotationCoreNumber: quotationCoreNumber, vehicleID: vehicleID },
-            async: false,
-            success: function (data) {
-                if (data == "ERROR") {
-                    showError(['A ocurrido un error Eliminando el Vehículo'], 'Eliminando Vehículo');
-                }
-            }
-        });
-    }
-
-    //remuevo el Vehículo de la seccion de Vehículos
-    var tr = getHtmlElementByClass("trVehicle", randomID);
-    tr.remove();
-
-    GlobalVehicleDelete = true;
-});
-
-
+ 
 
 
 function generateNewRow(newTr) {
@@ -186,22 +143,23 @@ function AtiveModeShiptmentType(obj) {
             $("#ShipmentDetailsOu").show();
             //$hdnIncoming.val("false");
         }
-}
-
-
+} 
 
 function OnSuccess(data) {
 
     var idShip   = data.param3;
     var typeShip = data.param4;
     var typeoper = data.param5;
+    var hdnShipId = $("#shipUniqueID");
 
+    hdnShipId.val(idShip);
     
-    if (typeShip == "Incoming" && typeoper=="UPDATE")
-    {
+    if (typeShip == "Incoming" && typeoper == "UPDATE") {
         saveDateShip(idShip, typeoper);
-        
-    } 
+
+    } else if (typeShip == "Incoming" && typeoper == "INSERT") {
+        saveDateShip(idShip, typeoper);
+    }
 }
 
 function OnFailure(data) {
@@ -254,6 +212,8 @@ function saveDateShip(shipuniqueid, option) {
         },
         async: true,
         success: function (data) {
+          
+
             if (data.messageError) {
                 showError([data.messageError], "Ha ocurrido el siguiente error");
                 return false;
@@ -267,3 +227,6 @@ function saveDateShip(shipuniqueid, option) {
         }
     });
 }
+
+
+ 

@@ -138,13 +138,13 @@ namespace ShipLogs.Logic.LogicBL
               shioLogsRepocitory.GET_Shimet(parameters);
         }
 
-        public virtual IEnumerable<ShipmentViewModel> GET_Shimet_Logic_All()
+        public virtual IEnumerable<ShipmentEntity> GET_Shimet_Logic_All()
         {
             return
 
               shioLogsRepocitory.GET_ShimetAll();
         }
-        public virtual ShipmentEntity Method_Outgoing(string param)
+        public virtual ShipmentEntityViewModel.ShipmentEntity Method_Outgoing(string param)
         {
 
             var obj = int.Parse(param);
@@ -152,20 +152,34 @@ namespace ShipLogs.Logic.LogicBL
             var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Outgoing(obj);
             return dataList;
         }
-        public virtual ShipmentEntity Method_Incoming(string param)
+        public virtual ShipmentEntityViewModel.ShipmentEntity Method_Incoming(string param)
         {
-            var obj = new ShipmentEntity();
-            obj.ShipUniqueID = int.Parse(param);
+            int paramet = 0;
+            if (param == "" || param == null)
+            {
+                paramet =0;
+            }
+            else
+            {
+                paramet = int.Parse(param);
+            }
 
-            var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Incoming(obj);
+            var dataList = shioLogsRepocitory.GET_Obtain_Shimet_Incoming(paramet);
             return dataList;
         }
-        public virtual ShipmentEntity IsIncomingVerificationLog(string param)
+        public virtual ShipmentEntityViewModel.ShipmentEntity IsIncomingVerificationLog(string id)
         {
-            var obj = new ShipmentEntity();
-            obj.ShipUniqueID = int.Parse(param);
+            var obj = new ShipmentEntityViewModel.ShipmentEntity();
+            obj.ShipUniqueID = int.Parse(id);
             var dataList = shioLogsRepocitory.IsIncomingVerification(obj);
             return dataList;
         }
+
+        public virtual List<ShipmentEntityViewModel.detail> GET_SHIPMENTDETAILSLog(string id)
+        {
+            var idNumeric = int.Parse(id);
+            return shioLogsRepocitory.GET_SHIPMENTDETAILS(idNumeric);
+        }
+
     }
 }

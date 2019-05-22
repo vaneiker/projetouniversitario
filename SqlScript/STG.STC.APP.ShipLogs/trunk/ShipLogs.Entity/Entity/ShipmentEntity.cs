@@ -12,12 +12,12 @@ namespace ShipLogs.Entity.Entity
         public int? ShipUniqueID { get; set; }
 
         [Display(Name = "Carrier")]
-        [Required]
+
         public string CarrierName { get; set; }
         [Display(Name = "Account")]
         public string AccountNumber { get; set; }
         [Display(Name = "Tracking")]
-        [Required]
+        [Required(ErrorMessage = "Please enter an Tracking.")]
         public string ShipmentNumber { get; set; }
 
         [Display(Name = "Date")]
@@ -60,12 +60,9 @@ namespace ShipLogs.Entity.Entity
         public bool CommissionChecks { get; set; }
         public bool Materials { get; set; }
         [Display(Name = "Other")]
-        public bool OtherContents { get; set; } 
-        public int? DetailUniqueID { get; set; }   
-        public string AssignedTo { get; set; }
-        public string ItemDetail { get; set; }
-
-
+        public bool OtherContents { get; set; }
+    
+        public string IncomingLiteral { get; set; }
 
 
 

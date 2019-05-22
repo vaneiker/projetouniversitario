@@ -29,13 +29,17 @@ namespace ShipLogs.Frontend.Controllers
         public ActionResult CargarShipLogs(string data)
         {
 
-
-
-
+            string url = "";
+            string dec = "";
 
             string msjbtn = "";
-            var shipModel = LogicManager.GET_Shimet_Logic_All();
-            var result = new ShipmentEntity();
+
+
+            ShipmentEntityViewModel result = new ShipmentEntityViewModel();
+
+            List<ShipmentEntityViewModel.detail> detail = new List<ShipmentEntityViewModel.detail>();
+            ShipmentEntityViewModel.ShipmentEntity shipmentEntity = new ShipmentEntityViewModel.ShipmentEntity();
+
             //var url = HttpUtility.UrlDecode(data.Replace("+", " ").Replace("/", "")); 
 
 
@@ -48,11 +52,16 @@ namespace ShipLogs.Frontend.Controllers
             if (string.IsNullOrWhiteSpace(data) || data == "null")
             {
                 data = HttpUtility.UrlDecode("MA==");
+
+                shipmentEntity.Incoming = false;
+                shipmentEntity.ShipUniqueID = 0;
+
+
             }
             else
             {
-                var url = HttpUtility.UrlDecode(data);
-                var dec = Tools.Decode(url);
+                url = HttpUtility.UrlDecode(data);
+                dec = Tools.Decode(url);
 
                 if (dec != "0")
                 {
@@ -62,13 +71,17 @@ namespace ShipLogs.Frontend.Controllers
                     if (validalogtype.Incoming)
                     {
                         //Obtengo el detalle de Incoming
-                        result = LogicManager.Method_Incoming(dec);
+                        shipmentEntity = LogicManager.Method_Incoming(dec);
+                        result.shipmentEntity = shipmentEntity;
+
+                        //result = LogicManager.Method_Incoming(dec);
+                        result.detalles = LogicManager.GET_SHIPMENTDETAILSLog(dec);
 
                     }
                     else
                     {
                         //Obtengo el solo el Outgoing
-                        result = LogicManager.Method_Outgoing(dec);
+                        result.shipmentEntity = LogicManager.Method_Outgoing(dec);
 
                     }
                 }
@@ -78,6 +91,8 @@ namespace ShipLogs.Frontend.Controllers
                 }
             }
             ViewBag.btnMenssager = temp;
+
+
             return View(result);
         }
 
@@ -90,12 +105,45 @@ namespace ShipLogs.Frontend.Controllers
 
 
         [HttpPost]
-        public JsonResult SaveShipManten(ShipmentEntity objModel)
+        public JsonResult SaveShipManten(ShipmentEntityViewModel objModel)
         {
+            var objetoreal = new ShipmentEntity();
 
             dynamic showMessageString = string.Empty;
 
-            var resp = LogicManager.Set_Shimet_Logic(objModel);
+            objetoreal.ShipUniqueID = objModel.shipmentEntity.ShipUniqueID;
+            objetoreal.CarrierName = objModel.shipmentEntity.CarrierName;
+            objetoreal.AccountNumber = objModel.shipmentEntity.AccountNumber;
+            objetoreal.ShipmentNumber = objModel.shipmentEntity.ShipmentNumber;
+            objetoreal.ShipmentDate = objModel.shipmentEntity.ShipmentDate;
+            objetoreal.ShipmentWeight = objModel.shipmentEntity.ShipmentWeight;
+            objetoreal.ShipmentQTY = objModel.shipmentEntity.ShipmentQTY;
+            objetoreal.ShipPackageType = objModel.shipmentEntity.ShipPackageType.TrimEnd().TrimStart();
+            objetoreal.Operator = objModel.shipmentEntity.Operator;
+            objetoreal.Sender = objModel.shipmentEntity.Sender;
+            objetoreal.Receiver = objModel.shipmentEntity.Receiver;
+            objetoreal.ReceiverAttn = objModel.shipmentEntity.ReceiverAttn;
+            objetoreal.ReceiverAddress = objModel.shipmentEntity.ReceiverAddress;
+            objetoreal.ReceiverCity = objModel.shipmentEntity.ReceiverCity;
+            objetoreal.ReceiverState = objModel.shipmentEntity.ReceiverState;
+            objetoreal.ReceiverZipCode = objModel.shipmentEntity.ReceiverZipCode;
+            objetoreal.ReceiverCountry = objModel.shipmentEntity.ReceiverCountry;
+            objetoreal.ReceiverPhoneNumber = objModel.shipmentEntity.ReceiverPhoneNumber;
+            objetoreal.ShipmentComments = objModel.shipmentEntity.ShipmentComments;
+            objetoreal.Transit = objModel.shipmentEntity.Transit;
+            objetoreal.Incoming = objModel.shipmentEntity.Incoming;
+            objetoreal.CommissionChecks = objModel.shipmentEntity.CommissionChecks;
+            objetoreal.Materials = objModel.shipmentEntity.Materials;
+            objetoreal.OtherContents = objModel.shipmentEntity.OtherContents;
+
+
+
+
+
+
+
+
+            var resp = LogicManager.Set_Shimet_Logic(objetoreal);
 
             if (resp.Value == "INSERT" || resp.Value == "UPDATE")
             {
@@ -106,8 +154,6 @@ namespace ShipLogs.Frontend.Controllers
                     param3 = resp.id,
                     param4 = resp.IdAlf,
                     param5 = resp.Value
-
-
                 };
 
             }
@@ -160,9 +206,17 @@ namespace ShipLogs.Frontend.Controllers
                         ShipUniqueID = idHeader
                     });
                 }
-            }  
+            }
             return Json("good", JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        //public JsonResult ListShipDetail(int id)
+        //{
+        //    var data = LogicManager.GET_SHIPMENTDETAILSLog(id);
+
+        //    return Json(data, JsonRequestBehavior.AllowGet);
+        //}
 
         public JsonResult SaveShipMantenDetail(List<ShipmentDetailEntity> datalle)
         {

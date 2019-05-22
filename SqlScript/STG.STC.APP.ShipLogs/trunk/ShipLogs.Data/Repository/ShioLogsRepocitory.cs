@@ -88,13 +88,13 @@ namespace ShipLogs.Data.Repository
         /// <param name="parameters"></param>
         /// <returns></returns>
         public virtual void Set_Shimet_DetailsDelete(int parameters)
-        { 
+        {
             using (var db = new ShipLogs_Entities())
             {
                 var all = from c in db.ShipmentDetails select c;
                 db.ShipmentDetails.RemoveRange(all);
                 db.SaveChanges();
-            }           
+            }
         }
 
 
@@ -130,38 +130,40 @@ namespace ShipLogs.Data.Repository
             }
         }
 
-        public virtual IEnumerable<ShipmentViewModel> GET_ShimetAll()
+        public virtual IEnumerable<ShipmentEntity> GET_ShimetAll()
         {
             using (var dbo = new ShipLogs_Entities())
             {
-                IEnumerable<ShipmentViewModel> RetornarValue = dbo.Database.SqlQuery<ShipmentViewModel>("EXEC [dbo].[SP_FROM_Shipment_All]"
+                IEnumerable<ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntity>("EXEC [dbo].[SP_FROM_Shipment_All]"
                ).ToList();
                 return RetornarValue.ToArray();
             }
         }
-        public virtual ShipmentEntity GET_Obtain_Shimet_Incoming(ShipmentEntity param)
+    
+
+        public virtual ShipmentEntityViewModel.ShipmentEntity GET_Obtain_Shimet_Incoming(int param)
         {
             using (var dbo = new ShipLogs_Entities())
             {
-                IEnumerable<ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntity>("EXEC [SP_GET_Obtain_Shimet_Incoming] @param",
-                    new SqlParameter("@param", param.ShipUniqueID)).ToList();
-                return RetornarValue.FirstOrDefault();
-            }
-        }
-        public virtual ShipmentEntity GET_Obtain_Shimet_Outgoing(int param)
-        {
-            using (var dbo = new ShipLogs_Entities())
-            {
-                IEnumerable<ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntity>("EXEC  [dbo].[SP_GET_Obtain_Shimet_Outgoing] @param",
+                IEnumerable<ShipmentEntityViewModel.ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntityViewModel.ShipmentEntity>("EXEC [SP_GET_Obtain_Shimet_Incoming] @param",
                     new SqlParameter("@param", param)).ToList();
                 return RetornarValue.FirstOrDefault();
             }
         }
-        public virtual ShipmentEntity IsIncomingVerification(ShipmentEntity param)
+        public virtual ShipmentEntityViewModel.ShipmentEntity GET_Obtain_Shimet_Outgoing(int param)
         {
             using (var dbo = new ShipLogs_Entities())
             {
-                IEnumerable<ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntity>("EXEC [DBO].[SP_GET_CHECK_LOGTYPE] @param",
+                IEnumerable<ShipmentEntityViewModel.ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntityViewModel.ShipmentEntity>("EXEC  [dbo].[SP_GET_Obtain_Shimet_Outgoing] @param",
+                    new SqlParameter("@param", param)).ToList();
+                return RetornarValue.FirstOrDefault();
+            }
+        }
+        public virtual ShipmentEntityViewModel.ShipmentEntity IsIncomingVerification(ShipmentEntityViewModel.ShipmentEntity param)
+        {
+            using (var dbo = new ShipLogs_Entities())
+            {
+                IEnumerable<ShipmentEntityViewModel.ShipmentEntity> RetornarValue = dbo.Database.SqlQuery<ShipmentEntityViewModel.ShipmentEntity>("EXEC [DBO].[SP_GET_CHECK_LOGTYPE] @param",
                     new SqlParameter("@param", param.ShipUniqueID)).ToList();
                 return RetornarValue.FirstOrDefault();
             }
@@ -191,7 +193,15 @@ namespace ShipLogs.Data.Repository
                 return RetornarValue.ToList();
             }
         }
-
+        public virtual List<ShipmentEntityViewModel.detail> GET_SHIPMENTDETAILS(int id)
+        {
+            using (var dbo = new ShipLogs_Entities())
+            {
+                IEnumerable<ShipmentEntityViewModel.detail> RetornarValue = dbo.Database.SqlQuery<ShipmentEntityViewModel.detail>(" EXEC [DBO].[SP_GET_SHIPMENTDETAILS] @ShipUniqueID",
+                       new SqlParameter("@ShipUniqueID", id)).ToList();
+                return RetornarValue.ToList();
+            }
+        }
         public virtual List<OperatorEntity> GetOperator()
         {
             using (var dbo = new ShipLogs_Entities())
@@ -200,21 +210,5 @@ namespace ShipLogs.Data.Repository
                 return RetornarValue.ToList();
             }
         }
-
-
-        public virtual List<CarrierEntity> ListCarrier(string name)
-        {
-            var result = new List<CarrierEntity>();
-            using (var dbo = new ShipLogs_Entities())
-            {
-                result = dbo.Carriers.Where(x => x.CarrierStatus == true).Select(x => new CarrierEntity
-                {
-                    CarrierName = x.CarrierName.ToUpper().TrimEnd().TrimEnd()
-
-                }).ToList();
-            }
-            return result;
-        }
-
     }
 }
