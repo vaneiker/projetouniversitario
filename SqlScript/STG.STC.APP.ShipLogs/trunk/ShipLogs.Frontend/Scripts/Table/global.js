@@ -1,4 +1,42 @@
-﻿ 
+﻿$.validator.setDefaults({
+    showErrors: function (errorMap, errorList) {
+        if (errorList.length > 0) {
+            var ShowError = $(".validation-summary-errors").length == 0;
+            var messages = $.map(errorList, function (item) {
+                var $Element = $(item.element);
+                $Element.css("border", "1px solid red");
+                $Element.change(function () {
+                    var $this = $(this);
+                    $this.css("border", "1px solid #ccc");
+                })
+                return "<li>" + item.message + "</li>";
+            });
+
+            if (ShowError) {
+                var msgTemp = "";
+                for (var i = 0; i < messages.length; i++)
+                    msgTemp += messages[i];
+
+                var Msgs = "<div class='alert alert-danger validation-summary-errors'> <ul>" + msgTemp + "</ul> <div>";
+                ShowMessageBS(Msgs, "Advertencia", function () {
+                    $(".validation-summary-errors").remove();
+                });
+            }
+        }
+    },
+    onfocusout: false,
+    onkeyup: false,
+    onclick: false,
+    onsubmit: true,
+    focusInvalid: false
+}); 
+
+
+
+
+
+
+ 
 $(document).ready(function () {  
     //Verifico si es un Incoming o Outgoing
     //Para poder mostrar o no los detalles
@@ -26,11 +64,29 @@ $(document).ready(function () {
         var newTr = $('<tr>').attr('id', 'trShip_' + ShipRandomID).addClass('trShip').attr('data-Shipclerandomid', ShipRandomID);
         newTr = generateNewRow(newTr);
         $trLast.after(newTr);
-
-
     });
 
-     
+    $(document).on('click', '.deleteShipDet', function () {
+
+        var $this = $(this);
+        var randomID = $this.data('data-Shipclerandomid');
+
+        var trLen = $(".trVehicle").length;
+        if (trLen == 1) {
+            showWarning(['Debe existir al menos un vehículo']);
+            return false;
+        }
+
+        var current = altFind(AllVehicleDataToSave, function (item) {
+            return item.randomId == randomID
+        });
+
+        //if (current != undefined) {
+        //    AllVehicleDataToSave = AllVehicleDataToSave.filter(function (item) {
+        //        return item.randomId != randomID
+        //    });
+        //}
+    });
 });
 
 

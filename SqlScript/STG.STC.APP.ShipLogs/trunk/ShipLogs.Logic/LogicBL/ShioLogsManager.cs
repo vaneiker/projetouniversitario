@@ -140,6 +140,7 @@ namespace ShipLogs.Logic.LogicBL
 
         public virtual IEnumerable<ShipmentEntity> GET_Shimet_Logic_All()
         {
+
             return
 
               shioLogsRepocitory.GET_ShimetAll();

@@ -7,17 +7,22 @@
     //realModel = Model.shipmentEntity;
 
     string valor = "";
-    var IsIncoming = Model.shipmentEntity.Incoming == null ? false : Model.shipmentEntity.Incoming;
+    var IsIncoming = Model.shipmentEntity.Incoming.GetValueOrDefault();
 
 
 
     if (IsIncoming == true)
     {
         valor = "true";
-    } else
+    }
+    else
     {
         valor = "false";
     }
+
+
+ 
+
 
     List<ShipLogs.Entity.Entity.CarrierEntity> carrierEntities = ViewBag.Carrier;
     List<ShipLogs.Entity.Entity.OperatorEntity> operatoent = ViewBag.Operator;
@@ -25,11 +30,24 @@
 
 
 }
-@*<style>
-        #tblShipmentDetails {
-            overflow: auto; /* append scrollbars if necessary */
-        }
-    </style>*@
+<style>
+ .input-validation-error {
+    border: 1px solid #f00 !important;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.field-validation-error {
+    color: #b94a48;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+} 
+</style>
+
 
 @using (Ajax.BeginForm("SaveShipManten", new AjaxOptions()
 {
@@ -44,15 +62,17 @@
 {
     @Html.AntiForgeryToken()
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+    @Html.ValidationSummary(false, "To continue please complete the required fields.", new { @class = "alert alert-danger validation-summary-errors", @id = "validatesummary" })
+
     @Html.HiddenFor(model => model.shipmentEntity.ShipUniqueID, new { htmlAttributes = new { @class = "form-control", @id = "shipUniqueID", @name = "shipUniqueID" } })
-   
+
     <input type="hidden" name="IsIncomingHDN" id="IsIncomingHDN" value="@valor" />
 
     <div class="form-row">
         <h4>Shipment Details</h4>
 
-      
+
 
         @*Inicio del Formulario*@
         <div class="form-group col-md-4">
@@ -74,7 +94,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.shipmentEntity.ShipmentNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.shipmentEntity.ShipmentNumber, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentNumber", @name = "ShipmentNumber" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentNumber, "", new { @class = "text-danger" })
+            @*@Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentNumber, "", new { @class = "text-danger" })*@
         </div>
 
         <div class="form-group col-md-4">
@@ -230,12 +250,13 @@
     <!--========= Implementacion prueba=====================-->
 
 
-    <table id="tblShipmentDetails"   class="table table-responsive" style=" display:none; overflow:auto;">
+    <table id="tblShipmentDetails" class="table table-responsive" style="display: none;
+        overflow: auto;">
         <thead>
             <tr>
                 <th width="25%"><label>Assigned To</label></th>
                 <th width="62%"><label>Item Detail</label></th>
-                <th width="50px"><label>Acción</label></th>
+                <th width="50px"><label>Action</label></th>
             </tr>
         </thead>
         <tbody>
@@ -283,23 +304,11 @@
         </tbody>
     </table>
 
-    <div id="ShipmentDetailsOu" class="container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="true">Comments</a>
-            </li>
-        </ul>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar">
-            <div class="tab-content" id="myTabContent1">
-                <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-                    <div id="containerOuging">
-                        @Html.TextAreaFor(model => model.shipmentEntity.ShipmentComments, new { @class = "form-control", @id = "ShipmentComments", @name = "ShipmentComments" })
-                        @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentComments, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> 
+    <div id="ShipmentDetailsOu">
+        @Html.LabelFor(model => model.shipmentEntity.ShipmentComments, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextAreaFor(model => model.shipmentEntity.ShipmentComments, new { @class = "form-control", @id = "ShipmentComments", @name = "ShipmentComments" })
+        @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentComments, "", new { @class = "text-danger" })
+    </div>
 
 
     <div class="form-group mT-2">
@@ -307,9 +316,7 @@
         <button type="submit" class="btn btn-primary">@ViewBag.btnMenssager</button>
         <button type="submit" class="btn btn-primary">Delete</button>
         <button type="submit" class="btn btn-primary">Address Book</button>
-
         @Html.ActionLink("Close", "Menu", "Home", null, new { @class = "btn btn-danger fr" })
-
     </div>
 
 }

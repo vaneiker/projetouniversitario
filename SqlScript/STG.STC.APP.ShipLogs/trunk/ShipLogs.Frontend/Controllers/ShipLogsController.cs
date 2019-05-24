@@ -68,12 +68,11 @@ namespace ShipLogs.Frontend.Controllers
                     //valido que tipo de logtype es
                     var validalogtype = LogicManager.IsIncomingVerificationLog(dec);
 
-                    if (validalogtype.Incoming)
+                    if (validalogtype.Incoming.GetValueOrDefault())
                     {
                         //Obtengo el detalle de Incoming
                         shipmentEntity = LogicManager.Method_Incoming(dec);
                         result.shipmentEntity = shipmentEntity;
-
                         //result = LogicManager.Method_Incoming(dec);
                         result.detalles = LogicManager.GET_SHIPMENTDETAILSLog(dec);
 
@@ -87,7 +86,7 @@ namespace ShipLogs.Frontend.Controllers
                 }
                 else
                 {
-                    result = null;
+                    result = new ShipmentEntityViewModel();
                 }
             }
             ViewBag.btnMenssager = temp;
@@ -111,14 +110,17 @@ namespace ShipLogs.Frontend.Controllers
 
             dynamic showMessageString = string.Empty;
 
-            objetoreal.ShipUniqueID = objModel.shipmentEntity.ShipUniqueID;
+
+
+            objetoreal.ShipUniqueID = objModel.shipmentEntity.ShipUniqueID == null ? 0 : objModel.shipmentEntity.ShipUniqueID;
+
             objetoreal.CarrierName = objModel.shipmentEntity.CarrierName;
             objetoreal.AccountNumber = objModel.shipmentEntity.AccountNumber;
             objetoreal.ShipmentNumber = objModel.shipmentEntity.ShipmentNumber;
             objetoreal.ShipmentDate = objModel.shipmentEntity.ShipmentDate;
             objetoreal.ShipmentWeight = objModel.shipmentEntity.ShipmentWeight;
-            objetoreal.ShipmentQTY = objModel.shipmentEntity.ShipmentQTY;
-            objetoreal.ShipPackageType = objModel.shipmentEntity.ShipPackageType.TrimEnd().TrimStart();
+            objetoreal.ShipmentQTY = objModel.shipmentEntity.ShipmentQTY == null ? 0 : objModel.shipmentEntity.ShipmentQTY;
+            objetoreal.ShipPackageType = objModel.shipmentEntity.ShipPackageType;
             objetoreal.Operator = objModel.shipmentEntity.Operator;
             objetoreal.Sender = objModel.shipmentEntity.Sender;
             objetoreal.Receiver = objModel.shipmentEntity.Receiver;
@@ -131,17 +133,10 @@ namespace ShipLogs.Frontend.Controllers
             objetoreal.ReceiverPhoneNumber = objModel.shipmentEntity.ReceiverPhoneNumber;
             objetoreal.ShipmentComments = objModel.shipmentEntity.ShipmentComments;
             objetoreal.Transit = objModel.shipmentEntity.Transit;
-            objetoreal.Incoming = objModel.shipmentEntity.Incoming;
+            objetoreal.Incoming = objModel.shipmentEntity.Incoming.GetValueOrDefault();
             objetoreal.CommissionChecks = objModel.shipmentEntity.CommissionChecks;
             objetoreal.Materials = objModel.shipmentEntity.Materials;
             objetoreal.OtherContents = objModel.shipmentEntity.OtherContents;
-
-
-
-
-
-
-
 
             var resp = LogicManager.Set_Shimet_Logic(objetoreal);
 
@@ -175,6 +170,8 @@ namespace ShipLogs.Frontend.Controllers
         public JsonResult SaveDet(string jsonDataDetail, int idHeader, string operation)
         {  //deserializando json
             var form = JsonConvert.DeserializeObject<List<dynamic>>(jsonDataDetail);
+
+            dynamic showMessageString = string.Empty;
 
             if (operation == "UPDATE")
             {

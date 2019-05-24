@@ -20,6 +20,7 @@ namespace ShipLogs.Entity.Entity
         [Required(ErrorMessage = "Please enter an Tracking.")]
         public string ShipmentNumber { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d}")]
         [Display(Name = "Date")]
         [Required]
         public DateTime? ShipmentDate { get; set; }

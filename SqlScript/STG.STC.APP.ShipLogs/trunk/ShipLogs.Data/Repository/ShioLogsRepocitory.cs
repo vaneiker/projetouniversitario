@@ -87,13 +87,20 @@ namespace ShipLogs.Data.Repository
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
+
         public virtual void Set_Shimet_DetailsDelete(int parameters)
         {
             using (var db = new ShipLogs_Entities())
             {
-                var all = from c in db.ShipmentDetails select c;
-                db.ShipmentDetails.RemoveRange(all);
-                db.SaveChanges();
+                using (var cmd = db.Database.Connection.CreateCommand())
+
+                {
+                    db.Database.Connection.Open();
+                    cmd.CommandText = "SP_SET_SHIPMENT_DETAIL_DELETE";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("ShipUniqueID", parameters));
+                    var Exec = (cmd.ExecuteScalar());
+                }
             }
         }
 
@@ -139,7 +146,7 @@ namespace ShipLogs.Data.Repository
                 return RetornarValue.ToArray();
             }
         }
-    
+
 
         public virtual ShipmentEntityViewModel.ShipmentEntity GET_Obtain_Shimet_Incoming(int param)
         {
@@ -182,7 +189,6 @@ namespace ShipLogs.Data.Repository
             }
             return result;
         }
-
 
 
         public virtual List<CarrierEntity> GetCarrierDirec()
