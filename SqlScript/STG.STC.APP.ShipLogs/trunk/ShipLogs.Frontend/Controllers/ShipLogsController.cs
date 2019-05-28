@@ -29,68 +29,50 @@ namespace ShipLogs.Frontend.Controllers
         public ActionResult CargarShipLogs(string data)
         {
 
+            ViewBag.Carrier = LogicManager.CarrierLogicDirect();
+            ViewBag.Operator = LogicManager.GetOperator();
+
             string url = "";
             string dec = "";
-
             string msjbtn = "";
 
 
             ShipmentEntityViewModel result = new ShipmentEntityViewModel();
-
             List<ShipmentEntityViewModel.detail> detail = new List<ShipmentEntityViewModel.detail>();
             ShipmentEntityViewModel.ShipmentEntity shipmentEntity = new ShipmentEntityViewModel.ShipmentEntity();
+            ShipmentEntityViewModel.ShipmentEntity NewShip = new ShipmentEntityViewModel.ShipmentEntity();
 
-            //var url = HttpUtility.UrlDecode(data.Replace("+", " ").Replace("/", "")); 
-
-
-            ViewBag.Carrier = LogicManager.CarrierLogicDirect();
-            ViewBag.Operator = LogicManager.GetOperator();
-
-            var temp = data == null ? "SAVE" : "UPDATE";
-
-            // data is null? set the value a MA== 
-            if (string.IsNullOrWhiteSpace(data) || data == "null")
+            if (data == null || data == "MA==")
             {
-                data = HttpUtility.UrlDecode("MA==");
-
-                shipmentEntity.Incoming = false;
-                shipmentEntity.ShipUniqueID = 0;
-
-
+                msjbtn = "Save";
+                NewShip.ShipUniqueID = 0;
+                NewShip.Operator = "";
+                NewShip.CarrierName = "";
+                NewShip.Incoming = false;
+                result.shipmentEntity = NewShip;
             }
             else
             {
+                msjbtn = "Update";
                 url = HttpUtility.UrlDecode(data);
                 dec = Tools.Decode(url);
 
-                if (dec != "0")
+                var validalogtype = LogicManager.IsIncomingVerificationLog(dec);
+
+                if (validalogtype.Incoming==true)
                 {
-                    //valido que tipo de logtype es
-                    var validalogtype = LogicManager.IsIncomingVerificationLog(dec);
-
-                    if (validalogtype.Incoming.GetValueOrDefault())
-                    {
-                        //Obtengo el detalle de Incoming
-                        shipmentEntity = LogicManager.Method_Incoming(dec);
-                        result.shipmentEntity = shipmentEntity;
-                        //result = LogicManager.Method_Incoming(dec);
-                        result.detalles = LogicManager.GET_SHIPMENTDETAILSLog(dec);
-
-                    }
-                    else
-                    {
-                        //Obtengo el solo el Outgoing
-                        result.shipmentEntity = LogicManager.Method_Outgoing(dec);
-
-                    }
+                    //Obtengo el detalle de Incoming
+                    shipmentEntity = LogicManager.Method_Incoming(dec);
+                    result.shipmentEntity = shipmentEntity;
+                    //result = LogicManager.Method_Incoming(dec);
+                    result.detalles = LogicManager.GET_SHIPMENTDETAILSLog(dec);
                 }
                 else
                 {
-                    result = new ShipmentEntityViewModel();
+                    result.shipmentEntity = LogicManager.Method_Outgoing(dec);
                 }
             }
-            ViewBag.btnMenssager = temp;
-
+            ViewBag.btnMenssager = msjbtn;
 
             return View(result);
         }
@@ -133,7 +115,7 @@ namespace ShipLogs.Frontend.Controllers
             objetoreal.ReceiverPhoneNumber = objModel.shipmentEntity.ReceiverPhoneNumber;
             objetoreal.ShipmentComments = objModel.shipmentEntity.ShipmentComments;
             objetoreal.Transit = objModel.shipmentEntity.Transit;
-            objetoreal.Incoming = objModel.shipmentEntity.Incoming.GetValueOrDefault();
+            objetoreal.Incoming = objModel.shipmentEntity.Incoming;
             objetoreal.CommissionChecks = objModel.shipmentEntity.CommissionChecks;
             objetoreal.Materials = objModel.shipmentEntity.Materials;
             objetoreal.OtherContents = objModel.shipmentEntity.OtherContents;
@@ -144,7 +126,7 @@ namespace ShipLogs.Frontend.Controllers
             {
                 showMessageString = new
                 {
-                    param1 = 202,
+                    param1 = "Success",
                     param2 = "The Registry was successfully saved!",
                     param3 = resp.id,
                     param4 = resp.IdAlf,
@@ -152,13 +134,13 @@ namespace ShipLogs.Frontend.Controllers
                 };
 
             }
-            else
+            else if(!string.IsNullOrWhiteSpace(resp.ErrorMenssager))
             {
                 showMessageString = new
                 {
-                    param1 = 404,
+                    param1 = "Error",
                     param2 = "The Record was not saved successfully!",
-                    param3 = resp.Value
+                    param3 = resp.ErrorMenssager
                 };
             }
 

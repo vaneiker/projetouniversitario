@@ -20,6 +20,12 @@ namespace ShipLogs.Frontend.Controllers
             return View();
         }
 
-      
+        public ActionResult Menu2()
+        {
+
+
+            return View();
+        }
+
     }
 }

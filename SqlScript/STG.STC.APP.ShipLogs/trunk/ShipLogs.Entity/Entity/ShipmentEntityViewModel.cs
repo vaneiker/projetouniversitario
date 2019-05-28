@@ -70,7 +70,7 @@ namespace ShipLogs.Entity.Entity
             [Display(Name = "Comments")]
             public string ShipmentComments { get; set; }
             public bool? Transit { get; set; }
-            public bool? Incoming { get; set; } 
+            public bool Incoming { get; set; } 
             [Display(Name = "Commission Checks")]
             public bool CommissionChecks { get; set; }
             public bool Materials { get; set; }

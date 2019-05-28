@@ -1,4 +1,7 @@
-﻿$.validator.setDefaults({
+﻿var globalQtyTr = 0;
+var tblShip;
+
+$.validator.setDefaults({
     showErrors: function (errorMap, errorList) {
         if (errorList.length > 0) {
             var ShowError = $(".validation-summary-errors").length == 0;
@@ -29,28 +32,22 @@
     onclick: false,
     onsubmit: true,
     focusInvalid: false
-}); 
+});
 
-
-
-
-
-
- 
-$(document).ready(function () {  
+$(document).ready(function () {
     //Verifico si es un Incoming o Outgoing
     //Para poder mostrar o no los detalles
 
-    var hv = $('#IsIncomingHDN').val();  
+    var hv = $('#IsIncomingHDN').val();
 
 
     if (hv == "true") {
         $("#tblShipmentDetails").show();
         $("#ShipmentDetailsOu").hide();
-    }else
-    if (hv == "false") {
-        $("#tblShipmentDetails").hide();
-        $("#ShipmentDetailsOu").show();
+    } else
+        if (hv == "false") {
+            $("#tblShipmentDetails").hide();
+            $("#ShipmentDetailsOu").show();
         }
 
     //Add New Register Detail
@@ -67,31 +64,21 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.deleteShipDet', function () {
-
-        var $this = $(this);
-        var randomID = $this.data('data-Shipclerandomid');
-
-        var trLen = $(".trVehicle").length;
-        if (trLen == 1) {
-            showWarning(['Debe existir al menos un vehículo']);
-            return false;
-        }
-
-        var current = altFind(AllVehicleDataToSave, function (item) {
-            return item.randomId == randomID
-        });
-
-        //if (current != undefined) {
-        //    AllVehicleDataToSave = AllVehicleDataToSave.filter(function (item) {
-        //        return item.randomId != randomID
-        //    });
-        //}
+        deleteShip(this);
+        return false;
     });
+
+    //Section Mask
+
+    $(".decimal").inputmask({ alias: 'decimal', groupSeparator: ',', autoGroup: true, repeat: 9, digits: 2, allowMinus: false, allowPlus: false, rightAlign: true });
+    $(".integer").inputmask({ alias: 'integer', groupSeparator: ',', autoGroup: true, repeat: 9, digits: 0, allowMinus: false, allowPlus: false, rightAlign: true });
+
+    $("#ReceiverZipCode").inputmask({ mask: "99999[-9999]", greedy: false });
+
+
+
 });
 
-
-
-var tblShip;
 function CargarShipLogsjs(id) {
     var url = "/ShipLogs/CargarShipLogs?data=" + id;
     location.href = url;
@@ -112,12 +99,12 @@ tblShip = $('#ShipdataTables').DataTable({
 });
 
 
+
 $('#ddCarrierSelect').on('change', function () {
     var text = this.value;
     var hdfCarrier = $("#hdfCarrierName");
     hdfCarrier.val(text);
 });
-
 
 $('#ddoperator').on('change', function () {
     var text = this.value;
@@ -125,12 +112,14 @@ $('#ddoperator').on('change', function () {
     Hdfoperator.val(text);
 });
 
-
 $(function () {
     $("#shipmentDate").datepicker({ dateFormat: "yy-mm-dd" }).val();
 });
- 
 
+$('#btnClearTxt').on('click', function () {
+    var url = "/ShipLogs/CargarShipLogs?data=" + "MA==";
+    location.href = url;
+});
 
 function generateNewRow(newTr) {
     var newInput = "";
@@ -199,23 +188,47 @@ function AtiveModeShiptmentType(obj) {
             $("#ShipmentDetailsOu").show();
             //$hdnIncoming.val("false");
         }
-} 
+}
 
 function OnSuccess(data) {
 
-    var idShip   = data.param3;
+    var errort = data.param1;
+    var errordesc = data.param2;
+
+    var idShip = data.param3;
     var typeShip = data.param4;
     var typeoper = data.param5;
+
     var hdnShipId = $("#shipUniqueID");
 
     hdnShipId.val(idShip);
-    
-    if (typeShip == "Incoming" && typeoper == "UPDATE") {
+
+    if (errort === "Error") {
+        alertify.alert(
+            '<h1 style="color: #cb3234; position:center; text-align:center;">An error has occurred</h1>',
+            '<strong>' + errordesc + '</strong> <br>' + 'Description:' + idShip,
+            function () {
+                alertify.error('Error: An error has occurred.Check with the system administrator');
+            });
+    } else if (typeShip == "Incoming" && typeoper == "UPDATE" && errort === "Success") {
+        saveDateShip(idShip, typeoper);
+        alertify.alert(
+            '<h1 style="color: #0a95c4; position:center; text-align:center;">Ship Logs</h1>',
+            '<strong> The record has been successfully saved' + '</strong>',
+            function () {
+                alertify.success('To enter another record press the New Ship Log');
+            });
+
+    } else if (typeShip == "Incoming" && typeoper == "INSERT" && errort === "Success") {
         saveDateShip(idShip, typeoper);
 
-    } else if (typeShip == "Incoming" && typeoper == "INSERT") {
-        saveDateShip(idShip, typeoper);
-    }
+        alertify.alert(
+            '<h1 style="color: #0a95c4; position:center; text-align:center;">Ship Logs</h1>',
+            '<strong> The record has been successfully saved' + '</strong>',
+            function () {
+                alertify.success('To enter another record press the New Ship Log');
+            });
+    } 
 }
 
 function OnFailure(data) {
@@ -268,7 +281,7 @@ function saveDateShip(shipuniqueid, option) {
         },
         async: true,
         success: function (data) {
-          
+
 
             if (data.messageError) {
                 showError([data.messageError], "Ha ocurrido el siguiente error");
@@ -284,5 +297,37 @@ function saveDateShip(shipuniqueid, option) {
     });
 }
 
+function deleteShip(btn) {
+    var currentQtyTr = $(".trShip").length;
 
- 
+    if (globalQtyTr === 0) {
+        globalQtyTr = $(".trShip").length;
+    }
+
+    var $realbtn = $(btn);
+
+    var $tr = $realbtn.parent().parent();
+    if ($tr.length > 0) {
+        //if (currentQtyTr < globalQtyTr) {
+        if (currentQtyTr == 1) {
+            //boche o borrar lo que hay en los textbox
+
+            alertify.alert(
+                'Stop',
+                '<strong> If you want to change to Ougoing select the option' + '</strong >',
+                function () {
+                    alertify.error('Can not remove this item');
+                    //$("#txtAssignedTo").val("");
+
+                });
+            $('#txtAssignedTo').value('');
+
+        } else {
+            $tr.remove();
+        }
+    }
+
+}
+
+
+

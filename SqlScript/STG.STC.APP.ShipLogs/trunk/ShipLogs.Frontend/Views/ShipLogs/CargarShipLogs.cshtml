@@ -7,7 +7,7 @@
     //realModel = Model.shipmentEntity;
 
     string valor = "";
-    var IsIncoming = Model.shipmentEntity.Incoming.GetValueOrDefault();
+    var IsIncoming = Model.shipmentEntity.Incoming;
 
 
 
@@ -19,309 +19,311 @@
     {
         valor = "false";
     }
-
-
- 
-
-
     List<ShipLogs.Entity.Entity.CarrierEntity> carrierEntities = ViewBag.Carrier;
     List<ShipLogs.Entity.Entity.OperatorEntity> operatoent = ViewBag.Operator;
-
-
-
 }
 <style>
- .input-validation-error {
-    border: 1px solid #f00 !important;
-}
+    .input-validation-error {
+        border: 1px solid #f00 !important;
+    }
 
-.validation-summary-valid {
-    display: none;
-}
+    .validation-summary-valid {
+        display: none;
+    }
 
-.field-validation-error {
-    color: #b94a48;
-}
+    .field-validation-error {
+        color: #b94a48;
+    }
 
-.validation-summary-errors {
-    color: #b94a48;
-} 
+    .validation-summary-errors {
+        color: #b94a48;
+    }
 </style>
 
+<div class="panel panel-success filterable mt-3">
+    <div class="panel-body">
 
-@using (Ajax.BeginForm("SaveShipManten", new AjaxOptions()
-{
-    HttpMethod = "POST",
-    InsertionMode = InsertionMode.Replace,
-    UpdateTargetId = "Contenedor",
-    LoadingElementId = "loading",
-    OnSuccess = "OnSuccess",
-    OnFailure = "OnFailure",
+        @using (Ajax.BeginForm("SaveShipManten", new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "Contenedor",
+            LoadingElementId = "loading",
+            OnSuccess = "OnSuccess",
+            OnFailure = "OnFailure",
 
-}))
-{
-    @Html.AntiForgeryToken()
-    <hr />
-    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-    @Html.ValidationSummary(false, "To continue please complete the required fields.", new { @class = "alert alert-danger validation-summary-errors", @id = "validatesummary" })
+        }))
+        {
+            @Html.AntiForgeryToken()
+            @*<hr />*@
+            @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+            @Html.ValidationSummary(false, "To continue please complete the required fields.", new { @class = "alert alert-danger validation-summary-errors", @id = "validatesummary" })
 
-    @Html.HiddenFor(model => model.shipmentEntity.ShipUniqueID, new { htmlAttributes = new { @class = "form-control", @id = "shipUniqueID", @name = "shipUniqueID" } })
+            @Html.HiddenFor(model => model.shipmentEntity.ShipUniqueID, new { htmlAttributes = new { @class = "form-control", @id = "shipUniqueID", @name = "shipUniqueID" } })
 
-    <input type="hidden" name="IsIncomingHDN" id="IsIncomingHDN" value="@valor" />
-
-    <div class="form-row">
-        <h4>Shipment Details</h4>
-
+            <input type="hidden" name="IsIncomingHDN" id="IsIncomingHDN" value="@valor" />
 
 
-        @*Inicio del Formulario*@
-        <div class="form-group col-md-4">
-            <label for="inputCarrier">Package Carrier</label>
-            <select id="ddCarrierSelect" class="form-control">
-                @foreach (var p in carrierEntities)
-                {
-                    <option @if (Model.shipmentEntity.CarrierName == null) { Model.shipmentEntity.CarrierName = ""; }
-                            @(Model.shipmentEntity.CarrierName.ToUpper().TrimEnd().TrimStart() == p.CarrierName.ToUpper() ? "selected" : "")
-                            value="@p.CarrierName.ToUpper()">
-                        @p.CarrierName.ToUpper()
-                    </option>
-                }
-            </select>
+            <div class="form-row">
+                <h4>Shipment Details</h4>
 
-            @Html.HiddenFor(model => model.shipmentEntity.CarrierName, new { @id = "hdfCarrierName", @name = "hdfCarrierName" })
-        </div>
 
-        <div class="form-group col-md-4">
-            @Html.LabelFor(model => model.shipmentEntity.ShipmentNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.ShipmentNumber, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentNumber", @name = "ShipmentNumber" } })
-            @*@Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentNumber, "", new { @class = "text-danger" })*@
-        </div>
 
-        <div class="form-group col-md-4">
-            @Html.LabelFor(model => model.shipmentEntity.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.AccountNumber, new { htmlAttributes = new { @class = "form-control", @id = "AccountNumber", @name = "AccountNumber" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.AccountNumber, "", new { @class = "text-danger" })
-        </div>
+                @*Inicio del Formulario*@
+                <div class="form-group col-md-4">
+                    <label for="inputCarrier">Package Carrier</label>
+                    <select id="ddCarrierSelect" class="form-control">
+                        @foreach (var p in carrierEntities)
+                        {
+                            <option @if (Model.shipmentEntity.CarrierName == null) { Model.shipmentEntity.CarrierName = ""; }
+                                    @(Model.shipmentEntity.CarrierName.ToUpper().TrimEnd().TrimStart() == p.CarrierName.ToUpper() ? "selected" : "")
+                                    value="@p.CarrierName.ToUpper()">
+                                @p.CarrierName.ToUpper()
+                            </option>
+                        }
+                    </select>
 
-        <div class="form-group col-md-4">
-            @Html.LabelFor(model => model.shipmentEntity.ShipmentDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.ShipmentDate, new { htmlAttributes = new { @class = "form-control", @id = "shipmentDate", @name = "shipmentDate", @autocomplete = "off" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentDate, "", new { @class = "text-danger" })
-        </div>
+                    @Html.HiddenFor(model => model.shipmentEntity.CarrierName, new { @id = "hdfCarrierName", @name = "hdfCarrierName" })
+                </div>
 
-        <div class="form-group col-md-4">
-            @Html.LabelFor(model => model.shipmentEntity.ShipmentWeight, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.ShipmentWeight, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentWeight", @name = "ShipmentWeight" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentWeight, "", new { @class = "text-danger" })
-        </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.shipmentEntity.ShipmentNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.ShipmentNumber, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentNumber", @name = "ShipmentNumber" } })
+                    @*@Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentNumber, "", new { @class = "text-danger" })*@
+                </div>
 
-        <div class="form-group col-md-4">
-            @Html.LabelFor(model => model.shipmentEntity.ShipmentQTY, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.ShipmentQTY, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentQTY", @name = "ShipmentQTY" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentQTY, "", new { @class = "text-danger" })
-        </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.shipmentEntity.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.AccountNumber, new { htmlAttributes = new { @class = "form-control", @id = "AccountNumber", @name = "AccountNumber" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.AccountNumber, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group col-md-4 mT-2">
-            <div class="form-check fl mR-1">
-                <input class="form-check-input" type="radio" name="ShiptmentType" id="incomingShipment" onclick="setShiptmentType(this)" @(IsIncoming ? "checked" : "")>
-                <label class="form-check-label" for="incomingShipment">
-                    Incoming Shipment
-                </label>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.shipmentEntity.ShipmentDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.ShipmentDate, new { htmlAttributes = new { @class = "form-control", @id = "shipmentDate", @name = "shipmentDate", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.shipmentEntity.ShipmentWeight, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.ShipmentWeight, new { htmlAttributes = new { @class = "form-control", @id = "ShipmentWeight", @name = "ShipmentWeight" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentWeight, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.shipmentEntity.ShipmentQTY, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.ShipmentQTY, new { htmlAttributes = new { @class = "form-control integer", @id = "ShipmentQTY", @name = "ShipmentQTY", @type = "text" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentQTY, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-4 mT-2">
+                    <div class="form-check fl mR-1">
+                        <input class="form-check-input" type="radio" name="ShiptmentType" id="incomingShipment" onclick="setShiptmentType(this)" @(IsIncoming ? "checked" : "")>
+                        <label class="form-check-label" for="incomingShipment">
+                            Incoming Shipment
+                        </label>
+                    </div>
+                    <div class="form-check fl">
+                        <input class="form-check-input" type="radio" name="ShiptmentType" id="OutgoingShipment" onclick="setShiptmentType(this)" @(!IsIncoming ? "checked" : "")>
+                        <label class="form-check-label" for="outgoingShipment">
+                            Outgoing Shipment
+                        </label>
+                    </div>
+
+                    @Html.HiddenFor(model => model.shipmentEntity.Incoming)
+
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.shipmentEntity.ShipPackageType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.ShipPackageType, new { htmlAttributes = new { @class = "form-control", @id = "ShipPackageType", @name = "ShipPackageType" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.ShipPackageType, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="inputCarrier">Package Carrier</label>
+                    <select id="ddoperator" class="form-control">
+                        @if (Model.shipmentEntity.Operator == null) { Model.shipmentEntity.Operator = ""; }
+                        @foreach (var p in operatoent)
+                        {
+
+                            <option @(Model.shipmentEntity.Operator.ToUpper() == p.OperatorID.ToUpper() ? "selected" : "") value="@p.OperatorID.ToUpper()">@p.OperatorID.ToUpper()</option>
+
+                        }
+                    </select>
+                    @Html.HiddenFor(model => model.shipmentEntity.Operator, new { @id = "hdfoperator", @name = "hdfoperator" })
+                </div>
+
+                <div class="form-group col-md-8">
+                    <h4>Sender Information</h4>
+                    @Html.LabelFor(model => model.shipmentEntity.Sender, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.Sender, new { htmlAttributes = new { @class = "form-control", @id = "Sender", @name = "Sender" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.Sender, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-4">
+                    <h4 class="mB-2">Type Materials</h4>
+                    <div class="form-check fl mR-1">
+                        @Html.CheckBoxFor(x => x.shipmentEntity.Materials, new { @class = "form-check-input", @id = "MaterialsCheck", @name = "MaterialsCheck" })
+                        <label class="form-check-label" for="MaterialsShipmentLabel1">
+                            Materials
+                        </label>
+                    </div>
+                    <div class="form-check fl mR-1">
+                        @Html.CheckBoxFor(x => x.shipmentEntity.CommissionChecks, new { @class = "form-check-input", @id = "CommissionChecksCheck", @name = "CommissionChecksCheck" })
+                        <label class="form-check-label" for="MaterialsShipmentLabel2">
+                            Commission Checks
+                        </label>
+                    </div>
+                    <div class="form-check fl mR-1">
+                        @Html.CheckBoxFor(x => x.shipmentEntity.OtherContents, new { @class = "form-check-input", @id = "OtherContentsCheck", @name = "OtherContentsCheck" })
+                        <label class="form-check-label" for="MaterialsShipmentLabel3">
+                            Other
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <h4>Receiver Information</h4>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.shipmentEntity.Receiver, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.Receiver, new { htmlAttributes = new { @class = "form-control", @id = "Receiver", @name = "Receiver" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.Receiver, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.shipmentEntity.ReceiverAttn, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.ReceiverAttn, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverAttn", @name = "ReceiverAttn" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverAttn, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-8">
+                    @Html.LabelFor(model => model.shipmentEntity.ReceiverAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.shipmentEntity.ReceiverAddress, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverAddress", @name = "ReceiverAddress" } })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverAddress, "", new { @class = "text-danger" })
+                </div>
+
             </div>
-            <div class="form-check fl">
-                <input class="form-check-input" type="radio" name="ShiptmentType" id="OutgoingShipment" onclick="setShiptmentType(this)" @(!IsIncoming ? "checked" : "")>
-                <label class="form-check-label" for="outgoingShipment">
-                    Outgoing Shipment
-                </label>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.shipmentEntity.ReceiverCity, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.shipmentEntity.ReceiverCity, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverCity", @name = "ReceiverCity" } })
+                @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverCity, "", new { @class = "text-danger" })
             </div>
 
-            @Html.HiddenFor(model => model.shipmentEntity.Incoming)
-
-        </div>
-
-        <div class="form-group col-md-4">
-            @Html.LabelFor(model => model.shipmentEntity.ShipPackageType, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.ShipPackageType, new { htmlAttributes = new { @class = "form-control", @id = "ShipPackageType", @name = "ShipPackageType" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.ShipPackageType, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group col-md-4">
-            <label for="inputCarrier">Package Carrier</label>
-            <select id="ddoperator" class="form-control">
-                @if (Model.shipmentEntity.Operator == null) { Model.shipmentEntity.Operator = ""; }
-                @foreach (var p in operatoent)
-                {
-
-                    <option @(Model.shipmentEntity.Operator.ToUpper() == p.OperatorID.ToUpper() ? "selected" : "") value="@p.OperatorID.ToUpper()">@p.OperatorID.ToUpper()</option>
-
-                }
-            </select>
-            @Html.HiddenFor(model => model.shipmentEntity.Operator, new { @id = "hdfoperator", @name = "hdfoperator" })
-        </div>
-
-        <div class="form-group col-md-8">
-            <h4>Sender Information</h4>
-            @Html.LabelFor(model => model.shipmentEntity.Sender, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.Sender, new { htmlAttributes = new { @class = "form-control", @id = "Sender", @name = "Sender" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.Sender, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group col-md-4">
-            <h4 class="mB-2">Type Materials</h4>
-            <div class="form-check fl mR-1">
-                @Html.CheckBoxFor(x => x.shipmentEntity.Materials, new { @class = "form-check-input", @id = "MaterialsCheck", @name = "MaterialsCheck" })
-                <label class="form-check-label" for="MaterialsShipmentLabel1">
-                    Materials
-                </label>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.shipmentEntity.ReceiverState, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.shipmentEntity.ReceiverState, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverState", @name = "ReceiverState" } })
+                @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverState, "", new { @class = "text-danger" })
             </div>
-            <div class="form-check fl mR-1">
-                @Html.CheckBoxFor(x => x.shipmentEntity.CommissionChecks, new { @class = "form-check-input", @id = "CommissionChecksCheck", @name = "CommissionChecksCheck" })
-                <label class="form-check-label" for="MaterialsShipmentLabel2">
-                    Commission Checks
-                </label>
+
+            <div class="form-group col-md-2">
+                @Html.LabelFor(model => model.shipmentEntity.ReceiverZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.shipmentEntity.ReceiverZipCode, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverZipCode", @name = "ReceiverZipCode" } })
+                @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverZipCode, "", new { @class = "text-danger" })
             </div>
-            <div class="form-check fl mR-1">
-                @Html.CheckBoxFor(x => x.shipmentEntity.OtherContents, new { @class = "form-check-input", @id = "OtherContentsCheck", @name = "OtherContentsCheck" })
-                <label class="form-check-label" for="MaterialsShipmentLabel3">
-                    Other
-                </label>
+
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.shipmentEntity.ReceiverCountry, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.shipmentEntity.ReceiverCountry, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverCountry", @name = "ReceiverCountry" } })
+                @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverCountry, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group col-md-12">
-            <h4>Receiver Information</h4>
-        </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.shipmentEntity.ReceiverPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.shipmentEntity.ReceiverPhoneNumber, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverPhoneNumber", @name = "ReceiverPhoneNumber" } })
+                @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverPhoneNumber, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.shipmentEntity.Receiver, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.Receiver, new { htmlAttributes = new { @class = "form-control", @id = "Receiver", @name = "Receiver" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.Receiver, "", new { @class = "text-danger" })
-
-        </div>
-
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.shipmentEntity.ReceiverAttn, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.ReceiverAttn, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverAttn", @name = "ReceiverAttn" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverAttn, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group col-md-8">
-            @Html.LabelFor(model => model.shipmentEntity.ReceiverAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.shipmentEntity.ReceiverAddress, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverAddress", @name = "ReceiverAddress" } })
-            @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverAddress, "", new { @class = "text-danger" })
-        </div>
-
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.shipmentEntity.ReceiverCity, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.shipmentEntity.ReceiverCity, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverCity", @name = "ReceiverCity" } })
-        @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverCity, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group col-md-3">
-        @Html.LabelFor(model => model.shipmentEntity.ReceiverState, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.shipmentEntity.ReceiverState, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverState", @name = "ReceiverState" } })
-        @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverState, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group col-md-2">
-        @Html.LabelFor(model => model.shipmentEntity.ReceiverZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.shipmentEntity.ReceiverZipCode, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverZipCode", @name = "ReceiverZipCode" } })
-        @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverZipCode, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group col-md-3">
-        @Html.LabelFor(model => model.shipmentEntity.ReceiverCountry, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.shipmentEntity.ReceiverCountry, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverCountry", @name = "ReceiverCountry" } })
-        @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverCountry, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.shipmentEntity.ReceiverPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.shipmentEntity.ReceiverPhoneNumber, new { htmlAttributes = new { @class = "form-control", @id = "ReceiverPhoneNumber", @name = "ReceiverPhoneNumber" } })
-        @Html.ValidationMessageFor(model => model.shipmentEntity.ReceiverPhoneNumber, "", new { @class = "text-danger" })
-    </div>
-
-    <!--==== COMMENT AND STATUS ====-->
+            <!--==== COMMENT AND STATUS ====-->
 
 
 
-    <!--========= Implementacion prueba=====================-->
+            <!--========= Implementacion prueba=====================-->
 
-
-    <table id="tblShipmentDetails" class="table table-responsive" style="display: none;
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="table-responsive" style="max-height:200px;">
+                    <table id="tblShipmentDetails" class="table table-responsive" style="display: none;
         overflow: auto;">
-        <thead>
-            <tr>
-                <th width="25%"><label>Assigned To</label></th>
-                <th width="62%"><label>Item Detail</label></th>
-                <th width="50px"><label>Action</label></th>
-            </tr>
-        </thead>
-        <tbody>
+                        <thead>
+                            <tr>
+                                <th width="25%"><label>Assigned To</label></th>
+                                <th width="62%"><label>Item Detail</label></th>
+                                <th width="50px"><label>Action</label></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-            @if (Model.detalles == null)
+                            @if (Model.detalles == null)
 
-            {
-                <tr id="trShipmentDetails" class="trShip">
-                    <td>
-                        <input class="form-control txtAssignedTo" type="text" id="txtAssignedTo" name="txtAssignedTo" placeholder="Assigned To...">
-                    </td>
+                            {
+                                <tr id="trShipmentDetails" class="trShip">
+                                    <td>
+                                        <input class="form-control txtAssignedTo" type="text" id="txtAssignedTo" name="txtAssignedTo" placeholder="Assigned To...">
+                                    </td>
 
-                    <td>
-                        <input class="form-control txtTypethedetails" type="text" id="txtTypethedetails" name="txtTypethedetails" placeholder="Type the details">
-                    </td>
+                                    <td>
+                                        <input class="form-control txtTypethedetails" type="text" id="txtTypethedetails" name="txtTypethedetails" placeholder="Type the details">
+                                    </td>
 
-                    <td>
-                        <button id="btnNextShiDet" title="Next Shipment Details" type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></button>
-                        <button id="btndeleteShipDet" title="Delete Shipment Details" type="button" class="btn btn-danger deleteShipDet"><i class="glyphicon glyphicon-minus"></i></button>
-                    </td>
-                </tr>
-            }
-            else
-            {
+                                    <td>
+                                        <button id="btnNextShiDet" title="Next Shipment Details" type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></button>
+                                        <button id="btndeleteShipDet" title="Delete Shipment Details" type="button" class="btn btn-danger deleteShipDet"><i class="glyphicon glyphicon-minus"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
 
-                foreach (var m in Model.detalles)
-                {
-                    <tr id="trShipmentDetails" class="trShip">
-                        <td>
-                            <input class="form-control txtAssignedTo" value="@m.AssignedTo" type="text" id="txtAssignedTo" name="txtAssignedTo" placeholder="Assigned To...">
-                        </td>
+                                foreach (var m in Model.detalles)
+                                {
+                                    <tr id="trShipmentDetails" class="trShip">
+                                        <td>
+                                            <input class="form-control txtAssignedTo" value="@m.AssignedTo" type="text" id="txtAssignedTo" name="txtAssignedTo" placeholder="Assigned To...">
+                                        </td>
 
-                        <td>
-                            <input class="form-control txtTypethedetails" value="@m.ItemDetail" type="text" id="txtTypethedetails" name="txtTypethedetails" placeholder="Type the details">
-                        </td>
+                                        <td>
+                                            <input class="form-control txtTypethedetails" value="@m.ItemDetail" type="text" id="txtTypethedetails" name="txtTypethedetails" placeholder="Type the details">
+                                        </td>
 
-                        <td>
-                            <button id="btnNextShiDet" title="Next Shipment Details" type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></button>
-                            <button id="btndeleteShipDet" title="Delete Shipment Details" type="button" class="btn btn-danger deleteShipDet"><i class="glyphicon glyphicon-minus"></i></button>
-                        </td>
-                    </tr>
-                }
-            }
+                                        <td>
+                                            <button id="btnNextShiDet" title="Next Shipment Details" type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></button>
+                                            <button id="btndeleteShipDet" onclick="deleteShip(this)" title="Delete Shipment Details" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
 
-        </tbody>
-    </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <div id="ShipmentDetailsOu">
-        @Html.LabelFor(model => model.shipmentEntity.ShipmentComments, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.TextAreaFor(model => model.shipmentEntity.ShipmentComments, new { @class = "form-control", @id = "ShipmentComments", @name = "ShipmentComments" })
-        @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentComments, "", new { @class = "text-danger" })
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div id="ShipmentDetailsOu">
+                    @Html.LabelFor(model => model.shipmentEntity.ShipmentComments, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextAreaFor(model => model.shipmentEntity.ShipmentComments, new { @class = "form-control", @id = "ShipmentComments", @name = "ShipmentComments" })
+                    @Html.ValidationMessageFor(model => model.shipmentEntity.ShipmentComments, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="form-group mT-2">
+                    @Html.ActionLink("Shipping History", "ShipLogSearch", "ShipLogs", null, new { @class = "btn btn-primary" })
+                    <button type="submit" class="btn btn-primary">@ViewBag.btnMenssager</button>
+                    <button type="button" id="btnClearTxt" class="btn btn-primary">New Ship Log</button>
+                    <button type="submit" class="btn btn-primary">Address Book</button>
+                    @Html.ActionLink("Close", "Menu", "Home", null, new { @class = "btn btn-danger fr" })
+                </div>
+            </div>
+
+        }
+
+
+
     </div>
-
-
-    <div class="form-group mT-2">
-        @Html.ActionLink("Shipping History", "ShipLogSearch", "ShipLogs", null, new { @class = "btn btn-primary" })
-        <button type="submit" class="btn btn-primary">@ViewBag.btnMenssager</button>
-        <button type="submit" class="btn btn-primary">Delete</button>
-        <button type="submit" class="btn btn-primary">Address Book</button>
-        @Html.ActionLink("Close", "Menu", "Home", null, new { @class = "btn btn-danger fr" })
-    </div>
-
-}
-
-
-
+</div>
 
 
