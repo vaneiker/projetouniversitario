@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/all.css" rel="stylesheet" />
+    <link href="~/Content/cssc.css" rel="stylesheet" />
+   
+    <style>
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
+        <a href="/" title="Atlantica Seguros" class="logo">
+            <img src="~/Content/Imagen/atlantica-seguros-logo.png" class="img-fluid" />
+            <span class="letter">
+            </span>
+        </a>
+    </div>
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-3">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Pegar Los Codigo de Agentes</h5>
+                        <div>
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer_cotiza_atl mdl-mega-footer  mt-3 bg-primary fixed-bottom p-2">
+            <div class="container">
+                <div class="mdl-mega-footer__top-section">
+                    <div class="mdl-mega-footer__left-section float-left">
+                        <a href="#" target="_blank" id="uptocall-mini" class="float-left ml-2 mr-4"><i class="uptocall-mini-phone"></i></a>
+
+                        © 2019 Atlántica Seguros S.A. Todos los Derechos Reservados
+                    </div>
+                    <div class="mdl-mega-footer__right-section float-right">
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+ 
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.slim.min.js"></script>
+    <script src="~/Scripts/Global.js"></script>
+</body>
+</html>
