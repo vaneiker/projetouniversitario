@@ -1,0 +1,263 @@
+  public class CurrencyController : Controller
+    {
+        private DataCurrencyVariation Data = new DataCurrencyVariation();
+        public ActionResult GetActionCurrency()
+        {
+            var lista = Data.SP_GET_CurrencyListDatas();
+
+            return View(lista);
+        }
+        public ActionResult _LoadViewCurrency(int id = 0)
+        {
+            var resul = new CurrencyEntryEntity();
+            var ruta = viewRequiredEdit(id);
+            resul.realData = ruta;
+
+            var model = Data.GET_One_CurrencyListDatas(id);
+
+            if (model == null)
+            {
+                model = new CurrencyEntryEntity();
+
+                model.IdCurrencyEntry = 0;
+                model.DateCurrencyEntry = DateTime.Now;
+                model.Hedge_Value = 0;
+                model.Beginning_Rate = 0;
+                model.End_Rate = 0;
+                model.realData = "";
+
+            }
+            return PartialView(model);
+        }
+        public ActionResult CompleteCurrency(string s = "")
+        {
+            string path = "";
+            bool _success = false;
+            string _message = "";
+            string jsondata = Request.Form["reqinfo"];
+            string saveResult = "";
+            string message = "";
+
+            var ObjetoFull = new CurrencyEntryEntity();
+            var result = new Generic();
+            string messageError = "";
+            bool success = true;
+
+            //Creacion variables
+            int idcurrencyentry = 0;
+            DateTime dateTime;
+            decimal hedgehalue;
+            decimal beginningrate;
+            decimal endrate;
+
+            try
+            {
+                foreach (string file in Request.Files)
+                {
+                    var fileContent = Request.Files[file];
+                    if (fileContent != null && fileContent.ContentLength > 0)
+                    {
+                        var guidName = "CurrencyPdf";
+                        // get a stream
+                        var stream = fileContent.InputStream;
+                        var fileName = guidName + fileContent.FileName;
+                        path = Path.Combine(Server.MapPath("~/FileDocument"), fileName);
+
+                        if (fileContent.ContentType.IndexOf("image") != -1)
+                        {
+                            byte[] ImgBytes = new byte[fileContent.ContentLength];
+
+                            //verificar el tipo de imagen que se esta capturando para si no es un png entonces convertirla a png                            
+                            //No es un png entonces convertirlo a png
+                            ImgBytes = Utility.Utility.ConvertImageAsPng(stream);
+
+                            //Convertir imagen a pdf                        
+                            byte[] pdf = Utility.Utility.ConvertImageToPdf(ImgBytes);
+
+                            string pathOnly = Server.MapPath("~/FileDocument/");
+                            string newPathFileName = string.Concat(pathOnly, Path.GetFileNameWithoutExtension(fileName), ".pdf");
+
+                            Utility.Utility.ByteArrayToFile(newPathFileName, pdf);
+
+                            string newFileName = string.Concat(Path.GetFileNameWithoutExtension(fileName), ".pdf");
+
+                            path = "/FileDocument/" + newFileName;
+                            DeleteFile(path);
+                            _success = true;
+                        }
+                        else if (fileContent.ContentType.IndexOf("pdf") != -1)
+                        {
+                            using (var fileStream = System.IO.File.Create(path))
+                            {
+                                stream.CopyTo(fileStream);
+                                _success = true;
+                            }
+                            path = "/FileDocument/" + fileName;
+                            DeleteFile(path);
+
+
+
+                            dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(jsondata);
+
+                            string IdCurrencyentry = data.IdCurrencyEntry;
+                            string Datecurrencyentry = data.DateCurrencyEntry;
+                            string Hedgevalue = data.HedgeValue;
+                            string Beginningrate = data.BeginningRate;
+                            string Endrate = data.EndRate;
+
+
+                            idcurrencyentry = int.Parse(IdCurrencyentry);
+                            dateTime = DateTime.Parse(Datecurrencyentry);
+                            hedgehalue = decimal.Parse(Hedgevalue);
+                            beginningrate = decimal.Parse(Beginningrate);
+                            endrate = decimal.Parse(Endrate);
+
+                            ObjetoFull.IdCurrencyEntry = idcurrencyentry;
+                            ObjetoFull.DateCurrencyEntry = dateTime;
+                            ObjetoFull.Hedge_Value = hedgehalue;
+                            ObjetoFull.Beginning_Rate = beginningrate;
+                            ObjetoFull.End_Rate = endrate;
+                            ObjetoFull.CreateUserid = 3348;
+
+                            result = Data.SET_MAINTENANCE_CURRENCYENTRY(ObjetoFull);
+
+                            if (result.Key > 0)
+                            {
+                                LoadFile(fileContent, result.Key);
+                            }
+                            else
+                            {
+                                LoadFile(fileContent, result.Key);
+                            }
+
+                        }
+                        else
+                        {
+                            return Json(new { success = false, path = path, message = "Se cargaron los archivos correctamente" });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                message = ex.ToString();
+            }
+            return Json(new { success = true, message = "Good" });
+        }
+        public void LoadFile(HttpPostedFileBase postedFile, int id)
+        {
+            var result = new PdfBinaryEntity();
+            try
+            {
+                if (postedFile.ContentLength > 0)
+                {
+                    string filename = Path.GetFileName(postedFile.FileName);
+                    filename = "FileReport.pdf";
+                    string filepath = Path.Combine(Server.MapPath("~/FileDocument"), filename);
+                    DeleteFile(filepath);
+                    postedFile.SaveAs(filepath);
+                    var resp = System.IO.File.ReadAllBytes(filepath);
+                    result.PdfBinary1 = resp;
+                    DeleteFile(filepath);
+
+                    result.IdPdfBinary = 0;
+                    result.CreateUserid = 3348;
+                    result.IdCase = id;
+
+                    Data.SetPdfMantanam(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public static void DeleteFile(string fullPath)
+        {
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.FileInfo info = new System.IO.FileInfo(fullPath);
+                info.Attributes = System.IO.FileAttributes.Normal;
+                System.IO.File.Delete(fullPath);
+            }
+        }
+
+        public JsonResult viewRequiredDoc(string id = "")
+        {
+            var jData = JsonConvert.DeserializeObject<dynamic>(id);
+            int IdCase = int.Parse(jData);
+
+            bool _success = false;
+            string filename = "FileReport.pdf";
+
+            string shortPath = "/FileDocument/" + filename;
+            try
+            {
+                var path = Path.Combine(Server.MapPath("~/FileDocument"), filename);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+
+                var allDataDoc = Data.GetPdfBin(IdCase);
+
+                byte[] binaryData = allDataDoc.PdfBinary1;
+                System.IO.File.WriteAllBytes(path, binaryData);
+
+                _success = true;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+                //    var userLogged = GetCurrentUsuario();
+                //    //Insertamos en el log
+                //    LoggerHelper.Log(CommonEnums.Categories.Error, (userLogged != null ? userLogged.UserLogin : ""), -1, "Error al visualizar el documento requerido", "Mensaje: " + ex.Message, ex);
+            }
+
+            return Json(new { success = _success, path = shortPath });
+
+        }
+
+        public string viewRequiredEdit(int id)
+        {
+            int IdCase = id;
+            string filename = "FileReport.pdf";
+
+            string shortPath = "/FileDocument/" + filename;
+            try
+            {
+                var path = Path.Combine(Server.MapPath("~/FileDocument"), filename);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+
+                var allDataDoc = Data.GetPdfBin(IdCase);
+
+                byte[] binaryData = allDataDoc.PdfBinary1;
+                System.IO.File.WriteAllBytes(path, binaryData); 
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+
+            }
+            return shortPath;
+        }
+        public ActionResult ValidateData(string date)
+        {
+            bool _success = false;
+            string message = "";
+
+
+            DateTime dateNow = DateTime.Parse(date);
+            var response = Data.VALIDATE_DATE_CURRENCY(dateNow);
+
+            if (response.Key == 0)
+            {
+                return Json(new { messageError = response.Valor }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = true, message = response.Valor });
+        }
+    }
