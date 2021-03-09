@@ -1,0 +1,56 @@
+Rafael Velasco  (RVELASCO)
+Hector Dona     (HDONA)
+
+
+ CREATE TABLE [dbo].[P_PolCondicion](
+	[Compania] [tinyint] NOT NULL,
+	[Cotizacion] [decimal](18, 0) NOT NULL,
+	[Ramo] [decimal](5, 0) NOT NULL,
+	[subramo] [decimal](5, 0) NOT NULL,
+	[SecuenciaCot] [int] NOT NULL,
+	[CodigoCondicion] [int] NOT NULL,
+	[SecuenciaCondicion] [int] NOT NULL,
+	[Descripcion] [varchar](50) NULL,
+	[DatoAlf] [varchar](200) NULL,
+	[DatoNum] [decimal](18, 2) NULL,
+	[Decimales] [varchar](50) NULL,
+ CONSTRAINT [PK_P_PolCondicion] PRIMARY KEY CLUSTERED 
+(
+	[Compania] ASC,
+	[Cotizacion] ASC,
+	[Ramo] ASC,
+	[subramo] ASC,
+	[SecuenciaCot] ASC,
+	[CodigoCondicion] ASC,
+	[SecuenciaCondicion] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[P_PolCondicionMov](
+	[Compania] [tinyint] NOT NULL,
+	[Cotizacion] [numeric](18, 0) NOT NULL,
+	[Ramo] [numeric](5, 0) NOT NULL,
+	[subramo] [numeric](5, 0) NOT NULL,
+	[SecuenciaCot] [int] NOT NULL,
+	[CodigoCondicion] [int] NOT NULL,
+	[SecuenciaCondicion] [int] NOT NULL,
+	[Descripcion] [varchar](50) NULL,
+	[DatoAlf] [varchar](200) NULL,
+	[DatoNum] [numeric](18, 2) NULL,
+	[Decimales] [varchar](50) NULL,
+	[SecuenciaMov] [int] NOT NULL,
+ CONSTRAINT [PK_P_PolCondicionMov] PRIMARY KEY CLUSTERED 
+(
+	[Compania] ASC,
+	[Cotizacion] ASC,
+	[SecuenciaCot] ASC,
+	[CodigoCondicion] ASC,
+	[SecuenciaCondicion] ASC,
+	[SecuenciaMov] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
