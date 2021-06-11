@@ -11,20 +11,77 @@
     "client_id": "a16948768d8e40e38372f8a0043c7bf5",
     "client_secret": "db499fbb299c451aa1ef6cccdcd560d6",
     "url": "https://accounts.spotify.com/api/token"
-},
+}, 
 
-809-452-7657
-
-
-cotizacion deler
-estado de cuenta ultimo 3 mese 
-carta de trabajao
-cedula ambos lado
-tasacion 
-809-689-0171 heisi peguero
-250
-
-
-
-08797170021
+USE msdb
+SELECT * FROM (
+SELECT
+[Job_Name] = j.name
+,[Last_Run_Time] = CASE
+WHEN js.last_run_date > 0 THEN substring(convert(varchar(8),js.last_run_date),1,4) +'-'+ substring(convert(varchar(8),js.last_run_date),5,2) +'-'+ substring(convert(varchar(8),js.last_run_date),7,2) +' '+
+CASE len(js.last_run_time)
+WHEN 6 THEN substring(convert(varchar(8),js.last_run_time),1,2) +':'+ substring(convert(varchar(8),js.last_run_time),3,2) +':'+ substring(convert(varchar(8),js.last_run_time),5,2)
+WHEN 5 THEN +'0'+ substring(convert(varchar(8),js.last_run_time),1,1) +':'+ substring(convert(varchar(8),js.last_run_time),2,2) +':'+ substring(convert(varchar(8),js.last_run_time),4,2)
+WHEN 4 THEN +'00:'+ substring(convert(varchar(8),js.last_run_time),1,2) +':'+ substring(convert(varchar(8),js.last_run_time),3,2)
+WHEN 3 THEN +'00:0'+ substring(convert(varchar(8),js.last_run_time),1,1) +':'+ substring(convert(varchar(8),js.last_run_time),2,2)
+WHEN 2 THEN +'00:00:'+ substring(convert(varchar(8),js.last_run_time),1,2)
+WHEN 1 THEN +'00:00:0'+ substring(convert(varchar(8),js.last_run_time),1,1)
+END
+ELSE 'Never Executed'
+END
+--,[Drop_Statement] = 'sp_delete_job @job_name = ' + '''' + j.name + ''''
+FROM sysjobs j
+INNER JOIN sysjobservers js on j.job_id = js.job_id
+)as ttable
+WHERE [Last_Run_Time] < (SELECT convert(varchar, getdate()-365, 121))
+ORDER BY [Last_Run_Time]
+--Después de crear este script, me decidí a crear otro que mostrara toda la actividad realizada por los jobs, como si se tratase del Job Activity Monitor
+--Este es el otro Script:
+/*--------------------------------------------------------------------------------------
+-- Title: Actividad de Jobs Detallada
+-- Author: Fran Lens (http://www.lensql.net)
+-- Date: 2012-02-15
+-- Description: Esta consulta devuelve información de la ejecuciones de los jobs, es parecido al Job Activity Monitor
+--------------------------------------------------------------------------------------*/
+USE msdb
+SELECT * FROM (
+SELECT
+[Job_Name] = j.name
+,[Owner] = sp.name
+,[Job_Status] = CASE
+ WHEN j.enabled = 1 THEN 'Enabled'
+ ELSE 'Disabled'
+ END
+,[Last_Run_Status] = CASE js.last_run_outcome
+ WHEN 0 THEN 'Failed'
+ WHEN 1 THEN 'Succeeded'
+ WHEN 3 THEN 'Cancelled'
+ WHEN 4 THEN 'In Progress'
+ WHEN 5 THEN 'Unknown'
+ END
+,[Last_Run_Time] = CASE
+ WHEN js.last_run_date > 0 THEN substring(convert(varchar(8),js.last_run_date),1,4) +'-'+ substring(convert(varchar(8),js.last_run_date),5,2) +'-'+ substring(convert(varchar(8),js.last_run_date),7,2) +' '+
+ CASE len(js.last_run_time)
+ WHEN 6 THEN substring(convert(varchar(8),js.last_run_time),1,2) +':'+ substring(convert(varchar(8),js.last_run_time),3,2) +':'+ substring(convert(varchar(8),js.last_run_time),5,2)
+ WHEN 5 THEN +'0'+ substring(convert(varchar(8),js.last_run_time),1,1) +':'+ substring(convert(varchar(8),js.last_run_time),2,2) +':'+ substring(convert(varchar(8),js.last_run_time),4,2)
+ WHEN 4 THEN +'00:'+ substring(convert(varchar(8),js.last_run_time),1,2) +':'+ substring(convert(varchar(8),js.last_run_time),3,2)
+ WHEN 3 THEN +'00:0'+ substring(convert(varchar(8),js.last_run_time),1,1) +':'+ substring(convert(varchar(8),js.last_run_time),2,2)
+ WHEN 2 THEN +'00:00:'+ substring(convert(varchar(8),js.last_run_time),1,2)
+ WHEN 1 THEN +'00:00:0'+ substring(convert(varchar(8),js.last_run_time),1,1)
+ END
+ ELSE 'Never Executed'
+ END
+,[Next_Run_Time] = CASE
+ WHEN ja.next_scheduled_run_date > 0 THEN convert(varchar(19),ja.next_scheduled_run_date,121)
+ ELSE 'Not Scheduled'
+ END
+,[Description] = j.description
+--,[Drop_Statement] = 'sp_delete_job @job_name = ' + '''' + j.name + ''''
+FROM sysjobs j
+INNER JOIN sysjobservers js on j.job_id = js.job_id
+INNER JOIN sysjobactivity ja on j.job_id = ja.job_id
+INNER JOIN sys.server_principals sp on j.owner_sid = sp.sid
+WHERE js.last_run_outcome=0 and j.enabled = 1 and ja.next_scheduled_run_date > 0 and ja.session_id = (SELECT MAX(session_id) from msdb.dbo.sysjobactivity)
+)as ttable
+ORDER BY [Last_Run_Time] 
  
