@@ -1,0 +1,245 @@
+USE [POS_SITE]
+GO
+/****** Object:  StoredProcedure [POS].[SP_SET_PERSONS]    Script Date: 7/8/2021 12:34:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [POS].[SP_SET_PERSONS] 
+	@Id	int = null
+	,@FirstName nvarchar(50) = null
+	,@SecondName nvarchar(50) = null
+	,@FirstSurname nvarchar(50) = null
+	,@SecondSurname nvarchar(50) = null
+	,@DateOfBirth DateTime
+	,@IsPrincipal bit
+	,@Address nvarchar(1000) =null
+	,@PhoneNumber nvarchar(50) = null
+	,@Mobile nvarchar(50) = null
+	,@WorkPhone nvarchar(50) = null
+	,@MaritalStatus nvarchar(10) = null
+	,@Job nvarchar(50) = null
+	,@Company nvarchar(50) = null
+	,@YearsInCompany int = null
+	,@Sex nvarchar(50) = null
+	,@Country_Id int
+	,@Domesticreg_Id int
+	,@State_Prov_Id int
+	,@City_Id int
+	,@NationalityGlobalCountry_Id int
+	,@Email nvarchar(255) = null
+	,@IdentificationType nvarchar(max) = null
+	,@IdentificationNumber nvarchar(max) = null
+	,@ForeignLicense bit = null
+	,@IdentificationNumberValidDate DateTime = null
+	,@InvoiceTypeId int = null
+	,@PostalCode nvarchar(50) = null
+	,@AnnualIncome decimal(18,2)
+	,@SocialReasonId int
+	,@OwnershipStructureId int
+	,@IdentificationFinalBeneficiaryOptionsId int
+	,@PepFormularyOptionsId int
+	,@Home_Owner bit = null
+	,@QtyPersonsDepend int = null
+	,@QtyEmployees int = null
+	,@Linked nvarchar(250) = null
+	,@Segment nvarchar(250) = null
+	,@Fax nvarchar(50) = null
+	,@URL nvarchar(max) = null
+	,@UserId int
+	,@WorkAddress nvarchar(1000)
+	,@PlaceOfBirth nvarchar(1000)
+	,@TypeOfPerson int
+	,@ManagerName nvarchar(200)
+	,@ManagerPepOptionId int = null
+	,@Signature nvarchar(max) = null
+	,@HubSpotId bigint = null
+	,@HubSpotDealId bigint = null
+	,@VehicleAcquisition varchar(200) = null
+ AS
+ declare
+  @Modi_Date datetime
+
+  declare
+  @TableResult table (
+    [Action] varchar(10),
+	[Id]  int not null
+  )
+
+merge [POS].[PERSONS] as tt
+using ( SELECT
+		@Id
+	   ,@FirstName
+	   ,@SecondName
+	   ,@FirstSurname
+	   ,@SecondSurname
+	   ,@DateOfBirth
+	   ,@IsPrincipal
+	   ,@Address
+	   ,@PhoneNumber
+	   ,@Mobile
+	   ,@WorkPhone
+	   ,@MaritalStatus
+	   ,@Job
+	   ,@Company
+	   ,@YearsInCompany
+	   ,@Sex
+	   ,@Country_Id
+	   ,@Domesticreg_Id
+	   ,@State_Prov_Id
+	   ,@City_Id
+	   ,@NationalityGlobalCountry_Id
+	   ,@Email
+	   ,@IdentificationType
+	   ,@IdentificationNumber
+	   ,@ForeignLicense
+	   ,@IdentificationNumberValidDate
+	   ,@InvoiceTypeId
+	   ,@PostalCode
+	   ,@AnnualIncome
+	   ,@SocialReasonId
+	   ,@OwnershipStructureId
+	   ,@IdentificationFinalBeneficiaryOptionsId
+	   ,@PepFormularyOptionsId
+	   ,@Home_Owner
+	   ,@QtyPersonsDepend
+	   ,@QtyEmployees
+	   ,@Linked
+	   ,@Segment
+	   ,@Fax
+	   ,@URL
+	   ,@UserId
+	   ,@Modi_Date
+	   ,@WorkAddress
+	   ,@PlaceOfBirth
+	   ,@TypeOfPerson
+	   ,@ManagerName
+	   ,@ManagerPepOptionId
+	   ,@Signature
+	   ,@HubSpotId
+	   ,@HubSpotDealId
+	   ,@VehicleAcquisition) AS ts
+(
+[Id], [FirstName], [SecondName], [FirstSurname], [SecondSurname], [DateOfBirth], [IsPrincipal], [Address], [PhoneNumber], [Mobile],
+[WorkPhone], [MaritalStatus], [Job], [Company], [YearsInCompany], [Sex], [City_Country_Id], [City_Domesticreg_Id], [City_State_Prov_Id], [City_City_Id],
+[Nationality_Global_Country_Id], [Email], [IdentificationType], [IdentificationNumber], [ForeignLicense], [IdentificationNumberValidDate],
+[InvoiceTypeId], [PostalCode], [AnnualIncome], [SocialReasonId], [OwnershipStructureId], [IdentificationFinalBeneficiaryOptionsId], [PepFormularyOptionsId],
+[Home_Owner], [QtyPersonsDepend], [QtyEmployees], [Linked], [Segment], [Fax], [URL], [UserId], [Modi_Date], [WorkAddress], [PlaceOfBirth], [TypeOfPerson], [ManagerName],
+[ManagerPepOptionId], [mySignature],
+[HubSpotId], HubSpotDealId, vehicleAcquisition
+)
+ON (
+	tt.[Id] = ts.[Id]
+	)
+WHEN MATCHED
+	THEN UPDATE
+		SET tt.[FirstName] = ISNULL(ts.[FirstName], tt.[FirstName])
+		   ,tt.[SecondName] = ISNULL(ts.[SecondName], tt.[SecondName])
+		   ,tt.[FirstSurname] = ISNULL(ts.[FirstSurname], tt.[FirstSurname])
+		   ,tt.[SecondSurname] = ISNULL(ts.[SecondSurname], tt.[SecondSurname])
+		   ,tt.[DateOfBirth] = ISNULL(ts.[DateOfBirth], tt.[DateOfBirth])
+		   ,tt.[IsPrincipal] = ISNULL(ts.[IsPrincipal], tt.[IsPrincipal])
+		   ,tt.[Address] = ISNULL(ts.[Address], tt.[Address])
+		   ,tt.[PhoneNumber] = ISNULL(ts.[PhoneNumber], tt.[PhoneNumber])
+		   ,tt.[Mobile] = ISNULL(ts.[Mobile], tt.[Mobile])
+		   ,tt.[WorkPhone] = ISNULL(ts.[WorkPhone], tt.[WorkPhone])
+		   ,tt.[MaritalStatus] = ISNULL(ts.[MaritalStatus], tt.[MaritalStatus])
+		   ,tt.[Job] = ISNULL(ts.[Job], tt.[Job])
+		   ,tt.[Company] = ISNULL(ts.[Company], tt.[Company])
+		   ,tt.[YearsInCompany] = ISNULL(ts.[YearsInCompany], tt.[YearsInCompany])
+		   ,tt.[Sex] = ISNULL(ts.[Sex], tt.[Sex])
+		   ,tt.[City_Country_Id] = ISNULL(ts.[City_Country_Id], tt.[City_Country_Id])
+		   ,tt.[City_Domesticreg_Id] = ISNULL(ts.[City_Domesticreg_Id], tt.[City_Domesticreg_Id])
+		   ,tt.[City_State_Prov_Id] = ISNULL(ts.[City_State_Prov_Id], tt.[City_State_Prov_Id])
+		   ,tt.[City_City_Id] = ISNULL(ts.[City_City_Id], tt.[City_City_Id])
+		   ,tt.[Nationality_Global_Country_Id] = ISNULL(ts.[Nationality_Global_Country_Id], tt.[Nationality_Global_Country_Id])
+		   ,tt.[Email] = ISNULL(ts.[Email], tt.[Email])
+		   ,tt.[IdentificationType] = ISNULL(ts.[IdentificationType], tt.[IdentificationType])
+		   ,tt.[IdentificationNumber] = ISNULL(ts.[IdentificationNumber], tt.[IdentificationNumber])
+		   ,tt.[ForeignLicense] = ISNULL(ts.[ForeignLicense], tt.[ForeignLicense])
+		   ,tt.[IdentificationNumberValidDate] = ISNULL(ts.[IdentificationNumberValidDate], tt.[IdentificationNumberValidDate])
+		   ,tt.[InvoiceTypeId] = ISNULL(ts.[InvoiceTypeId], tt.[InvoiceTypeId])
+		   ,tt.[PostalCode] = ISNULL(ts.[PostalCode], tt.[PostalCode])
+		   ,tt.[AnnualIncome] = ISNULL(ts.[AnnualIncome], tt.[AnnualIncome])
+		   ,tt.[SocialReasonId] = ISNULL(ts.[SocialReasonId], tt.[SocialReasonId])
+		   ,tt.[OwnershipStructureId] = ISNULL(ts.[OwnershipStructureId], tt.[OwnershipStructureId])
+		   ,tt.[IdentificationFinalBeneficiaryOptionsId] = ISNULL(ts.[IdentificationFinalBeneficiaryOptionsId], tt.[IdentificationFinalBeneficiaryOptionsId])
+		   ,tt.[PepFormularyOptionsId] = ISNULL(ts.[PepFormularyOptionsId], tt.[PepFormularyOptionsId])
+		   ,tt.[Home_Owner] = ISNULL(ts.[Home_Owner], tt.[Home_Owner])
+		   ,tt.[QtyPersonsDepend] = ISNULL(ts.[QtyPersonsDepend], tt.[QtyPersonsDepend])
+		   ,tt.[Linked] = ISNULL(ts.[Linked], tt.[Linked])
+		   ,tt.[Segment] = ISNULL(ts.[Segment], tt.[Segment])
+		   ,tt.[Fax] = ISNULL(ts.[Fax], tt.[Fax])
+		   ,tt.[URL] = ISNULL(ts.[URL], tt.[URL])
+		   ,tt.[UserId] = ISNULL(ts.UserId, tt.UserId)
+		   ,tt.[WorkAddress] = ISNULL(ts.[WorkAddress], tt.[WorkAddress])
+		   ,tt.[PlaceOfBirth] = ISNULL(ts.[PlaceOfBirth], tt.[PlaceOfBirth])
+		   ,tt.[TypeOfPerson] = ISNULL(ts.[TypeOfPerson], tt.[TypeOfPerson])
+		   ,tt.[ManagerName] = ISNULL(ts.[ManagerName], tt.[ManagerName])
+		   ,tt.[ManagerPepOptionId] = ISNULL(ts.[ManagerPepOptionId], tt.[ManagerPepOptionId])
+		   ,tt.[Modi_Date] = GETDATE()
+		   ,tt.[mySignature] = ISNULL(ts.[mySignature], tt.[mySignature])
+		   ,tt.HubSpotId = ISNULL(ts.HubSpotId, tt.HubSpotId)
+		   ,tt.HubSpotDealId = ISNULL(ts.HubSpotDealId, tt.HubSpotDealId)
+		   ,tt.vehicleAcquisition = ISNULL(ts.vehicleAcquisition, tt.vehicleAcquisition)
+
+WHEN NOT MATCHED
+	THEN INSERT ([FirstName],
+		[SecondName],
+		[FirstSurname],
+		[SecondSurname],
+		[DateOfBirth],
+		[IsPrincipal],
+		[Address],
+		[PhoneNumber],
+		[Mobile],
+		[WorkPhone],
+		[MaritalStatus],
+		[Job],
+		[Company],
+		[YearsInCompany],
+		[Sex],
+		[City_Country_Id],
+		[City_Domesticreg_Id],
+		[City_State_Prov_Id],
+		[City_City_Id],
+		[Nationality_Global_Country_Id],
+		[Email],
+		[IdentificationType],
+		[IdentificationNumber],
+		[ForeignLicense],
+		[IdentificationNumberValidDate],
+		[InvoiceTypeId],
+		[PostalCode],
+		[AnnualIncome],
+		[SocialReasonId],
+		[OwnershipStructureId],
+		[IdentificationFinalBeneficiaryOptionsId],
+		[PepFormularyOptionsId],
+		[Home_Owner],
+		[QtyPersonsDepend],
+		[QtyEmployees],
+		[Linked],
+		[Segment],
+		[Fax],
+		[URL],
+		[UserId],
+		[Modi_Date],
+		[WorkAddress],
+		[PlaceOfBirth],
+		[TypeOfPerson],
+		[ManagerName],
+		[ManagerPepOptionId],
+		[mySignature],
+		HubSpotId
+		, HubSpotDealId
+		, vehicleAcquisition)
+			VALUES (ts.[FirstName], ts.[SecondName], ts.[FirstSurname], ts.[SecondSurname], ts.[DateOfBirth], ts.[IsPrincipal], ts.[Address], ts.[PhoneNumber], ts.[Mobile], ts.[WorkPhone], ts.[MaritalStatus], ts.[Job], ts.[Company], ts.[YearsInCompany], ts.[Sex], ts.[City_Country_Id], ts.[City_Domesticreg_Id], ts.[City_State_Prov_Id], ts.[City_City_Id], ts.[Nationality_Global_Country_Id], ts.[Email], ts.[IdentificationType], ts.[IdentificationNumber], ts.[ForeignLicense], ts.[IdentificationNumberValidDate], ts.[InvoiceTypeId], ts.[PostalCode], ts.[AnnualIncome], ts.[SocialReasonId], ts.[OwnershipStructureId], ts.[IdentificationFinalBeneficiaryOptionsId], ts.[PepFormularyOptionsId], ts.[Home_Owner], ts.[QtyPersonsDepend], ts.[QtyEmployees], ts.[Linked], ts.[Segment], ts.[Fax], ts.[URL], ts.UserId, GETDATE(), ts.[WorkAddress], ts.[PlaceOfBirth], ts.[TypeOfPerson], ts.[ManagerName], ts.[ManagerPepOptionId], ts.[mySignature], ts.HubSpotId, ts.HubSpotDealId, ts.vehicleAcquisition)
+
+OUTPUT $ACTION
+	  ,ISNULL(deleted.Id, inserted.Id)
+	   INTO @TableResult;
+
+SELECT
+	*
+FROM @TableResult
