@@ -29,3 +29,6 @@ public class BaseViewModel
             public bool IsNumber { get; set; }
         }
     }
+    
+       ViewBag.SellerComment = new SelectList(ainfoModel.Select(x => x.Comment).Distinct().ToList().Select(i => new SelectListItem { Text = i, Value = i }), "Value", "Text");
+      
