@@ -259,4 +259,70 @@ namespace Data
     }
 }
 
+
+USE [POS_SITE]
+GO
+/****** Object:  StoredProcedure [POS].[SP_SET_DRIVERS]    Script Date: 1/24/2022 4:01:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROC [POS].[SP_SET_DRIVERS] 
+        @Id	int = null,
+		@QuotationId int = null,
+		@YearsDriving int,
+        @AccidentsLast3Years int,
+        @UserId int
+ AS
+ declare
+  @Modi_Date datetime
+
+  declare
+  @TableResult table (
+    [Action] varchar(10),
+	[Id]  int not null
+  )
+
+merge [POS].[DRIVERS] as tt
+using (
+	select   @Id,@QuotationId,@YearsDriving,@AccidentsLast3Years,@UserId,@Modi_Date
+		   ) 
+		as ts
+			(
+			 Id,QuotationId,YearsDriving,AccidentsLast3Years,UserId,Modi_Date
+			)
+	on  (
+			tt.[Id] = ts.[Id] and
+			tt.[QuotationId] = ts.[QuotationId]
+		)
+		when matched then
+		update set 												
+			tt.[QuotationId] = isnull(ts.[QuotationId],tt.[QuotationId]),
+			tt.[YearsDriving] = isnull(ts.[YearsDriving],tt.[YearsDriving]),
+			tt.[AccidentsLast3Years] = isnull(ts.[AccidentsLast3Years],tt.[AccidentsLast3Years]),
+			tt.[UserId] = isnull(ts.UserId,tt.UserId),
+			tt.[Modi_Date] = getdate()
+	when not matched then
+		insert (
+				Id,			
+				QuotationId,
+				YearsDriving,
+				AccidentsLast3Years,
+				UserId,
+				Modi_Date
+				)
+		values (
+				ts.Id,	        
+				ts.QuotationId,
+				ts.YearsDriving,
+				ts.AccidentsLast3Years,
+				ts.UserId,				
+				getdate()
+		)
+
+		output $action,isnull(deleted.Id,inserted.Id)	    
+		into @TableResult;
+
+		select * from  @TableResult
+
  
