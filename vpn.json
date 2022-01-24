@@ -111,4 +111,152 @@ INNER JOIN sys.server_principals sp on j.owner_sid = sp.sid
 WHERE js.last_run_outcome=0 and j.enabled = 1 and ja.next_scheduled_run_date > 0 and ja.session_id = (SELECT MAX(session_id) from msdb.dbo.sysjobactivity)
 )as ttable
 ORDER BY [Last_Run_Time] 
+
+
+
+
+
+
+using Data.EF_MODEL;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Data
+{
+    public class DataCurrencyVariation
+    {
+        public IEnumerable<CurrencyEntryEntity> SP_GET_CurrencyListDatas()
+        {
+            try
+            {
+                using (var dbo = new CurrencyVariationEntities())
+                {
+                    IEnumerable<CurrencyEntryEntity> RetornarValue = dbo.Database.SqlQuery<CurrencyEntryEntity>("EXEC SP_GET_CurrencyList"
+
+                        ).ToList();
+                    return RetornarValue.ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+        public CurrencyEntryEntity GET_One_CurrencyListDatas(int id)
+        {
+            try
+            {
+                using (var dbo = new CurrencyVariationEntities())
+                {
+                    IEnumerable<CurrencyEntryEntity> RetornarValue = dbo.Database.SqlQuery<CurrencyEntryEntity>("EXEC SP_GET_ONE_Currency @IdCurrencyEntry",
+                        new SqlParameter("@IdCurrencyEntry", id)).ToList();
+                    return RetornarValue.FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        } 
+        public Generic SET_MAINTENANCE_CURRENCYENTRY(CurrencyEntryEntity parameter)
+        {
+            var result = new Generic();
+            try
+            {
+                using (var dbo = new CurrencyVariationEntities())
+                {
+                    IEnumerable<Generic> RetornarValue = dbo.Database.SqlQuery<Generic>("EXEC SP_SET_MAINTENANCE_CURRENCYENTRY @IdCurrencyEntry,@DateCurrencyEntry,@Hedge_Value,@Beginning_Rate,@End_Rate,@CreateUserid",
+                        new SqlParameter("@IdCurrencyEntry", parameter.IdCurrencyEntry),
+                        new SqlParameter("@DateCurrencyEntry", parameter.DateCurrencyEntry),
+                        new SqlParameter("@Hedge_Value", parameter.Hedge_Value),
+                        new SqlParameter("@Beginning_Rate ", parameter.Beginning_Rate),
+                        new SqlParameter("@End_Rate", parameter.End_Rate),
+                        new SqlParameter("@CreateUserid", parameter.CreateUserid)
+                  
+                        ).ToList();  
+                    return RetornarValue.FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Valor = ex.Message.ToString();
+                return result; 
+            } 
+        } 
+        public PdfBinaryEntity GetPdfBin(int id = 0)
+        {
+            var result = new PdfBinaryEntity();
+            using (var db = new CurrencyVariationEntities())
+            {
+                result = db.PdfBinaries.Where(x => x.IdCase == id).Select(x => new PdfBinaryEntity
+                {
+                    IdCase = x.IdCase,
+                    PdfBinary1 = x.PdfBinary1
+                }).FirstOrDefault();
+
+                return result;
+            }
+        }
+
+        public void SetPdfMantanam(PdfBinaryEntity parameters)
+        {
+            using (var db = new CurrencyVariationEntities())
+            {
+                using (var cmd = db.Database.Connection.CreateCommand())
+
+                {
+                    db.Database.Connection.Open();
+                    cmd.CommandText = "SP_INSERT_DOCUMENT";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("Id", parameters.IdPdfBinary));
+                    cmd.Parameters.Add(new SqlParameter("PdfBinary", parameters.PdfBinary1));
+                    cmd.Parameters.Add(new SqlParameter("CreateUserid", parameters.CreateUserid));
+                    cmd.Parameters.Add(new SqlParameter("IdCase", parameters.IdCase));
+                    var Exec = (cmd.ExecuteScalar());
+                }
+            }
+        }
+
+        public void SetPdfMantanamEdit(PdfBinaryEntity parameters)
+        {
+            using (var db = new CurrencyVariationEntities())
+            {
+                using (var cmd = db.Database.Connection.CreateCommand())
+
+                {
+                    db.Database.Connection.Open();
+                    cmd.CommandText = "SP_INSERT_DOCUMENT_EDIT";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure; 
+                    cmd.Parameters.Add(new SqlParameter("PdfBinary", parameters.PdfBinary1)); 
+                    cmd.Parameters.Add(new SqlParameter("IdCase", parameters.IdCase));
+                    var Exec = (cmd.ExecuteScalar());
+                }
+            }
+        }
+
+        public Generic VALIDATE_DATE_CURRENCY(DateTime date)
+        {
+            try
+            {
+                using (var dbo = new CurrencyVariationEntities())
+                {
+                    IEnumerable<Generic> RetornarValue = dbo.Database.SqlQuery<Generic>("EXEC SP_VALIDATE_DATE_CURRENCY @date",
+                        new SqlParameter("@date", date)).ToList();
+                    return RetornarValue.FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+    }
+}
+
  
