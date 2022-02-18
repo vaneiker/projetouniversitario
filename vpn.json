@@ -340,4 +340,67 @@ using (
 
 		select * from  @TableResult
 
+
+
+
+ public JsonResult SaveShipManten(ShipmentEntityViewModel objModel)
+        {
+            var objetoreal = new ShipmentEntity();
+
+            dynamic showMessageString = string.Empty; 
+
+            objetoreal.ShipUniqueID = objModel.shipmentEntity.ShipUniqueID == null ? 0 : objModel.shipmentEntity.ShipUniqueID;
+
+            objetoreal.CarrierName = objModel.shipmentEntity.CarrierName;
+            objetoreal.AccountNumber = objModel.shipmentEntity.AccountNumber;
+            objetoreal.ShipmentNumber = objModel.shipmentEntity.ShipmentNumber;
+            objetoreal.ShipmentDate = objModel.shipmentEntity.ShipmentDate;
+            objetoreal.ShipmentWeight = 0;//objModel.shipmentEntity.ShipmentWeight;
+            objetoreal.ShipmentQTY = objModel.shipmentEntity.ShipmentQTY == null ? 0 : objModel.shipmentEntity.ShipmentQTY;
+            objetoreal.ShipPackageType = objModel.shipmentEntity.ShipPackageType;
+            objetoreal.Operator = objModel.shipmentEntity.Operator;
+            objetoreal.Sender = objModel.shipmentEntity.Sender;
+            objetoreal.Receiver = objModel.shipmentEntity.Receiver;
+            objetoreal.ReceiverAttn = objModel.shipmentEntity.ReceiverAttn;
+            objetoreal.ReceiverAddress = objModel.shipmentEntity.ReceiverAddress;
+            objetoreal.ReceiverCity = objModel.shipmentEntity.ReceiverCity;
+            objetoreal.ReceiverState = objModel.shipmentEntity.ReceiverState;
+            objetoreal.ReceiverZipCode = objModel.shipmentEntity.ReceiverZipCode;
+            objetoreal.ReceiverCountry = objModel.shipmentEntity.ReceiverCountry;
+            objetoreal.ReceiverPhoneNumber = objModel.shipmentEntity.ReceiverPhoneNumber;
+            objetoreal.ShipmentComments = objModel.shipmentEntity.ShipmentComments;
+            objetoreal.Transit = objModel.shipmentEntity.Transit;
+            objetoreal.Incoming = objModel.shipmentEntity.Incoming;
+            objetoreal.CommissionChecks = objModel.shipmentEntity.CommissionChecks;
+            objetoreal.Materials = objModel.shipmentEntity.Materials;
+            objetoreal.OtherContents = objModel.shipmentEntity.OtherContents;
+
+            var resp = LogicManager.Set_Shimet_Logic(objetoreal);
+
+            if (resp.Value == "INSERT" || resp.Value == "UPDATE")
+            {
+                showMessageString = new
+                {
+                    param1 = "Success",
+                    param2 = "The Registry was successfully saved!",
+                    param3 = resp.id,
+                    param4 = resp.IdAlf,
+                    param5 = resp.Value
+                };
+
+            }
+            else if (!string.IsNullOrWhiteSpace(resp.ErrorMenssager))
+            {
+                showMessageString = new
+                {
+                    param1 = "Error",
+                    param2 = "The Record was not saved successfully!",
+                    param3 = resp.ErrorMenssager
+                };
+            }
+
+            return Json(showMessageString, JsonRequestBehavior.AllowGet);
+
+        }
+
  
