@@ -1,28 +1,43 @@
-  private  void StartApplicationPool()
+   private static void StartApplicationPool()
         {
             ServiceControllerW3SVC();
             var result = ApplicationPool();
             result.Start();
 
         }
-        private  void StopApplicationPool()
+        private static void StopApplicationPool()
         {
-            var result = ApplicationPool();
-            result.Stop();
-            ServiceControllerW3SVC();
+            bool IsStopped = true;
 
-            System.Threading.Thread.Sleep(int.Parse(System.Configuration.ConfigurationManager.AppSettings["Request"].ToString()));
+            var server = new ServerManager();
+            var site = server.Sites.FirstOrDefault(app => app.Name == "Core");
 
-            while (!IIS_OFFF()) ;
+            if (site != null)
+            {
+                site.Stop();
+            }
+            ServiceControllerW3SVC(); 
+
+            while (IsStopped)
+            {
+                if (IIS_OFFF())
+                {
+                    IsStopped = false;
+                }
+                else
+                {
+                    IsStopped = true;
+                }
+            }
 
 
             StartApplicationPool();
         }
         #region Metodos para acceder al IIS 
-        private Site ApplicationPool()
+        private static Site ApplicationPool()
         {
             var server = new ServerManager();
-            var site = server.Sites.FirstOrDefault(app => app.Name == "AppPool_ATLReport");
+            var site = server.Sites.FirstOrDefault(app => app.Name == "Core");
 
             if (site != null)
             {
@@ -31,7 +46,7 @@
             }
             return null;
         }
-        private  void ServiceControllerW3SVC()
+        private static void ServiceControllerW3SVC()
         {
             ServiceController controller = new ServiceController("W3SVC");
 
@@ -45,14 +60,13 @@
             }
 
         }
-        private  bool IIS_OFFF()
+        private static bool IIS_OFFF()
         {
             ServiceController controller = new ServiceController("W3SVC");
             return controller.Status == ServiceControllerStatus.Stopped;
         }
 
         #endregion
-
 
 
 
