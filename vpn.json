@@ -1,4 +1,4 @@
-   private static void StartApplicationPool()
+ private static void StartApplicationPool()
         {
             ServiceControllerW3SVC();
             var result = ApplicationPool();
@@ -7,8 +7,6 @@
         }
         private static void StopApplicationPool()
         {
-            bool IsStopped = true;
-
             var server = new ServerManager();
             var site = server.Sites.FirstOrDefault(app => app.Name == "Core");
 
@@ -16,22 +14,14 @@
             {
                 site.Stop();
             }
-            ServiceControllerW3SVC(); 
 
-            while (IsStopped)
+            var responseIss=ServiceControllerW3SVC();
+
+            if (!responseIss)
             {
-                if (IIS_OFFF())
-                {
-                    IsStopped = false;
-                }
-                else
-                {
-                    IsStopped = true;
-                }
+                StartApplicationPool();
             }
-
-
-            StartApplicationPool();
+           
         }
         #region Metodos para acceder al IIS 
         private static Site ApplicationPool()
@@ -46,18 +36,32 @@
             }
             return null;
         }
-        private static void ServiceControllerW3SVC()
+        private static bool ServiceControllerW3SVC()
         {
+            bool IsStopped = true;
             ServiceController controller = new ServiceController("W3SVC");
 
             if (controller.Status == ServiceControllerStatus.Running)
             {
                 controller.Stop();
+                while (IsStopped)
+                {
+                    if (IIS_OFFF())
+                    {
+                        IsStopped = false;
+                    }
+                    else
+                    {
+
+                        IsStopped = true;
+                    }
+                }
             }
             else if (controller.Status == ServiceControllerStatus.Stopped)
             {
-                controller.Start();
+                controller.Start();                
             }
+            return IsStopped;
 
         }
         private static bool IIS_OFFF()
