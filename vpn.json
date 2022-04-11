@@ -1,3 +1,61 @@
+  private  void StartApplicationPool()
+        {
+            ServiceControllerW3SVC();
+            var result = ApplicationPool();
+            result.Start();
+
+        }
+        private  void StopApplicationPool()
+        {
+            var result = ApplicationPool();
+            result.Stop();
+            ServiceControllerW3SVC();
+
+            System.Threading.Thread.Sleep(int.Parse(System.Configuration.ConfigurationManager.AppSettings["Request"].ToString()));
+
+            while (!IIS_OFFF()) ;
+
+
+            StartApplicationPool();
+        }
+        #region Metodos para acceder al IIS 
+        private Site ApplicationPool()
+        {
+            var server = new ServerManager();
+            var site = server.Sites.FirstOrDefault(app => app.Name == "AppPool_ATLReport");
+
+            if (site != null)
+            {
+
+                return site;
+            }
+            return null;
+        }
+        private  void ServiceControllerW3SVC()
+        {
+            ServiceController controller = new ServiceController("W3SVC");
+
+            if (controller.Status == ServiceControllerStatus.Running)
+            {
+                controller.Stop();
+            }
+            else if (controller.Status == ServiceControllerStatus.Stopped)
+            {
+                controller.Start();
+            }
+
+        }
+        private  bool IIS_OFFF()
+        {
+            ServiceController controller = new ServiceController("W3SVC");
+            return controller.Status == ServiceControllerStatus.Stopped;
+        }
+
+        #endregion
+
+
+
+
 CREATE TABLE  [GS_LOG](
 	[Log_Id] [bigint] IDENTITY(1,1) NOT FOR REPLICATION NOT NULL,
 	[Log_Type_Id] [int] NOT NULL,
