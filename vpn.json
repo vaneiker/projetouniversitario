@@ -137,6 +137,113 @@ GO
 
 
 
+Use SQL_IMPORT_TOOLS ;
+CREATE PROCEDURE [dbo].[crud_JobActivityMonitorDBA]
+ @id int=null
+,@Servern_Name varchar(150)=null
+,@Job_Name varchar(150)=null
+,@Owner varchar(150)=null
+,@Job_Status varchar(150)=null
+,@Last_Run_Status varchar(150)=null
+,@Last_Run_Time varchar(150)=null
+,@Next_Run_Time varchar(150)=null
+,@Description varchar(255)=null
+,@Create_Date datetime=null
+
+/************************************************************************************
+Autor				: Robert Ulloa
+Proposito			: Insertar o actualizar JobActivityMonitorDBA
+*************************************************************************************
+Entrada:
+       @id int              =
+@Servern_Name varchar              =
+@Job_Name varchar              =
+@Owner varchar              =
+@Job_Status varchar              =
+@Last_Run_Status varchar              =
+@Last_Run_Time varchar              =
+@Next_Run_Time varchar              =
+@Description varchar              =
+@Create_Date datetime              =
+
+Dependencias:
+    Tablas:
+            JobActivityMonitorDBA
+Version		: 1.0
+Implementacion:
+    1.0:
+        - Declaracion de tabla temporal.
+        - Sincroniza tabla destino con datos en tabla origen.
+        - Actualiza registro si existe.
+        - Inserta nuevo registro si no existe.
+        - Respuesta de resultados.
+Historico de revision:
+    1.0 - Aug/15/2022	Robert Ulloa
+        Creacion de Objeto.
+* ***********************************************************************************/
+AS
+set nocount on
+BEGIN
+--Declaracion de tabla temporal. --
+declare @result table
+(
+[action] varchar(50),
+[id] int
+)
+-- Sincroniza tabla destino con datos en tabla origen. --
+MERGE [dbo].[JobActivityMonitorDBA] t
+USING (SELECT @id, @Servern_Name, @Job_Name, @Owner, @Job_Status, @Last_Run_Status, @Last_Run_Time, @Next_Run_Time, @Description, @Create_Date) s
+              (id, Servern_Name, Job_Name, Owner, Job_Status, Last_Run_Status, Last_Run_Time, Next_Run_Time, Description, Create_Date)
+ON (t.id = s.id)
+
+--Actualiza registro si existe. --
+WHEN MATCHED THEN
+UPDATE
+SET
+    t.[Servern_Name] = isnull(s.[Servern_Name],t.[Servern_Name]),
+t.[Job_Name] = isnull(s.[Job_Name],t.[Job_Name]),
+t.[Owner] = isnull(s.[Owner],t.[Owner]),
+t.[Job_Status] = isnull(s.[Job_Status],t.[Job_Status]),
+t.[Last_Run_Status] = isnull(s.[Last_Run_Status],t.[Last_Run_Status]),
+t.[Last_Run_Time] = isnull(s.[Last_Run_Time],t.[Last_Run_Time]),
+t.[Next_Run_Time] = isnull(s.[Next_Run_Time],t.[Next_Run_Time]),
+t.[Description] = isnull(s.[Description],t.[Description]),
+t.[Create_Date] = isnull(s.[Create_Date],t.[Create_Date])
+
+-- Inserta nuevo registro si no existe. --
+WHEN NOT MATCHED THEN
+INSERT
+      (
+       Servern_Name,
+Job_Name,
+Owner,
+Job_Status,
+Last_Run_Status,
+Last_Run_Time,
+Next_Run_Time,
+Description,
+Create_Date
+
+      )
+      VALUES
+      (
+        s.Servern_Name,
+s.Job_Name,
+s.Owner,
+s.Job_Status,
+s.Last_Run_Status,
+s.Last_Run_Time,
+s.Next_Run_Time,
+s.Description,
+s.Create_Date
+)
+--Respuesta de resultados. --
+output $action,isnull(deleted.[id],inserted.[id]) into @result;
+select * from @result
+ END
+ ;
+
+
 
 
 
