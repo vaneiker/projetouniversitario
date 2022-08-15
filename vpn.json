@@ -111,6 +111,29 @@ print @Result
 
 
 
+USE [Documentation_Jobs]
+GO
+
+/****** Object:  Table [dbo].[JobActivityMonitorDBA]    Script Date: 8/15/2022 12:35:37 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[JobActivityMonitorDBA](
+	[id] [uniqueidentifier] NULL,
+	[Servern_Name] [varchar](150) NULL,
+	[Job_Name] [varchar](150) NULL,
+	[Owner] [varchar](150) NULL,
+	[Job_Status] [varchar](150) NULL,
+	[Last_Run_Status] [varchar](150) NULL,
+	[Last_Run_Time] [varchar](150) NULL,
+	[Next_Run_Time] [varchar](150) NULL,
+	[Description] [varchar](255) NULL,
+	[Create_Date] [datetime] NULL
+) ON [PRIMARY]
+GO
 
 
 
