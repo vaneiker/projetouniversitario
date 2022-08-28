@@ -243,6 +243,134 @@ select * from @result
  END
  ;
 
+/****** Object:  View [dbo].[VISTA_VANEIKER]    Script Date: 8/28/2022 1:58:20 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER VIEW [dbo].[VISTA_VANEIKER]
+
+as
+
+
+
+
+
+WITH ob
+AS (
+       SELECT pv.idCase
+              ,pv.Sequence
+              ,pv.codigoCore AgentCode
+              ,pv.GlobalAgentId
+              ,Agent_Full_Name = REPLACE(REPLACE(REPLACE(isnull(pv.FirstName, '') + ' ' + isnull([SecondName], '') + ' ' + isnull(pv.FirstLastName, ''), ' ', '*^'), '^*', ''), '*^', ' ')
+              ,y.Name [LineaNegocio]
+              ,pv.IdentificationNumber
+              ,pv.ProvinceStateAddress
+              ,Z.Code CodigoProvincia
+              ,Z.Name Provincia
+              ,pv.CityId
+              ,x.Code CodigoCiudad
+              ,x.Name Ciudad
+       FROM (
+              SELECT a.IdCase
+                     ,b.ColumnName
+                     ,CASE 
+                           WHEN b.IdFieldType = 1
+                                  THEN convert(VARCHAR(50), isnull(ltrim(rtrim(replace(replace(replace(a.DatoStr, CHAR(9), ''), CHAR(10), ''), CHAR(13), ''))), ''))
+                           WHEN b.IdFieldType = 2
+                                  THEN cast(a.DatoNum AS VARCHAR(50))
+                           WHEN b.IdFieldType = 3
+                                  THEN cast(a.DatoInt AS VARCHAR(50))
+                           WHEN b.IdFieldType = 4
+                                  THEN convert(VARCHAR(50), a.DatoDat, 112)
+                           WHEN b.IdFieldType = 5
+                                  THEN cast(a.Code AS VARCHAR(50))
+                           WHEN b.IdFieldType = 6
+                                  THEN cast(a.DatoBit AS VARCHAR(50))
+                           ELSE convert(VARCHAR(50), isnull(ltrim(rtrim(replace(replace(replace(a.DatoStr, CHAR(9), ''), CHAR(10), ''), CHAR(13), ''))), ''))
+                           END [value]
+                     ,a.Sequence
+              FROM [OnboardingAgent].[DataManager].[CaseData] a
+              JOIN [OnboardingAgent].[DataManager].[Field] b ON a.idField = b.id
+              WHERE a.Active = 1
+                     AND a.IsDeleted = 0
+                     AND ColumnName IN (
+                           'codigoCore'
+                           ,'GlobalAgentId'
+                           ,'FirstName'
+                           ,'SecondName'
+                           ,'FirstLastName'
+                           ,'businessLineCode'
+                           ,'IdentificationNumber'
+                           ,'IdentificaciontNumberGP'
+                           ,'ProvinceStateAddress'
+                           ,'CityId'
+                           )
+              ) fields
+       pivot(max([value]) FOR ColumnName IN (
+                           [codigoCore]
+                           ,[GlobalAgentId]
+                           ,[FirstName]
+                           ,[SecondName]
+                           ,[FirstLastName]
+                           ,[businessLineCode]
+                           ,[IdentificationNumber]
+                           ,[ProvinceStateAddress]
+                           ,[CityId]
+                           )) pv
+       LEFT JOIN [OnboardingAgent].[DataManager].[CatalogData] x ON pv.[CityId] = x.Code
+              AND x.Active = 1
+              AND x.IsDeleted = 0
+       LEFT JOIN [OnboardingAgent].[DataManager].[CatalogData] y ON pv.businessLineCode = y.Code
+              AND Y.Active = 1
+              AND Y.IsDeleted = 0
+       LEFT JOIN [OnboardingAgent].[DataManager].[CatalogData] Z ON pv.ProvinceStateAddress = Z.Code
+              AND Z.Active = 1
+              AND Z.IsDeleted = 0
+       WHERE y.Name = 'AUTOMOVIL'
+       )
+       ,vo
+AS (
+       SELECT Agent_Id
+              ,Residence_Country_Id
+              ,Citizenship_Country_Id
+              ,b.State_Prov_Desc
+              ,C.Code
+       FROM GLOBAL.Entity.EN_AGENT a
+       JOIN GLOBAL.[Global].[ST_GLOBAL_STATE_PROVINCE] b ON a.Residence_Country_Id = b.Country_Id
+              AND a.Citizenship_Country_Id = b.State_Prov_Id
+       LEFT JOIN [OnboardingAgent].[DataManager].[CatalogData] C ON IdCatalogHeader = 2
+              AND ParentCode = 'COU0129'
+              AND b.State_Prov_Desc = C.Name
+       WHERE a.Citizenship_Country_Id <> 0
+       )
+       ,cartera
+AS (
+       SELECT iif(c.SYSTEM_ID = 1, convert(VARCHAR, try_cast(b.[CODIGO INTERMEDIARIO] AS INT)), b.[CODIGO INTERMEDIARIO]) [CODIGO INTERMEDIARIO]
+              ,b.[NOMBRE INTERMEDIARIO]
+              ,b.[ESTADO INTERMEDIARIO]
+              ,SUM(a.ACCOUNT_VALUE) CARTERA
+       FROM [ATL-SRV67.ATLANTICA.DO].[Reportdw].[REPORT].[vw_detalle_cartera_actual_extendida] a
+       JOIN [ATL-SRV67.ATLANTICA.DO].[Reportdw].REPORT.DM_D_SALES_HIERARCHY b ON a.POLICY_AGENT_ID = b.[ID INTERMEDIARIO]
+       JOIN [ATL-SRV67.ATLANTICA.DO].[Reportdw].DTW.DM_D_AGENT c ON b.[ID INTERMEDIARIO] = c.AGENT_ID
+              AND c.system_id = 1
+       GROUP BY iif(c.SYSTEM_ID = 1, convert(VARCHAR, try_cast(b.[CODIGO INTERMEDIARIO] AS INT)), b.[CODIGO INTERMEDIARIO])
+              ,b.[NOMBRE INTERMEDIARIO]
+              ,b.[ESTADO INTERMEDIARIO]
+       )
+SELECT *
+FROM ob x
+JOIN vo Y ON x.GlobalAgentId = Y.Agent_Id
+LEFT JOIN cartera z ON x.AgentCode = z.[CODIGO INTERMEDIARIO]
+WHERE x.CodigoProvincia IS NULL
+ 
+
+GO
+
+
 
 
 
