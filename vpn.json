@@ -372,6 +372,102 @@ GO
 
 
 
+USE [Logs]
+GO
+/****** Object:  StoredProcedure [dbo].[CLEAN_LOG_DAY]    Script Date: 9/2/2022 9:02:07 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Rabel Obispo
+-- Create date: 2017-07-14
+-- Description:	Clean log day
+-- =============================================
+ALTER PROCEDURE [dbo].[CLEAN_LOG_DAY]
+AS
+BEGIN
+	SET NOCOUNT ON;
+	declare @Table table([Id] int identity(1,1), [TableToInsert] varchar(500),[TableToSearch] varchar(500), [ColumnName] varchar(60))
+	declare @CurrentDate datetime
+	declare @CurrentDateV varchar(100)
+	declare @Count int;
+	declare @Counter int;
+	declare @QueryInsert nvarchar(max)
+	declare @QueryDelete nvarchar(max)
+	declare @QueryDrop nvarchar(max)
+	declare @TableToInsert varchar(500)
+	declare @TableToSearch varchar(500)
+	declare @ColumnName varchar(60)
+	declare @ParmDefinition nvarchar(max)
+		
+	set @CurrentDate = getdate();
+	set @CurrentDateV = replace(replace(replace(convert(varchar(100),@CurrentDate,127),'-',''),':',''),'.','');
+	set @Count = -1;
+	set @Counter = 1;
+	set @ParmDefinition = '@CurrentDate datetime'
+
+	insert into @Table([TableToInsert],[TableToSearch],[ColumnName])
+		select
+			 concat('[dbo].[',replace(replace([Table_Name],'[',''),']',''),'_',@CurrentDateV,']') as [TableToInsert]
+			,concat(iif(isnull([Linked_Server],'')<>'',concat([Linked_Server],'.'),''),[Data_Base],'.',[Table_Schema],'.',[Table_Name]) as [Full_Name]
+			,[Column_Name]
+		from
+			[dbo].[Clean_Config]
+		where 
+			[Table_Status] = 1;
+
+	set @Count = isnull((select count(*) from @Table),-1);
+
+	while @Counter <= @Count
+	begin
+		begin try
+			select top 1
+				 @TableToInsert = [TableToInsert]
+				,@TableToSearch = [TableToSearch]
+				,@ColumnName = [ColumnName]
+			from
+				@Table
+			where 
+				[Id] = @Counter;
+
+			set @QueryInsert = concat('select * into ',@TableToInsert,' from ',@TableToSearch,' where ',@ColumnName,' <= @CurrentDate;');
+			set @QueryDelete = concat('delete from ',@TableToSearch,' where ',@ColumnName,' <= @CurrentDate;');
+			set @QueryDrop  = concat('if not exists (select top 1 1 from ',@TableToInsert,') begin drop table ',@TableToInsert,'; end');
+
+			exec sp_executesql @QueryInsert, @ParmDefinition, @CurrentDate = @CurrentDate;
+			exec sp_executesql @QueryDelete, @ParmDefinition, @CurrentDate = @CurrentDate; 
+			exec sp_executesql @QueryDrop;
+		end try
+		begin catch
+			declare @TableError table([Message] varchar(max))
+			insert into @TableError
+				select 
+					'ErrorNumber:' + CHAR(10)
+					+ CHAR(9) + convert(varchar(4000),ERROR_NUMBER()) + CHAR(10)
+					+ 'ErrorSeverity:' + CHAR(10)
+					+ CHAR(9) + convert(varchar(4000),ERROR_SEVERITY()) + CHAR(10)
+					+ 'ErrorState:' + CHAR(10)
+					+ CHAR(9) + convert(varchar(4000),ERROR_STATE()) + CHAR(10)
+					+ 'ErrorLine:' + CHAR(10)
+					+ CHAR(9) + convert(varchar(4000),ERROR_LINE ()) + CHAR(10)
+					+ 'ErrorProcedure:' + CHAR(10)
+					+ CHAR(9) + convert(varchar(4000),ERROR_PROCEDURE()) + CHAR(10)
+					+ 'ErrorMessage:' + CHAR(10)
+					+ CHAR(9) + convert(varchar(4000),ERROR_MESSAGE())
+
+			insert into [dbo].[Log_Config]
+				([Type],[Log_Value])
+			values
+				('Error',(select * from @TableError FOR XML AUTO));
+		end catch
+
+		set @Counter = @Counter + 1;
+	end
+
+END
+
+
 
 
 
