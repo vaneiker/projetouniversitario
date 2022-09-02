@@ -470,4 +470,46 @@ END
 
 
 
+USE [Logs]
+GO
+
+/****** Object:  Table [dbo].[Clean_Config]    Script Date: 9/2/2022 9:10:14 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Clean_Config](
+	[Id] [int] NOT NULL,
+	[Linked_Server] [varchar](60) NULL,
+	[Data_Base] [varchar](60) NOT NULL,
+	[Table_Schema] [varchar](60) NOT NULL,
+	[Table_Name] [varchar](150) NOT NULL,
+	[Column_Name] [varchar](60) NOT NULL,
+	[Table_Status] [bit] NOT NULL,
+	[Create_Date] [datetime] NOT NULL,
+	[Create_UsrId] [int] NOT NULL,
+	[Modi_Date] [datetime] NULL,
+	[Modi_UsrId] [int] NULL,
+	[Hostname] [varchar](100) NOT NULL,
+ CONSTRAINT [PK_Clean_Config] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Clean_Config] ADD  CONSTRAINT [DF_Clean_Config_Status]  DEFAULT ((1)) FOR [Table_Status]
+GO
+
+ALTER TABLE [dbo].[Clean_Config] ADD  CONSTRAINT [DF_Clean_Config_Create_Date]  DEFAULT (getdate()) FOR [Create_Date]
+GO
+
+ALTER TABLE [dbo].[Clean_Config] ADD  CONSTRAINT [DF_Clean_Config_Hostname]  DEFAULT (host_name()) FOR [Hostname]
+GO
+
+
+
+
 
