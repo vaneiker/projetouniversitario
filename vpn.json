@@ -511,5 +511,55 @@ GO
 
 
 
+USE [master]
+GO
+
+/****** Object:  LinkedServer [STL-SRV08.statetrustlife.com]    Script Date: 9/4/2022 11:42:25 AM ******/
+EXEC master.dbo.sp_addlinkedserver @server = N'STL-SRV08.statetrustlife.com', @srvproduct=N'STL-SRV08.statetrustlife.com', @provider=N'SQLNCLI', @datasrc=N'STL-SRV08.statetrustlife.com', @provstr=N'Data Source=STL-SRV08.statetrustlife.com;User Id=LinkedSrvLogin;Password=poiU1234*;
+Initial Catalog=StVirtualOffice;Max Pool Size=8000', @catalog=N'StVirtualOffice'
+ /* For security reasons the linked server remote logins password is changed with ######## */
+EXEC master.dbo.sp_addlinkedsrvlogin @rmtsrvname=N'STL-SRV08.statetrustlife.com',@useself=N'False',@locallogin=NULL,@rmtuser=N'LinkedSrvLogin',@rmtpassword='########'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'collation compatible', @optvalue=N'false'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'data access', @optvalue=N'true'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'dist', @optvalue=N'false'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'pub', @optvalue=N'false'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'rpc', @optvalue=N'true'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'rpc out', @optvalue=N'true'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'sub', @optvalue=N'false'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'connect timeout', @optvalue=N'0'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'collation name', @optvalue=null
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'lazy schema validation', @optvalue=N'false'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'query timeout', @optvalue=N'0'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'use remote collation', @optvalue=N'true'
+GO
+
+EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'remote proc transaction promotion', @optvalue=N'true'
+GO
+
+
 
 
