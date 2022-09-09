@@ -509,57 +509,57 @@ GO
 ALTER TABLE [dbo].[Clean_Config] ADD  CONSTRAINT [DF_Clean_Config_Hostname]  DEFAULT (host_name()) FOR [Hostname]
 GO
 
+ 
+        public void ExportToExcel()
+        {
+            var metodo = new MetodoLogic();
+            var emplist = metodo.GET_USUARIO_NUEVOS_Log();
 
 
-USE [master]
-GO
+            ExcelPackage pck = new ExcelPackage();
+            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
 
-/****** Object:  LinkedServer [STL-SRV08.statetrustlife.com]    Script Date: 9/4/2022 11:42:25 AM ******/
-EXEC master.dbo.sp_addlinkedserver @server = N'STL-SRV08.statetrustlife.com', @srvproduct=N'STL-SRV08.statetrustlife.com', @provider=N'SQLNCLI', @datasrc=N'STL-SRV08.statetrustlife.com', @provstr=N'Data Source=STL-SRV08.statetrustlife.com;User Id=LinkedSrvLogin;Password=poiU1234*;
-Initial Catalog=StVirtualOffice;Max Pool Size=8000', @catalog=N'StVirtualOffice'
- /* For security reasons the linked server remote logins password is changed with ######## */
-EXEC master.dbo.sp_addlinkedsrvlogin @rmtsrvname=N'STL-SRV08.statetrustlife.com',@useself=N'False',@locallogin=NULL,@rmtuser=N'LinkedSrvLogin',@rmtpassword='########'
-GO
+            ws.Cells["A1"].Value = "Creación de Usuarios";
+            //ws.Cells["B1"].Value = "Com1";
 
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'collation compatible', @optvalue=N'false'
-GO
+            ws.Cells["A2"].Value = "Report";
+            ws.Cells["B2"].Value = "Report1";
 
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'data access', @optvalue=N'true'
-GO
+            ws.Cells["A3"].Value = "Date";
+            ws.Cells["B3"].Value = string.Format("{0:dd MMMM yyyy} at {0:H: mm tt}", DateTimeOffset.Now);
 
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'dist', @optvalue=N'false'
-GO
+            ws.Cells["A6"].Value = "Usuario ID";
+            ws.Cells["B6"].Value = "Agent ID";
+            ws.Cells["C6"].Value = "Agent Code";
+            ws.Cells["D6"].Value = "Usuario";
+            ws.Cells["E6"].Value = "Nombre Completo";
 
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'pub', @optvalue=N'false'
-GO
+            int rowStart = 7;
+            foreach (var item in emplist)
+            {
+                if (item.Id_Usuario < 5)
+                {
+                    ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Row(rowStart).Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("pink")));
 
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'rpc', @optvalue=N'true'
-GO
+                }
 
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'rpc out', @optvalue=N'true'
-GO
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.Id_Usuario;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Agent_ID;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Agent_Code;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.Usuario;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.Nombre_Completo;
+                rowStart++;
+            }
 
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'sub', @optvalue=N'false'
-GO
+            ws.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment: filename=" + "ExcelReport.xlsx");
+            Response.BinaryWrite(pck.GetAsByteArray());
+            Response.End();
 
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'connect timeout', @optvalue=N'0'
-GO
-
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'collation name', @optvalue=null
-GO
-
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'lazy schema validation', @optvalue=N'false'
-GO
-
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'query timeout', @optvalue=N'0'
-GO
-
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'use remote collation', @optvalue=N'true'
-GO
-
-EXEC master.dbo.sp_serveroption @server=N'STL-SRV08.statetrustlife.com', @optname=N'remote proc transaction promotion', @optvalue=N'true'
-GO
-
-
-
+        }
+      
+        
 
