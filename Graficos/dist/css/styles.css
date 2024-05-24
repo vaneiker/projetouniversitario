@@ -1,0 +1,51 @@
+    /* Estilos adicionales para el contenedor principal */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* Estilos adicionales para el canvas */
+    canvas {
+      margin-bottom: 20px;
+      width: 80%; /* Ancho relativo */
+      max-width: 600px; /* Ancho máximo */
+      height: auto; /* Altura automática para mantener la proporción */
+    }
+
+    /* Estilos adicionales para el input y el botón */
+    input[type="number"] {
+      width: 200px;
+      margin-right: 10px;
+      padding: 5px;
+    }
+
+    button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+  /* Estilos para las tarjetas */
+  .card {
+    width: calc(33.33% - 20px); /* Ancho de la tarjeta, calculado para 3 tarjetas por fila */
+    margin-bottom: 20px; /* Espacio entre las tarjetas */
+    box-sizing: border-box; /* Incluir bordes y relleno en el ancho */
+  }
+
+  @media screen and (max-width: 992px) {
+    /* Estilos para pantallas más pequeñas (menos de 992px de ancho) */
+    .card {
+      width: calc(50% - 20px); /* Ancho de la tarjeta para 2 tarjetas por fila */
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    /* Estilos para pantallas aún más pequeñas (menos de 768px de ancho) */
+    .card {
+      width: 100%; /* Ancho completo para 1 tarjeta por fila */
+    }
+  }
